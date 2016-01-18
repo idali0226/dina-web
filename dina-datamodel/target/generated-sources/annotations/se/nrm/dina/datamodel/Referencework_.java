@@ -17,7 +17,7 @@ import se.nrm.dina.datamodel.Localitycitation;
 import se.nrm.dina.datamodel.Referencework;
 import se.nrm.dina.datamodel.Taxoncitation;
 
-@Generated(value="EclipseLink-2.7.0.v20160114-rNA", date="2016-01-18T14:16:56")
+@Generated(value="EclipseLink-2.7.0.v20160114-rNA", date="2016-01-18T16:49:49")
 @StaticMetamodel(Referencework.class)
 public class Referencework_ extends BaseEntity_ {
 

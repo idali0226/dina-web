@@ -11,7 +11,7 @@ import se.nrm.dina.datamodel.Fieldnotebook;
 import se.nrm.dina.datamodel.Fieldnotebookpage;
 import se.nrm.dina.datamodel.Fieldnotebookpagesetattachment;
 
-@Generated(value="EclipseLink-2.7.0.v20160114-rNA", date="2016-01-18T14:16:56")
+@Generated(value="EclipseLink-2.7.0.v20160114-rNA", date="2016-01-18T16:49:49")
 @StaticMetamodel(Fieldnotebookpageset.class)
 public class Fieldnotebookpageset_ extends BaseEntity_ {
 

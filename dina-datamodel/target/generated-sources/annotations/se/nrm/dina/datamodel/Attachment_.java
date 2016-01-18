@@ -28,7 +28,7 @@ import se.nrm.dina.datamodel.Specifyuser;
 import se.nrm.dina.datamodel.Storageattachment;
 import se.nrm.dina.datamodel.Taxonattachment;
 
-@Generated(value="EclipseLink-2.7.0.v20160114-rNA", date="2016-01-18T14:16:55")
+@Generated(value="EclipseLink-2.7.0.v20160114-rNA", date="2016-01-18T16:49:49")
 @StaticMetamodel(Attachment.class)
 public class Attachment_ extends BaseEntity_ {
 

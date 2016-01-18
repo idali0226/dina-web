@@ -9,7 +9,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import se.nrm.dina.datamodel.Sgrbatchmatchresultitem;
 import se.nrm.dina.datamodel.Sgrmatchconfiguration;
 
-@Generated(value="EclipseLink-2.7.0.v20160114-rNA", date="2016-01-18T14:16:55")
+@Generated(value="EclipseLink-2.7.0.v20160114-rNA", date="2016-01-18T16:49:49")
 @StaticMetamodel(Sgrbatchmatchresultset.class)
 public class Sgrbatchmatchresultset_ { 
 
