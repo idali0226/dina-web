@@ -30,6 +30,17 @@ public class NamedQueries {
         return instance;
     }
 
+    /**
+     * Creates a query string
+     * @param entityName
+     * @param clazz
+     * @param offset
+     * @param minid
+     * @param maxid
+     * @param orderBy
+     * @param criteria
+     * @return String
+     */
     public String createQueryFindAllWithSearchCriteria(String entityName,
                                                         Class clazz,
                                                         int offset,
@@ -55,14 +66,11 @@ public class NamedQueries {
 
         if (orderBy != null && !orderBy.isEmpty()) {
             sb.append(buildOrderByString(clazz, orderBy));
-        }
-
-        logger.info(sb.toString());
-
-        return sb.toString();
-
+        } 
+        return sb.toString(); 
     }
 
+ 
     private String buildConditions(Class clazz, int minid, int maxid, Map<String, String> criteria) {
 
         EntityBean bean = Util.getInstance().createNewInstance(clazz.getSimpleName());
@@ -123,12 +131,7 @@ public class NamedQueries {
                     sb.append(entry.getKey());
                     if (Util.getInstance().isEntity(clazz, entry.getKey())) {
                         sb.append(".");
-                        sb.append(Util.getInstance().getIDFieldName(Util.getInstance().getEntity(clazz, entry.getKey())));
-//                    } else if(Util.getInstance().isCollection(clazz, entry.getKey())) {
-//                        String entityName = entry.getKey().replace("List", ""); 
-//                        EntityBean bean = Util.getInstance().createNewInstance(Util.getInstance().reformClassName(entityName));
-//                        sb.append(".");
-//                        sb.append(Util.getInstance().getIDFieldName(bean));
+                        sb.append(Util.getInstance().getIDFieldName(Util.getInstance().getEntity(clazz, entry.getKey()))); 
                     }
                     sb.append(" = :");
                     sb.append(entry.getKey());
@@ -154,9 +157,11 @@ public class NamedQueries {
         return StringUtils.substringBeforeLast(sb.toString(), ","); 
     }
     
-    
-    
-    
+    /**
+     * Creates a NamedQuery String for find total count of an entity
+     * @param entityName
+     * @return String
+     */
     public String createFindTotalCountNamedQuery(String entityName) {
 
         StringBuilder sb = new StringBuilder();

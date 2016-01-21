@@ -31,9 +31,7 @@ public class Util {
     private final int MAX_LIMIT = 200;
     private static Util instance = null;
     private static final String ENTITY_PACKAGE = "se.nrm.dina.datamodel.";
-    
-//    private static final String ENTITY_PACKAGE = "se.nrm.specify.datamodel.";
-
+      
     public static synchronized Util getInstance() {
         if (instance == null) {
             instance = new Util();
@@ -41,20 +39,28 @@ public class Util {
         return instance;
     } 
     
+    /**
+     * Converts entityname to class
+     * 
+     * @param classname
+     * @return Class
+     */
     public Class convertClassNameToClass(String classname) {
  
         logger.info("convertClassNameToClass : {}", classname);
         
         try {
-            Class clazz = Class.forName(ENTITY_PACKAGE + reformClassName(classname)); 
-            logger.info("clazz : {}", clazz);
-            return clazz;
-        } catch (ClassNotFoundException ex) {  
-            logger.error(ex.getMessage());
+            return Class.forName(ENTITY_PACKAGE + reformClassName(classname));   
+        } catch (ClassNotFoundException ex) {   
             throw new DinaException(ErrorMsg.getInstance().getEntityNameErrorMsg());
         }  
     } 
     
+    /**
+     * Reforms class name to uppercase on first letter
+     * @param s
+     * @return 
+     */
     public String reformClassName(String s) {
         logger.info("reformClassName : {}", s);
         
@@ -64,6 +70,12 @@ public class Util {
         return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
     }
     
+    /**
+     * Creates an instance of entity of the given name
+     * @param <T>
+     * @param classname
+     * @return EntityBean
+     */
     public <T extends EntityBean> T createNewInstance(String classname) {
  
         try {
@@ -76,6 +88,12 @@ public class Util {
         }
     }
     
+    /**
+     * Validates if the entityname is valid
+     * 
+     * @param entityName
+     * @return entityName
+     */
     public String validateEntityName(String entityName) {
         entityName = reformClassName(entityName);
         try {
@@ -86,6 +104,12 @@ public class Util {
         return entityName;
     }
     
+    /**
+     * Validates fields in one entity
+     * @param clazz
+     * @param map
+     * @return boolean
+     */
     public boolean isFieldsValid(Class clazz, Map<String, String> map) {
         try {
             return map.entrySet()
@@ -105,6 +129,12 @@ public class Util {
         }
     }
 
+    /**
+     * Checks if the field is int of Integer
+     * @param clazz
+     * @param fieldName
+     * @return boolean
+     */
     public boolean isIntField(Class clazz, String fieldName) {
         logger.info("isIntField : {} -- {}", clazz, fieldName); 
         try { 
@@ -120,6 +150,12 @@ public class Util {
         }
     }
 
+    /**
+     * Checks if the field is an Entity
+     * @param clazz
+     * @param fieldName
+     * @return boolean
+     */
     public boolean isEntity(Class clazz, String fieldName) {
         logger.info("isIntField : {} -- {}", clazz, fieldName);
         try {
@@ -136,7 +172,12 @@ public class Util {
         }
     }
     
-    
+    /**
+     * Checks if the field is a collection
+     * @param clazz
+     * @param fieldName
+     * @return 
+     */
     public boolean isCollection(Class clazz, String fieldName) {
         logger.info("isIntField : {} -- {}", clazz, fieldName);
         try {
@@ -153,6 +194,12 @@ public class Util {
         }
     }
     
+    /**
+     * Creates an Entity
+     * @param clazz
+     * @param fieldName
+     * @return EntityBean
+     */
     public EntityBean getEntity(Class clazz, String fieldName) {
         logger.info("getEntity : {} -- {}", clazz, fieldName);
         try { 
@@ -168,6 +215,12 @@ public class Util {
         }
     }
 
+    /**
+     * Validates one field in an entity
+     * @param clazz
+     * @param fieldName
+     * @return boolean
+     */
     public boolean validateFields(Class clazz, String fieldName) {
         logger.info("validateFields : {} -- {}", clazz, fieldName); 
         try {  
@@ -197,13 +250,13 @@ public class Util {
                 .filter(f -> f.isAnnotationPresent(Id.class))
                 .findFirst()
                 .get()
-                .getName(); 
+                .getName();
     }
-    
-        /**
+
+    /**
      * Find id field name for the entity bean
      *
-     * @param entityName 
+     * @param entityName
      * @return String, name of the id field of this entity bean
      */
     public String getIDFieldName(String entityName) {
@@ -211,11 +264,20 @@ public class Util {
         return getIDFieldName(bean);
     }
     
-        
+    /**
+     * Checks if the String is numeric
+     * @param s
+     * @return 
+     */    
     public boolean isNumric(String s) { 
         return StringUtils.isNumeric(s);
     }
     
+    /**
+     * Calculates limit 
+     * @param limit
+     * @return int
+     */
     public int maxLimit(int limit) {
         if(limit > MAX_LIMIT) {
             return MAX_LIMIT;

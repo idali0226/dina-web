@@ -49,6 +49,11 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
         this.dao = dao;
     }
 
+    /**
+     * Finds all the instances of an entity
+     * @param entityName
+     * @return List<T> 
+     */
     public List<T> findAll(String entityName) { 
         try {
             return dao.findAll(Util.getInstance().convertClassNameToClass(entityName));
@@ -57,6 +62,17 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
         }
     }
 
+    /**
+     * Finds all the instances of an entity
+     * @param entityName
+     * @param offset
+     * @param limit
+     * @param minid
+     * @param maxid
+     * @param sort
+     * @param conditions
+     * @return List<T>
+     */
     public List<T> findAll(String entityName, int offset, int limit,
             int minid, int maxid, List<String> sort, Map<String, String> conditions) {
  
@@ -74,6 +90,12 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
         }
     }
 
+    /**
+     * Finds all the instances of an entity by query
+     * @param entityName
+     * @param map
+     * @return List<T>
+     */
     public List<T> findAllBySearchCriteria(String entityName, MultivaluedMap<String, String> map) {
 
         logger.info("findAllBySearchCriteria : {}", map);
@@ -113,7 +135,7 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
             throw new DinaException("Error.  " + e.getMessage() + " is not valid field in " + entityName);
         }
     }
-
+ 
     private Predicate<Entry<String, List<String>>> filterCondition() {
         return s -> !s.getKey().equals("offset")
                     && !s.getKey().equals("limit")
@@ -122,6 +144,12 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
                     && !s.getKey().equals("orderby");
     }
 
+    /**
+     * Finds an entity by its database id
+     * @param id
+     * @param entityName
+     * @return T
+     */
     public T findById(String id, String entityName) {
         logger.info("findById : {} -- {}", id, entityName);
 
@@ -136,6 +164,11 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
         }
     }
 
+    /**
+     * Finds the total number of an entity in database
+     * @param entityName
+     * @return int
+     */
     public int findEntityCount(String entityName) {
 
         try {
@@ -145,6 +178,12 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
         }
     }
 
+    /**
+     * Creates an entity in database
+     * @param entityName
+     * @param json
+     * @return EntityBean
+     */
     public EntityBean createEntity(String entityName, String json) {
 
         logger.info("createEntity : {} ", entityName);
@@ -158,6 +197,12 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
 
     }
 
+    /**
+     * Updates an entity in database
+     * @param entityName
+     * @param json
+     * @return EntityBean
+     */
     public EntityBean updateEntity(String entityName, String json) {
         logger.info("updateEntity : {} -- {}", entityName, json);
 
@@ -169,6 +214,7 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
         }
     }
 
+ 
     private EntityBean mappObject(String entityName, String json) {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -182,6 +228,11 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
         return bean;
     }
   
+    /**
+     * Deletes an entity in database
+     * @param entityName
+     * @param id 
+     */
     public void deleteEntity(String entityName, int id) {
 
         logger.info("deleteEntity : {} -- {}", entityName, id);
