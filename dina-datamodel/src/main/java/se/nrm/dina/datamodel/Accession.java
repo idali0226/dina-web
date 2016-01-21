@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import se.nrm.dina.datamodel.util.Util;
 
 /**
@@ -51,6 +52,7 @@ import se.nrm.dina.datamodel.util.Util;
     @NamedQuery(name = "Accession.findByDateAcknowledged", query = "SELECT a FROM Accession a WHERE a.dateAcknowledged = :dateAcknowledged"),
     @NamedQuery(name = "Accession.findByDateReceived", query = "SELECT a FROM Accession a WHERE a.dateReceived = :dateReceived"), 
     @NamedQuery(name = "Accession.findByType", query = "SELECT a FROM Accession a WHERE a.type = :type") })
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Accession extends BaseEntity {
     
     private static final long serialVersionUID = 1L;

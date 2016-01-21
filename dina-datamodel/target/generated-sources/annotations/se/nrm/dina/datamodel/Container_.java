@@ -9,7 +9,7 @@ import se.nrm.dina.datamodel.Collectionobject;
 import se.nrm.dina.datamodel.Container;
 import se.nrm.dina.datamodel.Storage;
 
-@Generated(value="EclipseLink-2.7.0.v20160118-rNA", date="2016-01-19T06:20:34")
+@Generated(value="EclipseLink-2.7.0.v20160118-rNA", date="2016-01-21T08:43:44")
 @StaticMetamodel(Container.class)
 public class Container_ extends BaseEntity_ {
 

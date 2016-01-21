@@ -59,6 +59,11 @@
     </properties>
  
     <modules>  
+        <module>dina-datamodel</module>
+        <module>dina-data-jpa</module>
+        
+        
+        
         <!--<module>dina-common</module>-->
         <!--<module>dina-blast-common</module>--> 
         <!--        <module>dina-blastdb-creator</module>
@@ -131,7 +136,7 @@
         <module>dina-vegacenter-logic</module>-->
     
     
-        <module>dina-datamodel</module>
+        
     </modules>
 
     <dependencies>
