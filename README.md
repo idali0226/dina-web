@@ -4,12 +4,14 @@
 
  
   This repository consists of three basic modules in dinaproject:
-  - dina-datamodel
-  - dina-data-jpa
-  - dina-data-service
+   - dina-datamodel
+   - dina-data-jpa
+   - dina-data-service
   
   dina-datamodel is the model of entities from dina database 
+
   dina-data-jpa is the CRUD operations to dina database
+  
   dina-data-service is restful service which provides a set of methods to read, create, updat and delete data instance(s) to/from dina database.
  
 
