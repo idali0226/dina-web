@@ -8,7 +8,7 @@ import se.nrm.dina.datamodel.Spexportschemaitem;
 import se.nrm.dina.datamodel.Spexportschemamapping;
 import se.nrm.dina.datamodel.Spqueryfield;
 
-@Generated(value="EclipseLink-2.7.0.v20160121-rNA", date="2016-01-22T12:22:40")
+@Generated(value="EclipseLink-2.7.0.v20160121-rNA", date="2016-01-22T18:36:38")
 @StaticMetamodel(Spexportschemaitemmapping.class)
 public class Spexportschemaitemmapping_ extends BaseEntity_ {
 
