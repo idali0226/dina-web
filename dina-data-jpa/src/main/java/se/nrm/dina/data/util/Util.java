@@ -80,10 +80,8 @@ public class Util {
  
         try {
             Class classDefinition = Class.forName(ENTITY_PACKAGE + classname);
-            return (T) classDefinition.newInstance();
-        } catch (ClassNotFoundException ex) {  
-            throw new DinaException(ErrorMsg.getInstance().getEntityNameErrorMsg());
-        } catch (InstantiationException | IllegalAccessException | NoClassDefFoundError ex) {
+            return (T) classDefinition.newInstance(); 
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoClassDefFoundError ex) {
             throw new DinaException(ErrorMsg.getInstance().getEntityNameErrorMsg());
         }
     }

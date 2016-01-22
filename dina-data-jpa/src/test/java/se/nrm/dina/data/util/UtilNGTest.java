@@ -7,10 +7,10 @@ package se.nrm.dina.data.util;
 
 import java.util.HashMap;
 import java.util.Map; 
+import org.junit.Test;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass; 
-import org.testng.annotations.BeforeClass; 
-import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;  
 import se.nrm.dina.data.exceptions.DinaException;
 import se.nrm.dina.datamodel.Accession;
 import se.nrm.dina.datamodel.Collectionobject;
@@ -64,6 +64,19 @@ public class UtilNGTest {
     }
 
     /**
+     * Test of convertClassNameToClass method, of class Util.
+     */
+    @Test(expected = DinaException.class)  
+    public void testConvertClassNameToClassException() {
+
+        System.out.println("testConvertClassNameToClassException");
+
+        testInstance = new Util();
+        String classname = "Accessions"; 
+        testInstance.convertClassNameToClass(classname); 
+    }
+    
+    /**
      * Test of reformClassName method, of class Util.
      */
     @Test
@@ -80,6 +93,21 @@ public class UtilNGTest {
     }
 
     /**
+     * Test of reformClassName method, of class Util.
+     */
+    @Test
+    public void testReformClassNameEmptyName() {
+        System.out.println("testReformClassName");
+
+        String s = "";
+
+        testInstance = new Util();
+ 
+        String result = testInstance.reformClassName(s);
+        assertEquals(0, result.length());
+    }
+
+    /**
      * Test of createNewInstance method, of class Util.
      */
     @Test
@@ -92,22 +120,17 @@ public class UtilNGTest {
         assertNotNull(result);
         assertEquals(result.getClass().getSimpleName(), classname);
     }
-    
-        /**
+
+    /**
      * Test of createNewInstance method, of class Util.
      */
-    @Test
+    @Test(expected = DinaException.class)
     public void testFailedCreateNewInstance() {
         System.out.println("testCreateNewInstance");
-        
+
         String classname = "Accessions";
-        testInstance = new Util(); 
-        try {
-            testInstance.createNewInstance(classname);
-            fail("Expected a DinaException to be thrown");
-        } catch (DinaException e) {
-            assertEquals(e.getMessage(), "The entity name is wrong");
-        } 
+        testInstance = new Util();
+        testInstance.createNewInstance(classname); 
     }
 
     /**
@@ -122,25 +145,20 @@ public class UtilNGTest {
         testInstance = new Util();
         String expResult = "Accession";
         String result = testInstance.validateEntityName(entityName);
-        assertEquals(result, expResult); 
+        assertEquals(result, expResult);
     }
-    
+
     /**
      * Test of validateEntityName method, of class Util.
      */
-    @Test
+    @Test(expected = DinaException.class)
     public void testInvalidateEntityName() {
         System.out.println("testInvalidateEntityName");
 
         String entityName = "accessions";
 
-        testInstance = new Util();
-        try {
-            testInstance.validateEntityName(entityName);
-            fail("Expected a DinaException to be thrown");
-        } catch (DinaException e) {
-            assertEquals(e.getMessage(), "The entity name is wrong");
-        }
+        testInstance = new Util(); 
+        testInstance.validateEntityName(entityName);
     }
 
 
@@ -164,29 +182,48 @@ public class UtilNGTest {
         boolean result = testInstance.isFieldsValid(clazz, map);
         assertEquals(result, expResult);
     }
-
-    /**
+    
+        /**
      * Test of isFieldsValid method, of class Util.
      */
     @Test
     public void testIsFieldsValidFailed() {
+        System.out.println("testIsFieldsValid");
+        
+        Class clazz = Accession.class;
+        
+        Map<String, String> map = new HashMap();
+        map.put("accessionCondition", null);
+        map.put("accessionNumbers", null);
+        map.put("dateAccessioned", null);
+        map.put("dateReceived", null);
+         
+        testInstance = new Util(); 
+        try {
+            testInstance.isFieldsValid(clazz, map);
+            fail("Expected a DinaException to be thrown");
+        } catch(DinaException e) {
+            assertEquals(e.getMessage(), "accessionNumbers");
+        } 
+    }
+
+    /**
+     * Test of isFieldsValid method, of class Util.
+     */
+    @Test(expected = DinaException.class)  
+    public void testIsFieldsValidFailedExpected() {
         System.out.println("testIsFieldsValid");
 
         Class clazz = Accession.class;
 
         Map<String, String> map = new HashMap();
         map.put("accessionConditions", null);
-        map.put("accessionNumber", null);
+        map.put("accessionNumbers", null);
         map.put("dateAccessioned", null);
         map.put("dateReceived", null);
          
-        testInstance = new Util();  
-        try {
-            testInstance.isFieldsValid(clazz, map);
-            fail("field name invalid");
-        } catch(DinaException e) {
-            assertTrue(true);
-        }  
+        testInstance = new Util();   
+        testInstance.isFieldsValid(clazz, map);
     }
 
     /**
@@ -205,6 +242,49 @@ public class UtilNGTest {
     }
 
     /**
+     * Test of isIntField method, of class Util.
+     */
+    @Test
+    public void testIsIntFieldFalse() {
+        System.out.println("isIntField");
+        
+        Class clazz = Accession.class;
+        String fieldName = "accessionNumber";
+        testInstance = new Util();
+         
+        boolean result = testInstance.isIntField(clazz, fieldName);
+        assertFalse(result);
+    }
+    
+    /**
+     * Test of isIntField method, of class Util.
+     */
+    @Test(expected = DinaException.class)  
+    public void testIsIntegerFieldException() {
+        System.out.println("isIntField");
+
+        Class clazz = Accession.class;
+        String fieldName = "accessionIDs";
+        testInstance = new Util(); 
+        testInstance.isIntField(clazz, fieldName);
+    }
+
+    /**
+     * Test of isIntField method, of class Util.
+     */
+    @Test
+    public void testIsIntegerField() {
+        System.out.println("isIntField");
+
+        Class clazz = Accession.class;
+        String fieldName = "accessionID";
+        testInstance = new Util();
+
+        boolean result = testInstance.isIntField(clazz, fieldName);
+        assertTrue(result);
+    }
+
+    /**
      * Test of isEntity method, of class Util.
      */
     @Test
@@ -216,6 +296,34 @@ public class UtilNGTest {
         testInstance = new Util(); 
         boolean result = testInstance.isEntity(clazz, fieldName);
         assertTrue(result);
+    }
+    
+    
+    /**
+     * Test of isEntity method, of class Util.
+     */
+    @Test
+    public void testIsEntityFalse() {
+        System.out.println("isEntity");
+
+        Class clazz = Accession.class;
+        String fieldName = "accessionNumber";
+        testInstance = new Util();
+        boolean result = testInstance.isEntity(clazz, fieldName);
+        assertFalse(result);
+    }
+    
+    /**
+     * Test of isEntity method, of class Util.
+     */
+    @Test(expected = DinaException.class)  
+    public void testIsEntityFalseException() {
+        System.out.println("isEntity");
+
+        Class clazz = Accession.class;
+        String fieldName = "divisionid";
+        testInstance = new Util();
+        testInstance.isEntity(clazz, fieldName); 
     }
 
     /**
