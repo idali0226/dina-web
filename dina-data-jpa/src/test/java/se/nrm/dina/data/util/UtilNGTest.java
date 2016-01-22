@@ -12,6 +12,7 @@ import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass; 
 import org.testng.annotations.BeforeClass;  
 import se.nrm.dina.data.exceptions.DinaException;
+import se.nrm.dina.data.exceptions.ErrorMsg;
 import se.nrm.dina.datamodel.Accession;
 import se.nrm.dina.datamodel.Collectionobject;
 import se.nrm.dina.datamodel.Division;
@@ -44,7 +45,7 @@ public class UtilNGTest {
         System.out.println("testGetInstance");
          
         Util result = Util.getInstance();
-        assertNotNull(result);
+        assertNotNull(result);   
     }
 
     /**
@@ -66,14 +67,18 @@ public class UtilNGTest {
     /**
      * Test of convertClassNameToClass method, of class Util.
      */
-    @Test(expected = DinaException.class)  
+    @Test  
     public void testConvertClassNameToClassException() {
 
         System.out.println("testConvertClassNameToClassException");
 
         testInstance = new Util();
         String classname = "Accessions"; 
-        testInstance.convertClassNameToClass(classname); 
+        try {
+            testInstance.convertClassNameToClass(classname); 
+        } catch(DinaException e) {
+            assertEquals(e.getMessage(), ErrorMsg.getInstance().getEntityNameErrorMsg());
+        } 
     }
     
     /**
@@ -97,7 +102,7 @@ public class UtilNGTest {
      */
     @Test
     public void testReformClassNameEmptyName() {
-        System.out.println("testReformClassName");
+        System.out.println("testReformClassNameEmptyName");
 
         String s = "";
 
@@ -403,7 +408,7 @@ public class UtilNGTest {
     /**
      * Test of isNumric method, of class Util.
      */
-//    @Test
+    @Test
     public void testIsNumric() {
         System.out.println("isNumric");
         

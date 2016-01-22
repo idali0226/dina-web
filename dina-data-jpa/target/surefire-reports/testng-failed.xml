@@ -5,7 +5,7 @@
     <classes>
       <class name="se.nrm.dina.data.util.UtilNGTest">
         <methods>
-          <include name="testIsIntegerField"/>
+          <include name="testReformClassNameEmptyName"/>
         </methods>
       </class> <!-- se.nrm.dina.data.util.UtilNGTest -->
     </classes>
