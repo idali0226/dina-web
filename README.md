@@ -24,4 +24,4 @@ dina-data-service is restful service which provides a set of methods to read, cr
 
 To build the project in maven:
 
-  mvn clean install
+   mvn clean install
