@@ -1,4 +1,3 @@
-
 #!/bin/bash
 #
 # Publish Javadoc of successful CI builds to http://cbeams.github.io/libjava/api
@@ -17,13 +16,14 @@ if [ "$TRAVIS_REPO_SLUG" == "cbeams/libjava" ] \
 
     # Create a fresh clone in which to run delombok and commit the results to the delombok branch
     cd $HOME
-    git clone --quiet --branch=master https://${GH_TOKEN}@github.com/idali0226/dina-web master > /dev/null
- 
+    git clone --quiet --branch=delombok https://${GH_TOKEN}@github.com/idali0226/dina-web delombok > /dev/null
+
+    cd delombok
     git reset --hard origin/master
-    ./gradlew master
+    ./gradlew delombok
     git rm .travis.yml # to avoid triggering a build when this branch is pushed
     git commit -am "Delombok Java sources"
-    git push -fq origin master > /dev/null
+    git push -fq origin delombok > /dev/null
 
     # Run javadoc over delomboked sources to pick up all methods and constructors
     ./gradlew javadoc
@@ -39,5 +39,5 @@ if [ "$TRAVIS_REPO_SLUG" == "cbeams/libjava" ] \
     git commit -m "Publish Javadoc from Travis CI build $TRAVIS_BUILD_NUMBER"
     git push -fq origin gh-pages > /dev/null
 
-    echo "Published Javadoc to gh-pages. See https://github.com/idali0226/dina-web/api"
+    echo "Published Javadoc to gh-pages. See http://idali0226.github.io/dina-web/api"
 fi
