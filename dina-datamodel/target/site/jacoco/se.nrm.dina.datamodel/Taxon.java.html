@@ -1,0 +1,903 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Taxon.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Taxon.java</span></div><h1>Taxon.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;taxon&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Taxon.findAll&quot;, query = &quot;SELECT t FROM Taxon t&quot;),
+    @NamedQuery(name = &quot;Taxon.findByTaxonID&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.taxonID = :taxonID&quot;), 
+    @NamedQuery(name = &quot;Taxon.findByAuthor&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.author = :author&quot;),
+    @NamedQuery(name = &quot;Taxon.findByCitesStatus&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.citesStatus = :citesStatus&quot;),
+    @NamedQuery(name = &quot;Taxon.findByCOLStatus&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.cOLStatus = :cOLStatus&quot;),
+    @NamedQuery(name = &quot;Taxon.findByCommonName&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.commonName = :commonName&quot;),
+    @NamedQuery(name = &quot;Taxon.findByCultivarName&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.cultivarName = :cultivarName&quot;),
+    @NamedQuery(name = &quot;Taxon.findByEnvironmentalProtectionStatus&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.environmentalProtectionStatus = :environmentalProtectionStatus&quot;),
+    @NamedQuery(name = &quot;Taxon.findByEsaStatus&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.esaStatus = :esaStatus&quot;),
+    @NamedQuery(name = &quot;Taxon.findByFullName&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.fullName = :fullName&quot;),
+    @NamedQuery(name = &quot;Taxon.findByGroupNumber&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.groupNumber = :groupNumber&quot;),
+    @NamedQuery(name = &quot;Taxon.findByGuid&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.guid = :guid&quot;),
+    @NamedQuery(name = &quot;Taxon.findByHighestChildNodeNumber&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.highestChildNodeNumber = :highestChildNodeNumber&quot;),
+    @NamedQuery(name = &quot;Taxon.findByIsAccepted&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.isAccepted = :isAccepted&quot;),
+    @NamedQuery(name = &quot;Taxon.findByIsHybrid&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.isHybrid = :isHybrid&quot;),
+    @NamedQuery(name = &quot;Taxon.findByIsisNumber&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.isisNumber = :isisNumber&quot;),
+    @NamedQuery(name = &quot;Taxon.findByLabelFormat&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.labelFormat = :labelFormat&quot;),
+    @NamedQuery(name = &quot;Taxon.findByName&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.name = :name&quot;),
+    @NamedQuery(name = &quot;Taxon.findByNcbiTaxonNumber&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.ncbiTaxonNumber = :ncbiTaxonNumber&quot;),
+    @NamedQuery(name = &quot;Taxon.findByNodeNumber&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.nodeNumber = :nodeNumber&quot;), 
+    @NamedQuery(name = &quot;Taxon.findByRankID&quot;, query = &quot;SELECT t FROM Taxon t WHERE t.rankID = :rankID&quot;) })
+public class Taxon extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;TaxonID&quot;)
+    private Integer taxonID;
+    
+    
+    @Size(max = 128)
+    @Column(name = &quot;Author&quot;)
+    private String author;
+    
+    @Size(max = 32)
+    @Column(name = &quot;CitesStatus&quot;)
+    private String citesStatus;
+    
+    @Size(max = 32)
+    @Column(name = &quot;COLStatus&quot;)
+    private String cOLStatus;
+    
+    @Size(max = 128)
+    @Column(name = &quot;CommonName&quot;)
+    private String commonName;
+    
+    @Size(max = 32)
+    @Column(name = &quot;CultivarName&quot;)
+    private String cultivarName;
+    
+    @Size(max = 64)
+    @Column(name = &quot;EnvironmentalProtectionStatus&quot;)
+    private String environmentalProtectionStatus;
+    
+    @Size(max = 64)
+    @Column(name = &quot;EsaStatus&quot;)
+    private String esaStatus;
+    
+    @Size(max = 255)
+    @Column(name = &quot;FullName&quot;)
+    private String fullName;
+    
+    @Size(max = 20)
+    @Column(name = &quot;GroupNumber&quot;)
+    private String groupNumber;
+    
+    @Size(max = 128)
+    @Column(name = &quot;GUID&quot;)
+    private String guid;
+    
+    @Column(name = &quot;HighestChildNodeNumber&quot;)
+    private Integer highestChildNodeNumber;
+    
+    @Column(name = &quot;IsAccepted&quot;)
+    private Boolean isAccepted;
+    
+    @Column(name = &quot;IsHybrid&quot;)
+    private Boolean isHybrid;
+    
+    @Size(max = 16)
+    @Column(name = &quot;IsisNumber&quot;)
+    private String isisNumber;
+    
+    @Size(max = 64)
+    @Column(name = &quot;LabelFormat&quot;)
+    private String labelFormat;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = &quot;Name&quot;)
+    private String name;
+    
+    @Size(max = 8)
+    @Column(name = &quot;NcbiTaxonNumber&quot;)
+    private String ncbiTaxonNumber;
+    
+    @Column(name = &quot;NodeNumber&quot;)
+    private Integer nodeNumber;
+    
+    @Column(name = &quot;Number1&quot;)
+    private Integer number1;
+    
+    @Column(name = &quot;Number2&quot;)
+    private Integer number2;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;RankID&quot;)
+    private int rankID;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Size(max = 64)
+    @Column(name = &quot;Source&quot;)
+    private String source;
+    
+    @Size(max = 50)
+    @Column(name = &quot;TaxonomicSerialNumber&quot;)
+    private String taxonomicSerialNumber;
+    
+    @Size(max = 32)
+    @Column(name = &quot;Text1&quot;)
+    private String text1;
+    
+    @Size(max = 32)
+    @Column(name = &quot;Text2&quot;)
+    private String text2;
+    
+    @Size(max = 50)
+    @Column(name = &quot;UnitInd1&quot;)
+    private String unitInd1;
+    
+    @Size(max = 50)
+    @Column(name = &quot;UnitInd2&quot;)
+    private String unitInd2;
+    
+    @Size(max = 50)
+    @Column(name = &quot;UnitInd3&quot;)
+    private String unitInd3;
+    
+    @Size(max = 50)
+    @Column(name = &quot;UnitInd4&quot;)
+    private String unitInd4;
+    
+    @Size(max = 50)
+    @Column(name = &quot;UnitName1&quot;)
+    private String unitName1;
+    
+    @Size(max = 50)
+    @Column(name = &quot;UnitName2&quot;)
+    private String unitName2;
+    
+    @Size(max = 50)
+    @Column(name = &quot;UnitName3&quot;)
+    private String unitName3;
+    
+    @Size(max = 50)
+    @Column(name = &quot;UnitName4&quot;)
+    private String unitName4;
+    
+    @Size(max = 16)
+    @Column(name = &quot;UsfwsCode&quot;)
+    private String usfwsCode;
+    
+    @Column(name = &quot;Visibility&quot;)
+    private Short visibility;
+    
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = &quot;Number3&quot;)
+    private Float number3;
+    
+    @Column(name = &quot;Number4&quot;)
+    private Float number4;
+    
+    @Column(name = &quot;Number5&quot;)
+    private Float number5;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text3&quot;)
+    private String text3;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text4&quot;)
+    private String text4;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text5&quot;)
+    private String text5;
+    
+    @Column(name = &quot;YesNo1&quot;)
+    private Boolean yesNo1;
+    
+    @Column(name = &quot;YesNo2&quot;)
+    private Boolean yesNo2;
+    
+    @Column(name = &quot;YesNo3&quot;)
+    private Boolean yesNo3;
+    
+    @OneToMany(mappedBy = &quot;taxonID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Determination&gt; determinationList;
+    
+    @OneToMany(mappedBy = &quot;preferredTaxonID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Determination&gt; determinationList1;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;taxonID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Taxonattachment&gt; taxonattachmentList;
+    
+    @OneToMany(mappedBy = &quot;acceptedID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Taxon&gt; taxonList;
+    
+    @JoinColumn(name = &quot;AcceptedID&quot;, referencedColumnName = &quot;TaxonID&quot;)
+    @ManyToOne
+    private Taxon acceptedID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @OneToMany(mappedBy = &quot;hybridParent1ID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Taxon&gt; taxonList1;
+    
+    @JoinColumn(name = &quot;HybridParent1ID&quot;, referencedColumnName = &quot;TaxonID&quot;)
+    @ManyToOne
+    private Taxon hybridParent1ID;
+    
+    @OneToMany(mappedBy = &quot;hybridParent2ID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Taxon&gt; taxonList2;
+    
+    @JoinColumn(name = &quot;HybridParent2ID&quot;, referencedColumnName = &quot;TaxonID&quot;)
+    @ManyToOne
+    private Taxon hybridParent2ID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;VisibilitySetByID&quot;, referencedColumnName = &quot;SpecifyUserID&quot;)
+    @ManyToOne
+    private Specifyuser visibilitySetByID;
+    
+    @JoinColumn(name = &quot;TaxonTreeDefItemID&quot;, referencedColumnName = &quot;TaxonTreeDefItemID&quot;)
+    @ManyToOne(optional = false)
+    private Taxontreedefitem taxonTreeDefItemID;
+    
+    @OneToMany(mappedBy = &quot;parentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Taxon&gt; taxonList3;
+    
+    @JoinColumn(name = &quot;ParentID&quot;, referencedColumnName = &quot;TaxonID&quot;)
+    @ManyToOne
+    private Taxon parentID;
+    
+    @JoinColumn(name = &quot;TaxonTreeDefID&quot;, referencedColumnName = &quot;TaxonTreeDefID&quot;)
+    @ManyToOne(optional = false)
+    private Taxontreedef taxonTreeDefID;
+    
+    @OneToMany(mappedBy = &quot;hostTaxonID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Collectingeventattribute&gt; collectingeventattributeList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;taxonID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Taxoncitation&gt; taxoncitationList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;taxonID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Commonnametx&gt; commonnametxList;
+
+<span class="nc" id="L315">    public Taxon() {</span>
+<span class="nc" id="L316">    }</span>
+
+<span class="nc" id="L318">    public Taxon(Integer taxonID) {</span>
+<span class="nc" id="L319">        this.taxonID = taxonID;</span>
+<span class="nc" id="L320">    }</span>
+
+<span class="nc" id="L322">    public Taxon(Integer taxonID, Date timestampCreated, String name, int rankID) {</span>
+<span class="nc" id="L323">        this.taxonID = taxonID;</span>
+<span class="nc" id="L324">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L325">        this.name = name;</span>
+<span class="nc" id="L326">        this.rankID = rankID;</span>
+<span class="nc" id="L327">    }</span>
+
+    public Integer getTaxonID() {
+<span class="nc" id="L330">        return taxonID;</span>
+    }
+
+    public void setTaxonID(Integer taxonID) {
+<span class="nc" id="L334">        this.taxonID = taxonID;</span>
+<span class="nc" id="L335">    }</span>
+
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L341">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + taxonID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L346">        return taxonID;</span>
+    }
+
+    public String getAuthor() {
+<span class="nc" id="L350">        return author;</span>
+    }
+
+    public void setAuthor(String author) {
+<span class="nc" id="L354">        this.author = author;</span>
+<span class="nc" id="L355">    }</span>
+
+    public String getCitesStatus() {
+<span class="nc" id="L358">        return citesStatus;</span>
+    }
+
+    public void setCitesStatus(String citesStatus) {
+<span class="nc" id="L362">        this.citesStatus = citesStatus;</span>
+<span class="nc" id="L363">    }</span>
+
+    public String getCOLStatus() {
+<span class="nc" id="L366">        return cOLStatus;</span>
+    }
+
+    public void setCOLStatus(String cOLStatus) {
+<span class="nc" id="L370">        this.cOLStatus = cOLStatus;</span>
+<span class="nc" id="L371">    }</span>
+
+    public String getCommonName() {
+<span class="nc" id="L374">        return commonName;</span>
+    }
+
+    public void setCommonName(String commonName) {
+<span class="nc" id="L378">        this.commonName = commonName;</span>
+<span class="nc" id="L379">    }</span>
+
+    public String getCultivarName() {
+<span class="nc" id="L382">        return cultivarName;</span>
+    }
+
+    public void setCultivarName(String cultivarName) {
+<span class="nc" id="L386">        this.cultivarName = cultivarName;</span>
+<span class="nc" id="L387">    }</span>
+
+    public String getEnvironmentalProtectionStatus() {
+<span class="nc" id="L390">        return environmentalProtectionStatus;</span>
+    }
+
+    public void setEnvironmentalProtectionStatus(String environmentalProtectionStatus) {
+<span class="nc" id="L394">        this.environmentalProtectionStatus = environmentalProtectionStatus;</span>
+<span class="nc" id="L395">    }</span>
+
+    public String getEsaStatus() {
+<span class="nc" id="L398">        return esaStatus;</span>
+    }
+
+    public void setEsaStatus(String esaStatus) {
+<span class="nc" id="L402">        this.esaStatus = esaStatus;</span>
+<span class="nc" id="L403">    }</span>
+
+    public String getFullName() {
+<span class="nc" id="L406">        return fullName;</span>
+    }
+
+    public void setFullName(String fullName) {
+<span class="nc" id="L410">        this.fullName = fullName;</span>
+<span class="nc" id="L411">    }</span>
+
+    public String getGroupNumber() {
+<span class="nc" id="L414">        return groupNumber;</span>
+    }
+
+    public void setGroupNumber(String groupNumber) {
+<span class="nc" id="L418">        this.groupNumber = groupNumber;</span>
+<span class="nc" id="L419">    }</span>
+
+    public String getGuid() {
+<span class="nc" id="L422">        return guid;</span>
+    }
+
+    public void setGuid(String guid) {
+<span class="nc" id="L426">        this.guid = guid;</span>
+<span class="nc" id="L427">    }</span>
+
+    public Integer getHighestChildNodeNumber() {
+<span class="nc" id="L430">        return highestChildNodeNumber;</span>
+    }
+
+    public void setHighestChildNodeNumber(Integer highestChildNodeNumber) {
+<span class="nc" id="L434">        this.highestChildNodeNumber = highestChildNodeNumber;</span>
+<span class="nc" id="L435">    }</span>
+
+    public Boolean getIsAccepted() {
+<span class="nc" id="L438">        return isAccepted;</span>
+    }
+
+    public void setIsAccepted(Boolean isAccepted) {
+<span class="nc" id="L442">        this.isAccepted = isAccepted;</span>
+<span class="nc" id="L443">    }</span>
+
+    public Boolean getIsHybrid() {
+<span class="nc" id="L446">        return isHybrid;</span>
+    }
+
+    public void setIsHybrid(Boolean isHybrid) {
+<span class="nc" id="L450">        this.isHybrid = isHybrid;</span>
+<span class="nc" id="L451">    }</span>
+
+    public String getIsisNumber() {
+<span class="nc" id="L454">        return isisNumber;</span>
+    }
+
+    public void setIsisNumber(String isisNumber) {
+<span class="nc" id="L458">        this.isisNumber = isisNumber;</span>
+<span class="nc" id="L459">    }</span>
+
+    public String getLabelFormat() {
+<span class="nc" id="L462">        return labelFormat;</span>
+    }
+
+    public void setLabelFormat(String labelFormat) {
+<span class="nc" id="L466">        this.labelFormat = labelFormat;</span>
+<span class="nc" id="L467">    }</span>
+
+    public String getName() {
+<span class="nc" id="L470">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L474">        this.name = name;</span>
+<span class="nc" id="L475">    }</span>
+
+    public String getNcbiTaxonNumber() {
+<span class="nc" id="L478">        return ncbiTaxonNumber;</span>
+    }
+
+    public void setNcbiTaxonNumber(String ncbiTaxonNumber) {
+<span class="nc" id="L482">        this.ncbiTaxonNumber = ncbiTaxonNumber;</span>
+<span class="nc" id="L483">    }</span>
+
+    public Integer getNodeNumber() {
+<span class="nc" id="L486">        return nodeNumber;</span>
+    }
+
+    public void setNodeNumber(Integer nodeNumber) {
+<span class="nc" id="L490">        this.nodeNumber = nodeNumber;</span>
+<span class="nc" id="L491">    }</span>
+
+    public Integer getNumber1() {
+<span class="nc" id="L494">        return number1;</span>
+    }
+
+    public void setNumber1(Integer number1) {
+<span class="nc" id="L498">        this.number1 = number1;</span>
+<span class="nc" id="L499">    }</span>
+
+    public Integer getNumber2() {
+<span class="nc" id="L502">        return number2;</span>
+    }
+
+    public void setNumber2(Integer number2) {
+<span class="nc" id="L506">        this.number2 = number2;</span>
+<span class="nc" id="L507">    }</span>
+
+    public int getRankID() {
+<span class="nc" id="L510">        return rankID;</span>
+    }
+
+    public void setRankID(int rankID) {
+<span class="nc" id="L514">        this.rankID = rankID;</span>
+<span class="nc" id="L515">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L518">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L522">        this.remarks = remarks;</span>
+<span class="nc" id="L523">    }</span>
+
+    public String getSource() {
+<span class="nc" id="L526">        return source;</span>
+    }
+
+    public void setSource(String source) {
+<span class="nc" id="L530">        this.source = source;</span>
+<span class="nc" id="L531">    }</span>
+
+    public String getTaxonomicSerialNumber() {
+<span class="nc" id="L534">        return taxonomicSerialNumber;</span>
+    }
+
+    public void setTaxonomicSerialNumber(String taxonomicSerialNumber) {
+<span class="nc" id="L538">        this.taxonomicSerialNumber = taxonomicSerialNumber;</span>
+<span class="nc" id="L539">    }</span>
+
+    public String getText1() {
+<span class="nc" id="L542">        return text1;</span>
+    }
+
+    public void setText1(String text1) {
+<span class="nc" id="L546">        this.text1 = text1;</span>
+<span class="nc" id="L547">    }</span>
+
+    public String getText2() {
+<span class="nc" id="L550">        return text2;</span>
+    }
+
+    public void setText2(String text2) {
+<span class="nc" id="L554">        this.text2 = text2;</span>
+<span class="nc" id="L555">    }</span>
+
+    public String getUnitInd1() {
+<span class="nc" id="L558">        return unitInd1;</span>
+    }
+
+    public void setUnitInd1(String unitInd1) {
+<span class="nc" id="L562">        this.unitInd1 = unitInd1;</span>
+<span class="nc" id="L563">    }</span>
+
+    public String getUnitInd2() {
+<span class="nc" id="L566">        return unitInd2;</span>
+    }
+
+    public void setUnitInd2(String unitInd2) {
+<span class="nc" id="L570">        this.unitInd2 = unitInd2;</span>
+<span class="nc" id="L571">    }</span>
+
+    public String getUnitInd3() {
+<span class="nc" id="L574">        return unitInd3;</span>
+    }
+
+    public void setUnitInd3(String unitInd3) {
+<span class="nc" id="L578">        this.unitInd3 = unitInd3;</span>
+<span class="nc" id="L579">    }</span>
+
+    public String getUnitInd4() {
+<span class="nc" id="L582">        return unitInd4;</span>
+    }
+
+    public void setUnitInd4(String unitInd4) {
+<span class="nc" id="L586">        this.unitInd4 = unitInd4;</span>
+<span class="nc" id="L587">    }</span>
+
+    public String getUnitName1() {
+<span class="nc" id="L590">        return unitName1;</span>
+    }
+
+    public void setUnitName1(String unitName1) {
+<span class="nc" id="L594">        this.unitName1 = unitName1;</span>
+<span class="nc" id="L595">    }</span>
+
+    public String getUnitName2() {
+<span class="nc" id="L598">        return unitName2;</span>
+    }
+
+    public void setUnitName2(String unitName2) {
+<span class="nc" id="L602">        this.unitName2 = unitName2;</span>
+<span class="nc" id="L603">    }</span>
+
+    public String getUnitName3() {
+<span class="nc" id="L606">        return unitName3;</span>
+    }
+
+    public void setUnitName3(String unitName3) {
+<span class="nc" id="L610">        this.unitName3 = unitName3;</span>
+<span class="nc" id="L611">    }</span>
+
+    public String getUnitName4() {
+<span class="nc" id="L614">        return unitName4;</span>
+    }
+
+    public void setUnitName4(String unitName4) {
+<span class="nc" id="L618">        this.unitName4 = unitName4;</span>
+<span class="nc" id="L619">    }</span>
+
+    public String getUsfwsCode() {
+<span class="nc" id="L622">        return usfwsCode;</span>
+    }
+
+    public void setUsfwsCode(String usfwsCode) {
+<span class="nc" id="L626">        this.usfwsCode = usfwsCode;</span>
+<span class="nc" id="L627">    }</span>
+
+    public Short getVisibility() {
+<span class="nc" id="L630">        return visibility;</span>
+    }
+
+    public void setVisibility(Short visibility) {
+<span class="nc" id="L634">        this.visibility = visibility;</span>
+<span class="nc" id="L635">    }</span>
+
+    public Float getNumber3() {
+<span class="nc" id="L638">        return number3;</span>
+    }
+
+    public void setNumber3(Float number3) {
+<span class="nc" id="L642">        this.number3 = number3;</span>
+<span class="nc" id="L643">    }</span>
+
+    public Float getNumber4() {
+<span class="nc" id="L646">        return number4;</span>
+    }
+
+    public void setNumber4(Float number4) {
+<span class="nc" id="L650">        this.number4 = number4;</span>
+<span class="nc" id="L651">    }</span>
+
+    public Float getNumber5() {
+<span class="nc" id="L654">        return number5;</span>
+    }
+
+    public void setNumber5(Float number5) {
+<span class="nc" id="L658">        this.number5 = number5;</span>
+<span class="nc" id="L659">    }</span>
+
+    public String getText3() {
+<span class="nc" id="L662">        return text3;</span>
+    }
+
+    public void setText3(String text3) {
+<span class="nc" id="L666">        this.text3 = text3;</span>
+<span class="nc" id="L667">    }</span>
+
+    public String getText4() {
+<span class="nc" id="L670">        return text4;</span>
+    }
+
+    public void setText4(String text4) {
+<span class="nc" id="L674">        this.text4 = text4;</span>
+<span class="nc" id="L675">    }</span>
+
+    public String getText5() {
+<span class="nc" id="L678">        return text5;</span>
+    }
+
+    public void setText5(String text5) {
+<span class="nc" id="L682">        this.text5 = text5;</span>
+<span class="nc" id="L683">    }</span>
+
+    public Boolean getYesNo1() {
+<span class="nc" id="L686">        return yesNo1;</span>
+    }
+
+    public void setYesNo1(Boolean yesNo1) {
+<span class="nc" id="L690">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L691">    }</span>
+
+    public Boolean getYesNo2() {
+<span class="nc" id="L694">        return yesNo2;</span>
+    }
+
+    public void setYesNo2(Boolean yesNo2) {
+<span class="nc" id="L698">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L699">    }</span>
+
+    public Boolean getYesNo3() {
+<span class="nc" id="L702">        return yesNo3;</span>
+    }
+
+    public void setYesNo3(Boolean yesNo3) {
+<span class="nc" id="L706">        this.yesNo3 = yesNo3;</span>
+<span class="nc" id="L707">    }</span>
+
+    @XmlTransient
+    public List&lt;Determination&gt; getDeterminationList() {
+<span class="nc" id="L711">        return determinationList;</span>
+    }
+
+    public void setDeterminationList(List&lt;Determination&gt; determinationList) {
+<span class="nc" id="L715">        this.determinationList = determinationList;</span>
+<span class="nc" id="L716">    }</span>
+
+    @XmlTransient
+    public List&lt;Determination&gt; getDeterminationList1() {
+<span class="nc" id="L720">        return determinationList1;</span>
+    }
+
+    public void setDeterminationList1(List&lt;Determination&gt; determinationList1) {
+<span class="nc" id="L724">        this.determinationList1 = determinationList1;</span>
+<span class="nc" id="L725">    }</span>
+
+    @XmlTransient
+    public List&lt;Taxonattachment&gt; getTaxonattachmentList() {
+<span class="nc" id="L729">        return taxonattachmentList;</span>
+    }
+
+    public void setTaxonattachmentList(List&lt;Taxonattachment&gt; taxonattachmentList) {
+<span class="nc" id="L733">        this.taxonattachmentList = taxonattachmentList;</span>
+<span class="nc" id="L734">    }</span>
+
+    @XmlTransient
+    public List&lt;Taxon&gt; getTaxonList() {
+<span class="nc" id="L738">        return taxonList;</span>
+    }
+
+    public void setTaxonList(List&lt;Taxon&gt; taxonList) {
+<span class="nc" id="L742">        this.taxonList = taxonList;</span>
+<span class="nc" id="L743">    }</span>
+
+    @XmlIDREF
+    public Taxon getAcceptedID() {
+<span class="nc" id="L747">        return acceptedID;</span>
+    }
+
+    public void setAcceptedID(Taxon acceptedID) {
+<span class="nc" id="L751">        this.acceptedID = acceptedID;</span>
+<span class="nc" id="L752">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L756">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L760">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L761">    }</span>
+
+    @XmlTransient
+    public List&lt;Taxon&gt; getTaxonList1() {
+<span class="nc" id="L765">        return taxonList1;</span>
+    }
+
+    public void setTaxonList1(List&lt;Taxon&gt; taxonList1) {
+<span class="nc" id="L769">        this.taxonList1 = taxonList1;</span>
+<span class="nc" id="L770">    }</span>
+
+    @XmlIDREF
+    public Taxon getHybridParent1ID() {
+<span class="nc" id="L774">        return hybridParent1ID;</span>
+    }
+
+    public void setHybridParent1ID(Taxon hybridParent1ID) {
+<span class="nc" id="L778">        this.hybridParent1ID = hybridParent1ID;</span>
+<span class="nc" id="L779">    }</span>
+
+    @XmlTransient
+    public List&lt;Taxon&gt; getTaxonList2() {
+<span class="nc" id="L783">        return taxonList2;</span>
+    }
+
+    public void setTaxonList2(List&lt;Taxon&gt; taxonList2) {
+<span class="nc" id="L787">        this.taxonList2 = taxonList2;</span>
+<span class="nc" id="L788">    }</span>
+
+    @XmlIDREF
+    public Taxon getHybridParent2ID() {
+<span class="nc" id="L792">        return hybridParent2ID;</span>
+    }
+
+    public void setHybridParent2ID(Taxon hybridParent2ID) {
+<span class="nc" id="L796">        this.hybridParent2ID = hybridParent2ID;</span>
+<span class="nc" id="L797">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L801">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L805">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L806">    }</span>
+
+    @XmlIDREF
+    public Specifyuser getVisibilitySetByID() {
+<span class="nc" id="L810">        return visibilitySetByID;</span>
+    }
+
+    public void setVisibilitySetByID(Specifyuser visibilitySetByID) {
+<span class="nc" id="L814">        this.visibilitySetByID = visibilitySetByID;</span>
+<span class="nc" id="L815">    }</span>
+
+    @XmlIDREF
+    public Taxontreedefitem getTaxonTreeDefItemID() {
+<span class="nc" id="L819">        return taxonTreeDefItemID;</span>
+    }
+
+    public void setTaxonTreeDefItemID(Taxontreedefitem taxonTreeDefItemID) {
+<span class="nc" id="L823">        this.taxonTreeDefItemID = taxonTreeDefItemID;</span>
+<span class="nc" id="L824">    }</span>
+
+    @XmlTransient
+    public List&lt;Taxon&gt; getTaxonList3() {
+<span class="nc" id="L828">        return taxonList3;</span>
+    }
+
+    public void setTaxonList3(List&lt;Taxon&gt; taxonList3) {
+<span class="nc" id="L832">        this.taxonList3 = taxonList3;</span>
+<span class="nc" id="L833">    }</span>
+
+    @XmlIDREF
+    public Taxon getParentID() {
+<span class="nc" id="L837">        return parentID;</span>
+    }
+
+    public void setParentID(Taxon parentID) {
+<span class="nc" id="L841">        this.parentID = parentID;</span>
+<span class="nc" id="L842">    }</span>
+
+    @XmlIDREF
+    public Taxontreedef getTaxonTreeDefID() {
+<span class="nc" id="L846">        return taxonTreeDefID;</span>
+    }
+
+    public void setTaxonTreeDefID(Taxontreedef taxonTreeDefID) {
+<span class="nc" id="L850">        this.taxonTreeDefID = taxonTreeDefID;</span>
+<span class="nc" id="L851">    }</span>
+
+    @XmlTransient
+    public List&lt;Collectingeventattribute&gt; getCollectingeventattributeList() {
+<span class="nc" id="L855">        return collectingeventattributeList;</span>
+    }
+
+    public void setCollectingeventattributeList(List&lt;Collectingeventattribute&gt; collectingeventattributeList) {
+<span class="nc" id="L859">        this.collectingeventattributeList = collectingeventattributeList;</span>
+<span class="nc" id="L860">    }</span>
+
+    @XmlTransient
+    public List&lt;Taxoncitation&gt; getTaxoncitationList() {
+<span class="nc" id="L864">        return taxoncitationList;</span>
+    }
+
+    public void setTaxoncitationList(List&lt;Taxoncitation&gt; taxoncitationList) {
+<span class="nc" id="L868">        this.taxoncitationList = taxoncitationList;</span>
+<span class="nc" id="L869">    }</span>
+
+    @XmlTransient
+    public List&lt;Commonnametx&gt; getCommonnametxList() {
+<span class="nc" id="L873">        return commonnametxList;</span>
+    }
+
+    public void setCommonnametxList(List&lt;Commonnametx&gt; commonnametxList) {
+<span class="nc" id="L877">        this.commonnametxList = commonnametxList;</span>
+<span class="nc" id="L878">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L882">        int hash = 0;</span>
+<span class="nc bnc" id="L883" title="All 2 branches missed.">        hash += (taxonID != null ? taxonID.hashCode() : 0);</span>
+<span class="nc" id="L884">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L890" title="All 2 branches missed.">        if (!(object instanceof Taxon)) {</span>
+<span class="nc" id="L891">            return false;</span>
+        }
+<span class="nc" id="L893">        Taxon other = (Taxon) object;</span>
+<span class="nc bnc" id="L894" title="All 8 branches missed.">        return !((this.taxonID == null &amp;&amp; other.taxonID != null) || (this.taxonID != null &amp;&amp; !this.taxonID.equals(other.taxonID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L899">        return &quot;se.nrm.dina.datamodel.Taxon[ taxonID=&quot; + taxonID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

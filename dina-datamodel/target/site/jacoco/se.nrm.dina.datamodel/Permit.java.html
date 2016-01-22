@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Permit.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Permit.java</span></div><h1>Permit.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;permit&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Permit.findAll&quot;, query = &quot;SELECT p FROM Permit p&quot;),
+    @NamedQuery(name = &quot;Permit.findByPermitID&quot;, query = &quot;SELECT p FROM Permit p WHERE p.permitID = :permitID&quot;), 
+    @NamedQuery(name = &quot;Permit.findByEndDate&quot;, query = &quot;SELECT p FROM Permit p WHERE p.endDate = :endDate&quot;), 
+    @NamedQuery(name = &quot;Permit.findByPermitNumber&quot;, query = &quot;SELECT p FROM Permit p WHERE p.permitNumber = :permitNumber&quot;),
+    @NamedQuery(name = &quot;Permit.findByRenewalDate&quot;, query = &quot;SELECT p FROM Permit p WHERE p.renewalDate = :renewalDate&quot;),
+    @NamedQuery(name = &quot;Permit.findByStartDate&quot;, query = &quot;SELECT p FROM Permit p WHERE p.startDate = :startDate&quot;),
+    @NamedQuery(name = &quot;Permit.findByType&quot;, query = &quot;SELECT p FROM Permit p WHERE p.type = :type&quot;) })
+public class Permit extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;PermitID&quot;)
+    private Integer permitID;
+    
+    
+    @Column(name = &quot;EndDate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
+    
+    @Column(name = &quot;IssuedDate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date issuedDate;
+    
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = &quot;Number1&quot;)
+    private Float number1;
+    
+    @Column(name = &quot;Number2&quot;)
+    private Float number2;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = &quot;PermitNumber&quot;)
+    private String permitNumber;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Column(name = &quot;RenewalDate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date renewalDate;
+    
+    @Column(name = &quot;StartDate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text1&quot;)
+    private String text1;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text2&quot;)
+    private String text2;
+    
+    @Size(max = 50)
+    @Column(name = &quot;Type&quot;)
+    private String type;
+    
+    @Column(name = &quot;YesNo1&quot;)
+    private Boolean yesNo1;
+    
+    @Column(name = &quot;YesNo2&quot;)
+    private Boolean yesNo2;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;permitID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Permitattachment&gt; permitattachmentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;permitID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Accessionauthorization&gt; accessionauthorizationList;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;InstitutionID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)
+    @ManyToOne(optional = false)
+    private Institution institutionID;
+    
+    @JoinColumn(name = &quot;IssuedByID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent issuedByID;
+    
+    @JoinColumn(name = &quot;IssuedToID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent issuedToID;
+
+<span class="nc" id="L142">    public Permit() {</span>
+<span class="nc" id="L143">    }</span>
+
+<span class="nc" id="L145">    public Permit(Integer permitID) {</span>
+<span class="nc" id="L146">        this.permitID = permitID;</span>
+<span class="nc" id="L147">    }</span>
+
+<span class="nc" id="L149">    public Permit(Integer permitID, Date timestampCreated, String permitNumber) {</span>
+<span class="nc" id="L150">        this.permitID = permitID;</span>
+<span class="nc" id="L151">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L152">        this.permitNumber = permitNumber;</span>
+<span class="nc" id="L153">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L159">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + permitID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L164">        return permitID;</span>
+    }
+
+    public Integer getPermitID() {
+<span class="nc" id="L168">        return permitID;</span>
+    }
+
+    public void setPermitID(Integer permitID) {
+<span class="nc" id="L172">        this.permitID = permitID;</span>
+<span class="nc" id="L173">    }</span>
+ 
+
+    public Date getEndDate() {
+<span class="nc" id="L177">        return endDate;</span>
+    }
+
+    public void setEndDate(Date endDate) {
+<span class="nc" id="L181">        this.endDate = endDate;</span>
+<span class="nc" id="L182">    }</span>
+
+    public Date getIssuedDate() {
+<span class="nc" id="L185">        return issuedDate;</span>
+    }
+
+    public void setIssuedDate(Date issuedDate) {
+<span class="nc" id="L189">        this.issuedDate = issuedDate;</span>
+<span class="nc" id="L190">    }</span>
+
+    public Float getNumber1() {
+<span class="nc" id="L193">        return number1;</span>
+    }
+
+    public void setNumber1(Float number1) {
+<span class="nc" id="L197">        this.number1 = number1;</span>
+<span class="nc" id="L198">    }</span>
+
+    public Float getNumber2() {
+<span class="nc" id="L201">        return number2;</span>
+    }
+
+    public void setNumber2(Float number2) {
+<span class="nc" id="L205">        this.number2 = number2;</span>
+<span class="nc" id="L206">    }</span>
+
+    public String getPermitNumber() {
+<span class="nc" id="L209">        return permitNumber;</span>
+    }
+
+    public void setPermitNumber(String permitNumber) {
+<span class="nc" id="L213">        this.permitNumber = permitNumber;</span>
+<span class="nc" id="L214">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L217">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L221">        this.remarks = remarks;</span>
+<span class="nc" id="L222">    }</span>
+
+    public Date getRenewalDate() {
+<span class="nc" id="L225">        return renewalDate;</span>
+    }
+
+    public void setRenewalDate(Date renewalDate) {
+<span class="nc" id="L229">        this.renewalDate = renewalDate;</span>
+<span class="nc" id="L230">    }</span>
+
+    public Date getStartDate() {
+<span class="nc" id="L233">        return startDate;</span>
+    }
+
+    public void setStartDate(Date startDate) {
+<span class="nc" id="L237">        this.startDate = startDate;</span>
+<span class="nc" id="L238">    }</span>
+
+    public String getText1() {
+<span class="nc" id="L241">        return text1;</span>
+    }
+
+    public void setText1(String text1) {
+<span class="nc" id="L245">        this.text1 = text1;</span>
+<span class="nc" id="L246">    }</span>
+
+    public String getText2() {
+<span class="nc" id="L249">        return text2;</span>
+    }
+
+    public void setText2(String text2) {
+<span class="nc" id="L253">        this.text2 = text2;</span>
+<span class="nc" id="L254">    }</span>
+
+    public String getType() {
+<span class="nc" id="L257">        return type;</span>
+    }
+
+    public void setType(String type) {
+<span class="nc" id="L261">        this.type = type;</span>
+<span class="nc" id="L262">    }</span>
+
+    public Boolean getYesNo1() {
+<span class="nc" id="L265">        return yesNo1;</span>
+    }
+
+    public void setYesNo1(Boolean yesNo1) {
+<span class="nc" id="L269">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L270">    }</span>
+
+    public Boolean getYesNo2() {
+<span class="nc" id="L273">        return yesNo2;</span>
+    }
+
+    public void setYesNo2(Boolean yesNo2) {
+<span class="nc" id="L277">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L278">    }</span>
+
+    @XmlTransient
+    public List&lt;Permitattachment&gt; getPermitattachmentList() {
+<span class="nc" id="L282">        return permitattachmentList;</span>
+    }
+
+    public void setPermitattachmentList(List&lt;Permitattachment&gt; permitattachmentList) {
+<span class="nc" id="L286">        this.permitattachmentList = permitattachmentList;</span>
+<span class="nc" id="L287">    }</span>
+
+    @XmlTransient
+    public List&lt;Accessionauthorization&gt; getAccessionauthorizationList() {
+<span class="nc" id="L291">        return accessionauthorizationList;</span>
+    }
+
+    public void setAccessionauthorizationList(List&lt;Accessionauthorization&gt; accessionauthorizationList) {
+<span class="nc" id="L295">        this.accessionauthorizationList = accessionauthorizationList;</span>
+<span class="nc" id="L296">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L300">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L304">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L305">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L309">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L313">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L314">    }</span>
+
+    @XmlIDREF
+    public Institution getInstitutionID() {
+<span class="nc" id="L318">        return institutionID;</span>
+    }
+
+    public void setInstitutionID(Institution institutionID) {
+<span class="nc" id="L322">        this.institutionID = institutionID;</span>
+<span class="nc" id="L323">    }</span>
+
+    @XmlIDREF
+    public Agent getIssuedByID() {
+<span class="nc" id="L327">        return issuedByID;</span>
+    }
+
+    public void setIssuedByID(Agent issuedByID) {
+<span class="nc" id="L331">        this.issuedByID = issuedByID;</span>
+<span class="nc" id="L332">    }</span>
+
+    @XmlIDREF
+    public Agent getIssuedToID() {
+<span class="nc" id="L336">        return issuedToID;</span>
+    }
+
+    public void setIssuedToID(Agent issuedToID) {
+<span class="nc" id="L340">        this.issuedToID = issuedToID;</span>
+<span class="nc" id="L341">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L345">        int hash = 0;</span>
+<span class="nc bnc" id="L346" title="All 2 branches missed.">        hash += (permitID != null ? permitID.hashCode() : 0);</span>
+<span class="nc" id="L347">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L353" title="All 2 branches missed.">        if (!(object instanceof Permit)) {</span>
+<span class="nc" id="L354">            return false;</span>
+        }
+<span class="nc" id="L356">        Permit other = (Permit) object;</span>
+<span class="nc bnc" id="L357" title="All 8 branches missed.">        return !((this.permitID == null &amp;&amp; other.permitID != null) || (this.permitID != null &amp;&amp; !this.permitID.equals(other.permitID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L362">        return &quot;se.nrm.dina.datamodel.Permit[ permitID=&quot; + permitID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

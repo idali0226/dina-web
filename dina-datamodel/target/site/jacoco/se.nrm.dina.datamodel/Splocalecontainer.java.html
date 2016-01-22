@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Splocalecontainer.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Splocalecontainer.java</span></div><h1>Splocalecontainer.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;splocalecontainer&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Splocalecontainer.findAll&quot;, query = &quot;SELECT s FROM Splocalecontainer s&quot;),
+    @NamedQuery(name = &quot;Splocalecontainer.findBySpLocaleContainerID&quot;, query = &quot;SELECT s FROM Splocalecontainer s WHERE s.spLocaleContainerID = :spLocaleContainerID&quot;), 
+    @NamedQuery(name = &quot;Splocalecontainer.findByFormat&quot;, query = &quot;SELECT s FROM Splocalecontainer s WHERE s.format = :format&quot;),
+    @NamedQuery(name = &quot;Splocalecontainer.findByIsHidden&quot;, query = &quot;SELECT s FROM Splocalecontainer s WHERE s.isHidden = :isHidden&quot;),
+    @NamedQuery(name = &quot;Splocalecontainer.findByIsSystem&quot;, query = &quot;SELECT s FROM Splocalecontainer s WHERE s.isSystem = :isSystem&quot;),
+    @NamedQuery(name = &quot;Splocalecontainer.findByIsUIFormatter&quot;, query = &quot;SELECT s FROM Splocalecontainer s WHERE s.isUIFormatter = :isUIFormatter&quot;),
+    @NamedQuery(name = &quot;Splocalecontainer.findByName&quot;, query = &quot;SELECT s FROM Splocalecontainer s WHERE s.name = :name&quot;),
+    @NamedQuery(name = &quot;Splocalecontainer.findByPickListName&quot;, query = &quot;SELECT s FROM Splocalecontainer s WHERE s.pickListName = :pickListName&quot;),
+    @NamedQuery(name = &quot;Splocalecontainer.findByType&quot;, query = &quot;SELECT s FROM Splocalecontainer s WHERE s.type = :type&quot;),
+    @NamedQuery(name = &quot;Splocalecontainer.findByAggregator&quot;, query = &quot;SELECT s FROM Splocalecontainer s WHERE s.aggregator = :aggregator&quot;),
+    @NamedQuery(name = &quot;Splocalecontainer.findByDefaultUI&quot;, query = &quot;SELECT s FROM Splocalecontainer s WHERE s.defaultUI = :defaultUI&quot;),
+    @NamedQuery(name = &quot;Splocalecontainer.findBySchemaType&quot;, query = &quot;SELECT s FROM Splocalecontainer s WHERE s.schemaType = :schemaType&quot;)})
+public class Splocalecontainer extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;SpLocaleContainerID&quot;)
+    private Integer spLocaleContainerID;
+    
+    
+    @Size(max = 64)
+    @Column(name = &quot;Format&quot;)
+    private String format;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;IsHidden&quot;)
+    private boolean isHidden;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;IsSystem&quot;)
+    private boolean isSystem;
+    
+    @Column(name = &quot;IsUIFormatter&quot;)
+    private Boolean isUIFormatter;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = &quot;Name&quot;)
+    private String name;
+    
+    @Size(max = 64)
+    @Column(name = &quot;PickListName&quot;)
+    private String pickListName;
+    
+    @Size(max = 32)
+    @Column(name = &quot;Type&quot;)
+    private String type;
+    
+    @Size(max = 64)
+    @Column(name = &quot;Aggregator&quot;)
+    private String aggregator;
+    
+    @Size(max = 64)
+    @Column(name = &quot;DefaultUI&quot;)
+    private String defaultUI;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;SchemaType&quot;)
+    private short schemaType;
+    
+    @OneToMany(mappedBy = &quot;spLocaleContainerDescID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Splocaleitemstr&gt; splocaleitemstrList;
+    
+    @OneToMany(mappedBy = &quot;spLocaleContainerNameID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Splocaleitemstr&gt; splocaleitemstrList1;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;spLocaleContainerID&quot;, fetch =  FetchType.LAZY)
+    private List&lt;Splocalecontaineritem&gt; splocalecontaineritemList;
+    
+    @JoinColumn(name = &quot;DisciplineID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)
+    @ManyToOne(optional = false)
+    private Discipline disciplineID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+
+<span class="nc" id="L129">    public Splocalecontainer() {</span>
+<span class="nc" id="L130">    }</span>
+
+<span class="nc" id="L132">    public Splocalecontainer(Integer spLocaleContainerID) {</span>
+<span class="nc" id="L133">        this.spLocaleContainerID = spLocaleContainerID;</span>
+<span class="nc" id="L134">    }</span>
+
+<span class="nc" id="L136">    public Splocalecontainer(Integer spLocaleContainerID, Date timestampCreated, boolean isHidden, boolean isSystem, String name, short schemaType) {</span>
+<span class="nc" id="L137">        this.spLocaleContainerID = spLocaleContainerID;</span>
+<span class="nc" id="L138">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L139">        this.isHidden = isHidden;</span>
+<span class="nc" id="L140">        this.isSystem = isSystem;</span>
+<span class="nc" id="L141">        this.name = name;</span>
+<span class="nc" id="L142">        this.schemaType = schemaType;</span>
+<span class="nc" id="L143">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L149">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spLocaleContainerID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L154">        return spLocaleContainerID;</span>
+    }
+
+    public Integer getSpLocaleContainerID() {
+<span class="nc" id="L158">        return spLocaleContainerID;</span>
+    }
+
+    public void setSpLocaleContainerID(Integer spLocaleContainerID) {
+<span class="nc" id="L162">        this.spLocaleContainerID = spLocaleContainerID;</span>
+<span class="nc" id="L163">    }</span>
+ 
+    public String getFormat() {
+<span class="nc" id="L166">        return format;</span>
+    }
+
+    public void setFormat(String format) {
+<span class="nc" id="L170">        this.format = format;</span>
+<span class="nc" id="L171">    }</span>
+
+    public boolean getIsHidden() {
+<span class="nc" id="L174">        return isHidden;</span>
+    }
+
+    public void setIsHidden(boolean isHidden) {
+<span class="nc" id="L178">        this.isHidden = isHidden;</span>
+<span class="nc" id="L179">    }</span>
+
+    public boolean getIsSystem() {
+<span class="nc" id="L182">        return isSystem;</span>
+    }
+
+    public void setIsSystem(boolean isSystem) {
+<span class="nc" id="L186">        this.isSystem = isSystem;</span>
+<span class="nc" id="L187">    }</span>
+
+    public Boolean getIsUIFormatter() {
+<span class="nc" id="L190">        return isUIFormatter;</span>
+    }
+
+    public void setIsUIFormatter(Boolean isUIFormatter) {
+<span class="nc" id="L194">        this.isUIFormatter = isUIFormatter;</span>
+<span class="nc" id="L195">    }</span>
+
+    public String getName() {
+<span class="nc" id="L198">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L202">        this.name = name;</span>
+<span class="nc" id="L203">    }</span>
+
+    public String getPickListName() {
+<span class="nc" id="L206">        return pickListName;</span>
+    }
+
+    public void setPickListName(String pickListName) {
+<span class="nc" id="L210">        this.pickListName = pickListName;</span>
+<span class="nc" id="L211">    }</span>
+
+    public String getType() {
+<span class="nc" id="L214">        return type;</span>
+    }
+
+    public void setType(String type) {
+<span class="nc" id="L218">        this.type = type;</span>
+<span class="nc" id="L219">    }</span>
+
+    public String getAggregator() {
+<span class="nc" id="L222">        return aggregator;</span>
+    }
+
+    public void setAggregator(String aggregator) {
+<span class="nc" id="L226">        this.aggregator = aggregator;</span>
+<span class="nc" id="L227">    }</span>
+
+    public String getDefaultUI() {
+<span class="nc" id="L230">        return defaultUI;</span>
+    }
+
+    public void setDefaultUI(String defaultUI) {
+<span class="nc" id="L234">        this.defaultUI = defaultUI;</span>
+<span class="nc" id="L235">    }</span>
+
+    public short getSchemaType() {
+<span class="nc" id="L238">        return schemaType;</span>
+    }
+
+    public void setSchemaType(short schemaType) {
+<span class="nc" id="L242">        this.schemaType = schemaType;</span>
+<span class="nc" id="L243">    }</span>
+
+    @XmlTransient
+    public List&lt;Splocaleitemstr&gt; getSplocaleitemstrList() {
+<span class="nc" id="L247">        return splocaleitemstrList;</span>
+    }
+
+    public void setSplocaleitemstrList(List&lt;Splocaleitemstr&gt; splocaleitemstrList) {
+<span class="nc" id="L251">        this.splocaleitemstrList = splocaleitemstrList;</span>
+<span class="nc" id="L252">    }</span>
+
+    @XmlTransient
+    public List&lt;Splocaleitemstr&gt; getSplocaleitemstrList1() {
+<span class="nc" id="L256">        return splocaleitemstrList1;</span>
+    }
+
+    public void setSplocaleitemstrList1(List&lt;Splocaleitemstr&gt; splocaleitemstrList1) {
+<span class="nc" id="L260">        this.splocaleitemstrList1 = splocaleitemstrList1;</span>
+<span class="nc" id="L261">    }</span>
+
+    @XmlTransient
+    public List&lt;Splocalecontaineritem&gt; getSplocalecontaineritemList() {
+<span class="nc" id="L265">        return splocalecontaineritemList;</span>
+    }
+
+    public void setSplocalecontaineritemList(List&lt;Splocalecontaineritem&gt; splocalecontaineritemList) {
+<span class="nc" id="L269">        this.splocalecontaineritemList = splocalecontaineritemList;</span>
+<span class="nc" id="L270">    }</span>
+
+    @XmlIDREF
+    public Discipline getDisciplineID() {
+<span class="nc" id="L274">        return disciplineID;</span>
+    }
+
+    public void setDisciplineID(Discipline disciplineID) {
+<span class="nc" id="L278">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L279">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L283">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L287">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L288">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L292">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L296">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L297">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L301">        int hash = 0;</span>
+<span class="nc bnc" id="L302" title="All 2 branches missed.">        hash += (spLocaleContainerID != null ? spLocaleContainerID.hashCode() : 0);</span>
+<span class="nc" id="L303">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L309" title="All 2 branches missed.">        if (!(object instanceof Splocalecontainer)) {</span>
+<span class="nc" id="L310">            return false;</span>
+        }
+<span class="nc" id="L312">        Splocalecontainer other = (Splocalecontainer) object;</span>
+<span class="nc bnc" id="L313" title="All 8 branches missed.">        return !((this.spLocaleContainerID == null &amp;&amp; other.spLocaleContainerID != null) || (this.spLocaleContainerID != null &amp;&amp; !this.spLocaleContainerID.equals(other.spLocaleContainerID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L318">        return &quot;se.nrm.dina.datamodel.Splocalecontainer[ spLocaleContainerID=&quot; + spLocaleContainerID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

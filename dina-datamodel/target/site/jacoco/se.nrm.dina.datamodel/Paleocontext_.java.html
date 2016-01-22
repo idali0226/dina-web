@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Paleocontext_.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Paleocontext_.java</span></div><h1>Paleocontext_.java</h1><pre class="source lang-java linenums">package se.nrm.dina.datamodel;
+
+import javax.annotation.Generated;
+import javax.persistence.metamodel.ListAttribute;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
+import se.nrm.dina.datamodel.Agent;
+import se.nrm.dina.datamodel.Collectingevent;
+import se.nrm.dina.datamodel.Collectionobject;
+import se.nrm.dina.datamodel.Discipline;
+import se.nrm.dina.datamodel.Geologictimeperiod;
+import se.nrm.dina.datamodel.Lithostrat;
+import se.nrm.dina.datamodel.Locality;
+
+@Generated(value=&quot;EclipseLink-2.7.0.v20160121-rNA&quot;, date=&quot;2016-01-22T12:22:39&quot;)
+@StaticMetamodel(Paleocontext.class)
+<span class="nc" id="L17">public class Paleocontext_ extends BaseEntity_ {</span>
+
+    public static volatile SingularAttribute&lt;Paleocontext, Lithostrat&gt; lithoStratID;
+    public static volatile SingularAttribute&lt;Paleocontext, Double&gt; number3;
+    public static volatile SingularAttribute&lt;Paleocontext, Double&gt; number4;
+    public static volatile SingularAttribute&lt;Paleocontext, Discipline&gt; disciplineID;
+    public static volatile SingularAttribute&lt;Paleocontext, Double&gt; number1;
+    public static volatile SingularAttribute&lt;Paleocontext, Agent&gt; modifiedByAgentID;
+    public static volatile SingularAttribute&lt;Paleocontext, Double&gt; number2;
+    public static volatile SingularAttribute&lt;Paleocontext, Geologictimeperiod&gt; bioStratID;
+    public static volatile SingularAttribute&lt;Paleocontext, Double&gt; number5;
+    public static volatile SingularAttribute&lt;Paleocontext, Boolean&gt; yesNo5;
+    public static volatile SingularAttribute&lt;Paleocontext, Boolean&gt; yesNo4;
+    public static volatile SingularAttribute&lt;Paleocontext, Boolean&gt; yesNo3;
+    public static volatile SingularAttribute&lt;Paleocontext, Boolean&gt; yesNo2;
+    public static volatile SingularAttribute&lt;Paleocontext, Boolean&gt; yesNo1;
+    public static volatile SingularAttribute&lt;Paleocontext, String&gt; paleoContextName;
+    public static volatile SingularAttribute&lt;Paleocontext, Geologictimeperiod&gt; chronosStratID;
+    public static volatile SingularAttribute&lt;Paleocontext, Integer&gt; paleoContextID;
+    public static volatile SingularAttribute&lt;Paleocontext, Geologictimeperiod&gt; chronosStratEndID;
+    public static volatile SingularAttribute&lt;Paleocontext, String&gt; text3;
+    public static volatile SingularAttribute&lt;Paleocontext, String&gt; text4;
+    public static volatile SingularAttribute&lt;Paleocontext, String&gt; text1;
+    public static volatile ListAttribute&lt;Paleocontext, Collectionobject&gt; collectionobjectList;
+    public static volatile ListAttribute&lt;Paleocontext, Collectingevent&gt; collectingeventList;
+    public static volatile SingularAttribute&lt;Paleocontext, String&gt; text2;
+    public static volatile SingularAttribute&lt;Paleocontext, String&gt; text5;
+    public static volatile SingularAttribute&lt;Paleocontext, Agent&gt; createdByAgentID;
+    public static volatile ListAttribute&lt;Paleocontext, Locality&gt; localityList;
+    public static volatile SingularAttribute&lt;Paleocontext, String&gt; remarks;
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

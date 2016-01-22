@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Workbenchtemplatemappingitem.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Workbenchtemplatemappingitem.java</span></div><h1>Workbenchtemplatemappingitem.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;workbenchtemplatemappingitem&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Workbenchtemplatemappingitem.findAll&quot;, query = &quot;SELECT w FROM Workbenchtemplatemappingitem w&quot;),
+    @NamedQuery(name = &quot;Workbenchtemplatemappingitem.findByWorkbenchTemplateMappingItemID&quot;, query = &quot;SELECT w FROM Workbenchtemplatemappingitem w WHERE w.workbenchTemplateMappingItemID = :workbenchTemplateMappingItemID&quot;),  
+    @NamedQuery(name = &quot;Workbenchtemplatemappingitem.findByCaption&quot;, query = &quot;SELECT w FROM Workbenchtemplatemappingitem w WHERE w.caption = :caption&quot;) })
+public class Workbenchtemplatemappingitem extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;WorkbenchTemplateMappingItemID&quot;)
+    private Integer workbenchTemplateMappingItemID;
+    
+    
+    @Column(name = &quot;XCoord&quot;)
+    private Short xCoord;
+    
+    @Column(name = &quot;YCoord&quot;)
+    private Short yCoord;
+    
+    @Size(max = 64)
+    @Column(name = &quot;Caption&quot;)
+    private String caption;
+    
+    @Column(name = &quot;CarryForward&quot;)
+    private Boolean carryForward;
+    
+    @Column(name = &quot;DataFieldLength&quot;)
+    private Short dataFieldLength;
+    
+    @Size(max = 255)
+    @Column(name = &quot;FieldName&quot;)
+    private String fieldName;
+    
+    @Column(name = &quot;FieldType&quot;)
+    private Short fieldType;
+    
+    @Size(max = 255)
+    @Column(name = &quot;ImportedColName&quot;)
+    private String importedColName;
+    
+    @Column(name = &quot;IsExportableToContent&quot;)
+    private Boolean isExportableToContent;
+    
+    @Column(name = &quot;IsIncludedInTitle&quot;)
+    private Boolean isIncludedInTitle;
+    
+    @Column(name = &quot;IsRequired&quot;)
+    private Boolean isRequired;
+    
+    @Size(max = 128)
+    @Column(name = &quot;MetaData&quot;)
+    private String metaData;
+    
+    @Column(name = &quot;DataColumnIndex&quot;)
+    private Short dataColumnIndex;
+    
+    @Column(name = &quot;TableId&quot;)
+    private Integer tableId;
+    
+    @Size(max = 64)
+    @Column(name = &quot;TableName&quot;)
+    private String tableName;
+    
+    @Column(name = &quot;ViewOrder&quot;)
+    private Short viewOrder;
+    
+    @Column(name = &quot;IsEditable&quot;)
+    private Boolean isEditable;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;WorkbenchTemplateID&quot;, referencedColumnName = &quot;WorkbenchTemplateID&quot;)
+    @ManyToOne(optional = false)
+    private Workbenchtemplate workbenchTemplateID;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;workbenchTemplateMappingItemID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Workbenchdataitem&gt; workbenchdataitemList;
+
+<span class="nc" id="L125">    public Workbenchtemplatemappingitem() {</span>
+<span class="nc" id="L126">    }</span>
+
+<span class="nc" id="L128">    public Workbenchtemplatemappingitem(Integer workbenchTemplateMappingItemID) {</span>
+<span class="nc" id="L129">        this.workbenchTemplateMappingItemID = workbenchTemplateMappingItemID;</span>
+<span class="nc" id="L130">    }</span>
+
+<span class="nc" id="L132">    public Workbenchtemplatemappingitem(Integer workbenchTemplateMappingItemID, Date timestampCreated) {</span>
+<span class="nc" id="L133">        this.workbenchTemplateMappingItemID = workbenchTemplateMappingItemID;</span>
+<span class="nc" id="L134">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L135">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L141">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchTemplateMappingItemID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L146">        return workbenchTemplateMappingItemID;</span>
+    }
+
+    public Integer getWorkbenchTemplateMappingItemID() {
+<span class="nc" id="L150">        return workbenchTemplateMappingItemID;</span>
+    }
+
+    public void setWorkbenchTemplateMappingItemID(Integer workbenchTemplateMappingItemID) {
+<span class="nc" id="L154">        this.workbenchTemplateMappingItemID = workbenchTemplateMappingItemID;</span>
+<span class="nc" id="L155">    }</span>
+
+    
+    public Short getXCoord() {
+<span class="nc" id="L159">        return xCoord;</span>
+    }
+
+    public void setXCoord(Short xCoord) {
+<span class="nc" id="L163">        this.xCoord = xCoord;</span>
+<span class="nc" id="L164">    }</span>
+
+    public Short getYCoord() {
+<span class="nc" id="L167">        return yCoord;</span>
+    }
+
+    public void setYCoord(Short yCoord) {
+<span class="nc" id="L171">        this.yCoord = yCoord;</span>
+<span class="nc" id="L172">    }</span>
+
+    public String getCaption() {
+<span class="nc" id="L175">        return caption;</span>
+    }
+
+    public void setCaption(String caption) {
+<span class="nc" id="L179">        this.caption = caption;</span>
+<span class="nc" id="L180">    }</span>
+
+    public Boolean getCarryForward() {
+<span class="nc" id="L183">        return carryForward;</span>
+    }
+
+    public void setCarryForward(Boolean carryForward) {
+<span class="nc" id="L187">        this.carryForward = carryForward;</span>
+<span class="nc" id="L188">    }</span>
+
+    public Short getDataFieldLength() {
+<span class="nc" id="L191">        return dataFieldLength;</span>
+    }
+
+    public void setDataFieldLength(Short dataFieldLength) {
+<span class="nc" id="L195">        this.dataFieldLength = dataFieldLength;</span>
+<span class="nc" id="L196">    }</span>
+
+    public String getFieldName() {
+<span class="nc" id="L199">        return fieldName;</span>
+    }
+
+    public void setFieldName(String fieldName) {
+<span class="nc" id="L203">        this.fieldName = fieldName;</span>
+<span class="nc" id="L204">    }</span>
+
+    public Short getFieldType() {
+<span class="nc" id="L207">        return fieldType;</span>
+    }
+
+    public void setFieldType(Short fieldType) {
+<span class="nc" id="L211">        this.fieldType = fieldType;</span>
+<span class="nc" id="L212">    }</span>
+
+    public String getImportedColName() {
+<span class="nc" id="L215">        return importedColName;</span>
+    }
+
+    public void setImportedColName(String importedColName) {
+<span class="nc" id="L219">        this.importedColName = importedColName;</span>
+<span class="nc" id="L220">    }</span>
+
+    public Boolean getIsExportableToContent() {
+<span class="nc" id="L223">        return isExportableToContent;</span>
+    }
+
+    public void setIsExportableToContent(Boolean isExportableToContent) {
+<span class="nc" id="L227">        this.isExportableToContent = isExportableToContent;</span>
+<span class="nc" id="L228">    }</span>
+
+    public Boolean getIsIncludedInTitle() {
+<span class="nc" id="L231">        return isIncludedInTitle;</span>
+    }
+
+    public void setIsIncludedInTitle(Boolean isIncludedInTitle) {
+<span class="nc" id="L235">        this.isIncludedInTitle = isIncludedInTitle;</span>
+<span class="nc" id="L236">    }</span>
+
+    public Boolean getIsRequired() {
+<span class="nc" id="L239">        return isRequired;</span>
+    }
+
+    public void setIsRequired(Boolean isRequired) {
+<span class="nc" id="L243">        this.isRequired = isRequired;</span>
+<span class="nc" id="L244">    }</span>
+
+    public String getMetaData() {
+<span class="nc" id="L247">        return metaData;</span>
+    }
+
+    public void setMetaData(String metaData) {
+<span class="nc" id="L251">        this.metaData = metaData;</span>
+<span class="nc" id="L252">    }</span>
+
+    public Short getDataColumnIndex() {
+<span class="nc" id="L255">        return dataColumnIndex;</span>
+    }
+
+    public void setDataColumnIndex(Short dataColumnIndex) {
+<span class="nc" id="L259">        this.dataColumnIndex = dataColumnIndex;</span>
+<span class="nc" id="L260">    }</span>
+
+    public Integer getTableId() {
+<span class="nc" id="L263">        return tableId;</span>
+    }
+
+    public void setTableId(Integer tableId) {
+<span class="nc" id="L267">        this.tableId = tableId;</span>
+<span class="nc" id="L268">    }</span>
+
+    public String getTableName() {
+<span class="nc" id="L271">        return tableName;</span>
+    }
+
+    public void setTableName(String tableName) {
+<span class="nc" id="L275">        this.tableName = tableName;</span>
+<span class="nc" id="L276">    }</span>
+
+    public Short getViewOrder() {
+<span class="nc" id="L279">        return viewOrder;</span>
+    }
+
+    public void setViewOrder(Short viewOrder) {
+<span class="nc" id="L283">        this.viewOrder = viewOrder;</span>
+<span class="nc" id="L284">    }</span>
+
+    public Boolean getIsEditable() {
+<span class="nc" id="L287">        return isEditable;</span>
+    }
+
+    public void setIsEditable(Boolean isEditable) {
+<span class="nc" id="L291">        this.isEditable = isEditable;</span>
+<span class="nc" id="L292">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L296">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L300">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L301">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L305">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L309">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L310">    }</span>
+
+    @XmlIDREF
+    public Workbenchtemplate getWorkbenchTemplateID() {
+<span class="nc" id="L314">        return workbenchTemplateID;</span>
+    }
+
+    public void setWorkbenchTemplateID(Workbenchtemplate workbenchTemplateID) {
+<span class="nc" id="L318">        this.workbenchTemplateID = workbenchTemplateID;</span>
+<span class="nc" id="L319">    }</span>
+
+    @XmlTransient
+    public List&lt;Workbenchdataitem&gt; getWorkbenchdataitemList() {
+<span class="nc" id="L323">        return workbenchdataitemList;</span>
+    }
+
+    public void setWorkbenchdataitemList(List&lt;Workbenchdataitem&gt; workbenchdataitemList) {
+<span class="nc" id="L327">        this.workbenchdataitemList = workbenchdataitemList;</span>
+<span class="nc" id="L328">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L332">        int hash = 0;</span>
+<span class="nc bnc" id="L333" title="All 2 branches missed.">        hash += (workbenchTemplateMappingItemID != null ? workbenchTemplateMappingItemID.hashCode() : 0);</span>
+<span class="nc" id="L334">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L340" title="All 2 branches missed.">        if (!(object instanceof Workbenchtemplatemappingitem)) {</span>
+<span class="nc" id="L341">            return false;</span>
+        }
+<span class="nc" id="L343">        Workbenchtemplatemappingitem other = (Workbenchtemplatemappingitem) object;</span>
+<span class="nc bnc" id="L344" title="All 8 branches missed.">        return !((this.workbenchTemplateMappingItemID == null &amp;&amp; other.workbenchTemplateMappingItemID != null) || (this.workbenchTemplateMappingItemID != null &amp;&amp; !this.workbenchTemplateMappingItemID.equals(other.workbenchTemplateMappingItemID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L349">        return &quot;se.nrm.dina.datamodel.Workbenchtemplatemappingitem[ workbenchTemplateMappingItemID=&quot; + workbenchTemplateMappingItemID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

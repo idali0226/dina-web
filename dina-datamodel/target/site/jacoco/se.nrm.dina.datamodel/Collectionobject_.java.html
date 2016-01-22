@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Collectionobject_.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Collectionobject_.java</span></div><h1>Collectionobject_.java</h1><pre class="source lang-java linenums">package se.nrm.dina.datamodel;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import javax.annotation.Generated;
+import javax.persistence.metamodel.ListAttribute;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
+import se.nrm.dina.datamodel.Accession;
+import se.nrm.dina.datamodel.Agent;
+import se.nrm.dina.datamodel.Appraisal;
+import se.nrm.dina.datamodel.Collectingevent;
+import se.nrm.dina.datamodel.Collection;
+import se.nrm.dina.datamodel.Collectionobjectattachment;
+import se.nrm.dina.datamodel.Collectionobjectattr;
+import se.nrm.dina.datamodel.Collectionobjectattribute;
+import se.nrm.dina.datamodel.Collectionobjectcitation;
+import se.nrm.dina.datamodel.Collectionrelationship;
+import se.nrm.dina.datamodel.Conservdescription;
+import se.nrm.dina.datamodel.Container;
+import se.nrm.dina.datamodel.Determination;
+import se.nrm.dina.datamodel.Dnasequence;
+import se.nrm.dina.datamodel.Exsiccataitem;
+import se.nrm.dina.datamodel.Fieldnotebookpage;
+import se.nrm.dina.datamodel.Otheridentifier;
+import se.nrm.dina.datamodel.Paleocontext;
+import se.nrm.dina.datamodel.Preparation;
+import se.nrm.dina.datamodel.Specifyuser;
+import se.nrm.dina.datamodel.Treatmentevent;
+
+@Generated(value=&quot;EclipseLink-2.7.0.v20160121-rNA&quot;, date=&quot;2016-01-22T12:22:39&quot;)
+@StaticMetamodel(Collectionobject.class)
+<span class="nc" id="L33">public class Collectionobject_ extends BaseEntity_ {</span>
+
+    public static volatile ListAttribute&lt;Collectionobject, Exsiccataitem&gt; exsiccataitemList;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; modifier;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; fieldNumber;
+    public static volatile SingularAttribute&lt;Collectionobject, Agent&gt; modifiedByAgentID;
+    public static volatile ListAttribute&lt;Collectionobject, Determination&gt; determinationList;
+    public static volatile SingularAttribute&lt;Collectionobject, Boolean&gt; yesNo6;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; catalogNumber;
+    public static volatile SingularAttribute&lt;Collectionobject, Short&gt; catalogedDatePrecision;
+    public static volatile SingularAttribute&lt;Collectionobject, Boolean&gt; yesNo5;
+    public static volatile SingularAttribute&lt;Collectionobject, Boolean&gt; yesNo4;
+    public static volatile SingularAttribute&lt;Collectionobject, Short&gt; sGRStatus;
+    public static volatile ListAttribute&lt;Collectionobject, Collectionobjectattr&gt; collectionobjectattrList;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; catalogedDateVerbatim;
+    public static volatile SingularAttribute&lt;Collectionobject, Boolean&gt; yesNo3;
+    public static volatile SingularAttribute&lt;Collectionobject, Boolean&gt; yesNo2;
+    public static volatile SingularAttribute&lt;Collectionobject, Integer&gt; reservedInteger3;
+    public static volatile SingularAttribute&lt;Collectionobject, Boolean&gt; yesNo1;
+    public static volatile SingularAttribute&lt;Collectionobject, Integer&gt; reservedInteger4;
+    public static volatile ListAttribute&lt;Collectionobject, Collectionrelationship&gt; collectionrelationshipList1;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; ocr;
+    public static volatile SingularAttribute&lt;Collectionobject, Short&gt; visibility;
+    public static volatile SingularAttribute&lt;Collectionobject, Collectionobjectattribute&gt; collectionObjectAttributeID;
+    public static volatile SingularAttribute&lt;Collectionobject, Date&gt; inventoryDate;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; objectCondition;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; restrictions;
+    public static volatile ListAttribute&lt;Collectionobject, Collectionobjectattachment&gt; collectionobjectattachmentList;
+    public static volatile SingularAttribute&lt;Collectionobject, Appraisal&gt; appraisalID;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; text3;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; text1;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; text2;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; name;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; guid;
+    public static volatile SingularAttribute&lt;Collectionobject, Agent&gt; createdByAgentID;
+    public static volatile ListAttribute&lt;Collectionobject, Collectionobjectcitation&gt; collectionobjectcitationList;
+    public static volatile SingularAttribute&lt;Collectionobject, Container&gt; containerID;
+    public static volatile SingularAttribute&lt;Collectionobject, Collection&gt; collectionID;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; notifications;
+    public static volatile SingularAttribute&lt;Collectionobject, Accession&gt; accessionID;
+    public static volatile SingularAttribute&lt;Collectionobject, Date&gt; catalogedDate;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; description;
+    public static volatile SingularAttribute&lt;Collectionobject, Integer&gt; integer1;
+    public static volatile SingularAttribute&lt;Collectionobject, Float&gt; number1;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; availability;
+    public static volatile SingularAttribute&lt;Collectionobject, Float&gt; number2;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; reservedText;
+    public static volatile SingularAttribute&lt;Collectionobject, Integer&gt; integer2;
+    public static volatile SingularAttribute&lt;Collectionobject, Container&gt; containerOwnerID;
+    public static volatile ListAttribute&lt;Collectionobject, Treatmentevent&gt; treatmenteventList;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; altCatalogNumber;
+    public static volatile ListAttribute&lt;Collectionobject, Preparation&gt; preparationList;
+    public static volatile SingularAttribute&lt;Collectionobject, Agent&gt; catalogerID;
+    public static volatile ListAttribute&lt;Collectionobject, Dnasequence&gt; dnasequenceList;
+    public static volatile SingularAttribute&lt;Collectionobject, BigDecimal&gt; totalValue;
+    public static volatile SingularAttribute&lt;Collectionobject, Paleocontext&gt; paleoContextID;
+    public static volatile SingularAttribute&lt;Collectionobject, Boolean&gt; deaccessioned;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; projectNumber;
+    public static volatile SingularAttribute&lt;Collectionobject, Integer&gt; countAmt;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; reservedText3;
+    public static volatile ListAttribute&lt;Collectionobject, Conservdescription&gt; conservdescriptionList;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; reservedText2;
+    public static volatile ListAttribute&lt;Collectionobject, Otheridentifier&gt; otheridentifierList;
+    public static volatile SingularAttribute&lt;Collectionobject, Fieldnotebookpage&gt; fieldNotebookPageID;
+    public static volatile ListAttribute&lt;Collectionobject, Collectionrelationship&gt; collectionrelationshipList;
+    public static volatile SingularAttribute&lt;Collectionobject, Specifyuser&gt; visibilitySetByID;
+    public static volatile SingularAttribute&lt;Collectionobject, Collectingevent&gt; collectingEventID;
+    public static volatile SingularAttribute&lt;Collectionobject, Integer&gt; collectionObjectID;
+    public static volatile SingularAttribute&lt;Collectionobject, Integer&gt; collectionMemberID;
+    public static volatile SingularAttribute&lt;Collectionobject, String&gt; remarks;
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

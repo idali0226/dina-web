@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Spsymbiotainstance.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Spsymbiotainstance.java</span></div><h1>Spsymbiotainstance.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;spsymbiotainstance&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Spsymbiotainstance.findAll&quot;, query = &quot;SELECT s FROM Spsymbiotainstance s&quot;),
+    @NamedQuery(name = &quot;Spsymbiotainstance.findBySpSymbiotaInstanceID&quot;, query = &quot;SELECT s FROM Spsymbiotainstance s WHERE s.spSymbiotaInstanceID = :spSymbiotaInstanceID&quot;), 
+    @NamedQuery(name = &quot;Spsymbiotainstance.findByCollectionMemberID&quot;, query = &quot;SELECT s FROM Spsymbiotainstance s WHERE s.collectionMemberID = :collectionMemberID&quot;),
+    @NamedQuery(name = &quot;Spsymbiotainstance.findByDescription&quot;, query = &quot;SELECT s FROM Spsymbiotainstance s WHERE s.description = :description&quot;),
+    @NamedQuery(name = &quot;Spsymbiotainstance.findByInstanceName&quot;, query = &quot;SELECT s FROM Spsymbiotainstance s WHERE s.instanceName = :instanceName&quot;),
+    @NamedQuery(name = &quot;Spsymbiotainstance.findByLastCacheBuild&quot;, query = &quot;SELECT s FROM Spsymbiotainstance s WHERE s.lastCacheBuild = :lastCacheBuild&quot;),
+    @NamedQuery(name = &quot;Spsymbiotainstance.findByLastPull&quot;, query = &quot;SELECT s FROM Spsymbiotainstance s WHERE s.lastPull = :lastPull&quot;),
+    @NamedQuery(name = &quot;Spsymbiotainstance.findByLastPush&quot;, query = &quot;SELECT s FROM Spsymbiotainstance s WHERE s.lastPush = :lastPush&quot;),
+    @NamedQuery(name = &quot;Spsymbiotainstance.findBySymbiotaKey&quot;, query = &quot;SELECT s FROM Spsymbiotainstance s WHERE s.symbiotaKey = :symbiotaKey&quot;)})
+public class Spsymbiotainstance extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;SpSymbiotaInstanceID&quot;)
+    private Integer spSymbiotaInstanceID;
+    
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;CollectionMemberID&quot;)
+    private int collectionMemberID;
+    
+    @Size(max = 256)
+    @Column(name = &quot;Description&quot;)
+    private String description;
+    
+    @Size(max = 256)
+    @Column(name = &quot;InstanceName&quot;)
+    private String instanceName;
+    
+    @Column(name = &quot;LastCacheBuild&quot;)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastCacheBuild;
+    
+    @Column(name = &quot;LastPull&quot;)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastPull;
+    
+    @Column(name = &quot;LastPush&quot;)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastPush;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Size(max = 128)
+    @Column(name = &quot;SymbiotaKey&quot;)
+    private String symbiotaKey;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;SchemaMappingID&quot;, referencedColumnName = &quot;SpExportSchemaMappingID&quot;)
+    @ManyToOne
+    private Spexportschemamapping schemaMappingID;
+
+<span class="nc" id="L105">    public Spsymbiotainstance() {</span>
+<span class="nc" id="L106">    }</span>
+
+<span class="nc" id="L108">    public Spsymbiotainstance(Integer spSymbiotaInstanceID) {</span>
+<span class="nc" id="L109">        this.spSymbiotaInstanceID = spSymbiotaInstanceID;</span>
+<span class="nc" id="L110">    }</span>
+
+<span class="nc" id="L112">    public Spsymbiotainstance(Integer spSymbiotaInstanceID, Date timestampCreated, int collectionMemberID) {</span>
+<span class="nc" id="L113">        this.spSymbiotaInstanceID = spSymbiotaInstanceID;</span>
+<span class="nc" id="L114">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L115">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L116">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L122">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spSymbiotaInstanceID;</span>
+    }
+
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L127">        return spSymbiotaInstanceID;</span>
+    }
+    
+    public Integer getSpSymbiotaInstanceID() {
+<span class="nc" id="L131">        return spSymbiotaInstanceID;</span>
+    }
+
+    public void setSpSymbiotaInstanceID(Integer spSymbiotaInstanceID) {
+<span class="nc" id="L135">        this.spSymbiotaInstanceID = spSymbiotaInstanceID;</span>
+<span class="nc" id="L136">    }</span>
+ 
+
+    public int getCollectionMemberID() {
+<span class="nc" id="L140">        return collectionMemberID;</span>
+    }
+
+    public void setCollectionMemberID(int collectionMemberID) {
+<span class="nc" id="L144">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L145">    }</span>
+
+    public String getDescription() {
+<span class="nc" id="L148">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="nc" id="L152">        this.description = description;</span>
+<span class="nc" id="L153">    }</span>
+
+    public String getInstanceName() {
+<span class="nc" id="L156">        return instanceName;</span>
+    }
+
+    public void setInstanceName(String instanceName) {
+<span class="nc" id="L160">        this.instanceName = instanceName;</span>
+<span class="nc" id="L161">    }</span>
+
+    public Date getLastCacheBuild() {
+<span class="nc" id="L164">        return lastCacheBuild;</span>
+    }
+
+    public void setLastCacheBuild(Date lastCacheBuild) {
+<span class="nc" id="L168">        this.lastCacheBuild = lastCacheBuild;</span>
+<span class="nc" id="L169">    }</span>
+
+    public Date getLastPull() {
+<span class="nc" id="L172">        return lastPull;</span>
+    }
+
+    public void setLastPull(Date lastPull) {
+<span class="nc" id="L176">        this.lastPull = lastPull;</span>
+<span class="nc" id="L177">    }</span>
+
+    public Date getLastPush() {
+<span class="nc" id="L180">        return lastPush;</span>
+    }
+
+    public void setLastPush(Date lastPush) {
+<span class="nc" id="L184">        this.lastPush = lastPush;</span>
+<span class="nc" id="L185">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L188">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L192">        this.remarks = remarks;</span>
+<span class="nc" id="L193">    }</span>
+
+    public String getSymbiotaKey() {
+<span class="nc" id="L196">        return symbiotaKey;</span>
+    }
+
+    public void setSymbiotaKey(String symbiotaKey) {
+<span class="nc" id="L200">        this.symbiotaKey = symbiotaKey;</span>
+<span class="nc" id="L201">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L205">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L209">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L210">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L214">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L218">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L219">    }</span>
+
+    @XmlIDREF
+    public Spexportschemamapping getSchemaMappingID() {
+<span class="nc" id="L223">        return schemaMappingID;</span>
+    }
+
+    public void setSchemaMappingID(Spexportschemamapping schemaMappingID) {
+<span class="nc" id="L227">        this.schemaMappingID = schemaMappingID;</span>
+<span class="nc" id="L228">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L232">        int hash = 0;</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">        hash += (spSymbiotaInstanceID != null ? spSymbiotaInstanceID.hashCode() : 0);</span>
+<span class="nc" id="L234">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L240" title="All 2 branches missed.">        if (!(object instanceof Spsymbiotainstance)) {</span>
+<span class="nc" id="L241">            return false;</span>
+        }
+<span class="nc" id="L243">        Spsymbiotainstance other = (Spsymbiotainstance) object;</span>
+<span class="nc bnc" id="L244" title="All 8 branches missed.">        return !((this.spSymbiotaInstanceID == null &amp;&amp; other.spSymbiotaInstanceID != null) || (this.spSymbiotaInstanceID != null &amp;&amp; !this.spSymbiotaInstanceID.equals(other.spSymbiotaInstanceID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L249">        return &quot;se.nrm.dina.datamodel.Spsymbiotainstance[ spSymbiotaInstanceID=&quot; + spSymbiotaInstanceID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

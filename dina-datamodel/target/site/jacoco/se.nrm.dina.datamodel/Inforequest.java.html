@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Inforequest.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Inforequest.java</span></div><h1>Inforequest.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;inforequest&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Inforequest.findAll&quot;, query = &quot;SELECT i FROM Inforequest i&quot;),
+    @NamedQuery(name = &quot;Inforequest.findByInfoRequestID&quot;, query = &quot;SELECT i FROM Inforequest i WHERE i.infoRequestID = :infoRequestID&quot;), 
+    @NamedQuery(name = &quot;Inforequest.findByCollectionMemberID&quot;, query = &quot;SELECT i FROM Inforequest i WHERE i.collectionMemberID = :collectionMemberID&quot;),
+    @NamedQuery(name = &quot;Inforequest.findByEmail&quot;, query = &quot;SELECT i FROM Inforequest i WHERE i.email = :email&quot;),
+    @NamedQuery(name = &quot;Inforequest.findByFirstname&quot;, query = &quot;SELECT i FROM Inforequest i WHERE i.firstname = :firstname&quot;),
+    @NamedQuery(name = &quot;Inforequest.findByInfoReqNumber&quot;, query = &quot;SELECT i FROM Inforequest i WHERE i.infoReqNumber = :infoReqNumber&quot;),
+    @NamedQuery(name = &quot;Inforequest.findByInstitution&quot;, query = &quot;SELECT i FROM Inforequest i WHERE i.institution = :institution&quot;),
+    @NamedQuery(name = &quot;Inforequest.findByLastname&quot;, query = &quot;SELECT i FROM Inforequest i WHERE i.lastname = :lastname&quot;),
+    @NamedQuery(name = &quot;Inforequest.findByReplyDate&quot;, query = &quot;SELECT i FROM Inforequest i WHERE i.replyDate = :replyDate&quot;),
+    @NamedQuery(name = &quot;Inforequest.findByRequestDate&quot;, query = &quot;SELECT i FROM Inforequest i WHERE i.requestDate = :requestDate&quot;)})
+public class Inforequest extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;InfoRequestID&quot;)
+    private Integer infoRequestID;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;CollectionMemberID&quot;)
+    private int collectionMemberID;
+    
+    // @Pattern(regexp=&quot;[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?&quot;, message=&quot;Invalid email&quot;)//if the field contains email address consider using this annotation to enforce field validation
+    @Size(max = 50)
+    @Column(name = &quot;Email&quot;)
+    private String email;
+    
+    @Size(max = 50)
+    @Column(name = &quot;Firstname&quot;)
+    private String firstname;
+    
+    @Size(max = 32)
+    @Column(name = &quot;InfoReqNumber&quot;)
+    private String infoReqNumber;
+    
+    @Size(max = 127)
+    @Column(name = &quot;Institution&quot;)
+    private String institution;
+    
+    @Size(max = 50)
+    @Column(name = &quot;Lastname&quot;)
+    private String lastname;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Column(name = &quot;ReplyDate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date replyDate;
+    
+    @Column(name = &quot;RequestDate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date requestDate;
+    
+    @OneToMany(mappedBy = &quot;infoRequestID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Recordset&gt; recordsetList;
+    
+    @JoinColumn(name = &quot;AgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent agentID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+
+<span class="nc" id="L117">    public Inforequest() {</span>
+<span class="nc" id="L118">    }</span>
+
+<span class="nc" id="L120">    public Inforequest(Integer infoRequestID) {</span>
+<span class="nc" id="L121">        this.infoRequestID = infoRequestID;</span>
+<span class="nc" id="L122">    }</span>
+
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L128">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + infoRequestID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L133">        return infoRequestID;</span>
+    }
+    
+<span class="nc" id="L136">    public Inforequest(Integer infoRequestID, Date timestampCreated, int collectionMemberID) {</span>
+<span class="nc" id="L137">        this.infoRequestID = infoRequestID;</span>
+<span class="nc" id="L138">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L139">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L140">    }</span>
+
+    public Integer getInfoRequestID() {
+<span class="nc" id="L143">        return infoRequestID;</span>
+    }
+
+    public void setInfoRequestID(Integer infoRequestID) {
+<span class="nc" id="L147">        this.infoRequestID = infoRequestID;</span>
+<span class="nc" id="L148">    }</span>
+
+   
+
+    public int getCollectionMemberID() {
+<span class="nc" id="L153">        return collectionMemberID;</span>
+    }
+
+    public void setCollectionMemberID(int collectionMemberID) {
+<span class="nc" id="L157">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L158">    }</span>
+
+    public String getEmail() {
+<span class="nc" id="L161">        return email;</span>
+    }
+
+    public void setEmail(String email) {
+<span class="nc" id="L165">        this.email = email;</span>
+<span class="nc" id="L166">    }</span>
+
+    public String getFirstname() {
+<span class="nc" id="L169">        return firstname;</span>
+    }
+
+    public void setFirstname(String firstname) {
+<span class="nc" id="L173">        this.firstname = firstname;</span>
+<span class="nc" id="L174">    }</span>
+
+    public String getInfoReqNumber() {
+<span class="nc" id="L177">        return infoReqNumber;</span>
+    }
+
+    public void setInfoReqNumber(String infoReqNumber) {
+<span class="nc" id="L181">        this.infoReqNumber = infoReqNumber;</span>
+<span class="nc" id="L182">    }</span>
+
+    public String getInstitution() {
+<span class="nc" id="L185">        return institution;</span>
+    }
+
+    public void setInstitution(String institution) {
+<span class="nc" id="L189">        this.institution = institution;</span>
+<span class="nc" id="L190">    }</span>
+
+    public String getLastname() {
+<span class="nc" id="L193">        return lastname;</span>
+    }
+
+    public void setLastname(String lastname) {
+<span class="nc" id="L197">        this.lastname = lastname;</span>
+<span class="nc" id="L198">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L201">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L205">        this.remarks = remarks;</span>
+<span class="nc" id="L206">    }</span>
+
+    public Date getReplyDate() {
+<span class="nc" id="L209">        return replyDate;</span>
+    }
+
+    public void setReplyDate(Date replyDate) {
+<span class="nc" id="L213">        this.replyDate = replyDate;</span>
+<span class="nc" id="L214">    }</span>
+
+    public Date getRequestDate() {
+<span class="nc" id="L217">        return requestDate;</span>
+    }
+
+    public void setRequestDate(Date requestDate) {
+<span class="nc" id="L221">        this.requestDate = requestDate;</span>
+<span class="nc" id="L222">    }</span>
+
+    @XmlTransient
+    public List&lt;Recordset&gt; getRecordsetList() {
+<span class="nc" id="L226">        return recordsetList;</span>
+    }
+
+    public void setRecordsetList(List&lt;Recordset&gt; recordsetList) {
+<span class="nc" id="L230">        this.recordsetList = recordsetList;</span>
+<span class="nc" id="L231">    }</span>
+
+    @XmlIDREF
+    public Agent getAgentID() {
+<span class="nc" id="L235">        return agentID;</span>
+    }
+
+    public void setAgentID(Agent agentID) {
+<span class="nc" id="L239">        this.agentID = agentID;</span>
+<span class="nc" id="L240">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L244">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L248">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L249">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L253">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L257">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L258">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L262">        int hash = 0;</span>
+<span class="nc bnc" id="L263" title="All 2 branches missed.">        hash += (infoRequestID != null ? infoRequestID.hashCode() : 0);</span>
+<span class="nc" id="L264">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L270" title="All 2 branches missed.">        if (!(object instanceof Inforequest)) {</span>
+<span class="nc" id="L271">            return false;</span>
+        }
+<span class="nc" id="L273">        Inforequest other = (Inforequest) object;</span>
+<span class="nc bnc" id="L274" title="All 8 branches missed.">        return !((this.infoRequestID == null &amp;&amp; other.infoRequestID != null) || (this.infoRequestID != null &amp;&amp; !this.infoRequestID.equals(other.infoRequestID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L279">        return &quot;se.nrm.dina.datamodel.Inforequest[ infoRequestID=&quot; + infoRequestID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

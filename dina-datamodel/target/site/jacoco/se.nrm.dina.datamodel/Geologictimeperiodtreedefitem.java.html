@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Geologictimeperiodtreedefitem.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Geologictimeperiodtreedefitem.java</span></div><h1>Geologictimeperiodtreedefitem.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;geologictimeperiodtreedefitem&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Geologictimeperiodtreedefitem.findAll&quot;, query = &quot;SELECT g FROM Geologictimeperiodtreedefitem g&quot;),
+    @NamedQuery(name = &quot;Geologictimeperiodtreedefitem.findByGeologicTimePeriodTreeDefItemID&quot;, query = &quot;SELECT g FROM Geologictimeperiodtreedefitem g WHERE g.geologicTimePeriodTreeDefItemID = :geologicTimePeriodTreeDefItemID&quot;), 
+    @NamedQuery(name = &quot;Geologictimeperiodtreedefitem.findByFullNameSeparator&quot;, query = &quot;SELECT g FROM Geologictimeperiodtreedefitem g WHERE g.fullNameSeparator = :fullNameSeparator&quot;),
+    @NamedQuery(name = &quot;Geologictimeperiodtreedefitem.findByIsEnforced&quot;, query = &quot;SELECT g FROM Geologictimeperiodtreedefitem g WHERE g.isEnforced = :isEnforced&quot;),
+    @NamedQuery(name = &quot;Geologictimeperiodtreedefitem.findByIsInFullName&quot;, query = &quot;SELECT g FROM Geologictimeperiodtreedefitem g WHERE g.isInFullName = :isInFullName&quot;),
+    @NamedQuery(name = &quot;Geologictimeperiodtreedefitem.findByName&quot;, query = &quot;SELECT g FROM Geologictimeperiodtreedefitem g WHERE g.name = :name&quot;), 
+    @NamedQuery(name = &quot;Geologictimeperiodtreedefitem.findByTitle&quot;, query = &quot;SELECT g FROM Geologictimeperiodtreedefitem g WHERE g.title = :title&quot;)})
+public class Geologictimeperiodtreedefitem extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;GeologicTimePeriodTreeDefItemID&quot;)
+    private Integer geologicTimePeriodTreeDefItemID;
+    
+    
+    @Size(max = 32)
+    @Column(name = &quot;FullNameSeparator&quot;)
+    private String fullNameSeparator;
+    
+    @Column(name = &quot;IsEnforced&quot;)
+    private Boolean isEnforced;
+    
+    @Column(name = &quot;IsInFullName&quot;)
+    private Boolean isInFullName;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = &quot;Name&quot;)
+    private String name;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;RankID&quot;)
+    private int rankID;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Size(max = 64)
+    @Column(name = &quot;TextAfter&quot;)
+    private String textAfter;
+    
+    @Size(max = 64)
+    @Column(name = &quot;TextBefore&quot;)
+    private String textBefore;
+    
+    @Size(max = 64)
+    @Column(name = &quot;Title&quot;)
+    private String title;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;geologicTimePeriodTreeDefItemID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Geologictimeperiod&gt; geologictimeperiodList;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @OneToMany(mappedBy = &quot;parentItemID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Geologictimeperiodtreedefitem&gt; geologictimeperiodtreedefitemList;
+    
+    @JoinColumn(name = &quot;ParentItemID&quot;, referencedColumnName = &quot;GeologicTimePeriodTreeDefItemID&quot;)
+    @ManyToOne
+    private Geologictimeperiodtreedefitem parentItemID;
+    
+    @JoinColumn(name = &quot;GeologicTimePeriodTreeDefID&quot;, referencedColumnName = &quot;GeologicTimePeriodTreeDefID&quot;)
+    @ManyToOne(optional = false)
+    private Geologictimeperiodtreedef geologicTimePeriodTreeDefID;
+
+<span class="nc" id="L119">    public Geologictimeperiodtreedefitem() {</span>
+<span class="nc" id="L120">    }</span>
+
+<span class="nc" id="L122">    public Geologictimeperiodtreedefitem(Integer geologicTimePeriodTreeDefItemID) {</span>
+<span class="nc" id="L123">        this.geologicTimePeriodTreeDefItemID = geologicTimePeriodTreeDefItemID;</span>
+<span class="nc" id="L124">    }</span>
+
+<span class="nc" id="L126">    public Geologictimeperiodtreedefitem(Integer geologicTimePeriodTreeDefItemID, Date timestampCreated, String name, int rankID) {</span>
+<span class="nc" id="L127">        this.geologicTimePeriodTreeDefItemID = geologicTimePeriodTreeDefItemID;</span>
+<span class="nc" id="L128">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L129">        this.name = name;</span>
+<span class="nc" id="L130">        this.rankID = rankID;</span>
+<span class="nc" id="L131">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L137">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + geologicTimePeriodTreeDefItemID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L142">        return geologicTimePeriodTreeDefItemID;</span>
+    }
+
+    public Integer getGeologicTimePeriodTreeDefItemID() {
+<span class="nc" id="L146">        return geologicTimePeriodTreeDefItemID;</span>
+    }
+
+    public void setGeologicTimePeriodTreeDefItemID(Integer geologicTimePeriodTreeDefItemID) {
+<span class="nc" id="L150">        this.geologicTimePeriodTreeDefItemID = geologicTimePeriodTreeDefItemID;</span>
+<span class="nc" id="L151">    }</span>
+
+    
+
+    public String getFullNameSeparator() {
+<span class="nc" id="L156">        return fullNameSeparator;</span>
+    }
+
+    public void setFullNameSeparator(String fullNameSeparator) {
+<span class="nc" id="L160">        this.fullNameSeparator = fullNameSeparator;</span>
+<span class="nc" id="L161">    }</span>
+
+    public Boolean getIsEnforced() {
+<span class="nc" id="L164">        return isEnforced;</span>
+    }
+
+    public void setIsEnforced(Boolean isEnforced) {
+<span class="nc" id="L168">        this.isEnforced = isEnforced;</span>
+<span class="nc" id="L169">    }</span>
+
+    public Boolean getIsInFullName() {
+<span class="nc" id="L172">        return isInFullName;</span>
+    }
+
+    public void setIsInFullName(Boolean isInFullName) {
+<span class="nc" id="L176">        this.isInFullName = isInFullName;</span>
+<span class="nc" id="L177">    }</span>
+
+    public String getName() {
+<span class="nc" id="L180">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L184">        this.name = name;</span>
+<span class="nc" id="L185">    }</span>
+
+    public int getRankID() {
+<span class="nc" id="L188">        return rankID;</span>
+    }
+
+    public void setRankID(int rankID) {
+<span class="nc" id="L192">        this.rankID = rankID;</span>
+<span class="nc" id="L193">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L196">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L200">        this.remarks = remarks;</span>
+<span class="nc" id="L201">    }</span>
+
+    public String getTextAfter() {
+<span class="nc" id="L204">        return textAfter;</span>
+    }
+
+    public void setTextAfter(String textAfter) {
+<span class="nc" id="L208">        this.textAfter = textAfter;</span>
+<span class="nc" id="L209">    }</span>
+
+    public String getTextBefore() {
+<span class="nc" id="L212">        return textBefore;</span>
+    }
+
+    public void setTextBefore(String textBefore) {
+<span class="nc" id="L216">        this.textBefore = textBefore;</span>
+<span class="nc" id="L217">    }</span>
+
+    public String getTitle() {
+<span class="nc" id="L220">        return title;</span>
+    }
+
+    public void setTitle(String title) {
+<span class="nc" id="L224">        this.title = title;</span>
+<span class="nc" id="L225">    }</span>
+
+    @XmlTransient
+    public List&lt;Geologictimeperiod&gt; getGeologictimeperiodList() {
+<span class="nc" id="L229">        return geologictimeperiodList;</span>
+    }
+
+    public void setGeologictimeperiodList(List&lt;Geologictimeperiod&gt; geologictimeperiodList) {
+<span class="nc" id="L233">        this.geologictimeperiodList = geologictimeperiodList;</span>
+<span class="nc" id="L234">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L238">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L242">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L243">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L247">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L251">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L252">    }</span>
+
+    @XmlTransient
+    public List&lt;Geologictimeperiodtreedefitem&gt; getGeologictimeperiodtreedefitemList() {
+<span class="nc" id="L256">        return geologictimeperiodtreedefitemList;</span>
+    }
+
+    public void setGeologictimeperiodtreedefitemList(List&lt;Geologictimeperiodtreedefitem&gt; geologictimeperiodtreedefitemList) {
+<span class="nc" id="L260">        this.geologictimeperiodtreedefitemList = geologictimeperiodtreedefitemList;</span>
+<span class="nc" id="L261">    }</span>
+
+    @XmlIDREF
+    public Geologictimeperiodtreedefitem getParentItemID() {
+<span class="nc" id="L265">        return parentItemID;</span>
+    }
+
+    public void setParentItemID(Geologictimeperiodtreedefitem parentItemID) {
+<span class="nc" id="L269">        this.parentItemID = parentItemID;</span>
+<span class="nc" id="L270">    }</span>
+
+    @XmlIDREF
+    public Geologictimeperiodtreedef getGeologicTimePeriodTreeDefID() {
+<span class="nc" id="L274">        return geologicTimePeriodTreeDefID;</span>
+    }
+
+    public void setGeologicTimePeriodTreeDefID(Geologictimeperiodtreedef geologicTimePeriodTreeDefID) {
+<span class="nc" id="L278">        this.geologicTimePeriodTreeDefID = geologicTimePeriodTreeDefID;</span>
+<span class="nc" id="L279">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L283">        int hash = 0;</span>
+<span class="nc bnc" id="L284" title="All 2 branches missed.">        hash += (geologicTimePeriodTreeDefItemID != null ? geologicTimePeriodTreeDefItemID.hashCode() : 0);</span>
+<span class="nc" id="L285">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L291" title="All 2 branches missed.">        if (!(object instanceof Geologictimeperiodtreedefitem)) {</span>
+<span class="nc" id="L292">            return false;</span>
+        }
+<span class="nc" id="L294">        Geologictimeperiodtreedefitem other = (Geologictimeperiodtreedefitem) object;</span>
+<span class="nc bnc" id="L295" title="All 8 branches missed.">        return !((this.geologicTimePeriodTreeDefItemID == null &amp;&amp; other.geologicTimePeriodTreeDefItemID != null) || (this.geologicTimePeriodTreeDefItemID != null &amp;&amp; !this.geologicTimePeriodTreeDefItemID.equals(other.geologicTimePeriodTreeDefItemID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L300">        return &quot;se.nrm.dina.datamodel.Geologictimeperiodtreedefitem[ geologicTimePeriodTreeDefItemID=&quot; + geologicTimePeriodTreeDefItemID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Repositoryagreementattachment.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Repositoryagreementattachment.java</span></div><h1>Repositoryagreementattachment.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;repositoryagreementattachment&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Repositoryagreementattachment.findAll&quot;, query = &quot;SELECT r FROM Repositoryagreementattachment r&quot;),
+    @NamedQuery(name = &quot;Repositoryagreementattachment.findByRepositoryAgreementAttachmentID&quot;, query = &quot;SELECT r FROM Repositoryagreementattachment r WHERE r.repositoryAgreementAttachmentID = :repositoryAgreementAttachmentID&quot;), 
+    @NamedQuery(name = &quot;Repositoryagreementattachment.findByOrdinal&quot;, query = &quot;SELECT r FROM Repositoryagreementattachment r WHERE r.ordinal = :ordinal&quot;)})
+public class Repositoryagreementattachment extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;RepositoryAgreementAttachmentID&quot;)
+    private Integer repositoryAgreementAttachmentID;
+    
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;Ordinal&quot;)
+    private int ordinal;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @JoinColumn(name = &quot;RepositoryAgreementID&quot;, referencedColumnName = &quot;RepositoryAgreementID&quot;)
+    @ManyToOne(optional = false)
+    private Repositoryagreement repositoryAgreementID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;AttachmentID&quot;, referencedColumnName = &quot;AttachmentID&quot;)
+    @ManyToOne(optional = false)
+    private Attachment attachmentID;
+
+<span class="nc" id="L77">    public Repositoryagreementattachment() {</span>
+<span class="nc" id="L78">    }</span>
+
+<span class="nc" id="L80">    public Repositoryagreementattachment(Integer repositoryAgreementAttachmentID) {</span>
+<span class="nc" id="L81">        this.repositoryAgreementAttachmentID = repositoryAgreementAttachmentID;</span>
+<span class="nc" id="L82">    }</span>
+
+<span class="nc" id="L84">    public Repositoryagreementattachment(Integer repositoryAgreementAttachmentID, Date timestampCreated, int ordinal) {</span>
+<span class="nc" id="L85">        this.repositoryAgreementAttachmentID = repositoryAgreementAttachmentID;</span>
+<span class="nc" id="L86">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L87">        this.ordinal = ordinal;</span>
+<span class="nc" id="L88">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L94">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + repositoryAgreementAttachmentID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L99">        return repositoryAgreementAttachmentID;</span>
+    }
+
+    public Integer getRepositoryAgreementAttachmentID() {
+<span class="nc" id="L103">        return repositoryAgreementAttachmentID;</span>
+    }
+
+    public void setRepositoryAgreementAttachmentID(Integer repositoryAgreementAttachmentID) {
+<span class="nc" id="L107">        this.repositoryAgreementAttachmentID = repositoryAgreementAttachmentID;</span>
+<span class="nc" id="L108">    }</span>
+ 
+
+    public int getOrdinal() {
+<span class="nc" id="L112">        return ordinal;</span>
+    }
+
+    public void setOrdinal(int ordinal) {
+<span class="nc" id="L116">        this.ordinal = ordinal;</span>
+<span class="nc" id="L117">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L120">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L124">        this.remarks = remarks;</span>
+<span class="nc" id="L125">    }</span>
+
+    @XmlIDREF
+    public Repositoryagreement getRepositoryAgreementID() {
+<span class="nc" id="L129">        return repositoryAgreementID;</span>
+    }
+
+    public void setRepositoryAgreementID(Repositoryagreement repositoryAgreementID) {
+<span class="nc" id="L133">        this.repositoryAgreementID = repositoryAgreementID;</span>
+<span class="nc" id="L134">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L138">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L142">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L143">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L147">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L151">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L152">    }</span>
+
+    @XmlIDREF
+    public Attachment getAttachmentID() {
+<span class="nc" id="L156">        return attachmentID;</span>
+    }
+
+    public void setAttachmentID(Attachment attachmentID) {
+<span class="nc" id="L160">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L161">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L165">        int hash = 0;</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">        hash += (repositoryAgreementAttachmentID != null ? repositoryAgreementAttachmentID.hashCode() : 0);</span>
+<span class="nc" id="L167">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        if (!(object instanceof Repositoryagreementattachment)) {</span>
+<span class="nc" id="L174">            return false;</span>
+        }
+<span class="nc" id="L176">        Repositoryagreementattachment other = (Repositoryagreementattachment) object;</span>
+<span class="nc bnc" id="L177" title="All 8 branches missed.">        return !((this.repositoryAgreementAttachmentID == null &amp;&amp; other.repositoryAgreementAttachmentID != null) || (this.repositoryAgreementAttachmentID != null &amp;&amp; !this.repositoryAgreementAttachmentID.equals(other.repositoryAgreementAttachmentID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L182">        return &quot;se.nrm.dina.datamodel.Repositoryagreementattachment[ repositoryAgreementAttachmentID=&quot; + repositoryAgreementAttachmentID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Locality.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Locality.java</span></div><h1>Locality.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;locality&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Locality.findAll&quot;, query = &quot;SELECT l FROM Locality l&quot;),
+    @NamedQuery(name = &quot;Locality.findByLocalityID&quot;, query = &quot;SELECT l FROM Locality l WHERE l.localityID = :localityID&quot;), 
+    @NamedQuery(name = &quot;Locality.findByDatum&quot;, query = &quot;SELECT l FROM Locality l WHERE l.datum = :datum&quot;),
+    @NamedQuery(name = &quot;Locality.findByElevationAccuracy&quot;, query = &quot;SELECT l FROM Locality l WHERE l.elevationAccuracy = :elevationAccuracy&quot;),
+    @NamedQuery(name = &quot;Locality.findByElevationMethod&quot;, query = &quot;SELECT l FROM Locality l WHERE l.elevationMethod = :elevationMethod&quot;),
+    @NamedQuery(name = &quot;Locality.findByGuid&quot;, query = &quot;SELECT l FROM Locality l WHERE l.guid = :guid&quot;), 
+    @NamedQuery(name = &quot;Locality.findByVerbatimLongitude&quot;, query = &quot;SELECT l FROM Locality l WHERE l.verbatimLongitude = :verbatimLongitude&quot;)})
+public class Locality extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;LocalityID&quot;)
+    private Integer localityID;
+    
+    @Size(max = 50)
+    @Column(name = &quot;Datum&quot;)
+    private String datum;
+    
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = &quot;ElevationAccuracy&quot;)
+    private Double elevationAccuracy;
+    
+    @Size(max = 50)
+    @Column(name = &quot;ElevationMethod&quot;)
+    private String elevationMethod;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;GML&quot;)
+    private String gml;
+    
+    @Size(max = 128)
+    @Column(name = &quot;GUID&quot;)
+    private String guid;
+    
+    
+    @Size(max = 50)
+    @Column(name = &quot;Lat1Text&quot;)
+    private String lat1Text;
+     
+    @Size(max = 50)
+    @Column(name = &quot;Lat2Text&quot;)
+    private String lat2Text;
+    
+    @Column(name = &quot;LatLongAccuracy&quot;)
+    private Double latLongAccuracy;
+    
+    @Size(max = 50)
+    @Column(name = &quot;LatLongMethod&quot;)
+    private String latLongMethod;
+    
+    @Size(max = 50)
+    @Column(name = &quot;LatLongType&quot;)
+    private String latLongType;
+    
+    @Column(name = &quot;Latitude1&quot;)
+    private BigDecimal latitude1;
+    
+    @Column(name = &quot;Latitude2&quot;)
+    private BigDecimal latitude2;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
+    @Column(name = &quot;LocalityName&quot;)
+    private String localityName;
+    
+    @Size(max = 50)
+    @Column(name = &quot;Long1Text&quot;)
+    private String long1Text;
+    
+    @Size(max = 50)
+    @Column(name = &quot;Long2Text&quot;)
+    private String long2Text;
+    
+    @Column(name = &quot;Longitude1&quot;)
+    private BigDecimal longitude1;
+    
+    @Column(name = &quot;Longitude2&quot;)
+    private BigDecimal longitude2;
+    
+    @Column(name = &quot;MaxElevation&quot;)
+    private Double maxElevation;
+    
+    @Column(name = &quot;MinElevation&quot;)
+    private Double minElevation;
+    
+    @Size(max = 255)
+    @Column(name = &quot;NamedPlace&quot;)
+    private String namedPlace;
+    
+    @Size(max = 50)
+    @Column(name = &quot;OriginalElevationUnit&quot;)
+    private String originalElevationUnit;
+    
+    @Column(name = &quot;OriginalLatLongUnit&quot;)
+    private Integer originalLatLongUnit;
+    
+    @Size(max = 120)
+    @Column(name = &quot;RelationToNamedPlace&quot;)
+    private String relationToNamedPlace;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Size(max = 32)
+    @Column(name = &quot;ShortName&quot;)
+    private String shortName;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;SrcLatLongUnit&quot;)
+    private short srcLatLongUnit;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text1&quot;)
+    private String text1;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text2&quot;)
+    private String text2;
+    
+    @Size(max = 50)
+    @Column(name = &quot;VerbatimElevation&quot;)
+    private String verbatimElevation;
+    
+    @Column(name = &quot;Visibility&quot;)
+    private Short visibility;
+    
+    @Column(name = &quot;SGRStatus&quot;)
+    private Short sGRStatus;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text3&quot;)
+    private String text3;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text4&quot;)
+    private String text4;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text5&quot;)
+    private String text5;
+    
+    @Size(max = 50)
+    @Column(name = &quot;VerbatimLatitude&quot;)
+    private String verbatimLatitude;
+    
+    @Size(max = 50)
+    @Column(name = &quot;VerbatimLongitude&quot;)
+    private String verbatimLongitude;
+    
+    @OneToMany(mappedBy = &quot;localityID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Geocoorddetail&gt; geocoorddetailList;
+    
+    @JoinColumn(name = &quot;DisciplineID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)
+    @ManyToOne(optional = false)
+    private Discipline disciplineID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;VisibilitySetByID&quot;, referencedColumnName = &quot;SpecifyUserID&quot;)
+    @ManyToOne
+    private Specifyuser visibilitySetByID;
+    
+    @JoinColumn(name = &quot;PaleoContextID&quot;, referencedColumnName = &quot;PaleoContextID&quot;)
+    @ManyToOne
+    private Paleocontext paleoContextID;
+    
+    @JoinColumn(name = &quot;GeographyID&quot;, referencedColumnName = &quot;GeographyID&quot;)
+    @ManyToOne
+    private Geography geographyID;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;localityID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Localitycitation&gt; localitycitationList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;localityID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Localitynamealias&gt; localitynamealiasList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;localityID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Localityattachment&gt; localityattachmentList;
+    
+    @OneToMany(mappedBy = &quot;localityID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Localitydetail&gt; localitydetailList;
+    
+    @OneToMany(mappedBy = &quot;localityID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Collectingevent&gt; collectingeventList;
+
+<span class="nc" id="L247">    public Locality() {</span>
+<span class="nc" id="L248">    }</span>
+
+<span class="nc" id="L250">    public Locality(Integer localityID) {</span>
+<span class="nc" id="L251">        this.localityID = localityID;</span>
+<span class="nc" id="L252">    }</span>
+
+<span class="nc" id="L254">    public Locality(Integer localityID, Date timestampCreated, String localityName, short srcLatLongUnit) {</span>
+<span class="nc" id="L255">        this.localityID = localityID;</span>
+<span class="nc" id="L256">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L257">        this.localityName = localityName;</span>
+<span class="nc" id="L258">        this.srcLatLongUnit = srcLatLongUnit;</span>
+<span class="nc" id="L259">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L265">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + localityID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L270">        return localityID;</span>
+    }
+
+    public Integer getLocalityID() {
+<span class="nc" id="L274">        return localityID;</span>
+    }
+
+    public void setLocalityID(Integer localityID) {
+<span class="nc" id="L278">        this.localityID = localityID;</span>
+<span class="nc" id="L279">    }</span>
+ 
+
+    public String getDatum() {
+<span class="nc" id="L283">        return datum;</span>
+    }
+
+    public void setDatum(String datum) {
+<span class="nc" id="L287">        this.datum = datum;</span>
+<span class="nc" id="L288">    }</span>
+
+    public Double getElevationAccuracy() {
+<span class="nc" id="L291">        return elevationAccuracy;</span>
+    }
+
+    public void setElevationAccuracy(Double elevationAccuracy) {
+<span class="nc" id="L295">        this.elevationAccuracy = elevationAccuracy;</span>
+<span class="nc" id="L296">    }</span>
+
+    public String getElevationMethod() {
+<span class="nc" id="L299">        return elevationMethod;</span>
+    }
+
+    public void setElevationMethod(String elevationMethod) {
+<span class="nc" id="L303">        this.elevationMethod = elevationMethod;</span>
+<span class="nc" id="L304">    }</span>
+
+    public String getGml() {
+<span class="nc" id="L307">        return gml;</span>
+    }
+
+    public void setGml(String gml) {
+<span class="nc" id="L311">        this.gml = gml;</span>
+<span class="nc" id="L312">    }</span>
+
+    public String getGuid() {
+<span class="nc" id="L315">        return guid;</span>
+    }
+
+    public void setGuid(String guid) {
+<span class="nc" id="L319">        this.guid = guid;</span>
+<span class="nc" id="L320">    }</span>
+
+    public String getLat1Text() {
+<span class="nc" id="L323">        return lat1Text;</span>
+    }
+
+    public void setLat1Text(String lat1Text) {
+<span class="nc" id="L327">        this.lat1Text = lat1Text;</span>
+<span class="nc" id="L328">    }</span>
+
+    public String getLat2Text() {
+<span class="nc" id="L331">        return lat2Text;</span>
+    }
+
+    public void setLat2Text(String lat2Text) {
+<span class="nc" id="L335">        this.lat2Text = lat2Text;</span>
+<span class="nc" id="L336">    }</span>
+
+    public Double getLatLongAccuracy() {
+<span class="nc" id="L339">        return latLongAccuracy;</span>
+    }
+
+    public void setLatLongAccuracy(Double latLongAccuracy) {
+<span class="nc" id="L343">        this.latLongAccuracy = latLongAccuracy;</span>
+<span class="nc" id="L344">    }</span>
+
+    public String getLatLongMethod() {
+<span class="nc" id="L347">        return latLongMethod;</span>
+    }
+
+    public void setLatLongMethod(String latLongMethod) {
+<span class="nc" id="L351">        this.latLongMethod = latLongMethod;</span>
+<span class="nc" id="L352">    }</span>
+
+    public String getLatLongType() {
+<span class="nc" id="L355">        return latLongType;</span>
+    }
+
+    public void setLatLongType(String latLongType) {
+<span class="nc" id="L359">        this.latLongType = latLongType;</span>
+<span class="nc" id="L360">    }</span>
+
+    public BigDecimal getLatitude1() {
+<span class="nc" id="L363">        return latitude1;</span>
+    }
+
+    public void setLatitude1(BigDecimal latitude1) {
+<span class="nc" id="L367">        this.latitude1 = latitude1;</span>
+<span class="nc" id="L368">    }</span>
+
+    public BigDecimal getLatitude2() {
+<span class="nc" id="L371">        return latitude2;</span>
+    }
+
+    public void setLatitude2(BigDecimal latitude2) {
+<span class="nc" id="L375">        this.latitude2 = latitude2;</span>
+<span class="nc" id="L376">    }</span>
+
+    public String getLocalityName() {
+<span class="nc" id="L379">        return localityName;</span>
+    }
+
+    public void setLocalityName(String localityName) {
+<span class="nc" id="L383">        this.localityName = localityName;</span>
+<span class="nc" id="L384">    }</span>
+
+    public String getLong1Text() {
+<span class="nc" id="L387">        return long1Text;</span>
+    }
+
+    public void setLong1Text(String long1Text) {
+<span class="nc" id="L391">        this.long1Text = long1Text;</span>
+<span class="nc" id="L392">    }</span>
+
+    public String getLong2Text() {
+<span class="nc" id="L395">        return long2Text;</span>
+    }
+
+    public void setLong2Text(String long2Text) {
+<span class="nc" id="L399">        this.long2Text = long2Text;</span>
+<span class="nc" id="L400">    }</span>
+
+    public BigDecimal getLongitude1() {
+<span class="nc" id="L403">        return longitude1;</span>
+    }
+
+    public void setLongitude1(BigDecimal longitude1) {
+<span class="nc" id="L407">        this.longitude1 = longitude1;</span>
+<span class="nc" id="L408">    }</span>
+
+    public BigDecimal getLongitude2() {
+<span class="nc" id="L411">        return longitude2;</span>
+    }
+
+    public void setLongitude2(BigDecimal longitude2) {
+<span class="nc" id="L415">        this.longitude2 = longitude2;</span>
+<span class="nc" id="L416">    }</span>
+
+    public Double getMaxElevation() {
+<span class="nc" id="L419">        return maxElevation;</span>
+    }
+
+    public void setMaxElevation(Double maxElevation) {
+<span class="nc" id="L423">        this.maxElevation = maxElevation;</span>
+<span class="nc" id="L424">    }</span>
+
+    public Double getMinElevation() {
+<span class="nc" id="L427">        return minElevation;</span>
+    }
+
+    public void setMinElevation(Double minElevation) {
+<span class="nc" id="L431">        this.minElevation = minElevation;</span>
+<span class="nc" id="L432">    }</span>
+
+    public String getNamedPlace() {
+<span class="nc" id="L435">        return namedPlace;</span>
+    }
+
+    public void setNamedPlace(String namedPlace) {
+<span class="nc" id="L439">        this.namedPlace = namedPlace;</span>
+<span class="nc" id="L440">    }</span>
+
+    public String getOriginalElevationUnit() {
+<span class="nc" id="L443">        return originalElevationUnit;</span>
+    }
+
+    public void setOriginalElevationUnit(String originalElevationUnit) {
+<span class="nc" id="L447">        this.originalElevationUnit = originalElevationUnit;</span>
+<span class="nc" id="L448">    }</span>
+
+    public Integer getOriginalLatLongUnit() {
+<span class="nc" id="L451">        return originalLatLongUnit;</span>
+    }
+
+    public void setOriginalLatLongUnit(Integer originalLatLongUnit) {
+<span class="nc" id="L455">        this.originalLatLongUnit = originalLatLongUnit;</span>
+<span class="nc" id="L456">    }</span>
+
+    public String getRelationToNamedPlace() {
+<span class="nc" id="L459">        return relationToNamedPlace;</span>
+    }
+
+    public void setRelationToNamedPlace(String relationToNamedPlace) {
+<span class="nc" id="L463">        this.relationToNamedPlace = relationToNamedPlace;</span>
+<span class="nc" id="L464">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L467">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L471">        this.remarks = remarks;</span>
+<span class="nc" id="L472">    }</span>
+
+    public String getShortName() {
+<span class="nc" id="L475">        return shortName;</span>
+    }
+
+    public void setShortName(String shortName) {
+<span class="nc" id="L479">        this.shortName = shortName;</span>
+<span class="nc" id="L480">    }</span>
+
+    public short getSrcLatLongUnit() {
+<span class="nc" id="L483">        return srcLatLongUnit;</span>
+    }
+
+    public void setSrcLatLongUnit(short srcLatLongUnit) {
+<span class="nc" id="L487">        this.srcLatLongUnit = srcLatLongUnit;</span>
+<span class="nc" id="L488">    }</span>
+
+    public String getText1() {
+<span class="nc" id="L491">        return text1;</span>
+    }
+
+    public void setText1(String text1) {
+<span class="nc" id="L495">        this.text1 = text1;</span>
+<span class="nc" id="L496">    }</span>
+
+    public String getText2() {
+<span class="nc" id="L499">        return text2;</span>
+    }
+
+    public void setText2(String text2) {
+<span class="nc" id="L503">        this.text2 = text2;</span>
+<span class="nc" id="L504">    }</span>
+
+    public String getVerbatimElevation() {
+<span class="nc" id="L507">        return verbatimElevation;</span>
+    }
+
+    public void setVerbatimElevation(String verbatimElevation) {
+<span class="nc" id="L511">        this.verbatimElevation = verbatimElevation;</span>
+<span class="nc" id="L512">    }</span>
+
+    public Short getVisibility() {
+<span class="nc" id="L515">        return visibility;</span>
+    }
+
+    public void setVisibility(Short visibility) {
+<span class="nc" id="L519">        this.visibility = visibility;</span>
+<span class="nc" id="L520">    }</span>
+
+    public Short getSGRStatus() {
+<span class="nc" id="L523">        return sGRStatus;</span>
+    }
+
+    public void setSGRStatus(Short sGRStatus) {
+<span class="nc" id="L527">        this.sGRStatus = sGRStatus;</span>
+<span class="nc" id="L528">    }</span>
+
+    public String getText3() {
+<span class="nc" id="L531">        return text3;</span>
+    }
+
+    public void setText3(String text3) {
+<span class="nc" id="L535">        this.text3 = text3;</span>
+<span class="nc" id="L536">    }</span>
+
+    public String getText4() {
+<span class="nc" id="L539">        return text4;</span>
+    }
+
+    public void setText4(String text4) {
+<span class="nc" id="L543">        this.text4 = text4;</span>
+<span class="nc" id="L544">    }</span>
+
+    public String getText5() {
+<span class="nc" id="L547">        return text5;</span>
+    }
+
+    public void setText5(String text5) {
+<span class="nc" id="L551">        this.text5 = text5;</span>
+<span class="nc" id="L552">    }</span>
+
+    public String getVerbatimLatitude() {
+<span class="nc" id="L555">        return verbatimLatitude;</span>
+    }
+
+    public void setVerbatimLatitude(String verbatimLatitude) {
+<span class="nc" id="L559">        this.verbatimLatitude = verbatimLatitude;</span>
+<span class="nc" id="L560">    }</span>
+
+    public String getVerbatimLongitude() {
+<span class="nc" id="L563">        return verbatimLongitude;</span>
+    }
+
+    public void setVerbatimLongitude(String verbatimLongitude) {
+<span class="nc" id="L567">        this.verbatimLongitude = verbatimLongitude;</span>
+<span class="nc" id="L568">    }</span>
+
+    @XmlTransient
+    public List&lt;Geocoorddetail&gt; getGeocoorddetailList() {
+<span class="nc" id="L572">        return geocoorddetailList;</span>
+    }
+
+    public void setGeocoorddetailList(List&lt;Geocoorddetail&gt; geocoorddetailList) {
+<span class="nc" id="L576">        this.geocoorddetailList = geocoorddetailList;</span>
+<span class="nc" id="L577">    }</span>
+
+    @XmlIDREF
+    public Discipline getDisciplineID() {
+<span class="nc" id="L581">        return disciplineID;</span>
+    }
+
+    public void setDisciplineID(Discipline disciplineID) {
+<span class="nc" id="L585">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L586">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L590">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L594">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L595">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L599">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L603">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L604">    }</span>
+
+    @XmlIDREF
+    public Specifyuser getVisibilitySetByID() {
+<span class="nc" id="L608">        return visibilitySetByID;</span>
+    }
+
+    public void setVisibilitySetByID(Specifyuser visibilitySetByID) {
+<span class="nc" id="L612">        this.visibilitySetByID = visibilitySetByID;</span>
+<span class="nc" id="L613">    }</span>
+
+    @XmlIDREF
+    public Paleocontext getPaleoContextID() {
+<span class="nc" id="L617">        return paleoContextID;</span>
+    }
+
+    public void setPaleoContextID(Paleocontext paleoContextID) {
+<span class="nc" id="L621">        this.paleoContextID = paleoContextID;</span>
+<span class="nc" id="L622">    }</span>
+
+    @XmlIDREF
+    public Geography getGeographyID() {
+<span class="nc" id="L626">        return geographyID;</span>
+    }
+
+    public void setGeographyID(Geography geographyID) {
+<span class="nc" id="L630">        this.geographyID = geographyID;</span>
+<span class="nc" id="L631">    }</span>
+
+    @XmlTransient
+    public List&lt;Localitycitation&gt; getLocalitycitationList() {
+<span class="nc" id="L635">        return localitycitationList;</span>
+    }
+
+    public void setLocalitycitationList(List&lt;Localitycitation&gt; localitycitationList) {
+<span class="nc" id="L639">        this.localitycitationList = localitycitationList;</span>
+<span class="nc" id="L640">    }</span>
+
+    @XmlTransient
+    public List&lt;Localitynamealias&gt; getLocalitynamealiasList() {
+<span class="nc" id="L644">        return localitynamealiasList;</span>
+    }
+
+    public void setLocalitynamealiasList(List&lt;Localitynamealias&gt; localitynamealiasList) {
+<span class="nc" id="L648">        this.localitynamealiasList = localitynamealiasList;</span>
+<span class="nc" id="L649">    }</span>
+
+    @XmlTransient
+    public List&lt;Localityattachment&gt; getLocalityattachmentList() {
+<span class="nc" id="L653">        return localityattachmentList;</span>
+    }
+
+    public void setLocalityattachmentList(List&lt;Localityattachment&gt; localityattachmentList) {
+<span class="nc" id="L657">        this.localityattachmentList = localityattachmentList;</span>
+<span class="nc" id="L658">    }</span>
+
+    @XmlTransient
+    public List&lt;Localitydetail&gt; getLocalitydetailList() {
+<span class="nc" id="L662">        return localitydetailList;</span>
+    }
+
+    public void setLocalitydetailList(List&lt;Localitydetail&gt; localitydetailList) {
+<span class="nc" id="L666">        this.localitydetailList = localitydetailList;</span>
+<span class="nc" id="L667">    }</span>
+
+    @XmlTransient
+    public List&lt;Collectingevent&gt; getCollectingeventList() {
+<span class="nc" id="L671">        return collectingeventList;</span>
+    }
+
+    public void setCollectingeventList(List&lt;Collectingevent&gt; collectingeventList) {
+<span class="nc" id="L675">        this.collectingeventList = collectingeventList;</span>
+<span class="nc" id="L676">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L680">        int hash = 0;</span>
+<span class="nc bnc" id="L681" title="All 2 branches missed.">        hash += (localityID != null ? localityID.hashCode() : 0);</span>
+<span class="nc" id="L682">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L688" title="All 2 branches missed.">        if (!(object instanceof Locality)) {</span>
+<span class="nc" id="L689">            return false;</span>
+        }
+<span class="nc" id="L691">        Locality other = (Locality) object;</span>
+<span class="nc bnc" id="L692" title="All 8 branches missed.">        return !((this.localityID == null &amp;&amp; other.localityID != null) || (this.localityID != null &amp;&amp; !this.localityID.equals(other.localityID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L697">        return &quot;se.nrm.dina.datamodel.Locality[ localityID=&quot; + localityID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

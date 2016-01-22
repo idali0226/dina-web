@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Attachment_.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Attachment_.java</span></div><h1>Attachment_.java</h1><pre class="source lang-java linenums">package se.nrm.dina.datamodel;
+
+import java.util.Date;
+import javax.annotation.Generated;
+import javax.persistence.metamodel.ListAttribute;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
+import se.nrm.dina.datamodel.Accessionattachment;
+import se.nrm.dina.datamodel.Agent;
+import se.nrm.dina.datamodel.Agentattachment;
+import se.nrm.dina.datamodel.Attachmentmetadata;
+import se.nrm.dina.datamodel.Attachmenttag;
+import se.nrm.dina.datamodel.Collectingeventattachment;
+import se.nrm.dina.datamodel.Collectionobjectattachment;
+import se.nrm.dina.datamodel.Conservdescriptionattachment;
+import se.nrm.dina.datamodel.Conserveventattachment;
+import se.nrm.dina.datamodel.Dnasequenceattachment;
+import se.nrm.dina.datamodel.Dnasequencerunattachment;
+import se.nrm.dina.datamodel.Fieldnotebookattachment;
+import se.nrm.dina.datamodel.Fieldnotebookpageattachment;
+import se.nrm.dina.datamodel.Fieldnotebookpagesetattachment;
+import se.nrm.dina.datamodel.Loanattachment;
+import se.nrm.dina.datamodel.Localityattachment;
+import se.nrm.dina.datamodel.Permitattachment;
+import se.nrm.dina.datamodel.Preparationattachment;
+import se.nrm.dina.datamodel.Repositoryagreementattachment;
+import se.nrm.dina.datamodel.Specifyuser;
+import se.nrm.dina.datamodel.Storageattachment;
+import se.nrm.dina.datamodel.Taxonattachment;
+
+@Generated(value=&quot;EclipseLink-2.7.0.v20160121-rNA&quot;, date=&quot;2016-01-22T12:22:39&quot;)
+@StaticMetamodel(Attachment.class)
+<span class="nc" id="L33">public class Attachment_ extends BaseEntity_ {</span>
+
+    public static volatile SingularAttribute&lt;Attachment, Integer&gt; scopeID;
+    public static volatile ListAttribute&lt;Attachment, Preparationattachment&gt; preparationattachmentList;
+    public static volatile ListAttribute&lt;Attachment, Collectingeventattachment&gt; collectingeventattachmentList;
+    public static volatile ListAttribute&lt;Attachment, Attachmentmetadata&gt; attachmentmetadataList;
+    public static volatile SingularAttribute&lt;Attachment, Agent&gt; modifiedByAgentID;
+    public static volatile SingularAttribute&lt;Attachment, String&gt; mimeType;
+    public static volatile SingularAttribute&lt;Attachment, String&gt; dateImaged;
+    public static volatile SingularAttribute&lt;Attachment, String&gt; title;
+    public static volatile ListAttribute&lt;Attachment, Conserveventattachment&gt; conserveventattachmentList;
+    public static volatile ListAttribute&lt;Attachment, Fieldnotebookpageattachment&gt; fieldnotebookpageattachmentList;
+    public static volatile ListAttribute&lt;Attachment, Dnasequencerunattachment&gt; dnasequencerunattachmentList;
+    public static volatile SingularAttribute&lt;Attachment, String&gt; copyrightHolder;
+    public static volatile SingularAttribute&lt;Attachment, Short&gt; scopeType;
+    public static volatile SingularAttribute&lt;Attachment, Short&gt; tableID;
+    public static volatile SingularAttribute&lt;Attachment, String&gt; credit;
+    public static volatile ListAttribute&lt;Attachment, Localityattachment&gt; localityattachmentList;
+    public static volatile ListAttribute&lt;Attachment, Attachmenttag&gt; attachmenttagList;
+    public static volatile ListAttribute&lt;Attachment, Loanattachment&gt; loanattachmentList;
+    public static volatile SingularAttribute&lt;Attachment, Short&gt; visibility;
+    public static volatile ListAttribute&lt;Attachment, Storageattachment&gt; storageattachmentList;
+    public static volatile ListAttribute&lt;Attachment, Collectionobjectattachment&gt; collectionobjectattachmentList;
+    public static volatile ListAttribute&lt;Attachment, Conservdescriptionattachment&gt; conservdescriptionattachmentList;
+    public static volatile SingularAttribute&lt;Attachment, String&gt; attachmentLocation;
+    public static volatile SingularAttribute&lt;Attachment, String&gt; license;
+    public static volatile ListAttribute&lt;Attachment, Dnasequenceattachment&gt; dnasequenceattachmentList;
+    public static volatile ListAttribute&lt;Attachment, Fieldnotebookattachment&gt; fieldnotebookattachmentList;
+    public static volatile SingularAttribute&lt;Attachment, Integer&gt; attachmentImageAttributeID;
+    public static volatile SingularAttribute&lt;Attachment, Date&gt; fileCreatedDate;
+    public static volatile ListAttribute&lt;Attachment, Agentattachment&gt; agentattachmentList;
+    public static volatile ListAttribute&lt;Attachment, Fieldnotebookpagesetattachment&gt; fieldnotebookpagesetattachmentList;
+    public static volatile ListAttribute&lt;Attachment, Permitattachment&gt; permitattachmentList;
+    public static volatile SingularAttribute&lt;Attachment, Specifyuser&gt; visibilitySetByID;
+    public static volatile SingularAttribute&lt;Attachment, String&gt; guid;
+    public static volatile ListAttribute&lt;Attachment, Accessionattachment&gt; accessionattachmentList;
+    public static volatile SingularAttribute&lt;Attachment, Agent&gt; createdByAgentID;
+    public static volatile SingularAttribute&lt;Attachment, Integer&gt; attachmentID;
+    public static volatile SingularAttribute&lt;Attachment, String&gt; copyrightDate;
+    public static volatile SingularAttribute&lt;Attachment, String&gt; origFilename;
+    public static volatile ListAttribute&lt;Attachment, Taxonattachment&gt; taxonattachmentList;
+    public static volatile SingularAttribute&lt;Attachment, String&gt; remarks;
+    public static volatile ListAttribute&lt;Attachment, Repositoryagreementattachment&gt; repositoryagreementattachmentList;
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

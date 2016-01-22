@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Workbenchdataitem.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Workbenchdataitem.java</span></div><h1>Workbenchdataitem.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;workbenchdataitem&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Workbenchdataitem.findAll&quot;, query = &quot;SELECT w FROM Workbenchdataitem w&quot;),
+    @NamedQuery(name = &quot;Workbenchdataitem.findByWorkbenchDataItemID&quot;, query = &quot;SELECT w FROM Workbenchdataitem w WHERE w.workbenchDataItemID = :workbenchDataItemID&quot;),
+    @NamedQuery(name = &quot;Workbenchdataitem.findByRowNumber&quot;, query = &quot;SELECT w FROM Workbenchdataitem w WHERE w.rowNumber = :rowNumber&quot;),
+    @NamedQuery(name = &quot;Workbenchdataitem.findByValidationStatus&quot;, query = &quot;SELECT w FROM Workbenchdataitem w WHERE w.validationStatus = :validationStatus&quot;)})
+public class Workbenchdataitem implements EntityBean, Serializable {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;WorkbenchDataItemID&quot;)
+    private Integer workbenchDataItemID;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;CellData&quot;)
+    private String cellData;
+    
+    @Column(name = &quot;RowNumber&quot;)
+    private Short rowNumber;
+    
+    @Column(name = &quot;ValidationStatus&quot;)
+    private Short validationStatus;
+    
+    @JoinColumn(name = &quot;WorkbenchTemplateMappingItemID&quot;, referencedColumnName = &quot;WorkbenchTemplateMappingItemID&quot;)
+    @ManyToOne(optional = false)
+    private Workbenchtemplatemappingitem workbenchTemplateMappingItemID;
+    
+    @JoinColumn(name = &quot;WorkbenchRowID&quot;, referencedColumnName = &quot;WorkbenchRowID&quot;)
+    @ManyToOne(optional = false)
+    private Workbenchrow workbenchRowID;
+
+<span class="nc" id="L69">    public Workbenchdataitem() {</span>
+<span class="nc" id="L70">    }</span>
+
+<span class="nc" id="L72">    public Workbenchdataitem(Integer workbenchDataItemID) {</span>
+<span class="nc" id="L73">        this.workbenchDataItemID = workbenchDataItemID;</span>
+<span class="nc" id="L74">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L80">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchDataItemID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L85">        return workbenchDataItemID;</span>
+    }
+
+    public Integer getWorkbenchDataItemID() {
+<span class="nc" id="L89">        return workbenchDataItemID;</span>
+    }
+
+    public void setWorkbenchDataItemID(Integer workbenchDataItemID) {
+<span class="nc" id="L93">        this.workbenchDataItemID = workbenchDataItemID;</span>
+<span class="nc" id="L94">    }</span>
+
+    public String getCellData() {
+<span class="nc" id="L97">        return cellData;</span>
+    }
+
+    public void setCellData(String cellData) {
+<span class="nc" id="L101">        this.cellData = cellData;</span>
+<span class="nc" id="L102">    }</span>
+
+    public Short getRowNumber() {
+<span class="nc" id="L105">        return rowNumber;</span>
+    }
+
+    public void setRowNumber(Short rowNumber) {
+<span class="nc" id="L109">        this.rowNumber = rowNumber;</span>
+<span class="nc" id="L110">    }</span>
+
+    public Short getValidationStatus() {
+<span class="nc" id="L113">        return validationStatus;</span>
+    }
+
+    public void setValidationStatus(Short validationStatus) {
+<span class="nc" id="L117">        this.validationStatus = validationStatus;</span>
+<span class="nc" id="L118">    }</span>
+
+    @XmlIDREF
+    public Workbenchtemplatemappingitem getWorkbenchTemplateMappingItemID() {
+<span class="nc" id="L122">        return workbenchTemplateMappingItemID;</span>
+    }
+
+    public void setWorkbenchTemplateMappingItemID(Workbenchtemplatemappingitem workbenchTemplateMappingItemID) {
+<span class="nc" id="L126">        this.workbenchTemplateMappingItemID = workbenchTemplateMappingItemID;</span>
+<span class="nc" id="L127">    }</span>
+
+    @XmlIDREF
+    public Workbenchrow getWorkbenchRowID() {
+<span class="nc" id="L131">        return workbenchRowID;</span>
+    }
+
+    public void setWorkbenchRowID(Workbenchrow workbenchRowID) {
+<span class="nc" id="L135">        this.workbenchRowID = workbenchRowID;</span>
+<span class="nc" id="L136">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L140">        int hash = 0;</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">        hash += (workbenchDataItemID != null ? workbenchDataItemID.hashCode() : 0);</span>
+<span class="nc" id="L142">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L148" title="All 2 branches missed.">        if (!(object instanceof Workbenchdataitem)) {</span>
+<span class="nc" id="L149">            return false;</span>
+        }
+<span class="nc" id="L151">        Workbenchdataitem other = (Workbenchdataitem) object;</span>
+<span class="nc bnc" id="L152" title="All 8 branches missed.">        return !((this.workbenchDataItemID == null &amp;&amp; other.workbenchDataItemID != null) || (this.workbenchDataItemID != null &amp;&amp; !this.workbenchDataItemID.equals(other.workbenchDataItemID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L157">        return &quot;se.nrm.dina.datamodel.Workbenchdataitem[ workbenchDataItemID=&quot; + workbenchDataItemID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

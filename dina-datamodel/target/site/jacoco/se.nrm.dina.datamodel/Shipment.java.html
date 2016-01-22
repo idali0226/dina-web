@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Shipment.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Shipment.java</span></div><h1>Shipment.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;shipment&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Shipment.findAll&quot;, query = &quot;SELECT s FROM Shipment s&quot;),
+    @NamedQuery(name = &quot;Shipment.findByShipmentID&quot;, query = &quot;SELECT s FROM Shipment s WHERE s.shipmentID = :shipmentID&quot;),  
+    @NamedQuery(name = &quot;Shipment.findByNumberOfPackages&quot;, query = &quot;SELECT s FROM Shipment s WHERE s.numberOfPackages = :numberOfPackages&quot;),
+    @NamedQuery(name = &quot;Shipment.findByShipmentDate&quot;, query = &quot;SELECT s FROM Shipment s WHERE s.shipmentDate = :shipmentDate&quot;),
+    @NamedQuery(name = &quot;Shipment.findByShipmentMethod&quot;, query = &quot;SELECT s FROM Shipment s WHERE s.shipmentMethod = :shipmentMethod&quot;),
+    @NamedQuery(name = &quot;Shipment.findByShipmentNumber&quot;, query = &quot;SELECT s FROM Shipment s WHERE s.shipmentNumber = :shipmentNumber&quot;) })
+public class Shipment extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;ShipmentID&quot;)
+    private Integer shipmentID;
+    
+    
+    @Size(max = 50)
+    @Column(name = &quot;InsuredForAmount&quot;)
+    private String insuredForAmount;
+    
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = &quot;Number1&quot;)
+    private Float number1;
+    
+    @Column(name = &quot;Number2&quot;)
+    private Float number2;
+    
+    @Column(name = &quot;NumberOfPackages&quot;)
+    private Short numberOfPackages;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Column(name = &quot;ShipmentDate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date shipmentDate;
+    
+    @Size(max = 50)
+    @Column(name = &quot;ShipmentMethod&quot;)
+    private String shipmentMethod;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = &quot;ShipmentNumber&quot;)
+    private String shipmentNumber;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text1&quot;)
+    private String text1;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text2&quot;)
+    private String text2;
+    
+    @Size(max = 50)
+    @Column(name = &quot;Weight&quot;)
+    private String weight;
+    
+    @Column(name = &quot;YesNo1&quot;)
+    private Boolean yesNo1;
+    
+    @Column(name = &quot;YesNo2&quot;)
+    private Boolean yesNo2;
+    
+    @JoinColumn(name = &quot;DisciplineID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)
+    @ManyToOne
+    private Discipline disciplineID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;GiftID&quot;, referencedColumnName = &quot;GiftID&quot;)
+    @ManyToOne
+    private Gift giftID;
+    
+    @JoinColumn(name = &quot;LoanID&quot;, referencedColumnName = &quot;LoanID&quot;)
+    @ManyToOne
+    private Loan loanID;
+    
+    @JoinColumn(name = &quot;ExchangeOutID&quot;, referencedColumnName = &quot;ExchangeOutID&quot;)
+    @ManyToOne
+    private Exchangeout exchangeOutID;
+    
+    @JoinColumn(name = &quot;ShippedByID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent shippedByID;
+    
+    @JoinColumn(name = &quot;ShippedToID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent shippedToID;
+    
+    @JoinColumn(name = &quot;ShipperID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent shipperID;
+    
+    @JoinColumn(name = &quot;BorrowID&quot;, referencedColumnName = &quot;BorrowID&quot;)
+    @ManyToOne
+    private Borrow borrowID;
+
+<span class="nc" id="L149">    public Shipment() {</span>
+<span class="nc" id="L150">    }</span>
+
+<span class="nc" id="L152">    public Shipment(Integer shipmentID) {</span>
+<span class="nc" id="L153">        this.shipmentID = shipmentID;</span>
+<span class="nc" id="L154">    }</span>
+
+<span class="nc" id="L156">    public Shipment(Integer shipmentID, Date timestampCreated, String shipmentNumber) {</span>
+<span class="nc" id="L157">        this.shipmentID = shipmentID;</span>
+<span class="nc" id="L158">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L159">        this.shipmentNumber = shipmentNumber;</span>
+<span class="nc" id="L160">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L166">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + shipmentID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L171">        return shipmentID;</span>
+    }
+
+    public Integer getShipmentID() {
+<span class="nc" id="L175">        return shipmentID;</span>
+    }
+
+    public void setShipmentID(Integer shipmentID) {
+<span class="nc" id="L179">        this.shipmentID = shipmentID;</span>
+<span class="nc" id="L180">    }</span>
+  
+
+    public String getInsuredForAmount() {
+<span class="nc" id="L184">        return insuredForAmount;</span>
+    }
+
+    public void setInsuredForAmount(String insuredForAmount) {
+<span class="nc" id="L188">        this.insuredForAmount = insuredForAmount;</span>
+<span class="nc" id="L189">    }</span>
+
+    public Float getNumber1() {
+<span class="nc" id="L192">        return number1;</span>
+    }
+
+    public void setNumber1(Float number1) {
+<span class="nc" id="L196">        this.number1 = number1;</span>
+<span class="nc" id="L197">    }</span>
+
+    public Float getNumber2() {
+<span class="nc" id="L200">        return number2;</span>
+    }
+
+    public void setNumber2(Float number2) {
+<span class="nc" id="L204">        this.number2 = number2;</span>
+<span class="nc" id="L205">    }</span>
+
+    public Short getNumberOfPackages() {
+<span class="nc" id="L208">        return numberOfPackages;</span>
+    }
+
+    public void setNumberOfPackages(Short numberOfPackages) {
+<span class="nc" id="L212">        this.numberOfPackages = numberOfPackages;</span>
+<span class="nc" id="L213">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L216">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L220">        this.remarks = remarks;</span>
+<span class="nc" id="L221">    }</span>
+
+    public Date getShipmentDate() {
+<span class="nc" id="L224">        return shipmentDate;</span>
+    }
+
+    public void setShipmentDate(Date shipmentDate) {
+<span class="nc" id="L228">        this.shipmentDate = shipmentDate;</span>
+<span class="nc" id="L229">    }</span>
+
+    public String getShipmentMethod() {
+<span class="nc" id="L232">        return shipmentMethod;</span>
+    }
+
+    public void setShipmentMethod(String shipmentMethod) {
+<span class="nc" id="L236">        this.shipmentMethod = shipmentMethod;</span>
+<span class="nc" id="L237">    }</span>
+
+    public String getShipmentNumber() {
+<span class="nc" id="L240">        return shipmentNumber;</span>
+    }
+
+    public void setShipmentNumber(String shipmentNumber) {
+<span class="nc" id="L244">        this.shipmentNumber = shipmentNumber;</span>
+<span class="nc" id="L245">    }</span>
+
+    public String getText1() {
+<span class="nc" id="L248">        return text1;</span>
+    }
+
+    public void setText1(String text1) {
+<span class="nc" id="L252">        this.text1 = text1;</span>
+<span class="nc" id="L253">    }</span>
+
+    public String getText2() {
+<span class="nc" id="L256">        return text2;</span>
+    }
+
+    public void setText2(String text2) {
+<span class="nc" id="L260">        this.text2 = text2;</span>
+<span class="nc" id="L261">    }</span>
+
+    public String getWeight() {
+<span class="nc" id="L264">        return weight;</span>
+    }
+
+    public void setWeight(String weight) {
+<span class="nc" id="L268">        this.weight = weight;</span>
+<span class="nc" id="L269">    }</span>
+
+    public Boolean getYesNo1() {
+<span class="nc" id="L272">        return yesNo1;</span>
+    }
+
+    public void setYesNo1(Boolean yesNo1) {
+<span class="nc" id="L276">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L277">    }</span>
+
+    public Boolean getYesNo2() {
+<span class="nc" id="L280">        return yesNo2;</span>
+    }
+
+    public void setYesNo2(Boolean yesNo2) {
+<span class="nc" id="L284">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L285">    }</span>
+
+    @XmlIDREF
+    public Discipline getDisciplineID() {
+<span class="nc" id="L289">        return disciplineID;</span>
+    }
+
+    public void setDisciplineID(Discipline disciplineID) {
+<span class="nc" id="L293">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L294">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L298">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L302">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L303">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L307">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L311">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L312">    }</span>
+
+    @XmlIDREF
+    public Gift getGiftID() {
+<span class="nc" id="L316">        return giftID;</span>
+    }
+
+    public void setGiftID(Gift giftID) {
+<span class="nc" id="L320">        this.giftID = giftID;</span>
+<span class="nc" id="L321">    }</span>
+
+    @XmlIDREF
+    public Loan getLoanID() {
+<span class="nc" id="L325">        return loanID;</span>
+    }
+
+    public void setLoanID(Loan loanID) {
+<span class="nc" id="L329">        this.loanID = loanID;</span>
+<span class="nc" id="L330">    }</span>
+
+    @XmlIDREF
+    public Exchangeout getExchangeOutID() {
+<span class="nc" id="L334">        return exchangeOutID;</span>
+    }
+
+    public void setExchangeOutID(Exchangeout exchangeOutID) {
+<span class="nc" id="L338">        this.exchangeOutID = exchangeOutID;</span>
+<span class="nc" id="L339">    }</span>
+
+    @XmlIDREF
+    public Agent getShippedByID() {
+<span class="nc" id="L343">        return shippedByID;</span>
+    }
+
+    public void setShippedByID(Agent shippedByID) {
+<span class="nc" id="L347">        this.shippedByID = shippedByID;</span>
+<span class="nc" id="L348">    }</span>
+
+    @XmlIDREF
+    public Agent getShippedToID() {
+<span class="nc" id="L352">        return shippedToID;</span>
+    }
+
+    public void setShippedToID(Agent shippedToID) {
+<span class="nc" id="L356">        this.shippedToID = shippedToID;</span>
+<span class="nc" id="L357">    }</span>
+
+    @XmlIDREF
+    public Agent getShipperID() {
+<span class="nc" id="L361">        return shipperID;</span>
+    }
+
+    public void setShipperID(Agent shipperID) {
+<span class="nc" id="L365">        this.shipperID = shipperID;</span>
+<span class="nc" id="L366">    }</span>
+
+    @XmlIDREF
+    public Borrow getBorrowID() {
+<span class="nc" id="L370">        return borrowID;</span>
+    }
+
+    public void setBorrowID(Borrow borrowID) {
+<span class="nc" id="L374">        this.borrowID = borrowID;</span>
+<span class="nc" id="L375">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L379">        int hash = 0;</span>
+<span class="nc bnc" id="L380" title="All 2 branches missed.">        hash += (shipmentID != null ? shipmentID.hashCode() : 0);</span>
+<span class="nc" id="L381">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L387" title="All 2 branches missed.">        if (!(object instanceof Shipment)) {</span>
+<span class="nc" id="L388">            return false;</span>
+        }
+<span class="nc" id="L390">        Shipment other = (Shipment) object;</span>
+<span class="nc bnc" id="L391" title="All 8 branches missed.">        return !((this.shipmentID == null &amp;&amp; other.shipmentID != null) || (this.shipmentID != null &amp;&amp; !this.shipmentID.equals(other.shipmentID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L396">        return &quot;se.nrm.dina.datamodel.Shipment[ shipmentID=&quot; + shipmentID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

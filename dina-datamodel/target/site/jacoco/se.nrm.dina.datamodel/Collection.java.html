@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Collection.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Collection.java</span></div><h1>Collection.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;collection&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Collection.findAll&quot;, query = &quot;SELECT c FROM Collection c&quot;),
+    @NamedQuery(name = &quot;Collection.findByUserGroupScopeId&quot;, query = &quot;SELECT c FROM Collection c WHERE c.userGroupScopeId = :userGroupScopeId&quot;), 
+    @NamedQuery(name = &quot;Collection.findByCode&quot;, query = &quot;SELECT c FROM Collection c WHERE c.code = :code&quot;),
+    @NamedQuery(name = &quot;Collection.findByCollectionId&quot;, query = &quot;SELECT c FROM Collection c WHERE c.collectionId = :collectionId&quot;),
+    @NamedQuery(name = &quot;Collection.findByCollectionName&quot;, query = &quot;SELECT c FROM Collection c WHERE c.collectionName = :collectionName&quot;),
+    @NamedQuery(name = &quot;Collection.findByCollectionType&quot;, query = &quot;SELECT c FROM Collection c WHERE c.collectionType = :collectionType&quot;), 
+    @NamedQuery(name = &quot;Collection.findByGuid&quot;, query = &quot;SELECT c FROM Collection c WHERE c.guid = :guid&quot;) })
+public class Collection extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;UserGroupScopeId&quot;)
+    private Integer userGroupScopeId;
+    
+    
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = &quot;CatalogFormatNumName&quot;)
+    private String catalogFormatNumName;
+    
+    @Size(max = 50)
+    @Column(name = &quot;Code&quot;)
+    private String code;
+    
+    @Column(name = &quot;collectionId&quot;)
+    private Integer collectionId;
+    
+    @Size(max = 50)
+    @Column(name = &quot;CollectionName&quot;)
+    private String collectionName;
+    
+    @Size(max = 32)
+    @Column(name = &quot;CollectionType&quot;)
+    private String collectionType;
+    
+    @Size(max = 32)
+    @Column(name = &quot;DbContentVersion&quot;)
+    private String dbContentVersion;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Description&quot;)
+    private String description;
+    
+    @Size(max = 32)
+    @Column(name = &quot;DevelopmentStatus&quot;)
+    private String developmentStatus;
+    
+    @Column(name = &quot;EstimatedSize&quot;)
+    private Integer estimatedSize;
+    
+    @Size(max = 128)
+    @Column(name = &quot;GUID&quot;)
+    private String guid;
+    
+    @Size(max = 32)
+    @Column(name = &quot;InstitutionType&quot;)
+    private String institutionType;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;IsEmbeddedCollectingEvent&quot;)
+    private boolean isEmbeddedCollectingEvent;
+    
+    @Size(max = 24)
+    @Column(name = &quot;IsaNumber&quot;)
+    private String isaNumber;
+    
+    @Size(max = 32)
+    @Column(name = &quot;KingdomCoverage&quot;)
+    private String kingdomCoverage;
+    
+    @Size(max = 32)
+    @Column(name = &quot;PreservationMethodType&quot;)
+    private String preservationMethodType;
+    
+    @Size(max = 32)
+    @Column(name = &quot;PrimaryFocus&quot;)
+    private String primaryFocus;
+    
+    @Size(max = 32)
+    @Column(name = &quot;PrimaryPurpose&quot;)
+    private String primaryPurpose;
+    
+    @Size(max = 24)
+    @Column(name = &quot;RegNumber&quot;)
+    private String regNumber;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Scope&quot;)
+    private String scope;
+    
+    @Size(max = 255)
+    @Column(name = &quot;WebPortalURI&quot;)
+    private String webPortalURI;
+    
+    @Size(max = 255)
+    @Column(name = &quot;WebSiteURI&quot;)
+    private String webSiteURI;
+    
+    @JoinTable(name = &quot;autonumsch_coll&quot;, joinColumns = {
+        @JoinColumn(name = &quot;CollectionID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)}, inverseJoinColumns = {
+        @JoinColumn(name = &quot;AutoNumberingSchemeID&quot;, referencedColumnName = &quot;AutoNumberingSchemeID&quot;)})
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List&lt;Autonumberingscheme&gt; autonumberingschemeList;
+    
+    @OneToMany(mappedBy = &quot;collectionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Sptasksemaphore&gt; sptasksemaphoreList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;collectionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Preptype&gt; preptypeList;
+    
+    @OneToMany(mappedBy = &quot;leftSideCollectionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Collectionreltype&gt; collectionreltypeList;
+    
+    @OneToMany(mappedBy = &quot;rightSideCollectionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Collectionreltype&gt; collectionreltypeList1;
+    
+    @OneToMany(mappedBy = &quot;collectionCCID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Agent&gt; agentList;
+    
+    @OneToMany(mappedBy = &quot;collectionTCID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Agent&gt; agentList1;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;collectionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Collectionobject&gt; collectionobjectList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;collectionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Fieldnotebook&gt; fieldnotebookList;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne 
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;DisciplineID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)
+    @ManyToOne(optional = false)
+    private Discipline disciplineID;
+    
+    @JoinColumn(name = &quot;InstitutionNetworkID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)
+    @ManyToOne
+    private Institution institutionNetworkID;
+    
+    @OneToMany(mappedBy = &quot;collectionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Spappresourcedir&gt; spappresourcedirList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;collectionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Picklist&gt; picklistList;
+
+<span class="nc" id="L205">    public Collection() {</span>
+<span class="nc" id="L206">    }</span>
+
+<span class="nc" id="L208">    public Collection(Integer userGroupScopeId) {</span>
+<span class="nc" id="L209">        this.userGroupScopeId = userGroupScopeId;</span>
+<span class="nc" id="L210">    }</span>
+
+<span class="nc" id="L212">    public Collection(Integer userGroupScopeId, Date timestampCreated, String catalogFormatNumName, boolean isEmbeddedCollectingEvent) {</span>
+<span class="nc" id="L213">        this.userGroupScopeId = userGroupScopeId;</span>
+<span class="nc" id="L214">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L215">        this.catalogFormatNumName = catalogFormatNumName;</span>
+<span class="nc" id="L216">        this.isEmbeddedCollectingEvent = isEmbeddedCollectingEvent;</span>
+<span class="nc" id="L217">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;uuid&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L223">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + userGroupScopeId;</span>
+    }
+  
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L228">        return userGroupScopeId;</span>
+    }
+
+    public Integer getUserGroupScopeId() {
+<span class="nc" id="L232">        return userGroupScopeId;</span>
+    }
+
+    public void setUserGroupScopeId(Integer userGroupScopeId) {
+<span class="nc" id="L236">        this.userGroupScopeId = userGroupScopeId;</span>
+<span class="nc" id="L237">    }</span>
+ 
+
+    public String getCatalogFormatNumName() {
+<span class="nc" id="L241">        return catalogFormatNumName;</span>
+    }
+
+    public void setCatalogFormatNumName(String catalogFormatNumName) {
+<span class="nc" id="L245">        this.catalogFormatNumName = catalogFormatNumName;</span>
+<span class="nc" id="L246">    }</span>
+
+    public String getCode() {
+<span class="nc" id="L249">        return code;</span>
+    }
+
+    public void setCode(String code) {
+<span class="nc" id="L253">        this.code = code;</span>
+<span class="nc" id="L254">    }</span>
+
+    public Integer getCollectionId() {
+<span class="nc" id="L257">        return collectionId;</span>
+    }
+
+    public void setCollectionId(Integer collectionId) {
+<span class="nc" id="L261">        this.collectionId = collectionId;</span>
+<span class="nc" id="L262">    }</span>
+
+    public String getCollectionName() {
+<span class="nc" id="L265">        return collectionName;</span>
+    }
+
+    public void setCollectionName(String collectionName) {
+<span class="nc" id="L269">        this.collectionName = collectionName;</span>
+<span class="nc" id="L270">    }</span>
+
+    public String getCollectionType() {
+<span class="nc" id="L273">        return collectionType;</span>
+    }
+
+    public void setCollectionType(String collectionType) {
+<span class="nc" id="L277">        this.collectionType = collectionType;</span>
+<span class="nc" id="L278">    }</span>
+
+    public String getDbContentVersion() {
+<span class="nc" id="L281">        return dbContentVersion;</span>
+    }
+
+    public void setDbContentVersion(String dbContentVersion) {
+<span class="nc" id="L285">        this.dbContentVersion = dbContentVersion;</span>
+<span class="nc" id="L286">    }</span>
+
+    public String getDescription() {
+<span class="nc" id="L289">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="nc" id="L293">        this.description = description;</span>
+<span class="nc" id="L294">    }</span>
+
+    public String getDevelopmentStatus() {
+<span class="nc" id="L297">        return developmentStatus;</span>
+    }
+
+    public void setDevelopmentStatus(String developmentStatus) {
+<span class="nc" id="L301">        this.developmentStatus = developmentStatus;</span>
+<span class="nc" id="L302">    }</span>
+
+    public Integer getEstimatedSize() {
+<span class="nc" id="L305">        return estimatedSize;</span>
+    }
+
+    public void setEstimatedSize(Integer estimatedSize) {
+<span class="nc" id="L309">        this.estimatedSize = estimatedSize;</span>
+<span class="nc" id="L310">    }</span>
+
+    public String getGuid() {
+<span class="nc" id="L313">        return guid;</span>
+    }
+
+    public void setGuid(String guid) {
+<span class="nc" id="L317">        this.guid = guid;</span>
+<span class="nc" id="L318">    }</span>
+
+    public String getInstitutionType() {
+<span class="nc" id="L321">        return institutionType;</span>
+    }
+
+    public void setInstitutionType(String institutionType) {
+<span class="nc" id="L325">        this.institutionType = institutionType;</span>
+<span class="nc" id="L326">    }</span>
+
+    public boolean getIsEmbeddedCollectingEvent() {
+<span class="nc" id="L329">        return isEmbeddedCollectingEvent;</span>
+    }
+
+    public void setIsEmbeddedCollectingEvent(boolean isEmbeddedCollectingEvent) {
+<span class="nc" id="L333">        this.isEmbeddedCollectingEvent = isEmbeddedCollectingEvent;</span>
+<span class="nc" id="L334">    }</span>
+
+    public String getIsaNumber() {
+<span class="nc" id="L337">        return isaNumber;</span>
+    }
+
+    public void setIsaNumber(String isaNumber) {
+<span class="nc" id="L341">        this.isaNumber = isaNumber;</span>
+<span class="nc" id="L342">    }</span>
+
+    public String getKingdomCoverage() {
+<span class="nc" id="L345">        return kingdomCoverage;</span>
+    }
+
+    public void setKingdomCoverage(String kingdomCoverage) {
+<span class="nc" id="L349">        this.kingdomCoverage = kingdomCoverage;</span>
+<span class="nc" id="L350">    }</span>
+
+    public String getPreservationMethodType() {
+<span class="nc" id="L353">        return preservationMethodType;</span>
+    }
+
+    public void setPreservationMethodType(String preservationMethodType) {
+<span class="nc" id="L357">        this.preservationMethodType = preservationMethodType;</span>
+<span class="nc" id="L358">    }</span>
+
+    public String getPrimaryFocus() {
+<span class="nc" id="L361">        return primaryFocus;</span>
+    }
+
+    public void setPrimaryFocus(String primaryFocus) {
+<span class="nc" id="L365">        this.primaryFocus = primaryFocus;</span>
+<span class="nc" id="L366">    }</span>
+
+    public String getPrimaryPurpose() {
+<span class="nc" id="L369">        return primaryPurpose;</span>
+    }
+
+    public void setPrimaryPurpose(String primaryPurpose) {
+<span class="nc" id="L373">        this.primaryPurpose = primaryPurpose;</span>
+<span class="nc" id="L374">    }</span>
+
+    public String getRegNumber() {
+<span class="nc" id="L377">        return regNumber;</span>
+    }
+
+    public void setRegNumber(String regNumber) {
+<span class="nc" id="L381">        this.regNumber = regNumber;</span>
+<span class="nc" id="L382">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L385">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L389">        this.remarks = remarks;</span>
+<span class="nc" id="L390">    }</span>
+
+    public String getScope() {
+<span class="nc" id="L393">        return scope;</span>
+    }
+
+    public void setScope(String scope) {
+<span class="nc" id="L397">        this.scope = scope;</span>
+<span class="nc" id="L398">    }</span>
+
+    public String getWebPortalURI() {
+<span class="nc" id="L401">        return webPortalURI;</span>
+    }
+
+    public void setWebPortalURI(String webPortalURI) {
+<span class="nc" id="L405">        this.webPortalURI = webPortalURI;</span>
+<span class="nc" id="L406">    }</span>
+
+    public String getWebSiteURI() {
+<span class="nc" id="L409">        return webSiteURI;</span>
+    }
+
+    public void setWebSiteURI(String webSiteURI) {
+<span class="nc" id="L413">        this.webSiteURI = webSiteURI;</span>
+<span class="nc" id="L414">    }</span>
+
+    @XmlTransient
+    public List&lt;Autonumberingscheme&gt; getAutonumberingschemeList() {
+<span class="nc" id="L418">        return autonumberingschemeList;</span>
+    }
+
+    public void setAutonumberingschemeList(List&lt;Autonumberingscheme&gt; autonumberingschemeList) {
+<span class="nc" id="L422">        this.autonumberingschemeList = autonumberingschemeList;</span>
+<span class="nc" id="L423">    }</span>
+
+    @XmlTransient
+    public List&lt;Sptasksemaphore&gt; getSptasksemaphoreList() {
+<span class="nc" id="L427">        return sptasksemaphoreList;</span>
+    }
+
+    public void setSptasksemaphoreList(List&lt;Sptasksemaphore&gt; sptasksemaphoreList) {
+<span class="nc" id="L431">        this.sptasksemaphoreList = sptasksemaphoreList;</span>
+<span class="nc" id="L432">    }</span>
+
+    @XmlTransient
+    public List&lt;Preptype&gt; getPreptypeList() {
+<span class="nc" id="L436">        return preptypeList;</span>
+    }
+
+    public void setPreptypeList(List&lt;Preptype&gt; preptypeList) {
+<span class="nc" id="L440">        this.preptypeList = preptypeList;</span>
+<span class="nc" id="L441">    }</span>
+
+    @XmlTransient
+    public List&lt;Collectionreltype&gt; getCollectionreltypeList() {
+<span class="nc" id="L445">        return collectionreltypeList;</span>
+    }
+
+    public void setCollectionreltypeList(List&lt;Collectionreltype&gt; collectionreltypeList) {
+<span class="nc" id="L449">        this.collectionreltypeList = collectionreltypeList;</span>
+<span class="nc" id="L450">    }</span>
+
+    @XmlTransient
+    public List&lt;Collectionreltype&gt; getCollectionreltypeList1() {
+<span class="nc" id="L454">        return collectionreltypeList1;</span>
+    }
+
+    public void setCollectionreltypeList1(List&lt;Collectionreltype&gt; collectionreltypeList1) {
+<span class="nc" id="L458">        this.collectionreltypeList1 = collectionreltypeList1;</span>
+<span class="nc" id="L459">    }</span>
+
+    @XmlTransient
+    public List&lt;Agent&gt; getAgentList() {
+<span class="nc" id="L463">        return agentList;</span>
+    }
+
+    public void setAgentList(List&lt;Agent&gt; agentList) {
+<span class="nc" id="L467">        this.agentList = agentList;</span>
+<span class="nc" id="L468">    }</span>
+
+    @XmlTransient
+    public List&lt;Agent&gt; getAgentList1() {
+<span class="nc" id="L472">        return agentList1;</span>
+    }
+
+    public void setAgentList1(List&lt;Agent&gt; agentList1) {
+<span class="nc" id="L476">        this.agentList1 = agentList1;</span>
+<span class="nc" id="L477">    }</span>
+
+    @XmlTransient
+    public List&lt;Collectionobject&gt; getCollectionobjectList() {
+<span class="nc" id="L481">        return collectionobjectList;</span>
+    }
+
+    public void setCollectionobjectList(List&lt;Collectionobject&gt; collectionobjectList) {
+<span class="nc" id="L485">        this.collectionobjectList = collectionobjectList;</span>
+<span class="nc" id="L486">    }</span>
+
+    @XmlTransient
+    public List&lt;Fieldnotebook&gt; getFieldnotebookList() {
+<span class="nc" id="L490">        return fieldnotebookList;</span>
+    }
+
+    public void setFieldnotebookList(List&lt;Fieldnotebook&gt; fieldnotebookList) {
+<span class="nc" id="L494">        this.fieldnotebookList = fieldnotebookList;</span>
+<span class="nc" id="L495">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L499">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L503">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L504">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L508">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L512">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L513">    }</span>
+
+    @XmlIDREF
+    public Discipline getDisciplineID() {
+<span class="nc" id="L517">        return disciplineID;</span>
+    }
+
+    public void setDisciplineID(Discipline disciplineID) {
+<span class="nc" id="L521">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L522">    }</span>
+
+    @XmlIDREF
+    public Institution getInstitutionNetworkID() {
+<span class="nc" id="L526">        return institutionNetworkID;</span>
+    }
+
+    public void setInstitutionNetworkID(Institution institutionNetworkID) {
+<span class="nc" id="L530">        this.institutionNetworkID = institutionNetworkID;</span>
+<span class="nc" id="L531">    }</span>
+
+    @XmlTransient
+    public List&lt;Spappresourcedir&gt; getSpappresourcedirList() {
+<span class="nc" id="L535">        return spappresourcedirList;</span>
+    }
+
+    public void setSpappresourcedirList(List&lt;Spappresourcedir&gt; spappresourcedirList) {
+<span class="nc" id="L539">        this.spappresourcedirList = spappresourcedirList;</span>
+<span class="nc" id="L540">    }</span>
+
+    @XmlTransient
+    public List&lt;Picklist&gt; getPicklistList() {
+<span class="nc" id="L544">        return picklistList;</span>
+    }
+
+    public void setPicklistList(List&lt;Picklist&gt; picklistList) {
+<span class="nc" id="L548">        this.picklistList = picklistList;</span>
+<span class="nc" id="L549">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L553">        int hash = 0;</span>
+<span class="nc bnc" id="L554" title="All 2 branches missed.">        hash += (userGroupScopeId != null ? userGroupScopeId.hashCode() : 0);</span>
+<span class="nc" id="L555">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L561" title="All 2 branches missed.">        if (!(object instanceof Collection)) {</span>
+<span class="nc" id="L562">            return false;</span>
+        }
+<span class="nc" id="L564">        Collection other = (Collection) object;</span>
+<span class="nc bnc" id="L565" title="All 8 branches missed.">        return !((this.userGroupScopeId == null &amp;&amp; other.userGroupScopeId != null) || (this.userGroupScopeId != null &amp;&amp; !this.userGroupScopeId.equals(other.userGroupScopeId)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L570">        return &quot;se.nrm.dina.datamodel.Collection[ userGroupScopeId=&quot; + userGroupScopeId + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

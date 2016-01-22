@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Attachment.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Attachment.java</span></div><h1>Attachment.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType; 
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;attachment&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Attachment.findAll&quot;, query = &quot;SELECT a FROM Attachment a&quot;),
+    @NamedQuery(name = &quot;Attachment.findByAttachmentID&quot;, query = &quot;SELECT a FROM Attachment a WHERE a.attachmentID = :attachmentID&quot;), 
+    @NamedQuery(name = &quot;Attachment.findByAttachmentLocation&quot;, query = &quot;SELECT a FROM Attachment a WHERE a.attachmentLocation = :attachmentLocation&quot;),  
+    @NamedQuery(name = &quot;Attachment.findByFileCreatedDate&quot;, query = &quot;SELECT a FROM Attachment a WHERE a.fileCreatedDate = :fileCreatedDate&quot;),
+    @NamedQuery(name = &quot;Attachment.findByLicense&quot;, query = &quot;SELECT a FROM Attachment a WHERE a.license = :license&quot;),
+    @NamedQuery(name = &quot;Attachment.findByMimeType&quot;, query = &quot;SELECT a FROM Attachment a WHERE a.mimeType = :mimeType&quot;),
+    @NamedQuery(name = &quot;Attachment.findByOrigFilename&quot;, query = &quot;SELECT a FROM Attachment a WHERE a.origFilename = :origFilename&quot;),
+    @NamedQuery(name = &quot;Attachment.findByTitle&quot;, query = &quot;SELECT a FROM Attachment a WHERE a.title = :title&quot;), 
+    @NamedQuery(name = &quot;Attachment.findByGuid&quot;, query = &quot;SELECT a FROM Attachment a WHERE a.guid = :guid&quot;),
+    @NamedQuery(name = &quot;Attachment.findByVisibility&quot;, query = &quot;SELECT a FROM Attachment a WHERE a.visibility = :visibility&quot;),
+    @NamedQuery(name = &quot;Attachment.findByAttachmentImageAttributeID&quot;, query = &quot;SELECT a FROM Attachment a WHERE a.attachmentImageAttributeID = :attachmentImageAttributeID&quot;)})
+public class Attachment extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;AttachmentID&quot;)
+    private Integer attachmentID;
+    
+    
+    @Size(max = 128)
+    @Column(name = &quot;AttachmentLocation&quot;)
+    private String attachmentLocation;
+    
+    @Size(max = 64)
+    @Column(name = &quot;CopyrightDate&quot;)
+    private String copyrightDate;
+    
+    @Size(max = 64)
+    @Column(name = &quot;CopyrightHolder&quot;)
+    private String copyrightHolder;
+    
+    @Size(max = 64)
+    @Column(name = &quot;Credit&quot;)
+    private String credit;
+    
+    @Size(max = 64)
+    @Column(name = &quot;DateImaged&quot;)
+    private String dateImaged;
+    
+    @Column(name = &quot;FileCreatedDate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date fileCreatedDate;
+    
+    @Size(max = 64)
+    @Column(name = &quot;License&quot;)
+    private String license;
+    
+    @Size(max = 64)
+    @Column(name = &quot;MimeType&quot;)
+    private String mimeType;
+    
+    @Size(max = 20000)
+    @Column(name = &quot;origFilename&quot;)
+    private String origFilename;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Size(max = 255)
+    @Column(name = &quot;title&quot;)
+    private String title;
+    
+    @Column(name = &quot;TableID&quot;)
+    private Short tableID;
+    
+    @Column(name = &quot;ScopeID&quot;)
+    private Integer scopeID;
+    
+    @Column(name = &quot;ScopeType&quot;)
+    private Short scopeType;
+    
+    @Size(max = 128)
+    @Column(name = &quot;GUID&quot;)
+    private String guid;
+    
+    @Column(name = &quot;Visibility&quot;)
+    private Short visibility;
+    
+    @Column(name = &quot;AttachmentImageAttributeID&quot;)
+    private Integer attachmentImageAttributeID;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Collectingeventattachment&gt; collectingeventattachmentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Preparationattachment&gt; preparationattachmentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Repositoryagreementattachment&gt; repositoryagreementattachmentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Agentattachment&gt; agentattachmentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Permitattachment&gt; permitattachmentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Accessionattachment&gt; accessionattachmentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Dnasequenceattachment&gt; dnasequenceattachmentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Collectionobjectattachment&gt; collectionobjectattachmentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Storageattachment&gt; storageattachmentList;
+    
+    @OneToMany(mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Attachmentmetadata&gt; attachmentmetadataList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Taxonattachment&gt; taxonattachmentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Conserveventattachment&gt; conserveventattachmentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Localityattachment&gt; localityattachmentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Conservdescriptionattachment&gt; conservdescriptionattachmentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Fieldnotebookpageattachment&gt; fieldnotebookpageattachmentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Fieldnotebookattachment&gt; fieldnotebookattachmentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Attachmenttag&gt; attachmenttagList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Dnasequencerunattachment&gt; dnasequencerunattachmentList;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;VisibilitySetByID&quot;, referencedColumnName = &quot;SpecifyUserID&quot;)
+    @ManyToOne
+    private Specifyuser visibilitySetByID;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Fieldnotebookpagesetattachment&gt; fieldnotebookpagesetattachmentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;attachmentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Loanattachment&gt; loanattachmentList;
+
+<span class="nc" id="L201">    public Attachment() {</span>
+<span class="nc" id="L202">    }</span>
+
+<span class="nc" id="L204">    public Attachment(Integer attachmentID) {</span>
+<span class="nc" id="L205">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L206">    }</span>
+
+<span class="nc" id="L208">    public Attachment(Integer attachmentID, Date timestampCreated) {</span>
+<span class="nc" id="L209">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L210">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L211">    }</span>
+
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L217">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + attachmentID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L222">        return attachmentID;</span>
+    }
+    
+    public Integer getAttachmentID() {
+<span class="nc" id="L226">        return attachmentID;</span>
+    }
+
+    public void setAttachmentID(Integer attachmentID) {
+<span class="nc" id="L230">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L231">    }</span>
+
+  
+
+    public String getAttachmentLocation() {
+<span class="nc" id="L236">        return attachmentLocation;</span>
+    }
+
+    public void setAttachmentLocation(String attachmentLocation) {
+<span class="nc" id="L240">        this.attachmentLocation = attachmentLocation;</span>
+<span class="nc" id="L241">    }</span>
+
+    public String getCopyrightDate() {
+<span class="nc" id="L244">        return copyrightDate;</span>
+    }
+
+    public void setCopyrightDate(String copyrightDate) {
+<span class="nc" id="L248">        this.copyrightDate = copyrightDate;</span>
+<span class="nc" id="L249">    }</span>
+
+    public String getCopyrightHolder() {
+<span class="nc" id="L252">        return copyrightHolder;</span>
+    }
+
+    public void setCopyrightHolder(String copyrightHolder) {
+<span class="nc" id="L256">        this.copyrightHolder = copyrightHolder;</span>
+<span class="nc" id="L257">    }</span>
+
+    public String getCredit() {
+<span class="nc" id="L260">        return credit;</span>
+    }
+
+    public void setCredit(String credit) {
+<span class="nc" id="L264">        this.credit = credit;</span>
+<span class="nc" id="L265">    }</span>
+
+    public String getDateImaged() {
+<span class="nc" id="L268">        return dateImaged;</span>
+    }
+
+    public void setDateImaged(String dateImaged) {
+<span class="nc" id="L272">        this.dateImaged = dateImaged;</span>
+<span class="nc" id="L273">    }</span>
+
+    public Date getFileCreatedDate() {
+<span class="nc" id="L276">        return fileCreatedDate;</span>
+    }
+
+    public void setFileCreatedDate(Date fileCreatedDate) {
+<span class="nc" id="L280">        this.fileCreatedDate = fileCreatedDate;</span>
+<span class="nc" id="L281">    }</span>
+
+    public String getLicense() {
+<span class="nc" id="L284">        return license;</span>
+    }
+
+    public void setLicense(String license) {
+<span class="nc" id="L288">        this.license = license;</span>
+<span class="nc" id="L289">    }</span>
+
+    public String getMimeType() {
+<span class="nc" id="L292">        return mimeType;</span>
+    }
+
+    public void setMimeType(String mimeType) {
+<span class="nc" id="L296">        this.mimeType = mimeType;</span>
+<span class="nc" id="L297">    }</span>
+
+    public String getOrigFilename() {
+<span class="nc" id="L300">        return origFilename;</span>
+    }
+
+    public void setOrigFilename(String origFilename) {
+<span class="nc" id="L304">        this.origFilename = origFilename;</span>
+<span class="nc" id="L305">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L308">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L312">        this.remarks = remarks;</span>
+<span class="nc" id="L313">    }</span>
+
+    public String getTitle() {
+<span class="nc" id="L316">        return title;</span>
+    }
+
+    public void setTitle(String title) {
+<span class="nc" id="L320">        this.title = title;</span>
+<span class="nc" id="L321">    }</span>
+
+    public Short getTableID() {
+<span class="nc" id="L324">        return tableID;</span>
+    }
+
+    public void setTableID(Short tableID) {
+<span class="nc" id="L328">        this.tableID = tableID;</span>
+<span class="nc" id="L329">    }</span>
+
+    public Integer getScopeID() {
+<span class="nc" id="L332">        return scopeID;</span>
+    }
+
+    public void setScopeID(Integer scopeID) {
+<span class="nc" id="L336">        this.scopeID = scopeID;</span>
+<span class="nc" id="L337">    }</span>
+
+    public Short getScopeType() {
+<span class="nc" id="L340">        return scopeType;</span>
+    }
+
+    public void setScopeType(Short scopeType) {
+<span class="nc" id="L344">        this.scopeType = scopeType;</span>
+<span class="nc" id="L345">    }</span>
+
+    public String getGuid() {
+<span class="nc" id="L348">        return guid;</span>
+    }
+
+    public void setGuid(String guid) {
+<span class="nc" id="L352">        this.guid = guid;</span>
+<span class="nc" id="L353">    }</span>
+
+    public Short getVisibility() {
+<span class="nc" id="L356">        return visibility;</span>
+    }
+
+    public void setVisibility(Short visibility) {
+<span class="nc" id="L360">        this.visibility = visibility;</span>
+<span class="nc" id="L361">    }</span>
+
+    public Integer getAttachmentImageAttributeID() {
+<span class="nc" id="L364">        return attachmentImageAttributeID;</span>
+    }
+
+    public void setAttachmentImageAttributeID(Integer attachmentImageAttributeID) {
+<span class="nc" id="L368">        this.attachmentImageAttributeID = attachmentImageAttributeID;</span>
+<span class="nc" id="L369">    }</span>
+
+    @XmlTransient
+    public List&lt;Collectingeventattachment&gt; getCollectingeventattachmentList() {
+<span class="nc" id="L373">        return collectingeventattachmentList;</span>
+    }
+
+    public void setCollectingeventattachmentList(List&lt;Collectingeventattachment&gt; collectingeventattachmentList) {
+<span class="nc" id="L377">        this.collectingeventattachmentList = collectingeventattachmentList;</span>
+<span class="nc" id="L378">    }</span>
+
+    @XmlTransient
+    public List&lt;Preparationattachment&gt; getPreparationattachmentList() {
+<span class="nc" id="L382">        return preparationattachmentList;</span>
+    }
+
+    public void setPreparationattachmentList(List&lt;Preparationattachment&gt; preparationattachmentList) {
+<span class="nc" id="L386">        this.preparationattachmentList = preparationattachmentList;</span>
+<span class="nc" id="L387">    }</span>
+
+    @XmlTransient
+    public List&lt;Repositoryagreementattachment&gt; getRepositoryagreementattachmentList() {
+<span class="nc" id="L391">        return repositoryagreementattachmentList;</span>
+    }
+
+    public void setRepositoryagreementattachmentList(List&lt;Repositoryagreementattachment&gt; repositoryagreementattachmentList) {
+<span class="nc" id="L395">        this.repositoryagreementattachmentList = repositoryagreementattachmentList;</span>
+<span class="nc" id="L396">    }</span>
+
+    @XmlTransient
+    public List&lt;Agentattachment&gt; getAgentattachmentList() {
+<span class="nc" id="L400">        return agentattachmentList;</span>
+    }
+
+    public void setAgentattachmentList(List&lt;Agentattachment&gt; agentattachmentList) {
+<span class="nc" id="L404">        this.agentattachmentList = agentattachmentList;</span>
+<span class="nc" id="L405">    }</span>
+
+    @XmlTransient
+    public List&lt;Permitattachment&gt; getPermitattachmentList() {
+<span class="nc" id="L409">        return permitattachmentList;</span>
+    }
+
+    public void setPermitattachmentList(List&lt;Permitattachment&gt; permitattachmentList) {
+<span class="nc" id="L413">        this.permitattachmentList = permitattachmentList;</span>
+<span class="nc" id="L414">    }</span>
+
+    @XmlTransient
+    public List&lt;Accessionattachment&gt; getAccessionattachmentList() {
+<span class="nc" id="L418">        return accessionattachmentList;</span>
+    }
+
+    public void setAccessionattachmentList(List&lt;Accessionattachment&gt; accessionattachmentList) {
+<span class="nc" id="L422">        this.accessionattachmentList = accessionattachmentList;</span>
+<span class="nc" id="L423">    }</span>
+
+    @XmlTransient
+    public List&lt;Dnasequenceattachment&gt; getDnasequenceattachmentList() {
+<span class="nc" id="L427">        return dnasequenceattachmentList;</span>
+    }
+
+    public void setDnasequenceattachmentList(List&lt;Dnasequenceattachment&gt; dnasequenceattachmentList) {
+<span class="nc" id="L431">        this.dnasequenceattachmentList = dnasequenceattachmentList;</span>
+<span class="nc" id="L432">    }</span>
+
+    @XmlTransient
+    public List&lt;Collectionobjectattachment&gt; getCollectionobjectattachmentList() {
+<span class="nc" id="L436">        return collectionobjectattachmentList;</span>
+    }
+
+    public void setCollectionobjectattachmentList(List&lt;Collectionobjectattachment&gt; collectionobjectattachmentList) {
+<span class="nc" id="L440">        this.collectionobjectattachmentList = collectionobjectattachmentList;</span>
+<span class="nc" id="L441">    }</span>
+
+    @XmlTransient
+    public List&lt;Storageattachment&gt; getStorageattachmentList() {
+<span class="nc" id="L445">        return storageattachmentList;</span>
+    }
+
+    public void setStorageattachmentList(List&lt;Storageattachment&gt; storageattachmentList) {
+<span class="nc" id="L449">        this.storageattachmentList = storageattachmentList;</span>
+<span class="nc" id="L450">    }</span>
+
+    @XmlTransient
+    public List&lt;Attachmentmetadata&gt; getAttachmentmetadataList() {
+<span class="nc" id="L454">        return attachmentmetadataList;</span>
+    }
+
+    public void setAttachmentmetadataList(List&lt;Attachmentmetadata&gt; attachmentmetadataList) {
+<span class="nc" id="L458">        this.attachmentmetadataList = attachmentmetadataList;</span>
+<span class="nc" id="L459">    }</span>
+
+    @XmlTransient
+    public List&lt;Taxonattachment&gt; getTaxonattachmentList() {
+<span class="nc" id="L463">        return taxonattachmentList;</span>
+    }
+
+    public void setTaxonattachmentList(List&lt;Taxonattachment&gt; taxonattachmentList) {
+<span class="nc" id="L467">        this.taxonattachmentList = taxonattachmentList;</span>
+<span class="nc" id="L468">    }</span>
+
+    @XmlTransient
+    public List&lt;Conserveventattachment&gt; getConserveventattachmentList() {
+<span class="nc" id="L472">        return conserveventattachmentList;</span>
+    }
+
+    public void setConserveventattachmentList(List&lt;Conserveventattachment&gt; conserveventattachmentList) {
+<span class="nc" id="L476">        this.conserveventattachmentList = conserveventattachmentList;</span>
+<span class="nc" id="L477">    }</span>
+
+    @XmlTransient
+    public List&lt;Localityattachment&gt; getLocalityattachmentList() {
+<span class="nc" id="L481">        return localityattachmentList;</span>
+    }
+
+    public void setLocalityattachmentList(List&lt;Localityattachment&gt; localityattachmentList) {
+<span class="nc" id="L485">        this.localityattachmentList = localityattachmentList;</span>
+<span class="nc" id="L486">    }</span>
+
+    @XmlTransient
+    public List&lt;Conservdescriptionattachment&gt; getConservdescriptionattachmentList() {
+<span class="nc" id="L490">        return conservdescriptionattachmentList;</span>
+    }
+
+    public void setConservdescriptionattachmentList(List&lt;Conservdescriptionattachment&gt; conservdescriptionattachmentList) {
+<span class="nc" id="L494">        this.conservdescriptionattachmentList = conservdescriptionattachmentList;</span>
+<span class="nc" id="L495">    }</span>
+
+    @XmlTransient
+    public List&lt;Fieldnotebookpageattachment&gt; getFieldnotebookpageattachmentList() {
+<span class="nc" id="L499">        return fieldnotebookpageattachmentList;</span>
+    }
+
+    public void setFieldnotebookpageattachmentList(List&lt;Fieldnotebookpageattachment&gt; fieldnotebookpageattachmentList) {
+<span class="nc" id="L503">        this.fieldnotebookpageattachmentList = fieldnotebookpageattachmentList;</span>
+<span class="nc" id="L504">    }</span>
+
+    @XmlTransient
+    public List&lt;Fieldnotebookattachment&gt; getFieldnotebookattachmentList() {
+<span class="nc" id="L508">        return fieldnotebookattachmentList;</span>
+    }
+
+    public void setFieldnotebookattachmentList(List&lt;Fieldnotebookattachment&gt; fieldnotebookattachmentList) {
+<span class="nc" id="L512">        this.fieldnotebookattachmentList = fieldnotebookattachmentList;</span>
+<span class="nc" id="L513">    }</span>
+
+    @XmlTransient
+    public List&lt;Attachmenttag&gt; getAttachmenttagList() {
+<span class="nc" id="L517">        return attachmenttagList;</span>
+    }
+
+    public void setAttachmenttagList(List&lt;Attachmenttag&gt; attachmenttagList) {
+<span class="nc" id="L521">        this.attachmenttagList = attachmenttagList;</span>
+<span class="nc" id="L522">    }</span>
+
+    @XmlTransient
+    public List&lt;Dnasequencerunattachment&gt; getDnasequencerunattachmentList() {
+<span class="nc" id="L526">        return dnasequencerunattachmentList;</span>
+    }
+
+    public void setDnasequencerunattachmentList(List&lt;Dnasequencerunattachment&gt; dnasequencerunattachmentList) {
+<span class="nc" id="L530">        this.dnasequencerunattachmentList = dnasequencerunattachmentList;</span>
+<span class="nc" id="L531">    }</span>
+    
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L535">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L539">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L540">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L544">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L548">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L549">    }</span>
+
+    @XmlIDREF
+    public Specifyuser getVisibilitySetByID() {
+<span class="nc" id="L553">        return visibilitySetByID;</span>
+    }
+
+    public void setVisibilitySetByID(Specifyuser visibilitySetByID) {
+<span class="nc" id="L557">        this.visibilitySetByID = visibilitySetByID;</span>
+<span class="nc" id="L558">    }</span>
+
+    @XmlTransient
+    public List&lt;Fieldnotebookpagesetattachment&gt; getFieldnotebookpagesetattachmentList() {
+<span class="nc" id="L562">        return fieldnotebookpagesetattachmentList;</span>
+    }
+
+    public void setFieldnotebookpagesetattachmentList(List&lt;Fieldnotebookpagesetattachment&gt; fieldnotebookpagesetattachmentList) {
+<span class="nc" id="L566">        this.fieldnotebookpagesetattachmentList = fieldnotebookpagesetattachmentList;</span>
+<span class="nc" id="L567">    }</span>
+
+    @XmlTransient
+    public List&lt;Loanattachment&gt; getLoanattachmentList() {
+<span class="nc" id="L571">        return loanattachmentList;</span>
+    }
+
+    public void setLoanattachmentList(List&lt;Loanattachment&gt; loanattachmentList) {
+<span class="nc" id="L575">        this.loanattachmentList = loanattachmentList;</span>
+<span class="nc" id="L576">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L580">        int hash = 0;</span>
+<span class="nc bnc" id="L581" title="All 2 branches missed.">        hash += (attachmentID != null ? attachmentID.hashCode() : 0);</span>
+<span class="nc" id="L582">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L588" title="All 2 branches missed.">        if (!(object instanceof Attachment)) {</span>
+<span class="nc" id="L589">            return false;</span>
+        }
+<span class="nc" id="L591">        Attachment other = (Attachment) object;</span>
+<span class="nc bnc" id="L592" title="All 8 branches missed.">        return !((this.attachmentID == null &amp;&amp; other.attachmentID != null) || (this.attachmentID != null &amp;&amp; !this.attachmentID.equals(other.attachmentID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L597">        return &quot;se.nrm.dina.datamodel.Attachment[ attachmentID=&quot; + attachmentID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

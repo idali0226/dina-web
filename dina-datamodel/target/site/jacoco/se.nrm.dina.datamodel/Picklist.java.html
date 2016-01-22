@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Picklist.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Picklist.java</span></div><h1>Picklist.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;picklist&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Picklist.findAll&quot;, query = &quot;SELECT p FROM Picklist p&quot;),
+    @NamedQuery(name = &quot;Picklist.findByPickListID&quot;, query = &quot;SELECT p FROM Picklist p WHERE p.pickListID = :pickListID&quot;), 
+    @NamedQuery(name = &quot;Picklist.findByFieldName&quot;, query = &quot;SELECT p FROM Picklist p WHERE p.fieldName = :fieldName&quot;),
+    @NamedQuery(name = &quot;Picklist.findByName&quot;, query = &quot;SELECT p FROM Picklist p WHERE p.name = :name&quot;),
+    @NamedQuery(name = &quot;Picklist.findByReadOnly&quot;, query = &quot;SELECT p FROM Picklist p WHERE p.readOnly = :readOnly&quot;),
+    @NamedQuery(name = &quot;Picklist.findBySizeLimit&quot;, query = &quot;SELECT p FROM Picklist p WHERE p.sizeLimit = :sizeLimit&quot;),
+    @NamedQuery(name = &quot;Picklist.findBySortType&quot;, query = &quot;SELECT p FROM Picklist p WHERE p.sortType = :sortType&quot;),
+    @NamedQuery(name = &quot;Picklist.findByTableName&quot;, query = &quot;SELECT p FROM Picklist p WHERE p.tableName = :tableName&quot;),
+    @NamedQuery(name = &quot;Picklist.findByType&quot;, query = &quot;SELECT p FROM Picklist p WHERE p.type = :type&quot;)})
+public class Picklist extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;PickListID&quot;)
+    private Integer pickListID;
+    
+    
+    @Size(max = 64)
+    @Column(name = &quot;FieldName&quot;)
+    private String fieldName;
+    
+    @Size(max = 32)
+    @Column(name = &quot;FilterFieldName&quot;)
+    private String filterFieldName;
+    
+    @Size(max = 32)
+    @Column(name = &quot;FilterValue&quot;)
+    private String filterValue;
+    
+    @Size(max = 64)
+    @Column(name = &quot;Formatter&quot;)
+    private String formatter;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;IsSystem&quot;)
+    private boolean isSystem;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = &quot;Name&quot;)
+    private String name;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;ReadOnly&quot;)
+    private boolean readOnly;
+    
+    @Column(name = &quot;SizeLimit&quot;)
+    private Integer sizeLimit;
+    
+    @Column(name = &quot;SortType&quot;)
+    private Short sortType;
+    
+    @Size(max = 64)
+    @Column(name = &quot;TableName&quot;)
+    private String tableName;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;Type&quot;)
+    private short type;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;pickListID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Picklistitem&gt; picklistitemList;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;CollectionID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)
+    @ManyToOne(optional = false)
+    private Collection collectionID;
+
+<span class="nc" id="L123">    public Picklist() {</span>
+<span class="nc" id="L124">    }</span>
+
+<span class="nc" id="L126">    public Picklist(Integer pickListID) {</span>
+<span class="nc" id="L127">        this.pickListID = pickListID;</span>
+<span class="nc" id="L128">    }</span>
+
+<span class="nc" id="L130">    public Picklist(Integer pickListID, Date timestampCreated, boolean isSystem, String name, boolean readOnly, short type) {</span>
+<span class="nc" id="L131">        this.pickListID = pickListID;</span>
+<span class="nc" id="L132">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L133">        this.isSystem = isSystem;</span>
+<span class="nc" id="L134">        this.name = name;</span>
+<span class="nc" id="L135">        this.readOnly = readOnly;</span>
+<span class="nc" id="L136">        this.type = type;</span>
+<span class="nc" id="L137">    }</span>
+
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L143">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + pickListID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L148">        return pickListID;</span>
+    }
+    
+    public Integer getPickListID() {
+<span class="nc" id="L152">        return pickListID;</span>
+    }
+
+    public void setPickListID(Integer pickListID) {
+<span class="nc" id="L156">        this.pickListID = pickListID;</span>
+<span class="nc" id="L157">    }</span>
+  
+    public String getFieldName() {
+<span class="nc" id="L160">        return fieldName;</span>
+    }
+
+    public void setFieldName(String fieldName) {
+<span class="nc" id="L164">        this.fieldName = fieldName;</span>
+<span class="nc" id="L165">    }</span>
+
+    public String getFilterFieldName() {
+<span class="nc" id="L168">        return filterFieldName;</span>
+    }
+
+    public void setFilterFieldName(String filterFieldName) {
+<span class="nc" id="L172">        this.filterFieldName = filterFieldName;</span>
+<span class="nc" id="L173">    }</span>
+
+    public String getFilterValue() {
+<span class="nc" id="L176">        return filterValue;</span>
+    }
+
+    public void setFilterValue(String filterValue) {
+<span class="nc" id="L180">        this.filterValue = filterValue;</span>
+<span class="nc" id="L181">    }</span>
+
+    public String getFormatter() {
+<span class="nc" id="L184">        return formatter;</span>
+    }
+
+    public void setFormatter(String formatter) {
+<span class="nc" id="L188">        this.formatter = formatter;</span>
+<span class="nc" id="L189">    }</span>
+
+    public boolean getIsSystem() {
+<span class="nc" id="L192">        return isSystem;</span>
+    }
+
+    public void setIsSystem(boolean isSystem) {
+<span class="nc" id="L196">        this.isSystem = isSystem;</span>
+<span class="nc" id="L197">    }</span>
+
+    public String getName() {
+<span class="nc" id="L200">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L204">        this.name = name;</span>
+<span class="nc" id="L205">    }</span>
+
+    public boolean getReadOnly() {
+<span class="nc" id="L208">        return readOnly;</span>
+    }
+
+    public void setReadOnly(boolean readOnly) {
+<span class="nc" id="L212">        this.readOnly = readOnly;</span>
+<span class="nc" id="L213">    }</span>
+
+    public Integer getSizeLimit() {
+<span class="nc" id="L216">        return sizeLimit;</span>
+    }
+
+    public void setSizeLimit(Integer sizeLimit) {
+<span class="nc" id="L220">        this.sizeLimit = sizeLimit;</span>
+<span class="nc" id="L221">    }</span>
+
+    public Short getSortType() {
+<span class="nc" id="L224">        return sortType;</span>
+    }
+
+    public void setSortType(Short sortType) {
+<span class="nc" id="L228">        this.sortType = sortType;</span>
+<span class="nc" id="L229">    }</span>
+
+    public String getTableName() {
+<span class="nc" id="L232">        return tableName;</span>
+    }
+
+    public void setTableName(String tableName) {
+<span class="nc" id="L236">        this.tableName = tableName;</span>
+<span class="nc" id="L237">    }</span>
+
+    public short getType() {
+<span class="nc" id="L240">        return type;</span>
+    }
+
+    public void setType(short type) {
+<span class="nc" id="L244">        this.type = type;</span>
+<span class="nc" id="L245">    }</span>
+
+    @XmlTransient
+    public List&lt;Picklistitem&gt; getPicklistitemList() {
+<span class="nc" id="L249">        return picklistitemList;</span>
+    }
+
+    public void setPicklistitemList(List&lt;Picklistitem&gt; picklistitemList) {
+<span class="nc" id="L253">        this.picklistitemList = picklistitemList;</span>
+<span class="nc" id="L254">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L258">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L262">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L263">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L267">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L271">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L272">    }</span>
+
+    @XmlIDREF
+    public Collection getCollectionID() {
+<span class="nc" id="L276">        return collectionID;</span>
+    }
+
+    public void setCollectionID(Collection collectionID) {
+<span class="nc" id="L280">        this.collectionID = collectionID;</span>
+<span class="nc" id="L281">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L285">        int hash = 0;</span>
+<span class="nc bnc" id="L286" title="All 2 branches missed.">        hash += (pickListID != null ? pickListID.hashCode() : 0);</span>
+<span class="nc" id="L287">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L293" title="All 2 branches missed.">        if (!(object instanceof Picklist)) {</span>
+<span class="nc" id="L294">            return false;</span>
+        }
+<span class="nc" id="L296">        Picklist other = (Picklist) object;</span>
+<span class="nc bnc" id="L297" title="All 8 branches missed.">        return !((this.pickListID == null &amp;&amp; other.pickListID != null) || (this.pickListID != null &amp;&amp; !this.pickListID.equals(other.pickListID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L302">        return &quot;se.nrm.dina.datamodel.Picklist[ pickListID=&quot; + pickListID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

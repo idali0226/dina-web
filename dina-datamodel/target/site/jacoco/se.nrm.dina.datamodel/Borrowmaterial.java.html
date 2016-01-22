@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Borrowmaterial.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Borrowmaterial.java</span></div><h1>Borrowmaterial.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;borrowmaterial&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Borrowmaterial.findAll&quot;, query = &quot;SELECT b FROM Borrowmaterial b&quot;),
+    @NamedQuery(name = &quot;Borrowmaterial.findByBorrowMaterialID&quot;, query = &quot;SELECT b FROM Borrowmaterial b WHERE b.borrowMaterialID = :borrowMaterialID&quot;),
+    @NamedQuery(name = &quot;Borrowmaterial.findByCollectionMemberID&quot;, query = &quot;SELECT b FROM Borrowmaterial b WHERE b.collectionMemberID = :collectionMemberID&quot;),
+    @NamedQuery(name = &quot;Borrowmaterial.findByDescription&quot;, query = &quot;SELECT b FROM Borrowmaterial b WHERE b.description = :description&quot;), 
+    @NamedQuery(name = &quot;Borrowmaterial.findByQuantityResolved&quot;, query = &quot;SELECT b FROM Borrowmaterial b WHERE b.quantityResolved = :quantityResolved&quot;),
+    @NamedQuery(name = &quot;Borrowmaterial.findByQuantityReturned&quot;, query = &quot;SELECT b FROM Borrowmaterial b WHERE b.quantityReturned = :quantityReturned&quot;)})
+public class Borrowmaterial extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;BorrowMaterialID&quot;)
+    private Integer borrowMaterialID;
+    
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;CollectionMemberID&quot;)
+    private int collectionMemberID;
+    
+    @Size(max = 50)
+    @Column(name = &quot;Description&quot;)
+    private String description;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;InComments&quot;)
+    private String inComments;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = &quot;MaterialNumber&quot;)
+    private String materialNumber;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;OutComments&quot;)
+    private String outComments;
+    
+    @Column(name = &quot;Quantity&quot;)
+    private Short quantity;
+    
+    @Column(name = &quot;QuantityResolved&quot;)
+    private Short quantityResolved;
+    
+    @Column(name = &quot;QuantityReturned&quot;)
+    private Short quantityReturned;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;BorrowID&quot;, referencedColumnName = &quot;BorrowID&quot;)
+    @ManyToOne(optional = false)
+    private Borrow borrowID;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;borrowMaterialID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Borrowreturnmaterial&gt; borrowreturnmaterialList;
+
+<span class="nc" id="L108">    public Borrowmaterial() {</span>
+<span class="nc" id="L109">    }</span>
+
+<span class="nc" id="L111">    public Borrowmaterial(Integer borrowMaterialID) {</span>
+<span class="nc" id="L112">        this.borrowMaterialID = borrowMaterialID;</span>
+<span class="nc" id="L113">    }</span>
+
+<span class="nc" id="L115">    public Borrowmaterial(Integer borrowMaterialID, Date timestampCreated, int collectionMemberID, String materialNumber) {</span>
+<span class="nc" id="L116">        this.borrowMaterialID = borrowMaterialID;</span>
+<span class="nc" id="L117">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L118">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L119">        this.materialNumber = materialNumber;</span>
+<span class="nc" id="L120">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L126">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + borrowMaterialID;</span>
+    }
+
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L131">        return borrowMaterialID;</span>
+    }
+    
+    public Integer getBorrowMaterialID() {
+<span class="nc" id="L135">        return borrowMaterialID;</span>
+    }
+
+    public void setBorrowMaterialID(Integer borrowMaterialID) {
+<span class="nc" id="L139">        this.borrowMaterialID = borrowMaterialID;</span>
+<span class="nc" id="L140">    }</span>
+ 
+    public int getCollectionMemberID() {
+<span class="nc" id="L143">        return collectionMemberID;</span>
+    }
+
+    public void setCollectionMemberID(int collectionMemberID) {
+<span class="nc" id="L147">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L148">    }</span>
+
+    public String getDescription() {
+<span class="nc" id="L151">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="nc" id="L155">        this.description = description;</span>
+<span class="nc" id="L156">    }</span>
+
+    public String getInComments() {
+<span class="nc" id="L159">        return inComments;</span>
+    }
+
+    public void setInComments(String inComments) {
+<span class="nc" id="L163">        this.inComments = inComments;</span>
+<span class="nc" id="L164">    }</span>
+
+    public String getMaterialNumber() {
+<span class="nc" id="L167">        return materialNumber;</span>
+    }
+
+    public void setMaterialNumber(String materialNumber) {
+<span class="nc" id="L171">        this.materialNumber = materialNumber;</span>
+<span class="nc" id="L172">    }</span>
+
+    public String getOutComments() {
+<span class="nc" id="L175">        return outComments;</span>
+    }
+
+    public void setOutComments(String outComments) {
+<span class="nc" id="L179">        this.outComments = outComments;</span>
+<span class="nc" id="L180">    }</span>
+
+    public Short getQuantity() {
+<span class="nc" id="L183">        return quantity;</span>
+    }
+
+    public void setQuantity(Short quantity) {
+<span class="nc" id="L187">        this.quantity = quantity;</span>
+<span class="nc" id="L188">    }</span>
+
+    public Short getQuantityResolved() {
+<span class="nc" id="L191">        return quantityResolved;</span>
+    }
+
+    public void setQuantityResolved(Short quantityResolved) {
+<span class="nc" id="L195">        this.quantityResolved = quantityResolved;</span>
+<span class="nc" id="L196">    }</span>
+
+    public Short getQuantityReturned() {
+<span class="nc" id="L199">        return quantityReturned;</span>
+    }
+
+    public void setQuantityReturned(Short quantityReturned) {
+<span class="nc" id="L203">        this.quantityReturned = quantityReturned;</span>
+<span class="nc" id="L204">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L208">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L212">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L213">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L217">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L221">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L222">    }</span>
+
+    @XmlIDREF
+    public Borrow getBorrowID() {
+<span class="nc" id="L226">        return borrowID;</span>
+    }
+
+    public void setBorrowID(Borrow borrowID) {
+<span class="nc" id="L230">        this.borrowID = borrowID;</span>
+<span class="nc" id="L231">    }</span>
+
+    @XmlTransient
+    public List&lt;Borrowreturnmaterial&gt; getBorrowreturnmaterialList() {
+<span class="nc" id="L235">        return borrowreturnmaterialList;</span>
+    }
+
+    public void setBorrowreturnmaterialList(List&lt;Borrowreturnmaterial&gt; borrowreturnmaterialList) {
+<span class="nc" id="L239">        this.borrowreturnmaterialList = borrowreturnmaterialList;</span>
+<span class="nc" id="L240">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L244">        int hash = 0;</span>
+<span class="nc bnc" id="L245" title="All 2 branches missed.">        hash += (borrowMaterialID != null ? borrowMaterialID.hashCode() : 0);</span>
+<span class="nc" id="L246">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L252" title="All 2 branches missed.">        if (!(object instanceof Borrowmaterial)) {</span>
+<span class="nc" id="L253">            return false;</span>
+        }
+<span class="nc" id="L255">        Borrowmaterial other = (Borrowmaterial) object;</span>
+<span class="nc bnc" id="L256" title="All 8 branches missed.">        return !((this.borrowMaterialID == null &amp;&amp; other.borrowMaterialID != null) || (this.borrowMaterialID != null &amp;&amp; !this.borrowMaterialID.equals(other.borrowMaterialID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L261">        return &quot;se.nrm.dina.datamodel.Borrowmaterial[ borrowMaterialID=&quot; + borrowMaterialID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

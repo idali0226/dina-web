@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Fieldnotebookattachment.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Fieldnotebookattachment.java</span></div><h1>Fieldnotebookattachment.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;fieldnotebookattachment&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Fieldnotebookattachment.findAll&quot;, query = &quot;SELECT f FROM Fieldnotebookattachment f&quot;),
+    @NamedQuery(name = &quot;Fieldnotebookattachment.findByFieldNotebookAttachmentId&quot;, query = &quot;SELECT f FROM Fieldnotebookattachment f WHERE f.fieldNotebookAttachmentId = :fieldNotebookAttachmentId&quot;), 
+    @NamedQuery(name = &quot;Fieldnotebookattachment.findByOrdinal&quot;, query = &quot;SELECT f FROM Fieldnotebookattachment f WHERE f.ordinal = :ordinal&quot;)})
+public class Fieldnotebookattachment extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;FieldNotebookAttachmentId&quot;)
+    private Integer fieldNotebookAttachmentId;
+    
+    
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;Ordinal&quot;)
+    private int ordinal;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;FieldNotebookID&quot;, referencedColumnName = &quot;FieldNotebookID&quot;)
+    @ManyToOne(optional = false)
+    private Fieldnotebook fieldNotebookID;
+    
+    @JoinColumn(name = &quot;AttachmentID&quot;, referencedColumnName = &quot;AttachmentID&quot;)
+    @ManyToOne(optional = false)
+    private Attachment attachmentID;
+
+<span class="nc" id="L78">    public Fieldnotebookattachment() {</span>
+<span class="nc" id="L79">    }</span>
+
+<span class="nc" id="L81">    public Fieldnotebookattachment(Integer fieldNotebookAttachmentId) {</span>
+<span class="nc" id="L82">        this.fieldNotebookAttachmentId = fieldNotebookAttachmentId;</span>
+<span class="nc" id="L83">    }</span>
+
+<span class="nc" id="L85">    public Fieldnotebookattachment(Integer fieldNotebookAttachmentId, Date timestampCreated, int ordinal) {</span>
+<span class="nc" id="L86">        this.fieldNotebookAttachmentId = fieldNotebookAttachmentId;</span>
+<span class="nc" id="L87">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L88">        this.ordinal = ordinal;</span>
+<span class="nc" id="L89">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L95">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + fieldNotebookAttachmentId;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L100">        return fieldNotebookAttachmentId;</span>
+    }
+
+    public Integer getFieldNotebookAttachmentId() {
+<span class="nc" id="L104">        return fieldNotebookAttachmentId;</span>
+    }
+
+    public void setFieldNotebookAttachmentId(Integer fieldNotebookAttachmentId) {
+<span class="nc" id="L108">        this.fieldNotebookAttachmentId = fieldNotebookAttachmentId;</span>
+<span class="nc" id="L109">    }</span>
+
+  
+
+    public int getOrdinal() {
+<span class="nc" id="L114">        return ordinal;</span>
+    }
+
+    public void setOrdinal(int ordinal) {
+<span class="nc" id="L118">        this.ordinal = ordinal;</span>
+<span class="nc" id="L119">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L122">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L126">        this.remarks = remarks;</span>
+<span class="nc" id="L127">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L131">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L135">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L136">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L140">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L144">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L145">    }</span>
+
+    @XmlIDREF
+    public Fieldnotebook getFieldNotebookID() {
+<span class="nc" id="L149">        return fieldNotebookID;</span>
+    }
+
+    public void setFieldNotebookID(Fieldnotebook fieldNotebookID) {
+<span class="nc" id="L153">        this.fieldNotebookID = fieldNotebookID;</span>
+<span class="nc" id="L154">    }</span>
+
+    @XmlIDREF
+    public Attachment getAttachmentID() {
+<span class="nc" id="L158">        return attachmentID;</span>
+    }
+
+    public void setAttachmentID(Attachment attachmentID) {
+<span class="nc" id="L162">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L163">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L167">        int hash = 0;</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">        hash += (fieldNotebookAttachmentId != null ? fieldNotebookAttachmentId.hashCode() : 0);</span>
+<span class="nc" id="L169">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L175" title="All 2 branches missed.">        if (!(object instanceof Fieldnotebookattachment)) {</span>
+<span class="nc" id="L176">            return false;</span>
+        }
+<span class="nc" id="L178">        Fieldnotebookattachment other = (Fieldnotebookattachment) object;</span>
+<span class="nc bnc" id="L179" title="All 8 branches missed.">        return !((this.fieldNotebookAttachmentId == null &amp;&amp; other.fieldNotebookAttachmentId != null) || (this.fieldNotebookAttachmentId != null &amp;&amp; !this.fieldNotebookAttachmentId.equals(other.fieldNotebookAttachmentId)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L184">        return &quot;se.nrm.dina.datamodel.Fieldnotebookattachment[ fieldNotebookAttachmentId=&quot; + fieldNotebookAttachmentId + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Loanagent.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Loanagent.java</span></div><h1>Loanagent.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;loanagent&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Loanagent.findAll&quot;, query = &quot;SELECT l FROM Loanagent l&quot;),
+    @NamedQuery(name = &quot;Loanagent.findByLoanAgentID&quot;, query = &quot;SELECT l FROM Loanagent l WHERE l.loanAgentID = :loanAgentID&quot;), 
+    @NamedQuery(name = &quot;Loanagent.findByRole&quot;, query = &quot;SELECT l FROM Loanagent l WHERE l.role = :role&quot;)})
+public class Loanagent extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;LoanAgentID&quot;)
+    private Integer loanAgentID;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = &quot;Role&quot;)
+    private String role;
+    
+    @JoinColumn(name = &quot;AgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne(optional = false)
+    private Agent agentID;
+    
+    @JoinColumn(name = &quot;DisciplineID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)
+    @ManyToOne
+    private Discipline disciplineID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;LoanID&quot;, referencedColumnName = &quot;LoanID&quot;)
+    @ManyToOne(optional = false)
+    private Loan loanID;
+
+<span class="nc" id="L81">    public Loanagent() {</span>
+<span class="nc" id="L82">    }</span>
+
+<span class="nc" id="L84">    public Loanagent(Integer loanAgentID) {</span>
+<span class="nc" id="L85">        this.loanAgentID = loanAgentID;</span>
+<span class="nc" id="L86">    }</span>
+
+<span class="nc" id="L88">    public Loanagent(Integer loanAgentID, Date timestampCreated, String role) {</span>
+<span class="nc" id="L89">        this.loanAgentID = loanAgentID;</span>
+<span class="nc" id="L90">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L91">        this.role = role;</span>
+<span class="nc" id="L92">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L98">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + loanAgentID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L103">        return loanAgentID;</span>
+    }
+
+    public Integer getLoanAgentID() {
+<span class="nc" id="L107">        return loanAgentID;</span>
+    }
+
+    public void setLoanAgentID(Integer loanAgentID) {
+<span class="nc" id="L111">        this.loanAgentID = loanAgentID;</span>
+<span class="nc" id="L112">    }</span>
+
+   
+    public String getRemarks() {
+<span class="nc" id="L116">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L120">        this.remarks = remarks;</span>
+<span class="nc" id="L121">    }</span>
+
+    public String getRole() {
+<span class="nc" id="L124">        return role;</span>
+    }
+
+    public void setRole(String role) {
+<span class="nc" id="L128">        this.role = role;</span>
+<span class="nc" id="L129">    }</span>
+
+    @XmlIDREF
+    public Agent getAgentID() {
+<span class="nc" id="L133">        return agentID;</span>
+    }
+
+    public void setAgentID(Agent agentID) {
+<span class="nc" id="L137">        this.agentID = agentID;</span>
+<span class="nc" id="L138">    }</span>
+
+    @XmlIDREF
+    public Discipline getDisciplineID() {
+<span class="nc" id="L142">        return disciplineID;</span>
+    }
+
+    public void setDisciplineID(Discipline disciplineID) {
+<span class="nc" id="L146">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L147">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L151">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L155">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L156">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L160">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L164">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L165">    }</span>
+
+    @XmlIDREF
+    public Loan getLoanID() {
+<span class="nc" id="L169">        return loanID;</span>
+    }
+
+    public void setLoanID(Loan loanID) {
+<span class="nc" id="L173">        this.loanID = loanID;</span>
+<span class="nc" id="L174">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L178">        int hash = 0;</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">        hash += (loanAgentID != null ? loanAgentID.hashCode() : 0);</span>
+<span class="nc" id="L180">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L186" title="All 2 branches missed.">        if (!(object instanceof Loanagent)) {</span>
+<span class="nc" id="L187">            return false;</span>
+        }
+<span class="nc" id="L189">        Loanagent other = (Loanagent) object;</span>
+<span class="nc bnc" id="L190" title="All 8 branches missed.">        return !((this.loanAgentID == null &amp;&amp; other.loanAgentID != null) || (this.loanAgentID != null &amp;&amp; !this.loanAgentID.equals(other.loanAgentID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L195">        return &quot;se.nrm.dina.datamodel.Loanagent[ loanAgentID=&quot; + loanAgentID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

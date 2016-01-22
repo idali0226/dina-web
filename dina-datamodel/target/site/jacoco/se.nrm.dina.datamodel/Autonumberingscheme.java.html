@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Autonumberingscheme.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Autonumberingscheme.java</span></div><h1>Autonumberingscheme.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;autonumberingscheme&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Autonumberingscheme.findAll&quot;, query = &quot;SELECT a FROM Autonumberingscheme a&quot;),
+    @NamedQuery(name = &quot;Autonumberingscheme.findByAutoNumberingSchemeID&quot;, query = &quot;SELECT a FROM Autonumberingscheme a WHERE a.autoNumberingSchemeID = :autoNumberingSchemeID&quot;), 
+    @NamedQuery(name = &quot;Autonumberingscheme.findByFormatName&quot;, query = &quot;SELECT a FROM Autonumberingscheme a WHERE a.formatName = :formatName&quot;),  
+    @NamedQuery(name = &quot;Autonumberingscheme.findBySchemeName&quot;, query = &quot;SELECT a FROM Autonumberingscheme a WHERE a.schemeName = :schemeName&quot;),
+    @NamedQuery(name = &quot;Autonumberingscheme.findByTableNumber&quot;, query = &quot;SELECT a FROM Autonumberingscheme a WHERE a.tableNumber = :tableNumber&quot;)})
+public class Autonumberingscheme extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;AutoNumberingSchemeID&quot;)
+    private Integer autoNumberingSchemeID;
+    
+    
+    @Size(max = 64)
+    @Column(name = &quot;FormatName&quot;)
+    private String formatName;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;IsNumericOnly&quot;)
+    private boolean isNumericOnly;
+    
+    @Size(max = 64)
+    @Column(name = &quot;SchemeClassName&quot;)
+    private String schemeClassName;
+    
+    @Size(max = 64)
+    @Column(name = &quot;SchemeName&quot;)
+    private String schemeName;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;TableNumber&quot;)
+    private int tableNumber;
+    
+    @ManyToMany(mappedBy = &quot;autonumberingschemeList&quot;, fetch = FetchType.LAZY)
+    private List&lt;Division&gt; divisionList;
+    
+    @ManyToMany(mappedBy = &quot;autonumberingschemeList&quot;, fetch = FetchType.LAZY)
+    private List&lt;Discipline&gt; disciplineList;
+    
+    @ManyToMany(mappedBy = &quot;autonumberingschemeList&quot;, fetch = FetchType.LAZY)
+    private List&lt;Collection&gt; collectionList;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+
+<span class="nc" id="L95">    public Autonumberingscheme() {</span>
+<span class="nc" id="L96">    }</span>
+
+<span class="nc" id="L98">    public Autonumberingscheme(Integer autoNumberingSchemeID) {</span>
+<span class="nc" id="L99">        this.autoNumberingSchemeID = autoNumberingSchemeID;</span>
+<span class="nc" id="L100">    }</span>
+
+<span class="nc" id="L102">    public Autonumberingscheme(Integer autoNumberingSchemeID, Date timestampCreated, boolean isNumericOnly, int tableNumber) {</span>
+<span class="nc" id="L103">        this.autoNumberingSchemeID = autoNumberingSchemeID;</span>
+<span class="nc" id="L104">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L105">        this.isNumericOnly = isNumericOnly;</span>
+<span class="nc" id="L106">        this.tableNumber = tableNumber;</span>
+<span class="nc" id="L107">    }</span>
+    
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L114">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + autoNumberingSchemeID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L119">        return autoNumberingSchemeID;</span>
+    }
+    
+
+    public Integer getAutoNumberingSchemeID() {
+<span class="nc" id="L124">        return autoNumberingSchemeID;</span>
+    }
+
+    public void setAutoNumberingSchemeID(Integer autoNumberingSchemeID) {
+<span class="nc" id="L128">        this.autoNumberingSchemeID = autoNumberingSchemeID;</span>
+<span class="nc" id="L129">    }</span>
+ 
+
+    public String getFormatName() {
+<span class="nc" id="L133">        return formatName;</span>
+    }
+
+    public void setFormatName(String formatName) {
+<span class="nc" id="L137">        this.formatName = formatName;</span>
+<span class="nc" id="L138">    }</span>
+
+    public boolean getIsNumericOnly() {
+<span class="nc" id="L141">        return isNumericOnly;</span>
+    }
+
+    public void setIsNumericOnly(boolean isNumericOnly) {
+<span class="nc" id="L145">        this.isNumericOnly = isNumericOnly;</span>
+<span class="nc" id="L146">    }</span>
+
+    public String getSchemeClassName() {
+<span class="nc" id="L149">        return schemeClassName;</span>
+    }
+
+    public void setSchemeClassName(String schemeClassName) {
+<span class="nc" id="L153">        this.schemeClassName = schemeClassName;</span>
+<span class="nc" id="L154">    }</span>
+
+    public String getSchemeName() {
+<span class="nc" id="L157">        return schemeName;</span>
+    }
+
+    public void setSchemeName(String schemeName) {
+<span class="nc" id="L161">        this.schemeName = schemeName;</span>
+<span class="nc" id="L162">    }</span>
+
+    public int getTableNumber() {
+<span class="nc" id="L165">        return tableNumber;</span>
+    }
+
+    public void setTableNumber(int tableNumber) {
+<span class="nc" id="L169">        this.tableNumber = tableNumber;</span>
+<span class="nc" id="L170">    }</span>
+
+    @XmlTransient
+    public List&lt;Division&gt; getDivisionList() {
+<span class="nc" id="L174">        return divisionList;</span>
+    }
+
+    public void setDivisionList(List&lt;Division&gt; divisionList) {
+<span class="nc" id="L178">        this.divisionList = divisionList;</span>
+<span class="nc" id="L179">    }</span>
+
+    @XmlTransient
+    public List&lt;Discipline&gt; getDisciplineList() {
+<span class="nc" id="L183">        return disciplineList;</span>
+    }
+
+    public void setDisciplineList(List&lt;Discipline&gt; disciplineList) {
+<span class="nc" id="L187">        this.disciplineList = disciplineList;</span>
+<span class="nc" id="L188">    }</span>
+
+    @XmlTransient
+    public List&lt;Collection&gt; getCollectionList() {
+<span class="nc" id="L192">        return collectionList;</span>
+    }
+
+    public void setCollectionList(List&lt;Collection&gt; collectionList) {
+<span class="nc" id="L196">        this.collectionList = collectionList;</span>
+<span class="nc" id="L197">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L201">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L205">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L206">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L210">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L214">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L215">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L219">        int hash = 0;</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">        hash += (autoNumberingSchemeID != null ? autoNumberingSchemeID.hashCode() : 0);</span>
+<span class="nc" id="L221">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L227" title="All 2 branches missed.">        if (!(object instanceof Autonumberingscheme)) {</span>
+<span class="nc" id="L228">            return false;</span>
+        }
+<span class="nc" id="L230">        Autonumberingscheme other = (Autonumberingscheme) object;</span>
+<span class="nc bnc" id="L231" title="All 8 branches missed.">        return !((this.autoNumberingSchemeID == null &amp;&amp; other.autoNumberingSchemeID != null) || (this.autoNumberingSchemeID != null &amp;&amp; !this.autoNumberingSchemeID.equals(other.autoNumberingSchemeID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L236">        return &quot;se.nrm.dina.datamodel.Autonumberingscheme[ autoNumberingSchemeID=&quot; + autoNumberingSchemeID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

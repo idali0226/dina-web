@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Addressofrecord.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Addressofrecord.java</span></div><h1>Addressofrecord.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;addressofrecord&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Addressofrecord.findAll&quot;, query = &quot;SELECT a FROM Addressofrecord a&quot;),
+    @NamedQuery(name = &quot;Addressofrecord.findByAddressOfRecordID&quot;, query = &quot;SELECT a FROM Addressofrecord a WHERE a.addressOfRecordID = :addressOfRecordID&quot;), 
+    @NamedQuery(name = &quot;Addressofrecord.findByAddress&quot;, query = &quot;SELECT a FROM Addressofrecord a WHERE a.address = :address&quot;),
+    @NamedQuery(name = &quot;Addressofrecord.findByAddress2&quot;, query = &quot;SELECT a FROM Addressofrecord a WHERE a.address2 = :address2&quot;),
+    @NamedQuery(name = &quot;Addressofrecord.findByCity&quot;, query = &quot;SELECT a FROM Addressofrecord a WHERE a.city = :city&quot;),
+    @NamedQuery(name = &quot;Addressofrecord.findByCountry&quot;, query = &quot;SELECT a FROM Addressofrecord a WHERE a.country = :country&quot;),
+    @NamedQuery(name = &quot;Addressofrecord.findByPostalCode&quot;, query = &quot;SELECT a FROM Addressofrecord a WHERE a.postalCode = :postalCode&quot;),
+    @NamedQuery(name = &quot;Addressofrecord.findByState&quot;, query = &quot;SELECT a FROM Addressofrecord a WHERE a.state = :state&quot;)})
+public class Addressofrecord extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;AddressOfRecordID&quot;)
+    private Integer addressOfRecordID;
+ 
+    @Size(max = 255)
+    @Column(name = &quot;Address&quot;)
+    private String address;
+    
+    @Size(max = 255)
+    @Column(name = &quot;Address2&quot;)
+    private String address2;
+    
+    @Size(max = 64)
+    @Column(name = &quot;City&quot;)
+    private String city;
+    
+    @Size(max = 64)
+    @Column(name = &quot;Country&quot;)
+    private String country;
+    
+    @Size(max = 32)
+    @Column(name = &quot;PostalCode&quot;)
+    private String postalCode;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Size(max = 64)
+    @Column(name = &quot;State&quot;)
+    private String state;
+    
+    @OneToMany(mappedBy = &quot;addressOfRecordID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Gift&gt; giftList;
+    
+    @OneToMany(mappedBy = &quot;addressOfRecordID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Exchangeout&gt; exchangeoutList;
+    
+    @JoinColumn(name = &quot;AgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent agentID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @OneToMany(mappedBy = &quot;addressOfRecordID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Borrow&gt; borrowList;
+    
+    @OneToMany(mappedBy = &quot;addressOfRecordID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Repositoryagreement&gt; repositoryagreementList;
+    
+    @OneToMany(mappedBy = &quot;addressOfRecordID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Loan&gt; loanList;
+    
+    @OneToMany(mappedBy = &quot;addressOfRecordID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Accession&gt; accessionList;
+    
+    @OneToMany(mappedBy = &quot;addressOfRecordID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Exchangein&gt; exchangeinList;
+
+<span class="nc" id="L120">    public Addressofrecord() {</span>
+<span class="nc" id="L121">    }</span>
+
+<span class="nc" id="L123">    public Addressofrecord(Integer addressOfRecordID) {</span>
+<span class="nc" id="L124">        this.addressOfRecordID = addressOfRecordID;</span>
+<span class="nc" id="L125">    }</span>
+
+<span class="nc" id="L127">    public Addressofrecord(Integer addressOfRecordID, Date timestampCreated) {</span>
+<span class="nc" id="L128">        this.addressOfRecordID = addressOfRecordID;</span>
+<span class="nc" id="L129">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L130">    }</span>
+
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L136">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + addressOfRecordID;</span>
+    }
+
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L141">        return addressOfRecordID;</span>
+    }
+
+    public Integer getAddressOfRecordID() {
+<span class="nc" id="L145">        return addressOfRecordID;</span>
+    }
+
+    public void setAddressOfRecordID(Integer addressOfRecordID) {
+<span class="nc" id="L149">        this.addressOfRecordID = addressOfRecordID;</span>
+<span class="nc" id="L150">    }</span>
+ 
+
+    public String getAddress() {
+<span class="nc" id="L154">        return address;</span>
+    }
+
+    public void setAddress(String address) {
+<span class="nc" id="L158">        this.address = address;</span>
+<span class="nc" id="L159">    }</span>
+
+    public String getAddress2() {
+<span class="nc" id="L162">        return address2;</span>
+    }
+
+    public void setAddress2(String address2) {
+<span class="nc" id="L166">        this.address2 = address2;</span>
+<span class="nc" id="L167">    }</span>
+
+    public String getCity() {
+<span class="nc" id="L170">        return city;</span>
+    }
+
+    public void setCity(String city) {
+<span class="nc" id="L174">        this.city = city;</span>
+<span class="nc" id="L175">    }</span>
+
+    public String getCountry() {
+<span class="nc" id="L178">        return country;</span>
+    }
+
+    public void setCountry(String country) {
+<span class="nc" id="L182">        this.country = country;</span>
+<span class="nc" id="L183">    }</span>
+
+    public String getPostalCode() {
+<span class="nc" id="L186">        return postalCode;</span>
+    }
+
+    public void setPostalCode(String postalCode) {
+<span class="nc" id="L190">        this.postalCode = postalCode;</span>
+<span class="nc" id="L191">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L194">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L198">        this.remarks = remarks;</span>
+<span class="nc" id="L199">    }</span>
+
+    public String getState() {
+<span class="nc" id="L202">        return state;</span>
+    }
+
+    public void setState(String state) {
+<span class="nc" id="L206">        this.state = state;</span>
+<span class="nc" id="L207">    }</span>
+
+    @XmlTransient
+    public List&lt;Gift&gt; getGiftList() {
+<span class="nc" id="L211">        return giftList;</span>
+    }
+
+    public void setGiftList(List&lt;Gift&gt; giftList) {
+<span class="nc" id="L215">        this.giftList = giftList;</span>
+<span class="nc" id="L216">    }</span>
+
+    @XmlTransient
+    public List&lt;Exchangeout&gt; getExchangeoutList() {
+<span class="nc" id="L220">        return exchangeoutList;</span>
+    }
+
+    public void setExchangeoutList(List&lt;Exchangeout&gt; exchangeoutList) {
+<span class="nc" id="L224">        this.exchangeoutList = exchangeoutList;</span>
+<span class="nc" id="L225">    }</span>
+
+    @XmlIDREF
+    public Agent getAgentID() {
+<span class="nc" id="L229">        return agentID;</span>
+    }
+
+    public void setAgentID(Agent agentID) {
+<span class="nc" id="L233">        this.agentID = agentID;</span>
+<span class="nc" id="L234">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L238">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L242">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L243">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L247">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L251">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L252">    }</span>
+
+    @XmlTransient
+    public List&lt;Borrow&gt; getBorrowList() {
+<span class="nc" id="L256">        return borrowList;</span>
+    }
+
+    public void setBorrowList(List&lt;Borrow&gt; borrowList) {
+<span class="nc" id="L260">        this.borrowList = borrowList;</span>
+<span class="nc" id="L261">    }</span>
+
+    @XmlTransient
+    public List&lt;Repositoryagreement&gt; getRepositoryagreementList() {
+<span class="nc" id="L265">        return repositoryagreementList;</span>
+    }
+
+    public void setRepositoryagreementList(List&lt;Repositoryagreement&gt; repositoryagreementList) {
+<span class="nc" id="L269">        this.repositoryagreementList = repositoryagreementList;</span>
+<span class="nc" id="L270">    }</span>
+
+    @XmlTransient
+    public List&lt;Loan&gt; getLoanList() {
+<span class="nc" id="L274">        return loanList;</span>
+    }
+
+    public void setLoanList(List&lt;Loan&gt; loanList) {
+<span class="nc" id="L278">        this.loanList = loanList;</span>
+<span class="nc" id="L279">    }</span>
+
+    @XmlTransient
+    public List&lt;Accession&gt; getAccessionList() {
+<span class="nc" id="L283">        return accessionList;</span>
+    }
+
+    public void setAccessionList(List&lt;Accession&gt; accessionList) {
+<span class="nc" id="L287">        this.accessionList = accessionList;</span>
+<span class="nc" id="L288">    }</span>
+
+    @XmlTransient
+    public List&lt;Exchangein&gt; getExchangeinList() {
+<span class="nc" id="L292">        return exchangeinList;</span>
+    }
+
+    public void setExchangeinList(List&lt;Exchangein&gt; exchangeinList) {
+<span class="nc" id="L296">        this.exchangeinList = exchangeinList;</span>
+<span class="nc" id="L297">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L301">        int hash = 0;</span>
+<span class="nc bnc" id="L302" title="All 2 branches missed.">        hash += (addressOfRecordID != null ? addressOfRecordID.hashCode() : 0);</span>
+<span class="nc" id="L303">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L309" title="All 2 branches missed.">        if (!(object instanceof Addressofrecord)) {</span>
+<span class="nc" id="L310">            return false;</span>
+        }
+<span class="nc" id="L312">        Addressofrecord other = (Addressofrecord) object;</span>
+<span class="nc bnc" id="L313" title="All 8 branches missed.">        return !((this.addressOfRecordID == null &amp;&amp; other.addressOfRecordID != null) || (this.addressOfRecordID != null &amp;&amp; !this.addressOfRecordID.equals(other.addressOfRecordID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L318">        return &quot;se.nrm.dina.datamodel.Addressofrecord[ addressOfRecordID=&quot; + addressOfRecordID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

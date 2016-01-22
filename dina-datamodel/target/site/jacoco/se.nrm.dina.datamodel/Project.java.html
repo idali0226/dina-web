@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Project.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Project.java</span></div><h1>Project.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;project&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Project.findAll&quot;, query = &quot;SELECT p FROM Project p&quot;),
+    @NamedQuery(name = &quot;Project.findByProjectID&quot;, query = &quot;SELECT p FROM Project p WHERE p.projectID = :projectID&quot;), 
+    @NamedQuery(name = &quot;Project.findByCollectionMemberID&quot;, query = &quot;SELECT p FROM Project p WHERE p.collectionMemberID = :collectionMemberID&quot;),
+    @NamedQuery(name = &quot;Project.findByEndDate&quot;, query = &quot;SELECT p FROM Project p WHERE p.endDate = :endDate&quot;),
+    @NamedQuery(name = &quot;Project.findByGrantAgency&quot;, query = &quot;SELECT p FROM Project p WHERE p.grantAgency = :grantAgency&quot;),
+    @NamedQuery(name = &quot;Project.findByGrantNumber&quot;, query = &quot;SELECT p FROM Project p WHERE p.grantNumber = :grantNumber&quot;), 
+    @NamedQuery(name = &quot;Project.findByProjectDescription&quot;, query = &quot;SELECT p FROM Project p WHERE p.projectDescription = :projectDescription&quot;),
+    @NamedQuery(name = &quot;Project.findByProjectname&quot;, query = &quot;SELECT p FROM Project p WHERE p.projectname = :projectname&quot;),
+    @NamedQuery(name = &quot;Project.findByProjectNumber&quot;, query = &quot;SELECT p FROM Project p WHERE p.projectNumber = :projectNumber&quot;),
+    @NamedQuery(name = &quot;Project.findByStartDate&quot;, query = &quot;SELECT p FROM Project p WHERE p.startDate = :startDate&quot;) })
+public class Project extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;ProjectID&quot;)
+    private Integer projectID;
+    
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;CollectionMemberID&quot;)
+    private int collectionMemberID;
+    
+    @Column(name = &quot;EndDate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
+    
+    @Size(max = 64)
+    @Column(name = &quot;GrantAgency&quot;)
+    private String grantAgency;
+    
+    @Size(max = 64)
+    @Column(name = &quot;GrantNumber&quot;)
+    private String grantNumber;
+    
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = &quot;Number1&quot;)
+    private Float number1;
+    
+    @Column(name = &quot;Number2&quot;)
+    private Float number2;
+    
+    @Size(max = 255)
+    @Column(name = &quot;ProjectDescription&quot;)
+    private String projectDescription;
+    
+    @Size(max = 128)
+    @Column(name = &quot;projectname&quot;)
+    private String projectname;
+    
+    @Size(max = 64)
+    @Column(name = &quot;ProjectNumber&quot;)
+    private String projectNumber;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Column(name = &quot;StartDate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text1&quot;)
+    private String text1;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text2&quot;)
+    private String text2;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;URL&quot;)
+    private String url;
+    
+    @Column(name = &quot;YesNo1&quot;)
+    private Boolean yesNo1;
+    
+    @Column(name = &quot;YesNo2&quot;)
+    private Boolean yesNo2;
+    
+    @ManyToMany(mappedBy = &quot;projectList&quot;, fetch = FetchType.LAZY)
+    private transient List&lt;Collectionobject&gt; collectionobjectList;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;ProjectAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent projectAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+
+<span class="nc" id="L146">    public Project() {</span>
+<span class="nc" id="L147">    }</span>
+
+<span class="nc" id="L149">    public Project(Integer projectID) {</span>
+<span class="nc" id="L150">        this.projectID = projectID;</span>
+<span class="nc" id="L151">    }</span>
+
+<span class="nc" id="L153">    public Project(Integer projectID, Date timestampCreated, int collectionMemberID) {</span>
+<span class="nc" id="L154">        this.projectID = projectID;</span>
+<span class="nc" id="L155">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L156">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L157">    }</span>
+
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L163">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + projectID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L168">        return projectID;</span>
+    }
+    
+    public Integer getProjectID() {
+<span class="nc" id="L172">        return projectID;</span>
+    }
+
+    public void setProjectID(Integer projectID) {
+<span class="nc" id="L176">        this.projectID = projectID;</span>
+<span class="nc" id="L177">    }</span>
+ 
+
+    public int getCollectionMemberID() {
+<span class="nc" id="L181">        return collectionMemberID;</span>
+    }
+
+    public void setCollectionMemberID(int collectionMemberID) {
+<span class="nc" id="L185">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L186">    }</span>
+
+    public Date getEndDate() {
+<span class="nc" id="L189">        return endDate;</span>
+    }
+
+    public void setEndDate(Date endDate) {
+<span class="nc" id="L193">        this.endDate = endDate;</span>
+<span class="nc" id="L194">    }</span>
+
+    public String getGrantAgency() {
+<span class="nc" id="L197">        return grantAgency;</span>
+    }
+
+    public void setGrantAgency(String grantAgency) {
+<span class="nc" id="L201">        this.grantAgency = grantAgency;</span>
+<span class="nc" id="L202">    }</span>
+
+    public String getGrantNumber() {
+<span class="nc" id="L205">        return grantNumber;</span>
+    }
+
+    public void setGrantNumber(String grantNumber) {
+<span class="nc" id="L209">        this.grantNumber = grantNumber;</span>
+<span class="nc" id="L210">    }</span>
+
+    public Float getNumber1() {
+<span class="nc" id="L213">        return number1;</span>
+    }
+
+    public void setNumber1(Float number1) {
+<span class="nc" id="L217">        this.number1 = number1;</span>
+<span class="nc" id="L218">    }</span>
+
+    public Float getNumber2() {
+<span class="nc" id="L221">        return number2;</span>
+    }
+
+    public void setNumber2(Float number2) {
+<span class="nc" id="L225">        this.number2 = number2;</span>
+<span class="nc" id="L226">    }</span>
+
+    public String getProjectDescription() {
+<span class="nc" id="L229">        return projectDescription;</span>
+    }
+
+    public void setProjectDescription(String projectDescription) {
+<span class="nc" id="L233">        this.projectDescription = projectDescription;</span>
+<span class="nc" id="L234">    }</span>
+
+    public String getProjectname() {
+<span class="nc" id="L237">        return projectname;</span>
+    }
+
+    public void setProjectname(String projectname) {
+<span class="nc" id="L241">        this.projectname = projectname;</span>
+<span class="nc" id="L242">    }</span>
+
+    public String getProjectNumber() {
+<span class="nc" id="L245">        return projectNumber;</span>
+    }
+
+    public void setProjectNumber(String projectNumber) {
+<span class="nc" id="L249">        this.projectNumber = projectNumber;</span>
+<span class="nc" id="L250">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L253">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L257">        this.remarks = remarks;</span>
+<span class="nc" id="L258">    }</span>
+
+    public Date getStartDate() {
+<span class="nc" id="L261">        return startDate;</span>
+    }
+
+    public void setStartDate(Date startDate) {
+<span class="nc" id="L265">        this.startDate = startDate;</span>
+<span class="nc" id="L266">    }</span>
+
+    public String getText1() {
+<span class="nc" id="L269">        return text1;</span>
+    }
+
+    public void setText1(String text1) {
+<span class="nc" id="L273">        this.text1 = text1;</span>
+<span class="nc" id="L274">    }</span>
+
+    public String getText2() {
+<span class="nc" id="L277">        return text2;</span>
+    }
+
+    public void setText2(String text2) {
+<span class="nc" id="L281">        this.text2 = text2;</span>
+<span class="nc" id="L282">    }</span>
+
+    public String getUrl() {
+<span class="nc" id="L285">        return url;</span>
+    }
+
+    public void setUrl(String url) {
+<span class="nc" id="L289">        this.url = url;</span>
+<span class="nc" id="L290">    }</span>
+
+    public Boolean getYesNo1() {
+<span class="nc" id="L293">        return yesNo1;</span>
+    }
+
+    public void setYesNo1(Boolean yesNo1) {
+<span class="nc" id="L297">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L298">    }</span>
+
+    public Boolean getYesNo2() {
+<span class="nc" id="L301">        return yesNo2;</span>
+    }
+
+    public void setYesNo2(Boolean yesNo2) {
+<span class="nc" id="L305">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L306">    }</span>
+
+    @XmlTransient
+    public List&lt;Collectionobject&gt; getCollectionobjectList() {
+<span class="nc" id="L310">        return collectionobjectList;</span>
+    }
+
+    public void setCollectionobjectList(List&lt;Collectionobject&gt; collectionobjectList) {
+<span class="nc" id="L314">        this.collectionobjectList = collectionobjectList;</span>
+<span class="nc" id="L315">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L319">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L323">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L324">    }</span>
+
+    @XmlIDREF
+    public Agent getProjectAgentID() {
+<span class="nc" id="L328">        return projectAgentID;</span>
+    }
+
+    public void setProjectAgentID(Agent projectAgentID) {
+<span class="nc" id="L332">        this.projectAgentID = projectAgentID;</span>
+<span class="nc" id="L333">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L337">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L341">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L342">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L346">        int hash = 0;</span>
+<span class="nc bnc" id="L347" title="All 2 branches missed.">        hash += (projectID != null ? projectID.hashCode() : 0);</span>
+<span class="nc" id="L348">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L354" title="All 2 branches missed.">        if (!(object instanceof Project)) {</span>
+<span class="nc" id="L355">            return false;</span>
+        }
+<span class="nc" id="L357">        Project other = (Project) object;</span>
+<span class="nc bnc" id="L358" title="All 8 branches missed.">        return !((this.projectID == null &amp;&amp; other.projectID != null) || (this.projectID != null &amp;&amp; !this.projectID.equals(other.projectID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L363">        return &quot;se.nrm.dina.datamodel.Project[ projectID=&quot; + projectID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

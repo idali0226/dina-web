@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Spexportschema.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Spexportschema.java</span></div><h1>Spexportschema.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;spexportschema&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Spexportschema.findAll&quot;, query = &quot;SELECT s FROM Spexportschema s&quot;),
+    @NamedQuery(name = &quot;Spexportschema.findBySpExportSchemaID&quot;, query = &quot;SELECT s FROM Spexportschema s WHERE s.spExportSchemaID = :spExportSchemaID&quot;), 
+    @NamedQuery(name = &quot;Spexportschema.findByDescription&quot;, query = &quot;SELECT s FROM Spexportschema s WHERE s.description = :description&quot;),
+    @NamedQuery(name = &quot;Spexportschema.findBySchemaName&quot;, query = &quot;SELECT s FROM Spexportschema s WHERE s.schemaName = :schemaName&quot;),
+    @NamedQuery(name = &quot;Spexportschema.findBySchemaVersion&quot;, query = &quot;SELECT s FROM Spexportschema s WHERE s.schemaVersion = :schemaVersion&quot;)})
+public class Spexportschema extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;SpExportSchemaID&quot;)
+    private Integer spExportSchemaID;
+    
+    @Size(max = 255)
+    @Column(name = &quot;Description&quot;)
+    private String description;
+    
+    @Size(max = 80)
+    @Column(name = &quot;SchemaName&quot;)
+    private String schemaName;
+    
+    @Size(max = 80)
+    @Column(name = &quot;SchemaVersion&quot;)
+    private String schemaVersion;
+    
+    @JoinTable(name = &quot;sp_schema_mapping&quot;, joinColumns = {
+        @JoinColumn(name = &quot;SpExportSchemaID&quot;, referencedColumnName = &quot;SpExportSchemaID&quot;)}, inverseJoinColumns = {
+        @JoinColumn(name = &quot;SpExportSchemaMappingID&quot;, referencedColumnName = &quot;SpExportSchemaMappingID&quot;)})
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List&lt;Spexportschemamapping&gt; spexportschemamappingList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;spExportSchemaID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Spexportschemaitem&gt; spexportschemaitemList;
+    
+    @JoinColumn(name = &quot;DisciplineID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)
+    @ManyToOne(optional = false)
+    private Discipline disciplineID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+
+<span class="nc" id="L90">    public Spexportschema() {</span>
+<span class="nc" id="L91">    }</span>
+
+<span class="nc" id="L93">    public Spexportschema(Integer spExportSchemaID) {</span>
+<span class="nc" id="L94">        this.spExportSchemaID = spExportSchemaID;</span>
+<span class="nc" id="L95">    }</span>
+
+<span class="nc" id="L97">    public Spexportschema(Integer spExportSchemaID, Date timestampCreated) {</span>
+<span class="nc" id="L98">        this.spExportSchemaID = spExportSchemaID;</span>
+<span class="nc" id="L99">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L100">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L106">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spExportSchemaID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L111">        return spExportSchemaID;</span>
+    }
+
+    public Integer getSpExportSchemaID() {
+<span class="nc" id="L115">        return spExportSchemaID;</span>
+    }
+
+    public void setSpExportSchemaID(Integer spExportSchemaID) {
+<span class="nc" id="L119">        this.spExportSchemaID = spExportSchemaID;</span>
+<span class="nc" id="L120">    }</span>
+ 
+    public String getDescription() {
+<span class="nc" id="L123">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="nc" id="L127">        this.description = description;</span>
+<span class="nc" id="L128">    }</span>
+
+    public String getSchemaName() {
+<span class="nc" id="L131">        return schemaName;</span>
+    }
+
+    public void setSchemaName(String schemaName) {
+<span class="nc" id="L135">        this.schemaName = schemaName;</span>
+<span class="nc" id="L136">    }</span>
+
+    public String getSchemaVersion() {
+<span class="nc" id="L139">        return schemaVersion;</span>
+    }
+
+    public void setSchemaVersion(String schemaVersion) {
+<span class="nc" id="L143">        this.schemaVersion = schemaVersion;</span>
+<span class="nc" id="L144">    }</span>
+
+    @XmlTransient
+    public List&lt;Spexportschemamapping&gt; getSpexportschemamappingList() {
+<span class="nc" id="L148">        return spexportschemamappingList;</span>
+    }
+
+    public void setSpexportschemamappingList(List&lt;Spexportschemamapping&gt; spexportschemamappingList) {
+<span class="nc" id="L152">        this.spexportschemamappingList = spexportschemamappingList;</span>
+<span class="nc" id="L153">    }</span>
+
+    @XmlTransient
+    public List&lt;Spexportschemaitem&gt; getSpexportschemaitemList() {
+<span class="nc" id="L157">        return spexportschemaitemList;</span>
+    }
+
+    public void setSpexportschemaitemList(List&lt;Spexportschemaitem&gt; spexportschemaitemList) {
+<span class="nc" id="L161">        this.spexportschemaitemList = spexportschemaitemList;</span>
+<span class="nc" id="L162">    }</span>
+
+    @XmlIDREF
+    public Discipline getDisciplineID() {
+<span class="nc" id="L166">        return disciplineID;</span>
+    }
+
+    public void setDisciplineID(Discipline disciplineID) {
+<span class="nc" id="L170">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L171">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L175">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L179">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L180">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L184">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L188">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L189">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L193">        int hash = 0;</span>
+<span class="nc bnc" id="L194" title="All 2 branches missed.">        hash += (spExportSchemaID != null ? spExportSchemaID.hashCode() : 0);</span>
+<span class="nc" id="L195">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L201" title="All 2 branches missed.">        if (!(object instanceof Spexportschema)) {</span>
+<span class="nc" id="L202">            return false;</span>
+        }
+<span class="nc" id="L204">        Spexportschema other = (Spexportschema) object;</span>
+<span class="nc bnc" id="L205" title="All 8 branches missed.">        return !((this.spExportSchemaID == null &amp;&amp; other.spExportSchemaID != null) || (this.spExportSchemaID != null &amp;&amp; !this.spExportSchemaID.equals(other.spExportSchemaID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L210">        return &quot;se.nrm.dina.datamodel.Spexportschema[ spExportSchemaID=&quot; + spExportSchemaID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

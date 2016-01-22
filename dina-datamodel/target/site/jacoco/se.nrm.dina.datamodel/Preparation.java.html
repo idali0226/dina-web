@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Preparation.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Preparation.java</span></div><h1>Preparation.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;preparation&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Preparation.findAll&quot;, query = &quot;SELECT p FROM Preparation p&quot;),
+    @NamedQuery(name = &quot;Preparation.findByPreparationID&quot;, query = &quot;SELECT p FROM Preparation p WHERE p.preparationID = :preparationID&quot;), 
+    @NamedQuery(name = &quot;Preparation.findByCollectionMemberID&quot;, query = &quot;SELECT p FROM Preparation p WHERE p.collectionMemberID = :collectionMemberID&quot;),
+    @NamedQuery(name = &quot;Preparation.findByCountAmt&quot;, query = &quot;SELECT p FROM Preparation p WHERE p.countAmt = :countAmt&quot;),
+    @NamedQuery(name = &quot;Preparation.findByDescription&quot;, query = &quot;SELECT p FROM Preparation p WHERE p.description = :description&quot;), 
+    @NamedQuery(name = &quot;Preparation.findByPreparedDate&quot;, query = &quot;SELECT p FROM Preparation p WHERE p.preparedDate = :preparedDate&quot;),
+    @NamedQuery(name = &quot;Preparation.findByPreparedDatePrecision&quot;, query = &quot;SELECT p FROM Preparation p WHERE p.preparedDatePrecision = :preparedDatePrecision&quot;),
+    @NamedQuery(name = &quot;Preparation.findBySampleNumber&quot;, query = &quot;SELECT p FROM Preparation p WHERE p.sampleNumber = :sampleNumber&quot;),
+    @NamedQuery(name = &quot;Preparation.findByStatus&quot;, query = &quot;SELECT p FROM Preparation p WHERE p.status = :status&quot;),
+    @NamedQuery(name = &quot;Preparation.findByStorageLocation&quot;, query = &quot;SELECT p FROM Preparation p WHERE p.storageLocation = :storageLocation&quot;), })
+public class Preparation extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;PreparationID&quot;)
+    private Integer preparationID;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;CollectionMemberID&quot;)
+    private int collectionMemberID;
+    
+    @Column(name = &quot;CountAmt&quot;)
+    private Integer countAmt;
+    
+    @Size(max = 255)
+    @Column(name = &quot;Description&quot;)
+    private String description;
+    
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = &quot;Number1&quot;)
+    private Float number1;
+    
+    @Column(name = &quot;Number2&quot;)
+    private Float number2;
+    
+    @Column(name = &quot;PreparedDate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date preparedDate;
+    
+    @Column(name = &quot;PreparedDatePrecision&quot;)
+    private Short preparedDatePrecision;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Size(max = 32)
+    @Column(name = &quot;SampleNumber&quot;)
+    private String sampleNumber;
+    
+    @Size(max = 32)
+    @Column(name = &quot;Status&quot;)
+    private String status;
+    
+    @Size(max = 50)
+    @Column(name = &quot;StorageLocation&quot;)
+    private String storageLocation;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text1&quot;)
+    private String text1;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text2&quot;)
+    private String text2;
+    
+    @Column(name = &quot;YesNo1&quot;)
+    private Boolean yesNo1;
+    
+    @Column(name = &quot;YesNo2&quot;)
+    private Boolean yesNo2;
+    
+    @Column(name = &quot;YesNo3&quot;)
+    private Boolean yesNo3;
+    
+    @Column(name = &quot;Integer1&quot;)
+    private Integer integer1;
+    
+    @Column(name = &quot;Integer2&quot;)
+    private Integer integer2;
+    
+    @Column(name = &quot;ReservedInteger3&quot;)
+    private Integer reservedInteger3;
+    
+    @Column(name = &quot;ReservedInteger4&quot;)
+    private Integer reservedInteger4;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;preparationID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Preparationattachment&gt; preparationattachmentList;
+    
+    @JoinColumn(name = &quot;PreparationAttributeID&quot;, referencedColumnName = &quot;PreparationAttributeID&quot;)
+    @ManyToOne
+    private Preparationattribute preparationAttributeID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;PrepTypeID&quot;, referencedColumnName = &quot;PrepTypeID&quot;)
+    @ManyToOne(optional = false)
+    private Preptype prepTypeID;
+    
+    @JoinColumn(name = &quot;CollectionObjectID&quot;, referencedColumnName = &quot;CollectionObjectID&quot;)
+    @ManyToOne(optional = false,  cascade = CascadeType.ALL,  fetch = FetchType.LAZY)
+    private Collectionobject collectionObjectID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;StorageID&quot;, referencedColumnName = &quot;StorageID&quot;)
+    @ManyToOne
+    private Storage storageID;
+    
+    @JoinColumn(name = &quot;PreparedByID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent preparedByID;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;preparationId&quot;, fetch = FetchType.LAZY)
+    private List&lt;Preparationattr&gt; preparationattrList;
+    
+    @OneToMany(mappedBy = &quot;preparationID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Loanpreparation&gt; loanpreparationList;
+    
+    @OneToMany(mappedBy = &quot;preparationID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Giftpreparation&gt; giftpreparationList;
+    
+    @OneToMany(mappedBy = &quot;preparationID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Deaccessionpreparation&gt; deaccessionpreparationList;
+
+<span class="nc" id="L181">    public Preparation() {</span>
+<span class="nc" id="L182">    }</span>
+
+<span class="nc" id="L184">    public Preparation(Integer preparationID) {</span>
+<span class="nc" id="L185">        this.preparationID = preparationID;</span>
+<span class="nc" id="L186">    }</span>
+
+<span class="nc" id="L188">    public Preparation(Integer preparationID, Date timestampCreated, int collectionMemberID) {</span>
+<span class="nc" id="L189">        this.preparationID = preparationID;</span>
+<span class="nc" id="L190">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L191">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L192">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L198">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + preparationID;</span>
+    }
+    
+    @XmlTransient
+    @Override
+    public int getEntityId() {
+<span class="nc bnc" id="L204" title="All 2 branches missed.">        return preparationID == null ? 0 : preparationID;</span>
+    }
+
+    public Integer getPreparationID() {
+<span class="nc" id="L208">        return preparationID;</span>
+    }
+
+    public void setPreparationID(Integer preparationID) {
+<span class="nc" id="L212">        this.preparationID = preparationID;</span>
+<span class="nc" id="L213">    }</span>
+ 
+
+    public int getCollectionMemberID() {
+<span class="nc" id="L217">        return collectionMemberID;</span>
+    }
+
+    public void setCollectionMemberID(int collectionMemberID) {
+<span class="nc" id="L221">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L222">    }</span>
+
+    public Integer getCountAmt() {
+<span class="nc" id="L225">        return countAmt;</span>
+    }
+
+    public void setCountAmt(Integer countAmt) {
+<span class="nc" id="L229">        this.countAmt = countAmt;</span>
+<span class="nc" id="L230">    }</span>
+
+    public String getDescription() {
+<span class="nc" id="L233">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="nc" id="L237">        this.description = description;</span>
+<span class="nc" id="L238">    }</span>
+
+    public Float getNumber1() {
+<span class="nc" id="L241">        return number1;</span>
+    }
+
+    public void setNumber1(Float number1) {
+<span class="nc" id="L245">        this.number1 = number1;</span>
+<span class="nc" id="L246">    }</span>
+
+    public Float getNumber2() {
+<span class="nc" id="L249">        return number2;</span>
+    }
+
+    public void setNumber2(Float number2) {
+<span class="nc" id="L253">        this.number2 = number2;</span>
+<span class="nc" id="L254">    }</span>
+
+    public Date getPreparedDate() {
+<span class="nc" id="L257">        return preparedDate;</span>
+    }
+
+    public void setPreparedDate(Date preparedDate) {
+<span class="nc" id="L261">        this.preparedDate = preparedDate;</span>
+<span class="nc" id="L262">    }</span>
+
+    public Short getPreparedDatePrecision() {
+<span class="nc" id="L265">        return preparedDatePrecision;</span>
+    }
+
+    public void setPreparedDatePrecision(Short preparedDatePrecision) {
+<span class="nc" id="L269">        this.preparedDatePrecision = preparedDatePrecision;</span>
+<span class="nc" id="L270">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L273">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L277">        this.remarks = remarks;</span>
+<span class="nc" id="L278">    }</span>
+
+    public String getSampleNumber() {
+<span class="nc" id="L281">        return sampleNumber;</span>
+    }
+
+    public void setSampleNumber(String sampleNumber) {
+<span class="nc" id="L285">        this.sampleNumber = sampleNumber;</span>
+<span class="nc" id="L286">    }</span>
+
+    public String getStatus() {
+<span class="nc" id="L289">        return status;</span>
+    }
+
+    public void setStatus(String status) {
+<span class="nc" id="L293">        this.status = status;</span>
+<span class="nc" id="L294">    }</span>
+
+    public String getStorageLocation() {
+<span class="nc" id="L297">        return storageLocation;</span>
+    }
+
+    public void setStorageLocation(String storageLocation) {
+<span class="nc" id="L301">        this.storageLocation = storageLocation;</span>
+<span class="nc" id="L302">    }</span>
+
+    public String getText1() {
+<span class="nc" id="L305">        return text1;</span>
+    }
+
+    public void setText1(String text1) {
+<span class="nc" id="L309">        this.text1 = text1;</span>
+<span class="nc" id="L310">    }</span>
+
+    public String getText2() {
+<span class="nc" id="L313">        return text2;</span>
+    }
+
+    public void setText2(String text2) {
+<span class="nc" id="L317">        this.text2 = text2;</span>
+<span class="nc" id="L318">    }</span>
+
+    public Boolean getYesNo1() {
+<span class="nc" id="L321">        return yesNo1;</span>
+    }
+
+    public void setYesNo1(Boolean yesNo1) {
+<span class="nc" id="L325">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L326">    }</span>
+
+    public Boolean getYesNo2() {
+<span class="nc" id="L329">        return yesNo2;</span>
+    }
+
+    public void setYesNo2(Boolean yesNo2) {
+<span class="nc" id="L333">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L334">    }</span>
+
+    public Boolean getYesNo3() {
+<span class="nc" id="L337">        return yesNo3;</span>
+    }
+
+    public void setYesNo3(Boolean yesNo3) {
+<span class="nc" id="L341">        this.yesNo3 = yesNo3;</span>
+<span class="nc" id="L342">    }</span>
+
+    public Integer getInteger1() {
+<span class="nc" id="L345">        return integer1;</span>
+    }
+
+    public void setInteger1(Integer integer1) {
+<span class="nc" id="L349">        this.integer1 = integer1;</span>
+<span class="nc" id="L350">    }</span>
+
+    public Integer getInteger2() {
+<span class="nc" id="L353">        return integer2;</span>
+    }
+
+    public void setInteger2(Integer integer2) {
+<span class="nc" id="L357">        this.integer2 = integer2;</span>
+<span class="nc" id="L358">    }</span>
+
+    public Integer getReservedInteger3() {
+<span class="nc" id="L361">        return reservedInteger3;</span>
+    }
+
+    public void setReservedInteger3(Integer reservedInteger3) {
+<span class="nc" id="L365">        this.reservedInteger3 = reservedInteger3;</span>
+<span class="nc" id="L366">    }</span>
+
+    public Integer getReservedInteger4() {
+<span class="nc" id="L369">        return reservedInteger4;</span>
+    }
+
+    public void setReservedInteger4(Integer reservedInteger4) {
+<span class="nc" id="L373">        this.reservedInteger4 = reservedInteger4;</span>
+<span class="nc" id="L374">    }</span>
+
+    @XmlTransient
+    public List&lt;Preparationattachment&gt; getPreparationattachmentList() {
+<span class="nc" id="L378">        return preparationattachmentList;</span>
+    }
+
+    public void setPreparationattachmentList(List&lt;Preparationattachment&gt; preparationattachmentList) {
+<span class="nc" id="L382">        this.preparationattachmentList = preparationattachmentList;</span>
+<span class="nc" id="L383">    }</span>
+
+    @XmlIDREF
+    public Preparationattribute getPreparationAttributeID() {
+<span class="nc" id="L387">        return preparationAttributeID;</span>
+    }
+
+    public void setPreparationAttributeID(Preparationattribute preparationAttributeID) {
+<span class="nc" id="L391">        this.preparationAttributeID = preparationAttributeID;</span>
+<span class="nc" id="L392">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L396">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L400">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L401">    }</span>
+
+    @XmlIDREF
+    public Preptype getPrepTypeID() {
+<span class="nc" id="L405">        return prepTypeID;</span>
+    }
+
+    public void setPrepTypeID(Preptype prepTypeID) {
+<span class="nc" id="L409">        this.prepTypeID = prepTypeID;</span>
+<span class="nc" id="L410">    }</span>
+
+    @XmlTransient
+    public Collectionobject getCollectionObjectID() {
+<span class="nc" id="L414">        return collectionObjectID;</span>
+    }
+
+    public void setCollectionObjectID(Collectionobject collectionObjectID) {
+<span class="nc" id="L418">        this.collectionObjectID = collectionObjectID;</span>
+<span class="nc" id="L419">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L423">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L427">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L428">    }</span>
+
+    @XmlIDREF
+    public Storage getStorageID() {
+<span class="nc" id="L432">        return storageID;</span>
+    }
+
+    public void setStorageID(Storage storageID) {
+<span class="nc" id="L436">        this.storageID = storageID;</span>
+<span class="nc" id="L437">    }</span>
+
+    @XmlIDREF
+    public Agent getPreparedByID() {
+<span class="nc" id="L441">        return preparedByID;</span>
+    }
+
+    public void setPreparedByID(Agent preparedByID) {
+<span class="nc" id="L445">        this.preparedByID = preparedByID;</span>
+<span class="nc" id="L446">    }</span>
+
+    @XmlTransient
+    public List&lt;Preparationattr&gt; getPreparationattrList() {
+<span class="nc" id="L450">        return preparationattrList;</span>
+    }
+
+    public void setPreparationattrList(List&lt;Preparationattr&gt; preparationattrList) {
+<span class="nc" id="L454">        this.preparationattrList = preparationattrList;</span>
+<span class="nc" id="L455">    }</span>
+
+    @XmlTransient
+    public List&lt;Loanpreparation&gt; getLoanpreparationList() {
+<span class="nc" id="L459">        return loanpreparationList;</span>
+    }
+
+    public void setLoanpreparationList(List&lt;Loanpreparation&gt; loanpreparationList) {
+<span class="nc" id="L463">        this.loanpreparationList = loanpreparationList;</span>
+<span class="nc" id="L464">    }</span>
+
+    @XmlTransient
+    public List&lt;Giftpreparation&gt; getGiftpreparationList() {
+<span class="nc" id="L468">        return giftpreparationList;</span>
+    }
+
+    public void setGiftpreparationList(List&lt;Giftpreparation&gt; giftpreparationList) {
+<span class="nc" id="L472">        this.giftpreparationList = giftpreparationList;</span>
+<span class="nc" id="L473">    }</span>
+
+    @XmlTransient
+    public List&lt;Deaccessionpreparation&gt; getDeaccessionpreparationList() {
+<span class="nc" id="L477">        return deaccessionpreparationList;</span>
+    }
+
+    public void setDeaccessionpreparationList(List&lt;Deaccessionpreparation&gt; deaccessionpreparationList) {
+<span class="nc" id="L481">        this.deaccessionpreparationList = deaccessionpreparationList;</span>
+<span class="nc" id="L482">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L486">        int hash = 0;</span>
+<span class="nc bnc" id="L487" title="All 2 branches missed.">        hash += (preparationID != null ? preparationID.hashCode() : 0);</span>
+<span class="nc" id="L488">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L494" title="All 2 branches missed.">        if (!(object instanceof Preparation)) {</span>
+<span class="nc" id="L495">            return false;</span>
+        }
+<span class="nc" id="L497">        Preparation other = (Preparation) object;</span>
+<span class="nc bnc" id="L498" title="All 8 branches missed.">        return !((this.preparationID == null &amp;&amp; other.preparationID != null) || (this.preparationID != null &amp;&amp; !this.preparationID.equals(other.preparationID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L503">        return &quot;se.nrm.dina.datamodel.Preparation[ preparationID=&quot; + preparationID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

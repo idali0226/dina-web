@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Exchangeout.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Exchangeout.java</span></div><h1>Exchangeout.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType; 
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;exchangeout&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Exchangeout.findAll&quot;, query = &quot;SELECT e FROM Exchangeout e&quot;),
+    @NamedQuery(name = &quot;Exchangeout.findByExchangeOutID&quot;, query = &quot;SELECT e FROM Exchangeout e WHERE e.exchangeOutID = :exchangeOutID&quot;), 
+    @NamedQuery(name = &quot;Exchangeout.findByDescriptionOfMaterial&quot;, query = &quot;SELECT e FROM Exchangeout e WHERE e.descriptionOfMaterial = :descriptionOfMaterial&quot;),
+    @NamedQuery(name = &quot;Exchangeout.findByExchangeDate&quot;, query = &quot;SELECT e FROM Exchangeout e WHERE e.exchangeDate = :exchangeDate&quot;), 
+    @NamedQuery(name = &quot;Exchangeout.findByQuantityExchanged&quot;, query = &quot;SELECT e FROM Exchangeout e WHERE e.quantityExchanged = :quantityExchanged&quot;),
+    @NamedQuery(name = &quot;Exchangeout.findBySrcGeography&quot;, query = &quot;SELECT e FROM Exchangeout e WHERE e.srcGeography = :srcGeography&quot;),
+    @NamedQuery(name = &quot;Exchangeout.findBySrcTaxonomy&quot;, query = &quot;SELECT e FROM Exchangeout e WHERE e.srcTaxonomy = :srcTaxonomy&quot;), 
+    @NamedQuery(name = &quot;Exchangeout.findByExchangeOutNumber&quot;, query = &quot;SELECT e FROM Exchangeout e WHERE e.exchangeOutNumber = :exchangeOutNumber&quot;)})
+public class Exchangeout extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;ExchangeOutID&quot;)
+    private Integer exchangeOutID;
+    
+    
+    @Size(max = 120)
+    @Column(name = &quot;DescriptionOfMaterial&quot;)
+    private String descriptionOfMaterial;
+    
+    @Column(name = &quot;ExchangeDate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date exchangeDate;
+    
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = &quot;Number1&quot;)
+    private Float number1;
+    
+    @Column(name = &quot;Number2&quot;)
+    private Float number2;
+    
+    @Column(name = &quot;QuantityExchanged&quot;)
+    private Short quantityExchanged;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Size(max = 32)
+    @Column(name = &quot;SrcGeography&quot;)
+    private String srcGeography;
+    
+    @Size(max = 32)
+    @Column(name = &quot;SrcTaxonomy&quot;)
+    private String srcTaxonomy;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text1&quot;)
+    private String text1;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text2&quot;)
+    private String text2;
+    
+    @Column(name = &quot;YesNo1&quot;)
+    private Boolean yesNo1;
+    
+    @Column(name = &quot;YesNo2&quot;)
+    private Boolean yesNo2;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Contents&quot;)
+    private String contents;
+    
+    @Size(max = 50)
+    @Column(name = &quot;ExchangeOutNumber&quot;)
+    private String exchangeOutNumber;
+    
+    @JoinColumn(name = &quot;CatalogedByID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne(optional = false)
+    private Agent catalogedByID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;DivisionID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)
+    @ManyToOne(optional = false)
+    private Division divisionID;
+    
+    @JoinColumn(name = &quot;SentToOrganizationID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne(optional = false)
+    private Agent sentToOrganizationID;
+    
+    @JoinColumn(name = &quot;AddressOfRecordID&quot;, referencedColumnName = &quot;AddressOfRecordID&quot;)
+    @ManyToOne
+    private Addressofrecord addressOfRecordID;
+    
+    @OneToMany(mappedBy = &quot;exchangeOutID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Shipment&gt; shipmentList;
+
+<span class="nc" id="L144">    public Exchangeout() {</span>
+<span class="nc" id="L145">    }</span>
+
+<span class="nc" id="L147">    public Exchangeout(Integer exchangeOutID) {</span>
+<span class="nc" id="L148">        this.exchangeOutID = exchangeOutID;</span>
+<span class="nc" id="L149">    }</span>
+
+<span class="nc" id="L151">    public Exchangeout(Integer exchangeOutID, Date timestampCreated) {</span>
+<span class="nc" id="L152">        this.exchangeOutID = exchangeOutID;</span>
+<span class="nc" id="L153">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L154">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L160">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + exchangeOutID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L165">        return exchangeOutID;</span>
+    }
+     
+    public Integer getExchangeOutID() {
+<span class="nc" id="L169">        return exchangeOutID;</span>
+    }
+
+    public void setExchangeOutID(Integer exchangeOutID) {
+<span class="nc" id="L173">        this.exchangeOutID = exchangeOutID;</span>
+<span class="nc" id="L174">    }</span>
+ 
+    public String getDescriptionOfMaterial() {
+<span class="nc" id="L177">        return descriptionOfMaterial;</span>
+    }
+
+    public void setDescriptionOfMaterial(String descriptionOfMaterial) {
+<span class="nc" id="L181">        this.descriptionOfMaterial = descriptionOfMaterial;</span>
+<span class="nc" id="L182">    }</span>
+
+    public Date getExchangeDate() {
+<span class="nc" id="L185">        return exchangeDate;</span>
+    }
+
+    public void setExchangeDate(Date exchangeDate) {
+<span class="nc" id="L189">        this.exchangeDate = exchangeDate;</span>
+<span class="nc" id="L190">    }</span>
+
+    public Float getNumber1() {
+<span class="nc" id="L193">        return number1;</span>
+    }
+
+    public void setNumber1(Float number1) {
+<span class="nc" id="L197">        this.number1 = number1;</span>
+<span class="nc" id="L198">    }</span>
+
+    public Float getNumber2() {
+<span class="nc" id="L201">        return number2;</span>
+    }
+
+    public void setNumber2(Float number2) {
+<span class="nc" id="L205">        this.number2 = number2;</span>
+<span class="nc" id="L206">    }</span>
+
+    public Short getQuantityExchanged() {
+<span class="nc" id="L209">        return quantityExchanged;</span>
+    }
+
+    public void setQuantityExchanged(Short quantityExchanged) {
+<span class="nc" id="L213">        this.quantityExchanged = quantityExchanged;</span>
+<span class="nc" id="L214">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L217">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L221">        this.remarks = remarks;</span>
+<span class="nc" id="L222">    }</span>
+
+    public String getSrcGeography() {
+<span class="nc" id="L225">        return srcGeography;</span>
+    }
+
+    public void setSrcGeography(String srcGeography) {
+<span class="nc" id="L229">        this.srcGeography = srcGeography;</span>
+<span class="nc" id="L230">    }</span>
+
+    public String getSrcTaxonomy() {
+<span class="nc" id="L233">        return srcTaxonomy;</span>
+    }
+
+    public void setSrcTaxonomy(String srcTaxonomy) {
+<span class="nc" id="L237">        this.srcTaxonomy = srcTaxonomy;</span>
+<span class="nc" id="L238">    }</span>
+
+    public String getText1() {
+<span class="nc" id="L241">        return text1;</span>
+    }
+
+    public void setText1(String text1) {
+<span class="nc" id="L245">        this.text1 = text1;</span>
+<span class="nc" id="L246">    }</span>
+
+    public String getText2() {
+<span class="nc" id="L249">        return text2;</span>
+    }
+
+    public void setText2(String text2) {
+<span class="nc" id="L253">        this.text2 = text2;</span>
+<span class="nc" id="L254">    }</span>
+
+    public Boolean getYesNo1() {
+<span class="nc" id="L257">        return yesNo1;</span>
+    }
+
+    public void setYesNo1(Boolean yesNo1) {
+<span class="nc" id="L261">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L262">    }</span>
+
+    public Boolean getYesNo2() {
+<span class="nc" id="L265">        return yesNo2;</span>
+    }
+
+    public void setYesNo2(Boolean yesNo2) {
+<span class="nc" id="L269">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L270">    }</span>
+
+    public String getContents() {
+<span class="nc" id="L273">        return contents;</span>
+    }
+
+    public void setContents(String contents) {
+<span class="nc" id="L277">        this.contents = contents;</span>
+<span class="nc" id="L278">    }</span>
+
+    public String getExchangeOutNumber() {
+<span class="nc" id="L281">        return exchangeOutNumber;</span>
+    }
+
+    public void setExchangeOutNumber(String exchangeOutNumber) {
+<span class="nc" id="L285">        this.exchangeOutNumber = exchangeOutNumber;</span>
+<span class="nc" id="L286">    }</span>
+
+    @XmlIDREF
+    public Agent getCatalogedByID() {
+<span class="nc" id="L290">        return catalogedByID;</span>
+    }
+
+    public void setCatalogedByID(Agent catalogedByID) {
+<span class="nc" id="L294">        this.catalogedByID = catalogedByID;</span>
+<span class="nc" id="L295">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L299">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L303">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L304">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L308">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L312">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L313">    }</span>
+
+    @XmlIDREF
+    public Division getDivisionID() {
+<span class="nc" id="L317">        return divisionID;</span>
+    }
+
+    public void setDivisionID(Division divisionID) {
+<span class="nc" id="L321">        this.divisionID = divisionID;</span>
+<span class="nc" id="L322">    }</span>
+
+    @XmlIDREF
+    public Agent getSentToOrganizationID() {
+<span class="nc" id="L326">        return sentToOrganizationID;</span>
+    }
+
+    public void setSentToOrganizationID(Agent sentToOrganizationID) {
+<span class="nc" id="L330">        this.sentToOrganizationID = sentToOrganizationID;</span>
+<span class="nc" id="L331">    }</span>
+
+    @XmlIDREF
+    public Addressofrecord getAddressOfRecordID() {
+<span class="nc" id="L335">        return addressOfRecordID;</span>
+    }
+
+    public void setAddressOfRecordID(Addressofrecord addressOfRecordID) {
+<span class="nc" id="L339">        this.addressOfRecordID = addressOfRecordID;</span>
+<span class="nc" id="L340">    }</span>
+
+    @XmlTransient
+    public List&lt;Shipment&gt; getShipmentList() {
+<span class="nc" id="L344">        return shipmentList;</span>
+    }
+
+    public void setShipmentList(List&lt;Shipment&gt; shipmentList) {
+<span class="nc" id="L348">        this.shipmentList = shipmentList;</span>
+<span class="nc" id="L349">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L353">        int hash = 0;</span>
+<span class="nc bnc" id="L354" title="All 2 branches missed.">        hash += (exchangeOutID != null ? exchangeOutID.hashCode() : 0);</span>
+<span class="nc" id="L355">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L361" title="All 2 branches missed.">        if (!(object instanceof Exchangeout)) {</span>
+<span class="nc" id="L362">            return false;</span>
+        }
+<span class="nc" id="L364">        Exchangeout other = (Exchangeout) object;</span>
+<span class="nc bnc" id="L365" title="All 8 branches missed.">        return !((this.exchangeOutID == null &amp;&amp; other.exchangeOutID != null) || (this.exchangeOutID != null &amp;&amp; !this.exchangeOutID.equals(other.exchangeOutID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L370">        return &quot;se.nrm.dina.datamodel.Exchangeout[ exchangeOutID=&quot; + exchangeOutID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Exsiccataitem.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Exsiccataitem.java</span></div><h1>Exsiccataitem.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table; 
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;exsiccataitem&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Exsiccataitem.findAll&quot;, query = &quot;SELECT e FROM Exsiccataitem e&quot;),
+    @NamedQuery(name = &quot;Exsiccataitem.findByExsiccataItemID&quot;, query = &quot;SELECT e FROM Exsiccataitem e WHERE e.exsiccataItemID = :exsiccataItemID&quot;), 
+    @NamedQuery(name = &quot;Exsiccataitem.findByFascicle&quot;, query = &quot;SELECT e FROM Exsiccataitem e WHERE e.fascicle = :fascicle&quot;),
+    @NamedQuery(name = &quot;Exsiccataitem.findByNumber&quot;, query = &quot;SELECT e FROM Exsiccataitem e WHERE e.number = :number&quot;)})
+public class Exsiccataitem extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;ExsiccataItemID&quot;)
+    private Integer exsiccataItemID;
+    
+    
+    @Size(max = 16)
+    @Column(name = &quot;Fascicle&quot;)
+    private String fascicle;
+    
+    @Size(max = 16)
+    @Column(name = &quot;Number&quot;)
+    private String number;
+    
+    @JoinColumn(name = &quot;ExsiccataID&quot;, referencedColumnName = &quot;ExsiccataID&quot;)
+    @ManyToOne(optional = false)
+    private Exsiccata exsiccataID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CollectionObjectID&quot;, referencedColumnName = &quot;CollectionObjectID&quot;)
+    @ManyToOne(optional = false)
+    private Collectionobject collectionObjectID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+
+<span class="nc" id="L74">    public Exsiccataitem() {</span>
+<span class="nc" id="L75">    }</span>
+
+<span class="nc" id="L77">    public Exsiccataitem(Integer exsiccataItemID) {</span>
+<span class="nc" id="L78">        this.exsiccataItemID = exsiccataItemID;</span>
+<span class="nc" id="L79">    }</span>
+
+<span class="nc" id="L81">    public Exsiccataitem(Integer exsiccataItemID, Date timestampCreated) {</span>
+<span class="nc" id="L82">        this.exsiccataItemID = exsiccataItemID;</span>
+<span class="nc" id="L83">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L84">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L90">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + exsiccataItemID;</span>
+    }
+
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L95">        return exsiccataItemID;</span>
+    }
+
+    public Integer getExsiccataItemID() {
+<span class="nc" id="L99">        return exsiccataItemID;</span>
+    }
+
+    public void setExsiccataItemID(Integer exsiccataItemID) {
+<span class="nc" id="L103">        this.exsiccataItemID = exsiccataItemID;</span>
+<span class="nc" id="L104">    }</span>
+
+ 
+
+    public String getFascicle() {
+<span class="nc" id="L109">        return fascicle;</span>
+    }
+
+    public void setFascicle(String fascicle) {
+<span class="nc" id="L113">        this.fascicle = fascicle;</span>
+<span class="nc" id="L114">    }</span>
+
+    public String getNumber() {
+<span class="nc" id="L117">        return number;</span>
+    }
+
+    public void setNumber(String number) {
+<span class="nc" id="L121">        this.number = number;</span>
+<span class="nc" id="L122">    }</span>
+
+    @XmlIDREF
+    public Exsiccata getExsiccataID() {
+<span class="nc" id="L126">        return exsiccataID;</span>
+    }
+
+    public void setExsiccataID(Exsiccata exsiccataID) {
+<span class="nc" id="L130">        this.exsiccataID = exsiccataID;</span>
+<span class="nc" id="L131">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L135">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L139">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L140">    }</span>
+
+    @XmlIDREF
+    public Collectionobject getCollectionObjectID() {
+<span class="nc" id="L144">        return collectionObjectID;</span>
+    }
+
+    public void setCollectionObjectID(Collectionobject collectionObjectID) {
+<span class="nc" id="L148">        this.collectionObjectID = collectionObjectID;</span>
+<span class="nc" id="L149">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L153">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L157">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L158">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L162">        int hash = 0;</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">        hash += (exsiccataItemID != null ? exsiccataItemID.hashCode() : 0);</span>
+<span class="nc" id="L164">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L170" title="All 2 branches missed.">        if (!(object instanceof Exsiccataitem)) {</span>
+<span class="nc" id="L171">            return false;</span>
+        }
+<span class="nc" id="L173">        Exsiccataitem other = (Exsiccataitem) object;</span>
+<span class="nc bnc" id="L174" title="All 8 branches missed.">        return !((this.exsiccataItemID == null &amp;&amp; other.exsiccataItemID != null) || (this.exsiccataItemID != null &amp;&amp; !this.exsiccataItemID.equals(other.exsiccataItemID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L179">        return &quot;se.nrm.dina.datamodel.Exsiccataitem[ exsiccataItemID=&quot; + exsiccataItemID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

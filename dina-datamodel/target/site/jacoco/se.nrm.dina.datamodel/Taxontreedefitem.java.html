@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Taxontreedefitem.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Taxontreedefitem.java</span></div><h1>Taxontreedefitem.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;taxontreedefitem&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Taxontreedefitem.findAll&quot;, query = &quot;SELECT t FROM Taxontreedefitem t&quot;),
+    @NamedQuery(name = &quot;Taxontreedefitem.findByTaxonTreeDefItemID&quot;, query = &quot;SELECT t FROM Taxontreedefitem t WHERE t.taxonTreeDefItemID = :taxonTreeDefItemID&quot;), 
+    @NamedQuery(name = &quot;Taxontreedefitem.findByFormatToken&quot;, query = &quot;SELECT t FROM Taxontreedefitem t WHERE t.formatToken = :formatToken&quot;),
+    @NamedQuery(name = &quot;Taxontreedefitem.findByFullNameSeparator&quot;, query = &quot;SELECT t FROM Taxontreedefitem t WHERE t.fullNameSeparator = :fullNameSeparator&quot;),
+    @NamedQuery(name = &quot;Taxontreedefitem.findByIsEnforced&quot;, query = &quot;SELECT t FROM Taxontreedefitem t WHERE t.isEnforced = :isEnforced&quot;),
+    @NamedQuery(name = &quot;Taxontreedefitem.findByIsInFullName&quot;, query = &quot;SELECT t FROM Taxontreedefitem t WHERE t.isInFullName = :isInFullName&quot;),
+    @NamedQuery(name = &quot;Taxontreedefitem.findByName&quot;, query = &quot;SELECT t FROM Taxontreedefitem t WHERE t.name = :name&quot;),
+    @NamedQuery(name = &quot;Taxontreedefitem.findByRankID&quot;, query = &quot;SELECT t FROM Taxontreedefitem t WHERE t.rankID = :rankID&quot;), 
+    @NamedQuery(name = &quot;Taxontreedefitem.findByTitle&quot;, query = &quot;SELECT t FROM Taxontreedefitem t WHERE t.title = :title&quot;)})
+public class Taxontreedefitem extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;TaxonTreeDefItemID&quot;)
+    private Integer taxonTreeDefItemID;
+    
+    
+    @Size(max = 32)
+    @Column(name = &quot;FormatToken&quot;)
+    private String formatToken;
+    
+    @Size(max = 32)
+    @Column(name = &quot;FullNameSeparator&quot;)
+    private String fullNameSeparator;
+    
+    @Column(name = &quot;IsEnforced&quot;)
+    private Boolean isEnforced;
+    
+    @Column(name = &quot;IsInFullName&quot;)
+    private Boolean isInFullName;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = &quot;Name&quot;)
+    private String name;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;RankID&quot;)
+    private int rankID;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Size(max = 64)
+    @Column(name = &quot;TextAfter&quot;)
+    private String textAfter;
+    
+    @Size(max = 64)
+    @Column(name = &quot;TextBefore&quot;)
+    private String textBefore;
+    
+    @Size(max = 64)
+    @Column(name = &quot;Title&quot;)
+    private String title;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;taxonTreeDefItemID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Taxon&gt; taxonList;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @OneToMany(mappedBy = &quot;parentItemID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Taxontreedefitem&gt; taxontreedefitemList;
+    
+    @JoinColumn(name = &quot;ParentItemID&quot;, referencedColumnName = &quot;TaxonTreeDefItemID&quot;)
+    @ManyToOne
+    private Taxontreedefitem parentItemID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;TaxonTreeDefID&quot;, referencedColumnName = &quot;TaxonTreeDefID&quot;)
+    @ManyToOne(optional = false)
+    private Taxontreedef taxonTreeDefID;
+
+<span class="nc" id="L126">    public Taxontreedefitem() {</span>
+<span class="nc" id="L127">    }</span>
+
+<span class="nc" id="L129">    public Taxontreedefitem(Integer taxonTreeDefItemID) {</span>
+<span class="nc" id="L130">        this.taxonTreeDefItemID = taxonTreeDefItemID;</span>
+<span class="nc" id="L131">    }</span>
+
+<span class="nc" id="L133">    public Taxontreedefitem(Integer taxonTreeDefItemID, Date timestampCreated, String name, int rankID) {</span>
+<span class="nc" id="L134">        this.taxonTreeDefItemID = taxonTreeDefItemID;</span>
+<span class="nc" id="L135">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L136">        this.name = name;</span>
+<span class="nc" id="L137">        this.rankID = rankID;</span>
+<span class="nc" id="L138">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L144">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + taxonTreeDefItemID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L149">        return taxonTreeDefItemID;</span>
+    }
+
+    public Integer getTaxonTreeDefItemID() {
+<span class="nc" id="L153">        return taxonTreeDefItemID;</span>
+    }
+
+    public void setTaxonTreeDefItemID(Integer taxonTreeDefItemID) {
+<span class="nc" id="L157">        this.taxonTreeDefItemID = taxonTreeDefItemID;</span>
+<span class="nc" id="L158">    }</span>
+  
+
+    public String getFormatToken() {
+<span class="nc" id="L162">        return formatToken;</span>
+    }
+
+    public void setFormatToken(String formatToken) {
+<span class="nc" id="L166">        this.formatToken = formatToken;</span>
+<span class="nc" id="L167">    }</span>
+
+    public String getFullNameSeparator() {
+<span class="nc" id="L170">        return fullNameSeparator;</span>
+    }
+
+    public void setFullNameSeparator(String fullNameSeparator) {
+<span class="nc" id="L174">        this.fullNameSeparator = fullNameSeparator;</span>
+<span class="nc" id="L175">    }</span>
+
+    public Boolean getIsEnforced() {
+<span class="nc" id="L178">        return isEnforced;</span>
+    }
+
+    public void setIsEnforced(Boolean isEnforced) {
+<span class="nc" id="L182">        this.isEnforced = isEnforced;</span>
+<span class="nc" id="L183">    }</span>
+
+    public Boolean getIsInFullName() {
+<span class="nc" id="L186">        return isInFullName;</span>
+    }
+
+    public void setIsInFullName(Boolean isInFullName) {
+<span class="nc" id="L190">        this.isInFullName = isInFullName;</span>
+<span class="nc" id="L191">    }</span>
+
+    public String getName() {
+<span class="nc" id="L194">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L198">        this.name = name;</span>
+<span class="nc" id="L199">    }</span>
+
+    public int getRankID() {
+<span class="nc" id="L202">        return rankID;</span>
+    }
+
+    public void setRankID(int rankID) {
+<span class="nc" id="L206">        this.rankID = rankID;</span>
+<span class="nc" id="L207">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L210">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L214">        this.remarks = remarks;</span>
+<span class="nc" id="L215">    }</span>
+
+    public String getTextAfter() {
+<span class="nc" id="L218">        return textAfter;</span>
+    }
+
+    public void setTextAfter(String textAfter) {
+<span class="nc" id="L222">        this.textAfter = textAfter;</span>
+<span class="nc" id="L223">    }</span>
+
+    public String getTextBefore() {
+<span class="nc" id="L226">        return textBefore;</span>
+    }
+
+    public void setTextBefore(String textBefore) {
+<span class="nc" id="L230">        this.textBefore = textBefore;</span>
+<span class="nc" id="L231">    }</span>
+
+    public String getTitle() {
+<span class="nc" id="L234">        return title;</span>
+    }
+
+    public void setTitle(String title) {
+<span class="nc" id="L238">        this.title = title;</span>
+<span class="nc" id="L239">    }</span>
+
+    @XmlTransient
+    public List&lt;Taxon&gt; getTaxonList() {
+<span class="nc" id="L243">        return taxonList;</span>
+    }
+
+    public void setTaxonList(List&lt;Taxon&gt; taxonList) {
+<span class="nc" id="L247">        this.taxonList = taxonList;</span>
+<span class="nc" id="L248">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L252">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L256">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L257">    }</span>
+
+    @XmlTransient
+    public List&lt;Taxontreedefitem&gt; getTaxontreedefitemList() {
+<span class="nc" id="L261">        return taxontreedefitemList;</span>
+    }
+
+    public void setTaxontreedefitemList(List&lt;Taxontreedefitem&gt; taxontreedefitemList) {
+<span class="nc" id="L265">        this.taxontreedefitemList = taxontreedefitemList;</span>
+<span class="nc" id="L266">    }</span>
+
+    @XmlIDREF
+    public Taxontreedefitem getParentItemID() {
+<span class="nc" id="L270">        return parentItemID;</span>
+    }
+
+    public void setParentItemID(Taxontreedefitem parentItemID) {
+<span class="nc" id="L274">        this.parentItemID = parentItemID;</span>
+<span class="nc" id="L275">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L279">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L283">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L284">    }</span>
+
+    @XmlIDREF
+    public Taxontreedef getTaxonTreeDefID() {
+<span class="nc" id="L288">        return taxonTreeDefID;</span>
+    }
+
+    public void setTaxonTreeDefID(Taxontreedef taxonTreeDefID) {
+<span class="nc" id="L292">        this.taxonTreeDefID = taxonTreeDefID;</span>
+<span class="nc" id="L293">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L297">        int hash = 0;</span>
+<span class="nc bnc" id="L298" title="All 2 branches missed.">        hash += (taxonTreeDefItemID != null ? taxonTreeDefItemID.hashCode() : 0);</span>
+<span class="nc" id="L299">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L305" title="All 2 branches missed.">        if (!(object instanceof Taxontreedefitem)) {</span>
+<span class="nc" id="L306">            return false;</span>
+        }
+<span class="nc" id="L308">        Taxontreedefitem other = (Taxontreedefitem) object;</span>
+<span class="nc bnc" id="L309" title="All 8 branches missed.">        return !((this.taxonTreeDefItemID == null &amp;&amp; other.taxonTreeDefItemID != null) || (this.taxonTreeDefItemID != null &amp;&amp; !this.taxonTreeDefItemID.equals(other.taxonTreeDefItemID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L314">        return &quot;se.nrm.dina.datamodel.Taxontreedefitem[ taxonTreeDefItemID=&quot; + taxonTreeDefItemID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

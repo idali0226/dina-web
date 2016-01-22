@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Collectionrelationship.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Collectionrelationship.java</span></div><h1>Collectionrelationship.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table; 
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;collectionrelationship&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Collectionrelationship.findAll&quot;, query = &quot;SELECT c FROM Collectionrelationship c&quot;),
+    @NamedQuery(name = &quot;Collectionrelationship.findByCollectionRelationshipID&quot;, query = &quot;SELECT c FROM Collectionrelationship c WHERE c.collectionRelationshipID = :collectionRelationshipID&quot;)})
+public class Collectionrelationship extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;CollectionRelationshipID&quot;)
+    private Integer collectionRelationshipID;
+    
+    
+    @Size(max = 32)
+    @Column(name = &quot;Text1&quot;)
+    private String text1;
+    
+    @Size(max = 32)
+    @Column(name = &quot;Text2&quot;)
+    private String text2;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CollectionRelTypeID&quot;, referencedColumnName = &quot;CollectionRelTypeID&quot;)
+    @ManyToOne
+    private Collectionreltype collectionRelTypeID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;LeftSideCollectionID&quot;, referencedColumnName = &quot;CollectionObjectID&quot;)
+    @ManyToOne(optional = false)
+    private Collectionobject leftSideCollectionID;
+    
+    @JoinColumn(name = &quot;RightSideCollectionID&quot;, referencedColumnName = &quot;CollectionObjectID&quot;)
+    @ManyToOne(optional = false)
+    private Collectionobject rightSideCollectionID;
+
+<span class="nc" id="L76">    public Collectionrelationship() {</span>
+<span class="nc" id="L77">    }</span>
+
+<span class="nc" id="L79">    public Collectionrelationship(Integer collectionRelationshipID) {</span>
+<span class="nc" id="L80">        this.collectionRelationshipID = collectionRelationshipID;</span>
+<span class="nc" id="L81">    }</span>
+
+<span class="nc" id="L83">    public Collectionrelationship(Integer collectionRelationshipID, Date timestampCreated) {</span>
+<span class="nc" id="L84">        this.collectionRelationshipID = collectionRelationshipID;</span>
+<span class="nc" id="L85">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L86">    }</span>
+
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L92">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + collectionRelationshipID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L97">        return collectionRelationshipID;</span>
+    }
+    
+    public Integer getCollectionRelationshipID() {
+<span class="nc" id="L101">        return collectionRelationshipID;</span>
+    }
+
+    public void setCollectionRelationshipID(Integer collectionRelationshipID) {
+<span class="nc" id="L105">        this.collectionRelationshipID = collectionRelationshipID;</span>
+<span class="nc" id="L106">    }</span>
+ 
+
+    public String getText1() {
+<span class="nc" id="L110">        return text1;</span>
+    }
+
+    public void setText1(String text1) {
+<span class="nc" id="L114">        this.text1 = text1;</span>
+<span class="nc" id="L115">    }</span>
+
+    public String getText2() {
+<span class="nc" id="L118">        return text2;</span>
+    }
+
+    public void setText2(String text2) {
+<span class="nc" id="L122">        this.text2 = text2;</span>
+<span class="nc" id="L123">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L127">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L131">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L132">    }</span>
+
+    @XmlIDREF
+    public Collectionreltype getCollectionRelTypeID() {
+<span class="nc" id="L136">        return collectionRelTypeID;</span>
+    }
+
+    public void setCollectionRelTypeID(Collectionreltype collectionRelTypeID) {
+<span class="nc" id="L140">        this.collectionRelTypeID = collectionRelTypeID;</span>
+<span class="nc" id="L141">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L145">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L149">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L150">    }</span>
+
+    @XmlIDREF
+    public Collectionobject getLeftSideCollectionID() {
+<span class="nc" id="L154">        return leftSideCollectionID;</span>
+    }
+
+    public void setLeftSideCollectionID(Collectionobject leftSideCollectionID) {
+<span class="nc" id="L158">        this.leftSideCollectionID = leftSideCollectionID;</span>
+<span class="nc" id="L159">    }</span>
+
+    @XmlIDREF
+    public Collectionobject getRightSideCollectionID() {
+<span class="nc" id="L163">        return rightSideCollectionID;</span>
+    }
+
+    public void setRightSideCollectionID(Collectionobject rightSideCollectionID) {
+<span class="nc" id="L167">        this.rightSideCollectionID = rightSideCollectionID;</span>
+<span class="nc" id="L168">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L172">        int hash = 0;</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        hash += (collectionRelationshipID != null ? collectionRelationshipID.hashCode() : 0);</span>
+<span class="nc" id="L174">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L180" title="All 2 branches missed.">        if (!(object instanceof Collectionrelationship)) {</span>
+<span class="nc" id="L181">            return false;</span>
+        }
+<span class="nc" id="L183">        Collectionrelationship other = (Collectionrelationship) object;</span>
+<span class="nc bnc" id="L184" title="All 8 branches missed.">        return !((this.collectionRelationshipID == null &amp;&amp; other.collectionRelationshipID != null) || (this.collectionRelationshipID != null &amp;&amp; !this.collectionRelationshipID.equals(other.collectionRelationshipID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L189">        return &quot;se.nrm.dina.datamodel.Collectionrelationship[ collectionRelationshipID=&quot; + collectionRelationshipID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

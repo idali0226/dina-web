@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Sptasksemaphore.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Sptasksemaphore.java</span></div><h1>Sptasksemaphore.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType; 
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;sptasksemaphore&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Sptasksemaphore.findAll&quot;, query = &quot;SELECT s FROM Sptasksemaphore s&quot;),
+    @NamedQuery(name = &quot;Sptasksemaphore.findByTaskSemaphoreID&quot;, query = &quot;SELECT s FROM Sptasksemaphore s WHERE s.taskSemaphoreID = :taskSemaphoreID&quot;), 
+    @NamedQuery(name = &quot;Sptasksemaphore.findByContext&quot;, query = &quot;SELECT s FROM Sptasksemaphore s WHERE s.context = :context&quot;),
+    @NamedQuery(name = &quot;Sptasksemaphore.findByIsLocked&quot;, query = &quot;SELECT s FROM Sptasksemaphore s WHERE s.isLocked = :isLocked&quot;),
+    @NamedQuery(name = &quot;Sptasksemaphore.findByLockedTime&quot;, query = &quot;SELECT s FROM Sptasksemaphore s WHERE s.lockedTime = :lockedTime&quot;),
+    @NamedQuery(name = &quot;Sptasksemaphore.findByMachineName&quot;, query = &quot;SELECT s FROM Sptasksemaphore s WHERE s.machineName = :machineName&quot;),
+    @NamedQuery(name = &quot;Sptasksemaphore.findByScope&quot;, query = &quot;SELECT s FROM Sptasksemaphore s WHERE s.scope = :scope&quot;),
+    @NamedQuery(name = &quot;Sptasksemaphore.findByTaskName&quot;, query = &quot;SELECT s FROM Sptasksemaphore s WHERE s.taskName = :taskName&quot;),
+    @NamedQuery(name = &quot;Sptasksemaphore.findByUsageCount&quot;, query = &quot;SELECT s FROM Sptasksemaphore s WHERE s.usageCount = :usageCount&quot;)})
+public class Sptasksemaphore extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;TaskSemaphoreID&quot;)
+    private Integer taskSemaphoreID;
+    
+    
+    @Size(max = 32)
+    @Column(name = &quot;Context&quot;)
+    private String context;
+    
+    @Column(name = &quot;IsLocked&quot;)
+    private Boolean isLocked;
+    
+    @Column(name = &quot;LockedTime&quot;)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lockedTime;
+    
+    @Size(max = 64)
+    @Column(name = &quot;MachineName&quot;)
+    private String machineName;
+    
+    @Column(name = &quot;Scope&quot;)
+    private Short scope;
+    
+    @Size(max = 32)
+    @Column(name = &quot;TaskName&quot;)
+    private String taskName;
+    
+    @Column(name = &quot;UsageCount&quot;)
+    private Integer usageCount;
+    
+    @JoinColumn(name = &quot;DisciplineID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)
+    @ManyToOne
+    private Discipline disciplineID;
+    
+    @JoinColumn(name = &quot;OwnerID&quot;, referencedColumnName = &quot;SpecifyUserID&quot;)
+    @ManyToOne
+    private Specifyuser ownerID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;CollectionID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)
+    @ManyToOne
+    private Collection collectionID;
+
+<span class="nc" id="L102">    public Sptasksemaphore() {</span>
+<span class="nc" id="L103">    }</span>
+
+<span class="nc" id="L105">    public Sptasksemaphore(Integer taskSemaphoreID) {</span>
+<span class="nc" id="L106">        this.taskSemaphoreID = taskSemaphoreID;</span>
+<span class="nc" id="L107">    }</span>
+
+<span class="nc" id="L109">    public Sptasksemaphore(Integer taskSemaphoreID, Date timestampCreated) {</span>
+<span class="nc" id="L110">        this.taskSemaphoreID = taskSemaphoreID;</span>
+<span class="nc" id="L111">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L112">    }</span>
+
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L118">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + taskSemaphoreID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L123">        return taskSemaphoreID;</span>
+    }
+    
+    public Integer getTaskSemaphoreID() {
+<span class="nc" id="L127">        return taskSemaphoreID;</span>
+    }
+
+    public void setTaskSemaphoreID(Integer taskSemaphoreID) {
+<span class="nc" id="L131">        this.taskSemaphoreID = taskSemaphoreID;</span>
+<span class="nc" id="L132">    }</span>
+ 
+
+    public String getContext() {
+<span class="nc" id="L136">        return context;</span>
+    }
+
+    public void setContext(String context) {
+<span class="nc" id="L140">        this.context = context;</span>
+<span class="nc" id="L141">    }</span>
+
+    public Boolean getIsLocked() {
+<span class="nc" id="L144">        return isLocked;</span>
+    }
+
+    public void setIsLocked(Boolean isLocked) {
+<span class="nc" id="L148">        this.isLocked = isLocked;</span>
+<span class="nc" id="L149">    }</span>
+
+    public Date getLockedTime() {
+<span class="nc" id="L152">        return lockedTime;</span>
+    }
+
+    public void setLockedTime(Date lockedTime) {
+<span class="nc" id="L156">        this.lockedTime = lockedTime;</span>
+<span class="nc" id="L157">    }</span>
+
+    public String getMachineName() {
+<span class="nc" id="L160">        return machineName;</span>
+    }
+
+    public void setMachineName(String machineName) {
+<span class="nc" id="L164">        this.machineName = machineName;</span>
+<span class="nc" id="L165">    }</span>
+
+    public Short getScope() {
+<span class="nc" id="L168">        return scope;</span>
+    }
+
+    public void setScope(Short scope) {
+<span class="nc" id="L172">        this.scope = scope;</span>
+<span class="nc" id="L173">    }</span>
+
+    public String getTaskName() {
+<span class="nc" id="L176">        return taskName;</span>
+    }
+
+    public void setTaskName(String taskName) {
+<span class="nc" id="L180">        this.taskName = taskName;</span>
+<span class="nc" id="L181">    }</span>
+
+    public Integer getUsageCount() {
+<span class="nc" id="L184">        return usageCount;</span>
+    }
+
+    public void setUsageCount(Integer usageCount) {
+<span class="nc" id="L188">        this.usageCount = usageCount;</span>
+<span class="nc" id="L189">    }</span>
+
+    @XmlIDREF
+    public Discipline getDisciplineID() {
+<span class="nc" id="L193">        return disciplineID;</span>
+    }
+
+    public void setDisciplineID(Discipline disciplineID) {
+<span class="nc" id="L197">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L198">    }</span>
+
+    @XmlIDREF
+    public Specifyuser getOwnerID() {
+<span class="nc" id="L202">        return ownerID;</span>
+    }
+
+    public void setOwnerID(Specifyuser ownerID) {
+<span class="nc" id="L206">        this.ownerID = ownerID;</span>
+<span class="nc" id="L207">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L211">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L215">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L216">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L220">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L224">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L225">    }</span>
+
+    @XmlIDREF
+    public Collection getCollectionID() {
+<span class="nc" id="L229">        return collectionID;</span>
+    }
+
+    public void setCollectionID(Collection collectionID) {
+<span class="nc" id="L233">        this.collectionID = collectionID;</span>
+<span class="nc" id="L234">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L238">        int hash = 0;</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">        hash += (taskSemaphoreID != null ? taskSemaphoreID.hashCode() : 0);</span>
+<span class="nc" id="L240">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L246" title="All 2 branches missed.">        if (!(object instanceof Sptasksemaphore)) {</span>
+<span class="nc" id="L247">            return false;</span>
+        }
+<span class="nc" id="L249">        Sptasksemaphore other = (Sptasksemaphore) object;</span>
+<span class="nc bnc" id="L250" title="All 8 branches missed.">        return !((this.taskSemaphoreID == null &amp;&amp; other.taskSemaphoreID != null) || (this.taskSemaphoreID != null &amp;&amp; !this.taskSemaphoreID.equals(other.taskSemaphoreID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L255">        return &quot;se.nrm.dina.datamodel.Sptasksemaphore[ taskSemaphoreID=&quot; + taskSemaphoreID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

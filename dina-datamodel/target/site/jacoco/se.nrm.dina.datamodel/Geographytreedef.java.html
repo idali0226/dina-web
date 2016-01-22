@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Geographytreedef.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Geographytreedef.java</span></div><h1>Geographytreedef.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;geographytreedef&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Geographytreedef.findAll&quot;, query = &quot;SELECT g FROM Geographytreedef g&quot;),
+    @NamedQuery(name = &quot;Geographytreedef.findByGeographyTreeDefID&quot;, query = &quot;SELECT g FROM Geographytreedef g WHERE g.geographyTreeDefID = :geographyTreeDefID&quot;), 
+    @NamedQuery(name = &quot;Geographytreedef.findByFullNameDirection&quot;, query = &quot;SELECT g FROM Geographytreedef g WHERE g.fullNameDirection = :fullNameDirection&quot;),
+    @NamedQuery(name = &quot;Geographytreedef.findByName&quot;, query = &quot;SELECT g FROM Geographytreedef g WHERE g.name = :name&quot;)})
+public class Geographytreedef extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;GeographyTreeDefID&quot;)
+    private Integer geographyTreeDefID;
+    
+    
+    @Column(name = &quot;FullNameDirection&quot;)
+    private Integer fullNameDirection;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = &quot;Name&quot;)
+    private String name;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;geographyTreeDefID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Discipline&gt; disciplineList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;geographyTreeDefID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Geography&gt; geographyList;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;geographyTreeDefID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Geographytreedefitem&gt; geographytreedefitemList;
+
+<span class="nc" id="L88">    public Geographytreedef() {</span>
+<span class="nc" id="L89">    }</span>
+
+<span class="nc" id="L91">    public Geographytreedef(Integer geographyTreeDefID) {</span>
+<span class="nc" id="L92">        this.geographyTreeDefID = geographyTreeDefID;</span>
+<span class="nc" id="L93">    }</span>
+
+<span class="nc" id="L95">    public Geographytreedef(Integer geographyTreeDefID, Date timestampCreated, String name) {</span>
+<span class="nc" id="L96">        this.geographyTreeDefID = geographyTreeDefID;</span>
+<span class="nc" id="L97">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L98">        this.name = name;</span>
+<span class="nc" id="L99">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L105">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + geographyTreeDefID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L110">        return geographyTreeDefID;</span>
+    }
+
+    public Integer getGeographyTreeDefID() {
+<span class="nc" id="L114">        return geographyTreeDefID;</span>
+    }
+
+    public void setGeographyTreeDefID(Integer geographyTreeDefID) {
+<span class="nc" id="L118">        this.geographyTreeDefID = geographyTreeDefID;</span>
+<span class="nc" id="L119">    }</span>
+
+   
+
+    public Integer getFullNameDirection() {
+<span class="nc" id="L124">        return fullNameDirection;</span>
+    }
+
+    public void setFullNameDirection(Integer fullNameDirection) {
+<span class="nc" id="L128">        this.fullNameDirection = fullNameDirection;</span>
+<span class="nc" id="L129">    }</span>
+
+    public String getName() {
+<span class="nc" id="L132">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L136">        this.name = name;</span>
+<span class="nc" id="L137">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L140">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L144">        this.remarks = remarks;</span>
+<span class="nc" id="L145">    }</span>
+
+    @XmlTransient
+    public List&lt;Discipline&gt; getDisciplineList() {
+<span class="nc" id="L149">        return disciplineList;</span>
+    }
+
+    public void setDisciplineList(List&lt;Discipline&gt; disciplineList) {
+<span class="nc" id="L153">        this.disciplineList = disciplineList;</span>
+<span class="nc" id="L154">    }</span>
+
+    @XmlTransient
+    public List&lt;Geography&gt; getGeographyList() {
+<span class="nc" id="L158">        return geographyList;</span>
+    }
+
+    public void setGeographyList(List&lt;Geography&gt; geographyList) {
+<span class="nc" id="L162">        this.geographyList = geographyList;</span>
+<span class="nc" id="L163">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L167">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L171">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L172">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L176">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L180">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L181">    }</span>
+
+    @XmlTransient
+    public List&lt;Geographytreedefitem&gt; getGeographytreedefitemList() {
+<span class="nc" id="L185">        return geographytreedefitemList;</span>
+    }
+
+    public void setGeographytreedefitemList(List&lt;Geographytreedefitem&gt; geographytreedefitemList) {
+<span class="nc" id="L189">        this.geographytreedefitemList = geographytreedefitemList;</span>
+<span class="nc" id="L190">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L194">        int hash = 0;</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">        hash += (geographyTreeDefID != null ? geographyTreeDefID.hashCode() : 0);</span>
+<span class="nc" id="L196">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L202" title="All 2 branches missed.">        if (!(object instanceof Geographytreedef)) {</span>
+<span class="nc" id="L203">            return false;</span>
+        }
+<span class="nc" id="L205">        Geographytreedef other = (Geographytreedef) object;</span>
+<span class="nc bnc" id="L206" title="All 8 branches missed.">        return !((this.geographyTreeDefID == null &amp;&amp; other.geographyTreeDefID != null) || (this.geographyTreeDefID != null &amp;&amp; !this.geographyTreeDefID.equals(other.geographyTreeDefID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L211">        return &quot;se.nrm.dina.datamodel.Geographytreedef[ geographyTreeDefID=&quot; + geographyTreeDefID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

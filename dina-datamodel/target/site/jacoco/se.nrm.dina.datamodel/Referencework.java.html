@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Referencework.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Referencework.java</span></div><h1>Referencework.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;referencework&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Referencework.findAll&quot;, query = &quot;SELECT r FROM Referencework r&quot;),
+    @NamedQuery(name = &quot;Referencework.findByReferenceWorkID&quot;, query = &quot;SELECT r FROM Referencework r WHERE r.referenceWorkID = :referenceWorkID&quot;),  
+    @NamedQuery(name = &quot;Referencework.findByIsPublished&quot;, query = &quot;SELECT r FROM Referencework r WHERE r.isPublished = :isPublished&quot;),
+    @NamedQuery(name = &quot;Referencework.findByIsbn&quot;, query = &quot;SELECT r FROM Referencework r WHERE r.isbn = :isbn&quot;),
+    @NamedQuery(name = &quot;Referencework.findByLibraryNumber&quot;, query = &quot;SELECT r FROM Referencework r WHERE r.libraryNumber = :libraryNumber&quot;), 
+    @NamedQuery(name = &quot;Referencework.findByPlaceOfPublication&quot;, query = &quot;SELECT r FROM Referencework r WHERE r.placeOfPublication = :placeOfPublication&quot;),
+    @NamedQuery(name = &quot;Referencework.findByPublisher&quot;, query = &quot;SELECT r FROM Referencework r WHERE r.publisher = :publisher&quot;),
+    @NamedQuery(name = &quot;Referencework.findByReferenceWorkType&quot;, query = &quot;SELECT r FROM Referencework r WHERE r.referenceWorkType = :referenceWorkType&quot;),
+    @NamedQuery(name = &quot;Referencework.findByTitle&quot;, query = &quot;SELECT r FROM Referencework r WHERE r.title = :title&quot;),
+    @NamedQuery(name = &quot;Referencework.findByVolume&quot;, query = &quot;SELECT r FROM Referencework r WHERE r.volume = :volume&quot;) })
+public class Referencework extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;ReferenceWorkID&quot;)
+    private Integer referenceWorkID;
+    
+    
+    @Size(max = 128)
+    @Column(name = &quot;GUID&quot;)
+    private String guid;
+    
+    @Column(name = &quot;IsPublished&quot;)
+    private Boolean isPublished;
+    
+    @Size(max = 16)
+    @Column(name = &quot;ISBN&quot;)
+    private String isbn;
+    
+    @Size(max = 50)
+    @Column(name = &quot;LibraryNumber&quot;)
+    private String libraryNumber;
+    
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = &quot;Number1&quot;)
+    private Float number1;
+    
+    @Column(name = &quot;Number2&quot;)
+    private Float number2;
+    
+    @Size(max = 50)
+    @Column(name = &quot;Pages&quot;)
+    private String pages;
+    
+    @Size(max = 50)
+    @Column(name = &quot;PlaceOfPublication&quot;)
+    private String placeOfPublication;
+    
+    @Size(max = 250)
+    @Column(name = &quot;Publisher&quot;)
+    private String publisher;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;ReferenceWorkType&quot;)
+    private short referenceWorkType;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text1&quot;)
+    private String text1;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text2&quot;)
+    private String text2;
+    
+    @Size(max = 255)
+    @Column(name = &quot;Title&quot;)
+    private String title;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;URL&quot;)
+    private String url;
+    
+    @Size(max = 25)
+    @Column(name = &quot;Volume&quot;)
+    private String volume;
+    
+    @Size(max = 25)
+    @Column(name = &quot;WorkDate&quot;)
+    private String workDate;
+    
+    @Column(name = &quot;YesNo1&quot;)
+    private Boolean yesNo1;
+    
+    @Column(name = &quot;YesNo2&quot;)
+    private Boolean yesNo2;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;referenceWorkID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Localitycitation&gt; localitycitationList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;referenceWorkID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Exsiccata&gt; exsiccataList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;referenceWorkID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Determinationcitation&gt; determinationcitationList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;referenceWorkID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Commonnametxcitation&gt; commonnametxcitationList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;referenceWorkID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Taxoncitation&gt; taxoncitationList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;referenceWorkID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Dnasequencingruncitation&gt; dnasequencingruncitationList;
+    
+    @OneToMany(mappedBy = &quot;containedRFParentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Referencework&gt; referenceworkList;
+    
+    @JoinColumn(name = &quot;ContainedRFParentID&quot;, referencedColumnName = &quot;ReferenceWorkID&quot;)
+    @ManyToOne
+    private Referencework containedRFParentID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;JournalID&quot;, referencedColumnName = &quot;JournalID&quot;)
+    @ManyToOne
+    private Journal journalID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;InstitutionID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)
+    @ManyToOne(optional = false)
+    private Institution institutionID;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;referenceWorkID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Author&gt; authorList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;referenceWorkID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Collectionobjectcitation&gt; collectionobjectcitationList;
+
+<span class="nc" id="L186">    public Referencework() {</span>
+<span class="nc" id="L187">    }</span>
+
+<span class="nc" id="L189">    public Referencework(Integer referenceWorkID) {</span>
+<span class="nc" id="L190">        this.referenceWorkID = referenceWorkID;</span>
+<span class="nc" id="L191">    }</span>
+
+<span class="nc" id="L193">    public Referencework(Integer referenceWorkID, Date timestampCreated, short referenceWorkType) {</span>
+<span class="nc" id="L194">        this.referenceWorkID = referenceWorkID;</span>
+<span class="nc" id="L195">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L196">        this.referenceWorkType = referenceWorkType;</span>
+<span class="nc" id="L197">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L203">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + referenceWorkID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L208">        return referenceWorkID;</span>
+    }
+
+    public Integer getReferenceWorkID() {
+<span class="nc" id="L212">        return referenceWorkID;</span>
+    }
+
+    public void setReferenceWorkID(Integer referenceWorkID) {
+<span class="nc" id="L216">        this.referenceWorkID = referenceWorkID;</span>
+<span class="nc" id="L217">    }</span>
+ 
+
+    public String getGuid() {
+<span class="nc" id="L221">        return guid;</span>
+    }
+
+    public void setGuid(String guid) {
+<span class="nc" id="L225">        this.guid = guid;</span>
+<span class="nc" id="L226">    }</span>
+
+    public Boolean getIsPublished() {
+<span class="nc" id="L229">        return isPublished;</span>
+    }
+
+    public void setIsPublished(Boolean isPublished) {
+<span class="nc" id="L233">        this.isPublished = isPublished;</span>
+<span class="nc" id="L234">    }</span>
+
+    public String getIsbn() {
+<span class="nc" id="L237">        return isbn;</span>
+    }
+
+    public void setIsbn(String isbn) {
+<span class="nc" id="L241">        this.isbn = isbn;</span>
+<span class="nc" id="L242">    }</span>
+
+    public String getLibraryNumber() {
+<span class="nc" id="L245">        return libraryNumber;</span>
+    }
+
+    public void setLibraryNumber(String libraryNumber) {
+<span class="nc" id="L249">        this.libraryNumber = libraryNumber;</span>
+<span class="nc" id="L250">    }</span>
+
+    public Float getNumber1() {
+<span class="nc" id="L253">        return number1;</span>
+    }
+
+    public void setNumber1(Float number1) {
+<span class="nc" id="L257">        this.number1 = number1;</span>
+<span class="nc" id="L258">    }</span>
+
+    public Float getNumber2() {
+<span class="nc" id="L261">        return number2;</span>
+    }
+
+    public void setNumber2(Float number2) {
+<span class="nc" id="L265">        this.number2 = number2;</span>
+<span class="nc" id="L266">    }</span>
+
+    public String getPages() {
+<span class="nc" id="L269">        return pages;</span>
+    }
+
+    public void setPages(String pages) {
+<span class="nc" id="L273">        this.pages = pages;</span>
+<span class="nc" id="L274">    }</span>
+
+    public String getPlaceOfPublication() {
+<span class="nc" id="L277">        return placeOfPublication;</span>
+    }
+
+    public void setPlaceOfPublication(String placeOfPublication) {
+<span class="nc" id="L281">        this.placeOfPublication = placeOfPublication;</span>
+<span class="nc" id="L282">    }</span>
+
+    public String getPublisher() {
+<span class="nc" id="L285">        return publisher;</span>
+    }
+
+    public void setPublisher(String publisher) {
+<span class="nc" id="L289">        this.publisher = publisher;</span>
+<span class="nc" id="L290">    }</span>
+
+    public short getReferenceWorkType() {
+<span class="nc" id="L293">        return referenceWorkType;</span>
+    }
+
+    public void setReferenceWorkType(short referenceWorkType) {
+<span class="nc" id="L297">        this.referenceWorkType = referenceWorkType;</span>
+<span class="nc" id="L298">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L301">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L305">        this.remarks = remarks;</span>
+<span class="nc" id="L306">    }</span>
+
+    public String getText1() {
+<span class="nc" id="L309">        return text1;</span>
+    }
+
+    public void setText1(String text1) {
+<span class="nc" id="L313">        this.text1 = text1;</span>
+<span class="nc" id="L314">    }</span>
+
+    public String getText2() {
+<span class="nc" id="L317">        return text2;</span>
+    }
+
+    public void setText2(String text2) {
+<span class="nc" id="L321">        this.text2 = text2;</span>
+<span class="nc" id="L322">    }</span>
+
+    public String getTitle() {
+<span class="nc" id="L325">        return title;</span>
+    }
+
+    public void setTitle(String title) {
+<span class="nc" id="L329">        this.title = title;</span>
+<span class="nc" id="L330">    }</span>
+
+    public String getUrl() {
+<span class="nc" id="L333">        return url;</span>
+    }
+
+    public void setUrl(String url) {
+<span class="nc" id="L337">        this.url = url;</span>
+<span class="nc" id="L338">    }</span>
+
+    public String getVolume() {
+<span class="nc" id="L341">        return volume;</span>
+    }
+
+    public void setVolume(String volume) {
+<span class="nc" id="L345">        this.volume = volume;</span>
+<span class="nc" id="L346">    }</span>
+
+    public String getWorkDate() {
+<span class="nc" id="L349">        return workDate;</span>
+    }
+
+    public void setWorkDate(String workDate) {
+<span class="nc" id="L353">        this.workDate = workDate;</span>
+<span class="nc" id="L354">    }</span>
+
+    public Boolean getYesNo1() {
+<span class="nc" id="L357">        return yesNo1;</span>
+    }
+
+    public void setYesNo1(Boolean yesNo1) {
+<span class="nc" id="L361">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L362">    }</span>
+
+    public Boolean getYesNo2() {
+<span class="nc" id="L365">        return yesNo2;</span>
+    }
+
+    public void setYesNo2(Boolean yesNo2) {
+<span class="nc" id="L369">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L370">    }</span>
+
+    @XmlTransient
+    public List&lt;Localitycitation&gt; getLocalitycitationList() {
+<span class="nc" id="L374">        return localitycitationList;</span>
+    }
+
+    public void setLocalitycitationList(List&lt;Localitycitation&gt; localitycitationList) {
+<span class="nc" id="L378">        this.localitycitationList = localitycitationList;</span>
+<span class="nc" id="L379">    }</span>
+
+    @XmlTransient
+    public List&lt;Exsiccata&gt; getExsiccataList() {
+<span class="nc" id="L383">        return exsiccataList;</span>
+    }
+
+    public void setExsiccataList(List&lt;Exsiccata&gt; exsiccataList) {
+<span class="nc" id="L387">        this.exsiccataList = exsiccataList;</span>
+<span class="nc" id="L388">    }</span>
+
+    @XmlTransient
+    public List&lt;Determinationcitation&gt; getDeterminationcitationList() {
+<span class="nc" id="L392">        return determinationcitationList;</span>
+    }
+
+    public void setDeterminationcitationList(List&lt;Determinationcitation&gt; determinationcitationList) {
+<span class="nc" id="L396">        this.determinationcitationList = determinationcitationList;</span>
+<span class="nc" id="L397">    }</span>
+
+    @XmlTransient
+    public List&lt;Commonnametxcitation&gt; getCommonnametxcitationList() {
+<span class="nc" id="L401">        return commonnametxcitationList;</span>
+    }
+
+    public void setCommonnametxcitationList(List&lt;Commonnametxcitation&gt; commonnametxcitationList) {
+<span class="nc" id="L405">        this.commonnametxcitationList = commonnametxcitationList;</span>
+<span class="nc" id="L406">    }</span>
+
+    @XmlTransient
+    public List&lt;Taxoncitation&gt; getTaxoncitationList() {
+<span class="nc" id="L410">        return taxoncitationList;</span>
+    }
+
+    public void setTaxoncitationList(List&lt;Taxoncitation&gt; taxoncitationList) {
+<span class="nc" id="L414">        this.taxoncitationList = taxoncitationList;</span>
+<span class="nc" id="L415">    }</span>
+
+    @XmlTransient
+    public List&lt;Dnasequencingruncitation&gt; getDnasequencingruncitationList() {
+<span class="nc" id="L419">        return dnasequencingruncitationList;</span>
+    }
+
+    public void setDnasequencingruncitationList(List&lt;Dnasequencingruncitation&gt; dnasequencingruncitationList) {
+<span class="nc" id="L423">        this.dnasequencingruncitationList = dnasequencingruncitationList;</span>
+<span class="nc" id="L424">    }</span>
+
+    @XmlTransient
+    public List&lt;Referencework&gt; getReferenceworkList() {
+<span class="nc" id="L428">        return referenceworkList;</span>
+    }
+
+    public void setReferenceworkList(List&lt;Referencework&gt; referenceworkList) {
+<span class="nc" id="L432">        this.referenceworkList = referenceworkList;</span>
+<span class="nc" id="L433">    }</span>
+
+    @XmlIDREF
+    public Referencework getContainedRFParentID() {
+<span class="nc" id="L437">        return containedRFParentID;</span>
+    }
+
+    public void setContainedRFParentID(Referencework containedRFParentID) {
+<span class="nc" id="L441">        this.containedRFParentID = containedRFParentID;</span>
+<span class="nc" id="L442">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L446">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L450">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L451">    }</span>
+
+    @XmlIDREF
+    public Journal getJournalID() {
+<span class="nc" id="L455">        return journalID;</span>
+    }
+
+    public void setJournalID(Journal journalID) {
+<span class="nc" id="L459">        this.journalID = journalID;</span>
+<span class="nc" id="L460">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L464">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L468">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L469">    }</span>
+
+    @XmlIDREF
+    public Institution getInstitutionID() {
+<span class="nc" id="L473">        return institutionID;</span>
+    }
+
+    public void setInstitutionID(Institution institutionID) {
+<span class="nc" id="L477">        this.institutionID = institutionID;</span>
+<span class="nc" id="L478">    }</span>
+
+    @XmlTransient
+    public List&lt;Author&gt; getAuthorList() {
+<span class="nc" id="L482">        return authorList;</span>
+    }
+
+    public void setAuthorList(List&lt;Author&gt; authorList) {
+<span class="nc" id="L486">        this.authorList = authorList;</span>
+<span class="nc" id="L487">    }</span>
+
+    @XmlTransient
+    public List&lt;Collectionobjectcitation&gt; getCollectionobjectcitationList() {
+<span class="nc" id="L491">        return collectionobjectcitationList;</span>
+    }
+
+    public void setCollectionobjectcitationList(List&lt;Collectionobjectcitation&gt; collectionobjectcitationList) {
+<span class="nc" id="L495">        this.collectionobjectcitationList = collectionobjectcitationList;</span>
+<span class="nc" id="L496">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L500">        int hash = 0;</span>
+<span class="nc bnc" id="L501" title="All 2 branches missed.">        hash += (referenceWorkID != null ? referenceWorkID.hashCode() : 0);</span>
+<span class="nc" id="L502">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L508" title="All 2 branches missed.">        if (!(object instanceof Referencework)) {</span>
+<span class="nc" id="L509">            return false;</span>
+        }
+<span class="nc" id="L511">        Referencework other = (Referencework) object;</span>
+<span class="nc bnc" id="L512" title="All 8 branches missed.">        return !((this.referenceWorkID == null &amp;&amp; other.referenceWorkID != null) || (this.referenceWorkID != null &amp;&amp; !this.referenceWorkID.equals(other.referenceWorkID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L517">        return &quot;se.nrm.dina.datamodel.Referencework[ referenceWorkID=&quot; + referenceWorkID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

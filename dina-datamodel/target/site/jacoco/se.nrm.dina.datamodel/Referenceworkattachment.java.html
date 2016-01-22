@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Referenceworkattachment.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Referenceworkattachment.java</span></div><h1>Referenceworkattachment.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlRootElement;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;referenceworkattachment&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Referenceworkattachment.findAll&quot;, query = &quot;SELECT r FROM Referenceworkattachment r&quot;),
+    @NamedQuery(name = &quot;Referenceworkattachment.findByReferenceWorkAttachmentID&quot;, query = &quot;SELECT r FROM Referenceworkattachment r WHERE r.referenceWorkAttachmentID = :referenceWorkAttachmentID&quot;), 
+    @NamedQuery(name = &quot;Referenceworkattachment.findByOrdinal&quot;, query = &quot;SELECT r FROM Referenceworkattachment r WHERE r.ordinal = :ordinal&quot;),
+    @NamedQuery(name = &quot;Referenceworkattachment.findByReferenceWorkID&quot;, query = &quot;SELECT r FROM Referenceworkattachment r WHERE r.referenceWorkID = :referenceWorkID&quot;),
+    @NamedQuery(name = &quot;Referenceworkattachment.findByModifiedByAgentID&quot;, query = &quot;SELECT r FROM Referenceworkattachment r WHERE r.modifiedByAgentID = :modifiedByAgentID&quot;),
+    @NamedQuery(name = &quot;Referenceworkattachment.findByCreatedByAgentID&quot;, query = &quot;SELECT r FROM Referenceworkattachment r WHERE r.createdByAgentID = :createdByAgentID&quot;),
+    @NamedQuery(name = &quot;Referenceworkattachment.findByAttachmentID&quot;, query = &quot;SELECT r FROM Referenceworkattachment r WHERE r.attachmentID = :attachmentID&quot;)})
+public class Referenceworkattachment extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;ReferenceWorkAttachmentID&quot;)
+    private Integer referenceWorkAttachmentID;
+    
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;Ordinal&quot;)
+    private int ordinal;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;ReferenceWorkID&quot;)
+    private int referenceWorkID;
+    
+    @Column(name = &quot;ModifiedByAgentID&quot;)
+    private Integer modifiedByAgentID;
+    
+    @Column(name = &quot;CreatedByAgentID&quot;)
+    private Integer createdByAgentID;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;AttachmentID&quot;)
+    private int attachmentID;
+
+<span class="nc" id="L78">    public Referenceworkattachment() {</span>
+<span class="nc" id="L79">    }</span>
+
+<span class="nc" id="L81">    public Referenceworkattachment(Integer referenceWorkAttachmentID) {</span>
+<span class="nc" id="L82">        this.referenceWorkAttachmentID = referenceWorkAttachmentID;</span>
+<span class="nc" id="L83">    }</span>
+
+<span class="nc" id="L85">    public Referenceworkattachment(Integer referenceWorkAttachmentID, Date timestampCreated, int ordinal, int referenceWorkID, int attachmentID) {</span>
+<span class="nc" id="L86">        this.referenceWorkAttachmentID = referenceWorkAttachmentID;</span>
+<span class="nc" id="L87">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L88">        this.ordinal = ordinal;</span>
+<span class="nc" id="L89">        this.referenceWorkID = referenceWorkID;</span>
+<span class="nc" id="L90">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L91">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L97">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + referenceWorkAttachmentID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L102">        return referenceWorkAttachmentID;</span>
+    }
+
+    public Integer getReferenceWorkAttachmentID() {
+<span class="nc" id="L106">        return referenceWorkAttachmentID;</span>
+    }
+
+    public void setReferenceWorkAttachmentID(Integer referenceWorkAttachmentID) {
+<span class="nc" id="L110">        this.referenceWorkAttachmentID = referenceWorkAttachmentID;</span>
+<span class="nc" id="L111">    }</span>
+ 
+
+    public int getOrdinal() {
+<span class="nc" id="L115">        return ordinal;</span>
+    }
+
+    public void setOrdinal(int ordinal) {
+<span class="nc" id="L119">        this.ordinal = ordinal;</span>
+<span class="nc" id="L120">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L123">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L127">        this.remarks = remarks;</span>
+<span class="nc" id="L128">    }</span>
+
+    public int getReferenceWorkID() {
+<span class="nc" id="L131">        return referenceWorkID;</span>
+    }
+
+    public void setReferenceWorkID(int referenceWorkID) {
+<span class="nc" id="L135">        this.referenceWorkID = referenceWorkID;</span>
+<span class="nc" id="L136">    }</span>
+
+    public Integer getModifiedByAgentID() {
+<span class="nc" id="L139">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Integer modifiedByAgentID) {
+<span class="nc" id="L143">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L144">    }</span>
+
+    public Integer getCreatedByAgentID() {
+<span class="nc" id="L147">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Integer createdByAgentID) {
+<span class="nc" id="L151">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L152">    }</span>
+
+    public int getAttachmentID() {
+<span class="nc" id="L155">        return attachmentID;</span>
+    }
+
+    public void setAttachmentID(int attachmentID) {
+<span class="nc" id="L159">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L160">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L164">        int hash = 0;</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">        hash += (referenceWorkAttachmentID != null ? referenceWorkAttachmentID.hashCode() : 0);</span>
+<span class="nc" id="L166">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L172" title="All 2 branches missed.">        if (!(object instanceof Referenceworkattachment)) {</span>
+<span class="nc" id="L173">            return false;</span>
+        }
+<span class="nc" id="L175">        Referenceworkattachment other = (Referenceworkattachment) object;</span>
+<span class="nc bnc" id="L176" title="All 8 branches missed.">        return !((this.referenceWorkAttachmentID == null &amp;&amp; other.referenceWorkAttachmentID != null) || (this.referenceWorkAttachmentID != null &amp;&amp; !this.referenceWorkAttachmentID.equals(other.referenceWorkAttachmentID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L181">        return &quot;se.nrm.dina.datamodel.Referenceworkattachment[ referenceWorkAttachmentID=&quot; + referenceWorkAttachmentID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

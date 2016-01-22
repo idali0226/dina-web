@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Spqueryfield.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Spqueryfield.java</span></div><h1>Spqueryfield.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;spqueryfield&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Spqueryfield.findAll&quot;, query = &quot;SELECT s FROM Spqueryfield s&quot;),
+    @NamedQuery(name = &quot;Spqueryfield.findBySpQueryFieldID&quot;, query = &quot;SELECT s FROM Spqueryfield s WHERE s.spQueryFieldID = :spQueryFieldID&quot;),  
+    @NamedQuery(name = &quot;Spqueryfield.findByStartValue&quot;, query = &quot;SELECT s FROM Spqueryfield s WHERE s.startValue = :startValue&quot;),
+    @NamedQuery(name = &quot;Spqueryfield.findByAllowNulls&quot;, query = &quot;SELECT s FROM Spqueryfield s WHERE s.allowNulls = :allowNulls&quot;)})
+public class Spqueryfield extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;SpQueryFieldID&quot;)
+    private Integer spQueryFieldID;
+    
+    
+    @Column(name = &quot;AlwaysFilter&quot;)
+    private Boolean alwaysFilter;
+    
+    @Size(max = 64)
+    @Column(name = &quot;ColumnAlias&quot;)
+    private String columnAlias;
+    
+    @Column(name = &quot;ContextTableIdent&quot;)
+    private Integer contextTableIdent;
+    
+    @Size(max = 255)
+    @Column(name = &quot;EndValue&quot;)
+    private String endValue;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 32)
+    @Column(name = &quot;FieldName&quot;)
+    private String fieldName;
+    
+    @Size(max = 64)
+    @Column(name = &quot;FormatName&quot;)
+    private String formatName;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;IsDisplay&quot;)
+    private boolean isDisplay;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;IsNot&quot;)
+    private boolean isNot;
+    
+    @Column(name = &quot;IsPrompt&quot;)
+    private Boolean isPrompt;
+    
+    @Column(name = &quot;IsRelFld&quot;)
+    private Boolean isRelFld;
+    
+    @Column(name = &quot;OperEnd&quot;)
+    private Short operEnd;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;OperStart&quot;)
+    private short operStart;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;Position&quot;)
+    private short position;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;SortType&quot;)
+    private short sortType;
+    
+    @Size(max = 255)
+    @Column(name = &quot;StartValue&quot;)
+    private String startValue;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = &quot;StringId&quot;)
+    private String stringId;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = &quot;TableList&quot;)
+    private String tableList;
+    
+    @Column(name = &quot;AllowNulls&quot;)
+    private Boolean allowNulls;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;SpQueryID&quot;, referencedColumnName = &quot;SpQueryID&quot;)
+    @ManyToOne
+    private Spquery spQueryID;
+    
+    @OneToMany(mappedBy = &quot;spQueryFieldID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Spexportschemaitemmapping&gt; spexportschemaitemmappingList;
+
+<span class="nc" id="L150">    public Spqueryfield() {</span>
+<span class="nc" id="L151">    }</span>
+
+<span class="nc" id="L153">    public Spqueryfield(Integer spQueryFieldID) {</span>
+<span class="nc" id="L154">        this.spQueryFieldID = spQueryFieldID;</span>
+<span class="nc" id="L155">    }</span>
+
+<span class="nc" id="L157">    public Spqueryfield(Integer spQueryFieldID, Date timestampCreated, String fieldName, boolean isDisplay, boolean isNot, short operStart, short position, short sortType, String stringId, String tableList) {</span>
+<span class="nc" id="L158">        this.spQueryFieldID = spQueryFieldID;</span>
+<span class="nc" id="L159">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L160">        this.fieldName = fieldName;</span>
+<span class="nc" id="L161">        this.isDisplay = isDisplay;</span>
+<span class="nc" id="L162">        this.isNot = isNot;</span>
+<span class="nc" id="L163">        this.operStart = operStart;</span>
+<span class="nc" id="L164">        this.position = position;</span>
+<span class="nc" id="L165">        this.sortType = sortType;</span>
+<span class="nc" id="L166">        this.stringId = stringId;</span>
+<span class="nc" id="L167">        this.tableList = tableList;</span>
+<span class="nc" id="L168">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L174">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spQueryFieldID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L179">        return spQueryFieldID;</span>
+    }
+
+    public Integer getSpQueryFieldID() {
+<span class="nc" id="L183">        return spQueryFieldID;</span>
+    }
+
+    public void setSpQueryFieldID(Integer spQueryFieldID) {
+<span class="nc" id="L187">        this.spQueryFieldID = spQueryFieldID;</span>
+<span class="nc" id="L188">    }</span>
+ 
+
+    public Boolean getAlwaysFilter() {
+<span class="nc" id="L192">        return alwaysFilter;</span>
+    }
+
+    public void setAlwaysFilter(Boolean alwaysFilter) {
+<span class="nc" id="L196">        this.alwaysFilter = alwaysFilter;</span>
+<span class="nc" id="L197">    }</span>
+
+    public String getColumnAlias() {
+<span class="nc" id="L200">        return columnAlias;</span>
+    }
+
+    public void setColumnAlias(String columnAlias) {
+<span class="nc" id="L204">        this.columnAlias = columnAlias;</span>
+<span class="nc" id="L205">    }</span>
+
+    public Integer getContextTableIdent() {
+<span class="nc" id="L208">        return contextTableIdent;</span>
+    }
+
+    public void setContextTableIdent(Integer contextTableIdent) {
+<span class="nc" id="L212">        this.contextTableIdent = contextTableIdent;</span>
+<span class="nc" id="L213">    }</span>
+
+    public String getEndValue() {
+<span class="nc" id="L216">        return endValue;</span>
+    }
+
+    public void setEndValue(String endValue) {
+<span class="nc" id="L220">        this.endValue = endValue;</span>
+<span class="nc" id="L221">    }</span>
+
+    public String getFieldName() {
+<span class="nc" id="L224">        return fieldName;</span>
+    }
+
+    public void setFieldName(String fieldName) {
+<span class="nc" id="L228">        this.fieldName = fieldName;</span>
+<span class="nc" id="L229">    }</span>
+
+    public String getFormatName() {
+<span class="nc" id="L232">        return formatName;</span>
+    }
+
+    public void setFormatName(String formatName) {
+<span class="nc" id="L236">        this.formatName = formatName;</span>
+<span class="nc" id="L237">    }</span>
+
+    public boolean getIsDisplay() {
+<span class="nc" id="L240">        return isDisplay;</span>
+    }
+
+    public void setIsDisplay(boolean isDisplay) {
+<span class="nc" id="L244">        this.isDisplay = isDisplay;</span>
+<span class="nc" id="L245">    }</span>
+
+    public boolean getIsNot() {
+<span class="nc" id="L248">        return isNot;</span>
+    }
+
+    public void setIsNot(boolean isNot) {
+<span class="nc" id="L252">        this.isNot = isNot;</span>
+<span class="nc" id="L253">    }</span>
+
+    public Boolean getIsPrompt() {
+<span class="nc" id="L256">        return isPrompt;</span>
+    }
+
+    public void setIsPrompt(Boolean isPrompt) {
+<span class="nc" id="L260">        this.isPrompt = isPrompt;</span>
+<span class="nc" id="L261">    }</span>
+
+    public Boolean getIsRelFld() {
+<span class="nc" id="L264">        return isRelFld;</span>
+    }
+
+    public void setIsRelFld(Boolean isRelFld) {
+<span class="nc" id="L268">        this.isRelFld = isRelFld;</span>
+<span class="nc" id="L269">    }</span>
+
+    public Short getOperEnd() {
+<span class="nc" id="L272">        return operEnd;</span>
+    }
+
+    public void setOperEnd(Short operEnd) {
+<span class="nc" id="L276">        this.operEnd = operEnd;</span>
+<span class="nc" id="L277">    }</span>
+
+    public short getOperStart() {
+<span class="nc" id="L280">        return operStart;</span>
+    }
+
+    public void setOperStart(short operStart) {
+<span class="nc" id="L284">        this.operStart = operStart;</span>
+<span class="nc" id="L285">    }</span>
+
+    public short getPosition() {
+<span class="nc" id="L288">        return position;</span>
+    }
+
+    public void setPosition(short position) {
+<span class="nc" id="L292">        this.position = position;</span>
+<span class="nc" id="L293">    }</span>
+
+    public short getSortType() {
+<span class="nc" id="L296">        return sortType;</span>
+    }
+
+    public void setSortType(short sortType) {
+<span class="nc" id="L300">        this.sortType = sortType;</span>
+<span class="nc" id="L301">    }</span>
+
+    public String getStartValue() {
+<span class="nc" id="L304">        return startValue;</span>
+    }
+
+    public void setStartValue(String startValue) {
+<span class="nc" id="L308">        this.startValue = startValue;</span>
+<span class="nc" id="L309">    }</span>
+
+    public String getStringId() {
+<span class="nc" id="L312">        return stringId;</span>
+    }
+
+    public void setStringId(String stringId) {
+<span class="nc" id="L316">        this.stringId = stringId;</span>
+<span class="nc" id="L317">    }</span>
+
+    public String getTableList() {
+<span class="nc" id="L320">        return tableList;</span>
+    }
+
+    public void setTableList(String tableList) {
+<span class="nc" id="L324">        this.tableList = tableList;</span>
+<span class="nc" id="L325">    }</span>
+
+    public Boolean getAllowNulls() {
+<span class="nc" id="L328">        return allowNulls;</span>
+    }
+
+    public void setAllowNulls(Boolean allowNulls) {
+<span class="nc" id="L332">        this.allowNulls = allowNulls;</span>
+<span class="nc" id="L333">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L337">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L341">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L342">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L346">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L350">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L351">    }</span>
+
+    @XmlIDREF
+    public Spquery getSpQueryID() {
+<span class="nc" id="L355">        return spQueryID;</span>
+    }
+
+    public void setSpQueryID(Spquery spQueryID) {
+<span class="nc" id="L359">        this.spQueryID = spQueryID;</span>
+<span class="nc" id="L360">    }</span>
+
+    @XmlTransient
+    public List&lt;Spexportschemaitemmapping&gt; getSpexportschemaitemmappingList() {
+<span class="nc" id="L364">        return spexportschemaitemmappingList;</span>
+    }
+
+    public void setSpexportschemaitemmappingList(List&lt;Spexportschemaitemmapping&gt; spexportschemaitemmappingList) {
+<span class="nc" id="L368">        this.spexportschemaitemmappingList = spexportschemaitemmappingList;</span>
+<span class="nc" id="L369">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L373">        int hash = 0;</span>
+<span class="nc bnc" id="L374" title="All 2 branches missed.">        hash += (spQueryFieldID != null ? spQueryFieldID.hashCode() : 0);</span>
+<span class="nc" id="L375">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L381" title="All 2 branches missed.">        if (!(object instanceof Spqueryfield)) {</span>
+<span class="nc" id="L382">            return false;</span>
+        }
+<span class="nc" id="L384">        Spqueryfield other = (Spqueryfield) object;</span>
+<span class="nc bnc" id="L385" title="All 8 branches missed.">        return !((this.spQueryFieldID == null &amp;&amp; other.spQueryFieldID != null) || (this.spQueryFieldID != null &amp;&amp; !this.spQueryFieldID.equals(other.spQueryFieldID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L390">        return &quot;se.nrm.dina.datamodel.Spqueryfield[ spQueryFieldID=&quot; + spQueryFieldID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

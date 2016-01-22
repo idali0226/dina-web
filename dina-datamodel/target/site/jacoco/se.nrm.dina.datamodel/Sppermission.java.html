@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Sppermission.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Sppermission.java</span></div><h1>Sppermission.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;sppermission&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Sppermission.findAll&quot;, query = &quot;SELECT s FROM Sppermission s&quot;),
+    @NamedQuery(name = &quot;Sppermission.findBySpPermissionID&quot;, query = &quot;SELECT s FROM Sppermission s WHERE s.spPermissionID = :spPermissionID&quot;),
+    @NamedQuery(name = &quot;Sppermission.findByName&quot;, query = &quot;SELECT s FROM Sppermission s WHERE s.name = :name&quot;),
+    @NamedQuery(name = &quot;Sppermission.findByTargetId&quot;, query = &quot;SELECT s FROM Sppermission s WHERE s.targetId = :targetId&quot;)})
+public class Sppermission implements EntityBean, Serializable {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;SpPermissionID&quot;)
+    private Integer spPermissionID;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Actions&quot;)
+    private String actions;
+    
+    @Size(max = 64)
+    @Column(name = &quot;Name&quot;)
+    private String name;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Lob
+    @Size(min = 1, max = 65535)
+    @Column(name = &quot;PermissionClass&quot;)
+    private String permissionClass;
+    
+    @Column(name = &quot;TargetId&quot;)
+    private Integer targetId;
+    
+    @JoinTable(name = &quot;spprincipal_sppermission&quot;, joinColumns = {
+        @JoinColumn(name = &quot;SpPermissionID&quot;, referencedColumnName = &quot;SpPermissionID&quot;)}, inverseJoinColumns = {
+        @JoinColumn(name = &quot;SpPrincipalID&quot;, referencedColumnName = &quot;SpPrincipalID&quot;)})
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List&lt;Spprincipal&gt; spprincipalList;
+
+<span class="nc" id="L79">    public Sppermission() {</span>
+<span class="nc" id="L80">    }</span>
+
+<span class="nc" id="L82">    public Sppermission(Integer spPermissionID) {</span>
+<span class="nc" id="L83">        this.spPermissionID = spPermissionID;</span>
+<span class="nc" id="L84">    }</span>
+
+<span class="nc" id="L86">    public Sppermission(Integer spPermissionID, String permissionClass) {</span>
+<span class="nc" id="L87">        this.spPermissionID = spPermissionID;</span>
+<span class="nc" id="L88">        this.permissionClass = permissionClass;</span>
+<span class="nc" id="L89">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L95">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spPermissionID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L100">        return spPermissionID;</span>
+    }
+
+    public Integer getSpPermissionID() {
+<span class="nc" id="L104">        return spPermissionID;</span>
+    }
+
+    public void setSpPermissionID(Integer spPermissionID) {
+<span class="nc" id="L108">        this.spPermissionID = spPermissionID;</span>
+<span class="nc" id="L109">    }</span>
+
+    public String getActions() {
+<span class="nc" id="L112">        return actions;</span>
+    }
+
+    public void setActions(String actions) {
+<span class="nc" id="L116">        this.actions = actions;</span>
+<span class="nc" id="L117">    }</span>
+
+    public String getName() {
+<span class="nc" id="L120">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L124">        this.name = name;</span>
+<span class="nc" id="L125">    }</span>
+
+    public String getPermissionClass() {
+<span class="nc" id="L128">        return permissionClass;</span>
+    }
+
+    public void setPermissionClass(String permissionClass) {
+<span class="nc" id="L132">        this.permissionClass = permissionClass;</span>
+<span class="nc" id="L133">    }</span>
+
+    public Integer getTargetId() {
+<span class="nc" id="L136">        return targetId;</span>
+    }
+
+    public void setTargetId(Integer targetId) {
+<span class="nc" id="L140">        this.targetId = targetId;</span>
+<span class="nc" id="L141">    }</span>
+
+    @XmlTransient
+    public List&lt;Spprincipal&gt; getSpprincipalList() {
+<span class="nc" id="L145">        return spprincipalList;</span>
+    }
+
+    public void setSpprincipalList(List&lt;Spprincipal&gt; spprincipalList) {
+<span class="nc" id="L149">        this.spprincipalList = spprincipalList;</span>
+<span class="nc" id="L150">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L154">        int hash = 0;</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">        hash += (spPermissionID != null ? spPermissionID.hashCode() : 0);</span>
+<span class="nc" id="L156">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L162" title="All 2 branches missed.">        if (!(object instanceof Sppermission)) {</span>
+<span class="nc" id="L163">            return false;</span>
+        }
+<span class="nc" id="L165">        Sppermission other = (Sppermission) object;</span>
+<span class="nc bnc" id="L166" title="All 8 branches missed.">        return !((this.spPermissionID == null &amp;&amp; other.spPermissionID != null) || (this.spPermissionID != null &amp;&amp; !this.spPermissionID.equals(other.spPermissionID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L171">        return &quot;se.nrm.dina.datamodel.Sppermission[ spPermissionID=&quot; + spPermissionID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

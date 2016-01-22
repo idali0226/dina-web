@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Sgrbatchmatchresultitem.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Sgrbatchmatchresultitem.java</span></div><h1>Sgrbatchmatchresultitem.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;sgrbatchmatchresultitem&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Sgrbatchmatchresultitem.findAll&quot;, query = &quot;SELECT s FROM Sgrbatchmatchresultitem s&quot;),
+    @NamedQuery(name = &quot;Sgrbatchmatchresultitem.findById&quot;, query = &quot;SELECT s FROM Sgrbatchmatchresultitem s WHERE s.id = :id&quot;),
+    @NamedQuery(name = &quot;Sgrbatchmatchresultitem.findByMatchedId&quot;, query = &quot;SELECT s FROM Sgrbatchmatchresultitem s WHERE s.matchedId = :matchedId&quot;),
+    @NamedQuery(name = &quot;Sgrbatchmatchresultitem.findByMaxScore&quot;, query = &quot;SELECT s FROM Sgrbatchmatchresultitem s WHERE s.maxScore = :maxScore&quot;),
+    @NamedQuery(name = &quot;Sgrbatchmatchresultitem.findByQTime&quot;, query = &quot;SELECT s FROM Sgrbatchmatchresultitem s WHERE s.qTime = :qTime&quot;)})
+public class Sgrbatchmatchresultitem implements EntityBean, Serializable {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;id&quot;)
+    private Long id;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 128)
+    @Column(name = &quot;matchedId&quot;)
+    private String matchedId;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;maxScore&quot;)
+    private float maxScore;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;qTime&quot;)
+    private int qTime;
+    
+    @JoinColumn(name = &quot;batchMatchResultSetId&quot;, referencedColumnName = &quot;id&quot;)
+    @ManyToOne(optional = false)
+    private Sgrbatchmatchresultset batchMatchResultSetId;
+
+<span class="nc" id="L71">    public Sgrbatchmatchresultitem() {</span>
+<span class="nc" id="L72">    }</span>
+
+<span class="nc" id="L74">    public Sgrbatchmatchresultitem(Long id) {</span>
+<span class="nc" id="L75">        this.id = id;</span>
+<span class="nc" id="L76">    }</span>
+
+<span class="nc" id="L78">    public Sgrbatchmatchresultitem(Long id, String matchedId, float maxScore, int qTime) {</span>
+<span class="nc" id="L79">        this.id = id;</span>
+<span class="nc" id="L80">        this.matchedId = matchedId;</span>
+<span class="nc" id="L81">        this.maxScore = maxScore;</span>
+<span class="nc" id="L82">        this.qTime = qTime;</span>
+<span class="nc" id="L83">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L89">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + id;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L94">        return  id.intValue();</span>
+    }
+
+    public Long getId() {
+<span class="nc" id="L98">        return id;</span>
+    }
+
+    public void setId(Long id) {
+<span class="nc" id="L102">        this.id = id;</span>
+<span class="nc" id="L103">    }</span>
+
+    public String getMatchedId() {
+<span class="nc" id="L106">        return matchedId;</span>
+    }
+
+    public void setMatchedId(String matchedId) {
+<span class="nc" id="L110">        this.matchedId = matchedId;</span>
+<span class="nc" id="L111">    }</span>
+
+    public float getMaxScore() {
+<span class="nc" id="L114">        return maxScore;</span>
+    }
+
+    public void setMaxScore(float maxScore) {
+<span class="nc" id="L118">        this.maxScore = maxScore;</span>
+<span class="nc" id="L119">    }</span>
+
+    public int getQTime() {
+<span class="nc" id="L122">        return qTime;</span>
+    }
+
+    public void setQTime(int qTime) {
+<span class="nc" id="L126">        this.qTime = qTime;</span>
+<span class="nc" id="L127">    }</span>
+
+    @XmlIDREF
+    public Sgrbatchmatchresultset getBatchMatchResultSetId() {
+<span class="nc" id="L131">        return batchMatchResultSetId;</span>
+    }
+
+    public void setBatchMatchResultSetId(Sgrbatchmatchresultset batchMatchResultSetId) {
+<span class="nc" id="L135">        this.batchMatchResultSetId = batchMatchResultSetId;</span>
+<span class="nc" id="L136">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L140">        int hash = 0;</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">        hash += (id != null ? id.hashCode() : 0);</span>
+<span class="nc" id="L142">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L148" title="All 2 branches missed.">        if (!(object instanceof Sgrbatchmatchresultitem)) {</span>
+<span class="nc" id="L149">            return false;</span>
+        }
+<span class="nc" id="L151">        Sgrbatchmatchresultitem other = (Sgrbatchmatchresultitem) object;</span>
+<span class="nc bnc" id="L152" title="All 8 branches missed.">        return !((this.id == null &amp;&amp; other.id != null) || (this.id != null &amp;&amp; !this.id.equals(other.id)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L157">        return &quot;se.nrm.dina.datamodel.Sgrbatchmatchresultitem[ id=&quot; + id + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

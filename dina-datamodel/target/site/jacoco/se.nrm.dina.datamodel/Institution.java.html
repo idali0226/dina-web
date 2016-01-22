@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Institution.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Institution.java</span></div><h1>Institution.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;institution&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Institution.findAll&quot;, query = &quot;SELECT i FROM Institution i&quot;),
+    @NamedQuery(name = &quot;Institution.findByUserGroupScopeId&quot;, query = &quot;SELECT i FROM Institution i WHERE i.userGroupScopeId = :userGroupScopeId&quot;), 
+    @NamedQuery(name = &quot;Institution.findByCode&quot;, query = &quot;SELECT i FROM Institution i WHERE i.code = :code&quot;),  
+    @NamedQuery(name = &quot;Institution.findByInstitutionId&quot;, query = &quot;SELECT i FROM Institution i WHERE i.institutionId = :institutionId&quot;), 
+    @NamedQuery(name = &quot;Institution.findByIsSingleGeographyTree&quot;, query = &quot;SELECT i FROM Institution i WHERE i.isSingleGeographyTree = :isSingleGeographyTree&quot;),
+    @NamedQuery(name = &quot;Institution.findByIsSharingLocalities&quot;, query = &quot;SELECT i FROM Institution i WHERE i.isSharingLocalities = :isSharingLocalities&quot;),
+    @NamedQuery(name = &quot;Institution.findByLsidAuthority&quot;, query = &quot;SELECT i FROM Institution i WHERE i.lsidAuthority = :lsidAuthority&quot;),
+    @NamedQuery(name = &quot;Institution.findByName&quot;, query = &quot;SELECT i FROM Institution i WHERE i.name = :name&quot;),
+    @NamedQuery(name = &quot;Institution.findByRegNumber&quot;, query = &quot;SELECT i FROM Institution i WHERE i.regNumber = :regNumber&quot;),
+    @NamedQuery(name = &quot;Institution.findByUri&quot;, query = &quot;SELECT i FROM Institution i WHERE i.uri = :uri&quot;),
+    @NamedQuery(name = &quot;Institution.findByCurrentManagedRelVersion&quot;, query = &quot;SELECT i FROM Institution i WHERE i.currentManagedRelVersion = :currentManagedRelVersion&quot;),
+    @NamedQuery(name = &quot;Institution.findByCurrentManagedSchemaVersion&quot;, query = &quot;SELECT i FROM Institution i WHERE i.currentManagedSchemaVersion = :currentManagedSchemaVersion&quot;),
+    @NamedQuery(name = &quot;Institution.findByIsReleaseManagedGlobally&quot;, query = &quot;SELECT i FROM Institution i WHERE i.isReleaseManagedGlobally = :isReleaseManagedGlobally&quot;),
+    @NamedQuery(name = &quot;Institution.findByMinimumPwdLength&quot;, query = &quot;SELECT i FROM Institution i WHERE i.minimumPwdLength = :minimumPwdLength&quot;),
+    @NamedQuery(name = &quot;Institution.findByGuid&quot;, query = &quot;SELECT i FROM Institution i WHERE i.guid = :guid&quot;)})
+public class Institution extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;UserGroupScopeId&quot;)
+    private Integer userGroupScopeId;
+    
+    
+    @Size(max = 128)
+    @Column(name = &quot;AltName&quot;)
+    private String altName;
+    
+    @Size(max = 64)
+    @Column(name = &quot;Code&quot;)
+    private String code;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Copyright&quot;)
+    private String copyright;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Description&quot;)
+    private String description;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Disclaimer&quot;)
+    private String disclaimer;
+    
+    @Column(name = &quot;HasBeenAsked&quot;)
+    private Boolean hasBeenAsked;
+    
+    @Size(max = 255)
+    @Column(name = &quot;IconURI&quot;)
+    private String iconURI;
+    
+    @Column(name = &quot;institutionId&quot;)
+    private Integer institutionId;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Ipr&quot;)
+    private String ipr;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;IsAccessionsGlobal&quot;)
+    private boolean isAccessionsGlobal;
+    
+    @Column(name = &quot;IsAnonymous&quot;)
+    private Boolean isAnonymous;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;IsSecurityOn&quot;)
+    private boolean isSecurityOn;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;IsServerBased&quot;)
+    private boolean isServerBased;
+    
+    @Column(name = &quot;IsSingleGeographyTree&quot;)
+    private Boolean isSingleGeographyTree;
+    
+    @Column(name = &quot;IsSharingLocalities&quot;)
+    private Boolean isSharingLocalities;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;License&quot;)
+    private String license;
+    
+    @Size(max = 64)
+    @Column(name = &quot;LsidAuthority&quot;)
+    private String lsidAuthority;
+    
+    @Size(max = 255)
+    @Column(name = &quot;Name&quot;)
+    private String name;
+    
+    @Size(max = 24)
+    @Column(name = &quot;RegNumber&quot;)
+    private String regNumber;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;TermsOfUse&quot;)
+    private String termsOfUse;
+    
+    @Size(max = 255)
+    @Column(name = &quot;Uri&quot;)
+    private String uri;
+    
+    @Size(max = 8)
+    @Column(name = &quot;CurrentManagedRelVersion&quot;)
+    private String currentManagedRelVersion;
+    
+    @Size(max = 8)
+    @Column(name = &quot;CurrentManagedSchemaVersion&quot;)
+    private String currentManagedSchemaVersion;
+    
+    @Column(name = &quot;IsReleaseManagedGlobally&quot;)
+    private Boolean isReleaseManagedGlobally;
+    
+    @Column(name = &quot;MinimumPwdLength&quot;)
+    private Short minimumPwdLength;
+    
+    @Size(max = 128)
+    @Column(name = &quot;GUID&quot;)
+    private String guid;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;institutionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Division&gt; divisionList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;institutionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Journal&gt; journalList;
+    
+    @OneToMany(mappedBy = &quot;institutionCCID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Agent&gt; agentList;
+    
+    @OneToMany(mappedBy = &quot;institutionTCID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Agent&gt; agentList1;
+    
+    @JoinColumn(name = &quot;StorageTreeDefID&quot;, referencedColumnName = &quot;StorageTreeDefID&quot;)
+    @ManyToOne
+    private Storagetreedef storageTreeDefID;
+    
+    @JoinColumn(name = &quot;AddressID&quot;, referencedColumnName = &quot;AddressID&quot;)
+    @ManyToOne
+    private Address addressID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;institutionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Referencework&gt; referenceworkList;
+    
+    @OneToMany(mappedBy = &quot;institutionNetworkID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Collection&gt; collectionList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;institutionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Permit&gt; permitList;
+
+<span class="nc" id="L214">    public Institution() {</span>
+<span class="nc" id="L215">    }</span>
+
+<span class="nc" id="L217">    public Institution(Integer userGroupScopeId) {</span>
+<span class="nc" id="L218">        this.userGroupScopeId = userGroupScopeId;</span>
+<span class="nc" id="L219">    }</span>
+
+<span class="nc" id="L221">    public Institution(Integer userGroupScopeId, Date timestampCreated, boolean isAccessionsGlobal, boolean isSecurityOn, boolean isServerBased) {</span>
+<span class="nc" id="L222">        this.userGroupScopeId = userGroupScopeId;</span>
+<span class="nc" id="L223">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L224">        this.isAccessionsGlobal = isAccessionsGlobal;</span>
+<span class="nc" id="L225">        this.isSecurityOn = isSecurityOn;</span>
+<span class="nc" id="L226">        this.isServerBased = isServerBased;</span>
+<span class="nc" id="L227">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L233">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + userGroupScopeId;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L238">        return institutionId;</span>
+    }
+
+    public Integer getUserGroupScopeId() {
+<span class="nc" id="L242">        return userGroupScopeId;</span>
+    }
+
+    public void setUserGroupScopeId(Integer userGroupScopeId) {
+<span class="nc" id="L246">        this.userGroupScopeId = userGroupScopeId;</span>
+<span class="nc" id="L247">    }</span>
+ 
+    public String getAltName() {
+<span class="nc" id="L250">        return altName;</span>
+    }
+
+    public void setAltName(String altName) {
+<span class="nc" id="L254">        this.altName = altName;</span>
+<span class="nc" id="L255">    }</span>
+
+    public String getCode() {
+<span class="nc" id="L258">        return code;</span>
+    }
+
+    public void setCode(String code) {
+<span class="nc" id="L262">        this.code = code;</span>
+<span class="nc" id="L263">    }</span>
+
+    public String getCopyright() {
+<span class="nc" id="L266">        return copyright;</span>
+    }
+
+    public void setCopyright(String copyright) {
+<span class="nc" id="L270">        this.copyright = copyright;</span>
+<span class="nc" id="L271">    }</span>
+
+    public String getDescription() {
+<span class="nc" id="L274">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="nc" id="L278">        this.description = description;</span>
+<span class="nc" id="L279">    }</span>
+
+    public String getDisclaimer() {
+<span class="nc" id="L282">        return disclaimer;</span>
+    }
+
+    public void setDisclaimer(String disclaimer) {
+<span class="nc" id="L286">        this.disclaimer = disclaimer;</span>
+<span class="nc" id="L287">    }</span>
+
+    public Boolean getHasBeenAsked() {
+<span class="nc" id="L290">        return hasBeenAsked;</span>
+    }
+
+    public void setHasBeenAsked(Boolean hasBeenAsked) {
+<span class="nc" id="L294">        this.hasBeenAsked = hasBeenAsked;</span>
+<span class="nc" id="L295">    }</span>
+
+    public String getIconURI() {
+<span class="nc" id="L298">        return iconURI;</span>
+    }
+
+    public void setIconURI(String iconURI) {
+<span class="nc" id="L302">        this.iconURI = iconURI;</span>
+<span class="nc" id="L303">    }</span>
+
+    public Integer getInstitutionId() {
+<span class="nc" id="L306">        return institutionId;</span>
+    }
+
+    public void setInstitutionId(Integer institutionId) {
+<span class="nc" id="L310">        this.institutionId = institutionId;</span>
+<span class="nc" id="L311">    }</span>
+
+    public String getIpr() {
+<span class="nc" id="L314">        return ipr;</span>
+    }
+
+    public void setIpr(String ipr) {
+<span class="nc" id="L318">        this.ipr = ipr;</span>
+<span class="nc" id="L319">    }</span>
+
+    public boolean getIsAccessionsGlobal() {
+<span class="nc" id="L322">        return isAccessionsGlobal;</span>
+    }
+
+    public void setIsAccessionsGlobal(boolean isAccessionsGlobal) {
+<span class="nc" id="L326">        this.isAccessionsGlobal = isAccessionsGlobal;</span>
+<span class="nc" id="L327">    }</span>
+
+    public Boolean getIsAnonymous() {
+<span class="nc" id="L330">        return isAnonymous;</span>
+    }
+
+    public void setIsAnonymous(Boolean isAnonymous) {
+<span class="nc" id="L334">        this.isAnonymous = isAnonymous;</span>
+<span class="nc" id="L335">    }</span>
+
+    public boolean getIsSecurityOn() {
+<span class="nc" id="L338">        return isSecurityOn;</span>
+    }
+
+    public void setIsSecurityOn(boolean isSecurityOn) {
+<span class="nc" id="L342">        this.isSecurityOn = isSecurityOn;</span>
+<span class="nc" id="L343">    }</span>
+
+    public boolean getIsServerBased() {
+<span class="nc" id="L346">        return isServerBased;</span>
+    }
+
+    public void setIsServerBased(boolean isServerBased) {
+<span class="nc" id="L350">        this.isServerBased = isServerBased;</span>
+<span class="nc" id="L351">    }</span>
+
+    public Boolean getIsSingleGeographyTree() {
+<span class="nc" id="L354">        return isSingleGeographyTree;</span>
+    }
+
+    public void setIsSingleGeographyTree(Boolean isSingleGeographyTree) {
+<span class="nc" id="L358">        this.isSingleGeographyTree = isSingleGeographyTree;</span>
+<span class="nc" id="L359">    }</span>
+
+    public Boolean getIsSharingLocalities() {
+<span class="nc" id="L362">        return isSharingLocalities;</span>
+    }
+
+    public void setIsSharingLocalities(Boolean isSharingLocalities) {
+<span class="nc" id="L366">        this.isSharingLocalities = isSharingLocalities;</span>
+<span class="nc" id="L367">    }</span>
+
+    public String getLicense() {
+<span class="nc" id="L370">        return license;</span>
+    }
+
+    public void setLicense(String license) {
+<span class="nc" id="L374">        this.license = license;</span>
+<span class="nc" id="L375">    }</span>
+
+    public String getLsidAuthority() {
+<span class="nc" id="L378">        return lsidAuthority;</span>
+    }
+
+    public void setLsidAuthority(String lsidAuthority) {
+<span class="nc" id="L382">        this.lsidAuthority = lsidAuthority;</span>
+<span class="nc" id="L383">    }</span>
+
+    public String getName() {
+<span class="nc" id="L386">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L390">        this.name = name;</span>
+<span class="nc" id="L391">    }</span>
+
+    public String getRegNumber() {
+<span class="nc" id="L394">        return regNumber;</span>
+    }
+
+    public void setRegNumber(String regNumber) {
+<span class="nc" id="L398">        this.regNumber = regNumber;</span>
+<span class="nc" id="L399">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L402">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L406">        this.remarks = remarks;</span>
+<span class="nc" id="L407">    }</span>
+
+    public String getTermsOfUse() {
+<span class="nc" id="L410">        return termsOfUse;</span>
+    }
+
+    public void setTermsOfUse(String termsOfUse) {
+<span class="nc" id="L414">        this.termsOfUse = termsOfUse;</span>
+<span class="nc" id="L415">    }</span>
+
+    public String getUri() {
+<span class="nc" id="L418">        return uri;</span>
+    }
+
+    public void setUri(String uri) {
+<span class="nc" id="L422">        this.uri = uri;</span>
+<span class="nc" id="L423">    }</span>
+
+    public String getCurrentManagedRelVersion() {
+<span class="nc" id="L426">        return currentManagedRelVersion;</span>
+    }
+
+    public void setCurrentManagedRelVersion(String currentManagedRelVersion) {
+<span class="nc" id="L430">        this.currentManagedRelVersion = currentManagedRelVersion;</span>
+<span class="nc" id="L431">    }</span>
+
+    public String getCurrentManagedSchemaVersion() {
+<span class="nc" id="L434">        return currentManagedSchemaVersion;</span>
+    }
+
+    public void setCurrentManagedSchemaVersion(String currentManagedSchemaVersion) {
+<span class="nc" id="L438">        this.currentManagedSchemaVersion = currentManagedSchemaVersion;</span>
+<span class="nc" id="L439">    }</span>
+
+    public Boolean getIsReleaseManagedGlobally() {
+<span class="nc" id="L442">        return isReleaseManagedGlobally;</span>
+    }
+
+    public void setIsReleaseManagedGlobally(Boolean isReleaseManagedGlobally) {
+<span class="nc" id="L446">        this.isReleaseManagedGlobally = isReleaseManagedGlobally;</span>
+<span class="nc" id="L447">    }</span>
+
+    public Short getMinimumPwdLength() {
+<span class="nc" id="L450">        return minimumPwdLength;</span>
+    }
+
+    public void setMinimumPwdLength(Short minimumPwdLength) {
+<span class="nc" id="L454">        this.minimumPwdLength = minimumPwdLength;</span>
+<span class="nc" id="L455">    }</span>
+
+    public String getGuid() {
+<span class="nc" id="L458">        return guid;</span>
+    }
+
+    public void setGuid(String guid) {
+<span class="nc" id="L462">        this.guid = guid;</span>
+<span class="nc" id="L463">    }</span>
+
+    @XmlTransient
+    public List&lt;Division&gt; getDivisionList() {
+<span class="nc" id="L467">        return divisionList;</span>
+    }
+
+    public void setDivisionList(List&lt;Division&gt; divisionList) {
+<span class="nc" id="L471">        this.divisionList = divisionList;</span>
+<span class="nc" id="L472">    }</span>
+
+    @XmlTransient
+    public List&lt;Journal&gt; getJournalList() {
+<span class="nc" id="L476">        return journalList;</span>
+    }
+
+    public void setJournalList(List&lt;Journal&gt; journalList) {
+<span class="nc" id="L480">        this.journalList = journalList;</span>
+<span class="nc" id="L481">    }</span>
+
+    @XmlTransient
+    public List&lt;Agent&gt; getAgentList() {
+<span class="nc" id="L485">        return agentList;</span>
+    }
+
+    public void setAgentList(List&lt;Agent&gt; agentList) {
+<span class="nc" id="L489">        this.agentList = agentList;</span>
+<span class="nc" id="L490">    }</span>
+
+    @XmlTransient
+    public List&lt;Agent&gt; getAgentList1() {
+<span class="nc" id="L494">        return agentList1;</span>
+    }
+
+    public void setAgentList1(List&lt;Agent&gt; agentList1) {
+<span class="nc" id="L498">        this.agentList1 = agentList1;</span>
+<span class="nc" id="L499">    }</span>
+
+    @XmlIDREF
+    public Storagetreedef getStorageTreeDefID() {
+<span class="nc" id="L503">        return storageTreeDefID;</span>
+    }
+
+    public void setStorageTreeDefID(Storagetreedef storageTreeDefID) {
+<span class="nc" id="L507">        this.storageTreeDefID = storageTreeDefID;</span>
+<span class="nc" id="L508">    }</span>
+
+    @XmlIDREF
+    public Address getAddressID() {
+<span class="nc" id="L512">        return addressID;</span>
+    }
+
+    public void setAddressID(Address addressID) {
+<span class="nc" id="L516">        this.addressID = addressID;</span>
+<span class="nc" id="L517">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L521">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L525">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L526">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L530">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L534">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L535">    }</span>
+
+    @XmlTransient
+    public List&lt;Referencework&gt; getReferenceworkList() {
+<span class="nc" id="L539">        return referenceworkList;</span>
+    }
+
+    public void setReferenceworkList(List&lt;Referencework&gt; referenceworkList) {
+<span class="nc" id="L543">        this.referenceworkList = referenceworkList;</span>
+<span class="nc" id="L544">    }</span>
+
+    @XmlTransient
+    public List&lt;Collection&gt; getCollectionList() {
+<span class="nc" id="L548">        return collectionList;</span>
+    }
+
+    public void setCollectionList(List&lt;Collection&gt; collectionList) {
+<span class="nc" id="L552">        this.collectionList = collectionList;</span>
+<span class="nc" id="L553">    }</span>
+
+    @XmlTransient
+    public List&lt;Permit&gt; getPermitList() {
+<span class="nc" id="L557">        return permitList;</span>
+    }
+
+    public void setPermitList(List&lt;Permit&gt; permitList) {
+<span class="nc" id="L561">        this.permitList = permitList;</span>
+<span class="nc" id="L562">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L566">        int hash = 0;</span>
+<span class="nc bnc" id="L567" title="All 2 branches missed.">        hash += (userGroupScopeId != null ? userGroupScopeId.hashCode() : 0);</span>
+<span class="nc" id="L568">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L574" title="All 2 branches missed.">        if (!(object instanceof Institution)) {</span>
+<span class="nc" id="L575">            return false;</span>
+        }
+<span class="nc" id="L577">        Institution other = (Institution) object;</span>
+<span class="nc bnc" id="L578" title="All 8 branches missed.">        return !((this.userGroupScopeId == null &amp;&amp; other.userGroupScopeId != null) || (this.userGroupScopeId != null &amp;&amp; !this.userGroupScopeId.equals(other.userGroupScopeId)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L583">        return &quot;se.nrm.dina.datamodel.Institution[ userGroupScopeId=&quot; + userGroupScopeId + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

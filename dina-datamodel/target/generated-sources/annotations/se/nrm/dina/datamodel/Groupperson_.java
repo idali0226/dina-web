@@ -6,7 +6,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Division;
 
-@Generated(value="EclipseLink-2.7.0.v20160121-rNA", date="2016-01-22T11:48:45")
+@Generated(value="EclipseLink-2.7.0.v20160121-rNA", date="2016-01-22T12:22:40")
 @StaticMetamodel(Groupperson.class)
 public class Groupperson_ extends BaseEntity_ {
 

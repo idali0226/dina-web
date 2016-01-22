@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Spexportschemamapping.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Spexportschemamapping.java</span></div><h1>Spexportschemamapping.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType; 
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;spexportschemamapping&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Spexportschemamapping.findAll&quot;, query = &quot;SELECT s FROM Spexportschemamapping s&quot;),
+    @NamedQuery(name = &quot;Spexportschemamapping.findBySpExportSchemaMappingID&quot;, query = &quot;SELECT s FROM Spexportschemamapping s WHERE s.spExportSchemaMappingID = :spExportSchemaMappingID&quot;), 
+    @NamedQuery(name = &quot;Spexportschemamapping.findByDescription&quot;, query = &quot;SELECT s FROM Spexportschemamapping s WHERE s.description = :description&quot;),
+    @NamedQuery(name = &quot;Spexportschemamapping.findByMappingName&quot;, query = &quot;SELECT s FROM Spexportschemamapping s WHERE s.mappingName = :mappingName&quot;),
+    @NamedQuery(name = &quot;Spexportschemamapping.findByTimeStampExported&quot;, query = &quot;SELECT s FROM Spexportschemamapping s WHERE s.timeStampExported = :timeStampExported&quot;),
+    @NamedQuery(name = &quot;Spexportschemamapping.findByCollectionMemberID&quot;, query = &quot;SELECT s FROM Spexportschemamapping s WHERE s.collectionMemberID = :collectionMemberID&quot;)})
+public class Spexportschemamapping extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;SpExportSchemaMappingID&quot;)
+    private Integer spExportSchemaMappingID;
+    
+    
+    @Size(max = 255)
+    @Column(name = &quot;Description&quot;)
+    private String description;
+    
+    @Size(max = 50)
+    @Column(name = &quot;MappingName&quot;)
+    private String mappingName;
+    
+    @Column(name = &quot;TimeStampExported&quot;)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timeStampExported;
+    
+    @Column(name = &quot;CollectionMemberID&quot;)
+    private Integer collectionMemberID;
+    
+    @ManyToMany(mappedBy = &quot;spexportschemamappingList&quot;, fetch = FetchType.LAZY)
+    private List&lt;Spexportschema&gt; spexportschemaList;
+    
+    @OneToMany(mappedBy = &quot;spExportSchemaMappingID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Spexportschemaitemmapping&gt; spexportschemaitemmappingList;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @OneToMany(mappedBy = &quot;schemaMappingID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Spsymbiotainstance&gt; spsymbiotainstanceList;
+
+<span class="nc" id="L91">    public Spexportschemamapping() {</span>
+<span class="nc" id="L92">    }</span>
+
+<span class="nc" id="L94">    public Spexportschemamapping(Integer spExportSchemaMappingID) {</span>
+<span class="nc" id="L95">        this.spExportSchemaMappingID = spExportSchemaMappingID;</span>
+<span class="nc" id="L96">    }</span>
+
+<span class="nc" id="L98">    public Spexportschemamapping(Integer spExportSchemaMappingID, Date timestampCreated) {</span>
+<span class="nc" id="L99">        this.spExportSchemaMappingID = spExportSchemaMappingID;</span>
+<span class="nc" id="L100">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L101">    }</span>
+
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L107">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spExportSchemaMappingID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L112">        return spExportSchemaMappingID;</span>
+    }
+    
+    public Integer getSpExportSchemaMappingID() {
+<span class="nc" id="L116">        return spExportSchemaMappingID;</span>
+    }
+
+    public void setSpExportSchemaMappingID(Integer spExportSchemaMappingID) {
+<span class="nc" id="L120">        this.spExportSchemaMappingID = spExportSchemaMappingID;</span>
+<span class="nc" id="L121">    }</span>
+ 
+    public String getDescription() {
+<span class="nc" id="L124">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="nc" id="L128">        this.description = description;</span>
+<span class="nc" id="L129">    }</span>
+
+    public String getMappingName() {
+<span class="nc" id="L132">        return mappingName;</span>
+    }
+
+    public void setMappingName(String mappingName) {
+<span class="nc" id="L136">        this.mappingName = mappingName;</span>
+<span class="nc" id="L137">    }</span>
+
+    public Date getTimeStampExported() {
+<span class="nc" id="L140">        return timeStampExported;</span>
+    }
+
+    public void setTimeStampExported(Date timeStampExported) {
+<span class="nc" id="L144">        this.timeStampExported = timeStampExported;</span>
+<span class="nc" id="L145">    }</span>
+
+    public Integer getCollectionMemberID() {
+<span class="nc" id="L148">        return collectionMemberID;</span>
+    }
+
+    public void setCollectionMemberID(Integer collectionMemberID) {
+<span class="nc" id="L152">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L153">    }</span>
+
+    @XmlTransient
+    public List&lt;Spexportschema&gt; getSpexportschemaList() {
+<span class="nc" id="L157">        return spexportschemaList;</span>
+    }
+
+    public void setSpexportschemaList(List&lt;Spexportschema&gt; spexportschemaList) {
+<span class="nc" id="L161">        this.spexportschemaList = spexportschemaList;</span>
+<span class="nc" id="L162">    }</span>
+
+    @XmlTransient
+    public List&lt;Spexportschemaitemmapping&gt; getSpexportschemaitemmappingList() {
+<span class="nc" id="L166">        return spexportschemaitemmappingList;</span>
+    }
+
+    public void setSpexportschemaitemmappingList(List&lt;Spexportschemaitemmapping&gt; spexportschemaitemmappingList) {
+<span class="nc" id="L170">        this.spexportschemaitemmappingList = spexportschemaitemmappingList;</span>
+<span class="nc" id="L171">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L175">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L179">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L180">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L184">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L188">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L189">    }</span>
+
+    @XmlTransient
+    public List&lt;Spsymbiotainstance&gt; getSpsymbiotainstanceList() {
+<span class="nc" id="L193">        return spsymbiotainstanceList;</span>
+    }
+
+    public void setSpsymbiotainstanceList(List&lt;Spsymbiotainstance&gt; spsymbiotainstanceList) {
+<span class="nc" id="L197">        this.spsymbiotainstanceList = spsymbiotainstanceList;</span>
+<span class="nc" id="L198">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L202">        int hash = 0;</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">        hash += (spExportSchemaMappingID != null ? spExportSchemaMappingID.hashCode() : 0);</span>
+<span class="nc" id="L204">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L210" title="All 2 branches missed.">        if (!(object instanceof Spexportschemamapping)) {</span>
+<span class="nc" id="L211">            return false;</span>
+        }
+<span class="nc" id="L213">        Spexportschemamapping other = (Spexportschemamapping) object;</span>
+<span class="nc bnc" id="L214" title="All 8 branches missed.">        return !((this.spExportSchemaMappingID == null &amp;&amp; other.spExportSchemaMappingID != null) || (this.spExportSchemaMappingID != null &amp;&amp; !this.spExportSchemaMappingID.equals(other.spExportSchemaMappingID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L219">        return &quot;se.nrm.dina.datamodel.Spexportschemamapping[ spExportSchemaMappingID=&quot; + spExportSchemaMappingID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

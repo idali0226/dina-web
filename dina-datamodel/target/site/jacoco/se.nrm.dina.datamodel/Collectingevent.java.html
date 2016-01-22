@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Collectingevent.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Collectingevent.java</span></div><h1>Collectingevent.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType; 
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;collectingevent&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Collectingevent.findAll&quot;, query = &quot;SELECT c FROM Collectingevent c&quot;),
+    @NamedQuery(name = &quot;Collectingevent.findByCollectingEventID&quot;, query = &quot;SELECT c FROM Collectingevent c WHERE c.collectingEventID = :collectingEventID&quot;),
+    @NamedQuery(name = &quot;Collectingevent.findByEndDate&quot;, query = &quot;SELECT c FROM Collectingevent c WHERE c.endDate = :endDate&quot;),
+    @NamedQuery(name = &quot;Collectingevent.findByStartDate&quot;, query = &quot;SELECT c FROM Collectingevent c WHERE c.startDate = :startDate&quot;),
+    @NamedQuery(name = &quot;Collectingevent.findByStationFieldNumber&quot;, query = &quot;SELECT c FROM Collectingevent c WHERE c.stationFieldNumber = :stationFieldNumber&quot;),
+    @NamedQuery(name = &quot;Collectingevent.findByVisibility&quot;, query = &quot;SELECT c FROM Collectingevent c WHERE c.visibility = :visibility&quot;),
+    @NamedQuery(name = &quot;Collectingevent.findByGuid&quot;, query = &quot;SELECT c FROM Collectingevent c WHERE c.guid = :guid&quot;)  })
+public class Collectingevent extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;CollectingEventID&quot;)
+    private Integer collectingEventID;
+    
+    
+    @Column(name = &quot;EndDate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
+    
+    @Column(name = &quot;EndDatePrecision&quot;)
+    private Short endDatePrecision;
+    
+    @Size(max = 50)
+    @Column(name = &quot;EndDateVerbatim&quot;)
+    private String endDateVerbatim;
+    
+    @Column(name = &quot;EndTime&quot;)
+    private Short endTime;
+    
+    @Size(max = 50)
+    @Column(name = &quot;Method&quot;)
+    private String method;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Column(name = &quot;StartDate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
+    
+    @Column(name = &quot;StartDatePrecision&quot;)
+    private Short startDatePrecision;
+    
+    @Size(max = 50)
+    @Column(name = &quot;StartDateVerbatim&quot;)
+    private String startDateVerbatim;
+    
+    @Column(name = &quot;StartTime&quot;)
+    private Short startTime;
+    
+    @Size(max = 50)
+    @Column(name = &quot;StationFieldNumber&quot;)
+    private String stationFieldNumber;
+    
+    @Size(max = 50)
+    @Column(name = &quot;VerbatimDate&quot;)
+    private String verbatimDate;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;VerbatimLocality&quot;)
+    private String verbatimLocality;
+    
+    @Column(name = &quot;Visibility&quot;)
+    private Short visibility;
+    
+    @Column(name = &quot;SGRStatus&quot;)
+    private Short sGRStatus;
+    
+    @Size(max = 128)
+    @Column(name = &quot;GUID&quot;)
+    private String guid;
+    
+    @Column(name = &quot;Integer1&quot;)
+    private Integer integer1;
+    
+    @Column(name = &quot;Integer2&quot;)
+    private Integer integer2;
+    
+    @Column(name = &quot;ReservedInteger3&quot;)
+    private Integer reservedInteger3;
+    
+    @Column(name = &quot;ReservedInteger4&quot;)
+    private Integer reservedInteger4;
+    
+    @Size(max = 128)
+    @Column(name = &quot;ReservedText1&quot;)
+    private String reservedText1;
+    
+    @Size(max = 128)
+    @Column(name = &quot;ReservedText2&quot;)
+    private String reservedText2;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text1&quot;)
+    private String text1;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Text2&quot;)
+    private String text2;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;collectingEventID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Collectingeventattachment&gt; collectingeventattachmentList;
+    
+    @OneToMany(mappedBy = &quot;collectingEventID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Collectionobject&gt; collectionobjectList;
+    
+    @JoinColumn(name = &quot;DisciplineID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)
+    @ManyToOne(optional = false)
+    private Discipline disciplineID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CollectingTripID&quot;, referencedColumnName = &quot;CollectingTripID&quot;)
+    @ManyToOne
+    private Collectingtrip collectingTripID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;VisibilitySetByID&quot;, referencedColumnName = &quot;SpecifyUserID&quot;)
+    @ManyToOne
+    private Specifyuser visibilitySetByID;
+    
+    @JoinColumn(name = &quot;PaleoContextID&quot;, referencedColumnName = &quot;PaleoContextID&quot;)
+    @ManyToOne
+    private Paleocontext paleoContextID;
+    
+    @JoinColumn(name = &quot;LocalityID&quot;, referencedColumnName = &quot;LocalityID&quot;)
+    @ManyToOne
+    private Locality localityID;
+    
+    @JoinColumn(name = &quot;CollectingEventAttributeID&quot;, referencedColumnName = &quot;CollectingEventAttributeID&quot;)
+    @ManyToOne
+    private Collectingeventattribute collectingEventAttributeID;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;collectingEventID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Collectingeventattr&gt; collectingeventattrList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;collectingEventID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Collector&gt; collectorList;
+
+<span class="nc" id="L195">    public Collectingevent() {</span>
+<span class="nc" id="L196">    }</span>
+
+<span class="nc" id="L198">    public Collectingevent(Integer collectingEventID) {</span>
+<span class="nc" id="L199">        this.collectingEventID = collectingEventID;</span>
+<span class="nc" id="L200">    }</span>
+
+<span class="nc" id="L202">    public Collectingevent(Integer collectingEventID, Date timestampCreated) {</span>
+<span class="nc" id="L203">        this.collectingEventID = collectingEventID;</span>
+<span class="nc" id="L204">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L205">    }</span>
+    
+        @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L211">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + collectingEventID;</span>
+    }
+
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L216">        return collectingEventID;</span>
+    }
+    
+    public Integer getCollectingEventID() {
+<span class="nc" id="L220">        return collectingEventID;</span>
+    }
+
+    public void setCollectingEventID(Integer collectingEventID) {
+<span class="nc" id="L224">        this.collectingEventID = collectingEventID;</span>
+<span class="nc" id="L225">    }</span>
+ 
+
+    public Date getEndDate() {
+<span class="nc" id="L229">        return endDate;</span>
+    }
+
+    public void setEndDate(Date endDate) {
+<span class="nc" id="L233">        this.endDate = endDate;</span>
+<span class="nc" id="L234">    }</span>
+
+    public Short getEndDatePrecision() {
+<span class="nc" id="L237">        return endDatePrecision;</span>
+    }
+
+    public void setEndDatePrecision(Short endDatePrecision) {
+<span class="nc" id="L241">        this.endDatePrecision = endDatePrecision;</span>
+<span class="nc" id="L242">    }</span>
+
+    public String getEndDateVerbatim() {
+<span class="nc" id="L245">        return endDateVerbatim;</span>
+    }
+
+    public void setEndDateVerbatim(String endDateVerbatim) {
+<span class="nc" id="L249">        this.endDateVerbatim = endDateVerbatim;</span>
+<span class="nc" id="L250">    }</span>
+
+    public Short getEndTime() {
+<span class="nc" id="L253">        return endTime;</span>
+    }
+
+    public void setEndTime(Short endTime) {
+<span class="nc" id="L257">        this.endTime = endTime;</span>
+<span class="nc" id="L258">    }</span>
+
+    public String getMethod() {
+<span class="nc" id="L261">        return method;</span>
+    }
+
+    public void setMethod(String method) {
+<span class="nc" id="L265">        this.method = method;</span>
+<span class="nc" id="L266">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L269">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L273">        this.remarks = remarks;</span>
+<span class="nc" id="L274">    }</span>
+
+    public Date getStartDate() {
+<span class="nc" id="L277">        return startDate;</span>
+    }
+
+    public void setStartDate(Date startDate) {
+<span class="nc" id="L281">        this.startDate = startDate;</span>
+<span class="nc" id="L282">    }</span>
+
+    public Short getStartDatePrecision() {
+<span class="nc" id="L285">        return startDatePrecision;</span>
+    }
+
+    public void setStartDatePrecision(Short startDatePrecision) {
+<span class="nc" id="L289">        this.startDatePrecision = startDatePrecision;</span>
+<span class="nc" id="L290">    }</span>
+
+    public String getStartDateVerbatim() {
+<span class="nc" id="L293">        return startDateVerbatim;</span>
+    }
+
+    public void setStartDateVerbatim(String startDateVerbatim) {
+<span class="nc" id="L297">        this.startDateVerbatim = startDateVerbatim;</span>
+<span class="nc" id="L298">    }</span>
+
+    public Short getStartTime() {
+<span class="nc" id="L301">        return startTime;</span>
+    }
+
+    public void setStartTime(Short startTime) {
+<span class="nc" id="L305">        this.startTime = startTime;</span>
+<span class="nc" id="L306">    }</span>
+
+    public String getStationFieldNumber() {
+<span class="nc" id="L309">        return stationFieldNumber;</span>
+    }
+
+    public void setStationFieldNumber(String stationFieldNumber) {
+<span class="nc" id="L313">        this.stationFieldNumber = stationFieldNumber;</span>
+<span class="nc" id="L314">    }</span>
+
+    public String getVerbatimDate() {
+<span class="nc" id="L317">        return verbatimDate;</span>
+    }
+
+    public void setVerbatimDate(String verbatimDate) {
+<span class="nc" id="L321">        this.verbatimDate = verbatimDate;</span>
+<span class="nc" id="L322">    }</span>
+
+    public String getVerbatimLocality() {
+<span class="nc" id="L325">        return verbatimLocality;</span>
+    }
+
+    public void setVerbatimLocality(String verbatimLocality) {
+<span class="nc" id="L329">        this.verbatimLocality = verbatimLocality;</span>
+<span class="nc" id="L330">    }</span>
+
+    public Short getVisibility() {
+<span class="nc" id="L333">        return visibility;</span>
+    }
+
+    public void setVisibility(Short visibility) {
+<span class="nc" id="L337">        this.visibility = visibility;</span>
+<span class="nc" id="L338">    }</span>
+
+    public Short getSGRStatus() {
+<span class="nc" id="L341">        return sGRStatus;</span>
+    }
+
+    public void setSGRStatus(Short sGRStatus) {
+<span class="nc" id="L345">        this.sGRStatus = sGRStatus;</span>
+<span class="nc" id="L346">    }</span>
+
+    public String getGuid() {
+<span class="nc" id="L349">        return guid;</span>
+    }
+
+    public void setGuid(String guid) {
+<span class="nc" id="L353">        this.guid = guid;</span>
+<span class="nc" id="L354">    }</span>
+
+    public Integer getInteger1() {
+<span class="nc" id="L357">        return integer1;</span>
+    }
+
+    public void setInteger1(Integer integer1) {
+<span class="nc" id="L361">        this.integer1 = integer1;</span>
+<span class="nc" id="L362">    }</span>
+
+    public Integer getInteger2() {
+<span class="nc" id="L365">        return integer2;</span>
+    }
+
+    public void setInteger2(Integer integer2) {
+<span class="nc" id="L369">        this.integer2 = integer2;</span>
+<span class="nc" id="L370">    }</span>
+
+    public Integer getReservedInteger3() {
+<span class="nc" id="L373">        return reservedInteger3;</span>
+    }
+
+    public void setReservedInteger3(Integer reservedInteger3) {
+<span class="nc" id="L377">        this.reservedInteger3 = reservedInteger3;</span>
+<span class="nc" id="L378">    }</span>
+
+    public Integer getReservedInteger4() {
+<span class="nc" id="L381">        return reservedInteger4;</span>
+    }
+
+    public void setReservedInteger4(Integer reservedInteger4) {
+<span class="nc" id="L385">        this.reservedInteger4 = reservedInteger4;</span>
+<span class="nc" id="L386">    }</span>
+
+    public String getReservedText1() {
+<span class="nc" id="L389">        return reservedText1;</span>
+    }
+
+    public void setReservedText1(String reservedText1) {
+<span class="nc" id="L393">        this.reservedText1 = reservedText1;</span>
+<span class="nc" id="L394">    }</span>
+
+    public String getReservedText2() {
+<span class="nc" id="L397">        return reservedText2;</span>
+    }
+
+    public void setReservedText2(String reservedText2) {
+<span class="nc" id="L401">        this.reservedText2 = reservedText2;</span>
+<span class="nc" id="L402">    }</span>
+
+    public String getText1() {
+<span class="nc" id="L405">        return text1;</span>
+    }
+
+    public void setText1(String text1) {
+<span class="nc" id="L409">        this.text1 = text1;</span>
+<span class="nc" id="L410">    }</span>
+
+    public String getText2() {
+<span class="nc" id="L413">        return text2;</span>
+    }
+
+    public void setText2(String text2) {
+<span class="nc" id="L417">        this.text2 = text2;</span>
+<span class="nc" id="L418">    }</span>
+
+    @XmlTransient
+    public List&lt;Collectingeventattachment&gt; getCollectingeventattachmentList() {
+<span class="nc" id="L422">        return collectingeventattachmentList;</span>
+    }
+
+    public void setCollectingeventattachmentList(List&lt;Collectingeventattachment&gt; collectingeventattachmentList) {
+<span class="nc" id="L426">        this.collectingeventattachmentList = collectingeventattachmentList;</span>
+<span class="nc" id="L427">    }</span>
+
+    @XmlTransient
+    public List&lt;Collectionobject&gt; getCollectionobjectList() {
+<span class="nc" id="L431">        return collectionobjectList;</span>
+    }
+
+    public void setCollectionobjectList(List&lt;Collectionobject&gt; collectionobjectList) {
+<span class="nc" id="L435">        this.collectionobjectList = collectionobjectList;</span>
+<span class="nc" id="L436">    }</span>
+
+    @XmlIDREF
+    public Discipline getDisciplineID() {
+<span class="nc" id="L440">        return disciplineID;</span>
+    }
+
+    public void setDisciplineID(Discipline disciplineID) {
+<span class="nc" id="L444">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L445">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L449">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L453">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L454">    }</span>
+
+    @XmlIDREF
+    public Collectingtrip getCollectingTripID() {
+<span class="nc" id="L458">        return collectingTripID;</span>
+    }
+
+    public void setCollectingTripID(Collectingtrip collectingTripID) {
+<span class="nc" id="L462">        this.collectingTripID = collectingTripID;</span>
+<span class="nc" id="L463">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L467">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L471">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L472">    }</span>
+
+    @XmlIDREF
+    public Specifyuser getVisibilitySetByID() {
+<span class="nc" id="L476">        return visibilitySetByID;</span>
+    }
+
+    public void setVisibilitySetByID(Specifyuser visibilitySetByID) {
+<span class="nc" id="L480">        this.visibilitySetByID = visibilitySetByID;</span>
+<span class="nc" id="L481">    }</span>
+
+    @XmlIDREF
+    public Paleocontext getPaleoContextID() {
+<span class="nc" id="L485">        return paleoContextID;</span>
+    }
+
+    public void setPaleoContextID(Paleocontext paleoContextID) {
+<span class="nc" id="L489">        this.paleoContextID = paleoContextID;</span>
+<span class="nc" id="L490">    }</span>
+
+    @XmlIDREF
+    public Locality getLocalityID() {
+<span class="nc" id="L494">        return localityID;</span>
+    }
+
+    public void setLocalityID(Locality localityID) {
+<span class="nc" id="L498">        this.localityID = localityID;</span>
+<span class="nc" id="L499">    }</span>
+
+    @XmlIDREF
+    public Collectingeventattribute getCollectingEventAttributeID() {
+<span class="nc" id="L503">        return collectingEventAttributeID;</span>
+    }
+
+    public void setCollectingEventAttributeID(Collectingeventattribute collectingEventAttributeID) {
+<span class="nc" id="L507">        this.collectingEventAttributeID = collectingEventAttributeID;</span>
+<span class="nc" id="L508">    }</span>
+
+    @XmlTransient
+    public List&lt;Collectingeventattr&gt; getCollectingeventattrList() {
+<span class="nc" id="L512">        return collectingeventattrList;</span>
+    }
+
+    public void setCollectingeventattrList(List&lt;Collectingeventattr&gt; collectingeventattrList) {
+<span class="nc" id="L516">        this.collectingeventattrList = collectingeventattrList;</span>
+<span class="nc" id="L517">    }</span>
+
+    @XmlTransient
+    public List&lt;Collector&gt; getCollectorList() {
+<span class="nc" id="L521">        return collectorList;</span>
+    }
+
+    public void setCollectorList(List&lt;Collector&gt; collectorList) {
+<span class="nc" id="L525">        this.collectorList = collectorList;</span>
+<span class="nc" id="L526">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L530">        int hash = 0;</span>
+<span class="nc bnc" id="L531" title="All 2 branches missed.">        hash += (collectingEventID != null ? collectingEventID.hashCode() : 0);</span>
+<span class="nc" id="L532">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L538" title="All 2 branches missed.">        if (!(object instanceof Collectingevent)) {</span>
+<span class="nc" id="L539">            return false;</span>
+        }
+<span class="nc" id="L541">        Collectingevent other = (Collectingevent) object;</span>
+<span class="nc bnc" id="L542" title="All 8 branches missed.">        return !((this.collectingEventID == null &amp;&amp; other.collectingEventID != null) || (this.collectingEventID != null &amp;&amp; !this.collectingEventID.equals(other.collectingEventID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L547">        return &quot;se.nrm.dina.datamodel.Collectingevent[ collectingEventID=&quot; + collectingEventID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Storage_.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Storage_.java</span></div><h1>Storage_.java</h1><pre class="source lang-java linenums">package se.nrm.dina.datamodel;
+
+import java.util.Date;
+import javax.annotation.Generated;
+import javax.persistence.metamodel.ListAttribute;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
+import se.nrm.dina.datamodel.Agent;
+import se.nrm.dina.datamodel.Container;
+import se.nrm.dina.datamodel.Preparation;
+import se.nrm.dina.datamodel.Storage;
+import se.nrm.dina.datamodel.Storageattachment;
+import se.nrm.dina.datamodel.Storagetreedef;
+import se.nrm.dina.datamodel.Storagetreedefitem;
+
+@Generated(value=&quot;EclipseLink-2.7.0.v20160121-rNA&quot;, date=&quot;2016-01-22T12:22:39&quot;)
+@StaticMetamodel(Storage.class)
+<span class="nc" id="L18">public class Storage_ extends BaseEntity_ {</span>
+
+    public static volatile ListAttribute&lt;Storage, Container&gt; containerList;
+    public static volatile SingularAttribute&lt;Storage, Integer&gt; number1;
+    public static volatile SingularAttribute&lt;Storage, Agent&gt; modifiedByAgentID;
+    public static volatile SingularAttribute&lt;Storage, Integer&gt; number2;
+    public static volatile SingularAttribute&lt;Storage, Storage&gt; parentID;
+    public static volatile ListAttribute&lt;Storage, Storage&gt; storageList;
+    public static volatile SingularAttribute&lt;Storage, Integer&gt; rankID;
+    public static volatile SingularAttribute&lt;Storage, Storagetreedefitem&gt; storageTreeDefItemID;
+    public static volatile ListAttribute&lt;Storage, Preparation&gt; preparationList;
+    public static volatile SingularAttribute&lt;Storage, Integer&gt; highestChildNodeNumber;
+    public static volatile SingularAttribute&lt;Storage, Storage&gt; acceptedID;
+    public static volatile SingularAttribute&lt;Storage, Integer&gt; nodeNumber;
+    public static volatile SingularAttribute&lt;Storage, String&gt; fullName;
+    public static volatile ListAttribute&lt;Storage, Storageattachment&gt; storageattachmentList;
+    public static volatile SingularAttribute&lt;Storage, Date&gt; timestampVersion;
+    public static volatile ListAttribute&lt;Storage, Storage&gt; storageList1;
+    public static volatile SingularAttribute&lt;Storage, String&gt; text1;
+    public static volatile SingularAttribute&lt;Storage, Boolean&gt; isAccepted;
+    public static volatile SingularAttribute&lt;Storage, String&gt; text2;
+    public static volatile SingularAttribute&lt;Storage, String&gt; name;
+    public static volatile SingularAttribute&lt;Storage, Agent&gt; createdByAgentID;
+    public static volatile SingularAttribute&lt;Storage, String&gt; abbrev;
+    public static volatile SingularAttribute&lt;Storage, Storagetreedef&gt; storageTreeDefID;
+    public static volatile SingularAttribute&lt;Storage, String&gt; remarks;
+    public static volatile SingularAttribute&lt;Storage, Integer&gt; storageID;
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

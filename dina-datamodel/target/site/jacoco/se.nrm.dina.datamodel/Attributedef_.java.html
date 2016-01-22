@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Attributedef_.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Attributedef_.java</span></div><h1>Attributedef_.java</h1><pre class="source lang-java linenums">package se.nrm.dina.datamodel;
+
+import javax.annotation.Generated;
+import javax.persistence.metamodel.ListAttribute;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
+import se.nrm.dina.datamodel.Agent;
+import se.nrm.dina.datamodel.Collectingeventattr;
+import se.nrm.dina.datamodel.Collectionobjectattr;
+import se.nrm.dina.datamodel.Discipline;
+import se.nrm.dina.datamodel.Preparationattr;
+import se.nrm.dina.datamodel.Preptype;
+
+@Generated(value=&quot;EclipseLink-2.7.0.v20160121-rNA&quot;, date=&quot;2016-01-22T12:22:40&quot;)
+@StaticMetamodel(Attributedef.class)
+<span class="nc" id="L16">public class Attributedef_ extends BaseEntity_ {</span>
+
+    public static volatile SingularAttribute&lt;Attributedef, Integer&gt; attributeDefID;
+    public static volatile SingularAttribute&lt;Attributedef, Short&gt; tableType;
+    public static volatile SingularAttribute&lt;Attributedef, Preptype&gt; prepTypeID;
+    public static volatile SingularAttribute&lt;Attributedef, String&gt; fieldName;
+    public static volatile ListAttribute&lt;Attributedef, Collectionobjectattr&gt; collectionobjectattrList;
+    public static volatile SingularAttribute&lt;Attributedef, Short&gt; dataType;
+    public static volatile ListAttribute&lt;Attributedef, Preparationattr&gt; preparationattrList;
+    public static volatile SingularAttribute&lt;Attributedef, Discipline&gt; disciplineID;
+    public static volatile SingularAttribute&lt;Attributedef, Agent&gt; modifiedByAgentID;
+    public static volatile SingularAttribute&lt;Attributedef, Agent&gt; createdByAgentID;
+    public static volatile ListAttribute&lt;Attributedef, Collectingeventattr&gt; collectingeventattrList;
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

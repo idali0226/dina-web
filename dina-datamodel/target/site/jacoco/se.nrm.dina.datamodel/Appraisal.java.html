@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Appraisal.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Appraisal.java</span></div><h1>Appraisal.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;appraisal&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Appraisal.findAll&quot;, query = &quot;SELECT a FROM Appraisal a&quot;),
+    @NamedQuery(name = &quot;Appraisal.findByAppraisalID&quot;, query = &quot;SELECT a FROM Appraisal a WHERE a.appraisalID = :appraisalID&quot;), 
+    @NamedQuery(name = &quot;Appraisal.findByAppraisalDate&quot;, query = &quot;SELECT a FROM Appraisal a WHERE a.appraisalDate = :appraisalDate&quot;),
+    @NamedQuery(name = &quot;Appraisal.findByAppraisalNumber&quot;, query = &quot;SELECT a FROM Appraisal a WHERE a.appraisalNumber = :appraisalNumber&quot;),
+    @NamedQuery(name = &quot;Appraisal.findByAppraisalValue&quot;, query = &quot;SELECT a FROM Appraisal a WHERE a.appraisalValue = :appraisalValue&quot;),
+    @NamedQuery(name = &quot;Appraisal.findByMonetaryUnitType&quot;, query = &quot;SELECT a FROM Appraisal a WHERE a.monetaryUnitType = :monetaryUnitType&quot;)})
+public class Appraisal extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;AppraisalID&quot;)
+    private Integer appraisalID;
+    
+   
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;AppraisalDate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date appraisalDate;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = &quot;AppraisalNumber&quot;)
+    private String appraisalNumber;
+    
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = &quot;AppraisalValue&quot;)
+    private BigDecimal appraisalValue;
+    
+    @Size(max = 8)
+    @Column(name = &quot;MonetaryUnitType&quot;)
+    private String monetaryUnitType;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Notes&quot;)
+    private String notes;
+    
+    @OneToMany(mappedBy = &quot;appraisalID&quot;)
+    private List&lt;Collectionobject&gt; collectionobjectList;
+    
+    @JoinColumn(name = &quot;AgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne(optional = false)
+    private Agent agentID;
+    
+    @JoinColumn(name = &quot;AccessionID&quot;, referencedColumnName = &quot;AccessionID&quot;)
+    @ManyToOne
+    private Accession accessionID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+
+<span class="nc" id="L105">    public Appraisal() {</span>
+<span class="nc" id="L106">    }</span>
+
+<span class="nc" id="L108">    public Appraisal(Integer appraisalID) {</span>
+<span class="nc" id="L109">        this.appraisalID = appraisalID;</span>
+<span class="nc" id="L110">    }</span>
+
+<span class="nc" id="L112">    public Appraisal(Integer appraisalID, Date timestampCreated, Date appraisalDate, String appraisalNumber) {</span>
+<span class="nc" id="L113">        this.appraisalID = appraisalID;</span>
+<span class="nc" id="L114">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L115">        this.appraisalDate = appraisalDate;</span>
+<span class="nc" id="L116">        this.appraisalNumber = appraisalNumber;</span>
+<span class="nc" id="L117">    }</span>
+
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L123">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + appraisalID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L128">        return appraisalID;</span>
+    }
+    
+    public Integer getAppraisalID() {
+<span class="nc" id="L132">        return appraisalID;</span>
+    }
+
+    public void setAppraisalID(Integer appraisalID) {
+<span class="nc" id="L136">        this.appraisalID = appraisalID;</span>
+<span class="nc" id="L137">    }</span>
+
+    
+    public Date getAppraisalDate() {
+<span class="nc" id="L141">        return appraisalDate;</span>
+    }
+
+    public void setAppraisalDate(Date appraisalDate) {
+<span class="nc" id="L145">        this.appraisalDate = appraisalDate;</span>
+<span class="nc" id="L146">    }</span>
+
+    public String getAppraisalNumber() {
+<span class="nc" id="L149">        return appraisalNumber;</span>
+    }
+
+    public void setAppraisalNumber(String appraisalNumber) {
+<span class="nc" id="L153">        this.appraisalNumber = appraisalNumber;</span>
+<span class="nc" id="L154">    }</span>
+
+    public BigDecimal getAppraisalValue() {
+<span class="nc" id="L157">        return appraisalValue;</span>
+    }
+
+    public void setAppraisalValue(BigDecimal appraisalValue) {
+<span class="nc" id="L161">        this.appraisalValue = appraisalValue;</span>
+<span class="nc" id="L162">    }</span>
+
+    public String getMonetaryUnitType() {
+<span class="nc" id="L165">        return monetaryUnitType;</span>
+    }
+
+    public void setMonetaryUnitType(String monetaryUnitType) {
+<span class="nc" id="L169">        this.monetaryUnitType = monetaryUnitType;</span>
+<span class="nc" id="L170">    }</span>
+
+    public String getNotes() {
+<span class="nc" id="L173">        return notes;</span>
+    }
+
+    public void setNotes(String notes) {
+<span class="nc" id="L177">        this.notes = notes;</span>
+<span class="nc" id="L178">    }</span>
+
+    @XmlTransient
+    public List&lt;Collectionobject&gt; getCollectionobjectList() {
+<span class="nc" id="L182">        return collectionobjectList;</span>
+    }
+
+    public void setCollectionobjectList(List&lt;Collectionobject&gt; collectionobjectList) {
+<span class="nc" id="L186">        this.collectionobjectList = collectionobjectList;</span>
+<span class="nc" id="L187">    }</span>
+
+    @XmlIDREF
+    public Agent getAgentID() {
+<span class="nc" id="L191">        return agentID;</span>
+    }
+
+    public void setAgentID(Agent agentID) {
+<span class="nc" id="L195">        this.agentID = agentID;</span>
+<span class="nc" id="L196">    }</span>
+
+    @XmlIDREF
+    public Accession getAccessionID() {
+<span class="nc" id="L200">        return accessionID;</span>
+    }
+
+    public void setAccessionID(Accession accessionID) {
+<span class="nc" id="L204">        this.accessionID = accessionID;</span>
+<span class="nc" id="L205">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L209">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L213">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L214">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L218">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L222">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L223">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L227">        int hash = 0;</span>
+<span class="nc bnc" id="L228" title="All 2 branches missed.">        hash += (appraisalID != null ? appraisalID.hashCode() : 0);</span>
+<span class="nc" id="L229">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L235" title="All 2 branches missed.">        if (!(object instanceof Appraisal)) {</span>
+<span class="nc" id="L236">            return false;</span>
+        }
+<span class="nc" id="L238">        Appraisal other = (Appraisal) object;</span>
+<span class="nc bnc" id="L239" title="All 8 branches missed.">        return !((this.appraisalID == null &amp;&amp; other.appraisalID != null) || (this.appraisalID != null &amp;&amp; !this.appraisalID.equals(other.appraisalID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L244">        return &quot;se.nrm.dina.datamodel.Appraisal[ appraisalID=&quot; + appraisalID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

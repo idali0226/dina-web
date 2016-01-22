@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Storagetreedefitem.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Storagetreedefitem.java</span></div><h1>Storagetreedefitem.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;storagetreedefitem&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Storagetreedefitem.findAll&quot;, query = &quot;SELECT s FROM Storagetreedefitem s&quot;),
+    @NamedQuery(name = &quot;Storagetreedefitem.findByStorageTreeDefItemID&quot;, query = &quot;SELECT s FROM Storagetreedefitem s WHERE s.storageTreeDefItemID = :storageTreeDefItemID&quot;), 
+    @NamedQuery(name = &quot;Storagetreedefitem.findByFullNameSeparator&quot;, query = &quot;SELECT s FROM Storagetreedefitem s WHERE s.fullNameSeparator = :fullNameSeparator&quot;),
+    @NamedQuery(name = &quot;Storagetreedefitem.findByIsEnforced&quot;, query = &quot;SELECT s FROM Storagetreedefitem s WHERE s.isEnforced = :isEnforced&quot;),
+    @NamedQuery(name = &quot;Storagetreedefitem.findByIsInFullName&quot;, query = &quot;SELECT s FROM Storagetreedefitem s WHERE s.isInFullName = :isInFullName&quot;),
+    @NamedQuery(name = &quot;Storagetreedefitem.findByName&quot;, query = &quot;SELECT s FROM Storagetreedefitem s WHERE s.name = :name&quot;),
+    @NamedQuery(name = &quot;Storagetreedefitem.findByRankID&quot;, query = &quot;SELECT s FROM Storagetreedefitem s WHERE s.rankID = :rankID&quot;),
+    @NamedQuery(name = &quot;Storagetreedefitem.findByTextAfter&quot;, query = &quot;SELECT s FROM Storagetreedefitem s WHERE s.textAfter = :textAfter&quot;),
+    @NamedQuery(name = &quot;Storagetreedefitem.findByTextBefore&quot;, query = &quot;SELECT s FROM Storagetreedefitem s WHERE s.textBefore = :textBefore&quot;),
+    @NamedQuery(name = &quot;Storagetreedefitem.findByTitle&quot;, query = &quot;SELECT s FROM Storagetreedefitem s WHERE s.title = :title&quot;)})
+public class Storagetreedefitem extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;StorageTreeDefItemID&quot;)
+    private Integer storageTreeDefItemID;
+    
+    
+    @Size(max = 32)
+    @Column(name = &quot;FullNameSeparator&quot;)
+    private String fullNameSeparator;
+    
+    @Column(name = &quot;IsEnforced&quot;)
+    private Boolean isEnforced;
+    
+    @Column(name = &quot;IsInFullName&quot;)
+    private Boolean isInFullName;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = &quot;Name&quot;)
+    private String name;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;RankID&quot;)
+    private int rankID;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Size(max = 64)
+    @Column(name = &quot;TextAfter&quot;)
+    private String textAfter;
+    
+    @Size(max = 64)
+    @Column(name = &quot;TextBefore&quot;)
+    private String textBefore;
+    
+    @Size(max = 64)
+    @Column(name = &quot;Title&quot;)
+    private String title;
+    
+    @OneToMany(mappedBy = &quot;parentItemID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Storagetreedefitem&gt; storagetreedefitemList;
+    
+    @JoinColumn(name = &quot;ParentItemID&quot;, referencedColumnName = &quot;StorageTreeDefItemID&quot;)
+    @ManyToOne
+    private Storagetreedefitem parentItemID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;StorageTreeDefID&quot;, referencedColumnName = &quot;StorageTreeDefID&quot;)
+    @ManyToOne(optional = false)
+    private Storagetreedef storageTreeDefID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;storageTreeDefItemID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Storage&gt; storageList;
+
+<span class="nc" id="L123">    public Storagetreedefitem() {</span>
+<span class="nc" id="L124">    }</span>
+
+<span class="nc" id="L126">    public Storagetreedefitem(Integer storageTreeDefItemID) {</span>
+<span class="nc" id="L127">        this.storageTreeDefItemID = storageTreeDefItemID;</span>
+<span class="nc" id="L128">    }</span>
+
+<span class="nc" id="L130">    public Storagetreedefitem(Integer storageTreeDefItemID, Date timestampCreated, String name, int rankID) {</span>
+<span class="nc" id="L131">        this.storageTreeDefItemID = storageTreeDefItemID;</span>
+<span class="nc" id="L132">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L133">        this.name = name;</span>
+<span class="nc" id="L134">        this.rankID = rankID;</span>
+<span class="nc" id="L135">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L141">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + storageTreeDefItemID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L146">        return storageTreeDefItemID;</span>
+    }
+
+    public Integer getStorageTreeDefItemID() {
+<span class="nc" id="L150">        return storageTreeDefItemID;</span>
+    }
+
+    public void setStorageTreeDefItemID(Integer storageTreeDefItemID) {
+<span class="nc" id="L154">        this.storageTreeDefItemID = storageTreeDefItemID;</span>
+<span class="nc" id="L155">    }</span>
+ 
+
+    public String getFullNameSeparator() {
+<span class="nc" id="L159">        return fullNameSeparator;</span>
+    }
+
+    public void setFullNameSeparator(String fullNameSeparator) {
+<span class="nc" id="L163">        this.fullNameSeparator = fullNameSeparator;</span>
+<span class="nc" id="L164">    }</span>
+
+    public Boolean getIsEnforced() {
+<span class="nc" id="L167">        return isEnforced;</span>
+    }
+
+    public void setIsEnforced(Boolean isEnforced) {
+<span class="nc" id="L171">        this.isEnforced = isEnforced;</span>
+<span class="nc" id="L172">    }</span>
+
+    public Boolean getIsInFullName() {
+<span class="nc" id="L175">        return isInFullName;</span>
+    }
+
+    public void setIsInFullName(Boolean isInFullName) {
+<span class="nc" id="L179">        this.isInFullName = isInFullName;</span>
+<span class="nc" id="L180">    }</span>
+
+    public String getName() {
+<span class="nc" id="L183">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L187">        this.name = name;</span>
+<span class="nc" id="L188">    }</span>
+
+    public int getRankID() {
+<span class="nc" id="L191">        return rankID;</span>
+    }
+
+    public void setRankID(int rankID) {
+<span class="nc" id="L195">        this.rankID = rankID;</span>
+<span class="nc" id="L196">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L199">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L203">        this.remarks = remarks;</span>
+<span class="nc" id="L204">    }</span>
+
+    public String getTextAfter() {
+<span class="nc" id="L207">        return textAfter;</span>
+    }
+
+    public void setTextAfter(String textAfter) {
+<span class="nc" id="L211">        this.textAfter = textAfter;</span>
+<span class="nc" id="L212">    }</span>
+
+    public String getTextBefore() {
+<span class="nc" id="L215">        return textBefore;</span>
+    }
+
+    public void setTextBefore(String textBefore) {
+<span class="nc" id="L219">        this.textBefore = textBefore;</span>
+<span class="nc" id="L220">    }</span>
+
+    public String getTitle() {
+<span class="nc" id="L223">        return title;</span>
+    }
+
+    public void setTitle(String title) {
+<span class="nc" id="L227">        this.title = title;</span>
+<span class="nc" id="L228">    }</span>
+
+    @XmlTransient
+    public List&lt;Storagetreedefitem&gt; getStoragetreedefitemList() {
+<span class="nc" id="L232">        return storagetreedefitemList;</span>
+    }
+
+    public void setStoragetreedefitemList(List&lt;Storagetreedefitem&gt; storagetreedefitemList) {
+<span class="nc" id="L236">        this.storagetreedefitemList = storagetreedefitemList;</span>
+<span class="nc" id="L237">    }</span>
+
+    @XmlIDREF
+    public Storagetreedefitem getParentItemID() {
+<span class="nc" id="L241">        return parentItemID;</span>
+    }
+
+    public void setParentItemID(Storagetreedefitem parentItemID) {
+<span class="nc" id="L245">        this.parentItemID = parentItemID;</span>
+<span class="nc" id="L246">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L250">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L254">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L255">    }</span>
+
+    @XmlIDREF
+    public Storagetreedef getStorageTreeDefID() {
+<span class="nc" id="L259">        return storageTreeDefID;</span>
+    }
+
+    public void setStorageTreeDefID(Storagetreedef storageTreeDefID) {
+<span class="nc" id="L263">        this.storageTreeDefID = storageTreeDefID;</span>
+<span class="nc" id="L264">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L268">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L272">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L273">    }</span>
+
+    @XmlTransient
+    public List&lt;Storage&gt; getStorageList() {
+<span class="nc" id="L277">        return storageList;</span>
+    }
+
+    public void setStorageList(List&lt;Storage&gt; storageList) {
+<span class="nc" id="L281">        this.storageList = storageList;</span>
+<span class="nc" id="L282">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L286">        int hash = 0;</span>
+<span class="nc bnc" id="L287" title="All 2 branches missed.">        hash += (storageTreeDefItemID != null ? storageTreeDefItemID.hashCode() : 0);</span>
+<span class="nc" id="L288">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L294" title="All 2 branches missed.">        if (!(object instanceof Storagetreedefitem)) {</span>
+<span class="nc" id="L295">            return false;</span>
+        }
+<span class="nc" id="L297">        Storagetreedefitem other = (Storagetreedefitem) object;</span>
+<span class="nc bnc" id="L298" title="All 8 branches missed.">        return !((this.storageTreeDefItemID == null &amp;&amp; other.storageTreeDefItemID != null) || (this.storageTreeDefItemID != null &amp;&amp; !this.storageTreeDefItemID.equals(other.storageTreeDefItemID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L303">        return &quot;se.nrm.dina.datamodel.Storagetreedefitem[ storageTreeDefItemID=&quot; + storageTreeDefItemID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

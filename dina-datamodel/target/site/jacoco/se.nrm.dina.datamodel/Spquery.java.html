@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Spquery.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Spquery.java</span></div><h1>Spquery.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;spquery&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Spquery.findAll&quot;, query = &quot;SELECT s FROM Spquery s&quot;),
+    @NamedQuery(name = &quot;Spquery.findBySpQueryID&quot;, query = &quot;SELECT s FROM Spquery s WHERE s.spQueryID = :spQueryID&quot;), 
+    @NamedQuery(name = &quot;Spquery.findByContextName&quot;, query = &quot;SELECT s FROM Spquery s WHERE s.contextName = :contextName&quot;),
+    @NamedQuery(name = &quot;Spquery.findByContextTableId&quot;, query = &quot;SELECT s FROM Spquery s WHERE s.contextTableId = :contextTableId&quot;),
+    @NamedQuery(name = &quot;Spquery.findByCountOnly&quot;, query = &quot;SELECT s FROM Spquery s WHERE s.countOnly = :countOnly&quot;),
+    @NamedQuery(name = &quot;Spquery.findByIsFavorite&quot;, query = &quot;SELECT s FROM Spquery s WHERE s.isFavorite = :isFavorite&quot;),
+    @NamedQuery(name = &quot;Spquery.findByName&quot;, query = &quot;SELECT s FROM Spquery s WHERE s.name = :name&quot;),
+    @NamedQuery(name = &quot;Spquery.findByOrdinal&quot;, query = &quot;SELECT s FROM Spquery s WHERE s.ordinal = :ordinal&quot;),
+    @NamedQuery(name = &quot;Spquery.findBySearchSynonymy&quot;, query = &quot;SELECT s FROM Spquery s WHERE s.searchSynonymy = :searchSynonymy&quot;),
+    @NamedQuery(name = &quot;Spquery.findBySelectDistinct&quot;, query = &quot;SELECT s FROM Spquery s WHERE s.selectDistinct = :selectDistinct&quot;),
+    @NamedQuery(name = &quot;Spquery.findBySmushed&quot;, query = &quot;SELECT s FROM Spquery s WHERE s.smushed = :smushed&quot;)})
+public class Spquery extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;SpQueryID&quot;)
+    private Integer spQueryID;
+    
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = &quot;ContextName&quot;)
+    private String contextName;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;ContextTableId&quot;)
+    private short contextTableId;
+    
+    @Column(name = &quot;CountOnly&quot;)
+    private Boolean countOnly;
+    
+    @Column(name = &quot;IsFavorite&quot;)
+    private Boolean isFavorite;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = &quot;Name&quot;)
+    private String name;
+    
+    @Column(name = &quot;Ordinal&quot;)
+    private Short ordinal;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Column(name = &quot;SearchSynonymy&quot;)
+    private Boolean searchSynonymy;
+    
+    @Column(name = &quot;SelectDistinct&quot;)
+    private Boolean selectDistinct;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;SqlStr&quot;)
+    private String sqlStr;
+    
+    @Column(name = &quot;Smushed&quot;)
+    private Boolean smushed;
+    
+    @JoinColumn(name = &quot;SpecifyUserID&quot;, referencedColumnName = &quot;SpecifyUserID&quot;)
+    @ManyToOne(optional = false)
+    private Specifyuser specifyUserID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @OneToMany(mappedBy = &quot;spQueryID&quot;,fetch = FetchType.LAZY)
+    private List&lt;Spqueryfield&gt; spqueryfieldList;
+    
+    @OneToMany(mappedBy = &quot;spQueryID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Spreport&gt; spreportList;
+
+<span class="nc" id="L126">    public Spquery() {</span>
+<span class="nc" id="L127">    }</span>
+
+<span class="nc" id="L129">    public Spquery(Integer spQueryID) {</span>
+<span class="nc" id="L130">        this.spQueryID = spQueryID;</span>
+<span class="nc" id="L131">    }</span>
+
+<span class="nc" id="L133">    public Spquery(Integer spQueryID, Date timestampCreated, String contextName, short contextTableId, String name) {</span>
+<span class="nc" id="L134">        this.spQueryID = spQueryID;</span>
+<span class="nc" id="L135">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L136">        this.contextName = contextName;</span>
+<span class="nc" id="L137">        this.contextTableId = contextTableId;</span>
+<span class="nc" id="L138">        this.name = name;</span>
+<span class="nc" id="L139">    }</span>
+
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L145">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spQueryID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L150">        return spQueryID;</span>
+    }
+    
+    public Integer getSpQueryID() {
+<span class="nc" id="L154">        return spQueryID;</span>
+    }
+
+    public void setSpQueryID(Integer spQueryID) {
+<span class="nc" id="L158">        this.spQueryID = spQueryID;</span>
+<span class="nc" id="L159">    }</span>
+ 
+    public String getContextName() {
+<span class="nc" id="L162">        return contextName;</span>
+    }
+
+    public void setContextName(String contextName) {
+<span class="nc" id="L166">        this.contextName = contextName;</span>
+<span class="nc" id="L167">    }</span>
+
+    public short getContextTableId() {
+<span class="nc" id="L170">        return contextTableId;</span>
+    }
+
+    public void setContextTableId(short contextTableId) {
+<span class="nc" id="L174">        this.contextTableId = contextTableId;</span>
+<span class="nc" id="L175">    }</span>
+
+    public Boolean getCountOnly() {
+<span class="nc" id="L178">        return countOnly;</span>
+    }
+
+    public void setCountOnly(Boolean countOnly) {
+<span class="nc" id="L182">        this.countOnly = countOnly;</span>
+<span class="nc" id="L183">    }</span>
+
+    public Boolean getIsFavorite() {
+<span class="nc" id="L186">        return isFavorite;</span>
+    }
+
+    public void setIsFavorite(Boolean isFavorite) {
+<span class="nc" id="L190">        this.isFavorite = isFavorite;</span>
+<span class="nc" id="L191">    }</span>
+
+    public String getName() {
+<span class="nc" id="L194">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L198">        this.name = name;</span>
+<span class="nc" id="L199">    }</span>
+
+    public Short getOrdinal() {
+<span class="nc" id="L202">        return ordinal;</span>
+    }
+
+    public void setOrdinal(Short ordinal) {
+<span class="nc" id="L206">        this.ordinal = ordinal;</span>
+<span class="nc" id="L207">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L210">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L214">        this.remarks = remarks;</span>
+<span class="nc" id="L215">    }</span>
+
+    public Boolean getSearchSynonymy() {
+<span class="nc" id="L218">        return searchSynonymy;</span>
+    }
+
+    public void setSearchSynonymy(Boolean searchSynonymy) {
+<span class="nc" id="L222">        this.searchSynonymy = searchSynonymy;</span>
+<span class="nc" id="L223">    }</span>
+
+    public Boolean getSelectDistinct() {
+<span class="nc" id="L226">        return selectDistinct;</span>
+    }
+
+    public void setSelectDistinct(Boolean selectDistinct) {
+<span class="nc" id="L230">        this.selectDistinct = selectDistinct;</span>
+<span class="nc" id="L231">    }</span>
+
+    public String getSqlStr() {
+<span class="nc" id="L234">        return sqlStr;</span>
+    }
+
+    public void setSqlStr(String sqlStr) {
+<span class="nc" id="L238">        this.sqlStr = sqlStr;</span>
+<span class="nc" id="L239">    }</span>
+
+    public Boolean getSmushed() {
+<span class="nc" id="L242">        return smushed;</span>
+    }
+
+    public void setSmushed(Boolean smushed) {
+<span class="nc" id="L246">        this.smushed = smushed;</span>
+<span class="nc" id="L247">    }</span>
+
+    @XmlIDREF
+    public Specifyuser getSpecifyUserID() {
+<span class="nc" id="L251">        return specifyUserID;</span>
+    }
+
+    public void setSpecifyUserID(Specifyuser specifyUserID) {
+<span class="nc" id="L255">        this.specifyUserID = specifyUserID;</span>
+<span class="nc" id="L256">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L260">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L264">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L265">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L269">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L273">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L274">    }</span>
+
+    @XmlTransient
+    public List&lt;Spqueryfield&gt; getSpqueryfieldList() {
+<span class="nc" id="L278">        return spqueryfieldList;</span>
+    }
+
+    public void setSpqueryfieldList(List&lt;Spqueryfield&gt; spqueryfieldList) {
+<span class="nc" id="L282">        this.spqueryfieldList = spqueryfieldList;</span>
+<span class="nc" id="L283">    }</span>
+
+    @XmlTransient
+    public List&lt;Spreport&gt; getSpreportList() {
+<span class="nc" id="L287">        return spreportList;</span>
+    }
+
+    public void setSpreportList(List&lt;Spreport&gt; spreportList) {
+<span class="nc" id="L291">        this.spreportList = spreportList;</span>
+<span class="nc" id="L292">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L296">        int hash = 0;</span>
+<span class="nc bnc" id="L297" title="All 2 branches missed.">        hash += (spQueryID != null ? spQueryID.hashCode() : 0);</span>
+<span class="nc" id="L298">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L304" title="All 2 branches missed.">        if (!(object instanceof Spquery)) {</span>
+<span class="nc" id="L305">            return false;</span>
+        }
+<span class="nc" id="L307">        Spquery other = (Spquery) object;</span>
+<span class="nc bnc" id="L308" title="All 8 branches missed.">        return !((this.spQueryID == null &amp;&amp; other.spQueryID != null) || (this.spQueryID != null &amp;&amp; !this.spQueryID.equals(other.spQueryID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L313">        return &quot;se.nrm.dina.datamodel.Spquery[ spQueryID=&quot; + spQueryID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

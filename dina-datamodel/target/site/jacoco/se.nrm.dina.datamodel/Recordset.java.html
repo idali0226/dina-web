@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Recordset.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Recordset.java</span></div><h1>Recordset.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;recordset&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Recordset.findAll&quot;, query = &quot;SELECT r FROM Recordset r&quot;),
+    @NamedQuery(name = &quot;Recordset.findByRecordSetID&quot;, query = &quot;SELECT r FROM Recordset r WHERE r.recordSetID = :recordSetID&quot;), 
+    @NamedQuery(name = &quot;Recordset.findByCollectionMemberID&quot;, query = &quot;SELECT r FROM Recordset r WHERE r.collectionMemberID = :collectionMemberID&quot;),
+    @NamedQuery(name = &quot;Recordset.findByAllPermissionLevel&quot;, query = &quot;SELECT r FROM Recordset r WHERE r.allPermissionLevel = :allPermissionLevel&quot;),
+    @NamedQuery(name = &quot;Recordset.findByTableID&quot;, query = &quot;SELECT r FROM Recordset r WHERE r.tableID = :tableID&quot;),
+    @NamedQuery(name = &quot;Recordset.findByGroupPermissionLevel&quot;, query = &quot;SELECT r FROM Recordset r WHERE r.groupPermissionLevel = :groupPermissionLevel&quot;),
+    @NamedQuery(name = &quot;Recordset.findByName&quot;, query = &quot;SELECT r FROM Recordset r WHERE r.name = :name&quot;),
+    @NamedQuery(name = &quot;Recordset.findByOwnerPermissionLevel&quot;, query = &quot;SELECT r FROM Recordset r WHERE r.ownerPermissionLevel = :ownerPermissionLevel&quot;),
+    @NamedQuery(name = &quot;Recordset.findByType&quot;, query = &quot;SELECT r FROM Recordset r WHERE r.type = :type&quot;)})
+public class Recordset extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;RecordSetID&quot;)
+    private Integer recordSetID;
+    
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;CollectionMemberID&quot;)
+    private int collectionMemberID;
+    
+    @Column(name = &quot;AllPermissionLevel&quot;)
+    private Integer allPermissionLevel;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;TableID&quot;)
+    private int tableID;
+    
+    @Column(name = &quot;GroupPermissionLevel&quot;)
+    private Integer groupPermissionLevel;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = &quot;Name&quot;)
+    private String name;
+    
+    @Column(name = &quot;OwnerPermissionLevel&quot;)
+    private Integer ownerPermissionLevel;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;Type&quot;)
+    private short type;
+    
+    @JoinColumn(name = &quot;InfoRequestID&quot;, referencedColumnName = &quot;InfoRequestID&quot;)
+    @ManyToOne
+    private Inforequest infoRequestID;
+    
+    @JoinColumn(name = &quot;SpecifyUserID&quot;, referencedColumnName = &quot;SpecifyUserID&quot;)
+    @ManyToOne(optional = false)
+    private Specifyuser specifyUserID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;SpPrincipalID&quot;, referencedColumnName = &quot;SpPrincipalID&quot;)
+    @ManyToOne
+    private Spprincipal spPrincipalID;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;recordSetID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Recordsetitem&gt; recordsetitemList;
+
+<span class="nc" id="L120">    public Recordset() {</span>
+<span class="nc" id="L121">    }</span>
+
+<span class="nc" id="L123">    public Recordset(Integer recordSetID) {</span>
+<span class="nc" id="L124">        this.recordSetID = recordSetID;</span>
+<span class="nc" id="L125">    }</span>
+
+<span class="nc" id="L127">    public Recordset(Integer recordSetID, Date timestampCreated, int collectionMemberID, int tableID, String name, short type) {</span>
+<span class="nc" id="L128">        this.recordSetID = recordSetID;</span>
+<span class="nc" id="L129">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L130">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L131">        this.tableID = tableID;</span>
+<span class="nc" id="L132">        this.name = name;</span>
+<span class="nc" id="L133">        this.type = type;</span>
+<span class="nc" id="L134">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L140">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + recordSetID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L145">        return recordSetID;</span>
+    }
+
+    public Integer getRecordSetID() {
+<span class="nc" id="L149">        return recordSetID;</span>
+    }
+
+    public void setRecordSetID(Integer recordSetID) {
+<span class="nc" id="L153">        this.recordSetID = recordSetID;</span>
+<span class="nc" id="L154">    }</span>
+ 
+
+    public int getCollectionMemberID() {
+<span class="nc" id="L158">        return collectionMemberID;</span>
+    }
+
+    public void setCollectionMemberID(int collectionMemberID) {
+<span class="nc" id="L162">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L163">    }</span>
+
+    public Integer getAllPermissionLevel() {
+<span class="nc" id="L166">        return allPermissionLevel;</span>
+    }
+
+    public void setAllPermissionLevel(Integer allPermissionLevel) {
+<span class="nc" id="L170">        this.allPermissionLevel = allPermissionLevel;</span>
+<span class="nc" id="L171">    }</span>
+
+    public int getTableID() {
+<span class="nc" id="L174">        return tableID;</span>
+    }
+
+    public void setTableID(int tableID) {
+<span class="nc" id="L178">        this.tableID = tableID;</span>
+<span class="nc" id="L179">    }</span>
+
+    public Integer getGroupPermissionLevel() {
+<span class="nc" id="L182">        return groupPermissionLevel;</span>
+    }
+
+    public void setGroupPermissionLevel(Integer groupPermissionLevel) {
+<span class="nc" id="L186">        this.groupPermissionLevel = groupPermissionLevel;</span>
+<span class="nc" id="L187">    }</span>
+
+    public String getName() {
+<span class="nc" id="L190">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L194">        this.name = name;</span>
+<span class="nc" id="L195">    }</span>
+
+    public Integer getOwnerPermissionLevel() {
+<span class="nc" id="L198">        return ownerPermissionLevel;</span>
+    }
+
+    public void setOwnerPermissionLevel(Integer ownerPermissionLevel) {
+<span class="nc" id="L202">        this.ownerPermissionLevel = ownerPermissionLevel;</span>
+<span class="nc" id="L203">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L206">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L210">        this.remarks = remarks;</span>
+<span class="nc" id="L211">    }</span>
+
+    public short getType() {
+<span class="nc" id="L214">        return type;</span>
+    }
+
+    public void setType(short type) {
+<span class="nc" id="L218">        this.type = type;</span>
+<span class="nc" id="L219">    }</span>
+
+    @XmlIDREF
+    public Inforequest getInfoRequestID() {
+<span class="nc" id="L223">        return infoRequestID;</span>
+    }
+
+    public void setInfoRequestID(Inforequest infoRequestID) {
+<span class="nc" id="L227">        this.infoRequestID = infoRequestID;</span>
+<span class="nc" id="L228">    }</span>
+
+    @XmlIDREF
+    public Specifyuser getSpecifyUserID() {
+<span class="nc" id="L232">        return specifyUserID;</span>
+    }
+
+    public void setSpecifyUserID(Specifyuser specifyUserID) {
+<span class="nc" id="L236">        this.specifyUserID = specifyUserID;</span>
+<span class="nc" id="L237">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L241">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L245">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L246">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L250">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L254">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L255">    }</span>
+
+    @XmlIDREF
+    public Spprincipal getSpPrincipalID() {
+<span class="nc" id="L259">        return spPrincipalID;</span>
+    }
+
+    public void setSpPrincipalID(Spprincipal spPrincipalID) {
+<span class="nc" id="L263">        this.spPrincipalID = spPrincipalID;</span>
+<span class="nc" id="L264">    }</span>
+
+    @XmlTransient
+    public List&lt;Recordsetitem&gt; getRecordsetitemList() {
+<span class="nc" id="L268">        return recordsetitemList;</span>
+    }
+
+    public void setRecordsetitemList(List&lt;Recordsetitem&gt; recordsetitemList) {
+<span class="nc" id="L272">        this.recordsetitemList = recordsetitemList;</span>
+<span class="nc" id="L273">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L277">        int hash = 0;</span>
+<span class="nc bnc" id="L278" title="All 2 branches missed.">        hash += (recordSetID != null ? recordSetID.hashCode() : 0);</span>
+<span class="nc" id="L279">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L285" title="All 2 branches missed.">        if (!(object instanceof Recordset)) {</span>
+<span class="nc" id="L286">            return false;</span>
+        }
+<span class="nc" id="L288">        Recordset other = (Recordset) object;</span>
+<span class="nc bnc" id="L289" title="All 8 branches missed.">        return !((this.recordSetID == null &amp;&amp; other.recordSetID != null) || (this.recordSetID != null &amp;&amp; !this.recordSetID.equals(other.recordSetID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L294">        return &quot;se.nrm.dina.datamodel.Recordset[ recordSetID=&quot; + recordSetID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

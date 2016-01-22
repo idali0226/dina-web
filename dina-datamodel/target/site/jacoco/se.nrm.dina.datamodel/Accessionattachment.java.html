@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Accessionattachment.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Accessionattachment.java</span></div><h1>Accessionattachment.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity; 
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;accessionattachment&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Accessionattachment.findAll&quot;, query = &quot;SELECT a FROM Accessionattachment a&quot;),
+    @NamedQuery(name = &quot;Accessionattachment.findByAccessionAttachmentID&quot;, query = &quot;SELECT a FROM Accessionattachment a WHERE a.accessionAttachmentID = :accessionAttachmentID&quot;), 
+    @NamedQuery(name = &quot;Accessionattachment.findByOrdinal&quot;, query = &quot;SELECT a FROM Accessionattachment a WHERE a.ordinal = :ordinal&quot;)})
+public class Accessionattachment extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;AccessionAttachmentID&quot;)
+    private Integer accessionAttachmentID;
+
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;Ordinal&quot;)
+    private int ordinal;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @JoinColumn(name = &quot;AccessionID&quot;, referencedColumnName = &quot;AccessionID&quot;)
+    @ManyToOne(optional = false )
+    private Accession accessionID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;AttachmentID&quot;, referencedColumnName = &quot;AttachmentID&quot;)
+    @ManyToOne(optional = false)
+    private Attachment attachmentID;
+
+<span class="nc" id="L79">    public Accessionattachment() {</span>
+<span class="nc" id="L80">    }</span>
+
+<span class="nc" id="L82">    public Accessionattachment(Integer accessionAttachmentID) {</span>
+<span class="nc" id="L83">        this.accessionAttachmentID = accessionAttachmentID;</span>
+<span class="nc" id="L84">    }</span>
+
+<span class="nc" id="L86">    public Accessionattachment(Integer accessionAttachmentID, Date timestampCreated, int ordinal) {</span>
+<span class="nc" id="L87">        this.accessionAttachmentID = accessionAttachmentID;</span>
+<span class="nc" id="L88">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L89">        this.ordinal = ordinal;</span>
+<span class="nc" id="L90">    }</span>
+
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L96">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + accessionAttachmentID;</span>
+    }
+
+    @XmlTransient
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L102">        return accessionAttachmentID;</span>
+    }
+
+
+    public Integer getAccessionAttachmentID() {
+<span class="nc" id="L107">        return accessionAttachmentID;</span>
+    }
+
+    public void setAccessionAttachmentID(Integer accessionAttachmentID) {
+<span class="nc" id="L111">        this.accessionAttachmentID = accessionAttachmentID;</span>
+<span class="nc" id="L112">    }</span>
+ 
+    public int getOrdinal() {
+<span class="nc" id="L115">        return ordinal;</span>
+    }
+
+    public void setOrdinal(int ordinal) {
+<span class="nc" id="L119">        this.ordinal = ordinal;</span>
+<span class="nc" id="L120">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L123">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L127">        this.remarks = remarks;</span>
+<span class="nc" id="L128">    }</span>
+
+    @XmlIDREF
+    public Accession getAccessionID() {
+<span class="nc" id="L132">        return accessionID;</span>
+    }
+
+    public void setAccessionID(Accession accessionID) {
+<span class="nc" id="L136">        this.accessionID = accessionID;</span>
+<span class="nc" id="L137">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L141">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L145">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L146">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L150">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L154">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L155">    }</span>
+
+    @XmlIDREF
+    public Attachment getAttachmentID() {
+<span class="nc" id="L159">        return attachmentID;</span>
+    }
+
+    public void setAttachmentID(Attachment attachmentID) {
+<span class="nc" id="L163">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L164">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L168">        int hash = 0;</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">        hash += (accessionAttachmentID != null ? accessionAttachmentID.hashCode() : 0);</span>
+<span class="nc" id="L170">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L176" title="All 2 branches missed.">        if (!(object instanceof Accessionattachment)) {</span>
+<span class="nc" id="L177">            return false;</span>
+        }
+<span class="nc" id="L179">        Accessionattachment other = (Accessionattachment) object;</span>
+<span class="nc bnc" id="L180" title="All 8 branches missed.">        return !((this.accessionAttachmentID == null &amp;&amp; other.accessionAttachmentID != null) || (this.accessionAttachmentID != null &amp;&amp; !this.accessionAttachmentID.equals(other.accessionAttachmentID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L185">        return &quot;se.nrm.dina.datamodel.Accessionattachment[ accessionAttachmentID=&quot; + accessionAttachmentID + &quot; ]&quot;;</span>
+    }
+
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

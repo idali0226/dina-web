@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Commonnametx.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Commonnametx.java</span></div><h1>Commonnametx.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;commonnametx&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Commonnametx.findAll&quot;, query = &quot;SELECT c FROM Commonnametx c&quot;),
+    @NamedQuery(name = &quot;Commonnametx.findByCommonNameTxID&quot;, query = &quot;SELECT c FROM Commonnametx c WHERE c.commonNameTxID = :commonNameTxID&quot;), 
+    @NamedQuery(name = &quot;Commonnametx.findByAuthor&quot;, query = &quot;SELECT c FROM Commonnametx c WHERE c.author = :author&quot;),
+    @NamedQuery(name = &quot;Commonnametx.findByCountry&quot;, query = &quot;SELECT c FROM Commonnametx c WHERE c.country = :country&quot;),
+    @NamedQuery(name = &quot;Commonnametx.findByLanguage&quot;, query = &quot;SELECT c FROM Commonnametx c WHERE c.language = :language&quot;),
+    @NamedQuery(name = &quot;Commonnametx.findByName&quot;, query = &quot;SELECT c FROM Commonnametx c WHERE c.name = :name&quot;),
+    @NamedQuery(name = &quot;Commonnametx.findByVariant&quot;, query = &quot;SELECT c FROM Commonnametx c WHERE c.variant = :variant&quot;)})
+public class Commonnametx extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;CommonNameTxID&quot;)
+    private Integer commonNameTxID;
+    
+    
+    @Size(max = 128)
+    @Column(name = &quot;Author&quot;)
+    private String author;
+    
+    @Size(max = 2)
+    @Column(name = &quot;Country&quot;)
+    private String country;
+    
+    @Size(max = 2)
+    @Column(name = &quot;Language&quot;)
+    private String language;
+    
+    @Size(max = 255)
+    @Column(name = &quot;Name&quot;)
+    private String name;
+    
+    @Size(max = 2)
+    @Column(name = &quot;Variant&quot;)
+    private String variant;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;commonNameTxID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Commonnametxcitation&gt; commonnametxcitationList;
+    
+    @JoinColumn(name = &quot;TaxonID&quot;, referencedColumnName = &quot;TaxonID&quot;)
+    @ManyToOne(optional = false)
+    private Taxon taxonID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+
+<span class="nc" id="L93">    public Commonnametx() {</span>
+<span class="nc" id="L94">    }</span>
+
+<span class="nc" id="L96">    public Commonnametx(Integer commonNameTxID) {</span>
+<span class="nc" id="L97">        this.commonNameTxID = commonNameTxID;</span>
+<span class="nc" id="L98">    }</span>
+
+<span class="nc" id="L100">    public Commonnametx(Integer commonNameTxID, Date timestampCreated) {</span>
+<span class="nc" id="L101">        this.commonNameTxID = commonNameTxID;</span>
+<span class="nc" id="L102">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L103">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L109">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + commonNameTxID;</span>
+    }
+
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L114">        return commonNameTxID;</span>
+    }
+    
+    public Integer getCommonNameTxID() {
+<span class="nc" id="L118">        return commonNameTxID;</span>
+    }
+
+    public void setCommonNameTxID(Integer commonNameTxID) {
+<span class="nc" id="L122">        this.commonNameTxID = commonNameTxID;</span>
+<span class="nc" id="L123">    }</span>
+ 
+    public String getAuthor() {
+<span class="nc" id="L126">        return author;</span>
+    }
+
+    public void setAuthor(String author) {
+<span class="nc" id="L130">        this.author = author;</span>
+<span class="nc" id="L131">    }</span>
+
+    public String getCountry() {
+<span class="nc" id="L134">        return country;</span>
+    }
+
+    public void setCountry(String country) {
+<span class="nc" id="L138">        this.country = country;</span>
+<span class="nc" id="L139">    }</span>
+
+    public String getLanguage() {
+<span class="nc" id="L142">        return language;</span>
+    }
+
+    public void setLanguage(String language) {
+<span class="nc" id="L146">        this.language = language;</span>
+<span class="nc" id="L147">    }</span>
+
+    public String getName() {
+<span class="nc" id="L150">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L154">        this.name = name;</span>
+<span class="nc" id="L155">    }</span>
+
+    public String getVariant() {
+<span class="nc" id="L158">        return variant;</span>
+    }
+
+    public void setVariant(String variant) {
+<span class="nc" id="L162">        this.variant = variant;</span>
+<span class="nc" id="L163">    }</span>
+
+    @XmlTransient
+    public List&lt;Commonnametxcitation&gt; getCommonnametxcitationList() {
+<span class="nc" id="L167">        return commonnametxcitationList;</span>
+    }
+
+    public void setCommonnametxcitationList(List&lt;Commonnametxcitation&gt; commonnametxcitationList) {
+<span class="nc" id="L171">        this.commonnametxcitationList = commonnametxcitationList;</span>
+<span class="nc" id="L172">    }</span>
+
+    @XmlIDREF
+    public Taxon getTaxonID() {
+<span class="nc" id="L176">        return taxonID;</span>
+    }
+
+    public void setTaxonID(Taxon taxonID) {
+<span class="nc" id="L180">        this.taxonID = taxonID;</span>
+<span class="nc" id="L181">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L185">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L189">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L190">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L194">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L198">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L199">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L203">        int hash = 0;</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">        hash += (commonNameTxID != null ? commonNameTxID.hashCode() : 0);</span>
+<span class="nc" id="L205">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L211" title="All 2 branches missed.">        if (!(object instanceof Commonnametx)) {</span>
+<span class="nc" id="L212">            return false;</span>
+        }
+<span class="nc" id="L214">        Commonnametx other = (Commonnametx) object;</span>
+<span class="nc bnc" id="L215" title="All 8 branches missed.">        return !((this.commonNameTxID == null &amp;&amp; other.commonNameTxID != null) || (this.commonNameTxID != null &amp;&amp; !this.commonNameTxID.equals(other.commonNameTxID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L220">        return &quot;se.nrm.dina.datamodel.Commonnametx[ commonNameTxID=&quot; + commonNameTxID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

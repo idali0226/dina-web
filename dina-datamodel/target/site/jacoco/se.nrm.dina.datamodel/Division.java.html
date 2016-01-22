@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Division.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Division.java</span></div><h1>Division.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;division&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Division.findAll&quot;, query = &quot;SELECT d FROM Division d&quot;),
+    @NamedQuery(name = &quot;Division.findByUserGroupScopeId&quot;, query = &quot;SELECT d FROM Division d WHERE d.userGroupScopeId = :userGroupScopeId&quot;), 
+    @NamedQuery(name = &quot;Division.findByDisciplineType&quot;, query = &quot;SELECT d FROM Division d WHERE d.disciplineType = :disciplineType&quot;),
+    @NamedQuery(name = &quot;Division.findByDivisionId&quot;, query = &quot;SELECT d FROM Division d WHERE d.divisionId = :divisionId&quot;),
+    @NamedQuery(name = &quot;Division.findByIconURI&quot;, query = &quot;SELECT d FROM Division d WHERE d.iconURI = :iconURI&quot;),
+    @NamedQuery(name = &quot;Division.findByName&quot;, query = &quot;SELECT d FROM Division d WHERE d.name = :name&quot;), 
+    @NamedQuery(name = &quot;Division.findByUri&quot;, query = &quot;SELECT d FROM Division d WHERE d.uri = :uri&quot;)})
+public class Division extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;UserGroupScopeId&quot;)
+    private Integer userGroupScopeId;
+   
+    
+    @Size(max = 64)
+    @Column(name = &quot;Abbrev&quot;)
+    private String abbrev;
+    
+    @Size(max = 128)
+    @Column(name = &quot;AltName&quot;)
+    private String altName;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Description&quot;)
+    private String description;
+    
+    @Size(max = 64)
+    @Column(name = &quot;DisciplineType&quot;)
+    private String disciplineType;
+    
+    @Column(name = &quot;divisionId&quot;)
+    private Integer divisionId;
+    
+    @Size(max = 255)
+    @Column(name = &quot;IconURI&quot;)
+    private String iconURI;
+    
+    @Size(max = 255)
+    @Column(name = &quot;Name&quot;)
+    private String name;
+    
+    @Size(max = 24)
+    @Column(name = &quot;RegNumber&quot;)
+    private String regNumber;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Size(max = 255)
+    @Column(name = &quot;Uri&quot;)
+    private String uri;
+    @JoinTable(name = &quot;autonumsch_div&quot;, joinColumns = {
+        @JoinColumn(name = &quot;DivisionID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)}, inverseJoinColumns = {
+        @JoinColumn(name = &quot;AutoNumberingSchemeID&quot;, referencedColumnName = &quot;AutoNumberingSchemeID&quot;)})
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List&lt;Autonumberingscheme&gt; autonumberingschemeList;
+    
+    @OneToMany(mappedBy = &quot;divisionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Gift&gt; giftList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;divisionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Discipline&gt; disciplineList;
+    
+    @JoinColumn(name = &quot;InstitutionID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot; )
+    @ManyToOne(optional = false )
+    private Institution institutionID;
+    
+    @JoinColumn(name = &quot;AddressID&quot;, referencedColumnName = &quot;AddressID&quot;)
+    @ManyToOne
+    private Address addressID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @OneToMany(mappedBy = &quot;divisionID&quot; , fetch = FetchType.LAZY)
+    private List&lt;Conservdescription&gt; conservdescriptionList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;divisionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Exchangeout&gt; exchangeoutList;
+    
+    @OneToMany(mappedBy = &quot;divisionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Treatmentevent&gt; treatmenteventList;
+    
+    @OneToMany(mappedBy = &quot;divisionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Groupperson&gt; grouppersonList;
+    
+    @OneToMany(mappedBy = &quot;divisionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Agent&gt; agentList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;divisionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Repositoryagreement&gt; repositoryagreementList;
+    
+    @OneToMany(mappedBy = &quot;divisionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Loan&gt; loanList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;divisionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Accession&gt; accessionList;
+    
+    @OneToMany(mappedBy = &quot;divisionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Collector&gt; collectorList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;divisionID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Exchangein&gt; exchangeinList;
+
+<span class="nc" id="L158">    public Division() {</span>
+<span class="nc" id="L159">    }</span>
+
+<span class="nc" id="L161">    public Division(Integer userGroupScopeId) {</span>
+<span class="nc" id="L162">        this.userGroupScopeId = userGroupScopeId;</span>
+<span class="nc" id="L163">    }</span>
+
+<span class="nc" id="L165">    public Division(Integer userGroupScopeId, Date timestampCreated) {</span>
+<span class="nc" id="L166">        this.userGroupScopeId = userGroupScopeId;</span>
+<span class="nc" id="L167">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L168">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L174">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + userGroupScopeId;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L179">        return userGroupScopeId;</span>
+    }
+
+    public Integer getUserGroupScopeId() {
+<span class="nc" id="L183">        return userGroupScopeId;</span>
+    }
+
+    public void setUserGroupScopeId(Integer userGroupScopeId) {
+<span class="nc" id="L187">        this.userGroupScopeId = userGroupScopeId;</span>
+<span class="nc" id="L188">    }</span>
+ 
+    public String getAbbrev() {
+<span class="nc" id="L191">        return abbrev;</span>
+    }
+
+    public void setAbbrev(String abbrev) {
+<span class="nc" id="L195">        this.abbrev = abbrev;</span>
+<span class="nc" id="L196">    }</span>
+
+    public String getAltName() {
+<span class="nc" id="L199">        return altName;</span>
+    }
+
+    public void setAltName(String altName) {
+<span class="nc" id="L203">        this.altName = altName;</span>
+<span class="nc" id="L204">    }</span>
+
+    public String getDescription() {
+<span class="nc" id="L207">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="nc" id="L211">        this.description = description;</span>
+<span class="nc" id="L212">    }</span>
+
+    public String getDisciplineType() {
+<span class="nc" id="L215">        return disciplineType;</span>
+    }
+
+    public void setDisciplineType(String disciplineType) {
+<span class="nc" id="L219">        this.disciplineType = disciplineType;</span>
+<span class="nc" id="L220">    }</span>
+
+    public Integer getDivisionId() {
+<span class="nc" id="L223">        return divisionId;</span>
+    }
+
+    public void setDivisionId(Integer divisionId) {
+<span class="nc" id="L227">        this.divisionId = divisionId;</span>
+<span class="nc" id="L228">    }</span>
+
+    public String getIconURI() {
+<span class="nc" id="L231">        return iconURI;</span>
+    }
+
+    public void setIconURI(String iconURI) {
+<span class="nc" id="L235">        this.iconURI = iconURI;</span>
+<span class="nc" id="L236">    }</span>
+
+    public String getName() {
+<span class="nc" id="L239">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L243">        this.name = name;</span>
+<span class="nc" id="L244">    }</span>
+
+    public String getRegNumber() {
+<span class="nc" id="L247">        return regNumber;</span>
+    }
+
+    public void setRegNumber(String regNumber) {
+<span class="nc" id="L251">        this.regNumber = regNumber;</span>
+<span class="nc" id="L252">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L255">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L259">        this.remarks = remarks;</span>
+<span class="nc" id="L260">    }</span>
+
+    public String getUri() {
+<span class="nc" id="L263">        return uri;</span>
+    }
+
+    public void setUri(String uri) {
+<span class="nc" id="L267">        this.uri = uri;</span>
+<span class="nc" id="L268">    }</span>
+
+    @XmlTransient
+    public List&lt;Autonumberingscheme&gt; getAutonumberingschemeList() {
+<span class="nc" id="L272">        return autonumberingschemeList;</span>
+    }
+
+    public void setAutonumberingschemeList(List&lt;Autonumberingscheme&gt; autonumberingschemeList) {
+<span class="nc" id="L276">        this.autonumberingschemeList = autonumberingschemeList;</span>
+<span class="nc" id="L277">    }</span>
+
+    @XmlTransient
+    public List&lt;Gift&gt; getGiftList() {
+<span class="nc" id="L281">        return giftList;</span>
+    }
+
+    public void setGiftList(List&lt;Gift&gt; giftList) {
+<span class="nc" id="L285">        this.giftList = giftList;</span>
+<span class="nc" id="L286">    }</span>
+
+    @XmlTransient
+    public List&lt;Discipline&gt; getDisciplineList() {
+<span class="nc" id="L290">        return disciplineList;</span>
+    }
+
+    public void setDisciplineList(List&lt;Discipline&gt; disciplineList) {
+<span class="nc" id="L294">        this.disciplineList = disciplineList;</span>
+<span class="nc" id="L295">    }</span>
+
+    @XmlIDREF
+    public Institution getInstitutionID() {
+<span class="nc" id="L299">        return institutionID;</span>
+    }
+
+    public void setInstitutionID(Institution institutionID) {
+<span class="nc" id="L303">        this.institutionID = institutionID;</span>
+<span class="nc" id="L304">    }</span>
+
+    @XmlIDREF
+    public Address getAddressID() {
+<span class="nc" id="L308">        return addressID;</span>
+    }
+
+    public void setAddressID(Address addressID) {
+<span class="nc" id="L312">        this.addressID = addressID;</span>
+<span class="nc" id="L313">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L317">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L321">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L322">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L326">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L330">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L331">    }</span>
+
+    @XmlTransient
+    public List&lt;Conservdescription&gt; getConservdescriptionList() {
+<span class="nc" id="L335">        return conservdescriptionList;</span>
+    }
+
+    public void setConservdescriptionList(List&lt;Conservdescription&gt; conservdescriptionList) {
+<span class="nc" id="L339">        this.conservdescriptionList = conservdescriptionList;</span>
+<span class="nc" id="L340">    }</span>
+
+    @XmlTransient
+    public List&lt;Exchangeout&gt; getExchangeoutList() {
+<span class="nc" id="L344">        return exchangeoutList;</span>
+    }
+
+    public void setExchangeoutList(List&lt;Exchangeout&gt; exchangeoutList) {
+<span class="nc" id="L348">        this.exchangeoutList = exchangeoutList;</span>
+<span class="nc" id="L349">    }</span>
+
+    @XmlTransient
+    public List&lt;Treatmentevent&gt; getTreatmenteventList() {
+<span class="nc" id="L353">        return treatmenteventList;</span>
+    }
+
+    public void setTreatmenteventList(List&lt;Treatmentevent&gt; treatmenteventList) {
+<span class="nc" id="L357">        this.treatmenteventList = treatmenteventList;</span>
+<span class="nc" id="L358">    }</span>
+
+    @XmlTransient
+    public List&lt;Groupperson&gt; getGrouppersonList() {
+<span class="nc" id="L362">        return grouppersonList;</span>
+    }
+
+    public void setGrouppersonList(List&lt;Groupperson&gt; grouppersonList) {
+<span class="nc" id="L366">        this.grouppersonList = grouppersonList;</span>
+<span class="nc" id="L367">    }</span>
+
+    @XmlTransient
+    public List&lt;Agent&gt; getAgentList() {
+<span class="nc" id="L371">        return agentList;</span>
+    }
+
+    public void setAgentList(List&lt;Agent&gt; agentList) {
+<span class="nc" id="L375">        this.agentList = agentList;</span>
+<span class="nc" id="L376">    }</span>
+
+    @XmlTransient
+    public List&lt;Repositoryagreement&gt; getRepositoryagreementList() {
+<span class="nc" id="L380">        return repositoryagreementList;</span>
+    }
+
+    public void setRepositoryagreementList(List&lt;Repositoryagreement&gt; repositoryagreementList) {
+<span class="nc" id="L384">        this.repositoryagreementList = repositoryagreementList;</span>
+<span class="nc" id="L385">    }</span>
+
+    @XmlTransient
+    public List&lt;Loan&gt; getLoanList() {
+<span class="nc" id="L389">        return loanList;</span>
+    }
+
+    public void setLoanList(List&lt;Loan&gt; loanList) {
+<span class="nc" id="L393">        this.loanList = loanList;</span>
+<span class="nc" id="L394">    }</span>
+
+    @XmlTransient
+    public List&lt;Accession&gt; getAccessionList() {
+<span class="nc" id="L398">        return accessionList;</span>
+    }
+
+    public void setAccessionList(List&lt;Accession&gt; accessionList) {
+<span class="nc" id="L402">        this.accessionList = accessionList;</span>
+<span class="nc" id="L403">    }</span>
+
+    @XmlTransient
+    public List&lt;Collector&gt; getCollectorList() {
+<span class="nc" id="L407">        return collectorList;</span>
+    }
+
+    public void setCollectorList(List&lt;Collector&gt; collectorList) {
+<span class="nc" id="L411">        this.collectorList = collectorList;</span>
+<span class="nc" id="L412">    }</span>
+
+    @XmlTransient
+    public List&lt;Exchangein&gt; getExchangeinList() {
+<span class="nc" id="L416">        return exchangeinList;</span>
+    }
+
+    public void setExchangeinList(List&lt;Exchangein&gt; exchangeinList) {
+<span class="nc" id="L420">        this.exchangeinList = exchangeinList;</span>
+<span class="nc" id="L421">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L425">        int hash = 0;</span>
+<span class="nc bnc" id="L426" title="All 2 branches missed.">        hash += (userGroupScopeId != null ? userGroupScopeId.hashCode() : 0);</span>
+<span class="nc" id="L427">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L433" title="All 2 branches missed.">        if (!(object instanceof Division)) {</span>
+<span class="nc" id="L434">            return false;</span>
+        }
+<span class="nc" id="L436">        Division other = (Division) object;</span>
+<span class="nc bnc" id="L437" title="All 8 branches missed.">        return !((this.userGroupScopeId == null &amp;&amp; other.userGroupScopeId != null) || (this.userGroupScopeId != null &amp;&amp; !this.userGroupScopeId.equals(other.userGroupScopeId)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L442">        return &quot;se.nrm.dina.datamodel.Division[ userGroupScopeId=&quot; + userGroupScopeId + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

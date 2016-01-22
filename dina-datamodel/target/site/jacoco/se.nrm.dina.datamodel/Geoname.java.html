@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Geoname.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Geoname.java</span></div><h1>Geoname.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlRootElement;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;geoname&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Geoname.findAll&quot;, query = &quot;SELECT g FROM Geoname g&quot;),
+    @NamedQuery(name = &quot;Geoname.findByGeonameId&quot;, query = &quot;SELECT g FROM Geoname g WHERE g.geonameId = :geonameId&quot;),
+    @NamedQuery(name = &quot;Geoname.findByName&quot;, query = &quot;SELECT g FROM Geoname g WHERE g.name = :name&quot;), 
+    @NamedQuery(name = &quot;Geoname.findByLatitude&quot;, query = &quot;SELECT g FROM Geoname g WHERE g.latitude = :latitude&quot;),
+    @NamedQuery(name = &quot;Geoname.findByLongitude&quot;, query = &quot;SELECT g FROM Geoname g WHERE g.longitude = :longitude&quot;),  
+    @NamedQuery(name = &quot;Geoname.findByTimezone&quot;, query = &quot;SELECT g FROM Geoname g WHERE g.timezone = :timezone&quot;),
+    @NamedQuery(name = &quot;Geoname.findByModdate&quot;, query = &quot;SELECT g FROM Geoname g WHERE g.moddate = :moddate&quot;),
+    @NamedQuery(name = &quot;Geoname.findByISOCode&quot;, query = &quot;SELECT g FROM Geoname g WHERE g.iSOCode = :iSOCode&quot;)})
+public class Geoname implements EntityBean, Serializable {
+    
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;geonameId&quot;)
+    private Integer geonameId;
+    
+    @Size(max = 255)
+    @Column(name = &quot;name&quot;)
+    private String name;
+    
+    @Size(max = 255)
+    @Column(name = &quot;asciiname&quot;)
+    private String asciiname;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;alternatenames&quot;)
+    private String alternatenames;
+    
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = &quot;latitude&quot;)
+    private BigDecimal latitude;
+    
+    @Column(name = &quot;longitude&quot;)
+    private BigDecimal longitude;
+    
+    @Column(name = &quot;fclass&quot;)
+    private Character fclass;
+    
+    @Size(max = 10)
+    @Column(name = &quot;fcode&quot;)
+    private String fcode;
+    
+    @Size(max = 2)
+    @Column(name = &quot;country&quot;)
+    private String country;
+    
+    @Size(max = 60)
+    @Column(name = &quot;cc2&quot;)
+    private String cc2;
+    
+    @Size(max = 20)
+    @Column(name = &quot;admin1&quot;)
+    private String admin1;
+    
+    @Size(max = 80)
+    @Column(name = &quot;admin2&quot;)
+    private String admin2;
+    
+    @Size(max = 20)
+    @Column(name = &quot;admin3&quot;)
+    private String admin3;
+    
+    @Size(max = 20)
+    @Column(name = &quot;admin4&quot;)
+    private String admin4;
+    
+    @Column(name = &quot;population&quot;)
+    private Integer population;
+    
+    @Column(name = &quot;elevation&quot;)
+    private Integer elevation;
+    
+    @Column(name = &quot;gtopo30&quot;)
+    private Integer gtopo30;
+    
+    @Size(max = 40)
+    @Column(name = &quot;timezone&quot;)
+    private String timezone;
+    
+    @Column(name = &quot;moddate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date moddate;
+    
+    @Size(max = 24)
+    @Column(name = &quot;ISOCode&quot;)
+    private String iSOCode;
+
+<span class="nc" id="L125">    public Geoname() {</span>
+<span class="nc" id="L126">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L132">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + geonameId;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L137">        return geonameId;</span>
+    }
+
+<span class="nc" id="L140">    public Geoname(Integer geonameId) {</span>
+<span class="nc" id="L141">        this.geonameId = geonameId;</span>
+<span class="nc" id="L142">    }</span>
+
+    public Integer getGeonameId() {
+<span class="nc" id="L145">        return geonameId;</span>
+    }
+
+    public void setGeonameId(Integer geonameId) {
+<span class="nc" id="L149">        this.geonameId = geonameId;</span>
+<span class="nc" id="L150">    }</span>
+
+    public String getName() {
+<span class="nc" id="L153">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L157">        this.name = name;</span>
+<span class="nc" id="L158">    }</span>
+
+    public String getAsciiname() {
+<span class="nc" id="L161">        return asciiname;</span>
+    }
+
+    public void setAsciiname(String asciiname) {
+<span class="nc" id="L165">        this.asciiname = asciiname;</span>
+<span class="nc" id="L166">    }</span>
+
+    public String getAlternatenames() {
+<span class="nc" id="L169">        return alternatenames;</span>
+    }
+
+    public void setAlternatenames(String alternatenames) {
+<span class="nc" id="L173">        this.alternatenames = alternatenames;</span>
+<span class="nc" id="L174">    }</span>
+
+    public BigDecimal getLatitude() {
+<span class="nc" id="L177">        return latitude;</span>
+    }
+
+    public void setLatitude(BigDecimal latitude) {
+<span class="nc" id="L181">        this.latitude = latitude;</span>
+<span class="nc" id="L182">    }</span>
+
+    public BigDecimal getLongitude() {
+<span class="nc" id="L185">        return longitude;</span>
+    }
+
+    public void setLongitude(BigDecimal longitude) {
+<span class="nc" id="L189">        this.longitude = longitude;</span>
+<span class="nc" id="L190">    }</span>
+
+    public Character getFclass() {
+<span class="nc" id="L193">        return fclass;</span>
+    }
+
+    public void setFclass(Character fclass) {
+<span class="nc" id="L197">        this.fclass = fclass;</span>
+<span class="nc" id="L198">    }</span>
+
+    public String getFcode() {
+<span class="nc" id="L201">        return fcode;</span>
+    }
+
+    public void setFcode(String fcode) {
+<span class="nc" id="L205">        this.fcode = fcode;</span>
+<span class="nc" id="L206">    }</span>
+
+    public String getCountry() {
+<span class="nc" id="L209">        return country;</span>
+    }
+
+    public void setCountry(String country) {
+<span class="nc" id="L213">        this.country = country;</span>
+<span class="nc" id="L214">    }</span>
+
+    public String getCc2() {
+<span class="nc" id="L217">        return cc2;</span>
+    }
+
+    public void setCc2(String cc2) {
+<span class="nc" id="L221">        this.cc2 = cc2;</span>
+<span class="nc" id="L222">    }</span>
+
+    public String getAdmin1() {
+<span class="nc" id="L225">        return admin1;</span>
+    }
+
+    public void setAdmin1(String admin1) {
+<span class="nc" id="L229">        this.admin1 = admin1;</span>
+<span class="nc" id="L230">    }</span>
+
+    public String getAdmin2() {
+<span class="nc" id="L233">        return admin2;</span>
+    }
+
+    public void setAdmin2(String admin2) {
+<span class="nc" id="L237">        this.admin2 = admin2;</span>
+<span class="nc" id="L238">    }</span>
+
+    public String getAdmin3() {
+<span class="nc" id="L241">        return admin3;</span>
+    }
+
+    public void setAdmin3(String admin3) {
+<span class="nc" id="L245">        this.admin3 = admin3;</span>
+<span class="nc" id="L246">    }</span>
+
+    public String getAdmin4() {
+<span class="nc" id="L249">        return admin4;</span>
+    }
+
+    public void setAdmin4(String admin4) {
+<span class="nc" id="L253">        this.admin4 = admin4;</span>
+<span class="nc" id="L254">    }</span>
+
+    public Integer getPopulation() {
+<span class="nc" id="L257">        return population;</span>
+    }
+
+    public void setPopulation(Integer population) {
+<span class="nc" id="L261">        this.population = population;</span>
+<span class="nc" id="L262">    }</span>
+
+    public Integer getElevation() {
+<span class="nc" id="L265">        return elevation;</span>
+    }
+
+    public void setElevation(Integer elevation) {
+<span class="nc" id="L269">        this.elevation = elevation;</span>
+<span class="nc" id="L270">    }</span>
+
+    public Integer getGtopo30() {
+<span class="nc" id="L273">        return gtopo30;</span>
+    }
+
+    public void setGtopo30(Integer gtopo30) {
+<span class="nc" id="L277">        this.gtopo30 = gtopo30;</span>
+<span class="nc" id="L278">    }</span>
+
+    public String getTimezone() {
+<span class="nc" id="L281">        return timezone;</span>
+    }
+
+    public void setTimezone(String timezone) {
+<span class="nc" id="L285">        this.timezone = timezone;</span>
+<span class="nc" id="L286">    }</span>
+
+    public Date getModdate() {
+<span class="nc" id="L289">        return moddate;</span>
+    }
+
+    public void setModdate(Date moddate) {
+<span class="nc" id="L293">        this.moddate = moddate;</span>
+<span class="nc" id="L294">    }</span>
+
+    public String getISOCode() {
+<span class="nc" id="L297">        return iSOCode;</span>
+    }
+
+    public void setISOCode(String iSOCode) {
+<span class="nc" id="L301">        this.iSOCode = iSOCode;</span>
+<span class="nc" id="L302">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L306">        int hash = 0;</span>
+<span class="nc bnc" id="L307" title="All 2 branches missed.">        hash += (geonameId != null ? geonameId.hashCode() : 0);</span>
+<span class="nc" id="L308">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L314" title="All 2 branches missed.">        if (!(object instanceof Geoname)) {</span>
+<span class="nc" id="L315">            return false;</span>
+        }
+<span class="nc" id="L317">        Geoname other = (Geoname) object;</span>
+<span class="nc bnc" id="L318" title="All 8 branches missed.">        return !((this.geonameId == null &amp;&amp; other.geonameId != null) || (this.geonameId != null &amp;&amp; !this.geonameId.equals(other.geonameId)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L323">        return &quot;se.nrm.dina.datamodel.Geoname[ geonameId=&quot; + geonameId + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

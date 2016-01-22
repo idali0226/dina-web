@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Spappresource.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Spappresource.java</span></div><h1>Spappresource.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;spappresource&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Spappresource.findAll&quot;, query = &quot;SELECT s FROM Spappresource s&quot;),
+    @NamedQuery(name = &quot;Spappresource.findBySpAppResourceID&quot;, query = &quot;SELECT s FROM Spappresource s WHERE s.spAppResourceID = :spAppResourceID&quot;), 
+    @NamedQuery(name = &quot;Spappresource.findByAllPermissionLevel&quot;, query = &quot;SELECT s FROM Spappresource s WHERE s.allPermissionLevel = :allPermissionLevel&quot;),
+    @NamedQuery(name = &quot;Spappresource.findByDescription&quot;, query = &quot;SELECT s FROM Spappresource s WHERE s.description = :description&quot;),
+    @NamedQuery(name = &quot;Spappresource.findByGroupPermissionLevel&quot;, query = &quot;SELECT s FROM Spappresource s WHERE s.groupPermissionLevel = :groupPermissionLevel&quot;),
+    @NamedQuery(name = &quot;Spappresource.findByLevel&quot;, query = &quot;SELECT s FROM Spappresource s WHERE s.level = :level&quot;),
+    @NamedQuery(name = &quot;Spappresource.findByMetaData&quot;, query = &quot;SELECT s FROM Spappresource s WHERE s.metaData = :metaData&quot;),
+    @NamedQuery(name = &quot;Spappresource.findByMimeType&quot;, query = &quot;SELECT s FROM Spappresource s WHERE s.mimeType = :mimeType&quot;),
+    @NamedQuery(name = &quot;Spappresource.findByName&quot;, query = &quot;SELECT s FROM Spappresource s WHERE s.name = :name&quot;),
+    @NamedQuery(name = &quot;Spappresource.findByOwnerPermissionLevel&quot;, query = &quot;SELECT s FROM Spappresource s WHERE s.ownerPermissionLevel = :ownerPermissionLevel&quot;)})
+public class Spappresource extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;SpAppResourceID&quot;)
+    private Integer spAppResourceID;
+    
+    
+    @Column(name = &quot;AllPermissionLevel&quot;)
+    private Integer allPermissionLevel;
+    
+    @Size(max = 255)
+    @Column(name = &quot;Description&quot;)
+    private String description;
+    
+    @Column(name = &quot;GroupPermissionLevel&quot;)
+    private Integer groupPermissionLevel;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;Level&quot;)
+    private short level;
+    
+    @Size(max = 255)
+    @Column(name = &quot;MetaData&quot;)
+    private String metaData;
+    
+    @Size(max = 255)
+    @Column(name = &quot;MimeType&quot;)
+    private String mimeType;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = &quot;Name&quot;)
+    private String name;
+    
+    @Column(name = &quot;OwnerPermissionLevel&quot;)
+    private Integer ownerPermissionLevel;
+    
+    @JoinColumn(name = &quot;SpAppResourceDirID&quot;, referencedColumnName = &quot;SpAppResourceDirID&quot;)
+    @ManyToOne(optional = false)
+    private Spappresourcedir spAppResourceDirID;
+    
+    @JoinColumn(name = &quot;SpecifyUserID&quot;, referencedColumnName = &quot;SpecifyUserID&quot;)
+    @ManyToOne(optional = false)
+    private Specifyuser specifyUserID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;SpPrincipalID&quot;, referencedColumnName = &quot;SpPrincipalID&quot;)
+    @ManyToOne
+    private Spprincipal spPrincipalID;
+    
+    @OneToMany(mappedBy = &quot;spAppResourceID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Spappresourcedata&gt; spappresourcedataList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;appResourceID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Spreport&gt; spreportList;
+
+<span class="nc" id="L120">    public Spappresource() {</span>
+<span class="nc" id="L121">    }</span>
+
+<span class="nc" id="L123">    public Spappresource(Integer spAppResourceID) {</span>
+<span class="nc" id="L124">        this.spAppResourceID = spAppResourceID;</span>
+<span class="nc" id="L125">    }</span>
+
+<span class="nc" id="L127">    public Spappresource(Integer spAppResourceID, Date timestampCreated, short level, String name) {</span>
+<span class="nc" id="L128">        this.spAppResourceID = spAppResourceID;</span>
+<span class="nc" id="L129">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L130">        this.level = level;</span>
+<span class="nc" id="L131">        this.name = name;</span>
+<span class="nc" id="L132">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L138">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spAppResourceID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L143">        return spAppResourceID;</span>
+    }
+    
+    public Integer getSpAppResourceID() {
+<span class="nc" id="L147">        return spAppResourceID;</span>
+    }
+
+    public void setSpAppResourceID(Integer spAppResourceID) {
+<span class="nc" id="L151">        this.spAppResourceID = spAppResourceID;</span>
+<span class="nc" id="L152">    }</span>
+ 
+
+    public Integer getAllPermissionLevel() {
+<span class="nc" id="L156">        return allPermissionLevel;</span>
+    }
+
+    public void setAllPermissionLevel(Integer allPermissionLevel) {
+<span class="nc" id="L160">        this.allPermissionLevel = allPermissionLevel;</span>
+<span class="nc" id="L161">    }</span>
+
+    public String getDescription() {
+<span class="nc" id="L164">        return description;</span>
+    }
+
+    public void setDescription(String description) {
+<span class="nc" id="L168">        this.description = description;</span>
+<span class="nc" id="L169">    }</span>
+
+    public Integer getGroupPermissionLevel() {
+<span class="nc" id="L172">        return groupPermissionLevel;</span>
+    }
+
+    public void setGroupPermissionLevel(Integer groupPermissionLevel) {
+<span class="nc" id="L176">        this.groupPermissionLevel = groupPermissionLevel;</span>
+<span class="nc" id="L177">    }</span>
+
+    public short getLevel() {
+<span class="nc" id="L180">        return level;</span>
+    }
+
+    public void setLevel(short level) {
+<span class="nc" id="L184">        this.level = level;</span>
+<span class="nc" id="L185">    }</span>
+
+    public String getMetaData() {
+<span class="nc" id="L188">        return metaData;</span>
+    }
+
+    public void setMetaData(String metaData) {
+<span class="nc" id="L192">        this.metaData = metaData;</span>
+<span class="nc" id="L193">    }</span>
+
+    public String getMimeType() {
+<span class="nc" id="L196">        return mimeType;</span>
+    }
+
+    public void setMimeType(String mimeType) {
+<span class="nc" id="L200">        this.mimeType = mimeType;</span>
+<span class="nc" id="L201">    }</span>
+
+    public String getName() {
+<span class="nc" id="L204">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L208">        this.name = name;</span>
+<span class="nc" id="L209">    }</span>
+
+    public Integer getOwnerPermissionLevel() {
+<span class="nc" id="L212">        return ownerPermissionLevel;</span>
+    }
+
+    public void setOwnerPermissionLevel(Integer ownerPermissionLevel) {
+<span class="nc" id="L216">        this.ownerPermissionLevel = ownerPermissionLevel;</span>
+<span class="nc" id="L217">    }</span>
+
+    @XmlIDREF
+    public Spappresourcedir getSpAppResourceDirID() {
+<span class="nc" id="L221">        return spAppResourceDirID;</span>
+    }
+
+    public void setSpAppResourceDirID(Spappresourcedir spAppResourceDirID) {
+<span class="nc" id="L225">        this.spAppResourceDirID = spAppResourceDirID;</span>
+<span class="nc" id="L226">    }</span>
+
+    @XmlIDREF
+    public Specifyuser getSpecifyUserID() {
+<span class="nc" id="L230">        return specifyUserID;</span>
+    }
+
+    public void setSpecifyUserID(Specifyuser specifyUserID) {
+<span class="nc" id="L234">        this.specifyUserID = specifyUserID;</span>
+<span class="nc" id="L235">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L239">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L243">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L244">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L248">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L252">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L253">    }</span>
+
+    @XmlIDREF
+    public Spprincipal getSpPrincipalID() {
+<span class="nc" id="L257">        return spPrincipalID;</span>
+    }
+
+    public void setSpPrincipalID(Spprincipal spPrincipalID) {
+<span class="nc" id="L261">        this.spPrincipalID = spPrincipalID;</span>
+<span class="nc" id="L262">    }</span>
+
+    @XmlTransient
+    public List&lt;Spappresourcedata&gt; getSpappresourcedataList() {
+<span class="nc" id="L266">        return spappresourcedataList;</span>
+    }
+
+    public void setSpappresourcedataList(List&lt;Spappresourcedata&gt; spappresourcedataList) {
+<span class="nc" id="L270">        this.spappresourcedataList = spappresourcedataList;</span>
+<span class="nc" id="L271">    }</span>
+
+    @XmlTransient
+    public List&lt;Spreport&gt; getSpreportList() {
+<span class="nc" id="L275">        return spreportList;</span>
+    }
+
+    public void setSpreportList(List&lt;Spreport&gt; spreportList) {
+<span class="nc" id="L279">        this.spreportList = spreportList;</span>
+<span class="nc" id="L280">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L284">        int hash = 0;</span>
+<span class="nc bnc" id="L285" title="All 2 branches missed.">        hash += (spAppResourceID != null ? spAppResourceID.hashCode() : 0);</span>
+<span class="nc" id="L286">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L292" title="All 2 branches missed.">        if (!(object instanceof Spappresource)) {</span>
+<span class="nc" id="L293">            return false;</span>
+        }
+<span class="nc" id="L295">        Spappresource other = (Spappresource) object;</span>
+<span class="nc bnc" id="L296" title="All 8 branches missed.">        return !((this.spAppResourceID == null &amp;&amp; other.spAppResourceID != null) || (this.spAppResourceID != null &amp;&amp; !this.spAppResourceID.equals(other.spAppResourceID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L301">        return &quot;se.nrm.dina.datamodel.Spappresource[ spAppResourceID=&quot; + spAppResourceID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

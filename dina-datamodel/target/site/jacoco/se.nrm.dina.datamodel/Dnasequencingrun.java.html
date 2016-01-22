@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Dnasequencingrun.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Dnasequencingrun.java</span></div><h1>Dnasequencingrun.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;dnasequencingrun&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Dnasequencingrun.findAll&quot;, query = &quot;SELECT d FROM Dnasequencingrun d&quot;),
+    @NamedQuery(name = &quot;Dnasequencingrun.findByDNASequencingRunID&quot;, query = &quot;SELECT d FROM Dnasequencingrun d WHERE d.dNASequencingRunID = :dNASequencingRunID&quot;), 
+    @NamedQuery(name = &quot;Dnasequencingrun.findByCollectionMemberID&quot;, query = &quot;SELECT d FROM Dnasequencingrun d WHERE d.collectionMemberID = :collectionMemberID&quot;), 
+    @NamedQuery(name = &quot;Dnasequencingrun.findByPCRCocktailPrimer&quot;, query = &quot;SELECT d FROM Dnasequencingrun d WHERE d.pCRCocktailPrimer = :pCRCocktailPrimer&quot;),
+    @NamedQuery(name = &quot;Dnasequencingrun.findByPCRForwardPrimerCode&quot;, query = &quot;SELECT d FROM Dnasequencingrun d WHERE d.pCRForwardPrimerCode = :pCRForwardPrimerCode&quot;),
+    @NamedQuery(name = &quot;Dnasequencingrun.findByPCRPrimerName&quot;, query = &quot;SELECT d FROM Dnasequencingrun d WHERE d.pCRPrimerName = :pCRPrimerName&quot;),
+    @NamedQuery(name = &quot;Dnasequencingrun.findByPCRPrimerSequence53&quot;, query = &quot;SELECT d FROM Dnasequencingrun d WHERE d.pCRPrimerSequence53 = :pCRPrimerSequence53&quot;),
+    @NamedQuery(name = &quot;Dnasequencingrun.findByPCRReversePrimerCode&quot;, query = &quot;SELECT d FROM Dnasequencingrun d WHERE d.pCRReversePrimerCode = :pCRReversePrimerCode&quot;),
+    @NamedQuery(name = &quot;Dnasequencingrun.findByReadDirection&quot;, query = &quot;SELECT d FROM Dnasequencingrun d WHERE d.readDirection = :readDirection&quot;),
+    @NamedQuery(name = &quot;Dnasequencingrun.findByRunDate&quot;, query = &quot;SELECT d FROM Dnasequencingrun d WHERE d.runDate = :runDate&quot;),
+    @NamedQuery(name = &quot;Dnasequencingrun.findByScoreFileName&quot;, query = &quot;SELECT d FROM Dnasequencingrun d WHERE d.scoreFileName = :scoreFileName&quot;),
+    @NamedQuery(name = &quot;Dnasequencingrun.findBySequenceCocktailPrimer&quot;, query = &quot;SELECT d FROM Dnasequencingrun d WHERE d.sequenceCocktailPrimer = :sequenceCocktailPrimer&quot;),
+    @NamedQuery(name = &quot;Dnasequencingrun.findBySequencePrimerCode&quot;, query = &quot;SELECT d FROM Dnasequencingrun d WHERE d.sequencePrimerCode = :sequencePrimerCode&quot;),
+    @NamedQuery(name = &quot;Dnasequencingrun.findBySequencePrimerName&quot;, query = &quot;SELECT d FROM Dnasequencingrun d WHERE d.sequencePrimerName = :sequencePrimerName&quot;),
+    @NamedQuery(name = &quot;Dnasequencingrun.findBySequencePrimerSequence53&quot;, query = &quot;SELECT d FROM Dnasequencingrun d WHERE d.sequencePrimerSequence53 = :sequencePrimerSequence53&quot;),
+    @NamedQuery(name = &quot;Dnasequencingrun.findByTraceFileName&quot;, query = &quot;SELECT d FROM Dnasequencingrun d WHERE d.traceFileName = :traceFileName&quot;) })
+public class Dnasequencingrun extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;DNASequencingRunID&quot;)
+    private Integer dNASequencingRunID;
+    
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;CollectionMemberID&quot;)
+    private int collectionMemberID;
+    
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = &quot;Number1&quot;)
+    private Float number1;
+    
+    @Column(name = &quot;Number2&quot;)
+    private Float number2;
+    
+    @Column(name = &quot;Number3&quot;)
+    private Float number3;
+    
+    @Column(name = &quot;Ordinal&quot;)
+    private Integer ordinal;
+    
+    @Column(name = &quot;PCRCocktailPrimer&quot;)
+    private Boolean pCRCocktailPrimer;
+    
+    @Size(max = 32)
+    @Column(name = &quot;PCRForwardPrimerCode&quot;)
+    private String pCRForwardPrimerCode;
+    
+    @Size(max = 32)
+    @Column(name = &quot;PCRPrimerName&quot;)
+    private String pCRPrimerName;
+    
+    @Size(max = 64)
+    @Column(name = &quot;PCRPrimerSequence5_3&quot;)
+    private String pCRPrimerSequence53;
+    
+    @Size(max = 32)
+    @Column(name = &quot;PCRReversePrimerCode&quot;)
+    private String pCRReversePrimerCode;
+    @Size(max = 16)
+    
+    @Column(name = &quot;ReadDirection&quot;)
+    private String readDirection;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Column(name = &quot;RunDate&quot;)
+    @Temporal(TemporalType.DATE)
+    private Date runDate;
+    
+    @Size(max = 32)
+    @Column(name = &quot;ScoreFileName&quot;)
+    private String scoreFileName;
+    
+    @Column(name = &quot;SequenceCocktailPrimer&quot;)
+    private Boolean sequenceCocktailPrimer;
+    
+    @Size(max = 32)
+    @Column(name = &quot;SequencePrimerCode&quot;)
+    private String sequencePrimerCode;
+    
+    @Size(max = 32)
+    @Column(name = &quot;SequencePrimerName&quot;)
+    private String sequencePrimerName;
+    
+    @Size(max = 64)
+    @Column(name = &quot;SequencePrimerSequence5_3&quot;)
+    private String sequencePrimerSequence53;
+    
+    @Size(max = 32)
+    @Column(name = &quot;Text1&quot;)
+    private String text1;
+    
+    @Size(max = 32)
+    @Column(name = &quot;Text2&quot;)
+    private String text2;
+    
+    @Size(max = 64)
+    @Column(name = &quot;Text3&quot;)
+    private String text3;
+    
+    @Size(max = 32)
+    @Column(name = &quot;TraceFileName&quot;)
+    private String traceFileName;
+    
+    @Column(name = &quot;YesNo1&quot;)
+    private Boolean yesNo1;
+    
+    @Column(name = &quot;YesNo2&quot;)
+    private Boolean yesNo2;
+    
+    @Column(name = &quot;YesNo3&quot;)
+    private Boolean yesNo3;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;GeneSequence&quot;)
+    private String geneSequence;
+    
+    @JoinColumn(name = &quot;DNASequenceID&quot;, referencedColumnName = &quot;DnaSequenceID&quot;)
+    @ManyToOne(optional = false)
+    private Dnasequence dNASequenceID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;RunByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent runByAgentID;
+    
+    @JoinColumn(name = &quot;PreparedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent preparedByAgentID;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;dNASequencingRunID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Dnasequencingruncitation&gt; dnasequencingruncitationList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;dnaSequencingRunID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Dnasequencerunattachment&gt; dnasequencerunattachmentList;
+
+<span class="nc" id="L196">    public Dnasequencingrun() {</span>
+<span class="nc" id="L197">    }</span>
+
+<span class="nc" id="L199">    public Dnasequencingrun(Integer dNASequencingRunID) {</span>
+<span class="nc" id="L200">        this.dNASequencingRunID = dNASequencingRunID;</span>
+<span class="nc" id="L201">    }</span>
+
+<span class="nc" id="L203">    public Dnasequencingrun(Integer dNASequencingRunID, Date timestampCreated, int collectionMemberID) {</span>
+<span class="nc" id="L204">        this.dNASequencingRunID = dNASequencingRunID;</span>
+<span class="nc" id="L205">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L206">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L207">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L213">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + dNASequencingRunID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L218">        return dNASequencingRunID;</span>
+    }
+
+    public Integer getDNASequencingRunID() {
+<span class="nc" id="L222">        return dNASequencingRunID;</span>
+    }
+
+    public void setDNASequencingRunID(Integer dNASequencingRunID) {
+<span class="nc" id="L226">        this.dNASequencingRunID = dNASequencingRunID;</span>
+<span class="nc" id="L227">    }</span>
+
+    
+
+    public int getCollectionMemberID() {
+<span class="nc" id="L232">        return collectionMemberID;</span>
+    }
+
+    public void setCollectionMemberID(int collectionMemberID) {
+<span class="nc" id="L236">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L237">    }</span>
+
+    public Float getNumber1() {
+<span class="nc" id="L240">        return number1;</span>
+    }
+
+    public void setNumber1(Float number1) {
+<span class="nc" id="L244">        this.number1 = number1;</span>
+<span class="nc" id="L245">    }</span>
+
+    public Float getNumber2() {
+<span class="nc" id="L248">        return number2;</span>
+    }
+
+    public void setNumber2(Float number2) {
+<span class="nc" id="L252">        this.number2 = number2;</span>
+<span class="nc" id="L253">    }</span>
+
+    public Float getNumber3() {
+<span class="nc" id="L256">        return number3;</span>
+    }
+
+    public void setNumber3(Float number3) {
+<span class="nc" id="L260">        this.number3 = number3;</span>
+<span class="nc" id="L261">    }</span>
+
+    public Integer getOrdinal() {
+<span class="nc" id="L264">        return ordinal;</span>
+    }
+
+    public void setOrdinal(Integer ordinal) {
+<span class="nc" id="L268">        this.ordinal = ordinal;</span>
+<span class="nc" id="L269">    }</span>
+
+    public Boolean getPCRCocktailPrimer() {
+<span class="nc" id="L272">        return pCRCocktailPrimer;</span>
+    }
+
+    public void setPCRCocktailPrimer(Boolean pCRCocktailPrimer) {
+<span class="nc" id="L276">        this.pCRCocktailPrimer = pCRCocktailPrimer;</span>
+<span class="nc" id="L277">    }</span>
+
+    public String getPCRForwardPrimerCode() {
+<span class="nc" id="L280">        return pCRForwardPrimerCode;</span>
+    }
+
+    public void setPCRForwardPrimerCode(String pCRForwardPrimerCode) {
+<span class="nc" id="L284">        this.pCRForwardPrimerCode = pCRForwardPrimerCode;</span>
+<span class="nc" id="L285">    }</span>
+
+    public String getPCRPrimerName() {
+<span class="nc" id="L288">        return pCRPrimerName;</span>
+    }
+
+    public void setPCRPrimerName(String pCRPrimerName) {
+<span class="nc" id="L292">        this.pCRPrimerName = pCRPrimerName;</span>
+<span class="nc" id="L293">    }</span>
+
+    public String getPCRPrimerSequence53() {
+<span class="nc" id="L296">        return pCRPrimerSequence53;</span>
+    }
+
+    public void setPCRPrimerSequence53(String pCRPrimerSequence53) {
+<span class="nc" id="L300">        this.pCRPrimerSequence53 = pCRPrimerSequence53;</span>
+<span class="nc" id="L301">    }</span>
+
+    public String getPCRReversePrimerCode() {
+<span class="nc" id="L304">        return pCRReversePrimerCode;</span>
+    }
+
+    public void setPCRReversePrimerCode(String pCRReversePrimerCode) {
+<span class="nc" id="L308">        this.pCRReversePrimerCode = pCRReversePrimerCode;</span>
+<span class="nc" id="L309">    }</span>
+
+    public String getReadDirection() {
+<span class="nc" id="L312">        return readDirection;</span>
+    }
+
+    public void setReadDirection(String readDirection) {
+<span class="nc" id="L316">        this.readDirection = readDirection;</span>
+<span class="nc" id="L317">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L320">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L324">        this.remarks = remarks;</span>
+<span class="nc" id="L325">    }</span>
+
+    public Date getRunDate() {
+<span class="nc" id="L328">        return runDate;</span>
+    }
+
+    public void setRunDate(Date runDate) {
+<span class="nc" id="L332">        this.runDate = runDate;</span>
+<span class="nc" id="L333">    }</span>
+
+    public String getScoreFileName() {
+<span class="nc" id="L336">        return scoreFileName;</span>
+    }
+
+    public void setScoreFileName(String scoreFileName) {
+<span class="nc" id="L340">        this.scoreFileName = scoreFileName;</span>
+<span class="nc" id="L341">    }</span>
+
+    public Boolean getSequenceCocktailPrimer() {
+<span class="nc" id="L344">        return sequenceCocktailPrimer;</span>
+    }
+
+    public void setSequenceCocktailPrimer(Boolean sequenceCocktailPrimer) {
+<span class="nc" id="L348">        this.sequenceCocktailPrimer = sequenceCocktailPrimer;</span>
+<span class="nc" id="L349">    }</span>
+
+    public String getSequencePrimerCode() {
+<span class="nc" id="L352">        return sequencePrimerCode;</span>
+    }
+
+    public void setSequencePrimerCode(String sequencePrimerCode) {
+<span class="nc" id="L356">        this.sequencePrimerCode = sequencePrimerCode;</span>
+<span class="nc" id="L357">    }</span>
+
+    public String getSequencePrimerName() {
+<span class="nc" id="L360">        return sequencePrimerName;</span>
+    }
+
+    public void setSequencePrimerName(String sequencePrimerName) {
+<span class="nc" id="L364">        this.sequencePrimerName = sequencePrimerName;</span>
+<span class="nc" id="L365">    }</span>
+
+    public String getSequencePrimerSequence53() {
+<span class="nc" id="L368">        return sequencePrimerSequence53;</span>
+    }
+
+    public void setSequencePrimerSequence53(String sequencePrimerSequence53) {
+<span class="nc" id="L372">        this.sequencePrimerSequence53 = sequencePrimerSequence53;</span>
+<span class="nc" id="L373">    }</span>
+
+    public String getText1() {
+<span class="nc" id="L376">        return text1;</span>
+    }
+
+    public void setText1(String text1) {
+<span class="nc" id="L380">        this.text1 = text1;</span>
+<span class="nc" id="L381">    }</span>
+
+    public String getText2() {
+<span class="nc" id="L384">        return text2;</span>
+    }
+
+    public void setText2(String text2) {
+<span class="nc" id="L388">        this.text2 = text2;</span>
+<span class="nc" id="L389">    }</span>
+
+    public String getText3() {
+<span class="nc" id="L392">        return text3;</span>
+    }
+
+    public void setText3(String text3) {
+<span class="nc" id="L396">        this.text3 = text3;</span>
+<span class="nc" id="L397">    }</span>
+
+    public String getTraceFileName() {
+<span class="nc" id="L400">        return traceFileName;</span>
+    }
+
+    public void setTraceFileName(String traceFileName) {
+<span class="nc" id="L404">        this.traceFileName = traceFileName;</span>
+<span class="nc" id="L405">    }</span>
+
+    public Boolean getYesNo1() {
+<span class="nc" id="L408">        return yesNo1;</span>
+    }
+
+    public void setYesNo1(Boolean yesNo1) {
+<span class="nc" id="L412">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L413">    }</span>
+
+    public Boolean getYesNo2() {
+<span class="nc" id="L416">        return yesNo2;</span>
+    }
+
+    public void setYesNo2(Boolean yesNo2) {
+<span class="nc" id="L420">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L421">    }</span>
+
+    public Boolean getYesNo3() {
+<span class="nc" id="L424">        return yesNo3;</span>
+    }
+
+    public void setYesNo3(Boolean yesNo3) {
+<span class="nc" id="L428">        this.yesNo3 = yesNo3;</span>
+<span class="nc" id="L429">    }</span>
+
+    public String getGeneSequence() {
+<span class="nc" id="L432">        return geneSequence;</span>
+    }
+
+    public void setGeneSequence(String geneSequence) {
+<span class="nc" id="L436">        this.geneSequence = geneSequence;</span>
+<span class="nc" id="L437">    }</span>
+
+    @XmlIDREF
+    public Dnasequence getDNASequenceID() {
+<span class="nc" id="L441">        return dNASequenceID;</span>
+    }
+
+    public void setDNASequenceID(Dnasequence dNASequenceID) {
+<span class="nc" id="L445">        this.dNASequenceID = dNASequenceID;</span>
+<span class="nc" id="L446">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L450">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L454">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L455">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L459">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L463">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L464">    }</span>
+
+    @XmlIDREF
+    public Agent getRunByAgentID() {
+<span class="nc" id="L468">        return runByAgentID;</span>
+    }
+
+    public void setRunByAgentID(Agent runByAgentID) {
+<span class="nc" id="L472">        this.runByAgentID = runByAgentID;</span>
+<span class="nc" id="L473">    }</span>
+
+    @XmlIDREF
+    public Agent getPreparedByAgentID() {
+<span class="nc" id="L477">        return preparedByAgentID;</span>
+    }
+
+    public void setPreparedByAgentID(Agent preparedByAgentID) {
+<span class="nc" id="L481">        this.preparedByAgentID = preparedByAgentID;</span>
+<span class="nc" id="L482">    }</span>
+
+    @XmlTransient
+    public List&lt;Dnasequencingruncitation&gt; getDnasequencingruncitationList() {
+<span class="nc" id="L486">        return dnasequencingruncitationList;</span>
+    }
+
+    public void setDnasequencingruncitationList(List&lt;Dnasequencingruncitation&gt; dnasequencingruncitationList) {
+<span class="nc" id="L490">        this.dnasequencingruncitationList = dnasequencingruncitationList;</span>
+<span class="nc" id="L491">    }</span>
+
+    @XmlTransient
+    public List&lt;Dnasequencerunattachment&gt; getDnasequencerunattachmentList() {
+<span class="nc" id="L495">        return dnasequencerunattachmentList;</span>
+    }
+
+    public void setDnasequencerunattachmentList(List&lt;Dnasequencerunattachment&gt; dnasequencerunattachmentList) {
+<span class="nc" id="L499">        this.dnasequencerunattachmentList = dnasequencerunattachmentList;</span>
+<span class="nc" id="L500">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L504">        int hash = 0;</span>
+<span class="nc bnc" id="L505" title="All 2 branches missed.">        hash += (dNASequencingRunID != null ? dNASequencingRunID.hashCode() : 0);</span>
+<span class="nc" id="L506">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L512" title="All 2 branches missed.">        if (!(object instanceof Dnasequencingrun)) {</span>
+<span class="nc" id="L513">            return false;</span>
+        }
+<span class="nc" id="L515">        Dnasequencingrun other = (Dnasequencingrun) object;</span>
+<span class="nc bnc" id="L516" title="All 8 branches missed.">        return !((this.dNASequencingRunID == null &amp;&amp; other.dNASequencingRunID != null) || (this.dNASequencingRunID != null &amp;&amp; !this.dNASequencingRunID.equals(other.dNASequencingRunID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L521">        return &quot;se.nrm.dina.datamodel.Dnasequencingrun[ dNASequencingRunID=&quot; + dNASequencingRunID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

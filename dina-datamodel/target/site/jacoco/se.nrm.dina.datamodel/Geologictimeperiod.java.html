@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Geologictimeperiod.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-datamodel</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.datamodel</a> &gt; <span class="el_source">Geologictimeperiod.java</span></div><h1>Geologictimeperiod.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.datamodel;
+ 
+import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table; 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import se.nrm.dina.datamodel.util.Util;
+
+/**
+ *
+ * @author idali
+ */
+@Entity
+@Table(name = &quot;geologictimeperiod&quot;)
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = &quot;Geologictimeperiod.findAll&quot;, query = &quot;SELECT g FROM Geologictimeperiod g&quot;),
+    @NamedQuery(name = &quot;Geologictimeperiod.findByGeologicTimePeriodID&quot;, query = &quot;SELECT g FROM Geologictimeperiod g WHERE g.geologicTimePeriodID = :geologicTimePeriodID&quot;),  
+    @NamedQuery(name = &quot;Geologictimeperiod.findByFullName&quot;, query = &quot;SELECT g FROM Geologictimeperiod g WHERE g.fullName = :fullName&quot;),
+    @NamedQuery(name = &quot;Geologictimeperiod.findByGuid&quot;, query = &quot;SELECT g FROM Geologictimeperiod g WHERE g.guid = :guid&quot;),
+    @NamedQuery(name = &quot;Geologictimeperiod.findByHighestChildNodeNumber&quot;, query = &quot;SELECT g FROM Geologictimeperiod g WHERE g.highestChildNodeNumber = :highestChildNodeNumber&quot;),
+    @NamedQuery(name = &quot;Geologictimeperiod.findByIsAccepted&quot;, query = &quot;SELECT g FROM Geologictimeperiod g WHERE g.isAccepted = :isAccepted&quot;),
+    @NamedQuery(name = &quot;Geologictimeperiod.findByIsBioStrat&quot;, query = &quot;SELECT g FROM Geologictimeperiod g WHERE g.isBioStrat = :isBioStrat&quot;),
+    @NamedQuery(name = &quot;Geologictimeperiod.findByName&quot;, query = &quot;SELECT g FROM Geologictimeperiod g WHERE g.name = :name&quot;) })
+public class Geologictimeperiod extends BaseEntity {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = &quot;GeologicTimePeriodID&quot;)
+    private Integer geologicTimePeriodID;
+    
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = &quot;EndPeriod&quot;)
+    private Float endPeriod;
+    
+    @Column(name = &quot;EndUncertainty&quot;)
+    private Float endUncertainty;
+    
+    @Size(max = 64)
+    @Column(name = &quot;Text1&quot;)
+    private String text1;
+    
+    @Size(max = 64)
+    @Column(name = &quot;Text2&quot;)
+    private String text2;
+    
+    @Size(max = 255)
+    @Column(name = &quot;FullName&quot;)
+    private String fullName;
+    
+    @Size(max = 128)
+    @Column(name = &quot;GUID&quot;)
+    private String guid;
+    
+    @Column(name = &quot;HighestChildNodeNumber&quot;)
+    private Integer highestChildNodeNumber;
+    
+    @Column(name = &quot;IsAccepted&quot;)
+    private Boolean isAccepted;
+    
+    @Column(name = &quot;IsBioStrat&quot;)
+    private Boolean isBioStrat;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 64)
+    @Column(name = &quot;Name&quot;)
+    private String name;
+    
+    @Column(name = &quot;NodeNumber&quot;)
+    private Integer nodeNumber;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = &quot;RankID&quot;)
+    private int rankID;
+    
+    @Lob
+    @Size(max = 65535)
+    @Column(name = &quot;Remarks&quot;)
+    private String remarks;
+    
+    @Size(max = 64)
+    @Column(name = &quot;Standard&quot;)
+    private String standard;
+    
+    @Column(name = &quot;StartPeriod&quot;)
+    private Float startPeriod;
+    
+    @Column(name = &quot;StartUncertainty&quot;)
+    private Float startUncertainty;
+    
+    @OneToMany(mappedBy = &quot;chronosStratEndID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Paleocontext&gt; paleocontextList;
+    
+    @OneToMany(mappedBy = &quot;chronosStratID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Paleocontext&gt; paleocontextList1;
+    
+    @OneToMany(mappedBy = &quot;bioStratID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Paleocontext&gt; paleocontextList2;
+    
+    @OneToMany(mappedBy = &quot;acceptedID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Geologictimeperiod&gt; geologictimeperiodList;
+    
+    @JoinColumn(name = &quot;AcceptedID&quot;, referencedColumnName = &quot;GeologicTimePeriodID&quot;)
+    @ManyToOne
+    private Geologictimeperiod acceptedID;
+    
+    @JoinColumn(name = &quot;ModifiedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent modifiedByAgentID;
+    
+    @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
+    @ManyToOne
+    private Agent createdByAgentID;
+    
+    @JoinColumn(name = &quot;GeologicTimePeriodTreeDefID&quot;, referencedColumnName = &quot;GeologicTimePeriodTreeDefID&quot;)
+    @ManyToOne(optional = false)
+    private Geologictimeperiodtreedef geologicTimePeriodTreeDefID;
+    
+    @JoinColumn(name = &quot;GeologicTimePeriodTreeDefItemID&quot;, referencedColumnName = &quot;GeologicTimePeriodTreeDefItemID&quot;)
+    @ManyToOne(optional = false)
+    private Geologictimeperiodtreedefitem geologicTimePeriodTreeDefItemID;
+    
+    @OneToMany(mappedBy = &quot;parentID&quot;, fetch = FetchType.LAZY)
+    private List&lt;Geologictimeperiod&gt; geologictimeperiodList1;
+    
+    @JoinColumn(name = &quot;ParentID&quot;, referencedColumnName = &quot;GeologicTimePeriodID&quot;)
+    @ManyToOne
+    private Geologictimeperiod parentID;
+
+<span class="nc" id="L159">    public Geologictimeperiod() {</span>
+<span class="nc" id="L160">    }</span>
+
+<span class="nc" id="L162">    public Geologictimeperiod(Integer geologicTimePeriodID) {</span>
+<span class="nc" id="L163">        this.geologicTimePeriodID = geologicTimePeriodID;</span>
+<span class="nc" id="L164">    }</span>
+
+<span class="nc" id="L166">    public Geologictimeperiod(Integer geologicTimePeriodID, Date timestampCreated, String name, int rankID) {</span>
+<span class="nc" id="L167">        this.geologicTimePeriodID = geologicTimePeriodID;</span>
+<span class="nc" id="L168">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L169">        this.name = name;</span>
+<span class="nc" id="L170">        this.rankID = rankID;</span>
+<span class="nc" id="L171">    }</span>
+    
+    @XmlID
+    @XmlAttribute(name = &quot;id&quot;)
+    @Override
+    public String getIdentityString() {
+<span class="nc" id="L177">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + geologicTimePeriodID;</span>
+    }
+    
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L182">        return geologicTimePeriodID;</span>
+    }
+
+    public Integer getGeologicTimePeriodID() {
+<span class="nc" id="L186">        return geologicTimePeriodID;</span>
+    }
+
+    public void setGeologicTimePeriodID(Integer geologicTimePeriodID) {
+<span class="nc" id="L190">        this.geologicTimePeriodID = geologicTimePeriodID;</span>
+<span class="nc" id="L191">    }</span>
+  
+    public Float getEndPeriod() {
+<span class="nc" id="L194">        return endPeriod;</span>
+    }
+
+    public void setEndPeriod(Float endPeriod) {
+<span class="nc" id="L198">        this.endPeriod = endPeriod;</span>
+<span class="nc" id="L199">    }</span>
+
+    public Float getEndUncertainty() {
+<span class="nc" id="L202">        return endUncertainty;</span>
+    }
+
+    public void setEndUncertainty(Float endUncertainty) {
+<span class="nc" id="L206">        this.endUncertainty = endUncertainty;</span>
+<span class="nc" id="L207">    }</span>
+
+    public String getText1() {
+<span class="nc" id="L210">        return text1;</span>
+    }
+
+    public void setText1(String text1) {
+<span class="nc" id="L214">        this.text1 = text1;</span>
+<span class="nc" id="L215">    }</span>
+
+    public String getText2() {
+<span class="nc" id="L218">        return text2;</span>
+    }
+
+    public void setText2(String text2) {
+<span class="nc" id="L222">        this.text2 = text2;</span>
+<span class="nc" id="L223">    }</span>
+
+    public String getFullName() {
+<span class="nc" id="L226">        return fullName;</span>
+    }
+
+    public void setFullName(String fullName) {
+<span class="nc" id="L230">        this.fullName = fullName;</span>
+<span class="nc" id="L231">    }</span>
+
+    public String getGuid() {
+<span class="nc" id="L234">        return guid;</span>
+    }
+
+    public void setGuid(String guid) {
+<span class="nc" id="L238">        this.guid = guid;</span>
+<span class="nc" id="L239">    }</span>
+
+    public Integer getHighestChildNodeNumber() {
+<span class="nc" id="L242">        return highestChildNodeNumber;</span>
+    }
+
+    public void setHighestChildNodeNumber(Integer highestChildNodeNumber) {
+<span class="nc" id="L246">        this.highestChildNodeNumber = highestChildNodeNumber;</span>
+<span class="nc" id="L247">    }</span>
+
+    public Boolean getIsAccepted() {
+<span class="nc" id="L250">        return isAccepted;</span>
+    }
+
+    public void setIsAccepted(Boolean isAccepted) {
+<span class="nc" id="L254">        this.isAccepted = isAccepted;</span>
+<span class="nc" id="L255">    }</span>
+
+    public Boolean getIsBioStrat() {
+<span class="nc" id="L258">        return isBioStrat;</span>
+    }
+
+    public void setIsBioStrat(Boolean isBioStrat) {
+<span class="nc" id="L262">        this.isBioStrat = isBioStrat;</span>
+<span class="nc" id="L263">    }</span>
+
+    public String getName() {
+<span class="nc" id="L266">        return name;</span>
+    }
+
+    public void setName(String name) {
+<span class="nc" id="L270">        this.name = name;</span>
+<span class="nc" id="L271">    }</span>
+
+    public Integer getNodeNumber() {
+<span class="nc" id="L274">        return nodeNumber;</span>
+    }
+
+    public void setNodeNumber(Integer nodeNumber) {
+<span class="nc" id="L278">        this.nodeNumber = nodeNumber;</span>
+<span class="nc" id="L279">    }</span>
+
+    public int getRankID() {
+<span class="nc" id="L282">        return rankID;</span>
+    }
+
+    public void setRankID(int rankID) {
+<span class="nc" id="L286">        this.rankID = rankID;</span>
+<span class="nc" id="L287">    }</span>
+
+    public String getRemarks() {
+<span class="nc" id="L290">        return remarks;</span>
+    }
+
+    public void setRemarks(String remarks) {
+<span class="nc" id="L294">        this.remarks = remarks;</span>
+<span class="nc" id="L295">    }</span>
+
+    public String getStandard() {
+<span class="nc" id="L298">        return standard;</span>
+    }
+
+    public void setStandard(String standard) {
+<span class="nc" id="L302">        this.standard = standard;</span>
+<span class="nc" id="L303">    }</span>
+
+    public Float getStartPeriod() {
+<span class="nc" id="L306">        return startPeriod;</span>
+    }
+
+    public void setStartPeriod(Float startPeriod) {
+<span class="nc" id="L310">        this.startPeriod = startPeriod;</span>
+<span class="nc" id="L311">    }</span>
+
+    public Float getStartUncertainty() {
+<span class="nc" id="L314">        return startUncertainty;</span>
+    }
+
+    public void setStartUncertainty(Float startUncertainty) {
+<span class="nc" id="L318">        this.startUncertainty = startUncertainty;</span>
+<span class="nc" id="L319">    }</span>
+
+    @XmlTransient
+    public List&lt;Paleocontext&gt; getPaleocontextList() {
+<span class="nc" id="L323">        return paleocontextList;</span>
+    }
+
+    public void setPaleocontextList(List&lt;Paleocontext&gt; paleocontextList) {
+<span class="nc" id="L327">        this.paleocontextList = paleocontextList;</span>
+<span class="nc" id="L328">    }</span>
+
+    @XmlTransient
+    public List&lt;Paleocontext&gt; getPaleocontextList1() {
+<span class="nc" id="L332">        return paleocontextList1;</span>
+    }
+
+    public void setPaleocontextList1(List&lt;Paleocontext&gt; paleocontextList1) {
+<span class="nc" id="L336">        this.paleocontextList1 = paleocontextList1;</span>
+<span class="nc" id="L337">    }</span>
+
+    @XmlTransient
+    public List&lt;Paleocontext&gt; getPaleocontextList2() {
+<span class="nc" id="L341">        return paleocontextList2;</span>
+    }
+
+    public void setPaleocontextList2(List&lt;Paleocontext&gt; paleocontextList2) {
+<span class="nc" id="L345">        this.paleocontextList2 = paleocontextList2;</span>
+<span class="nc" id="L346">    }</span>
+
+    @XmlTransient
+    public List&lt;Geologictimeperiod&gt; getGeologictimeperiodList() {
+<span class="nc" id="L350">        return geologictimeperiodList;</span>
+    }
+
+    public void setGeologictimeperiodList(List&lt;Geologictimeperiod&gt; geologictimeperiodList) {
+<span class="nc" id="L354">        this.geologictimeperiodList = geologictimeperiodList;</span>
+<span class="nc" id="L355">    }</span>
+
+    @XmlIDREF
+    public Geologictimeperiod getAcceptedID() {
+<span class="nc" id="L359">        return acceptedID;</span>
+    }
+
+    public void setAcceptedID(Geologictimeperiod acceptedID) {
+<span class="nc" id="L363">        this.acceptedID = acceptedID;</span>
+<span class="nc" id="L364">    }</span>
+
+    @XmlIDREF
+    public Agent getModifiedByAgentID() {
+<span class="nc" id="L368">        return modifiedByAgentID;</span>
+    }
+
+    public void setModifiedByAgentID(Agent modifiedByAgentID) {
+<span class="nc" id="L372">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L373">    }</span>
+
+    @XmlIDREF
+    public Agent getCreatedByAgentID() {
+<span class="nc" id="L377">        return createdByAgentID;</span>
+    }
+
+    public void setCreatedByAgentID(Agent createdByAgentID) {
+<span class="nc" id="L381">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L382">    }</span>
+
+    @XmlIDREF
+    public Geologictimeperiodtreedef getGeologicTimePeriodTreeDefID() {
+<span class="nc" id="L386">        return geologicTimePeriodTreeDefID;</span>
+    }
+
+    public void setGeologicTimePeriodTreeDefID(Geologictimeperiodtreedef geologicTimePeriodTreeDefID) {
+<span class="nc" id="L390">        this.geologicTimePeriodTreeDefID = geologicTimePeriodTreeDefID;</span>
+<span class="nc" id="L391">    }</span>
+
+    @XmlIDREF
+    public Geologictimeperiodtreedefitem getGeologicTimePeriodTreeDefItemID() {
+<span class="nc" id="L395">        return geologicTimePeriodTreeDefItemID;</span>
+    }
+
+    public void setGeologicTimePeriodTreeDefItemID(Geologictimeperiodtreedefitem geologicTimePeriodTreeDefItemID) {
+<span class="nc" id="L399">        this.geologicTimePeriodTreeDefItemID = geologicTimePeriodTreeDefItemID;</span>
+<span class="nc" id="L400">    }</span>
+
+    @XmlTransient
+    public List&lt;Geologictimeperiod&gt; getGeologictimeperiodList1() {
+<span class="nc" id="L404">        return geologictimeperiodList1;</span>
+    }
+
+    public void setGeologictimeperiodList1(List&lt;Geologictimeperiod&gt; geologictimeperiodList1) {
+<span class="nc" id="L408">        this.geologictimeperiodList1 = geologictimeperiodList1;</span>
+<span class="nc" id="L409">    }</span>
+
+    @XmlIDREF
+    public Geologictimeperiod getParentID() {
+<span class="nc" id="L413">        return parentID;</span>
+    }
+
+    public void setParentID(Geologictimeperiod parentID) {
+<span class="nc" id="L417">        this.parentID = parentID;</span>
+<span class="nc" id="L418">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L422">        int hash = 0;</span>
+<span class="nc bnc" id="L423" title="All 2 branches missed.">        hash += (geologicTimePeriodID != null ? geologicTimePeriodID.hashCode() : 0);</span>
+<span class="nc" id="L424">        return hash;</span>
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+<span class="nc bnc" id="L430" title="All 2 branches missed.">        if (!(object instanceof Geologictimeperiod)) {</span>
+<span class="nc" id="L431">            return false;</span>
+        }
+<span class="nc" id="L433">        Geologictimeperiod other = (Geologictimeperiod) object;</span>
+<span class="nc bnc" id="L434" title="All 8 branches missed.">        return !((this.geologicTimePeriodID == null &amp;&amp; other.geologicTimePeriodID != null) || (this.geologicTimePeriodID != null &amp;&amp; !this.geologicTimePeriodID.equals(other.geologicTimePeriodID)));</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L439">        return &quot;se.nrm.dina.datamodel.Geologictimeperiod[ geologicTimePeriodID=&quot; + geologicTimePeriodID + &quot; ]&quot;;</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
