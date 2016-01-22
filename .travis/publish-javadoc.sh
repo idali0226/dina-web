@@ -4,7 +4,7 @@
 #
 # See http://benlimmer.com/2013/12/26/automatically-publish-javadoc-to-gh-pages-with-travis-ci
 
-if [ "$TRAVIS_REPO_SLUG" == "cbeams/libjava" ] \
+if [ "$TRAVIS_REPO_SLUG" == "idali0226/dina-web" ] \
         && [ "$TRAVIS_JDK_VERSION" == "oraclejdk8" ] \
         && [ "$TRAVIS_PULL_REQUEST" == "false" ] \
         && [ "$TRAVIS_BRANCH" == "master" ]; then
