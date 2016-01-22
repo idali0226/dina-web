@@ -22,5 +22,5 @@ All the moduls are java project and build with maven
    
 To build the project in maven:
 
-   mvn clean install
+    mvn clean install
    
