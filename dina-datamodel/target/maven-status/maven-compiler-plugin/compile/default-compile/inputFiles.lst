@@ -53,6 +53,7 @@
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-datamodel/src/main/java/se/nrm/dina/datamodel/Collectionobjectattr.java
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-datamodel/src/main/java/se/nrm/dina/datamodel/Workbench.java
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-datamodel/src/main/java/se/nrm/dina/datamodel/Author.java
+/Users/idali/netbeansprojects/dinaproject/dina-web/dina-datamodel/src/main/java/se/nrm/dina/datamodel/util/package-info.java
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-datamodel/src/main/java/se/nrm/dina/datamodel/Giftpreparation.java
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-datamodel/src/main/java/se/nrm/dina/datamodel/Storagetreedefitem.java
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-datamodel/src/main/java/se/nrm/dina/datamodel/Accession.java
@@ -60,6 +61,7 @@
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-datamodel/src/main/java/se/nrm/dina/datamodel/Locality.java
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-datamodel/src/main/java/se/nrm/dina/datamodel/Spqueryfield.java
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-datamodel/src/main/java/se/nrm/dina/datamodel/Sptasksemaphore.java
+/Users/idali/netbeansprojects/dinaproject/dina-web/dina-datamodel/src/main/java/se/nrm/dina/datamodel/package-info.java
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-datamodel/src/main/java/se/nrm/dina/datamodel/Sgrbatchmatchresultset.java
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-datamodel/src/main/java/se/nrm/dina/datamodel/IosGeogeoCnt.java
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-datamodel/src/main/java/se/nrm/dina/datamodel/Spappresourcedata.java

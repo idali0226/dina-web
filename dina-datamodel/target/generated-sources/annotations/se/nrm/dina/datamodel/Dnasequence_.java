@@ -10,7 +10,7 @@ import se.nrm.dina.datamodel.Collectionobject;
 import se.nrm.dina.datamodel.Dnasequenceattachment;
 import se.nrm.dina.datamodel.Dnasequencingrun;
 
-@Generated(value="EclipseLink-2.7.0.v20160118-rNA", date="2016-01-21T08:43:44")
+@Generated(value="EclipseLink-2.7.0.v20160121-rNA", date="2016-01-22T11:48:45")
 @StaticMetamodel(Dnasequence.class)
 public class Dnasequence_ extends BaseEntity_ {
 

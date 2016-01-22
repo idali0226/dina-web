@@ -37,7 +37,7 @@ import se.nrm.dina.datamodel.Splocalecontainer;
 import se.nrm.dina.datamodel.Sptasksemaphore;
 import se.nrm.dina.datamodel.Taxontreedef;
 
-@Generated(value="EclipseLink-2.7.0.v20160118-rNA", date="2016-01-21T08:43:44")
+@Generated(value="EclipseLink-2.7.0.v20160121-rNA", date="2016-01-22T11:48:45")
 @StaticMetamodel(Discipline.class)
 public class Discipline_ extends BaseEntity_ {
 
