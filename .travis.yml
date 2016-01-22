@@ -18,3 +18,10 @@ env:
   - secure: "0a0c4a36e4bef8e32c6e035b61f7e434db50db52"
   
   
+deploy:
+  provider:releases
+  api_key: "0a0c4a36e4bef8e32c6e035b61f7e434db50db52"
+  skip_cleanup: true
+  on:
+    tags: true
+  
