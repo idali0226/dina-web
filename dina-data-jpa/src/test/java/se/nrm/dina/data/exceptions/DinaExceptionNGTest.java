@@ -28,8 +28,30 @@ public class DinaExceptionNGTest {
     @After
     public static void tearDown() throws Exception {
     }
+    
+    @Test
+    public void testDinaExceptionConstruct() {
+        instance = new DinaException();
+        assertNotNull(instance);
+        assertEquals(0, instance.getErrorCode());
+    }
 
-  
+    @Test
+    public void testDinaExceptionConstructWithMsg() {
+        instance = new DinaException("test error");
+        assertNotNull(instance);
+        assertEquals("test error", instance.getMessage());
+    }
+
+    @Test
+    public void testDinaExceptionConstructWithMsgAndErrorCode() {
+        instance = new DinaException("test error", 400);
+        assertNotNull(instance);
+        assertEquals("test error", instance.getMessage());
+        assertEquals(400, instance.getErrorCode());
+    }
+
+
     /**
      * Test of getErrorCode method, of class DinaException.
      */

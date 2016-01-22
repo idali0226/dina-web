@@ -18,6 +18,8 @@ import org.testng.annotations.Test;
  */
 public class ErrorMsgNGTest {
     
+    private ErrorMsg instance;
+    
     public ErrorMsgNGTest() {
     }
 
@@ -29,25 +31,15 @@ public class ErrorMsgNGTest {
     public static void tearDownClass() throws Exception {
     }
 
-    @BeforeMethod
-    public void setUpMethod() throws Exception {
-    }
-
-    @AfterMethod
-    public void tearDownMethod() throws Exception {
-    }
-
+ 
     /**
      * Test of getInstance method, of class ErrorMsg.
      */
     @Test
     public void testGetInstance() {
-        System.out.println("getInstance");
-        ErrorMsg expResult = null;
+        System.out.println("getInstance"); 
         ErrorMsg result = ErrorMsg.getInstance();
-        assertEquals(result, expResult);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotNull(result);
     }
 
     /**
@@ -56,12 +48,10 @@ public class ErrorMsgNGTest {
     @Test
     public void testGetEntityNameErrorMsg() {
         System.out.println("getEntityNameErrorMsg");
-        ErrorMsg instance = new ErrorMsg();
-        String expResult = "";
+        
+        instance = new ErrorMsg();
+        String expResult = "The entity name is wrong";
         String result = instance.getEntityNameErrorMsg();
-        assertEquals(result, expResult);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+        assertEquals(result, expResult); 
+    } 
 }

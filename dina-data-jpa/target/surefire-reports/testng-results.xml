@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" total="4" passed="4">
   <reporter-output>
   </reporter-output>
-  <suite name="Surefire suite" duration-ms="40" started-at="2016-01-22T18:42:05Z" finished-at="2016-01-22T18:42:05Z">
+  <suite name="Surefire suite" duration-ms="33" started-at="2016-01-22T18:54:57Z" finished-at="2016-01-22T18:54:58Z">
     <groups>
     </groups>
-    <test name="Surefire test" duration-ms="40" started-at="2016-01-22T18:42:05Z" finished-at="2016-01-22T18:42:05Z">
+    <test name="Surefire test" duration-ms="33" started-at="2016-01-22T18:54:57Z" finished-at="2016-01-22T18:54:58Z">
       <class name="se.nrm.dina.data.exceptions.DinaExceptionNGTest">
-        <test-method status="PASS" signature="testGetErrorCode()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@1e643faf]" name="testGetErrorCode" duration-ms="21" started-at="2016-01-22T19:42:05Z" finished-at="2016-01-22T19:42:05Z">
+        <test-method status="PASS" signature="testDinaExceptionConstruct()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@7a79be86]" name="testDinaExceptionConstruct" duration-ms="10" started-at="2016-01-22T19:54:57Z" finished-at="2016-01-22T19:54:57Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDinaExceptionConstruct -->
+        <test-method status="PASS" signature="testDinaExceptionConstructWithMsg()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@7a79be86]" name="testDinaExceptionConstructWithMsg" duration-ms="1" started-at="2016-01-22T19:54:57Z" finished-at="2016-01-22T19:54:57Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDinaExceptionConstructWithMsg -->
+        <test-method status="PASS" signature="testDinaExceptionConstructWithMsgAndErrorCode()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@7a79be86]" name="testDinaExceptionConstructWithMsgAndErrorCode" duration-ms="0" started-at="2016-01-22T19:54:57Z" finished-at="2016-01-22T19:54:57Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDinaExceptionConstructWithMsgAndErrorCode -->
+        <test-method status="PASS" signature="testGetErrorCode()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@7a79be86]" name="testGetErrorCode" duration-ms="0" started-at="2016-01-22T19:54:58Z" finished-at="2016-01-22T19:54:58Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetErrorCode -->
