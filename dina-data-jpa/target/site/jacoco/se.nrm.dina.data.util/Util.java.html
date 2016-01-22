@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Util.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-data-jpa</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.data.util</a> &gt; <span class="el_source">Util.java</span></div><h1>Util.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.data.util;
+ 
+import java.lang.reflect.Field;
+import java.util.Arrays; 
+import java.util.Map;
+import java.util.function.Predicate;
+import javax.persistence.Id; 
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import se.nrm.dina.data.exceptions.DinaException;
+import se.nrm.dina.data.exceptions.ErrorMsg;
+import se.nrm.dina.datamodel.EntityBean; 
+
+
+/**
+ *
+ * 
+ * @author idali
+ */
+<span class="fc" id="L26">public class Util {</span>
+    
+<span class="fc" id="L28">    private final Logger logger = LoggerFactory.getLogger(this.getClass());</span>
+    
+<span class="fc" id="L30">    private final int DEFAULT_LIMIT = 50;</span>
+<span class="fc" id="L31">    private final int MAX_LIMIT = 200;</span>
+<span class="fc" id="L32">    private static Util instance = null;</span>
+    private static final String ENTITY_PACKAGE = &quot;se.nrm.dina.datamodel.&quot;;
+      
+    public static synchronized Util getInstance() {
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (instance == null) {</span>
+<span class="fc" id="L37">            instance = new Util();</span>
+        }
+<span class="fc" id="L39">        return instance;</span>
+    } 
+    
+    /**
+     * Converts entityname to class
+     * 
+     * @param classname
+     * @return Class
+     */
+    public Class convertClassNameToClass(String classname) {
+ 
+<span class="fc" id="L50">        logger.info(&quot;convertClassNameToClass : {}&quot;, classname);</span>
+        
+        try {
+<span class="fc" id="L53">            return Class.forName(ENTITY_PACKAGE + reformClassName(classname));   </span>
+<span class="nc" id="L54">        } catch (ClassNotFoundException ex) {   </span>
+<span class="nc" id="L55">            throw new DinaException(ErrorMsg.getInstance().getEntityNameErrorMsg());</span>
+        }  
+    } 
+    
+    /**
+     * Reforms class name to uppercase on first letter
+     * @param s
+     * @return 
+     */
+    public String reformClassName(String s) {
+<span class="fc" id="L65">        logger.info(&quot;reformClassName : {}&quot;, s);</span>
+        
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        if (s.length() == 0) {</span>
+<span class="nc" id="L68">            return s;</span>
+        }
+<span class="fc" id="L70">        return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();</span>
+    }
+    
+    /**
+     * Creates an instance of entity of the given name
+     * @param &lt;T&gt;
+     * @param classname
+     * @return EntityBean
+     */
+    public &lt;T extends EntityBean&gt; T createNewInstance(String classname) {
+ 
+        try {
+<span class="fc" id="L82">            Class classDefinition = Class.forName(ENTITY_PACKAGE + classname);</span>
+<span class="fc" id="L83">            return (T) classDefinition.newInstance();</span>
+<span class="fc" id="L84">        } catch (ClassNotFoundException ex) {  </span>
+<span class="fc" id="L85">            throw new DinaException(ErrorMsg.getInstance().getEntityNameErrorMsg());</span>
+<span class="nc" id="L86">        } catch (InstantiationException | IllegalAccessException | NoClassDefFoundError ex) {</span>
+<span class="nc" id="L87">            throw new DinaException(ErrorMsg.getInstance().getEntityNameErrorMsg());</span>
+        }
+    }
+    
+    /**
+     * Validates if the entityname is valid
+     * 
+     * @param entityName
+     * @return entityName
+     */
+    public String validateEntityName(String entityName) {
+<span class="fc" id="L98">        entityName = reformClassName(entityName);</span>
+        try {
+<span class="fc" id="L100">            createNewInstance(entityName);</span>
+<span class="fc" id="L101">        } catch (DinaException e) {</span>
+<span class="fc" id="L102">            throw new DinaException(e.getMessage());</span>
+<span class="fc" id="L103">        } </span>
+<span class="fc" id="L104">        return entityName;</span>
+    }
+    
+    /**
+     * Validates fields in one entity
+     * @param clazz
+     * @param map
+     * @return boolean
+     */
+    public boolean isFieldsValid(Class clazz, Map&lt;String, String&gt; map) {
+        try {
+<span class="fc" id="L115">            return map.entrySet()</span>
+<span class="fc" id="L116">                    .stream()</span>
+<span class="fc" id="L117">                    .map(m -&gt; m.getKey()) </span>
+<span class="fc" id="L118">                    .allMatch(isValid(clazz));</span>
+<span class="fc" id="L119">        } catch (DinaException e) {</span>
+<span class="fc" id="L120">            throw  e;</span>
+        } 
+    }
+    
+    private Predicate&lt;String&gt; isValid(Class clazz) {
+        try {
+<span class="fc" id="L126">            return s -&gt; validateFields(clazz, s);</span>
+<span class="nc" id="L127">        } catch (DinaException e) {</span>
+<span class="nc" id="L128">            throw e;</span>
+        }
+    }
+
+    /**
+     * Checks if the field is int of Integer
+     * @param clazz
+     * @param fieldName
+     * @return boolean
+     */
+    public boolean isIntField(Class clazz, String fieldName) {
+<span class="fc" id="L139">        logger.info(&quot;isIntField : {} -- {}&quot;, clazz, fieldName); </span>
+        try { 
+<span class="pc bpc" id="L141" title="1 of 2 branches missed.">            return clazz.getDeclaredField(fieldName).getType().getName().equals(&quot;int&quot;) || </span>
+<span class="pc bnc" id="L142" title="All 2 branches missed.">                   clazz.getDeclaredField(fieldName).getType().getName().equals(&quot;java.lang.Integer&quot;) ;</span>
+<span class="nc" id="L143">        } catch (NoSuchFieldException e) {</span>
+<span class="nc" id="L144">            Class superClass = clazz.getSuperclass();</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (superClass == null) {</span>
+<span class="nc" id="L146">                throw new DinaException(e.getMessage());</span>
+            } else {
+<span class="nc" id="L148">                return validateFields(superClass, fieldName);</span>
+            }
+        }
+    }
+
+    /**
+     * Checks if the field is an Entity
+     * @param clazz
+     * @param fieldName
+     * @return boolean
+     */
+    public boolean isEntity(Class clazz, String fieldName) {
+<span class="fc" id="L160">        logger.info(&quot;isIntField : {} -- {}&quot;, clazz, fieldName);</span>
+        try {
+
+<span class="fc" id="L163">            logger.info(&quot;fieldName {}&quot;, clazz.getDeclaredField(fieldName).getType().getName());</span>
+<span class="fc" id="L164">            return clazz.getDeclaredField(fieldName).getType().getName().contains(ENTITY_PACKAGE);</span>
+<span class="nc" id="L165">        } catch (NoSuchFieldException e) {</span>
+<span class="nc" id="L166">            Class superClass = clazz.getSuperclass();</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (superClass == null) {</span>
+<span class="nc" id="L168">                throw new DinaException(e.getMessage());</span>
+            } else {
+<span class="nc" id="L170">                return validateFields(superClass, fieldName);</span>
+            }
+        }
+    }
+    
+    /**
+     * Checks if the field is a collection
+     * @param clazz
+     * @param fieldName
+     * @return 
+     */
+    public boolean isCollection(Class clazz, String fieldName) {
+<span class="fc" id="L182">        logger.info(&quot;isIntField : {} -- {}&quot;, clazz, fieldName);</span>
+        try {
+
+<span class="fc" id="L185">            logger.info(&quot;fieldName {}&quot;, clazz.getDeclaredField(fieldName).getType().getName());</span>
+<span class="fc" id="L186">            return clazz.getDeclaredField(fieldName).getType().getName().equals(&quot;java.util.List&quot;);</span>
+<span class="nc" id="L187">        } catch (NoSuchFieldException e) {</span>
+<span class="nc" id="L188">            Class superClass = clazz.getSuperclass();</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">            if (superClass == null) {</span>
+<span class="nc" id="L190">                throw new DinaException(e.getMessage());</span>
+            } else {
+<span class="nc" id="L192">                return validateFields(superClass, fieldName);</span>
+            }
+        }
+    }
+    
+    /**
+     * Creates an Entity
+     * @param clazz
+     * @param fieldName
+     * @return EntityBean
+     */
+    public EntityBean getEntity(Class clazz, String fieldName) {
+<span class="fc" id="L204">        logger.info(&quot;getEntity : {} -- {}&quot;, clazz, fieldName);</span>
+        try { 
+     
+<span class="fc" id="L207">            return createNewInstance(clazz.getDeclaredField(fieldName).getType().getSimpleName());</span>
+<span class="nc" id="L208">        } catch (NoSuchFieldException e) {</span>
+<span class="nc" id="L209">            Class superClass = clazz.getSuperclass();</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            if (superClass == null) {</span>
+<span class="nc" id="L211">                throw new DinaException(e.getMessage());</span>
+            } else {
+<span class="nc" id="L213">                return getEntity(superClass, fieldName);</span>
+            }
+        }
+    }
+
+    /**
+     * Validates one field in an entity
+     * @param clazz
+     * @param fieldName
+     * @return boolean
+     */
+    public boolean validateFields(Class clazz, String fieldName) {
+<span class="fc" id="L225">        logger.info(&quot;validateFields : {} -- {}&quot;, clazz, fieldName); </span>
+        try {  
+<span class="fc" id="L227">            clazz.getDeclaredField(fieldName);</span>
+<span class="fc" id="L228">            return true;</span>
+<span class="fc" id="L229">        } catch (NoSuchFieldException e) {</span>
+<span class="fc" id="L230">            Class superClass = clazz.getSuperclass();</span>
+<span class="pc bpc" id="L231" title="1 of 2 branches missed.">            if (superClass == null) {</span>
+<span class="fc" id="L232">                throw new DinaException(e.getMessage());</span>
+            } else {
+<span class="nc" id="L234">                return validateFields(superClass, fieldName);</span>
+            }
+        } 
+    }
+
+    /**
+     * Find id field name for the entity bean
+     *
+     * @param bean
+     * @return String, name of the id field of this entity bean
+     */
+    public String getIDFieldName(EntityBean bean) {
+<span class="fc" id="L246">        Field[] fields = bean.getClass().getDeclaredFields();</span>
+
+<span class="fc" id="L248">        return Arrays.asList(fields)</span>
+<span class="fc" id="L249">                .stream()</span>
+<span class="fc" id="L250">                .filter(f -&gt; f.isAnnotationPresent(Id.class))</span>
+<span class="fc" id="L251">                .findFirst()</span>
+<span class="fc" id="L252">                .get()</span>
+<span class="fc" id="L253">                .getName();</span>
+    }
+
+    /**
+     * Find id field name for the entity bean
+     *
+     * @param entityName
+     * @return String, name of the id field of this entity bean
+     */
+    public String getIDFieldName(String entityName) {
+<span class="fc" id="L263">        EntityBean bean = createNewInstance(entityName);</span>
+<span class="fc" id="L264">        return getIDFieldName(bean);</span>
+    }
+    
+    /**
+     * Checks if the String is numeric
+     * @param s
+     * @return 
+     */    
+    public boolean isNumric(String s) { 
+<span class="fc" id="L273">        return StringUtils.isNumeric(s);</span>
+    }
+    
+    /**
+     * Calculates limit 
+     * @param limit
+     * @return int
+     */
+    public int maxLimit(int limit) {
+<span class="fc bfc" id="L282" title="All 2 branches covered.">        if(limit &gt; MAX_LIMIT) {</span>
+<span class="fc" id="L283">            return MAX_LIMIT;</span>
+<span class="fc bfc" id="L284" title="All 2 branches covered.">        } else if(limit == 0) {</span>
+<span class="fc" id="L285">            return DEFAULT_LIMIT;</span>
+        } else {
+<span class="fc" id="L287">            return limit;</span>
+        } 
+    } 
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

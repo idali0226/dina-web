@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="17" passed="17">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Surefire suite" duration-ms="4594" started-at="2016-01-22T18:18:27Z" finished-at="2016-01-22T18:18:31Z">
+    <groups>
+    </groups>
+    <test name="Surefire test" duration-ms="4594" started-at="2016-01-22T18:18:27Z" finished-at="2016-01-22T18:18:31Z">
+      <class name="se.nrm.dina.data.logic.DinaDataLogicNGTest">
+        <test-method status="PASS" signature="testFindAll_String()[pri:0, instance:testFindAll_String(se.nrm.dina.data.logic.DinaDataLogicNGTest)]" name="testFindAll_String" duration-ms="11" started-at="2016-01-22T19:18:27Z" finished-at="2016-01-22T19:18:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFindAll_String -->
+        <test-method status="PASS" signature="testFindAll_7args()[pri:0, instance:testFindAll_7args(se.nrm.dina.data.logic.DinaDataLogicNGTest)]" name="testFindAll_7args" duration-ms="4" started-at="2016-01-22T19:18:27Z" finished-at="2016-01-22T19:18:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFindAll_7args -->
+        <test-method status="PASS" signature="testFindAllBySearchCriteria()[pri:0, instance:testFindAllBySearchCriteria(se.nrm.dina.data.logic.DinaDataLogicNGTest)]" name="testFindAllBySearchCriteria" duration-ms="19" started-at="2016-01-22T19:18:27Z" finished-at="2016-01-22T19:18:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFindAllBySearchCriteria -->
+        <test-method status="PASS" signature="testFindEntityCount()[pri:0, instance:testFindEntityCount(se.nrm.dina.data.logic.DinaDataLogicNGTest)]" name="testFindEntityCount" duration-ms="2" started-at="2016-01-22T19:18:27Z" finished-at="2016-01-22T19:18:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFindEntityCount -->
+        <test-method status="PASS" signature="testCreateEntity()[pri:0, instance:testCreateEntity(se.nrm.dina.data.logic.DinaDataLogicNGTest)]" name="testCreateEntity" duration-ms="2864" started-at="2016-01-22T19:18:27Z" finished-at="2016-01-22T19:18:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreateEntity -->
+        <test-method status="PASS" signature="testUpdateEntity()[pri:0, instance:testUpdateEntity(se.nrm.dina.data.logic.DinaDataLogicNGTest)]" name="testUpdateEntity" duration-ms="912" started-at="2016-01-22T19:18:30Z" finished-at="2016-01-22T19:18:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testUpdateEntity -->
+        <test-method status="PASS" signature="testDeleteEntity()[pri:0, instance:testDeleteEntity(se.nrm.dina.data.logic.DinaDataLogicNGTest)]" name="testDeleteEntity" duration-ms="4" started-at="2016-01-22T19:18:31Z" finished-at="2016-01-22T19:18:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDeleteEntity -->
+        <test-method status="PASS" signature="testFindById()[pri:0, instance:testFindById(se.nrm.dina.data.logic.DinaDataLogicNGTest)]" name="testFindById" duration-ms="12" started-at="2016-01-22T19:18:31Z" finished-at="2016-01-22T19:18:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFindById -->
+      </class> <!-- se.nrm.dina.data.logic.DinaDataLogicNGTest -->
+      <class name="se.nrm.dina.data.jpa.DinaDaoImplTest">
+        <test-method status="PASS" signature="testFindAll()[pri:0, instance:testFindAll(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindAll" duration-ms="501" started-at="2016-01-22T19:18:27Z" finished-at="2016-01-22T19:18:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFindAll -->
+        <test-method status="PASS" signature="testFindAllWithConditions()[pri:0, instance:testFindAllWithConditions(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindAllWithConditions" duration-ms="6" started-at="2016-01-22T19:18:27Z" finished-at="2016-01-22T19:18:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFindAllWithConditions -->
+        <test-method status="PASS" signature="testFindById()[pri:0, instance:testFindById(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindById" duration-ms="16" started-at="2016-01-22T19:18:27Z" finished-at="2016-01-22T19:18:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFindById -->
+        <test-method status="PASS" signature="testFindByReference()[pri:0, instance:testFindByReference(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByReference" duration-ms="4" started-at="2016-01-22T19:18:27Z" finished-at="2016-01-22T19:18:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFindByReference -->
+        <test-method status="PASS" signature="testCreate()[pri:0, instance:testCreate(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testCreate" duration-ms="4" started-at="2016-01-22T19:18:27Z" finished-at="2016-01-22T19:18:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreate -->
+        <test-method status="PASS" signature="testMerge()[pri:0, instance:testMerge(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testMerge" duration-ms="4" started-at="2016-01-22T19:18:27Z" finished-at="2016-01-22T19:18:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testMerge -->
+        <test-method status="PASS" signature="testUpdateByJPQL()[pri:0, instance:testUpdateByJPQL(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testUpdateByJPQL" duration-ms="3" started-at="2016-01-22T19:18:27Z" finished-at="2016-01-22T19:18:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testUpdateByJPQL -->
+        <test-method status="PASS" signature="testDelete()[pri:0, instance:testDelete(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testDelete" duration-ms="4" started-at="2016-01-22T19:18:27Z" finished-at="2016-01-22T19:18:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDelete -->
+        <test-method status="PASS" signature="testGetEntityByJPQL()[pri:0, instance:testGetEntityByJPQL(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testGetEntityByJPQL" duration-ms="5" started-at="2016-01-22T19:18:27Z" finished-at="2016-01-22T19:18:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetEntityByJPQL -->
+      </class> <!-- se.nrm.dina.data.jpa.DinaDaoImplTest -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

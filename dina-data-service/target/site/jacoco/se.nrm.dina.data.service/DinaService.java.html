@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>DinaService.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-data-service</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.data.service</a> &gt; <span class="el_source">DinaService.java</span></div><h1>DinaService.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.data.service;
+ 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List; 
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces; 
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import se.nrm.dina.data.exceptions.DinaException; 
+import se.nrm.dina.data.logic.DinaDataLogic;     
+
+/**
+ *
+ * @author idali
+ */
+@Path(&quot;/dina/v0&quot;)
+@Consumes({MediaType.APPLICATION_JSON+&quot;;charset=UTF-8&quot;})
+@Produces({MediaType.APPLICATION_JSON+&quot;;charset=UTF-8&quot;}) 
+@Stateless
+public class DinaService {
+
+<span class="pc" id="L44">    private final Logger logger = LoggerFactory.getLogger(this.getClass());</span>
+
+    @EJB
+    private DinaDataLogic logic;
+    
+<span class="nc" id="L49">    public DinaService() {</span>
+        
+<span class="nc" id="L51">    }</span>
+    
+<span class="fc" id="L53">    public DinaService(DinaDataLogic logic) {</span>
+<span class="fc" id="L54">        this.logic = logic;</span>
+<span class="fc" id="L55">    }</span>
+    
+    /**
+     * Generic method to get instances of an entity
+     * from database.
+     *
+     * @param entity    class name of the entity 
+     * @param offset    the start number of database id
+     * @param limit     the number of instances to return
+     * @param minid     the minimum of database id to retrieve from database
+     * @param maxid     the maximum of database id to retrieve from database
+     * @param orderby   sort order
+     *
+     * @return entity
+     */
+    @GET
+    @Path(&quot;{entity}&quot;)
+    public Response getAllByEntityName(@PathParam(&quot;entity&quot;) String entity,
+            @QueryParam(&quot;offset&quot;) int offset,
+            @DefaultValue(&quot;50&quot;) @QueryParam(&quot;limit&quot;) int limit,
+            @DefaultValue(&quot;0&quot;) @QueryParam(&quot;minid&quot;) int minid,
+            @DefaultValue(&quot;0&quot;) @QueryParam(&quot;maxid&quot;) int maxid,
+            @QueryParam(&quot;orderby&quot;) String orderby) {
+
+<span class="fc" id="L79">        logger.info(&quot;getAllByEntityName : {} -- {}&quot;, entity, offset + &quot; -- &quot; + limit);</span>
+
+<span class="fc" id="L81">        List&lt;String&gt; sort = new ArrayList();</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">        if(orderby != null) {</span>
+<span class="fc" id="L83">            sort = Arrays.asList(StringUtils.split(orderby, &quot;,&quot;));</span>
+        }
+      
+        try {   
+<span class="fc" id="L87">            return Response.ok(logic.findAll(entity, offset, limit, minid, maxid, sort, null)).build();</span>
+<span class="nc" id="L88">        } catch(DinaException e) {</span>
+<span class="nc" id="L89">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
+        }   
+    }
+
+    /**
+     * Generic method to get instances of an entity by given search criteria from database.  
+     *
+     * @param entity - class name of the entity 
+     * @param info 
+     *
+     * @return entity
+     */
+    @GET
+    @Path(&quot;{entity}/search&quot;)
+    public Response getData(@PathParam(&quot;entity&quot;) String entity, @Context UriInfo info) {
+
+<span class="fc" id="L105">        MultivaluedMap&lt;String, String&gt; map = info.getQueryParameters();</span>
+
+        try {
+<span class="fc" id="L108">            return Response.ok(logic.findAllBySearchCriteria(entity, map)).build();  </span>
+<span class="nc" id="L109">        } catch(DinaException e) {</span>
+<span class="nc" id="L110">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
+        }  
+    }
+    
+    /**
+     * Generic method to get an entity by entity id from database.  
+     * This method passes in a PathParam entity class name and entity id 
+     * 
+     * @param entity - class name of the entity
+     * @param id - entity id
+     * 
+     * @return entity 
+     */
+    @GET
+    @Path(&quot;{entity}/{id}/&quot;) 
+    public Response getEntityById(@PathParam(&quot;entity&quot;) String entity, @PathParam(&quot;id&quot;) String id) {
+        
+<span class="fc" id="L127">        logger.info(&quot;getEntityById - entity: {}, id :  {}&quot;, entity, id);</span>
+   
+        try {     
+<span class="fc" id="L130">            return Response.ok(logic.findById(id, entity)).build(); </span>
+<span class="nc" id="L131">        } catch (DinaException e) {</span>
+<span class="nc" id="L132">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
+        }
+    }
+
+
+    /**
+     * Generic method to get an entity by entity id from database.  
+     * This method passes in a PathParam entity class name and entity id 
+     * 
+     * @param entity - class name of the entity 
+     * 
+     * @return entity 
+     */
+    @GET
+    @Path(&quot;{entity}/count&quot;)  
+    public Response getEntityCount(@PathParam(&quot;entity&quot;) String entity ) {
+        
+<span class="fc" id="L149">        logger.info(&quot;getEntityById - entity: {} &quot;, entity );</span>
+
+        try {  
+<span class="fc" id="L152">            int count = logic.findEntityCount(entity);  </span>
+<span class="fc" id="L153">            return Response.ok(String.valueOf(count)).build(); </span>
+<span class="nc" id="L154">        } catch(DinaException e) { </span>
+<span class="nc" id="L155">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
+        }  
+    }
+    
+ 
+
+    /**
+     * Generic method to create an entity by passing SpecifyBeanWrapper, the
+     * entity to be created is wrapped into SpecifyBeanWrapper
+     *
+     * @param entity
+     * @param json 
+     * @return  Response
+     *
+     */
+    @POST
+    @Path(&quot;{entity}&quot;)
+    @Consumes(&quot;application/json&quot;)
+    public Response createNewEntity(@PathParam(&quot;entity&quot;) String entity, String json) {
+<span class="fc" id="L174">        logger.info(&quot;createNewEntity - entity: {}&quot;, json);</span>
+ 
+        try {  
+<span class="fc" id="L177">            return Response.ok(logic.createEntity(entity, json)).build();</span>
+<span class="nc" id="L178">         } catch(DinaException e) { </span>
+<span class="nc" id="L179">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
+        }  
+    }
+
+    /**
+     * Generic method update an entity
+     * 
+     * @param entity
+     * @param json 
+     *
+     * @return
+     *
+     */
+    @PUT
+    @Path(&quot;{entity}&quot;) 
+    public Response updateEntity(@PathParam(&quot;entity&quot;) String entity, String json) {
+    
+<span class="fc" id="L196">        logger.info(&quot;update entity: {} -- {}&quot;, entity, json);</span>
+        
+         try {  
+<span class="fc" id="L199">            return Response.ok(logic.updateEntity(entity, json)).build(); </span>
+<span class="nc" id="L200">         } catch(DinaException e) { </span>
+<span class="nc" id="L201">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
+        }  
+    }
+    
+
+
+    
+    /**
+     * Generic method to delete an entity by entity id from database.  
+     * This method passes in a PathParam entity class name and entity id 
+     * 
+     * @param entity - class name of the entity 
+     * @param id 
+     * 
+     * @return entity 
+     */
+    @DELETE
+    @Path(&quot;{entity}/{id}&quot;)  
+    public Response deleteEntityById(@PathParam(&quot;entity&quot;) String entity, @PathParam(&quot;id&quot;) int id) {
+        
+<span class="fc" id="L221">        logger.info(&quot;deleteEntityById - entity -- id: {} -- {}&quot;, entity, id );</span>
+
+        try {   
+<span class="fc" id="L224">            logic.deleteEntity(entity, id);   </span>
+<span class="fc" id="L225">            Response.ResponseBuilder rb = Response.ok(); </span>
+<span class="fc" id="L226">            return rb.build(); </span>
+<span class="nc" id="L227">        } catch(DinaException e) {  </span>
+<span class="nc" id="L228">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
+        }  
+    } 
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

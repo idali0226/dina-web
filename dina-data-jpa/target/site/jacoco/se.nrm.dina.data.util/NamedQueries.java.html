@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>NamedQueries.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">dina-data-jpa</a> &gt; <a href="index.source.html" class="el_package">se.nrm.dina.data.util</a> &gt; <span class="el_source">NamedQueries.java</span></div><h1>NamedQueries.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package se.nrm.dina.data.util;
+
+import java.util.List; 
+import java.util.Map; 
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;  
+import se.nrm.dina.datamodel.EntityBean;
+
+/**
+ *
+ * @author idali
+ */
+<span class="fc" id="L19">public class NamedQueries {</span>
+     
+<span class="fc" id="L21">    private final Logger logger = LoggerFactory.getLogger(this.getClass());   </span>
+    
+<span class="fc" id="L23">    private static NamedQueries instance = null; </span>
+
+    public static synchronized NamedQueries getInstance() {
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if (instance == null) {</span>
+<span class="fc" id="L27">            instance = new NamedQueries();</span>
+        }
+<span class="fc" id="L29">        return instance;</span>
+    }
+
+    /**
+     * Creates a query string
+     * @param entityName
+     * @param clazz
+     * @param offset
+     * @param minid
+     * @param maxid
+     * @param orderBy
+     * @param criteria
+     * @return String
+     */
+    public String createQueryFindAllWithSearchCriteria(String entityName,
+                                                        Class clazz,
+                                                        int offset,
+                                                        int minid,
+                                                        int maxid,
+                                                        List&lt;String&gt; orderBy,
+                                                        Map&lt;String, String&gt; criteria) {
+ 
+<span class="fc" id="L51">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L52">        sb.append(&quot;SELECT e From &quot;);</span>
+<span class="fc" id="L53">        sb.append(entityName);</span>
+<span class="fc" id="L54">        sb.append(&quot; e &quot;);</span>
+
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (maxid &gt; 0) {</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">            minid = minid &gt; offset ? minid : offset;</span>
+<span class="fc" id="L58">            sb.append(buildConditions(clazz, minid, maxid, criteria));</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">        } else if (offset &gt; 0) {</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            offset = offset &gt; minid ? offset : minid;</span>
+<span class="nc" id="L61">            sb.append(buildConditions(clazz, offset, criteria));</span>
+<span class="pc bpc" id="L62" title="2 of 4 branches missed.">        } else if (criteria != null &amp;&amp; !criteria.isEmpty()) {</span>
+<span class="nc" id="L63">            sb.append(buildConditions(clazz, criteria));</span>
+        }
+
+<span class="pc bpc" id="L66" title="1 of 4 branches missed.">        if (orderBy != null &amp;&amp; !orderBy.isEmpty()) {</span>
+<span class="nc" id="L67">            sb.append(buildOrderByString(clazz, orderBy));</span>
+        } 
+<span class="fc" id="L69">        return sb.toString(); </span>
+    }
+
+ 
+    private String buildConditions(Class clazz, int minid, int maxid, Map&lt;String, String&gt; criteria) {
+
+<span class="fc" id="L75">        EntityBean bean = Util.getInstance().createNewInstance(clazz.getSimpleName());</span>
+<span class="fc" id="L76">        String idFieldName = Util.getInstance().getIDFieldName(bean);</span>
+
+<span class="fc" id="L78">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L79">        sb.append(&quot;WHERE e.&quot;);</span>
+<span class="fc" id="L80">        sb.append(idFieldName);</span>
+<span class="fc" id="L81">        sb.append(&quot; BETWEEN &quot;);</span>
+<span class="fc" id="L82">        sb.append(minid);</span>
+<span class="fc" id="L83">        sb.append(&quot; AND &quot;);</span>
+<span class="fc" id="L84">        sb.append(maxid);</span>
+
+<span class="pc bpc" id="L86" title="3 of 4 branches missed.">        if (criteria == null || criteria.isEmpty()) {</span>
+<span class="fc" id="L87">            return sb.toString().trim();</span>
+        } else { 
+<span class="nc" id="L89">            sb.append(&quot; AND &quot;);</span>
+<span class="nc" id="L90">            sb.append(buildSearchCriteria(clazz, criteria));</span>
+<span class="nc" id="L91">            return sb.toString();</span>
+        } 
+    }
+
+    private String buildConditions(Class clazz, int offset, Map&lt;String, String&gt; criteria) {
+
+<span class="nc" id="L97">        EntityBean bean = Util.getInstance().createNewInstance(clazz.getSimpleName());</span>
+<span class="nc" id="L98">        String idFieldName = Util.getInstance().getIDFieldName(bean);</span>
+
+<span class="nc" id="L100">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L101">        sb.append(&quot;WHERE e.&quot;);</span>
+<span class="nc" id="L102">        sb.append(idFieldName);</span>
+<span class="nc" id="L103">        sb.append(&quot; &gt;= &quot;);</span>
+<span class="nc" id="L104">        sb.append(offset);</span>
+
+<span class="nc bnc" id="L106" title="All 4 branches missed.">        if (criteria == null || criteria.isEmpty()) {</span>
+<span class="nc" id="L107">            return sb.toString().trim();</span>
+        } else { 
+<span class="nc" id="L109">            sb.append(&quot; AND &quot;);</span>
+<span class="nc" id="L110">            sb.append(buildSearchCriteria(clazz, criteria));</span>
+<span class="nc" id="L111">            return sb.toString();</span>
+        } 
+    }
+    
+    private String buildConditions(Class clazz, Map&lt;String, String&gt; criteria) {
+<span class="nc" id="L116">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L117">        sb.append(&quot;WHERE&quot;); </span>
+<span class="nc" id="L118">        sb.append(buildSearchCriteria(clazz, criteria));</span>
+         
+<span class="nc" id="L120">        return sb.toString();</span>
+    }
+    
+    private String buildSearchCriteria(Class clazz, Map&lt;String, String&gt; criteria) {
+        
+<span class="nc" id="L125">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L126">        criteria.entrySet()</span>
+<span class="nc" id="L127">                .stream()</span>
+<span class="nc" id="L128">                .forEach(entry -&gt; {</span>
+<span class="nc" id="L129">                    sb.append(&quot; e.&quot;);</span>
+<span class="nc" id="L130">                    sb.append(entry.getKey());</span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">                    if (Util.getInstance().isEntity(clazz, entry.getKey())) {</span>
+<span class="nc" id="L132">                        sb.append(&quot;.&quot;);</span>
+<span class="nc" id="L133">                        sb.append(Util.getInstance().getIDFieldName(Util.getInstance().getEntity(clazz, entry.getKey()))); </span>
+                    }
+<span class="nc" id="L135">                    sb.append(&quot; = :&quot;);</span>
+<span class="nc" id="L136">                    sb.append(entry.getKey());</span>
+<span class="nc" id="L137">                    sb.append(&quot; AND &quot;);</span>
+<span class="nc" id="L138">                });</span>
+<span class="nc" id="L139">        return StringUtils.substringBeforeLast(sb.toString(), &quot; AND&quot;);</span>
+    }
+    
+    private String buildOrderByString(Class clazz, List&lt;String&gt; list) {
+         
+<span class="nc" id="L144">        logger.info(&quot;buildOrderByString : {} -- {}&quot;, clazz, list);</span>
+         
+<span class="nc" id="L146">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L147">        sb.append(&quot; ORDER BY &quot;);</span>
+<span class="nc" id="L148">        list.stream()</span>
+<span class="nc" id="L149">                .filter(l -&gt; Util.getInstance().validateFields(clazz, l))</span>
+<span class="nc" id="L150">                .forEach(l -&gt; {</span>
+<span class="nc" id="L151">                    sb.append(&quot;e.&quot;);</span>
+<span class="nc" id="L152">                    sb.append(l);</span>
+<span class="nc" id="L153">                    sb.append(&quot;, &quot;);</span>
+<span class="nc" id="L154">                });</span>
+         
+<span class="nc" id="L156">        return StringUtils.substringBeforeLast(sb.toString(), &quot;,&quot;); </span>
+    }
+    
+    /**
+     * Creates a NamedQuery String for find total count of an entity
+     * @param entityName
+     * @return String
+     */
+    public String createFindTotalCountNamedQuery(String entityName) {
+
+<span class="fc" id="L166">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L167">        sb.append(&quot;SELECT COUNT(e) FROM &quot;); </span>
+<span class="fc" id="L168">        sb.append(entityName);</span>
+<span class="fc" id="L169">        sb.append(&quot; e&quot;); </span>
+        
+<span class="fc" id="L171">        return sb.toString();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
