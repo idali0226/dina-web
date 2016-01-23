@@ -112,7 +112,7 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
         if (orderBy != null) {
             orderby = Arrays.asList(orderBy.split(","));
         }
-
+          
         Map<String, String> condition = map.entrySet()
                 .stream()
                 .filter(filterCondition()) 

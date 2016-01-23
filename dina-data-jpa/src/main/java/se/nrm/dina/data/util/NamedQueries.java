@@ -47,7 +47,7 @@ public class NamedQueries {
                                                         int maxid,
                                                         List<String> orderBy,
                                                         Map<String, String> criteria) {
- 
+  
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT e From ");
         sb.append(entityName);

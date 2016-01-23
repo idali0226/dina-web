@@ -215,7 +215,7 @@ public class UtilNGTest {
     /**
      * Test of isFieldsValid method, of class Util.
      */
-    @Test(expected = DinaException.class)  
+    @Test 
     public void testIsFieldsValidFailedExpected() {
         System.out.println("testIsFieldsValid");
 
@@ -228,7 +228,13 @@ public class UtilNGTest {
         map.put("dateReceived", null);
          
         testInstance = new Util();   
-        testInstance.isFieldsValid(clazz, map);
+         
+        try {
+            testInstance.isFieldsValid(clazz, map);
+            fail();
+        } catch(DinaException e) {
+            assertTrue(true);
+        }
     }
 
     /**
@@ -264,14 +270,21 @@ public class UtilNGTest {
     /**
      * Test of isIntField method, of class Util.
      */
-    @Test(expected = DinaException.class)  
+    @Test  
     public void testIsIntegerFieldException() {
         System.out.println("isIntField");
 
         Class clazz = Accession.class;
         String fieldName = "accessionIDs";
         testInstance = new Util(); 
-        testInstance.isIntField(clazz, fieldName);
+        
+        try {
+            testInstance.isIntField(clazz, fieldName);
+            fail();
+        } catch(DinaException e) {
+            assertTrue(true);
+        }
+        
     }
 
     /**
@@ -321,14 +334,20 @@ public class UtilNGTest {
     /**
      * Test of isEntity method, of class Util.
      */
-    @Test(expected = DinaException.class)  
+    @Test
     public void testIsEntityFalseException() {
         System.out.println("isEntity");
 
         Class clazz = Accession.class;
         String fieldName = "divisionid";
         testInstance = new Util();
-        testInstance.isEntity(clazz, fieldName); 
+        
+        try {
+            testInstance.isEntity(clazz, fieldName); 
+        } catch(DinaException e) {
+            assertTrue(true);
+        }
+        
     }
 
     /**
@@ -345,6 +364,24 @@ public class UtilNGTest {
         boolean result = testInstance.isCollection(clazz, fieldName);
         assertTrue(result);
     }
+    
+    /**
+     * Test of isCollection method, of class Util.
+     */
+    @Test
+    public void testIsCollectionFalse() {
+        System.out.println("isCollection");
+
+        Class clazz = Accession.class;
+        String fieldName = "deaccessionlist";
+        testInstance = new Util();
+
+        try {
+           testInstance.isCollection(clazz, fieldName); 
+        } catch(DinaException e) {
+            assertTrue(true);
+        }  
+    }
 
     /**
      * Test of getEntity method, of class Util.
@@ -360,7 +397,27 @@ public class UtilNGTest {
         EntityBean result = testInstance.getEntity(clazz, fieldName);
         assertTrue(result instanceof Division); 
     }
+    
+    /**
+     * Test of getEntity method, of class Util.
+     */
+    @Test
+    public void testGetEntityFailure() {
+        System.out.println("getEntity");
+        
+        Class clazz = Accession.class;
+        String fieldName = "divisionid";
+        
+        testInstance = new Util(); 
+        
+        try {
+            testInstance.getEntity(clazz, fieldName);
+        } catch(DinaException e) {
+            assertTrue(true); 
+        }  
+    }
 
+    
     /**
      * Test of validateFields method, of class Util.
      */

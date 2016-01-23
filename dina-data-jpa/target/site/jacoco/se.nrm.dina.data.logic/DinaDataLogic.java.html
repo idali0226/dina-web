@@ -36,14 +36,14 @@ import se.nrm.dina.datamodel.EntityBean;
 @Stateless
 public class DinaDataLogic&lt;T extends EntityBean&gt; implements Serializable {
 
-<span class="pc" id="L39">    private final Logger logger = LoggerFactory.getLogger(this.getClass());</span>
+<span class="fc" id="L39">    private final Logger logger = LoggerFactory.getLogger(this.getClass());</span>
 
     @EJB
     private DinaDao dao;
 
-<span class="nc" id="L44">    public DinaDataLogic() {</span>
+<span class="fc" id="L44">    public DinaDataLogic() {</span>
 
-<span class="nc" id="L46">    }</span>
+<span class="fc" id="L46">    }</span>
     
 <span class="fc" id="L48">    public DinaDataLogic(DinaDao dao) {</span>
 <span class="fc" id="L49">        this.dao = dao;</span>
@@ -57,8 +57,8 @@ public class DinaDataLogic&lt;T extends EntityBean&gt; implements Serializable {
     public List&lt;T&gt; findAll(String entityName) { 
         try {
 <span class="fc" id="L59">            return dao.findAll(Util.getInstance().convertClassNameToClass(entityName));</span>
-<span class="nc" id="L60">        } catch (DinaException e) {</span>
-<span class="nc" id="L61">            throw new DinaException(e.getMessage());</span>
+<span class="fc" id="L60">        } catch (DinaException e) {</span>
+<span class="fc" id="L61">            throw new DinaException(e.getMessage());</span>
         }
     }
 
@@ -85,8 +85,8 @@ public class DinaDataLogic&lt;T extends EntityBean&gt; implements Serializable {
 <span class="fc" id="L85">            List&lt;T&gt; results = dao.findAll(clazz, strQuery, limit, conditions);</span>
  
 <span class="fc" id="L87">            return results;</span>
-<span class="nc" id="L88">        } catch (DinaException e) {</span>
-<span class="nc" id="L89">            throw new DinaException(e.getMessage());</span>
+<span class="fc" id="L88">        } catch (DinaException e) {</span>
+<span class="fc" id="L89">            throw new DinaException(e.getMessage());</span>
         }
     }
 
@@ -109,10 +109,10 @@ public class DinaDataLogic&lt;T extends EntityBean&gt; implements Serializable {
 <span class="fc" id="L109">        String orderBy = map.getFirst(&quot;orderby&quot;);</span>
 
 <span class="fc" id="L111">        List&lt;String&gt; orderby = new ArrayList&lt;&gt;();</span>
-<span class="pc bpc" id="L112" title="1 of 2 branches missed.">        if (orderBy != null) {</span>
-<span class="nc" id="L113">            orderby = Arrays.asList(orderBy.split(&quot;,&quot;));</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">        if (orderBy != null) {</span>
+<span class="fc" id="L113">            orderby = Arrays.asList(orderBy.split(&quot;,&quot;));</span>
         }
-
+          
 <span class="fc" id="L116">        Map&lt;String, String&gt; condition = map.entrySet()</span>
 <span class="fc" id="L117">                .stream()</span>
 <span class="fc" id="L118">                .filter(filterCondition()) </span>
@@ -131,17 +131,17 @@ public class DinaDataLogic&lt;T extends EntityBean&gt; implements Serializable {
 <span class="fc" id="L131">                            Integer.parseInt(maxid == null ? &quot;0&quot; : maxid),</span>
                             orderby, condition);
 <span class="pc bpc" id="L133" title="1 of 2 branches missed.">            return dao.findAll(clazz, strQuery, Integer.parseInt(limit == null ? &quot;50&quot; : limit), condition); </span>
-<span class="nc" id="L134">        } catch (DinaException e) {</span>
-<span class="nc" id="L135">            throw new DinaException(&quot;Error.  &quot; + e.getMessage() + &quot; is not valid field in &quot; + entityName);</span>
+<span class="fc" id="L134">        } catch (DinaException e) {</span>
+<span class="fc" id="L135">            throw new DinaException(&quot;Error.  &quot; + e.getMessage() + &quot; is not valid field in &quot; + entityName);</span>
         }
     }
  
     private Predicate&lt;Entry&lt;String, List&lt;String&gt;&gt;&gt; filterCondition() {
-<span class="pc bnc" id="L140" title="All 2 branches missed.">        return s -&gt; !s.getKey().equals(&quot;offset&quot;)</span>
-<span class="nc bnc" id="L141" title="All 2 branches missed.">                    &amp;&amp; !s.getKey().equals(&quot;limit&quot;)</span>
-<span class="nc bnc" id="L142" title="All 2 branches missed.">                    &amp;&amp; !s.getKey().equals(&quot;minid&quot;)</span>
-<span class="nc bnc" id="L143" title="All 2 branches missed.">                    &amp;&amp; !s.getKey().equals(&quot;maxid&quot;)</span>
-<span class="nc bnc" id="L144" title="All 2 branches missed.">                    &amp;&amp; !s.getKey().equals(&quot;orderby&quot;);</span>
+<span class="pc bpc" id="L140" title="1 of 2 branches missed.">        return s -&gt; !s.getKey().equals(&quot;offset&quot;)</span>
+<span class="pc bpc" id="L141" title="1 of 2 branches missed.">                    &amp;&amp; !s.getKey().equals(&quot;limit&quot;)</span>
+<span class="pc bpc" id="L142" title="1 of 2 branches missed.">                    &amp;&amp; !s.getKey().equals(&quot;minid&quot;)</span>
+<span class="pc bpc" id="L143" title="1 of 2 branches missed.">                    &amp;&amp; !s.getKey().equals(&quot;maxid&quot;)</span>
+<span class="pc bpc" id="L144" title="1 of 2 branches missed.">                    &amp;&amp; !s.getKey().equals(&quot;orderby&quot;);</span>
     }
 
     /**
@@ -154,13 +154,13 @@ public class DinaDataLogic&lt;T extends EntityBean&gt; implements Serializable {
 <span class="fc" id="L154">        logger.info(&quot;findById : {} -- {}&quot;, id, entityName);</span>
 
         try {
-<span class="pc bpc" id="L157" title="1 of 2 branches missed.">            if (Util.getInstance().isNumric(id)) {</span>
+<span class="fc bfc" id="L157" title="All 2 branches covered.">            if (Util.getInstance().isNumric(id)) {</span>
 <span class="fc" id="L158">                return (T) dao.findById(Integer.parseInt(id), Util.getInstance().convertClassNameToClass(entityName));</span>
             } else {
-<span class="nc" id="L160">                return (T) dao.findByStringId(id, Util.getInstance().convertClassNameToClass(entityName));</span>
+<span class="fc" id="L160">                return (T) dao.findByStringId(id, Util.getInstance().convertClassNameToClass(entityName));</span>
             } 
-<span class="nc" id="L162">        } catch (DinaException e) {</span>
-<span class="nc" id="L163">            throw new DinaException(e.getMessage());</span>
+<span class="fc" id="L162">        } catch (DinaException e) {</span>
+<span class="fc" id="L163">            throw new DinaException(e.getMessage());</span>
         }
     }
 
@@ -173,8 +173,8 @@ public class DinaDataLogic&lt;T extends EntityBean&gt; implements Serializable {
 
         try {
 <span class="fc" id="L175">            return dao.getCountByQuery(NamedQueries.getInstance().createFindTotalCountNamedQuery(Util.getInstance().convertClassNameToClass(entityName).getSimpleName()));</span>
-<span class="nc" id="L176">        } catch (DinaException e) {</span>
-<span class="nc" id="L177">            throw new DinaException(e.getMessage());</span>
+<span class="fc" id="L176">        } catch (DinaException e) {</span>
+<span class="fc" id="L177">            throw new DinaException(e.getMessage());</span>
         }
     }
 
@@ -191,8 +191,8 @@ public class DinaDataLogic&lt;T extends EntityBean&gt; implements Serializable {
         try {
 <span class="fc" id="L192">            EntityBean bean = mappObject(entityName, json);</span>
 <span class="fc" id="L193">            return dao.create(bean);</span>
-<span class="nc" id="L194">        } catch (DinaException ex) {</span>
-<span class="nc" id="L195">            throw new DinaException(ex.getMessage());</span>
+<span class="fc" id="L194">        } catch (DinaException ex) {</span>
+<span class="fc" id="L195">            throw new DinaException(ex.getMessage());</span>
         }
 
     }
@@ -209,8 +209,8 @@ public class DinaDataLogic&lt;T extends EntityBean&gt; implements Serializable {
         try {
 <span class="fc" id="L210">            EntityBean bean = mappObject(entityName, json);</span>
 <span class="fc" id="L211">            return dao.merge(bean); </span>
-<span class="nc" id="L212">        } catch (DinaException ex) {</span>
-<span class="nc" id="L213">            throw new DinaException(ex.getMessage());</span>
+<span class="fc" id="L212">        } catch (DinaException ex) {</span>
+<span class="fc" id="L213">            throw new DinaException(ex.getMessage());</span>
         }
     }
 
@@ -240,12 +240,12 @@ public class DinaDataLogic&lt;T extends EntityBean&gt; implements Serializable {
         try { 
 <span class="fc" id="L241">            EntityBean bean = dao.findByReference(id, Util.getInstance().convertClassNameToClass(entityName));</span>
          
-<span class="pc bpc" id="L243" title="1 of 2 branches missed.">            if (bean != null) { </span>
+<span class="fc bfc" id="L243" title="All 2 branches covered.">            if (bean != null) { </span>
 <span class="fc" id="L244">                dao.delete(bean);</span>
             }
-<span class="nc" id="L246">        } catch (DinaException e) {</span>
-<span class="nc" id="L247">            logger.error(e.getMessage());</span>
-<span class="nc" id="L248">            throw new DinaException(e.getMessage());</span>
+<span class="fc" id="L246">        } catch (DinaException e) {</span>
+<span class="fc" id="L247">            logger.error(e.getMessage());</span>
+<span class="fc" id="L248">            throw new DinaException(e.getMessage());</span>
 <span class="fc" id="L249">        }</span>
 <span class="fc" id="L250">    }</span>
 }

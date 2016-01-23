@@ -18,7 +18,7 @@ import se.nrm.dina.datamodel.Division;
 import se.nrm.dina.datamodel.Repositoryagreement;
 import se.nrm.dina.datamodel.Treatmentevent;
 
-@Generated(value="EclipseLink-2.7.0.v20160122-rNA", date="2016-01-23T15:02:45")
+@Generated(value="EclipseLink-2.7.0.v20160122-rNA", date="2016-01-23T16:50:16")
 @StaticMetamodel(Accession.class)
 public class Accession_ extends BaseEntity_ {
 

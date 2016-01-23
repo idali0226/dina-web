@@ -182,7 +182,7 @@ import se.nrm.dina.datamodel.EntityBean;
 
 <span class="fc" id="L183">            logger.info(&quot;fieldName {}&quot;, clazz.getDeclaredField(fieldName).getType().getName());</span>
 <span class="fc" id="L184">            return clazz.getDeclaredField(fieldName).getType().getName().equals(&quot;java.util.List&quot;);</span>
-<span class="nc" id="L185">        } catch (NoSuchFieldException e) {</span>
+<span class="fc" id="L185">        } catch (NoSuchFieldException e) {</span>
 <span class="nc" id="L186">            Class superClass = clazz.getSuperclass();</span>
 <span class="nc bnc" id="L187" title="All 2 branches missed.">            if (superClass == null) {</span>
 <span class="nc" id="L188">                throw new DinaException(e.getMessage());</span>
@@ -203,10 +203,10 @@ import se.nrm.dina.datamodel.EntityBean;
         try { 
      
 <span class="fc" id="L205">            return createNewInstance(clazz.getDeclaredField(fieldName).getType().getSimpleName());</span>
-<span class="nc" id="L206">        } catch (NoSuchFieldException e) {</span>
-<span class="nc" id="L207">            Class superClass = clazz.getSuperclass();</span>
-<span class="nc bnc" id="L208" title="All 2 branches missed.">            if (superClass == null) {</span>
-<span class="nc" id="L209">                throw new DinaException(e.getMessage());</span>
+<span class="fc" id="L206">        } catch (NoSuchFieldException e) {</span>
+<span class="fc" id="L207">            Class superClass = clazz.getSuperclass();</span>
+<span class="pc bpc" id="L208" title="1 of 2 branches missed.">            if (superClass == null) {</span>
+<span class="fc" id="L209">                throw new DinaException(e.getMessage());</span>
             } else {
 <span class="nc" id="L211">                return getEntity(superClass, fieldName);</span>
             }

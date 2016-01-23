@@ -8,7 +8,7 @@ import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Borrow;
 import se.nrm.dina.datamodel.Borrowreturnmaterial;
 
-@Generated(value="EclipseLink-2.7.0.v20160122-rNA", date="2016-01-23T15:02:45")
+@Generated(value="EclipseLink-2.7.0.v20160122-rNA", date="2016-01-23T16:50:16")
 @StaticMetamodel(Borrowmaterial.class)
 public class Borrowmaterial_ extends BaseEntity_ {
 
