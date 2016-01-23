@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package se.nrm.dina.data.jpa;
-
-import com.sun.org.apache.xalan.internal.lib.ExsltDatetime;
+ 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,9 +16,7 @@ import javax.persistence.NonUniqueResultException;
 import javax.persistence.OptimisticLockException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.validation.ConstraintViolationException;
-import org.eclipse.persistence.sessions.SessionProfiler;
-import org.hibernate.dialect.lock.OptimisticEntityLockException;
+import javax.validation.ConstraintViolationException; 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
