@@ -7,7 +7,7 @@ import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Attachment;
 import se.nrm.dina.datamodel.Storage;
 
-@Generated(value="EclipseLink-2.7.0.v20160122-rNA", date="2016-01-23T16:50:16")
+@Generated(value="EclipseLink-2.7.0.v20160122-rNA", date="2016-01-23T17:07:59")
 @StaticMetamodel(Storageattachment.class)
 public class Storageattachment_ extends BaseEntity_ {
 

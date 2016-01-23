@@ -147,22 +147,75 @@ public class NamedQueriesNGTest {
     }
     
        
-    
-    
-
     /**
-     * Test of createFindTotalCountNamedQuery method, of class NamedQueries.
+     * Test of createQueryFindAllWithSearchCriteria method, of class NamedQueries.
      */
-//    @Test
-    public void testCreateFindTotalCountNamedQuery() {
-        System.out.println("createFindTotalCountNamedQuery");
-        String entityName = "";
-        NamedQueries instance = NamedQueries.getInstance();
-        String expResult = "";
-        String result = instance.createFindTotalCountNamedQuery(entityName);
-        assertEquals(result, expResult);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @Test
+    public void testCreateQueryFindAllWithSearchCriteria4() {
+        System.out.println("createQueryFindAllWithSearchCriteria");
+        
+        String entityName = "Accession";
+        Class clazz = Accession.class;
+        int offset = 0;
+        int minid = 0;
+        int maxid = 0;
+        List<String> orderBy = new ArrayList<>(); 
+        
+        Map<String, String> criteria = new HashMap(); 
+        
+        instance = NamedQueries.getInstance();
+        
+        String expResult = "SELECT e From Accession e ";
+        String result = instance.createQueryFindAllWithSearchCriteria(entityName, clazz, offset, minid, maxid, orderBy, criteria);
+        assertEquals(result, expResult); 
     }
     
+           
+    /**
+     * Test of createQueryFindAllWithSearchCriteria method, of class NamedQueries.
+     */
+    @Test
+    public void testCreateQueryFindAllWithSearchCriteria5() {
+        System.out.println("createQueryFindAllWithSearchCriteria");
+        
+        String entityName = "Accession";
+        Class clazz = Accession.class;
+        int offset = 10;
+        int minid = 5;
+        int maxid = 20;
+        List<String> orderBy = new ArrayList<>(); 
+        
+        Map<String, String> criteria = new HashMap(); 
+        
+        instance = NamedQueries.getInstance();
+        
+        String expResult = "SELECT e From Accession e WHERE e.accessionID BETWEEN 10 AND 20";
+        String result = instance.createQueryFindAllWithSearchCriteria(entityName, clazz, offset, minid, maxid, orderBy, criteria);
+        assertEquals(result, expResult); 
+    }  
+    
+               
+    /**
+     * Test of createQueryFindAllWithSearchCriteria method, of class NamedQueries.
+     */
+    @Test
+    public void testCreateQueryFindAllWithSearchCriteria6() {
+        System.out.println("createQueryFindAllWithSearchCriteria");
+        
+        String entityName = "Accession";
+        Class clazz = Accession.class;
+        int offset = 10;
+        int minid = 5;
+        int maxid = 20;
+        List<String> orderBy = new ArrayList<>();
+        orderBy.add("accessionNumber");
+
+        Map<String, String> criteria = new HashMap();
+        criteria.put("divisionID", "1");
+        instance = NamedQueries.getInstance();
+
+        String expResult = "SELECT e From Accession e WHERE e.accessionID BETWEEN 10 AND 20 AND  e.divisionID.userGroupScopeId = :divisionID ORDER BY e.accessionNumber";
+        String result = instance.createQueryFindAllWithSearchCriteria(entityName, clazz, offset, minid, maxid, orderBy, criteria);
+        assertEquals(result, expResult); 
+    }  
 }

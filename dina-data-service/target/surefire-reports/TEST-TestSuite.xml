@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TestSuite" time="2.27" tests="16" errors="0" skipped="0" failures="0">
+<testsuite name="TestSuite" time="3.422" tests="16" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib"/>
@@ -62,20 +62,20 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testDinaServiceConstractor on testDinaServiceConstractor(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.872"/>
-  <testcase name="testGetAllByEntityName on testGetAllByEntityName(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.767"/>
-  <testcase name="testGetAllByEntityName2 on testGetAllByEntityName2(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.083"/>
-  <testcase name="testGetAllByEntityNameFailure on testGetAllByEntityNameFailure(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.053"/>
-  <testcase name="testGetDataFailure on testGetDataFailure(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.031"/>
-  <testcase name="testGetData on testGetData(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.033"/>
-  <testcase name="testGetEntityById on testGetEntityById(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.119"/>
-  <testcase name="testGetEntityByIdFailure on testGetEntityByIdFailure(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.03"/>
-  <testcase name="testGetEntityCount on testGetEntityCount(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.021"/>
-  <testcase name="testGetEntityCountFailure on testGetEntityCountFailure(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.024"/>
-  <testcase name="testCreateNewEntity on testCreateNewEntity(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.038"/>
-  <testcase name="testCreateNewEntityFailure on testCreateNewEntityFailure(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.028"/>
-  <testcase name="testUpdateEntity on testUpdateEntity(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.025"/>
-  <testcase name="testUpdateEntityFailure on testUpdateEntityFailure(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.04"/>
-  <testcase name="testDeleteEntityById on testDeleteEntityById(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.039"/>
-  <testcase name="testDeleteEntityByIdFailure on testDeleteEntityByIdFailure(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.067"/>
+  <testcase name="testDinaServiceConstractor on testDinaServiceConstractor(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="1.647"/>
+  <testcase name="testGetAllByEntityName on testGetAllByEntityName(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.995"/>
+  <testcase name="testGetAllByEntityName2 on testGetAllByEntityName2(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.068"/>
+  <testcase name="testGetAllByEntityNameFailure on testGetAllByEntityNameFailure(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.045"/>
+  <testcase name="testGetDataFailure on testGetDataFailure(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.036"/>
+  <testcase name="testGetData on testGetData(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.054"/>
+  <testcase name="testGetEntityById on testGetEntityById(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.156"/>
+  <testcase name="testGetEntityByIdFailure on testGetEntityByIdFailure(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.047"/>
+  <testcase name="testGetEntityCount on testGetEntityCount(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.037"/>
+  <testcase name="testGetEntityCountFailure on testGetEntityCountFailure(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.025"/>
+  <testcase name="testCreateNewEntity on testCreateNewEntity(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.07"/>
+  <testcase name="testCreateNewEntityFailure on testCreateNewEntityFailure(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.07"/>
+  <testcase name="testUpdateEntity on testUpdateEntity(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.053"/>
+  <testcase name="testUpdateEntityFailure on testUpdateEntityFailure(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.043"/>
+  <testcase name="testDeleteEntityById on testDeleteEntityById(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.034"/>
+  <testcase name="testDeleteEntityByIdFailure on testDeleteEntityByIdFailure(se.nrm.dina.data.service.DinaServiceNGTest)" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.042"/>
 </testsuite>

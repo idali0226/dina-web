@@ -16,7 +16,7 @@ import se.nrm.dina.datamodel.Preptype;
 import se.nrm.dina.datamodel.Spappresourcedir;
 import se.nrm.dina.datamodel.Sptasksemaphore;
 
-@Generated(value="EclipseLink-2.7.0.v20160122-rNA", date="2016-01-23T16:50:16")
+@Generated(value="EclipseLink-2.7.0.v20160122-rNA", date="2016-01-23T17:07:59")
 @StaticMetamodel(Collection.class)
 public class Collection_ extends BaseEntity_ {
 

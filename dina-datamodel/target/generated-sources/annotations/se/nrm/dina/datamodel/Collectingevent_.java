@@ -17,7 +17,7 @@ import se.nrm.dina.datamodel.Locality;
 import se.nrm.dina.datamodel.Paleocontext;
 import se.nrm.dina.datamodel.Specifyuser;
 
-@Generated(value="EclipseLink-2.7.0.v20160122-rNA", date="2016-01-23T16:50:16")
+@Generated(value="EclipseLink-2.7.0.v20160122-rNA", date="2016-01-23T17:07:59")
 @StaticMetamodel(Collectingevent.class)
 public class Collectingevent_ extends BaseEntity_ {
 
