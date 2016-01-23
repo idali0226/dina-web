@@ -5,7 +5,7 @@
     <classes>
       <class name="se.nrm.dina.data.jpa.DinaDaoImplTest">
         <methods>
-          <include name="testMergeFailure3"/>
+          <include name="testFindAllException"/>
         </methods>
       </class> <!-- se.nrm.dina.data.jpa.DinaDaoImplTest -->
     </classes>

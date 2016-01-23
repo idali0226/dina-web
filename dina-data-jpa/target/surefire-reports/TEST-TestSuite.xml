@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TestSuite" time="6.207" tests="48" errors="0" skipped="0" failures="0">
+<testsuite name="TestSuite" time="6.392" tests="51" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib"/>
@@ -62,52 +62,62 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testDinaExceptionConstruct" classname="se.nrm.dina.data.exceptions.DinaExceptionNGTest" time="0.028"/>
+  <testcase name="testDinaExceptionConstruct" classname="se.nrm.dina.data.exceptions.DinaExceptionNGTest" time="0.03"/>
   <testcase name="testDinaExceptionConstructWithMsg" classname="se.nrm.dina.data.exceptions.DinaExceptionNGTest" time="0"/>
-  <testcase name="testDinaExceptionConstructWithMsgAndErrorCode" classname="se.nrm.dina.data.exceptions.DinaExceptionNGTest" time="0"/>
-  <testcase name="testGetErrorCode" classname="se.nrm.dina.data.exceptions.DinaExceptionNGTest" time="0"/>
-  <testcase name="testGetEntityNameErrorMsg" classname="se.nrm.dina.data.exceptions.ErrorMsgNGTest" time="0.004"/>
+  <testcase name="testDinaExceptionConstructWithMsgAndErrorCode" classname="se.nrm.dina.data.exceptions.DinaExceptionNGTest" time="0.001"/>
+  <testcase name="testGetErrorCode" classname="se.nrm.dina.data.exceptions.DinaExceptionNGTest" time="0.001"/>
+  <testcase name="testGetEntityNameErrorMsg" classname="se.nrm.dina.data.exceptions.ErrorMsgNGTest" time="0.001"/>
   <testcase name="testGetInstance" classname="se.nrm.dina.data.exceptions.ErrorMsgNGTest" time="0"/>
-  <testcase name="testFindAll on testFindAll(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.532"/>
-  <testcase name="testFindAllWithConditions on testFindAllWithConditions(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.03"/>
-  <testcase name="testFindById on testFindById(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.04"/>
-  <testcase name="testFindByReference on testFindByReference(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.014"/>
-  <testcase name="testCreate on testCreate(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.011"/>
-  <testcase name="testMerge on testMerge(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.006"/>
-  <testcase name="testUpdateByJPQL on testUpdateByJPQL(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.007"/>
-  <testcase name="testDelete on testDelete(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.034"/>
-  <testcase name="testGetEntityByJPQL on testGetEntityByJPQL(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.013"/>
-  <testcase name="testGetInstance on testGetInstance(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.001"/>
-  <testcase name="testReformClassName on testReformClassName(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.052"/>
-  <testcase name="testConvertClassNameToClass on testConvertClassNameToClass(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.001"/>
-  <testcase name="testConvertClassNameToClassException on testConvertClassNameToClassException(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.004"/>
-  <testcase name="testReformClassNameEmptyName on testReformClassNameEmptyName(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.001"/>
-  <testcase name="testCreateNewInstance on testCreateNewInstance(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.001"/>
-  <testcase name="testFailedCreateNewInstance on testFailedCreateNewInstance(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.003"/>
-  <testcase name="testValidateEntityName on testValidateEntityName(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.001"/>
-  <testcase name="testInvalidateEntityName on testInvalidateEntityName(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.002"/>
-  <testcase name="testIsFieldsValid on testIsFieldsValid(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.183"/>
-  <testcase name="testIsFieldsValidFailed on testIsFieldsValidFailed(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.001"/>
-  <testcase name="testIsFieldsValidFailedExpected on testIsFieldsValidFailedExpected(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.001"/>
-  <testcase name="testIsIntField on testIsIntField(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.028"/>
+  <testcase name="testConvertClassNameToClass on testConvertClassNameToClass(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.049"/>
+  <testcase name="testConvertClassNameToClassException on testConvertClassNameToClassException(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.001"/>
+  <testcase name="testReformClassName on testReformClassName(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.001"/>
+  <testcase name="testReformClassNameEmptyName on testReformClassNameEmptyName(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0"/>
+  <testcase name="testCreateNewInstance on testCreateNewInstance(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.003"/>
+  <testcase name="testFailedCreateNewInstance on testFailedCreateNewInstance(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.007"/>
+  <testcase name="testValidateEntityName on testValidateEntityName(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.002"/>
+  <testcase name="testInvalidateEntityName on testInvalidateEntityName(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.003"/>
+  <testcase name="testIsFieldsValid on testIsFieldsValid(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.136"/>
+  <testcase name="testIsFieldsValidFailed on testIsFieldsValidFailed(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.021"/>
+  <testcase name="testIsFieldsValidFailedExpected on testIsFieldsValidFailedExpected(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.007"/>
+  <testcase name="testIsIntField on testIsIntField(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.074"/>
   <testcase name="testIsIntFieldFalse on testIsIntFieldFalse(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0"/>
-  <testcase name="testIsIntegerFieldException on testIsIntegerFieldException(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.001"/>
+  <testcase name="testIsIntegerFieldException on testIsIntegerFieldException(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0"/>
   <testcase name="testIsIntegerField on testIsIntegerField(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.001"/>
-  <testcase name="testIsEntity on testIsEntity(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.002"/>
-  <testcase name="testIsEntityFalse on testIsEntityFalse(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.002"/>
-  <testcase name="testIsEntityFalseException on testIsEntityFalseException(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.002"/>
+  <testcase name="testIsEntity on testIsEntity(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.003"/>
+  <testcase name="testIsEntityFalse on testIsEntityFalse(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.001"/>
+  <testcase name="testIsEntityFalseException on testIsEntityFalseException(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.001"/>
   <testcase name="testIsCollection on testIsCollection(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.001"/>
-  <testcase name="testGetEntity on testGetEntity(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.003"/>
-  <testcase name="testValidateFields on testValidateFields(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.001"/>
-  <testcase name="testGetIDFieldName_EntityBean on testGetIDFieldName_EntityBean(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.028"/>
+  <testcase name="testGetEntity on testGetEntity(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.001"/>
+  <testcase name="testValidateFields on testValidateFields(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0"/>
+  <testcase name="testGetIDFieldName_EntityBean on testGetIDFieldName_EntityBean(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.03"/>
   <testcase name="testGetIDFieldName_String on testGetIDFieldName_String(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.002"/>
-  <testcase name="testMaxLimit on testMaxLimit(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.002"/>
-  <testcase name="testFindAll_String on testFindAll_String(se.nrm.dina.data.logic.DinaDataLogicNGTest)" classname="se.nrm.dina.data.logic.DinaDataLogicNGTest" time="0.015"/>
-  <testcase name="testFindAll_7args on testFindAll_7args(se.nrm.dina.data.logic.DinaDataLogicNGTest)" classname="se.nrm.dina.data.logic.DinaDataLogicNGTest" time="0.007"/>
-  <testcase name="testUpdateEntity on testUpdateEntity(se.nrm.dina.data.logic.DinaDataLogicNGTest)" classname="se.nrm.dina.data.logic.DinaDataLogicNGTest" time="3.703"/>
-  <testcase name="testDeleteEntity on testDeleteEntity(se.nrm.dina.data.logic.DinaDataLogicNGTest)" classname="se.nrm.dina.data.logic.DinaDataLogicNGTest" time="0.009"/>
-  <testcase name="testFindAllBySearchCriteria on testFindAllBySearchCriteria(se.nrm.dina.data.logic.DinaDataLogicNGTest)" classname="se.nrm.dina.data.logic.DinaDataLogicNGTest" time="0.039"/>
-  <testcase name="testFindEntityCount on testFindEntityCount(se.nrm.dina.data.logic.DinaDataLogicNGTest)" classname="se.nrm.dina.data.logic.DinaDataLogicNGTest" time="0.009"/>
-  <testcase name="testCreateEntity on testCreateEntity(se.nrm.dina.data.logic.DinaDataLogicNGTest)" classname="se.nrm.dina.data.logic.DinaDataLogicNGTest" time="1.359"/>
-  <testcase name="testFindById on testFindById(se.nrm.dina.data.logic.DinaDataLogicNGTest)" classname="se.nrm.dina.data.logic.DinaDataLogicNGTest" time="0.023"/>
+  <testcase name="testIsNumric on testIsNumric(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.016"/>
+  <testcase name="testMaxLimit on testMaxLimit(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0"/>
+  <testcase name="testGetInstance on testGetInstance(se.nrm.dina.data.util.UtilNGTest)" classname="se.nrm.dina.data.util.UtilNGTest" time="0.002"/>
+  <testcase name="testFindById on testFindById(se.nrm.dina.data.logic.DinaDataLogicNGTest)" classname="se.nrm.dina.data.logic.DinaDataLogicNGTest" time="0.559"/>
+  <testcase name="testFindAll_String on testFindAll_String(se.nrm.dina.data.logic.DinaDataLogicNGTest)" classname="se.nrm.dina.data.logic.DinaDataLogicNGTest" time="0.005"/>
+  <testcase name="testFindAll_7args on testFindAll_7args(se.nrm.dina.data.logic.DinaDataLogicNGTest)" classname="se.nrm.dina.data.logic.DinaDataLogicNGTest" time="0.018"/>
+  <testcase name="testFindAllBySearchCriteria on testFindAllBySearchCriteria(se.nrm.dina.data.logic.DinaDataLogicNGTest)" classname="se.nrm.dina.data.logic.DinaDataLogicNGTest" time="0.025"/>
+  <testcase name="testFindEntityCount on testFindEntityCount(se.nrm.dina.data.logic.DinaDataLogicNGTest)" classname="se.nrm.dina.data.logic.DinaDataLogicNGTest" time="0.003"/>
+  <testcase name="testCreateEntity on testCreateEntity(se.nrm.dina.data.logic.DinaDataLogicNGTest)" classname="se.nrm.dina.data.logic.DinaDataLogicNGTest" time="3.924"/>
+  <testcase name="testUpdateEntity on testUpdateEntity(se.nrm.dina.data.logic.DinaDataLogicNGTest)" classname="se.nrm.dina.data.logic.DinaDataLogicNGTest" time="1.199"/>
+  <testcase name="testDeleteEntity on testDeleteEntity(se.nrm.dina.data.logic.DinaDataLogicNGTest)" classname="se.nrm.dina.data.logic.DinaDataLogicNGTest" time="0.012"/>
+  <testcase name="testDinaDaoImplConstractor on testDinaDaoImplConstractor(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.106"/>
+  <testcase name="testFindAll on testFindAll(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.013"/>
+  <testcase name="testFindAllException on testFindAllException(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.026">
+    <failure type="java.lang.NullPointerException:">java.lang.NullPointerException: null
+	at se.nrm.dina.data.jpa.DinaDaoImpl.createQuery(DinaDaoImpl.java:229)
+	at se.nrm.dina.data.jpa.DinaDaoImplTest.testFindAllException(DinaDaoImplTest.java:117)
+</failure>
+    <system-out><![CDATA[findAll
+]]></system-out>
+  </testcase>
+  <testcase name="testFindAllWithConditions on testFindAllWithConditions(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.01"/>
+  <testcase name="testFindById on testFindById(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.012"/>
+  <testcase name="testFindByReference on testFindByReference(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.004"/>
+  <testcase name="testCreate on testCreate(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.004"/>
+  <testcase name="testMerge on testMerge(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.009"/>
+  <testcase name="testUpdateByJPQL on testUpdateByJPQL(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.042"/>
+  <testcase name="testDelete on testDelete(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.015"/>
+  <testcase name="testGetEntityByJPQL on testGetEntityByJPQL(se.nrm.dina.data.jpa.DinaDaoImplTest)" classname="se.nrm.dina.data.jpa.DinaDaoImplTest" time="0.011"/>
 </testsuite>

@@ -40,13 +40,16 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
   
     @PersistenceContext(unitName = "jpaPU")                  //  persistence unit connect to production database  
     private EntityManager entityManager;
+    
+    private Query query;
 
     public DinaDaoImpl() {
 
     }
     
-    public DinaDaoImpl(EntityManager entityManager) {
+    public DinaDaoImpl(EntityManager entityManager, Query query) {
         this.entityManager = entityManager;
+        this.query = query; 
     } 
 
   
@@ -54,7 +57,7 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
     public List<T> findAll(Class<T> clazz) {
 //        logger.info("findAll : {}", clazz);
         
-        Query query = entityManager.createNamedQuery(clazz.getSimpleName() + ".findAll"); 
+        query = entityManager.createNamedQuery(clazz.getSimpleName() + ".findAll"); 
         return query.getResultList(); 
     }
     
@@ -63,11 +66,10 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
         logger.info("findAll : {} -- {}", jpql, conditions);
          
         try {
-            Query query = createQuery(clazz, jpql, conditions);
+            query = createQuery(clazz, jpql, conditions);
             query.setMaxResults(Util.getInstance().maxLimit(limit));
             return query.getResultList();  
-        } catch (Exception e) {
-            logger.warn(e.getMessage());
+        } catch (Exception e) { 
             throw new DinaException(e.getMessage());
         }
     }
@@ -94,8 +96,8 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
         } catch (OptimisticLockException ex) { 
             entityManager.refresh(tmp);
             logger.warn(ex.getMessage());
-        } catch(Exception e) {
-            logger.warn(e.getMessage()); 
+        } catch(Exception ex) {
+            logger.warn(ex.getMessage());
         }  
         return tmp; 
     }
@@ -133,8 +135,7 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
             entityManager.flush();  
             
             logger.info("temp : {}", tmp);
-        } catch (ConstraintViolationException e) { 
-            logger.warn(e.getMessage());
+        } catch (ConstraintViolationException e) {  
             throw new DinaException(handleConstraintViolation(e));
         } catch (Exception e) { 
             logger.warn(e.getMessage());
@@ -166,7 +167,7 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
     @Override
     public boolean updateByJPQL(String jpql ) {
 //        logger.info("updateByJPQL : {} ", jpql );
-        Query query = entityManager.createQuery(jpql);
+        query = entityManager.createQuery(jpql);
  
         int updated = query.executeUpdate();
         return updated == 1;
@@ -176,7 +177,7 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
     public T getEntityByJPQL(String jpql) {
 
 //        logger.info("getEntityByJPQL - jpql: {}", jpql);
-        Query query = entityManager.createQuery(jpql);
+        query = entityManager.createQuery(jpql);
         try {
             return (T) query.getSingleResult();
         } catch (javax.persistence.NoResultException | javax.persistence.NonUniqueResultException ex) {
@@ -191,7 +192,7 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
         logger.info("getCountByQuery: {} ", strQuery);
         
         Number number;
-        Query query = entityManager.createQuery(strQuery);
+        query = entityManager.createQuery(strQuery);
         
         try {
             number = (Number) query.getSingleResult();
@@ -217,13 +218,14 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
  
     /**
      * Build a namedQuery with parameters
-     *
-     * @param namedQuery
+     * 
+     * @param clazz
+     * @param strJPQL
      * @param parameters
-     * @return
+     * @return Query
      */
     private Query createQuery(Class clazz, String strJPQL, Map<String, String> parameters) {
-        Query query = entityManager.createQuery(strJPQL);
+        query = entityManager.createQuery(strJPQL);
 
         if (parameters != null) {
             parameters.entrySet()

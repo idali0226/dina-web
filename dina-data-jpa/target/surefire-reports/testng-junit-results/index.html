@@ -23,7 +23,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -37,7 +37,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" class="navigator-link" panel-name="suite-Surefire_suite">
-              <span class="suite-name border-passed">Surefire suite</span>
+              <span class="suite-name border-failed">Surefire suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -90,7 +90,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">42 methods,   42 passed</span>
+                    <span class="method-stats">45 methods, 1 failed,   44 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Surefire_suite" class="hide-methods failed suite-Surefire_suite"> (hide)</a> <!-- hide-methods failed suite-Surefire_suite -->
+                      <a href="#" panel-name="suite-Surefire_suite" class="show-methods failed suite-Surefire_suite"> (show)</a> <!-- show-methods failed suite-Surefire_suite -->
+                    </span>
+                    <div class="method-list-content failed suite-Surefire_suite">
+                      <span>
+                        <img width="3%" src="failed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="se.nrm.dina.data.jpa.DinaDaoImplTest" hash-for-method="testFindAllException">testFindAllException</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content failed suite-Surefire_suite -->
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -132,6 +146,11 @@
                       <span>
                         <img width="3%" src="passed.png"/>
                         <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="se.nrm.dina.data.logic.DinaDataLogicNGTest" hash-for-method="testDeleteEntity">testDeleteEntity</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="se.nrm.dina.data.jpa.DinaDaoImplTest" hash-for-method="testDinaDaoImplConstractor">testDinaDaoImplConstractor</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -271,6 +290,11 @@
                       <br/>
                       <span>
                         <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="se.nrm.dina.data.util.UtilNGTest" hash-for-method="testIsNumric">testIsNumric</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
                         <a href="#" class="method navigator-link" panel-name="suite-Surefire_suite" title="se.nrm.dina.data.util.UtilNGTest" hash-for-method="testMaxLimit">testMaxLimit</a> <!-- method navigator-link -->
                       </span>
                       <br/>
@@ -321,77 +345,45 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Surefire_suite" class="panel Surefire_suite">
-          <div class="suite-Surefire_suite-class-passed">
+          <div class="suite-Surefire_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
+              <img src="failed.png"/>
               <span class="class-name">se.nrm.dina.data.jpa.DinaDaoImplTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testCreate">
-                  </a> <!-- testCreate -->
-                  <span class="method-name">testCreate</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="testDelete">
-                  </a> <!-- testDelete -->
-                  <span class="method-name">testDelete</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="testFindAll">
-                  </a> <!-- testFindAll -->
-                  <span class="method-name">testFindAll</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="testFindAllWithConditions">
-                  </a> <!-- testFindAllWithConditions -->
-                  <span class="method-name">testFindAllWithConditions</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="testFindById">
-                  </a> <!-- testFindById -->
-                  <span class="method-name">testFindById</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="testFindByReference">
-                  </a> <!-- testFindByReference -->
-                  <span class="method-name">testFindByReference</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="testGetEntityByJPQL">
-                  </a> <!-- testGetEntityByJPQL -->
-                  <span class="method-name">testGetEntityByJPQL</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="testMerge">
-                  </a> <!-- testMerge -->
-                  <span class="method-name">testMerge</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="testUpdateByJPQL">
-                  </a> <!-- testUpdateByJPQL -->
-                  <span class="method-name">testUpdateByJPQL</span>
+                  <a name="testFindAllException">
+                  </a> <!-- testFindAllException -->
+                  <span class="method-name">testFindAllException</span>
+                  <div class="stack-trace">java.lang.NullPointerException
+	at se.nrm.dina.data.jpa.DinaDaoImpl.createQuery(DinaDaoImpl.java:229)
+	at se.nrm.dina.data.jpa.DinaDaoImplTest.testFindAllException(DinaDaoImplTest.java:117)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
+	at org.junit.runners.BlockJUnit4ClassRunner.runNotIgnored(BlockJUnit4ClassRunner.java:79)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:71)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:49)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
+	at org.mockito.internal.runners.JUnit45AndHigherRunnerImpl.run(JUnit45AndHigherRunnerImpl.java:37)
+	at org.mockito.runners.MockitoJUnitRunner.run(MockitoJUnitRunner.java:62)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:157)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:136)
+... Removed 26 stack frames
+</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Surefire_suite-class-passed -->
+          </div> <!-- suite-Surefire_suite-class-failed -->
           <div class="suite-Surefire_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
@@ -540,6 +532,13 @@
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
+                  <a name="testIsNumric">
+                  </a> <!-- testIsNumric -->
+                  <span class="method-name">testIsNumric</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
                   <a name="testMaxLimit">
                   </a> <!-- testMaxLimit -->
                   <span class="method-name">testMaxLimit</span>
@@ -639,6 +638,84 @@
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
           </div> <!-- suite-Surefire_suite-class-passed -->
+          <div class="suite-Surefire_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">se.nrm.dina.data.jpa.DinaDaoImplTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="testCreate">
+                  </a> <!-- testCreate -->
+                  <span class="method-name">testCreate</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDelete">
+                  </a> <!-- testDelete -->
+                  <span class="method-name">testDelete</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testDinaDaoImplConstractor">
+                  </a> <!-- testDinaDaoImplConstractor -->
+                  <span class="method-name">testDinaDaoImplConstractor</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindAll">
+                  </a> <!-- testFindAll -->
+                  <span class="method-name">testFindAll</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindAllWithConditions">
+                  </a> <!-- testFindAllWithConditions -->
+                  <span class="method-name">testFindAllWithConditions</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindById">
+                  </a> <!-- testFindById -->
+                  <span class="method-name">testFindById</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testFindByReference">
+                  </a> <!-- testFindByReference -->
+                  <span class="method-name">testFindByReference</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testGetEntityByJPQL">
+                  </a> <!-- testGetEntityByJPQL -->
+                  <span class="method-name">testGetEntityByJPQL</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testMerge">
+                  </a> <!-- testMerge -->
+                  <span class="method-name">testMerge</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testUpdateByJPQL">
+                  </a> <!-- testUpdateByJPQL -->
+                  <span class="method-name">testUpdateByJPQL</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Surefire_suite-class-passed -->
         </div> <!-- panel Surefire_suite -->
         <div panel-name="test-xml-Surefire_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
@@ -692,175 +769,187 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(42);
+data.addRows(45);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'testUpdateEntity')
+data.setCell(0, 1, 'testCreateEntity')
 data.setCell(0, 2, 'se.nrm.dina.data.logic.DinaDataLogicNGTest')
-data.setCell(0, 3, 3703);
+data.setCell(0, 3, 3925);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'testCreateEntity')
+data.setCell(1, 1, 'testUpdateEntity')
 data.setCell(1, 2, 'se.nrm.dina.data.logic.DinaDataLogicNGTest')
-data.setCell(1, 3, 1359);
+data.setCell(1, 3, 1199);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'testFindAll')
-data.setCell(2, 2, 'se.nrm.dina.data.jpa.DinaDaoImplTest')
-data.setCell(2, 3, 532);
+data.setCell(2, 1, 'testFindById')
+data.setCell(2, 2, 'se.nrm.dina.data.logic.DinaDataLogicNGTest')
+data.setCell(2, 3, 559);
 data.setCell(3, 0, 3)
 data.setCell(3, 1, 'testIsFieldsValid')
 data.setCell(3, 2, 'se.nrm.dina.data.util.UtilNGTest')
-data.setCell(3, 3, 182);
+data.setCell(3, 3, 135);
 data.setCell(4, 0, 4)
-data.setCell(4, 1, 'testReformClassName')
-data.setCell(4, 2, 'se.nrm.dina.data.util.UtilNGTest')
-data.setCell(4, 3, 52);
+data.setCell(4, 1, 'testDinaDaoImplConstractor')
+data.setCell(4, 2, 'se.nrm.dina.data.jpa.DinaDaoImplTest')
+data.setCell(4, 3, 105);
 data.setCell(5, 0, 5)
-data.setCell(5, 1, 'testFindById')
-data.setCell(5, 2, 'se.nrm.dina.data.jpa.DinaDaoImplTest')
-data.setCell(5, 3, 39);
+data.setCell(5, 1, 'testIsIntField')
+data.setCell(5, 2, 'se.nrm.dina.data.util.UtilNGTest')
+data.setCell(5, 3, 75);
 data.setCell(6, 0, 6)
-data.setCell(6, 1, 'testFindAllBySearchCriteria')
-data.setCell(6, 2, 'se.nrm.dina.data.logic.DinaDataLogicNGTest')
-data.setCell(6, 3, 39);
+data.setCell(6, 1, 'testConvertClassNameToClass')
+data.setCell(6, 2, 'se.nrm.dina.data.util.UtilNGTest')
+data.setCell(6, 3, 50);
 data.setCell(7, 0, 7)
-data.setCell(7, 1, 'testDelete')
+data.setCell(7, 1, 'testUpdateByJPQL')
 data.setCell(7, 2, 'se.nrm.dina.data.jpa.DinaDaoImplTest')
-data.setCell(7, 3, 29);
+data.setCell(7, 3, 42);
 data.setCell(8, 0, 8)
 data.setCell(8, 1, 'testGetIDFieldName_EntityBean')
 data.setCell(8, 2, 'se.nrm.dina.data.util.UtilNGTest')
-data.setCell(8, 3, 29);
+data.setCell(8, 3, 30);
 data.setCell(9, 0, 9)
-data.setCell(9, 1, 'testFindAllWithConditions')
-data.setCell(9, 2, 'se.nrm.dina.data.jpa.DinaDaoImplTest')
-data.setCell(9, 3, 29);
+data.setCell(9, 1, 'testFindAllBySearchCriteria')
+data.setCell(9, 2, 'se.nrm.dina.data.logic.DinaDataLogicNGTest')
+data.setCell(9, 3, 24);
 data.setCell(10, 0, 10)
-data.setCell(10, 1, 'testIsIntField')
+data.setCell(10, 1, 'testIsFieldsValidFailed')
 data.setCell(10, 2, 'se.nrm.dina.data.util.UtilNGTest')
-data.setCell(10, 3, 28);
+data.setCell(10, 3, 20);
 data.setCell(11, 0, 11)
-data.setCell(11, 1, 'testFindById')
-data.setCell(11, 2, 'se.nrm.dina.data.logic.DinaDataLogicNGTest')
-data.setCell(11, 3, 24);
+data.setCell(11, 1, 'testIsNumric')
+data.setCell(11, 2, 'se.nrm.dina.data.util.UtilNGTest')
+data.setCell(11, 3, 17);
 data.setCell(12, 0, 12)
-data.setCell(12, 1, 'testFindAll_String')
+data.setCell(12, 1, 'testFindAll_7args')
 data.setCell(12, 2, 'se.nrm.dina.data.logic.DinaDataLogicNGTest')
-data.setCell(12, 3, 14);
+data.setCell(12, 3, 17);
 data.setCell(13, 0, 13)
-data.setCell(13, 1, 'testFindByReference')
+data.setCell(13, 1, 'testDelete')
 data.setCell(13, 2, 'se.nrm.dina.data.jpa.DinaDaoImplTest')
-data.setCell(13, 3, 14);
+data.setCell(13, 3, 15);
 data.setCell(14, 0, 14)
-data.setCell(14, 1, 'testGetEntityByJPQL')
+data.setCell(14, 1, 'testFindById')
 data.setCell(14, 2, 'se.nrm.dina.data.jpa.DinaDaoImplTest')
 data.setCell(14, 3, 13);
 data.setCell(15, 0, 15)
-data.setCell(15, 1, 'testCreate')
+data.setCell(15, 1, 'testFindAll')
 data.setCell(15, 2, 'se.nrm.dina.data.jpa.DinaDaoImplTest')
-data.setCell(15, 3, 10);
+data.setCell(15, 3, 13);
 data.setCell(16, 0, 16)
-data.setCell(16, 1, 'testFindEntityCount')
+data.setCell(16, 1, 'testDeleteEntity')
 data.setCell(16, 2, 'se.nrm.dina.data.logic.DinaDataLogicNGTest')
-data.setCell(16, 3, 9);
+data.setCell(16, 3, 11);
 data.setCell(17, 0, 17)
-data.setCell(17, 1, 'testUpdateByJPQL')
+data.setCell(17, 1, 'testFindAllWithConditions')
 data.setCell(17, 2, 'se.nrm.dina.data.jpa.DinaDaoImplTest')
-data.setCell(17, 3, 8);
+data.setCell(17, 3, 11);
 data.setCell(18, 0, 18)
-data.setCell(18, 1, 'testDeleteEntity')
-data.setCell(18, 2, 'se.nrm.dina.data.logic.DinaDataLogicNGTest')
-data.setCell(18, 3, 8);
+data.setCell(18, 1, 'testMerge')
+data.setCell(18, 2, 'se.nrm.dina.data.jpa.DinaDaoImplTest')
+data.setCell(18, 3, 9);
 data.setCell(19, 0, 19)
-data.setCell(19, 1, 'testFindAll_7args')
-data.setCell(19, 2, 'se.nrm.dina.data.logic.DinaDataLogicNGTest')
+data.setCell(19, 1, 'testGetEntityByJPQL')
+data.setCell(19, 2, 'se.nrm.dina.data.jpa.DinaDaoImplTest')
 data.setCell(19, 3, 8);
 data.setCell(20, 0, 20)
-data.setCell(20, 1, 'testMerge')
-data.setCell(20, 2, 'se.nrm.dina.data.jpa.DinaDaoImplTest')
-data.setCell(20, 3, 6);
+data.setCell(20, 1, 'testFailedCreateNewInstance')
+data.setCell(20, 2, 'se.nrm.dina.data.util.UtilNGTest')
+data.setCell(20, 3, 8);
 data.setCell(21, 0, 21)
-data.setCell(21, 1, 'testConvertClassNameToClassException')
+data.setCell(21, 1, 'testIsFieldsValidFailedExpected')
 data.setCell(21, 2, 'se.nrm.dina.data.util.UtilNGTest')
-data.setCell(21, 3, 4);
+data.setCell(21, 3, 6);
 data.setCell(22, 0, 22)
-data.setCell(22, 1, 'testFailedCreateNewInstance')
-data.setCell(22, 2, 'se.nrm.dina.data.util.UtilNGTest')
-data.setCell(22, 3, 2);
+data.setCell(22, 1, 'testFindAll_String')
+data.setCell(22, 2, 'se.nrm.dina.data.logic.DinaDataLogicNGTest')
+data.setCell(22, 3, 5);
 data.setCell(23, 0, 23)
-data.setCell(23, 1, 'testGetIDFieldName_String')
-data.setCell(23, 2, 'se.nrm.dina.data.util.UtilNGTest')
-data.setCell(23, 3, 2);
+data.setCell(23, 1, 'testCreate')
+data.setCell(23, 2, 'se.nrm.dina.data.jpa.DinaDaoImplTest')
+data.setCell(23, 3, 4);
 data.setCell(24, 0, 24)
-data.setCell(24, 1, 'testGetEntity')
-data.setCell(24, 2, 'se.nrm.dina.data.util.UtilNGTest')
-data.setCell(24, 3, 2);
+data.setCell(24, 1, 'testFindByReference')
+data.setCell(24, 2, 'se.nrm.dina.data.jpa.DinaDaoImplTest')
+data.setCell(24, 3, 4);
 data.setCell(25, 0, 25)
-data.setCell(25, 1, 'testMaxLimit')
-data.setCell(25, 2, 'se.nrm.dina.data.util.UtilNGTest')
-data.setCell(25, 3, 2);
+data.setCell(25, 1, 'testFindAllException')
+data.setCell(25, 2, 'se.nrm.dina.data.jpa.DinaDaoImplTest')
+data.setCell(25, 3, 4);
 data.setCell(26, 0, 26)
-data.setCell(26, 1, 'testIsEntity')
+data.setCell(26, 1, 'testGetInstance')
 data.setCell(26, 2, 'se.nrm.dina.data.util.UtilNGTest')
-data.setCell(26, 3, 2);
+data.setCell(26, 3, 3);
 data.setCell(27, 0, 27)
-data.setCell(27, 1, 'testIsIntegerFieldException')
-data.setCell(27, 2, 'se.nrm.dina.data.util.UtilNGTest')
-data.setCell(27, 3, 2);
+data.setCell(27, 1, 'testFindEntityCount')
+data.setCell(27, 2, 'se.nrm.dina.data.logic.DinaDataLogicNGTest')
+data.setCell(27, 3, 3);
 data.setCell(28, 0, 28)
-data.setCell(28, 1, 'testValidateFields')
+data.setCell(28, 1, 'testIsEntityFalse')
 data.setCell(28, 2, 'se.nrm.dina.data.util.UtilNGTest')
 data.setCell(28, 3, 2);
 data.setCell(29, 0, 29)
-data.setCell(29, 1, 'testInvalidateEntityName')
+data.setCell(29, 1, 'testIsEntity')
 data.setCell(29, 2, 'se.nrm.dina.data.util.UtilNGTest')
 data.setCell(29, 3, 2);
 data.setCell(30, 0, 30)
-data.setCell(30, 1, 'testIsEntityFalse')
+data.setCell(30, 1, 'testCreateNewInstance')
 data.setCell(30, 2, 'se.nrm.dina.data.util.UtilNGTest')
 data.setCell(30, 3, 2);
 data.setCell(31, 0, 31)
-data.setCell(31, 1, 'testIsFieldsValidFailedExpected')
+data.setCell(31, 1, 'testGetIDFieldName_String')
 data.setCell(31, 2, 'se.nrm.dina.data.util.UtilNGTest')
-data.setCell(31, 3, 1);
+data.setCell(31, 3, 2);
 data.setCell(32, 0, 32)
-data.setCell(32, 1, 'testIsEntityFalseException')
+data.setCell(32, 1, 'testInvalidateEntityName')
 data.setCell(32, 2, 'se.nrm.dina.data.util.UtilNGTest')
-data.setCell(32, 3, 1);
+data.setCell(32, 3, 2);
 data.setCell(33, 0, 33)
-data.setCell(33, 1, 'testIsIntFieldFalse')
+data.setCell(33, 1, 'testConvertClassNameToClassException')
 data.setCell(33, 2, 'se.nrm.dina.data.util.UtilNGTest')
-data.setCell(33, 3, 1);
+data.setCell(33, 3, 2);
 data.setCell(34, 0, 34)
-data.setCell(34, 1, 'testIsCollection')
+data.setCell(34, 1, 'testIsIntFieldFalse')
 data.setCell(34, 2, 'se.nrm.dina.data.util.UtilNGTest')
 data.setCell(34, 3, 1);
 data.setCell(35, 0, 35)
-data.setCell(35, 1, 'testGetInstance')
+data.setCell(35, 1, 'testReformClassNameEmptyName')
 data.setCell(35, 2, 'se.nrm.dina.data.util.UtilNGTest')
 data.setCell(35, 3, 1);
 data.setCell(36, 0, 36)
-data.setCell(36, 1, 'testReformClassNameEmptyName')
+data.setCell(36, 1, 'testIsEntityFalseException')
 data.setCell(36, 2, 'se.nrm.dina.data.util.UtilNGTest')
 data.setCell(36, 3, 1);
 data.setCell(37, 0, 37)
-data.setCell(37, 1, 'testIsIntegerField')
+data.setCell(37, 1, 'testReformClassName')
 data.setCell(37, 2, 'se.nrm.dina.data.util.UtilNGTest')
 data.setCell(37, 3, 1);
 data.setCell(38, 0, 38)
-data.setCell(38, 1, 'testConvertClassNameToClass')
+data.setCell(38, 1, 'testValidateEntityName')
 data.setCell(38, 2, 'se.nrm.dina.data.util.UtilNGTest')
 data.setCell(38, 3, 1);
 data.setCell(39, 0, 39)
-data.setCell(39, 1, 'testIsFieldsValidFailed')
+data.setCell(39, 1, 'testValidateFields')
 data.setCell(39, 2, 'se.nrm.dina.data.util.UtilNGTest')
-data.setCell(39, 3, 1);
+data.setCell(39, 3, 0);
 data.setCell(40, 0, 40)
-data.setCell(40, 1, 'testCreateNewInstance')
+data.setCell(40, 1, 'testMaxLimit')
 data.setCell(40, 2, 'se.nrm.dina.data.util.UtilNGTest')
 data.setCell(40, 3, 0);
 data.setCell(41, 0, 41)
-data.setCell(41, 1, 'testValidateEntityName')
+data.setCell(41, 1, 'testIsIntegerFieldException')
 data.setCell(41, 2, 'se.nrm.dina.data.util.UtilNGTest')
 data.setCell(41, 3, 0);
+data.setCell(42, 0, 42)
+data.setCell(42, 1, 'testIsIntegerField')
+data.setCell(42, 2, 'se.nrm.dina.data.util.UtilNGTest')
+data.setCell(42, 3, 0);
+data.setCell(43, 0, 43)
+data.setCell(43, 1, 'testGetEntity')
+data.setCell(43, 2, 'se.nrm.dina.data.util.UtilNGTest')
+data.setCell(43, 3, 0);
+data.setCell(44, 0, 44)
+data.setCell(44, 1, 'testIsCollection')
+data.setCell(44, 2, 'se.nrm.dina.data.util.UtilNGTest')
+data.setCell(44, 3, 0);
 window.suiteTableData['Surefire_suite']= { tableData: data, tableDiv: 'times-div-Surefire_suite'}
 return data;
 }
@@ -891,180 +980,194 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">se.nrm.dina.data.jpa.DinaDaoImplTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">se.nrm.dina.data.util.UtilNGTest</div> <!-- chronological-class-name -->
               <div class="test-method">
-                <span class="method-name">testFindAll</span>
+                <span class="method-name">testConvertClassNameToClass</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
-                <span class="method-name">testFindAllWithConditions</span>
-                <span class="method-start">533 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <span class="method-name">testFindById</span>
-                <span class="method-start">563 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <span class="method-name">testFindByReference</span>
-                <span class="method-start">603 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <span class="method-name">testCreate</span>
-                <span class="method-start">628 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <span class="method-name">testMerge</span>
-                <span class="method-start">639 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <span class="method-name">testUpdateByJPQL</span>
-                <span class="method-start">645 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <span class="method-name">testDelete</span>
-                <span class="method-start">655 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <span class="method-name">testGetEntityByJPQL</span>
-                <span class="method-start">695 ms</span>
-              </div> <!-- test-method -->
-            </div> <!-- chronological-class -->
-            <div class="chronological-class">
-              <div class="chronological-class-name">se.nrm.dina.data.util.UtilNGTest</div> <!-- chronological-class-name -->
-              <div class="test-method">
-                <span class="method-name">testGetInstance</span>
-                <span class="method-start">752 ms</span>
+                <span class="method-name">testConvertClassNameToClassException</span>
+                <span class="method-start">50 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testReformClassName</span>
-                <span class="method-start">753 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <span class="method-name">testConvertClassNameToClass</span>
-                <span class="method-start">805 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <span class="method-name">testConvertClassNameToClassException</span>
-                <span class="method-start">807 ms</span>
+                <span class="method-start">52 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testReformClassNameEmptyName</span>
-                <span class="method-start">812 ms</span>
+                <span class="method-start">53 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testCreateNewInstance</span>
-                <span class="method-start">814 ms</span>
+                <span class="method-start">54 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testFailedCreateNewInstance</span>
-                <span class="method-start">815 ms</span>
+                <span class="method-start">58 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testValidateEntityName</span>
-                <span class="method-start">819 ms</span>
+                <span class="method-start">67 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testInvalidateEntityName</span>
-                <span class="method-start">820 ms</span>
+                <span class="method-start">69 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testIsFieldsValid</span>
-                <span class="method-start">822 ms</span>
+                <span class="method-start">72 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testIsFieldsValidFailed</span>
-                <span class="method-start">1005 ms</span>
+                <span class="method-start">209 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testIsFieldsValidFailedExpected</span>
-                <span class="method-start">1007 ms</span>
+                <span class="method-start">231 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testIsIntField</span>
-                <span class="method-start">1008 ms</span>
+                <span class="method-start">243 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testIsIntFieldFalse</span>
-                <span class="method-start">1036 ms</span>
+                <span class="method-start">319 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testIsIntegerFieldException</span>
-                <span class="method-start">1037 ms</span>
+                <span class="method-start">321 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testIsIntegerField</span>
-                <span class="method-start">1040 ms</span>
+                <span class="method-start">322 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testIsEntity</span>
-                <span class="method-start">1041 ms</span>
+                <span class="method-start">323 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testIsEntityFalse</span>
-                <span class="method-start">1044 ms</span>
+                <span class="method-start">327 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testIsEntityFalseException</span>
-                <span class="method-start">1047 ms</span>
+                <span class="method-start">329 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testIsCollection</span>
-                <span class="method-start">1049 ms</span>
+                <span class="method-start">331 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testGetEntity</span>
-                <span class="method-start">1050 ms</span>
+                <span class="method-start">332 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testValidateFields</span>
-                <span class="method-start">1053 ms</span>
+                <span class="method-start">333 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testGetIDFieldName_EntityBean</span>
-                <span class="method-start">1055 ms</span>
+                <span class="method-start">334 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testGetIDFieldName_String</span>
-                <span class="method-start">1085 ms</span>
+                <span class="method-start">365 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testIsNumric</span>
+                <span class="method-start">367 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetInstance</span>
+                <span class="method-start">385 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testMaxLimit</span>
-                <span class="method-start">1087 ms</span>
+                <span class="method-start">385 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">se.nrm.dina.data.logic.DinaDataLogicNGTest</div> <!-- chronological-class-name -->
               <div class="test-method">
+                <span class="method-name">testFindById</span>
+                <span class="method-start">516 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
                 <span class="method-name">testFindAll_String</span>
-                <span class="method-start">1101 ms</span>
+                <span class="method-start">1076 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testFindAll_7args</span>
-                <span class="method-start">1116 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <span class="method-name">testUpdateEntity</span>
-                <span class="method-start">1124 ms</span>
-              </div> <!-- test-method -->
-              <div class="test-method">
-                <span class="method-name">testDeleteEntity</span>
-                <span class="method-start">4828 ms</span>
+                <span class="method-start">1082 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testFindAllBySearchCriteria</span>
-                <span class="method-start">4837 ms</span>
+                <span class="method-start">1100 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testFindEntityCount</span>
-                <span class="method-start">4876 ms</span>
+                <span class="method-start">1125 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testCreateEntity</span>
-                <span class="method-start">4885 ms</span>
+                <span class="method-start">1128 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testUpdateEntity</span>
+                <span class="method-start">5053 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testDeleteEntity</span>
+                <span class="method-start">6254 ms</span>
+              </div> <!-- test-method -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">se.nrm.dina.data.jpa.DinaDaoImplTest</div> <!-- chronological-class-name -->
+              <div class="test-method">
+                <span class="method-name">testDinaDaoImplConstractor</span>
+                <span class="method-start">6283 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testFindAll</span>
+                <span class="method-start">6389 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <img src="failed.png">
+                </img>
+                <span class="method-name">testFindAllException</span>
+                <span class="method-start">6402 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testFindAllWithConditions</span>
+                <span class="method-start">6428 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">testFindById</span>
-                <span class="method-start">6245 ms</span>
+                <span class="method-start">6439 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testFindByReference</span>
+                <span class="method-start">6453 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testCreate</span>
+                <span class="method-start">6458 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testMerge</span>
+                <span class="method-start">6462 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testUpdateByJPQL</span>
+                <span class="method-start">6473 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testDelete</span>
+                <span class="method-start">6517 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">testGetEntityByJPQL</span>
+                <span class="method-start">6536 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
