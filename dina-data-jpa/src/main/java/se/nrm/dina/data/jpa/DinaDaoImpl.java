@@ -249,13 +249,14 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
      * entity properties with invalid values.
      *
      * @param e
+     * @return 
      */
     private String handleConstraintViolation(ConstraintViolationException e) {
 
         StringBuilder sb = new StringBuilder();
 
         Set<ConstraintViolation<?>> cvs = e.getConstraintViolations();
-        cvs.stream().map((cv) -> {
+        cvs.stream().map((cv) -> { 
             logger.info("------------------------------------------------");
             return cv;
         }).map((cv) -> {

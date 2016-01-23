@@ -80,11 +80,11 @@ public class DinaDaoImpl&lt;T extends EntityBean&gt; implements DinaDao&lt;T&gt;
  
          // Entity has no version can not have Optimistic lock
 <span class="fc bfc" id="L82" title="All 2 branches covered.">        if (clazz.getSimpleName().equals(Recordsetitem.class.getSimpleName())</span>
-<span class="pc bpc" id="L83" title="1 of 2 branches missed.">                || clazz.getSimpleName().equals(Sppermission.class.getSimpleName())</span>
-<span class="pc bpc" id="L84" title="1 of 2 branches missed.">                || clazz.getSimpleName().equals(Workbenchrow.class.getSimpleName())</span>
-<span class="pc bpc" id="L85" title="1 of 2 branches missed.">                || clazz.getSimpleName().equals(Workbenchdataitem.class.getSimpleName())</span>
-<span class="pc bpc" id="L86" title="1 of 2 branches missed.">                || clazz.getSimpleName().equals(Workbenchrowimage.class.getSimpleName())</span>
-<span class="pc bpc" id="L87" title="1 of 2 branches missed.">                || clazz.getSimpleName().equals(Geoname.class.getSimpleName())) {</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">                || clazz.getSimpleName().equals(Sppermission.class.getSimpleName())</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">                || clazz.getSimpleName().equals(Workbenchrow.class.getSimpleName())</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">                || clazz.getSimpleName().equals(Workbenchdataitem.class.getSimpleName())</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">                || clazz.getSimpleName().equals(Workbenchrowimage.class.getSimpleName())</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">                || clazz.getSimpleName().equals(Geoname.class.getSimpleName())) {</span>
 
 <span class="fc" id="L89">            return entityManager.find(clazz, id, LockModeType.PESSIMISTIC_WRITE);</span>
         }
@@ -113,8 +113,8 @@ public class DinaDaoImpl&lt;T extends EntityBean&gt; implements DinaDao&lt;T&gt;
 <span class="fc" id="L113">        } catch (OptimisticLockException ex) { </span>
 <span class="fc" id="L114">            entityManager.refresh(tmp);</span>
 <span class="fc" id="L115">            logger.warn(ex.getMessage());</span>
-<span class="nc" id="L116">        } catch(Exception e) {</span>
-<span class="nc" id="L117">            logger.warn(e.getMessage()); </span>
+<span class="fc" id="L116">        } catch(Exception e) {</span>
+<span class="fc" id="L117">            logger.warn(e.getMessage()); </span>
 <span class="fc" id="L118">        }  </span>
 <span class="fc" id="L119">        return tmp; </span>
     }
@@ -234,8 +234,8 @@ public class DinaDaoImpl&lt;T extends EntityBean&gt; implements DinaDao&lt;T&gt;
 <span class="fc" id="L234">                        String fieldName = entry.getKey();</span>
 <span class="fc bfc" id="L235" title="All 2 branches covered.">                        if (Util.getInstance().isIntField(clazz, fieldName)) {</span>
 <span class="fc" id="L236">                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));</span>
-<span class="pc bpc" id="L237" title="1 of 2 branches missed.">                        } else if (Util.getInstance().isEntity(clazz, fieldName)) {</span>
-<span class="nc" id="L238">                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));</span>
+<span class="fc bfc" id="L237" title="All 2 branches covered.">                        } else if (Util.getInstance().isEntity(clazz, fieldName)) {</span>
+<span class="fc" id="L238">                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));</span>
                         } else {
 <span class="fc" id="L240">                            query.setParameter((String) entry.getKey(), entry.getValue());</span>
                         }
@@ -249,51 +249,52 @@ public class DinaDaoImpl&lt;T extends EntityBean&gt; implements DinaDao&lt;T&gt;
      * entity properties with invalid values.
      *
      * @param e
+     * @return 
      */
     private String handleConstraintViolation(ConstraintViolationException e) {
 
-<span class="fc" id="L255">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L256">        StringBuilder sb = new StringBuilder();</span>
 
-<span class="fc" id="L257">        Set&lt;ConstraintViolation&lt;?&gt;&gt; cvs = e.getConstraintViolations();</span>
-<span class="fc" id="L258">        cvs.stream().map((cv) -&gt; {</span>
-<span class="nc" id="L259">            logger.info(&quot;------------------------------------------------&quot;);</span>
-<span class="nc" id="L260">            return cv;</span>
-<span class="fc" id="L261">        }).map((cv) -&gt; {</span>
-<span class="nc" id="L262">            logger.info(&quot;Violation: {}&quot;, cv.getMessage());</span>
-<span class="nc" id="L263">            return cv;</span>
-<span class="fc" id="L264">        }).map((cv) -&gt; {</span>
-<span class="nc" id="L265">            sb.append(&quot;Violation:&quot;);</span>
-<span class="nc" id="L266">            sb.append(cv.getMessage());</span>
-<span class="nc" id="L267">            return cv;</span>
-<span class="fc" id="L268">        }).map((cv) -&gt; {</span>
-<span class="nc" id="L269">            logger.info(&quot;Entity: {}&quot;, cv.getRootBeanClass().getSimpleName());</span>
-<span class="nc" id="L270">            return cv;</span>
-<span class="fc" id="L271">        }).map((cv) -&gt; {</span>
-<span class="nc" id="L272">            sb.append(&quot; - Entity: &quot;);</span>
-<span class="nc" id="L273">            sb.append(cv.getRootBeanClass().getSimpleName());</span>
-<span class="nc" id="L274">            return cv;</span>
-<span class="fc" id="L275">        }).map((cv) -&gt; {</span>
-<span class="nc bnc" id="L276" title="All 4 branches missed.">            if (cv.getLeafBean() != null &amp;&amp; cv.getRootBean() != cv.getLeafBean()) {</span>
-<span class="nc" id="L277">                logger.info(&quot;Embeddable: {}&quot;, cv.getLeafBean().getClass().getSimpleName());</span>
-<span class="nc" id="L278">                sb.append(&quot; - Embeddable: &quot;);</span>
-<span class="nc" id="L279">                sb.append(cv.getLeafBean().getClass().getSimpleName());</span>
+<span class="fc" id="L258">        Set&lt;ConstraintViolation&lt;?&gt;&gt; cvs = e.getConstraintViolations();</span>
+<span class="fc" id="L259">        cvs.stream().map((cv) -&gt; { </span>
+<span class="nc" id="L260">            logger.info(&quot;------------------------------------------------&quot;);</span>
+<span class="nc" id="L261">            return cv;</span>
+<span class="fc" id="L262">        }).map((cv) -&gt; {</span>
+<span class="nc" id="L263">            logger.info(&quot;Violation: {}&quot;, cv.getMessage());</span>
+<span class="nc" id="L264">            return cv;</span>
+<span class="fc" id="L265">        }).map((cv) -&gt; {</span>
+<span class="nc" id="L266">            sb.append(&quot;Violation:&quot;);</span>
+<span class="nc" id="L267">            sb.append(cv.getMessage());</span>
+<span class="nc" id="L268">            return cv;</span>
+<span class="fc" id="L269">        }).map((cv) -&gt; {</span>
+<span class="nc" id="L270">            logger.info(&quot;Entity: {}&quot;, cv.getRootBeanClass().getSimpleName());</span>
+<span class="nc" id="L271">            return cv;</span>
+<span class="fc" id="L272">        }).map((cv) -&gt; {</span>
+<span class="nc" id="L273">            sb.append(&quot; - Entity: &quot;);</span>
+<span class="nc" id="L274">            sb.append(cv.getRootBeanClass().getSimpleName());</span>
+<span class="nc" id="L275">            return cv;</span>
+<span class="fc" id="L276">        }).map((cv) -&gt; {</span>
+<span class="nc bnc" id="L277" title="All 4 branches missed.">            if (cv.getLeafBean() != null &amp;&amp; cv.getRootBean() != cv.getLeafBean()) {</span>
+<span class="nc" id="L278">                logger.info(&quot;Embeddable: {}&quot;, cv.getLeafBean().getClass().getSimpleName());</span>
+<span class="nc" id="L279">                sb.append(&quot; - Embeddable: &quot;);</span>
+<span class="nc" id="L280">                sb.append(cv.getLeafBean().getClass().getSimpleName());</span>
             }
-<span class="nc" id="L281">            return cv;</span>
-<span class="fc" id="L282">        }).map((cv) -&gt; {</span>
-<span class="nc" id="L283">            logger.info(&quot;Attribute: {}&quot;, cv.getPropertyPath());</span>
-<span class="nc" id="L284">            return cv;</span>
-<span class="fc" id="L285">        }).map((cv) -&gt; {</span>
-<span class="nc" id="L286">            sb.append(&quot; - Attribute: &quot;);</span>
-<span class="nc" id="L287">            sb.append(cv.getPropertyPath());</span>
-<span class="nc" id="L288">            return cv;</span>
-<span class="fc" id="L289">        }).map((cv) -&gt; {</span>
-<span class="nc" id="L290">            logger.info(&quot;Invalid value: {}&quot;, cv.getInvalidValue());</span>
-<span class="nc" id="L291">            return cv;</span>
-<span class="fc" id="L292">        }).forEach((cv) -&gt; {</span>
-<span class="nc" id="L293">            sb.append(&quot; - Invalid value: &quot;);</span>
-<span class="nc" id="L294">            sb.append(cv.getInvalidValue());</span>
-<span class="nc" id="L295">        });</span>
-<span class="fc" id="L296">        return sb.toString();</span>
+<span class="nc" id="L282">            return cv;</span>
+<span class="fc" id="L283">        }).map((cv) -&gt; {</span>
+<span class="nc" id="L284">            logger.info(&quot;Attribute: {}&quot;, cv.getPropertyPath());</span>
+<span class="nc" id="L285">            return cv;</span>
+<span class="fc" id="L286">        }).map((cv) -&gt; {</span>
+<span class="nc" id="L287">            sb.append(&quot; - Attribute: &quot;);</span>
+<span class="nc" id="L288">            sb.append(cv.getPropertyPath());</span>
+<span class="nc" id="L289">            return cv;</span>
+<span class="fc" id="L290">        }).map((cv) -&gt; {</span>
+<span class="nc" id="L291">            logger.info(&quot;Invalid value: {}&quot;, cv.getInvalidValue());</span>
+<span class="nc" id="L292">            return cv;</span>
+<span class="fc" id="L293">        }).forEach((cv) -&gt; {</span>
+<span class="nc" id="L294">            sb.append(&quot; - Invalid value: &quot;);</span>
+<span class="nc" id="L295">            sb.append(cv.getInvalidValue());</span>
+<span class="nc" id="L296">        });</span>
+<span class="fc" id="L297">        return sb.toString();</span>
     } 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

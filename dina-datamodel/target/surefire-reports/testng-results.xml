@@ -2,24 +2,24 @@
 <testng-results skipped="0" failed="0" total="2" passed="2">
   <reporter-output>
   </reporter-output>
-  <suite name="Surefire suite" duration-ms="200" started-at="2016-01-23T13:02:18Z" finished-at="2016-01-23T13:02:18Z">
+  <suite name="Surefire suite" duration-ms="104" started-at="2016-01-23T14:02:54Z" finished-at="2016-01-23T14:02:54Z">
     <groups>
     </groups>
-    <test name="Surefire test" duration-ms="200" started-at="2016-01-23T13:02:18Z" finished-at="2016-01-23T13:02:18Z">
+    <test name="Surefire test" duration-ms="104" started-at="2016-01-23T14:02:54Z" finished-at="2016-01-23T14:02:54Z">
       <class name="se.nrm.dina.datamodel.util.UtilNGTest">
-        <test-method status="PASS" signature="setUpClass()[pri:0, instance:se.nrm.dina.datamodel.util.UtilNGTest@589b028e]" name="setUpClass" is-config="true" duration-ms="50" started-at="2016-01-23T14:02:18Z" finished-at="2016-01-23T14:02:18Z">
+        <test-method status="PASS" signature="setUpClass()[pri:0, instance:se.nrm.dina.datamodel.util.UtilNGTest@589b028e]" name="setUpClass" is-config="true" duration-ms="37" started-at="2016-01-23T15:02:54Z" finished-at="2016-01-23T15:02:54Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method status="PASS" signature="testGetInstance()[pri:0, instance:se.nrm.dina.datamodel.util.UtilNGTest@589b028e]" name="testGetInstance" duration-ms="17" started-at="2016-01-23T14:02:18Z" finished-at="2016-01-23T14:02:18Z">
+        <test-method status="PASS" signature="testGetInstance()[pri:0, instance:se.nrm.dina.datamodel.util.UtilNGTest@589b028e]" name="testGetInstance" duration-ms="15" started-at="2016-01-23T15:02:54Z" finished-at="2016-01-23T15:02:54Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetInstance -->
-        <test-method status="PASS" signature="testGetURLLink()[pri:0, instance:se.nrm.dina.datamodel.util.UtilNGTest@589b028e]" name="testGetURLLink" duration-ms="2" started-at="2016-01-23T14:02:18Z" finished-at="2016-01-23T14:02:18Z">
+        <test-method status="PASS" signature="testGetURLLink()[pri:0, instance:se.nrm.dina.datamodel.util.UtilNGTest@589b028e]" name="testGetURLLink" duration-ms="4" started-at="2016-01-23T15:02:54Z" finished-at="2016-01-23T15:02:54Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetURLLink -->
-        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:se.nrm.dina.datamodel.util.UtilNGTest@589b028e]" name="tearDownClass" is-config="true" duration-ms="0" started-at="2016-01-23T14:02:18Z" finished-at="2016-01-23T14:02:18Z">
+        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:se.nrm.dina.datamodel.util.UtilNGTest@589b028e]" name="tearDownClass" is-config="true" duration-ms="9" started-at="2016-01-23T15:02:54Z" finished-at="2016-01-23T15:02:54Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->

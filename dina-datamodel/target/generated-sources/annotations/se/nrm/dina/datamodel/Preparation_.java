@@ -16,7 +16,7 @@ import se.nrm.dina.datamodel.Preparationattribute;
 import se.nrm.dina.datamodel.Preptype;
 import se.nrm.dina.datamodel.Storage;
 
-@Generated(value="EclipseLink-2.7.0.v20160122-rNA", date="2016-01-23T14:02:07")
+@Generated(value="EclipseLink-2.7.0.v20160122-rNA", date="2016-01-23T15:02:45")
 @StaticMetamodel(Preparation.class)
 public class Preparation_ extends BaseEntity_ {
 

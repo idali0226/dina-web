@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.LockModeType;
 import javax.persistence.NoResultException;
@@ -16,7 +17,11 @@ import javax.persistence.NonUniqueResultException;
 import javax.persistence.OptimisticLockException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException; 
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory; 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +39,12 @@ import static org.testng.Assert.fail;
 import se.nrm.dina.data.exceptions.DinaException;
 import se.nrm.dina.datamodel.Accession;
 import se.nrm.dina.datamodel.EntityBean;
+import se.nrm.dina.datamodel.Geoname;
 import se.nrm.dina.datamodel.Recordsetitem;
+import se.nrm.dina.datamodel.Sppermission;
+import se.nrm.dina.datamodel.Workbenchdataitem;
+import se.nrm.dina.datamodel.Workbenchrow;
+import se.nrm.dina.datamodel.Workbenchrowimage;
 
 /**
  *
@@ -148,6 +158,7 @@ public class DinaDaoImplTest {
         Map<String, String> conditions = new HashMap();
         conditions.put("accessionNumber", "12345");
         conditions.put("accessionID", "5");
+        conditions.put("divisionID", "5");
         
         when(entityManager.createQuery(strQuery)).thenReturn(query);
         when(query.setMaxResults(limit)).thenReturn(query);
@@ -241,6 +252,92 @@ public class DinaDaoImplTest {
         assertSame(rt, result);
     }
 
+    /**
+     * Test of findById method, of class DinaDaoImpl.
+     *
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testFindByIdForNoVisionEntities1() throws Exception {
+        System.out.println("testFindByIdForNoVisionEntities");
+        
+        Sppermission sp = new Sppermission();
+        when(entityManager.find(Sppermission.class, 20, LockModeType.PESSIMISTIC_WRITE)).thenReturn(sp);
+        
+        EntityBean result = dao.findById(20, Sppermission.class);
+        verify(entityManager).find(Sppermission.class, 20, LockModeType.PESSIMISTIC_WRITE);
+        assertSame(sp, result);
+    }
+    
+    /**
+     * Test of findById method, of class DinaDaoImpl.
+     *
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testFindByIdForNoVisionEntities2() throws Exception {
+        System.out.println("testFindByIdForNoVisionEntities");
+        
+        Workbenchrow wb = new Workbenchrow();
+        when(entityManager.find(Workbenchrow.class, 20, LockModeType.PESSIMISTIC_WRITE)).thenReturn(wb);
+        
+        EntityBean result = dao.findById(20, Workbenchrow.class);
+        verify(entityManager).find(Workbenchrow.class, 20, LockModeType.PESSIMISTIC_WRITE);
+        assertSame(wb, result);
+    }
+
+    /**
+     * Test of findById method, of class DinaDaoImpl.
+     *
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testFindByIdForNoVisionEntities3() throws Exception {
+        System.out.println("testFindByIdForNoVisionEntities");
+        
+        Workbenchdataitem wb = new Workbenchdataitem();
+        when(entityManager.find(Workbenchdataitem.class, 20, LockModeType.PESSIMISTIC_WRITE)).thenReturn(wb);
+        
+        EntityBean result = dao.findById(20, Workbenchdataitem.class);
+        verify(entityManager).find(Workbenchdataitem.class, 20, LockModeType.PESSIMISTIC_WRITE);
+        assertSame(wb, result);
+    }
+    
+    /**
+     * Test of findById method, of class DinaDaoImpl.
+     *
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testFindByIdForNoVisionEntities4() throws Exception {
+        System.out.println("testFindByIdForNoVisionEntities");
+        
+        Workbenchrowimage wb = new Workbenchrowimage();
+        when(entityManager.find(Workbenchrowimage.class, 20, LockModeType.PESSIMISTIC_WRITE)).thenReturn(wb);
+        
+        EntityBean result = dao.findById(20, Workbenchrowimage.class);
+        verify(entityManager).find(Workbenchrowimage.class, 20, LockModeType.PESSIMISTIC_WRITE);
+        assertSame(wb, result);
+    }
+    
+    /**
+     * Test of findById method, of class DinaDaoImpl.
+     *
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testFindByIdForNoVisionEntities5() throws Exception {
+        System.out.println("testFindByIdForNoVisionEntities");
+        
+        Geoname g = new Geoname();
+        when(entityManager.find(Geoname.class, 20, LockModeType.PESSIMISTIC_WRITE)).thenReturn(g);
+        
+        EntityBean result = dao.findById(20, Geoname.class);
+        verify(entityManager).find(Geoname.class, 20, LockModeType.PESSIMISTIC_WRITE);
+        assertSame(g, result);
+    }
+ 
+
     @Test
     public void testFindByStringId() throws Exception {
         System.out.println("testFindByStringId");
@@ -270,7 +367,7 @@ public class DinaDaoImplTest {
     public void testFindByStringIdFailure2() throws Exception {
         System.out.println("testFindByStringId");
 
-        doThrow(mock(DinaException.class)).when(entityManager).find(Accession.class, 20, LockModeType.OPTIMISTIC);
+        doThrow(mock(DinaException.class)).when(entityManager).find(Accession.class, "20", LockModeType.NONE);
         EntityBean result = dao.findByStringId("20", Accession.class);
         assertNull(result); 
         verify(entityManager).find(Accession.class, "20", LockModeType.NONE); 
@@ -376,13 +473,19 @@ public class DinaDaoImplTest {
     @Test
     public void testMergeFailure2() throws Exception {
         System.out.println("merge");
-
+ 
         accession1.setAccessionNumber("acc00060");
        
-        doThrow(mock(ConstraintViolationException.class)).when(entityManager).merge(accession1);
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+ 
+        Set<ConstraintViolation<Accession>> constraintViolations = validator.validate(accession1);
+        ConstraintViolationException ce = new ConstraintViolationException(constraintViolations);
+         
+        when(entityManager.merge(accession1)).thenThrow(ce);
         try {
             dao.merge(accession1);
-            fail("Expected a DinaException to be thrown");
+            fail("Expected a DinaException to be thrown");  
         } catch(DinaException e) {
             verify(entityManager).merge(accession1);
             verify(entityManager, times(0)).flush(); 
@@ -578,9 +681,10 @@ public class DinaDaoImplTest {
         verify(query).getSingleResult();
         assertEquals(result, 0);
     }
+ 
 
     private void preparaTestData() {
-        
+
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT a From Accession a ");        
         sb.append("WHERE a.accessionID");        
