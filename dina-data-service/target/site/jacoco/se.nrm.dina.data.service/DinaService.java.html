@@ -41,14 +41,14 @@ import se.nrm.dina.data.logic.DinaDataLogic;
 @Stateless
 public class DinaService {
 
-<span class="pc" id="L44">    private final Logger logger = LoggerFactory.getLogger(this.getClass());</span>
+<span class="fc" id="L44">    private final Logger logger = LoggerFactory.getLogger(this.getClass());</span>
 
     @EJB
     private DinaDataLogic logic;
     
-<span class="nc" id="L49">    public DinaService() {</span>
+<span class="fc" id="L49">    public DinaService() {</span>
         
-<span class="nc" id="L51">    }</span>
+<span class="fc" id="L51">    }</span>
     
 <span class="fc" id="L53">    public DinaService(DinaDataLogic logic) {</span>
 <span class="fc" id="L54">        this.logic = logic;</span>
@@ -79,14 +79,14 @@ public class DinaService {
 <span class="fc" id="L79">        logger.info(&quot;getAllByEntityName : {} -- {}&quot;, entity, offset + &quot; -- &quot; + limit);</span>
 
 <span class="fc" id="L81">        List&lt;String&gt; sort = new ArrayList();</span>
-<span class="pc bpc" id="L82" title="1 of 2 branches missed.">        if(orderby != null) {</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        if(orderby != null) {</span>
 <span class="fc" id="L83">            sort = Arrays.asList(StringUtils.split(orderby, &quot;,&quot;));</span>
         }
       
         try {   
 <span class="fc" id="L87">            return Response.ok(logic.findAll(entity, offset, limit, minid, maxid, sort, null)).build();</span>
-<span class="nc" id="L88">        } catch(DinaException e) {</span>
-<span class="nc" id="L89">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
+<span class="fc" id="L88">        } catch(DinaException e) {</span>
+<span class="fc" id="L89">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
         }   
     }
 
@@ -106,8 +106,8 @@ public class DinaService {
 
         try {
 <span class="fc" id="L108">            return Response.ok(logic.findAllBySearchCriteria(entity, map)).build();  </span>
-<span class="nc" id="L109">        } catch(DinaException e) {</span>
-<span class="nc" id="L110">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
+<span class="fc" id="L109">        } catch(DinaException e) {</span>
+<span class="fc" id="L110">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
         }  
     }
     
@@ -128,8 +128,8 @@ public class DinaService {
    
         try {     
 <span class="fc" id="L130">            return Response.ok(logic.findById(id, entity)).build(); </span>
-<span class="nc" id="L131">        } catch (DinaException e) {</span>
-<span class="nc" id="L132">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
+<span class="fc" id="L131">        } catch (DinaException e) {</span>
+<span class="fc" id="L132">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
         }
     }
 
@@ -151,8 +151,8 @@ public class DinaService {
         try {  
 <span class="fc" id="L152">            int count = logic.findEntityCount(entity);  </span>
 <span class="fc" id="L153">            return Response.ok(String.valueOf(count)).build(); </span>
-<span class="nc" id="L154">        } catch(DinaException e) { </span>
-<span class="nc" id="L155">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
+<span class="fc" id="L154">        } catch(DinaException e) { </span>
+<span class="fc" id="L155">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
         }  
     }
     
@@ -175,8 +175,8 @@ public class DinaService {
  
         try {  
 <span class="fc" id="L177">            return Response.ok(logic.createEntity(entity, json)).build();</span>
-<span class="nc" id="L178">         } catch(DinaException e) { </span>
-<span class="nc" id="L179">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
+<span class="fc" id="L178">         } catch(DinaException e) { </span>
+<span class="fc" id="L179">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
         }  
     }
 
@@ -197,8 +197,8 @@ public class DinaService {
         
          try {  
 <span class="fc" id="L199">            return Response.ok(logic.updateEntity(entity, json)).build(); </span>
-<span class="nc" id="L200">         } catch(DinaException e) { </span>
-<span class="nc" id="L201">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
+<span class="fc" id="L200">         } catch(DinaException e) { </span>
+<span class="fc" id="L201">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
         }  
     }
     
@@ -224,8 +224,8 @@ public class DinaService {
 <span class="fc" id="L224">            logic.deleteEntity(entity, id);   </span>
 <span class="fc" id="L225">            Response.ResponseBuilder rb = Response.ok(); </span>
 <span class="fc" id="L226">            return rb.build(); </span>
-<span class="nc" id="L227">        } catch(DinaException e) {  </span>
-<span class="nc" id="L228">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
+<span class="fc" id="L227">        } catch(DinaException e) {  </span>
+<span class="fc" id="L228">            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();</span>
         }  
     } 
 }

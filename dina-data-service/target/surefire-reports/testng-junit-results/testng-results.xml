@@ -1,40 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="7" passed="7">
+<testng-results skipped="0" failed="0" total="16" passed="16">
   <reporter-output>
   </reporter-output>
-  <suite name="Surefire suite" duration-ms="2192" started-at="2016-01-22T17:54:06Z" finished-at="2016-01-22T17:54:09Z">
+  <suite name="Surefire suite" duration-ms="4572" started-at="2016-01-23T13:02:47Z" finished-at="2016-01-23T13:02:52Z">
     <groups>
     </groups>
-    <test name="Surefire test" duration-ms="2192" started-at="2016-01-22T17:54:06Z" finished-at="2016-01-22T17:54:09Z">
+    <test name="Surefire test" duration-ms="4572" started-at="2016-01-23T13:02:47Z" finished-at="2016-01-23T13:02:52Z">
       <class name="se.nrm.dina.data.service.DinaServiceNGTest">
-        <test-method status="PASS" signature="testGetAllByEntityName()[pri:0, instance:testGetAllByEntityName(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testGetAllByEntityName" duration-ms="1583" started-at="2016-01-22T18:54:07Z" finished-at="2016-01-22T18:54:08Z">
+        <test-method status="PASS" signature="testDinaServiceConstractor()[pri:0, instance:testDinaServiceConstractor(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testDinaServiceConstractor" duration-ms="2015" started-at="2016-01-23T14:02:47Z" finished-at="2016-01-23T14:02:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDinaServiceConstractor -->
+        <test-method status="PASS" signature="testGetAllByEntityName()[pri:0, instance:testGetAllByEntityName(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testGetAllByEntityName" duration-ms="1203" started-at="2016-01-23T14:02:49Z" finished-at="2016-01-23T14:02:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetAllByEntityName -->
-        <test-method status="PASS" signature="testGetData()[pri:0, instance:testGetData(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testGetData" duration-ms="46" started-at="2016-01-22T18:54:08Z" finished-at="2016-01-22T18:54:08Z">
+        <test-method status="PASS" signature="testGetAllByEntityName2()[pri:0, instance:testGetAllByEntityName2(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testGetAllByEntityName2" duration-ms="96" started-at="2016-01-23T14:02:51Z" finished-at="2016-01-23T14:02:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetAllByEntityName2 -->
+        <test-method status="PASS" signature="testGetAllByEntityNameFailure()[pri:0, instance:testGetAllByEntityNameFailure(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testGetAllByEntityNameFailure" duration-ms="70" started-at="2016-01-23T14:02:51Z" finished-at="2016-01-23T14:02:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetAllByEntityNameFailure -->
+        <test-method status="PASS" signature="testGetDataFailure()[pri:0, instance:testGetDataFailure(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testGetDataFailure" duration-ms="77" started-at="2016-01-23T14:02:51Z" finished-at="2016-01-23T14:02:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetDataFailure -->
+        <test-method status="PASS" signature="testGetData()[pri:0, instance:testGetData(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testGetData" duration-ms="82" started-at="2016-01-23T14:02:51Z" finished-at="2016-01-23T14:02:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetData -->
-        <test-method status="PASS" signature="testGetEntityById()[pri:0, instance:testGetEntityById(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testGetEntityById" duration-ms="98" started-at="2016-01-22T18:54:08Z" finished-at="2016-01-22T18:54:08Z">
+        <test-method status="PASS" signature="testGetEntityById()[pri:0, instance:testGetEntityById(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testGetEntityById" duration-ms="199" started-at="2016-01-23T14:02:51Z" finished-at="2016-01-23T14:02:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetEntityById -->
-        <test-method status="PASS" signature="testGetEntityCount()[pri:0, instance:testGetEntityCount(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testGetEntityCount" duration-ms="40" started-at="2016-01-22T18:54:08Z" finished-at="2016-01-22T18:54:08Z">
+        <test-method status="PASS" signature="testGetEntityByIdFailure()[pri:0, instance:testGetEntityByIdFailure(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testGetEntityByIdFailure" duration-ms="70" started-at="2016-01-23T14:02:51Z" finished-at="2016-01-23T14:02:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetEntityByIdFailure -->
+        <test-method status="PASS" signature="testGetEntityCount()[pri:0, instance:testGetEntityCount(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testGetEntityCount" duration-ms="43" started-at="2016-01-23T14:02:51Z" finished-at="2016-01-23T14:02:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetEntityCount -->
-        <test-method status="PASS" signature="testCreateNewEntity()[pri:0, instance:testCreateNewEntity(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testCreateNewEntity" duration-ms="54" started-at="2016-01-22T18:54:08Z" finished-at="2016-01-22T18:54:09Z">
+        <test-method status="PASS" signature="testGetEntityCountFailure()[pri:0, instance:testGetEntityCountFailure(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testGetEntityCountFailure" duration-ms="47" started-at="2016-01-23T14:02:51Z" finished-at="2016-01-23T14:02:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetEntityCountFailure -->
+        <test-method status="PASS" signature="testCreateNewEntity()[pri:0, instance:testCreateNewEntity(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testCreateNewEntity" duration-ms="64" started-at="2016-01-23T14:02:51Z" finished-at="2016-01-23T14:02:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateNewEntity -->
-        <test-method status="PASS" signature="testUpdateEntity()[pri:0, instance:testUpdateEntity(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testUpdateEntity" duration-ms="42" started-at="2016-01-22T18:54:09Z" finished-at="2016-01-22T18:54:09Z">
+        <test-method status="PASS" signature="testCreateNewEntityFailure()[pri:0, instance:testCreateNewEntityFailure(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testCreateNewEntityFailure" duration-ms="42" started-at="2016-01-23T14:02:51Z" finished-at="2016-01-23T14:02:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreateNewEntityFailure -->
+        <test-method status="PASS" signature="testUpdateEntity()[pri:0, instance:testUpdateEntity(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testUpdateEntity" duration-ms="59" started-at="2016-01-23T14:02:51Z" finished-at="2016-01-23T14:02:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdateEntity -->
-        <test-method status="PASS" signature="testDeleteEntityById()[pri:0, instance:testDeleteEntityById(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testDeleteEntityById" duration-ms="32" started-at="2016-01-22T18:54:09Z" finished-at="2016-01-22T18:54:09Z">
+        <test-method status="PASS" signature="testUpdateEntityFailure()[pri:0, instance:testUpdateEntityFailure(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testUpdateEntityFailure" duration-ms="39" started-at="2016-01-23T14:02:51Z" finished-at="2016-01-23T14:02:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testUpdateEntityFailure -->
+        <test-method status="PASS" signature="testDeleteEntityById()[pri:0, instance:testDeleteEntityById(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testDeleteEntityById" duration-ms="29" started-at="2016-01-23T14:02:52Z" finished-at="2016-01-23T14:02:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDeleteEntityById -->
+        <test-method status="PASS" signature="testDeleteEntityByIdFailure()[pri:0, instance:testDeleteEntityByIdFailure(se.nrm.dina.data.service.DinaServiceNGTest)]" name="testDeleteEntityByIdFailure" duration-ms="37" started-at="2016-01-23T14:02:52Z" finished-at="2016-01-23T14:02:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDeleteEntityByIdFailure -->
       </class> <!-- se.nrm.dina.data.service.DinaServiceNGTest -->
     </test> <!-- Surefire test -->
   </suite> <!-- Surefire suite -->

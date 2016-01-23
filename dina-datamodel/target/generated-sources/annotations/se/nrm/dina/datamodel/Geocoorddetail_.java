@@ -8,7 +8,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Locality;
 
-@Generated(value="EclipseLink-2.7.0.v20160121-rNA", date="2016-01-22T18:56:38")
+@Generated(value="EclipseLink-2.7.0.v20160122-rNA", date="2016-01-23T14:02:07")
 @StaticMetamodel(Geocoorddetail.class)
 public class Geocoorddetail_ extends BaseEntity_ {
 

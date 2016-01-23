@@ -1,0 +1,7 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+dina-data-jpa,se.nrm.dina.data.logic,DinaDataLogic,149,243,17,7,27,54,16,11,4,11
+dina-data-jpa,se.nrm.dina.data.exceptions,DinaException,0,17,0,0,0,8,0,4,0,4
+dina-data-jpa,se.nrm.dina.data.exceptions,ErrorMsg,0,19,0,2,0,7,0,5,0,4
+dina-data-jpa,se.nrm.dina.data.jpa,DinaDaoImpl,131,458,10,14,30,115,18,20,10,16
+dina-data-jpa,se.nrm.dina.data.util,Util,74,292,9,13,21,68,5,27,0,21
+dina-data-jpa,se.nrm.dina.data.util,NamedQueries,226,130,16,12,48,33,18,9,7,6

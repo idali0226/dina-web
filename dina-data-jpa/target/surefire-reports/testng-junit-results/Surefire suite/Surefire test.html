@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Surefire test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>44/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>64/0/0</td>
 </tr><tr>
-<td>Started on:</td><td>Sat Jan 23 11:33:03 CET 2016</td>
+<td>Started on:</td><td>Sat Jan 23 14:02:31 CET 2016</td>
 </tr>
-<tr><td>Total time:</td><td>6 seconds (6821 ms)</td>
+<tr><td>Total time:</td><td>8 seconds (8134 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,90 +67,6 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-failed'>
-<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
-<tr><td><b>Test method</b></td>
-<td width="30%"><b>Exception</b></td>
-<td width="10%"><b>Time (seconds)</b></td>
-<td><b>Instance</b></td>
-</tr>
-<tr>
-<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testFindAllException()'><b>testFindAllException</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
-<td><div><pre>java.lang.NullPointerException
-	at se.nrm.dina.data.jpa.DinaDaoImpl.createQuery(DinaDaoImpl.java:229)
-	at se.nrm.dina.data.jpa.DinaDaoImplTest.testFindAllException(DinaDaoImplTest.java:117)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
-	at org.junit.runners.BlockJUnit4ClassRunner.runNotIgnored(BlockJUnit4ClassRunner.java:79)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:71)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:49)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
-	at org.mockito.internal.runners.JUnit45AndHigherRunnerImpl.run(JUnit45AndHigherRunnerImpl.java:37)
-	at org.mockito.runners.MockitoJUnitRunner.run(MockitoJUnitRunner.java:62)
-	at org.junit.runner.JUnitCore.run(JUnitCore.java:157)
-	at org.junit.runner.JUnitCore.run(JUnitCore.java:136)
-... Removed 26 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1067780644", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1067780644'><pre>java.lang.NullPointerException
-	at se.nrm.dina.data.jpa.DinaDaoImpl.createQuery(DinaDaoImpl.java:229)
-	at se.nrm.dina.data.jpa.DinaDaoImplTest.testFindAllException(DinaDaoImplTest.java:117)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:483)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:31)
-	at org.junit.runners.BlockJUnit4ClassRunner.runNotIgnored(BlockJUnit4ClassRunner.java:79)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:71)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:49)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
-	at org.mockito.internal.runners.JUnit45AndHigherRunnerImpl.run(JUnit45AndHigherRunnerImpl.java:37)
-	at org.mockito.runners.MockitoJUnitRunner.run(MockitoJUnitRunner.java:62)
-	at org.junit.runner.JUnitCore.run(JUnitCore.java:157)
-	at org.junit.runner.JUnitCore.run(JUnitCore.java:136)
-	at org.testng.junit.JUnit4TestRunner.start(JUnit4TestRunner.java:81)
-	at org.testng.junit.JUnit4TestRunner.run(JUnit4TestRunner.java:69)
-	at org.testng.TestRunner$1.run(TestRunner.java:682)
-	at org.testng.TestRunner.runWorkers(TestRunner.java:1005)
-	at org.testng.TestRunner.privateRunJUnit(TestRunner.java:713)
-	at org.testng.TestRunner.run(TestRunner.java:614)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:334)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:329)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:291)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:240)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1224)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1149)
-	at org.testng.TestNG.run(TestNG.java:1057)
-	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:115)
-	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeMulti(TestNGDirectoryTestSuite.java:211)
-	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:107)
-	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:112)
-	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:200)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:103)
-</pre></div></td>
-<td>0</td>
-<td>testFindAllException(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
-</table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
@@ -179,6 +95,16 @@ function toggleAllBoxes() {
 <td>3</td>
 <td>testCreateEntity(se.nrm.dina.data.logic.DinaDataLogicNGTest)</td></tr>
 <tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testCreateFailure()'><b>testCreateFailure</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testCreateFailure(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testCreateFailure2()'><b>testCreateFailure2</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testCreateFailure2(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
 <td title='se.nrm.dina.data.util.UtilNGTest.testCreateNewInstance()'><b>testCreateNewInstance</b><br>Test class: se.nrm.dina.data.util.UtilNGTest</td>
 <td></td>
 <td>0</td>
@@ -193,6 +119,16 @@ function toggleAllBoxes() {
 <td></td>
 <td>0</td>
 <td>testDeleteEntity(se.nrm.dina.data.logic.DinaDataLogicNGTest)</td></tr>
+<tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testDeleteFailure1()'><b>testDeleteFailure1</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testDeleteFailure1(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testDeleteFailure2()'><b>testDeleteFailure2</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testDeleteFailure2(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
 <tr>
 <td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testDinaDaoImplConstractor()'><b>testDinaDaoImplConstractor</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
 <td></td>
@@ -214,10 +150,20 @@ function toggleAllBoxes() {
 <td>0</td>
 <td>testFindAllBySearchCriteria(se.nrm.dina.data.logic.DinaDataLogicNGTest)</td></tr>
 <tr>
-<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testFindAllWithConditions()'><b>testFindAllWithConditions</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testFindAllWithConditions1()'><b>testFindAllWithConditions1</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
 <td></td>
 <td>0</td>
-<td>testFindAllWithConditions(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<td>testFindAllWithConditions1(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testFindAllWithConditions2()'><b>testFindAllWithConditions2</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testFindAllWithConditions2(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testFindAllWithConditionsException()'><b>testFindAllWithConditionsException</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testFindAllWithConditionsException(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
 <tr>
 <td title='se.nrm.dina.data.logic.DinaDataLogicNGTest.testFindAll_7args()'><b>testFindAll_7args</b><br>Test class: se.nrm.dina.data.logic.DinaDataLogicNGTest</td>
 <td></td>
@@ -229,25 +175,65 @@ function toggleAllBoxes() {
 <td>0</td>
 <td>testFindAll_String(se.nrm.dina.data.logic.DinaDataLogicNGTest)</td></tr>
 <tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testFindById()'><b>testFindById</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testFindById(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
 <td title='se.nrm.dina.data.logic.DinaDataLogicNGTest.testFindById()'><b>testFindById</b><br>Test class: se.nrm.dina.data.logic.DinaDataLogicNGTest</td>
 <td></td>
 <td>0</td>
 <td>testFindById(se.nrm.dina.data.logic.DinaDataLogicNGTest)</td></tr>
 <tr>
-<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testFindById()'><b>testFindById</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testFindByIdFailure()'><b>testFindByIdFailure</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
 <td></td>
 <td>0</td>
-<td>testFindById(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<td>testFindByIdFailure(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testFindByIdFailure2()'><b>testFindByIdFailure2</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testFindByIdFailure2(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testFindByIdForNoVisionEntities()'><b>testFindByIdForNoVisionEntities</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testFindByIdForNoVisionEntities(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
 <tr>
 <td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testFindByReference()'><b>testFindByReference</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
 <td></td>
 <td>0</td>
 <td>testFindByReference(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
 <tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testFindByStringId()'><b>testFindByStringId</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testFindByStringId(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testFindByStringIdFailure()'><b>testFindByStringIdFailure</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testFindByStringIdFailure(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testFindByStringIdFailure2()'><b>testFindByStringIdFailure2</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testFindByStringIdFailure2(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
 <td title='se.nrm.dina.data.logic.DinaDataLogicNGTest.testFindEntityCount()'><b>testFindEntityCount</b><br>Test class: se.nrm.dina.data.logic.DinaDataLogicNGTest</td>
 <td></td>
 <td>0</td>
 <td>testFindEntityCount(se.nrm.dina.data.logic.DinaDataLogicNGTest)</td></tr>
+<tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testGetCountByQuery()'><b>testGetCountByQuery</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testGetCountByQuery(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testGetCountByQueryFailure()'><b>testGetCountByQueryFailure</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testGetCountByQueryFailure(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
 <tr>
 <td title='se.nrm.dina.data.util.UtilNGTest.testGetEntity()'><b>testGetEntity</b><br>Test class: se.nrm.dina.data.util.UtilNGTest</td>
 <td></td>
@@ -258,6 +244,16 @@ function toggleAllBoxes() {
 <td></td>
 <td>0</td>
 <td>testGetEntityByJPQL(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testGetEntityByJPQLFailure1()'><b>testGetEntityByJPQLFailure1</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testGetEntityByJPQLFailure1(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testGetEntityByJPQLFailure2()'><b>testGetEntityByJPQLFailure2</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testGetEntityByJPQLFailure2(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
 <tr>
 <td title='se.nrm.dina.data.util.UtilNGTest.testGetIDFieldName_EntityBean()'><b>testGetIDFieldName_EntityBean</b><br>Test class: se.nrm.dina.data.util.UtilNGTest</td>
 <td></td>
@@ -349,6 +345,21 @@ function toggleAllBoxes() {
 <td>0</td>
 <td>testMerge(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
 <tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testMergeFailure1()'><b>testMergeFailure1</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testMergeFailure1(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testMergeFailure2()'><b>testMergeFailure2</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testMergeFailure2(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testMergeFailure3()'><b>testMergeFailure3</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testMergeFailure3(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
 <td title='se.nrm.dina.data.util.UtilNGTest.testReformClassName()'><b>testReformClassName</b><br>Test class: se.nrm.dina.data.util.UtilNGTest</td>
 <td></td>
 <td>0</td>
@@ -364,9 +375,14 @@ function toggleAllBoxes() {
 <td>0</td>
 <td>testUpdateByJPQL(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
 <tr>
+<td title='se.nrm.dina.data.jpa.DinaDaoImplTest.testUpdateByJPQLFailure()'><b>testUpdateByJPQLFailure</b><br>Test class: se.nrm.dina.data.jpa.DinaDaoImplTest</td>
+<td></td>
+<td>0</td>
+<td>testUpdateByJPQLFailure(se.nrm.dina.data.jpa.DinaDaoImplTest)</td></tr>
+<tr>
 <td title='se.nrm.dina.data.logic.DinaDataLogicNGTest.testUpdateEntity()'><b>testUpdateEntity</b><br>Test class: se.nrm.dina.data.logic.DinaDataLogicNGTest</td>
 <td></td>
-<td>1</td>
+<td>2</td>
 <td>testUpdateEntity(se.nrm.dina.data.logic.DinaDataLogicNGTest)</td></tr>
 <tr>
 <td title='se.nrm.dina.data.util.UtilNGTest.testValidateEntityName()'><b>testValidateEntityName</b><br>Test class: se.nrm.dina.data.util.UtilNGTest</td>

@@ -2,42 +2,42 @@
 <testng-results skipped="0" failed="0" total="6" passed="6">
   <reporter-output>
   </reporter-output>
-  <suite name="Surefire suite" duration-ms="105" started-at="2016-01-23T10:33:03Z" finished-at="2016-01-23T10:33:03Z">
+  <suite name="Surefire suite" duration-ms="133" started-at="2016-01-23T13:02:31Z" finished-at="2016-01-23T13:02:31Z">
     <groups>
     </groups>
-    <test name="Surefire test" duration-ms="105" started-at="2016-01-23T10:33:03Z" finished-at="2016-01-23T10:33:03Z">
+    <test name="Surefire test" duration-ms="133" started-at="2016-01-23T13:02:31Z" finished-at="2016-01-23T13:02:31Z">
       <class name="se.nrm.dina.data.exceptions.ErrorMsgNGTest">
-        <test-method status="PASS" signature="setUpClass()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@7d151a]" name="setUpClass" is-config="true" duration-ms="1" started-at="2016-01-23T11:33:03Z" finished-at="2016-01-23T11:33:03Z">
+        <test-method status="PASS" signature="setUpClass()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@3f36b447]" name="setUpClass" is-config="true" duration-ms="1" started-at="2016-01-23T14:02:31Z" finished-at="2016-01-23T14:02:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method status="PASS" signature="testGetEntityNameErrorMsg()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@7d151a]" name="testGetEntityNameErrorMsg" duration-ms="2" started-at="2016-01-23T11:33:03Z" finished-at="2016-01-23T11:33:03Z">
+        <test-method status="PASS" signature="testGetEntityNameErrorMsg()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@3f36b447]" name="testGetEntityNameErrorMsg" duration-ms="1" started-at="2016-01-23T14:02:31Z" finished-at="2016-01-23T14:02:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetEntityNameErrorMsg -->
-        <test-method status="PASS" signature="testGetInstance()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@7d151a]" name="testGetInstance" duration-ms="0" started-at="2016-01-23T11:33:03Z" finished-at="2016-01-23T11:33:03Z">
+        <test-method status="PASS" signature="testGetInstance()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@3f36b447]" name="testGetInstance" duration-ms="0" started-at="2016-01-23T14:02:31Z" finished-at="2016-01-23T14:02:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetInstance -->
-        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@7d151a]" name="tearDownClass" is-config="true" duration-ms="1" started-at="2016-01-23T11:33:03Z" finished-at="2016-01-23T11:33:03Z">
+        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@3f36b447]" name="tearDownClass" is-config="true" duration-ms="0" started-at="2016-01-23T14:02:31Z" finished-at="2016-01-23T14:02:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
       </class> <!-- se.nrm.dina.data.exceptions.ErrorMsgNGTest -->
       <class name="se.nrm.dina.data.exceptions.DinaExceptionNGTest">
-        <test-method status="PASS" signature="testDinaExceptionConstruct()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@6df7988f]" name="testDinaExceptionConstruct" duration-ms="42" started-at="2016-01-23T11:33:03Z" finished-at="2016-01-23T11:33:03Z">
+        <test-method status="PASS" signature="testDinaExceptionConstruct()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@51745f40]" name="testDinaExceptionConstruct" duration-ms="51" started-at="2016-01-23T14:02:31Z" finished-at="2016-01-23T14:02:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDinaExceptionConstruct -->
-        <test-method status="PASS" signature="testDinaExceptionConstructWithMsg()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@6df7988f]" name="testDinaExceptionConstructWithMsg" duration-ms="1" started-at="2016-01-23T11:33:03Z" finished-at="2016-01-23T11:33:03Z">
+        <test-method status="PASS" signature="testDinaExceptionConstructWithMsg()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@51745f40]" name="testDinaExceptionConstructWithMsg" duration-ms="1" started-at="2016-01-23T14:02:31Z" finished-at="2016-01-23T14:02:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDinaExceptionConstructWithMsg -->
-        <test-method status="PASS" signature="testDinaExceptionConstructWithMsgAndErrorCode()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@6df7988f]" name="testDinaExceptionConstructWithMsgAndErrorCode" duration-ms="1" started-at="2016-01-23T11:33:03Z" finished-at="2016-01-23T11:33:03Z">
+        <test-method status="PASS" signature="testDinaExceptionConstructWithMsgAndErrorCode()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@51745f40]" name="testDinaExceptionConstructWithMsgAndErrorCode" duration-ms="0" started-at="2016-01-23T14:02:31Z" finished-at="2016-01-23T14:02:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDinaExceptionConstructWithMsgAndErrorCode -->
-        <test-method status="PASS" signature="testGetErrorCode()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@6df7988f]" name="testGetErrorCode" duration-ms="1" started-at="2016-01-23T11:33:03Z" finished-at="2016-01-23T11:33:03Z">
+        <test-method status="PASS" signature="testGetErrorCode()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@51745f40]" name="testGetErrorCode" duration-ms="0" started-at="2016-01-23T14:02:31Z" finished-at="2016-01-23T14:02:31Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetErrorCode -->
