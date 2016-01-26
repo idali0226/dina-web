@@ -122,25 +122,25 @@ public class DinaDataLogic&lt;T extends EntityBean&gt; implements Serializable {
 <span class="fc" id="L122">            Class clazz = Util.getInstance().convertClassNameToClass(entityName);</span>
 <span class="fc" id="L123">            Util.getInstance().isFieldsValid(clazz, condition);</span>
 
-<span class="pc bpc" id="L125" title="1 of 2 branches missed.">            String strQuery = NamedQueries.getInstance()</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">            String strQuery = NamedQueries.getInstance()</span>
 <span class="fc" id="L126">                    .createQueryFindAllWithSearchCriteria(</span>
                             entityName,
                             clazz,
-<span class="pc bpc" id="L129" title="1 of 2 branches missed.">                            Integer.parseInt(offset == null ? &quot;0&quot; : offset),</span>
-<span class="pc bpc" id="L130" title="1 of 2 branches missed.">                            Integer.parseInt(minid == null ? &quot;0&quot; : minid),</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">                            Integer.parseInt(offset == null ? &quot;0&quot; : offset),</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">                            Integer.parseInt(minid == null ? &quot;0&quot; : minid),</span>
 <span class="fc" id="L131">                            Integer.parseInt(maxid == null ? &quot;0&quot; : maxid),</span>
                             orderby, condition);
-<span class="pc bpc" id="L133" title="1 of 2 branches missed.">            return dao.findAll(clazz, strQuery, Integer.parseInt(limit == null ? &quot;50&quot; : limit), condition); </span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">            return dao.findAll(clazz, strQuery, Integer.parseInt(limit == null ? &quot;50&quot; : limit), condition); </span>
 <span class="fc" id="L134">        } catch (DinaException e) {</span>
 <span class="fc" id="L135">            throw new DinaException(&quot;Error.  &quot; + e.getMessage() + &quot; is not valid field in &quot; + entityName);</span>
         }
     }
  
     private Predicate&lt;Entry&lt;String, List&lt;String&gt;&gt;&gt; filterCondition() {
-<span class="pc bpc" id="L140" title="1 of 2 branches missed.">        return s -&gt; !s.getKey().equals(&quot;offset&quot;)</span>
-<span class="pc bpc" id="L141" title="1 of 2 branches missed.">                    &amp;&amp; !s.getKey().equals(&quot;limit&quot;)</span>
-<span class="pc bpc" id="L142" title="1 of 2 branches missed.">                    &amp;&amp; !s.getKey().equals(&quot;minid&quot;)</span>
-<span class="pc bpc" id="L143" title="1 of 2 branches missed.">                    &amp;&amp; !s.getKey().equals(&quot;maxid&quot;)</span>
+<span class="fc bfc" id="L140" title="All 2 branches covered.">        return s -&gt; !s.getKey().equals(&quot;offset&quot;)</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">                    &amp;&amp; !s.getKey().equals(&quot;limit&quot;)</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">                    &amp;&amp; !s.getKey().equals(&quot;minid&quot;)</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">                    &amp;&amp; !s.getKey().equals(&quot;maxid&quot;)</span>
 <span class="pc bpc" id="L144" title="1 of 2 branches missed.">                    &amp;&amp; !s.getKey().equals(&quot;orderby&quot;);</span>
     }
 

@@ -259,6 +259,62 @@ public class DinaDataLogicNGTest {
         verify(dao).findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition);
         assertEquals(result, accessions1);
     }
+    
+           /**
+     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testFindAllBySearchCriteria2() throws Exception {
+        System.out.println("findAllBySearchCriteria2");
+         
+        MultivaluedMap<String, String> map = new MultivaluedHashMap();
+        map.add("orderby", "accessionNumber");
+        map.add("offset", "20");
+        map.add("limit", "5");
+        map.add("minid", "3"); 
+        map.add("maxid", "60");
+  
+        
+  
+        String offset = map.getFirst("offset");
+        String limit = map.getFirst("limit");
+        String minid = map.getFirst("minid");
+        String maxid = map.getFirst("maxid");
+        String orderBy = map.getFirst("orderby");
+          
+        List<String> orderby = new ArrayList<>();
+        if (orderBy != null) {
+            orderby = Arrays.asList(orderBy.split(","));
+        }
+          
+        Map<String, String> condition = map.entrySet()
+                .stream() 
+                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
+        
+        condition.remove("orderby");
+        condition.remove("offset");
+        condition.remove("limit");
+        condition.remove("minid");
+        condition.remove("maxid");
+        
+        String entityName = "Accession";
+        Class clazz = Accession.class;
+        String strQuery = NamedQueries.getInstance()
+                    .createQueryFindAllWithSearchCriteria(
+                            entityName,
+                            clazz,
+                            Integer.parseInt(offset == null ? "0" : offset),
+                            Integer.parseInt(minid == null ? "0" : minid),
+                            Integer.parseInt(maxid == null ? "0" : maxid),
+                            orderby, condition);
+ 
+        when(dao.findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenReturn(accessions1);
+        
+        List result = instance.findAllBySearchCriteria(entityName, map);
+        verify(dao).findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition);
+        assertEquals(result, accessions1);
+    }
 
     
 
