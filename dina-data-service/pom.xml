@@ -21,15 +21,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
      
-    <dependencies> 
-        
-        <dependency>
-            <groupId>${project.parent.groupId}</groupId>
-            <artifactId>dina-darwincore-model</artifactId>
-            <version>${project.parent.version}</version> 
-            <type>jar</type>
-        </dependency> 
-       
+    <dependencies>  
         <dependency>
             <groupId>${project.parent.groupId}</groupId>
             <artifactId>dina-data-jpa</artifactId>
