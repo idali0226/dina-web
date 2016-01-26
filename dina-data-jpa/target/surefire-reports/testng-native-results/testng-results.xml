@@ -2,76 +2,76 @@
 <testng-results skipped="0" failed="0" total="14" passed="14">
   <reporter-output>
   </reporter-output>
-  <suite name="Surefire suite" duration-ms="250" started-at="2016-01-26T10:13:09Z" finished-at="2016-01-26T10:13:09Z">
+  <suite name="Surefire suite" duration-ms="402" started-at="2016-01-26T14:12:11Z" finished-at="2016-01-26T14:12:11Z">
     <groups>
     </groups>
-    <test name="Surefire test" duration-ms="250" started-at="2016-01-26T10:13:09Z" finished-at="2016-01-26T10:13:09Z">
+    <test name="Surefire test" duration-ms="402" started-at="2016-01-26T14:12:11Z" finished-at="2016-01-26T14:12:11Z">
       <class name="se.nrm.dina.data.util.NamedQueriesNGTest">
-        <test-method status="PASS" signature="testCreateQueryFindAllWithSearchCriteria()[pri:0, instance:se.nrm.dina.data.util.NamedQueriesNGTest@3eee3e2b]" name="testCreateQueryFindAllWithSearchCriteria" duration-ms="163" started-at="2016-01-26T11:13:09Z" finished-at="2016-01-26T11:13:09Z">
+        <test-method status="PASS" signature="testCreateQueryFindAllWithSearchCriteria()[pri:0, instance:se.nrm.dina.data.util.NamedQueriesNGTest@59532566]" name="testCreateQueryFindAllWithSearchCriteria" duration-ms="249" started-at="2016-01-26T15:12:11Z" finished-at="2016-01-26T15:12:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateQueryFindAllWithSearchCriteria -->
-        <test-method status="PASS" signature="testCreateQueryFindAllWithSearchCriteria1()[pri:0, instance:se.nrm.dina.data.util.NamedQueriesNGTest@3eee3e2b]" name="testCreateQueryFindAllWithSearchCriteria1" duration-ms="3" started-at="2016-01-26T11:13:09Z" finished-at="2016-01-26T11:13:09Z">
+        <test-method status="PASS" signature="testCreateQueryFindAllWithSearchCriteria1()[pri:0, instance:se.nrm.dina.data.util.NamedQueriesNGTest@59532566]" name="testCreateQueryFindAllWithSearchCriteria1" duration-ms="8" started-at="2016-01-26T15:12:11Z" finished-at="2016-01-26T15:12:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateQueryFindAllWithSearchCriteria1 -->
-        <test-method status="PASS" signature="testCreateQueryFindAllWithSearchCriteria2()[pri:0, instance:se.nrm.dina.data.util.NamedQueriesNGTest@3eee3e2b]" name="testCreateQueryFindAllWithSearchCriteria2" duration-ms="1" started-at="2016-01-26T11:13:09Z" finished-at="2016-01-26T11:13:09Z">
+        <test-method status="PASS" signature="testCreateQueryFindAllWithSearchCriteria2()[pri:0, instance:se.nrm.dina.data.util.NamedQueriesNGTest@59532566]" name="testCreateQueryFindAllWithSearchCriteria2" duration-ms="1" started-at="2016-01-26T15:12:11Z" finished-at="2016-01-26T15:12:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateQueryFindAllWithSearchCriteria2 -->
-        <test-method status="PASS" signature="testCreateQueryFindAllWithSearchCriteria3()[pri:0, instance:se.nrm.dina.data.util.NamedQueriesNGTest@3eee3e2b]" name="testCreateQueryFindAllWithSearchCriteria3" duration-ms="1" started-at="2016-01-26T11:13:09Z" finished-at="2016-01-26T11:13:09Z">
+        <test-method status="PASS" signature="testCreateQueryFindAllWithSearchCriteria3()[pri:0, instance:se.nrm.dina.data.util.NamedQueriesNGTest@59532566]" name="testCreateQueryFindAllWithSearchCriteria3" duration-ms="1" started-at="2016-01-26T15:12:11Z" finished-at="2016-01-26T15:12:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateQueryFindAllWithSearchCriteria3 -->
-        <test-method status="PASS" signature="testCreateQueryFindAllWithSearchCriteria4()[pri:0, instance:se.nrm.dina.data.util.NamedQueriesNGTest@3eee3e2b]" name="testCreateQueryFindAllWithSearchCriteria4" duration-ms="1" started-at="2016-01-26T11:13:09Z" finished-at="2016-01-26T11:13:09Z">
+        <test-method status="PASS" signature="testCreateQueryFindAllWithSearchCriteria4()[pri:0, instance:se.nrm.dina.data.util.NamedQueriesNGTest@59532566]" name="testCreateQueryFindAllWithSearchCriteria4" duration-ms="1" started-at="2016-01-26T15:12:11Z" finished-at="2016-01-26T15:12:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateQueryFindAllWithSearchCriteria4 -->
-        <test-method status="PASS" signature="testCreateQueryFindAllWithSearchCriteria5()[pri:0, instance:se.nrm.dina.data.util.NamedQueriesNGTest@3eee3e2b]" name="testCreateQueryFindAllWithSearchCriteria5" duration-ms="1" started-at="2016-01-26T11:13:09Z" finished-at="2016-01-26T11:13:09Z">
+        <test-method status="PASS" signature="testCreateQueryFindAllWithSearchCriteria5()[pri:0, instance:se.nrm.dina.data.util.NamedQueriesNGTest@59532566]" name="testCreateQueryFindAllWithSearchCriteria5" duration-ms="3" started-at="2016-01-26T15:12:11Z" finished-at="2016-01-26T15:12:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateQueryFindAllWithSearchCriteria5 -->
-        <test-method status="PASS" signature="testCreateQueryFindAllWithSearchCriteria6()[pri:0, instance:se.nrm.dina.data.util.NamedQueriesNGTest@3eee3e2b]" name="testCreateQueryFindAllWithSearchCriteria6" duration-ms="14" started-at="2016-01-26T11:13:09Z" finished-at="2016-01-26T11:13:09Z">
+        <test-method status="PASS" signature="testCreateQueryFindAllWithSearchCriteria6()[pri:0, instance:se.nrm.dina.data.util.NamedQueriesNGTest@59532566]" name="testCreateQueryFindAllWithSearchCriteria6" duration-ms="16" started-at="2016-01-26T15:12:11Z" finished-at="2016-01-26T15:12:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateQueryFindAllWithSearchCriteria6 -->
-        <test-method status="PASS" signature="testGetInstance()[pri:0, instance:se.nrm.dina.data.util.NamedQueriesNGTest@3eee3e2b]" name="testGetInstance" duration-ms="0" started-at="2016-01-26T11:13:09Z" finished-at="2016-01-26T11:13:09Z">
+        <test-method status="PASS" signature="testGetInstance()[pri:0, instance:se.nrm.dina.data.util.NamedQueriesNGTest@59532566]" name="testGetInstance" duration-ms="31" started-at="2016-01-26T15:12:11Z" finished-at="2016-01-26T15:12:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetInstance -->
       </class> <!-- se.nrm.dina.data.util.NamedQueriesNGTest -->
       <class name="se.nrm.dina.data.exceptions.ErrorMsgNGTest">
-        <test-method status="PASS" signature="setUpClass()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@78de58ea]" name="setUpClass" is-config="true" duration-ms="1" started-at="2016-01-26T11:13:09Z" finished-at="2016-01-26T11:13:09Z">
+        <test-method status="PASS" signature="setUpClass()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@78de58ea]" name="setUpClass" is-config="true" duration-ms="0" started-at="2016-01-26T15:12:11Z" finished-at="2016-01-26T15:12:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method status="PASS" signature="testGetEntityNameErrorMsg()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@78de58ea]" name="testGetEntityNameErrorMsg" duration-ms="2" started-at="2016-01-26T11:13:09Z" finished-at="2016-01-26T11:13:09Z">
+        <test-method status="PASS" signature="testGetEntityNameErrorMsg()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@78de58ea]" name="testGetEntityNameErrorMsg" duration-ms="1" started-at="2016-01-26T15:12:11Z" finished-at="2016-01-26T15:12:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetEntityNameErrorMsg -->
-        <test-method status="PASS" signature="testGetInstance()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@78de58ea]" name="testGetInstance" duration-ms="0" started-at="2016-01-26T11:13:09Z" finished-at="2016-01-26T11:13:09Z">
+        <test-method status="PASS" signature="testGetInstance()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@78de58ea]" name="testGetInstance" duration-ms="0" started-at="2016-01-26T15:12:11Z" finished-at="2016-01-26T15:12:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetInstance -->
-        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@78de58ea]" name="tearDownClass" is-config="true" duration-ms="1" started-at="2016-01-26T11:13:09Z" finished-at="2016-01-26T11:13:09Z">
+        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@78de58ea]" name="tearDownClass" is-config="true" duration-ms="2" started-at="2016-01-26T15:12:11Z" finished-at="2016-01-26T15:12:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
       </class> <!-- se.nrm.dina.data.exceptions.ErrorMsgNGTest -->
       <class name="se.nrm.dina.data.exceptions.DinaExceptionNGTest">
-        <test-method status="PASS" signature="testDinaExceptionConstruct()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@dca2615]" name="testDinaExceptionConstruct" duration-ms="25" started-at="2016-01-26T11:13:09Z" finished-at="2016-01-26T11:13:09Z">
+        <test-method status="PASS" signature="testDinaExceptionConstruct()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@1237e0be]" name="testDinaExceptionConstruct" duration-ms="38" started-at="2016-01-26T15:12:11Z" finished-at="2016-01-26T15:12:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDinaExceptionConstruct -->
-        <test-method status="PASS" signature="testDinaExceptionConstructWithMsg()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@dca2615]" name="testDinaExceptionConstructWithMsg" duration-ms="1" started-at="2016-01-26T11:13:09Z" finished-at="2016-01-26T11:13:09Z">
+        <test-method status="PASS" signature="testDinaExceptionConstructWithMsg()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@1237e0be]" name="testDinaExceptionConstructWithMsg" duration-ms="1" started-at="2016-01-26T15:12:11Z" finished-at="2016-01-26T15:12:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDinaExceptionConstructWithMsg -->
-        <test-method status="PASS" signature="testDinaExceptionConstructWithMsgAndErrorCode()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@dca2615]" name="testDinaExceptionConstructWithMsgAndErrorCode" duration-ms="0" started-at="2016-01-26T11:13:09Z" finished-at="2016-01-26T11:13:09Z">
+        <test-method status="PASS" signature="testDinaExceptionConstructWithMsgAndErrorCode()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@1237e0be]" name="testDinaExceptionConstructWithMsgAndErrorCode" duration-ms="0" started-at="2016-01-26T15:12:11Z" finished-at="2016-01-26T15:12:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDinaExceptionConstructWithMsgAndErrorCode -->
-        <test-method status="PASS" signature="testGetErrorCode()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@dca2615]" name="testGetErrorCode" duration-ms="0" started-at="2016-01-26T11:13:09Z" finished-at="2016-01-26T11:13:09Z">
+        <test-method status="PASS" signature="testGetErrorCode()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@1237e0be]" name="testGetErrorCode" duration-ms="0" started-at="2016-01-26T15:12:11Z" finished-at="2016-01-26T15:12:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetErrorCode -->

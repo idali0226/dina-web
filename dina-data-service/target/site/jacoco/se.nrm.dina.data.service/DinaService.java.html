@@ -29,8 +29,8 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.nrm.dina.data.exceptions.DinaException; 
-import se.nrm.dina.data.logic.DinaDataLogic;     
-
+import se.nrm.dina.data.logic.DinaDataLogic;
+ 
 /**
  *
  * @author idali

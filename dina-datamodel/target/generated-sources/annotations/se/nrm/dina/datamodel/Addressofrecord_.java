@@ -13,7 +13,7 @@ import se.nrm.dina.datamodel.Gift;
 import se.nrm.dina.datamodel.Loan;
 import se.nrm.dina.datamodel.Repositoryagreement;
 
-@Generated(value="EclipseLink-2.7.0.v20160125-rNA", date="2016-01-26T10:51:25")
+@Generated(value="EclipseLink-2.7.0.v20160125-rNA", date="2016-01-26T15:11:50")
 @StaticMetamodel(Addressofrecord.class)
 public class Addressofrecord_ extends BaseEntity_ {
 
