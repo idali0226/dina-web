@@ -9,7 +9,7 @@ import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Division;
 import se.nrm.dina.datamodel.Institution;
 
-@Generated(value="EclipseLink-2.7.0.v20160122-rNA", date="2016-01-23T17:07:59")
+@Generated(value="EclipseLink-2.7.0.v20160125-rNA", date="2016-01-26T10:51:25")
 @StaticMetamodel(Address.class)
 public class Address_ extends BaseEntity_ {
 

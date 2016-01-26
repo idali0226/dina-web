@@ -6,36 +6,33 @@
 package se.nrm.dina.data.service;
  
 import java.util.Arrays;
-import java.util.List; 
-import javax.persistence.LockModeType;
+import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedHashMap;
-import javax.ws.rs.core.MultivaluedMap; 
-import org.apache.commons.lang.StringUtils; 
+import javax.ws.rs.core.MultivaluedMap;
+import org.apache.commons.lang.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.jboss.resteasy.core.Dispatcher;
 import org.jboss.resteasy.mock.MockDispatcherFactory;
 import org.jboss.resteasy.mock.MockHttpRequest;
 import org.jboss.resteasy.mock.MockHttpResponse;
-import org.junit.After; 
+import org.junit.After;
 import org.junit.Assert;
-import static org.junit.Assert.assertEquals; 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.runners.MockitoJUnitRunner;
-import se.nrm.dina.data.exceptions.DinaException; 
+import se.nrm.dina.data.exceptions.DinaException;
 import se.nrm.dina.data.logic.DinaDataLogic;
 import se.nrm.dina.data.service.test.vo.TestEntity;
 import se.nrm.dina.data.service.test.vo.TestEntityCollection;
-import se.nrm.dina.datamodel.Accession;
 
 /**
  *
@@ -44,6 +41,7 @@ import se.nrm.dina.datamodel.Accession;
 @RunWith(MockitoJUnitRunner.class)
 public class DinaServiceNGTest {
 
+    
     @Mock
     DinaDataLogic logic;
     
@@ -54,23 +52,23 @@ public class DinaServiceNGTest {
     private final String entity = "TestEntity"; 
     private TestEntityCollection list;
     private TestEntity testEntity;
-     
+
     public DinaServiceNGTest() {
     }
 
     @Before
     public void setUp() throws Exception {
         instance = new DinaService(logic);
-        
+
         dispatcher = MockDispatcherFactory.createDispatcher();
-        dispatcher.getRegistry().addSingletonResource(instance); 
-        
+        dispatcher.getRegistry().addSingletonResource(instance);
+
         list = new TestEntityCollection();
     }
 
     @After
     public void tearDown() throws Exception {
-        dispatcher = null; 
+        dispatcher = null;
         instance = null;
         testEntity = null;
         list = null;
@@ -90,9 +88,7 @@ public class DinaServiceNGTest {
     @Test
     public void testGetAllByEntityName() throws Exception {
         System.out.println("getAllByEntityName");
-  
-        
-         
+
         String orderby = "test";
         List<String> sort = Arrays.asList(StringUtils.split(orderby, ","));
 
@@ -114,7 +110,7 @@ public class DinaServiceNGTest {
     @Test
     public void testGetAllByEntityName2() throws Exception {
         System.out.println("getAllByEntityName");
-   
+
         String orderby = "";
         List<String> sort = Arrays.asList(StringUtils.split(orderby, ","));
 
@@ -127,8 +123,8 @@ public class DinaServiceNGTest {
         verify(logic).findAll(entity, 0, 0, 0, 0, sort, null);
         assertEquals(HttpServletResponse.SC_OK, response.getStatus());
     }
-    
-        /**
+
+    /**
      * Test of getAllByEntityName method, of class DinaService.
      *
      * @throws java.lang.Exception
@@ -136,7 +132,7 @@ public class DinaServiceNGTest {
     @Test
     public void testGetAllByEntityNameFailure() throws Exception {
         System.out.println("getAllByEntityName");
-   
+
         String orderby = "";
         List<String> sort = Arrays.asList(StringUtils.split(orderby, ","));
 
@@ -149,24 +145,24 @@ public class DinaServiceNGTest {
         verify(logic).findAll(entity, 0, 0, 0, 0, sort, null);
         assertEquals(HttpServletResponse.SC_BAD_REQUEST, response.getStatus());
     }
-    
-    
+
     /**
      * Test of getData method, of class DinaService.
+     *
      * @throws java.lang.Exception
      */
     @Test
     public void testGetDataFailure() throws Exception {
 
         System.out.println("getData");
-        
+
         MultivaluedMap<String, String> map = new MultivaluedHashMap();
         when(logic.findAllBySearchCriteria(entity, map)).thenThrow(new DinaException("error", 400));
 
         MockHttpRequest request = MockHttpRequest.get("/dina/v0/TestEntity/search");
         response = new MockHttpResponse();
 
-        dispatcher.invoke(request, response);  
+        dispatcher.invoke(request, response);
         verify(logic).findAllBySearchCriteria(entity, map);
         assertEquals(HttpServletResponse.SC_BAD_REQUEST, response.getStatus());
     }
@@ -187,7 +183,7 @@ public class DinaServiceNGTest {
         MockHttpRequest request = MockHttpRequest.get("/dina/v0/TestEntity/search");
         response = new MockHttpResponse();
 
-        dispatcher.invoke(request, response);  
+        dispatcher.invoke(request, response);
         verify(logic).findAllBySearchCriteria(entity, map);
         assertEquals(HttpServletResponse.SC_OK, response.getStatus());
     }
@@ -199,8 +195,8 @@ public class DinaServiceNGTest {
      */
     @Test
     public void testGetEntityById() throws Exception {
-        System.out.println("getEntityById"); 
-         
+        System.out.println("getEntityById");
+
         String id = "20";
         TestEntity bean = new TestEntity();
 
@@ -222,9 +218,9 @@ public class DinaServiceNGTest {
      */
     @Test
     public void testGetEntityByIdFailure() throws Exception {
-        System.out.println("getEntityById"); 
-         
-        String id = "20";  
+        System.out.println("getEntityById");
+
+        String id = "20";
         when(logic.findById(id, entity)).thenThrow(new DinaException("error", 400));
 
         MockHttpRequest request = MockHttpRequest.get("/dina/v0/TestEntity/20");
@@ -235,9 +231,10 @@ public class DinaServiceNGTest {
 
         assertEquals(HttpServletResponse.SC_BAD_REQUEST, response.getStatus());
     }
-    
+
     /**
      * Test of getEntityCount method, of class DinaService.
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -248,16 +245,17 @@ public class DinaServiceNGTest {
         response = new MockHttpResponse();
 
         when(logic.findEntityCount(entity)).thenReturn(10);
-        
+
         dispatcher.invoke(request, response);
         verify(logic).findEntityCount(entity);
 
         assertEquals(HttpServletResponse.SC_OK, response.getStatus());
         assertEquals("10", response.getContentAsString());
     }
-    
+
     /**
      * Test of getEntityCount method, of class DinaService.
+     *
      * @throws java.lang.Exception
      */
     @Test
@@ -268,39 +266,40 @@ public class DinaServiceNGTest {
         response = new MockHttpResponse();
 
         when(logic.findEntityCount(entity)).thenThrow(new DinaException("error", 400));
-        
+
         dispatcher.invoke(request, response);
         verify(logic).findEntityCount(entity);
 
-        assertEquals(HttpServletResponse.SC_BAD_REQUEST, response.getStatus()); 
+        assertEquals(HttpServletResponse.SC_BAD_REQUEST, response.getStatus());
     }
 
     /**
      * Test of createNewEntity method, of class DinaService.
+     *
      * @throws java.lang.Exception
      */
     @Test
     public void testCreateNewEntity() throws Exception {
         System.out.println("createNewEntity");
-         
+
         MockHttpRequest request = MockHttpRequest.post("/dina/v0/TestEntity");
         request.accept(MediaType.APPLICATION_JSON);
         request.contentType(MediaType.APPLICATION_JSON_TYPE);
-          
+
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = mapper.writeValueAsString(testEntity);
-        
+
         when(logic.createEntity(entity, jsonInString)).thenReturn(testEntity);
-         
+
         request.content(jsonInString.getBytes());
-        
+
         response = new MockHttpResponse();
         dispatcher.invoke(request, response);
 
         verify(logic).createEntity(entity, jsonInString);
         Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
     }
-    
+
     /**
      * Test of createNewEntity method, of class DinaService.
      *
@@ -313,14 +312,14 @@ public class DinaServiceNGTest {
         MockHttpRequest request = MockHttpRequest.post("/dina/v0/TestEntity");
         request.accept(MediaType.APPLICATION_JSON);
         request.contentType(MediaType.APPLICATION_JSON_TYPE);
-          
+
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = mapper.writeValueAsString(testEntity);
-        
+
         when(logic.createEntity(entity, jsonInString)).thenThrow(new DinaException("error", 400));
-         
+
         request.content(jsonInString.getBytes());
-        
+
         response = new MockHttpResponse();
         dispatcher.invoke(request, response);
 
@@ -330,50 +329,51 @@ public class DinaServiceNGTest {
 
     /**
      * Test of updateEntity method, of class DinaService.
+     *
      * @throws java.lang.Exception
      */
     @Test
     public void testUpdateEntity() throws Exception {
         System.out.println("updateEntity");
-        
+
         MockHttpRequest request = MockHttpRequest.put("/dina/v0/TestEntity");
         request.accept(MediaType.APPLICATION_JSON);
         request.contentType(MediaType.APPLICATION_JSON_TYPE);
-          
+
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = mapper.writeValueAsString(testEntity);
-        
+
         when(logic.updateEntity(entity, jsonInString)).thenReturn(testEntity);
-         
+
         request.content(jsonInString.getBytes());
-        
+
         response = new MockHttpResponse();
         dispatcher.invoke(request, response);
 
         verify(logic).updateEntity(entity, jsonInString);
         Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
     }
-    
 
     /**
      * Test of updateEntity method, of class DinaService.
+     *
      * @throws java.lang.Exception
      */
     @Test
     public void testUpdateEntityFailure() throws Exception {
         System.out.println("updateEntity");
-        
+
         MockHttpRequest request = MockHttpRequest.put("/dina/v0/TestEntity");
         request.accept(MediaType.APPLICATION_JSON);
         request.contentType(MediaType.APPLICATION_JSON_TYPE);
-          
+
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = mapper.writeValueAsString(testEntity);
-        
+
         when(logic.updateEntity(entity, jsonInString)).thenThrow(new DinaException("error", 400));
-         
+
         request.content(jsonInString.getBytes());
-        
+
         response = new MockHttpResponse();
         dispatcher.invoke(request, response);
 
@@ -383,23 +383,23 @@ public class DinaServiceNGTest {
 
     /**
      * Test of deleteEntityById method, of class DinaService.
+     *
      * @throws java.lang.Exception
      */
     @Test
     public void testDeleteEntityById() throws Exception {
         System.out.println("deleteEntityById");
-        
+
         MockHttpRequest request = MockHttpRequest.delete("/dina/v0/TestEntity/20");
         request.accept(MediaType.APPLICATION_JSON);
         request.contentType(MediaType.APPLICATION_JSON_TYPE);
-           
-        
+
         response = new MockHttpResponse();
         dispatcher.invoke(request, response);
 
         verify(logic).deleteEntity(entity, 20);
         Assert.assertEquals(HttpServletResponse.SC_OK, response.getStatus());
-    } 
+    }
 
     /**
      * Test of deleteEntityById method, of class DinaService.
@@ -420,5 +420,6 @@ public class DinaServiceNGTest {
 
         verify(logic).deleteEntity(entity, 20);
         Assert.assertEquals(HttpServletResponse.SC_BAD_REQUEST, response.getStatus());
-    } 
+    }
+
 }

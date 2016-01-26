@@ -12,7 +12,7 @@ import se.nrm.dina.datamodel.EntityBean;
 /**
  *
  * @author idali
- * @param <T>
+ * @param <T>{@link BaseEntity}
  */
 public interface DinaDao<T extends EntityBean> {
 

@@ -9,7 +9,7 @@ import se.nrm.dina.datamodel.Collection;
 import se.nrm.dina.datamodel.Discipline;
 import se.nrm.dina.datamodel.Division;
 
-@Generated(value="EclipseLink-2.7.0.v20160122-rNA", date="2016-01-23T17:07:59")
+@Generated(value="EclipseLink-2.7.0.v20160125-rNA", date="2016-01-26T10:51:25")
 @StaticMetamodel(Autonumberingscheme.class)
 public class Autonumberingscheme_ extends BaseEntity_ {
 

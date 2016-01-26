@@ -54,30 +54,18 @@ public class DinaService {
         this.logic = logic;
     }
     
-    /**
-     * Generic method to get instances of an entity
-     * from database.
-     *
-     * @param entity    class name of the entity 
-     * @param offset    the start number of database id
-     * @param limit     the number of instances to return
-     * @param minid     the minimum of database id to retrieve from database
-     * @param maxid     the maximum of database id to retrieve from database
-     * @param orderby   sort order
-     *
-     * @return entity
-     */
     @GET
-    @Path("{entity}")
-    public Response getAllByEntityName(@PathParam("entity") String entity,
-            @QueryParam("offset") int offset,
-            @DefaultValue("50") @QueryParam("limit") int limit,
-            @DefaultValue("0") @QueryParam("minid") int minid,
-            @DefaultValue("0") @QueryParam("maxid") int maxid,
-            @QueryParam("orderby") String orderby) {
-
-        logger.info("getAllByEntityName : {} -- {}", entity, offset + " -- " + limit);
-
+    @Path("{entity}") 
+    public Response getAllByEntityName (@PathParam("entity") String entity, 
+                                        @QueryParam("offset") int offset, 
+                                        @DefaultValue("50") @QueryParam("limit") int limit, 
+                                        @DefaultValue("0") @QueryParam("minid") int minid,
+                                        @DefaultValue("0") @QueryParam("maxid") int maxid,
+                                        @QueryParam("orderby") String orderby) {
+        
+        logger.info("getAllByEntityName : {} -- {}", entity, offset + " -- " + limit);   
+        logger.info("getAllByEntityName : {} -- {}", minid, maxid);   
+        
         List<String> sort = new ArrayList();
         if(orderby != null) {
             sort = Arrays.asList(StringUtils.split(orderby, ","));
@@ -89,28 +77,29 @@ public class DinaService {
             return Response.status(e.getErrorCode()).entity(e.getMessage()).build();
         }   
     }
-
-    /**
-     * Generic method to get instances of an entity by given search criteria from database.  
-     *
-     * @param entity - class name of the entity 
-     * @param info 
-     *
-     * @return entity
-     */
+    
+    
+    
     @GET
-    @Path("{entity}/search")
+    @Path("{entity}/search")  
     public Response getData(@PathParam("entity") String entity, @Context UriInfo info) {
 
         MultivaluedMap<String, String> map = info.getQueryParameters();
+        logger.info("map : {}", map);
 
-        try {
+        try {  
             return Response.ok(logic.findAllBySearchCriteria(entity, map)).build();  
         } catch(DinaException e) {
             return Response.status(e.getErrorCode()).entity(e.getMessage()).build();
         }  
     }
+
+
     
+    
+    
+    
+        
     /**
      * Generic method to get an entity by entity id from database.  
      * This method passes in a PathParam entity class name and entity id 
@@ -149,8 +138,10 @@ public class DinaService {
         logger.info("getEntityById - entity: {} ", entity );
 
         try {  
-            int count = logic.findEntityCount(entity);  
-            return Response.ok(String.valueOf(count)).build(); 
+            int count = logic.findEntityCount(entity); 
+              
+            Response.ResponseBuilder rb = Response.ok(String.valueOf(count));
+            return rb.build(); 
         } catch(DinaException e) { 
             return Response.status(e.getErrorCode()).entity(e.getMessage()).build();
         }  
@@ -221,10 +212,12 @@ public class DinaService {
         logger.info("deleteEntityById - entity -- id: {} -- {}", entity, id );
 
         try {   
-            logic.deleteEntity(entity, id);   
+            logic.deleteEntity(entity, id);  
+            logger.info("OK");
             Response.ResponseBuilder rb = Response.ok(); 
             return rb.build(); 
-        } catch(DinaException e) {  
+        } catch(DinaException e) { 
+            logger.error("not ok");
             return Response.status(e.getErrorCode()).entity(e.getMessage()).build();
         }  
     } 
