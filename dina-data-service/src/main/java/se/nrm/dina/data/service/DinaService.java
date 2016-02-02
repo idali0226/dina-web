@@ -63,8 +63,7 @@ public class DinaService {
                                         @DefaultValue("0") @QueryParam("maxid") int maxid,
                                         @QueryParam("orderby") String orderby) {
         
-        logger.info("getAllByEntityName : {} -- {}", entity, offset + " -- " + limit);   
-        logger.info("getAllByEntityName : {} -- {}", minid, maxid);   
+        logger.info("getAllByEntityName : {} -- {}", entity, offset + " -- " + limit);    
         
         List<String> sort = new ArrayList();
         if(orderby != null) {
@@ -72,33 +71,34 @@ public class DinaService {
         }
       
         try {   
-            return Response.ok(logic.findAll(entity, offset, limit, minid, maxid, sort, null)).build();
+            return Response.ok(logic.findAll(entity, offset, limit, minid, maxid, sort, null))
+                    .header("Access-Control-Allow-Origin", "*")
+                    .build();
         } catch(DinaException e) {
-            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();
+            return Response.status(e.getErrorCode())
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity(e.getMessage())
+                    .build();
         }   
     }
-    
-    
-    
+     
     @GET
     @Path("{entity}/search")  
     public Response getData(@PathParam("entity") String entity, @Context UriInfo info) {
 
-        MultivaluedMap<String, String> map = info.getQueryParameters();
-        logger.info("map : {}", map);
+        MultivaluedMap<String, String> map = info.getQueryParameters(); 
 
         try {  
-            return Response.ok(logic.findAllBySearchCriteria(entity, map)).build();  
+            return Response.ok(logic.findAllBySearchCriteria(entity, map))
+                    .header("Access-Control-Allow-Origin", "*")
+                    .build();  
         } catch(DinaException e) {
-            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();
+            return Response.status(e.getErrorCode())
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity(e.getMessage())
+                    .build();
         }  
-    }
-
-
-    
-    
-    
-    
+    } 
         
     /**
      * Generic method to get an entity by entity id from database.  
@@ -116,9 +116,14 @@ public class DinaService {
         logger.info("getEntityById - entity: {}, id :  {}", entity, id);
    
         try {     
-            return Response.ok(logic.findById(id, entity)).build(); 
+            return Response.ok(logic.findById(id, entity))
+                    .header("Access-Control-Allow-Origin", "*")
+                    .build(); 
         } catch (DinaException e) {
-            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();
+            return Response.status(e.getErrorCode())
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity(e.getMessage())
+                    .build();
         }
     }
 
@@ -140,14 +145,15 @@ public class DinaService {
         try {  
             int count = logic.findEntityCount(entity); 
               
-            Response.ResponseBuilder rb = Response.ok(String.valueOf(count));
-            return rb.build(); 
+            return Response.ok(String.valueOf(count))
+                    .header("Access-Control-Allow-Origin", "*").build(); 
         } catch(DinaException e) { 
-            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();
+            return Response.status(e.getErrorCode())
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity(e.getMessage())
+                    .build();
         }  
-    }
-    
- 
+    } 
 
     /**
      * Generic method to create an entity by passing SpecifyBeanWrapper, the
@@ -165,9 +171,14 @@ public class DinaService {
         logger.info("createNewEntity - entity: {}", json);
  
         try {  
-            return Response.ok(logic.createEntity(entity, json)).build();
+            return Response.ok(logic.createEntity(entity, json))
+                    .header("Access-Control-Allow-Origin", "*")
+                    .build();
          } catch(DinaException e) { 
-            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();
+            return Response.status(e.getErrorCode())
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity(e.getMessage())
+                    .build();
         }  
     }
 
@@ -187,15 +198,17 @@ public class DinaService {
         logger.info("update entity: {} -- {}", entity, json);
         
          try {  
-            return Response.ok(logic.updateEntity(entity, json)).build(); 
+            return Response.ok(logic.updateEntity(entity, json))
+                    .header("Access-Control-Allow-Origin", "*")
+                    .build(); 
          } catch(DinaException e) { 
-            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();
+            return Response.status(e.getErrorCode())
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity(e.getMessage())
+                    .build();
         }  
     }
-    
-
-
-    
+      
     /**
      * Generic method to delete an entity by entity id from database.  
      * This method passes in a PathParam entity class name and entity id 
@@ -214,11 +227,13 @@ public class DinaService {
         try {   
             logic.deleteEntity(entity, id);  
             logger.info("OK");
-            Response.ResponseBuilder rb = Response.ok(); 
-            return rb.build(); 
+            return Response.ok().header("Access-Control-Allow-Origin", "*").build();  
         } catch(DinaException e) { 
             logger.error("not ok");
-            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();
+            return Response.status(e.getErrorCode())
+                    .header("Access-Control-Allow-Origin", "*")
+                    .entity(e.getMessage())
+                    .build();
         }  
     } 
 }
