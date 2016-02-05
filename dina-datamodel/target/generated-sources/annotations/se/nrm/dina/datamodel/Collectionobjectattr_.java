@@ -7,7 +7,7 @@ import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Attributedef;
 import se.nrm.dina.datamodel.Collectionobject;
 
-@Generated(value="EclipseLink-2.7.0.v20160125-rNA", date="2016-01-26T15:11:50")
+@Generated(value="EclipseLink-2.7.0.v20160203-rNA", date="2016-02-05T11:53:22")
 @StaticMetamodel(Collectionobjectattr.class)
 public class Collectionobjectattr_ extends BaseEntity_ {
 

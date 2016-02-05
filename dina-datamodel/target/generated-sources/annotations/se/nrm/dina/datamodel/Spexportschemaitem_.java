@@ -9,7 +9,7 @@ import se.nrm.dina.datamodel.Spexportschema;
 import se.nrm.dina.datamodel.Spexportschemaitemmapping;
 import se.nrm.dina.datamodel.Splocalecontaineritem;
 
-@Generated(value="EclipseLink-2.7.0.v20160125-rNA", date="2016-01-26T15:11:50")
+@Generated(value="EclipseLink-2.7.0.v20160203-rNA", date="2016-02-05T11:53:22")
 @StaticMetamodel(Spexportschemaitem.class)
 public class Spexportschemaitem_ extends BaseEntity_ {
 

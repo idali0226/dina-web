@@ -361,4 +361,4 @@ dina-datamodel,se.nrm.dina.datamodel,Permitattachment_,3,0,0,0,1,0,1,0,1,0
 dina-datamodel,se.nrm.dina.datamodel,Giftattachment,148,0,12,0,43,0,28,0,22,0
 dina-datamodel,se.nrm.dina.datamodel,Fieldnotebookattachment,142,0,12,0,41,0,28,0,22,0
 dina-datamodel,se.nrm.dina.datamodel,Attachment_,3,0,0,0,1,0,1,0,1,0
-dina-datamodel,se.nrm.dina.datamodel.util,Util,0,28,1,1,0,7,1,4,0,4
+dina-datamodel,se.nrm.dina.datamodel.util,Util,0,19,1,1,0,7,1,4,0,4

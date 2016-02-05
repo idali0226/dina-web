@@ -9,7 +9,7 @@ import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Conservdescription;
 import se.nrm.dina.datamodel.Conserveventattachment;
 
-@Generated(value="EclipseLink-2.7.0.v20160125-rNA", date="2016-01-26T15:11:50")
+@Generated(value="EclipseLink-2.7.0.v20160203-rNA", date="2016-02-05T11:53:22")
 @StaticMetamodel(Conservevent.class)
 public class Conservevent_ extends BaseEntity_ {
 

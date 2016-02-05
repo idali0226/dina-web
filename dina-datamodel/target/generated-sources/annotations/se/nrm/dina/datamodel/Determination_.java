@@ -10,7 +10,7 @@ import se.nrm.dina.datamodel.Collectionobject;
 import se.nrm.dina.datamodel.Determinationcitation;
 import se.nrm.dina.datamodel.Taxon;
 
-@Generated(value="EclipseLink-2.7.0.v20160125-rNA", date="2016-01-26T15:11:50")
+@Generated(value="EclipseLink-2.7.0.v20160203-rNA", date="2016-02-05T11:53:22")
 @StaticMetamodel(Determination.class)
 public class Determination_ extends BaseEntity_ {
 
