@@ -37,6 +37,7 @@ public class NamedQueries {
      * @param minid
      * @param maxid
      * @param orderBy
+     * @param isExact
      * @param criteria
      * @return String
      */
@@ -46,6 +47,7 @@ public class NamedQueries {
                                                         int minid,
                                                         int maxid,
                                                         List<String> orderBy,
+                                                        boolean isExact,
                                                         Map<String, String> criteria) {
   
         StringBuilder sb = new StringBuilder();
@@ -55,12 +57,12 @@ public class NamedQueries {
 
         if (maxid > 0) {
             minid = minid > offset ? minid : offset;
-            sb.append(buildConditions(clazz, minid, maxid, criteria));
+            sb.append(buildConditions(clazz, minid, maxid, criteria, isExact));
         } else if (offset > 0) {
             offset = offset > minid ? offset : minid;
-            sb.append(buildConditions(clazz, offset, criteria));
+            sb.append(buildConditions(clazz, offset, criteria, isExact));
         } else if (criteria != null && !criteria.isEmpty()) {
-            sb.append(buildConditions(clazz, criteria));
+            sb.append(buildConditions(clazz, criteria, isExact));
         }
 
         if (orderBy != null && !orderBy.isEmpty()) {
@@ -70,7 +72,7 @@ public class NamedQueries {
     }
 
  
-    private String buildConditions(Class clazz, int minid, int maxid, Map<String, String> criteria) {
+    private String buildConditions(Class clazz, int minid, int maxid, Map<String, String> criteria, boolean isExact) {
 
         EntityBean bean = Util.getInstance().createNewInstance(clazz.getSimpleName());
         String idFieldName = Util.getInstance().getIDFieldName(bean);
@@ -87,12 +89,12 @@ public class NamedQueries {
             return sb.toString().trim();
         } else { 
             sb.append(" AND ");
-            sb.append(buildSearchCriteria(clazz, criteria));
+            sb.append(buildSearchCriteria(clazz, criteria, isExact));
             return sb.toString();
         } 
     }
 
-    private String buildConditions(Class clazz, int offset, Map<String, String> criteria) {
+    private String buildConditions(Class clazz, int offset, Map<String, String> criteria, boolean isExact) {
 
         EntityBean bean = Util.getInstance().createNewInstance(clazz.getSimpleName());
         String idFieldName = Util.getInstance().getIDFieldName(bean);
@@ -107,40 +109,44 @@ public class NamedQueries {
             return sb.toString().trim();
         } else { 
             sb.append(" AND ");
-            sb.append(buildSearchCriteria(clazz, criteria));
+            sb.append(buildSearchCriteria(clazz, criteria, isExact));
             return sb.toString();
         } 
     }
     
-    private String buildConditions(Class clazz, Map<String, String> criteria) {
+    private String buildConditions(Class clazz, Map<String, String> criteria, boolean isExact) {
         StringBuilder sb = new StringBuilder();
-        sb.append("WHERE"); 
-        sb.append(buildSearchCriteria(clazz, criteria));
-         
+        sb.append("WHERE");
+        sb.append(buildSearchCriteria(clazz, criteria, isExact));
+
         return sb.toString();
     }
-    
-    private String buildSearchCriteria(Class clazz, Map<String, String> criteria) {
-        
+
+    private String buildSearchCriteria(Class clazz, Map<String, String> criteria, boolean isExact) {
+
         StringBuilder sb = new StringBuilder();
         criteria.entrySet()
                 .stream()
                 .forEach(entry -> {
                     sb.append(" e.");
                     sb.append(entry.getKey());
+
                     if (Util.getInstance().isEntity(clazz, entry.getKey())) {
                         sb.append(".");
-                        sb.append(Util.getInstance().getIDFieldName(Util.getInstance().getEntity(clazz, entry.getKey()))); 
+                        sb.append(Util.getInstance().getIDFieldName(Util.getInstance().getEntity(clazz, entry.getKey())));
+                        sb.append(" = :");
+                    } else {
+                        sb.append(isExact ? " = :" : " like :"); 
                     }
-                    sb.append(" = :");
+
                     sb.append(entry.getKey());
                     sb.append(" AND ");
                 });
         return StringUtils.substringBeforeLast(sb.toString(), " AND");
     }
-    
+
     private String buildOrderByString(Class clazz, List<String> list) {
-         
+
         logger.info("buildOrderByString : {} -- {}", clazz, list);
          
         StringBuilder sb = new StringBuilder();

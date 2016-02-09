@@ -62,7 +62,7 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
     }
     
     @Override
-    public List<T> findAll(Class<T> clazz, String jpql, int limit, Map<String, String> conditions) {
+    public List<T> findAll(Class<T> clazz, String jpql, int limit, Map<String, String> conditions ) {
         logger.info("findAll : {} -- {}", jpql, conditions);
          
         try {
@@ -70,6 +70,20 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
             query.setMaxResults(Util.getInstance().maxLimit(limit));
             return query.getResultList();  
         } catch (Exception e) { 
+            throw new DinaException(e.getMessage());
+        }
+    }
+    
+    
+    @Override
+    public List<T> findAllWithFuzzSearch(Class<T> clazz, String jpql, int limit, Map<String, String> conditions) {
+        logger.info("findAll : {} -- {}", jpql, conditions);
+
+        try {
+            query = createQueryFuzzSearch(clazz, jpql, conditions);
+            query.setMaxResults(Util.getInstance().maxLimit(limit));
+            return query.getResultList();
+        } catch (Exception e) {
             throw new DinaException(e.getMessage());
         }
     }
@@ -215,10 +229,10 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
             logger.warn(e.getMessage());
         }
     }
- 
+
     /**
      * Build a namedQuery with parameters
-     * 
+     *
      * @param clazz
      * @param strJPQL
      * @param parameters
@@ -238,6 +252,34 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
                             query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));
                         } else {
                             query.setParameter((String) entry.getKey(), entry.getValue());
+                        }
+                    });
+        }
+        return query;
+    }
+ 
+    /**
+     * Build a namedQuery with parameters
+     * 
+     * @param clazz
+     * @param strJPQL
+     * @param parameters
+     * @return Query
+     */
+    private Query createQueryFuzzSearch(Class clazz, String strJPQL, Map<String, String> parameters) {
+        query = entityManager.createQuery(strJPQL);
+
+        if (parameters != null) {
+            parameters.entrySet()
+                    .stream()
+                    .forEach((entry) -> {
+                        String fieldName = entry.getKey();
+                        if (Util.getInstance().isIntField(clazz, fieldName)) {
+                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));
+                        } else if (Util.getInstance().isEntity(clazz, fieldName)) {
+                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));
+                        } else {
+                            query.setParameter(entry.getKey(), "%" + entry.getValue() + "%");
                         }
                     });
         }

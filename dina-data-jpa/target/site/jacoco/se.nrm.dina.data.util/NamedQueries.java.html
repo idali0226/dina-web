@@ -37,6 +37,7 @@ import se.nrm.dina.datamodel.EntityBean;
      * @param minid
      * @param maxid
      * @param orderBy
+     * @param isExact
      * @param criteria
      * @return String
      */
@@ -46,114 +47,119 @@ import se.nrm.dina.datamodel.EntityBean;
                                                         int minid,
                                                         int maxid,
                                                         List&lt;String&gt; orderBy,
+                                                        boolean isExact,
                                                         Map&lt;String, String&gt; criteria) {
   
-<span class="fc" id="L51">        StringBuilder sb = new StringBuilder();</span>
-<span class="fc" id="L52">        sb.append(&quot;SELECT e From &quot;);</span>
-<span class="fc" id="L53">        sb.append(entityName);</span>
-<span class="fc" id="L54">        sb.append(&quot; e &quot;);</span>
+<span class="fc" id="L53">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L54">        sb.append(&quot;SELECT e From &quot;);</span>
+<span class="fc" id="L55">        sb.append(entityName);</span>
+<span class="fc" id="L56">        sb.append(&quot; e &quot;);</span>
 
-<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (maxid &gt; 0) {</span>
-<span class="fc bfc" id="L57" title="All 2 branches covered.">            minid = minid &gt; offset ? minid : offset;</span>
-<span class="fc" id="L58">            sb.append(buildConditions(clazz, minid, maxid, criteria));</span>
-<span class="fc bfc" id="L59" title="All 2 branches covered.">        } else if (offset &gt; 0) {</span>
-<span class="pc bpc" id="L60" title="1 of 2 branches missed.">            offset = offset &gt; minid ? offset : minid;</span>
-<span class="fc" id="L61">            sb.append(buildConditions(clazz, offset, criteria));</span>
-<span class="pc bpc" id="L62" title="1 of 4 branches missed.">        } else if (criteria != null &amp;&amp; !criteria.isEmpty()) {</span>
-<span class="fc" id="L63">            sb.append(buildConditions(clazz, criteria));</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (maxid &gt; 0) {</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">            minid = minid &gt; offset ? minid : offset;</span>
+<span class="fc" id="L60">            sb.append(buildConditions(clazz, minid, maxid, criteria, isExact));</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        } else if (offset &gt; 0) {</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">            offset = offset &gt; minid ? offset : minid;</span>
+<span class="fc" id="L63">            sb.append(buildConditions(clazz, offset, criteria, isExact));</span>
+<span class="pc bpc" id="L64" title="1 of 4 branches missed.">        } else if (criteria != null &amp;&amp; !criteria.isEmpty()) {</span>
+<span class="fc" id="L65">            sb.append(buildConditions(clazz, criteria, isExact));</span>
         }
 
-<span class="fc bfc" id="L66" title="All 4 branches covered.">        if (orderBy != null &amp;&amp; !orderBy.isEmpty()) {</span>
-<span class="fc" id="L67">            sb.append(buildOrderByString(clazz, orderBy));</span>
+<span class="fc bfc" id="L68" title="All 4 branches covered.">        if (orderBy != null &amp;&amp; !orderBy.isEmpty()) {</span>
+<span class="fc" id="L69">            sb.append(buildOrderByString(clazz, orderBy));</span>
         } 
-<span class="fc" id="L69">        return sb.toString(); </span>
+<span class="fc" id="L71">        return sb.toString(); </span>
     }
 
  
-    private String buildConditions(Class clazz, int minid, int maxid, Map&lt;String, String&gt; criteria) {
+    private String buildConditions(Class clazz, int minid, int maxid, Map&lt;String, String&gt; criteria, boolean isExact) {
 
-<span class="fc" id="L75">        EntityBean bean = Util.getInstance().createNewInstance(clazz.getSimpleName());</span>
-<span class="fc" id="L76">        String idFieldName = Util.getInstance().getIDFieldName(bean);</span>
+<span class="fc" id="L77">        EntityBean bean = Util.getInstance().createNewInstance(clazz.getSimpleName());</span>
+<span class="fc" id="L78">        String idFieldName = Util.getInstance().getIDFieldName(bean);</span>
 
-<span class="fc" id="L78">        StringBuilder sb = new StringBuilder();</span>
-<span class="fc" id="L79">        sb.append(&quot;WHERE e.&quot;);</span>
-<span class="fc" id="L80">        sb.append(idFieldName);</span>
-<span class="fc" id="L81">        sb.append(&quot; BETWEEN &quot;);</span>
-<span class="fc" id="L82">        sb.append(minid);</span>
-<span class="fc" id="L83">        sb.append(&quot; AND &quot;);</span>
-<span class="fc" id="L84">        sb.append(maxid);</span>
+<span class="fc" id="L80">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L81">        sb.append(&quot;WHERE e.&quot;);</span>
+<span class="fc" id="L82">        sb.append(idFieldName);</span>
+<span class="fc" id="L83">        sb.append(&quot; BETWEEN &quot;);</span>
+<span class="fc" id="L84">        sb.append(minid);</span>
+<span class="fc" id="L85">        sb.append(&quot; AND &quot;);</span>
+<span class="fc" id="L86">        sb.append(maxid);</span>
 
-<span class="fc bfc" id="L86" title="All 4 branches covered.">        if (criteria == null || criteria.isEmpty()) {</span>
-<span class="fc" id="L87">            return sb.toString().trim();</span>
+<span class="fc bfc" id="L88" title="All 4 branches covered.">        if (criteria == null || criteria.isEmpty()) {</span>
+<span class="fc" id="L89">            return sb.toString().trim();</span>
         } else { 
-<span class="fc" id="L89">            sb.append(&quot; AND &quot;);</span>
-<span class="fc" id="L90">            sb.append(buildSearchCriteria(clazz, criteria));</span>
-<span class="fc" id="L91">            return sb.toString();</span>
+<span class="fc" id="L91">            sb.append(&quot; AND &quot;);</span>
+<span class="fc" id="L92">            sb.append(buildSearchCriteria(clazz, criteria, isExact));</span>
+<span class="fc" id="L93">            return sb.toString();</span>
         } 
     }
 
-    private String buildConditions(Class clazz, int offset, Map&lt;String, String&gt; criteria) {
+    private String buildConditions(Class clazz, int offset, Map&lt;String, String&gt; criteria, boolean isExact) {
 
-<span class="fc" id="L97">        EntityBean bean = Util.getInstance().createNewInstance(clazz.getSimpleName());</span>
-<span class="fc" id="L98">        String idFieldName = Util.getInstance().getIDFieldName(bean);</span>
+<span class="fc" id="L99">        EntityBean bean = Util.getInstance().createNewInstance(clazz.getSimpleName());</span>
+<span class="fc" id="L100">        String idFieldName = Util.getInstance().getIDFieldName(bean);</span>
 
-<span class="fc" id="L100">        StringBuilder sb = new StringBuilder();</span>
-<span class="fc" id="L101">        sb.append(&quot;WHERE e.&quot;);</span>
-<span class="fc" id="L102">        sb.append(idFieldName);</span>
-<span class="fc" id="L103">        sb.append(&quot; &gt;= &quot;);</span>
-<span class="fc" id="L104">        sb.append(offset);</span>
+<span class="fc" id="L102">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L103">        sb.append(&quot;WHERE e.&quot;);</span>
+<span class="fc" id="L104">        sb.append(idFieldName);</span>
+<span class="fc" id="L105">        sb.append(&quot; &gt;= &quot;);</span>
+<span class="fc" id="L106">        sb.append(offset);</span>
 
-<span class="pc bpc" id="L106" title="2 of 4 branches missed.">        if (criteria == null || criteria.isEmpty()) {</span>
-<span class="nc" id="L107">            return sb.toString().trim();</span>
+<span class="pc bpc" id="L108" title="2 of 4 branches missed.">        if (criteria == null || criteria.isEmpty()) {</span>
+<span class="nc" id="L109">            return sb.toString().trim();</span>
         } else { 
-<span class="fc" id="L109">            sb.append(&quot; AND &quot;);</span>
-<span class="fc" id="L110">            sb.append(buildSearchCriteria(clazz, criteria));</span>
-<span class="fc" id="L111">            return sb.toString();</span>
+<span class="fc" id="L111">            sb.append(&quot; AND &quot;);</span>
+<span class="fc" id="L112">            sb.append(buildSearchCriteria(clazz, criteria, isExact));</span>
+<span class="fc" id="L113">            return sb.toString();</span>
         } 
     }
     
-    private String buildConditions(Class clazz, Map&lt;String, String&gt; criteria) {
-<span class="fc" id="L116">        StringBuilder sb = new StringBuilder();</span>
-<span class="fc" id="L117">        sb.append(&quot;WHERE&quot;); </span>
-<span class="fc" id="L118">        sb.append(buildSearchCriteria(clazz, criteria));</span>
-         
-<span class="fc" id="L120">        return sb.toString();</span>
+    private String buildConditions(Class clazz, Map&lt;String, String&gt; criteria, boolean isExact) {
+<span class="fc" id="L118">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L119">        sb.append(&quot;WHERE&quot;);</span>
+<span class="fc" id="L120">        sb.append(buildSearchCriteria(clazz, criteria, isExact));</span>
+
+<span class="fc" id="L122">        return sb.toString();</span>
     }
-    
-    private String buildSearchCriteria(Class clazz, Map&lt;String, String&gt; criteria) {
-        
-<span class="fc" id="L125">        StringBuilder sb = new StringBuilder();</span>
-<span class="fc" id="L126">        criteria.entrySet()</span>
-<span class="fc" id="L127">                .stream()</span>
-<span class="fc" id="L128">                .forEach(entry -&gt; {</span>
-<span class="fc" id="L129">                    sb.append(&quot; e.&quot;);</span>
-<span class="fc" id="L130">                    sb.append(entry.getKey());</span>
-<span class="fc bfc" id="L131" title="All 2 branches covered.">                    if (Util.getInstance().isEntity(clazz, entry.getKey())) {</span>
-<span class="fc" id="L132">                        sb.append(&quot;.&quot;);</span>
-<span class="fc" id="L133">                        sb.append(Util.getInstance().getIDFieldName(Util.getInstance().getEntity(clazz, entry.getKey()))); </span>
+
+    private String buildSearchCriteria(Class clazz, Map&lt;String, String&gt; criteria, boolean isExact) {
+
+<span class="fc" id="L127">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L128">        criteria.entrySet()</span>
+<span class="fc" id="L129">                .stream()</span>
+<span class="fc" id="L130">                .forEach(entry -&gt; {</span>
+<span class="fc" id="L131">                    sb.append(&quot; e.&quot;);</span>
+<span class="fc" id="L132">                    sb.append(entry.getKey());</span>
+
+<span class="fc bfc" id="L134" title="All 2 branches covered.">                    if (Util.getInstance().isEntity(clazz, entry.getKey())) {</span>
+<span class="fc" id="L135">                        sb.append(&quot;.&quot;);</span>
+<span class="fc" id="L136">                        sb.append(Util.getInstance().getIDFieldName(Util.getInstance().getEntity(clazz, entry.getKey())));</span>
+<span class="fc" id="L137">                        sb.append(&quot; = :&quot;);</span>
+                    } else {
+<span class="fc bfc" id="L139" title="All 2 branches covered.">                        sb.append(isExact ? &quot; = :&quot; : &quot; like :&quot;); </span>
                     }
-<span class="fc" id="L135">                    sb.append(&quot; = :&quot;);</span>
-<span class="fc" id="L136">                    sb.append(entry.getKey());</span>
-<span class="fc" id="L137">                    sb.append(&quot; AND &quot;);</span>
-<span class="fc" id="L138">                });</span>
-<span class="fc" id="L139">        return StringUtils.substringBeforeLast(sb.toString(), &quot; AND&quot;);</span>
+
+<span class="fc" id="L142">                    sb.append(entry.getKey());</span>
+<span class="fc" id="L143">                    sb.append(&quot; AND &quot;);</span>
+<span class="fc" id="L144">                });</span>
+<span class="fc" id="L145">        return StringUtils.substringBeforeLast(sb.toString(), &quot; AND&quot;);</span>
     }
-    
+
     private String buildOrderByString(Class clazz, List&lt;String&gt; list) {
+
+<span class="fc" id="L150">        logger.info(&quot;buildOrderByString : {} -- {}&quot;, clazz, list);</span>
          
-<span class="fc" id="L144">        logger.info(&quot;buildOrderByString : {} -- {}&quot;, clazz, list);</span>
+<span class="fc" id="L152">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L153">        sb.append(&quot; ORDER BY &quot;);</span>
+<span class="fc" id="L154">        list.stream()</span>
+<span class="fc" id="L155">                .filter(l -&gt; Util.getInstance().validateFields(clazz, l))</span>
+<span class="fc" id="L156">                .forEach(l -&gt; {</span>
+<span class="fc" id="L157">                    sb.append(&quot;e.&quot;);</span>
+<span class="fc" id="L158">                    sb.append(l);</span>
+<span class="fc" id="L159">                    sb.append(&quot;, &quot;);</span>
+<span class="fc" id="L160">                });</span>
          
-<span class="fc" id="L146">        StringBuilder sb = new StringBuilder();</span>
-<span class="fc" id="L147">        sb.append(&quot; ORDER BY &quot;);</span>
-<span class="fc" id="L148">        list.stream()</span>
-<span class="fc" id="L149">                .filter(l -&gt; Util.getInstance().validateFields(clazz, l))</span>
-<span class="fc" id="L150">                .forEach(l -&gt; {</span>
-<span class="fc" id="L151">                    sb.append(&quot;e.&quot;);</span>
-<span class="fc" id="L152">                    sb.append(l);</span>
-<span class="fc" id="L153">                    sb.append(&quot;, &quot;);</span>
-<span class="fc" id="L154">                });</span>
-         
-<span class="fc" id="L156">        return StringUtils.substringBeforeLast(sb.toString(), &quot;,&quot;); </span>
+<span class="fc" id="L162">        return StringUtils.substringBeforeLast(sb.toString(), &quot;,&quot;); </span>
     }
     
     /**
@@ -163,12 +169,12 @@ import se.nrm.dina.datamodel.EntityBean;
      */
     public String createFindTotalCountNamedQuery(String entityName) {
 
-<span class="fc" id="L166">        StringBuilder sb = new StringBuilder();</span>
-<span class="fc" id="L167">        sb.append(&quot;SELECT COUNT(e) FROM &quot;); </span>
-<span class="fc" id="L168">        sb.append(entityName);</span>
-<span class="fc" id="L169">        sb.append(&quot; e&quot;); </span>
+<span class="fc" id="L172">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L173">        sb.append(&quot;SELECT COUNT(e) FROM &quot;); </span>
+<span class="fc" id="L174">        sb.append(entityName);</span>
+<span class="fc" id="L175">        sb.append(&quot; e&quot;); </span>
         
-<span class="fc" id="L171">        return sb.toString();</span>
+<span class="fc" id="L177">        return sb.toString();</span>
     }
 
 }

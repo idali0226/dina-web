@@ -9,7 +9,7 @@ import se.nrm.dina.datamodel.Collectingevent;
 import se.nrm.dina.datamodel.Discipline;
 import se.nrm.dina.datamodel.Taxon;
 
-@Generated(value="EclipseLink-2.7.0.v20160203-rNA", date="2016-02-05T11:53:22")
+@Generated(value="EclipseLink-2.7.0.v20160208-rNA", date="2016-02-09T12:42:24")
 @StaticMetamodel(Collectingeventattribute.class)
 public class Collectingeventattribute_ extends BaseEntity_ {
 

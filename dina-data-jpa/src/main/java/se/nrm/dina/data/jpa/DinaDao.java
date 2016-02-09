@@ -87,11 +87,25 @@ public interface DinaDao<T extends EntityBean> {
      * @param clazz the entity class
      * @param entityName the name of the entity
      * @param limit the number of instances to return
-     * @param conditions the search criterion
+     * @param conditions the search criterion 
      *
      * @return a <code>List</code> of all the entities in the database.
      */
     public List<T> findAll(Class<T> clazz, String entityName, int limit, Map<String, String> conditions);
+    
+    
+    /**
+     * Finds all the instances of an entity in the database by the search
+     * criterion.
+     *
+     * @param clazz the entity class
+     * @param entityName the name of the entity
+     * @param limit the number of instances to return
+     * @param conditions the search criterion 
+     *
+     * @return a <code>List</code> of all the entities in the database.
+     */
+    public List<T> findAllWithFuzzSearch(Class<T> clazz, String entityName, int limit, Map<String, String> conditions);
  
     /**
      * A generic method to update an entity by query.
