@@ -71,12 +71,10 @@ public class DinaService {
         }
       
         try {   
-            return Response.ok(logic.findAll(entity, offset, limit, minid, maxid, sort, null))
-                    .header("Access-Control-Allow-Origin", "*")
+            return Response.ok(logic.findAll(entity, offset, limit, minid, maxid, sort, null)) 
                     .build();
         } catch(DinaException e) {
-            return Response.status(e.getErrorCode())
-                    .header("Access-Control-Allow-Origin", "*")
+            return Response.status(e.getErrorCode()) 
                     .entity(e.getMessage())
                     .build();
         }   
@@ -89,12 +87,10 @@ public class DinaService {
         MultivaluedMap<String, String> map = info.getQueryParameters(); 
 
         try {  
-            return Response.ok(logic.findAllBySearchCriteria(entity, map))
-                    .header("Access-Control-Allow-Origin", "*")
+            return Response.ok(logic.findAllBySearchCriteria(entity, map)) 
                     .build();  
         } catch(DinaException e) {
-            return Response.status(e.getErrorCode())
-                    .header("Access-Control-Allow-Origin", "*")
+            return Response.status(e.getErrorCode()) 
                     .entity(e.getMessage())
                     .build();
         }  
@@ -116,12 +112,10 @@ public class DinaService {
         logger.info("getEntityById - entity: {}, id :  {}", entity, id);
    
         try {     
-            return Response.ok(logic.findById(id, entity))
-                    .header("Access-Control-Allow-Origin", "*")
+            return Response.ok(logic.findById(id, entity)) 
                     .build(); 
         } catch (DinaException e) {
-            return Response.status(e.getErrorCode())
-                    .header("Access-Control-Allow-Origin", "*")
+            return Response.status(e.getErrorCode()) 
                     .entity(e.getMessage())
                     .build();
         }
@@ -145,11 +139,10 @@ public class DinaService {
         try {  
             int count = logic.findEntityCount(entity); 
               
-            return Response.ok(String.valueOf(count))
-                    .header("Access-Control-Allow-Origin", "*").build(); 
+            return Response.ok(String.valueOf(count)) 
+                    .build(); 
         } catch(DinaException e) { 
-            return Response.status(e.getErrorCode())
-                    .header("Access-Control-Allow-Origin", "*")
+            return Response.status(e.getErrorCode()) 
                     .entity(e.getMessage())
                     .build();
         }  
@@ -171,12 +164,10 @@ public class DinaService {
         logger.info("createNewEntity - entity: {}", json);
  
         try {  
-            return Response.ok(logic.createEntity(entity, json))
-                    .header("Access-Control-Allow-Origin", "*")
+            return Response.ok(logic.createEntity(entity, json)) 
                     .build();
          } catch(DinaException e) { 
-            return Response.status(e.getErrorCode())
-                    .header("Access-Control-Allow-Origin", "*")
+            return Response.status(e.getErrorCode()) 
                     .entity(e.getMessage())
                     .build();
         }  
@@ -198,12 +189,10 @@ public class DinaService {
         logger.info("update entity: {} -- {}", entity, json);
         
          try {  
-            return Response.ok(logic.updateEntity(entity, json))
-                    .header("Access-Control-Allow-Origin", "*")
+            return Response.ok(logic.updateEntity(entity, json)) 
                     .build(); 
          } catch(DinaException e) { 
-            return Response.status(e.getErrorCode())
-                    .header("Access-Control-Allow-Origin", "*")
+            return Response.status(e.getErrorCode()) 
                     .entity(e.getMessage())
                     .build();
         }  
@@ -227,11 +216,10 @@ public class DinaService {
         try {   
             logic.deleteEntity(entity, id);  
             logger.info("OK");
-            return Response.ok().header("Access-Control-Allow-Origin", "*").build();  
+            return Response.ok().build();  
         } catch(DinaException e) { 
             logger.error("not ok");
-            return Response.status(e.getErrorCode())
-                    .header("Access-Control-Allow-Origin", "*")
+            return Response.status(e.getErrorCode()) 
                     .entity(e.getMessage())
                     .build();
         }  
