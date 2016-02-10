@@ -251,6 +251,24 @@ public class Util {
                 .getName();
     }
 
+    
+    /**
+     * Find id field name for the entity bean
+     *
+     * @param bean
+     * @return String, name of the id field of this entity bean
+     */
+    public Field getIDField(EntityBean bean) {
+        Field[] fields = bean.getClass().getDeclaredFields();
+
+        return Arrays.asList(fields)
+                .stream()
+                .filter(f -> f.isAnnotationPresent(Id.class))
+                .findFirst()
+                .get();
+    }
+    
+    
     /**
      * Find id field name for the entity bean
      *

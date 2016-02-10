@@ -24,7 +24,7 @@
     <dependencies>  
         <dependency>
             <groupId>${project.parent.groupId}</groupId>
-            <artifactId>dina-data-jpa</artifactId>
+            <artifactId>dina-logic</artifactId>
             <version>${project.version}</version> 
             <type>ejb</type> 
         </dependency>

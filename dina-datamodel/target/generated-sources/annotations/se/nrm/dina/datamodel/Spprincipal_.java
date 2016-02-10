@@ -11,7 +11,7 @@ import se.nrm.dina.datamodel.Specifyuser;
 import se.nrm.dina.datamodel.Sppermission;
 import se.nrm.dina.datamodel.Workbench;
 
-@Generated(value="EclipseLink-2.7.0.v20160208-rNA", date="2016-02-10T12:13:26")
+@Generated(value="EclipseLink-2.7.0.v20160208-rNA", date="2016-02-10T17:35:03")
 @StaticMetamodel(Spprincipal.class)
 public class Spprincipal_ extends BaseEntity_ {
 

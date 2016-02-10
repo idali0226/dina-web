@@ -9,7 +9,7 @@ import se.nrm.dina.datamodel.Specifyuser;
 import se.nrm.dina.datamodel.Spqueryfield;
 import se.nrm.dina.datamodel.Spreport;
 
-@Generated(value="EclipseLink-2.7.0.v20160208-rNA", date="2016-02-10T12:13:26")
+@Generated(value="EclipseLink-2.7.0.v20160208-rNA", date="2016-02-10T17:35:03")
 @StaticMetamodel(Spquery.class)
 public class Spquery_ extends BaseEntity_ {
 

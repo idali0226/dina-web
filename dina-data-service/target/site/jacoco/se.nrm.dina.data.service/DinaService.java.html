@@ -29,7 +29,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.nrm.dina.data.exceptions.DinaException; 
-import se.nrm.dina.data.logic.DinaDataLogic;
+import se.nrm.dina.logic.DinaDataLogic;
  
 /**
  *
@@ -164,12 +164,11 @@ public class DinaService {
 <span class="fc" id="L164">        logger.info(&quot;createNewEntity - entity: {}&quot;, json);</span>
  
         try {  
-<span class="fc" id="L167">            return Response.ok(logic.createEntity(entity, json)) </span>
-<span class="fc" id="L168">                    .build();</span>
-<span class="fc" id="L169">         } catch(DinaException e) { </span>
-<span class="fc" id="L170">            return Response.status(e.getErrorCode()) </span>
-<span class="fc" id="L171">                    .entity(e.getMessage())</span>
-<span class="fc" id="L172">                    .build();</span>
+<span class="fc" id="L167">            return Response.ok(logic.createEntity(entity, json)).build();</span>
+<span class="fc" id="L168">         } catch(DinaException e) { </span>
+<span class="fc" id="L169">            return Response.status(e.getErrorCode()) </span>
+<span class="fc" id="L170">                    .entity(e.getMessage())</span>
+<span class="fc" id="L171">                    .build();</span>
         }  
     }
 
@@ -186,15 +185,15 @@ public class DinaService {
     @Path(&quot;{entity}&quot;) 
     public Response updateEntity(@PathParam(&quot;entity&quot;) String entity, String json) {
     
-<span class="fc" id="L189">        logger.info(&quot;update entity: {} -- {}&quot;, entity, json);</span>
+<span class="fc" id="L188">        logger.info(&quot;update entity: {} -- {}&quot;, entity, json);</span>
         
          try {  
-<span class="fc" id="L192">            return Response.ok(logic.updateEntity(entity, json)) </span>
-<span class="fc" id="L193">                    .build(); </span>
-<span class="fc" id="L194">         } catch(DinaException e) { </span>
-<span class="fc" id="L195">            return Response.status(e.getErrorCode()) </span>
-<span class="fc" id="L196">                    .entity(e.getMessage())</span>
-<span class="fc" id="L197">                    .build();</span>
+<span class="fc" id="L191">            return Response.ok(logic.updateEntity(entity, json)) </span>
+<span class="fc" id="L192">                    .build(); </span>
+<span class="fc" id="L193">         } catch(DinaException e) { </span>
+<span class="fc" id="L194">            return Response.status(e.getErrorCode()) </span>
+<span class="fc" id="L195">                    .entity(e.getMessage())</span>
+<span class="fc" id="L196">                    .build();</span>
         }  
     }
       
@@ -211,17 +210,17 @@ public class DinaService {
     @Path(&quot;{entity}/{id}&quot;)  
     public Response deleteEntityById(@PathParam(&quot;entity&quot;) String entity, @PathParam(&quot;id&quot;) int id) {
         
-<span class="fc" id="L214">        logger.info(&quot;deleteEntityById - entity -- id: {} -- {}&quot;, entity, id );</span>
+<span class="fc" id="L213">        logger.info(&quot;deleteEntityById - entity -- id: {} -- {}&quot;, entity, id );</span>
 
         try {   
-<span class="fc" id="L217">            logic.deleteEntity(entity, id);  </span>
-<span class="fc" id="L218">            logger.info(&quot;OK&quot;);</span>
-<span class="fc" id="L219">            return Response.ok().build();  </span>
-<span class="fc" id="L220">        } catch(DinaException e) { </span>
-<span class="fc" id="L221">            logger.error(&quot;not ok&quot;);</span>
-<span class="fc" id="L222">            return Response.status(e.getErrorCode()) </span>
-<span class="fc" id="L223">                    .entity(e.getMessage())</span>
-<span class="fc" id="L224">                    .build();</span>
+<span class="fc" id="L216">            logic.deleteEntity(entity, id);  </span>
+<span class="fc" id="L217">            logger.info(&quot;OK&quot;);</span>
+<span class="fc" id="L218">            return Response.ok().build();  </span>
+<span class="fc" id="L219">        } catch(DinaException e) { </span>
+<span class="fc" id="L220">            logger.error(&quot;not ok&quot;);</span>
+<span class="fc" id="L221">            return Response.status(e.getErrorCode()) </span>
+<span class="fc" id="L222">                    .entity(e.getMessage())</span>
+<span class="fc" id="L223">                    .build();</span>
         }  
     } 
 }

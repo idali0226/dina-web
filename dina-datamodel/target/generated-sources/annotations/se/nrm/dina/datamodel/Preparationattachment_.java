@@ -7,7 +7,7 @@ import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Attachment;
 import se.nrm.dina.datamodel.Preparation;
 
-@Generated(value="EclipseLink-2.7.0.v20160208-rNA", date="2016-02-10T12:13:26")
+@Generated(value="EclipseLink-2.7.0.v20160208-rNA", date="2016-02-10T17:35:03")
 @StaticMetamodel(Preparationattachment.class)
 public class Preparationattachment_ extends BaseEntity_ {
 

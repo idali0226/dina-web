@@ -6,7 +6,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Spauditlog;
 
-@Generated(value="EclipseLink-2.7.0.v20160208-rNA", date="2016-02-10T12:13:26")
+@Generated(value="EclipseLink-2.7.0.v20160208-rNA", date="2016-02-10T17:35:03")
 @StaticMetamodel(Spauditlogfield.class)
 public class Spauditlogfield_ extends BaseEntity_ {
 

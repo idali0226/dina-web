@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package se.nrm.dina.data.util;
-
+ 
 import java.util.HashMap;
 import java.util.Map; 
 import org.junit.Test;

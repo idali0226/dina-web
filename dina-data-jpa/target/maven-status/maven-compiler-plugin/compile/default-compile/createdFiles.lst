@@ -1,7 +1,5 @@
-se/nrm/dina/data/logic/DinaDataLogic.class
 se/nrm/dina/data/util/Util.class
 se/nrm/dina/data/jpa/DinaDao.class
 se/nrm/dina/data/jpa/DinaDaoImpl.class
 se/nrm/dina/data/exceptions/ErrorMsg.class
 se/nrm/dina/data/exceptions/DinaException.class
-se/nrm/dina/data/util/NamedQueries.class

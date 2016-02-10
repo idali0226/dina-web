@@ -29,7 +29,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.nrm.dina.data.exceptions.DinaException; 
-import se.nrm.dina.data.logic.DinaDataLogic;
+import se.nrm.dina.logic.DinaDataLogic;
  
 /**
  *
@@ -164,8 +164,7 @@ public class DinaService {
         logger.info("createNewEntity - entity: {}", json);
  
         try {  
-            return Response.ok(logic.createEntity(entity, json)) 
-                    .build();
+            return Response.ok(logic.createEntity(entity, json)).build();
          } catch(DinaException e) { 
             return Response.status(e.getErrorCode()) 
                     .entity(e.getMessage())

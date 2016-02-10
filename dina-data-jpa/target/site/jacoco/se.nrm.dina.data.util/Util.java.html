@@ -251,6 +251,24 @@ import se.nrm.dina.datamodel.EntityBean;
 <span class="fc" id="L251">                .getName();</span>
     }
 
+    
+    /**
+     * Find id field name for the entity bean
+     *
+     * @param bean
+     * @return String, name of the id field of this entity bean
+     */
+    public Field getIDField(EntityBean bean) {
+<span class="nc" id="L262">        Field[] fields = bean.getClass().getDeclaredFields();</span>
+
+<span class="nc" id="L264">        return Arrays.asList(fields)</span>
+<span class="nc" id="L265">                .stream()</span>
+<span class="nc" id="L266">                .filter(f -&gt; f.isAnnotationPresent(Id.class))</span>
+<span class="nc" id="L267">                .findFirst()</span>
+<span class="nc" id="L268">                .get();</span>
+    }
+    
+    
     /**
      * Find id field name for the entity bean
      *
@@ -258,8 +276,8 @@ import se.nrm.dina.datamodel.EntityBean;
      * @return String, name of the id field of this entity bean
      */
     public String getIDFieldName(String entityName) {
-<span class="fc" id="L261">        EntityBean bean = createNewInstance(entityName);</span>
-<span class="fc" id="L262">        return getIDFieldName(bean);</span>
+<span class="fc" id="L279">        EntityBean bean = createNewInstance(entityName);</span>
+<span class="fc" id="L280">        return getIDFieldName(bean);</span>
     }
     
     /**
@@ -268,7 +286,7 @@ import se.nrm.dina.datamodel.EntityBean;
      * @return 
      */    
     public boolean isNumric(String s) { 
-<span class="fc" id="L271">        return StringUtils.isNumeric(s);</span>
+<span class="fc" id="L289">        return StringUtils.isNumeric(s);</span>
     }
     
     /**
@@ -277,12 +295,12 @@ import se.nrm.dina.datamodel.EntityBean;
      * @return int
      */
     public int maxLimit(int limit) {
-<span class="fc bfc" id="L280" title="All 2 branches covered.">        if(limit &gt; MAX_LIMIT) {</span>
-<span class="fc" id="L281">            return MAX_LIMIT;</span>
-<span class="fc bfc" id="L282" title="All 2 branches covered.">        } else if(limit == 0) {</span>
-<span class="fc" id="L283">            return DEFAULT_LIMIT;</span>
+<span class="fc bfc" id="L298" title="All 2 branches covered.">        if(limit &gt; MAX_LIMIT) {</span>
+<span class="fc" id="L299">            return MAX_LIMIT;</span>
+<span class="fc bfc" id="L300" title="All 2 branches covered.">        } else if(limit == 0) {</span>
+<span class="fc" id="L301">            return DEFAULT_LIMIT;</span>
         } else {
-<span class="fc" id="L285">            return limit;</span>
+<span class="fc" id="L303">            return limit;</span>
         } 
     } 
 }

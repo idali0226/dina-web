@@ -56,8 +56,8 @@
     <modules>  
         <module>dina-datamodel</module>
         <module>dina-data-jpa</module>
-        <module>dina-data-service</module>
-            
+        <module>dina-logic</module>
+        <module>dina-data-service</module> 
     </modules>
 
     <dependencies>

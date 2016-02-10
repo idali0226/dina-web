@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.nrm.dina.data.util;
+package se.nrm.dina.logic.util;
  
+import se.nrm.dina.logic.util.NamedQueries;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

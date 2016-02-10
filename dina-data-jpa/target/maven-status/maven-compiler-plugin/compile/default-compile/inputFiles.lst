@@ -1,9 +1,7 @@
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-data-jpa/src/main/java/se/nrm/dina/data/util/package-info.java
-/Users/idali/netbeansprojects/dinaproject/dina-web/dina-data-jpa/src/main/java/se/nrm/dina/data/logic/DinaDataLogic.java
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-data-jpa/src/main/java/se/nrm/dina/data/exceptions/DinaException.java
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-data-jpa/src/main/java/se/nrm/dina/data/exceptions/package-info.java
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-data-jpa/src/main/java/se/nrm/dina/data/logic/package-info.java
-/Users/idali/netbeansprojects/dinaproject/dina-web/dina-data-jpa/src/main/java/se/nrm/dina/data/util/NamedQueries.java
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-data-jpa/src/main/java/se/nrm/dina/data/util/Util.java
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-data-jpa/src/main/java/se/nrm/dina/data/jpa/DinaDaoImpl.java
 /Users/idali/netbeansprojects/dinaproject/dina-web/dina-data-jpa/src/main/java/se/nrm/dina/data/jpa/package-info.java

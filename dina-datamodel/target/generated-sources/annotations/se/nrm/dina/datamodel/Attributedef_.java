@@ -11,7 +11,7 @@ import se.nrm.dina.datamodel.Discipline;
 import se.nrm.dina.datamodel.Preparationattr;
 import se.nrm.dina.datamodel.Preptype;
 
-@Generated(value="EclipseLink-2.7.0.v20160208-rNA", date="2016-02-10T12:13:26")
+@Generated(value="EclipseLink-2.7.0.v20160208-rNA", date="2016-02-10T17:35:03")
 @StaticMetamodel(Attributedef.class)
 public class Attributedef_ extends BaseEntity_ {
 

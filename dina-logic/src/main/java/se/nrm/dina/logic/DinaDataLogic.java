@@ -3,30 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.nrm.dina.data.logic;
+package se.nrm.dina.logic;
  
 //import com.fasterxml.jackson.databind.ObjectMapper; 
 import java.io.IOException;
 import java.io.Serializable; 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.function.Predicate;  
+import java.util.function.Predicate;   
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
+import javax.ejb.Stateless; 
 import javax.ws.rs.core.MultivaluedMap;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.nrm.dina.data.exceptions.DinaException;
 import se.nrm.dina.data.jpa.DinaDao;
-import se.nrm.dina.data.util.NamedQueries;
+import se.nrm.dina.logic.util.NamedQueries;
 import se.nrm.dina.data.util.Util; 
-import se.nrm.dina.datamodel.EntityBean;
-//import se.nrm.specify.datamodel.SpecifyBean;
+import se.nrm.dina.datamodel.EntityBean; 
 
 /**
  *
@@ -134,8 +134,7 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
                             Integer.parseInt(minid == null ? "0" : minid),
                             Integer.parseInt(maxid == null ? "0" : maxid),
                             orderby, isExact, condition);
-            
-            logger.info("strQuery : {}", strQuery);
+             
             return isExact ? dao.findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition) : 
                              dao.findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition); 
         } catch (DinaException e) {
@@ -195,14 +194,36 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
     public EntityBean createEntity(String entityName, String json) {
 
         logger.info("createEntity : {} ", entityName);
- 
+         
         try {
             EntityBean bean = mappObject(entityName, json);
+            
+            Field[] fields = bean.getClass().getDeclaredFields();
+            Arrays.stream(fields)
+                    .forEach(f -> {
+                        boolean isEntity = Util.getInstance().isEntity(bean.getClass(), f.getName());
+                        if (isEntity) {
+                            try { 
+                                f.setAccessible(true);
+                                EntityBean instance = (EntityBean) f.get(bean);
+                                if (instance != null) {
+                                    Field field = Util.getInstance().getIDField(instance);
+
+                                    field.setAccessible(true);
+                                    int value = (Integer) field.get(instance); 
+                                    EntityBean eb = dao.findById(value, instance.getClass()); 
+
+                                    f.set(bean, eb);
+                                }  
+                            } catch (IllegalArgumentException | IllegalAccessException ex) {
+                                throw new DinaException("Save " + entityName + " is failed.");
+                            }
+                        }
+                    }); 
             return dao.create(bean);
         } catch (DinaException ex) {
             throw new DinaException(ex.getMessage());
-        }
-
+        } 
     }
 
     /**

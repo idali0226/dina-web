@@ -10,7 +10,7 @@ import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Deaccessionagent;
 import se.nrm.dina.datamodel.Deaccessionpreparation;
 
-@Generated(value="EclipseLink-2.7.0.v20160208-rNA", date="2016-02-10T12:13:26")
+@Generated(value="EclipseLink-2.7.0.v20160208-rNA", date="2016-02-10T17:35:03")
 @StaticMetamodel(Deaccession.class)
 public class Deaccession_ extends BaseEntity_ {
 

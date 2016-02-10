@@ -30,7 +30,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.runners.MockitoJUnitRunner;
 import se.nrm.dina.data.exceptions.DinaException;
-import se.nrm.dina.data.logic.DinaDataLogic;
+import se.nrm.dina.logic.DinaDataLogic;
 import se.nrm.dina.data.service.test.vo.TestEntity;
 import se.nrm.dina.data.service.test.vo.TestEntityCollection;
 

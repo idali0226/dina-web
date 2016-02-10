@@ -22,7 +22,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;  
 import org.slf4j.Logger; 
 import org.slf4j.LoggerFactory;  
-import se.nrm.dina.data.exceptions.DinaException; 
+import se.nrm.dina.data.exceptions.DinaException;  
 import se.nrm.dina.data.util.Util;
 import se.nrm.dina.datamodel.*; 
 
