@@ -77,84 +77,90 @@ public class Workbenchdataitem implements EntityBean, Serializable {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L80">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchDataItemID;</span>
+<span class="nc" id="L80">        return String.valueOf(workbenchDataItemID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L86">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchDataItemID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L85">        return workbenchDataItemID;</span>
+<span class="nc" id="L91">        return workbenchDataItemID;</span>
     }
 
     public Integer getWorkbenchDataItemID() {
-<span class="nc" id="L89">        return workbenchDataItemID;</span>
+<span class="nc" id="L95">        return workbenchDataItemID;</span>
     }
 
     public void setWorkbenchDataItemID(Integer workbenchDataItemID) {
-<span class="nc" id="L93">        this.workbenchDataItemID = workbenchDataItemID;</span>
-<span class="nc" id="L94">    }</span>
+<span class="nc" id="L99">        this.workbenchDataItemID = workbenchDataItemID;</span>
+<span class="nc" id="L100">    }</span>
 
     public String getCellData() {
-<span class="nc" id="L97">        return cellData;</span>
+<span class="nc" id="L103">        return cellData;</span>
     }
 
     public void setCellData(String cellData) {
-<span class="nc" id="L101">        this.cellData = cellData;</span>
-<span class="nc" id="L102">    }</span>
+<span class="nc" id="L107">        this.cellData = cellData;</span>
+<span class="nc" id="L108">    }</span>
 
     public Short getRowNumber() {
-<span class="nc" id="L105">        return rowNumber;</span>
+<span class="nc" id="L111">        return rowNumber;</span>
     }
 
     public void setRowNumber(Short rowNumber) {
-<span class="nc" id="L109">        this.rowNumber = rowNumber;</span>
-<span class="nc" id="L110">    }</span>
+<span class="nc" id="L115">        this.rowNumber = rowNumber;</span>
+<span class="nc" id="L116">    }</span>
 
     public Short getValidationStatus() {
-<span class="nc" id="L113">        return validationStatus;</span>
+<span class="nc" id="L119">        return validationStatus;</span>
     }
 
     public void setValidationStatus(Short validationStatus) {
-<span class="nc" id="L117">        this.validationStatus = validationStatus;</span>
-<span class="nc" id="L118">    }</span>
+<span class="nc" id="L123">        this.validationStatus = validationStatus;</span>
+<span class="nc" id="L124">    }</span>
 
     @XmlIDREF
     public Workbenchtemplatemappingitem getWorkbenchTemplateMappingItemID() {
-<span class="nc" id="L122">        return workbenchTemplateMappingItemID;</span>
+<span class="nc" id="L128">        return workbenchTemplateMappingItemID;</span>
     }
 
     public void setWorkbenchTemplateMappingItemID(Workbenchtemplatemappingitem workbenchTemplateMappingItemID) {
-<span class="nc" id="L126">        this.workbenchTemplateMappingItemID = workbenchTemplateMappingItemID;</span>
-<span class="nc" id="L127">    }</span>
+<span class="nc" id="L132">        this.workbenchTemplateMappingItemID = workbenchTemplateMappingItemID;</span>
+<span class="nc" id="L133">    }</span>
 
     @XmlIDREF
     public Workbenchrow getWorkbenchRowID() {
-<span class="nc" id="L131">        return workbenchRowID;</span>
+<span class="nc" id="L137">        return workbenchRowID;</span>
     }
 
     public void setWorkbenchRowID(Workbenchrow workbenchRowID) {
-<span class="nc" id="L135">        this.workbenchRowID = workbenchRowID;</span>
-<span class="nc" id="L136">    }</span>
+<span class="nc" id="L141">        this.workbenchRowID = workbenchRowID;</span>
+<span class="nc" id="L142">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L140">        int hash = 0;</span>
-<span class="nc bnc" id="L141" title="All 2 branches missed.">        hash += (workbenchDataItemID != null ? workbenchDataItemID.hashCode() : 0);</span>
-<span class="nc" id="L142">        return hash;</span>
+<span class="nc" id="L146">        int hash = 0;</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">        hash += (workbenchDataItemID != null ? workbenchDataItemID.hashCode() : 0);</span>
+<span class="nc" id="L148">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L148" title="All 2 branches missed.">        if (!(object instanceof Workbenchdataitem)) {</span>
-<span class="nc" id="L149">            return false;</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">        if (!(object instanceof Workbenchdataitem)) {</span>
+<span class="nc" id="L155">            return false;</span>
         }
-<span class="nc" id="L151">        Workbenchdataitem other = (Workbenchdataitem) object;</span>
-<span class="nc bnc" id="L152" title="All 8 branches missed.">        return !((this.workbenchDataItemID == null &amp;&amp; other.workbenchDataItemID != null) || (this.workbenchDataItemID != null &amp;&amp; !this.workbenchDataItemID.equals(other.workbenchDataItemID)));</span>
+<span class="nc" id="L157">        Workbenchdataitem other = (Workbenchdataitem) object;</span>
+<span class="nc bnc" id="L158" title="All 8 branches missed.">        return !((this.workbenchDataItemID == null &amp;&amp; other.workbenchDataItemID != null) || (this.workbenchDataItemID != null &amp;&amp; !this.workbenchDataItemID.equals(other.workbenchDataItemID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L157">        return &quot;se.nrm.dina.datamodel.Workbenchdataitem[ workbenchDataItemID=&quot; + workbenchDataItemID + &quot; ]&quot;;</span>
+<span class="nc" id="L163">        return &quot;se.nrm.dina.datamodel.Workbenchdataitem[ workbenchDataItemID=&quot; + workbenchDataItemID + &quot; ]&quot;;</span>
     }
     
 }

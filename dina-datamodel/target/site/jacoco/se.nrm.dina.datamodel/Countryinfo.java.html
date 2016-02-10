@@ -131,181 +131,187 @@ public class Countryinfo implements EntityBean, Serializable {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L134">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + name;</span>
+<span class="nc" id="L134">        return  name;</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L140">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + name;</span>
     }
 
     @Override
     public int getEntityId() {
-<span class="nc" id="L139">        return 0;</span>
+<span class="nc" id="L145">        return 0;</span>
     }
     
     public String getName() {
-<span class="nc" id="L143">        return name;</span>
+<span class="nc" id="L149">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L147">        this.name = name;</span>
-<span class="nc" id="L148">    }</span>
+<span class="nc" id="L153">        this.name = name;</span>
+<span class="nc" id="L154">    }</span>
 
 
     public String getIsoAlpha2() {
-<span class="nc" id="L152">        return isoAlpha2;</span>
+<span class="nc" id="L158">        return isoAlpha2;</span>
     }
 
     public void setIsoAlpha2(String isoAlpha2) {
-<span class="nc" id="L156">        this.isoAlpha2 = isoAlpha2;</span>
-<span class="nc" id="L157">    }</span>
+<span class="nc" id="L162">        this.isoAlpha2 = isoAlpha2;</span>
+<span class="nc" id="L163">    }</span>
 
     public String getIsoAlpha3() {
-<span class="nc" id="L160">        return isoAlpha3;</span>
+<span class="nc" id="L166">        return isoAlpha3;</span>
     }
 
     public void setIsoAlpha3(String isoAlpha3) {
-<span class="nc" id="L164">        this.isoAlpha3 = isoAlpha3;</span>
-<span class="nc" id="L165">    }</span>
+<span class="nc" id="L170">        this.isoAlpha3 = isoAlpha3;</span>
+<span class="nc" id="L171">    }</span>
 
     public Integer getIsoNumeric() {
-<span class="nc" id="L168">        return isoNumeric;</span>
+<span class="nc" id="L174">        return isoNumeric;</span>
     }
 
     public void setIsoNumeric(Integer isoNumeric) {
-<span class="nc" id="L172">        this.isoNumeric = isoNumeric;</span>
-<span class="nc" id="L173">    }</span>
+<span class="nc" id="L178">        this.isoNumeric = isoNumeric;</span>
+<span class="nc" id="L179">    }</span>
 
     public String getFipsCode() {
-<span class="nc" id="L176">        return fipsCode;</span>
+<span class="nc" id="L182">        return fipsCode;</span>
     }
 
     public void setFipsCode(String fipsCode) {
-<span class="nc" id="L180">        this.fipsCode = fipsCode;</span>
-<span class="nc" id="L181">    }</span>
+<span class="nc" id="L186">        this.fipsCode = fipsCode;</span>
+<span class="nc" id="L187">    }</span>
 
 
 
     public String getCapital() {
-<span class="nc" id="L186">        return capital;</span>
+<span class="nc" id="L192">        return capital;</span>
     }
 
     public void setCapital(String capital) {
-<span class="nc" id="L190">        this.capital = capital;</span>
-<span class="nc" id="L191">    }</span>
+<span class="nc" id="L196">        this.capital = capital;</span>
+<span class="nc" id="L197">    }</span>
 
     public String getAreainsqkm() {
-<span class="nc" id="L194">        return areainsqkm;</span>
+<span class="nc" id="L200">        return areainsqkm;</span>
     }
 
     public void setAreainsqkm(String areainsqkm) {
-<span class="nc" id="L198">        this.areainsqkm = areainsqkm;</span>
-<span class="nc" id="L199">    }</span>
+<span class="nc" id="L204">        this.areainsqkm = areainsqkm;</span>
+<span class="nc" id="L205">    }</span>
 
     public String getPopulation() {
-<span class="nc" id="L202">        return population;</span>
+<span class="nc" id="L208">        return population;</span>
     }
 
     public void setPopulation(String population) {
-<span class="nc" id="L206">        this.population = population;</span>
-<span class="nc" id="L207">    }</span>
+<span class="nc" id="L212">        this.population = population;</span>
+<span class="nc" id="L213">    }</span>
 
     public String getContinent() {
-<span class="nc" id="L210">        return continent;</span>
+<span class="nc" id="L216">        return continent;</span>
     }
 
     public void setContinent(String continent) {
-<span class="nc" id="L214">        this.continent = continent;</span>
-<span class="nc" id="L215">    }</span>
+<span class="nc" id="L220">        this.continent = continent;</span>
+<span class="nc" id="L221">    }</span>
 
     public String getTld() {
-<span class="nc" id="L218">        return tld;</span>
+<span class="nc" id="L224">        return tld;</span>
     }
 
     public void setTld(String tld) {
-<span class="nc" id="L222">        this.tld = tld;</span>
-<span class="nc" id="L223">    }</span>
+<span class="nc" id="L228">        this.tld = tld;</span>
+<span class="nc" id="L229">    }</span>
 
     public String getCurrencycode() {
-<span class="nc" id="L226">        return currencycode;</span>
+<span class="nc" id="L232">        return currencycode;</span>
     }
 
     public void setCurrencycode(String currencycode) {
-<span class="nc" id="L230">        this.currencycode = currencycode;</span>
-<span class="nc" id="L231">    }</span>
+<span class="nc" id="L236">        this.currencycode = currencycode;</span>
+<span class="nc" id="L237">    }</span>
 
     public String getCurrencyname() {
-<span class="nc" id="L234">        return currencyname;</span>
+<span class="nc" id="L240">        return currencyname;</span>
     }
 
     public void setCurrencyname(String currencyname) {
-<span class="nc" id="L238">        this.currencyname = currencyname;</span>
-<span class="nc" id="L239">    }</span>
+<span class="nc" id="L244">        this.currencyname = currencyname;</span>
+<span class="nc" id="L245">    }</span>
 
     public String getPhone() {
-<span class="nc" id="L242">        return phone;</span>
+<span class="nc" id="L248">        return phone;</span>
     }
 
     public void setPhone(String phone) {
-<span class="nc" id="L246">        this.phone = phone;</span>
-<span class="nc" id="L247">    }</span>
+<span class="nc" id="L252">        this.phone = phone;</span>
+<span class="nc" id="L253">    }</span>
 
     public String getPostalformat() {
-<span class="nc" id="L250">        return postalformat;</span>
+<span class="nc" id="L256">        return postalformat;</span>
     }
 
     public void setPostalformat(String postalformat) {
-<span class="nc" id="L254">        this.postalformat = postalformat;</span>
-<span class="nc" id="L255">    }</span>
+<span class="nc" id="L260">        this.postalformat = postalformat;</span>
+<span class="nc" id="L261">    }</span>
 
     public String getPostalregex() {
-<span class="nc" id="L258">        return postalregex;</span>
+<span class="nc" id="L264">        return postalregex;</span>
     }
 
     public void setPostalregex(String postalregex) {
-<span class="nc" id="L262">        this.postalregex = postalregex;</span>
-<span class="nc" id="L263">    }</span>
+<span class="nc" id="L268">        this.postalregex = postalregex;</span>
+<span class="nc" id="L269">    }</span>
 
     public String getLanguages() {
-<span class="nc" id="L266">        return languages;</span>
+<span class="nc" id="L272">        return languages;</span>
     }
 
     public void setLanguages(String languages) {
-<span class="nc" id="L270">        this.languages = languages;</span>
-<span class="nc" id="L271">    }</span>
+<span class="nc" id="L276">        this.languages = languages;</span>
+<span class="nc" id="L277">    }</span>
 
     public Integer getGeonameId() {
-<span class="nc" id="L274">        return geonameId;</span>
+<span class="nc" id="L280">        return geonameId;</span>
     }
 
     public void setGeonameId(Integer geonameId) {
-<span class="nc" id="L278">        this.geonameId = geonameId;</span>
-<span class="nc" id="L279">    }</span>
+<span class="nc" id="L284">        this.geonameId = geonameId;</span>
+<span class="nc" id="L285">    }</span>
 
     public String getNeighbors() {
-<span class="nc" id="L282">        return neighbors;</span>
+<span class="nc" id="L288">        return neighbors;</span>
     }
 
     public void setNeighbors(String neighbors) {
-<span class="nc" id="L286">        this.neighbors = neighbors;</span>
-<span class="nc" id="L287">    }</span>
+<span class="nc" id="L292">        this.neighbors = neighbors;</span>
+<span class="nc" id="L293">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L291">        int hash = 0;</span>
-<span class="nc bnc" id="L292" title="All 2 branches missed.">        hash += (name != null ? name.hashCode() : 0);</span>
-<span class="nc" id="L293">        return hash;</span>
+<span class="nc" id="L297">        int hash = 0;</span>
+<span class="nc bnc" id="L298" title="All 2 branches missed.">        hash += (name != null ? name.hashCode() : 0);</span>
+<span class="nc" id="L299">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L299" title="All 2 branches missed.">        if (!(object instanceof Countryinfo)) {</span>
-<span class="nc" id="L300">            return false;</span>
+<span class="nc bnc" id="L305" title="All 2 branches missed.">        if (!(object instanceof Countryinfo)) {</span>
+<span class="nc" id="L306">            return false;</span>
         }
-<span class="nc" id="L302">        Countryinfo other = (Countryinfo) object;</span>
-<span class="nc bnc" id="L303" title="All 8 branches missed.">        return !((this.name == null &amp;&amp; other.name != null) || (this.name != null &amp;&amp; !this.name.equals(other.name)));</span>
+<span class="nc" id="L308">        Countryinfo other = (Countryinfo) object;</span>
+<span class="nc bnc" id="L309" title="All 8 branches missed.">        return !((this.name == null &amp;&amp; other.name != null) || (this.name != null &amp;&amp; !this.name.equals(other.name)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L308">        return &quot;se.nrm.dina.datamodel.Countryinfo[ name=&quot; + name + &quot; ]&quot;;</span>
+<span class="nc" id="L314">        return &quot;se.nrm.dina.datamodel.Countryinfo[ name=&quot; + name + &quot; ]&quot;;</span>
     }
     
 }

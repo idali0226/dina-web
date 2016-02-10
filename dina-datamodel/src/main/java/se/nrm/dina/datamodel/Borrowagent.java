@@ -101,6 +101,12 @@ public class Borrowagent extends BaseEntity {
     @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
+        return String.valueOf(borrowAgentID);
+    }
+    
+    @XmlAttribute(name = "uuid") 
+    @Override
+    public String getUUID() {
         return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + borrowAgentID;
     }
     

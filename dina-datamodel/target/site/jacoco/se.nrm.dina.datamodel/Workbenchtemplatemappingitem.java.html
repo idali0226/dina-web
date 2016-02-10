@@ -138,215 +138,221 @@ public class Workbenchtemplatemappingitem extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L141">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchTemplateMappingItemID;</span>
+<span class="nc" id="L141">        return String.valueOf(workbenchTemplateMappingItemID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L147">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchTemplateMappingItemID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L146">        return workbenchTemplateMappingItemID;</span>
+<span class="nc" id="L152">        return workbenchTemplateMappingItemID;</span>
     }
 
     public Integer getWorkbenchTemplateMappingItemID() {
-<span class="nc" id="L150">        return workbenchTemplateMappingItemID;</span>
+<span class="nc" id="L156">        return workbenchTemplateMappingItemID;</span>
     }
 
     public void setWorkbenchTemplateMappingItemID(Integer workbenchTemplateMappingItemID) {
-<span class="nc" id="L154">        this.workbenchTemplateMappingItemID = workbenchTemplateMappingItemID;</span>
-<span class="nc" id="L155">    }</span>
+<span class="nc" id="L160">        this.workbenchTemplateMappingItemID = workbenchTemplateMappingItemID;</span>
+<span class="nc" id="L161">    }</span>
 
     
     public Short getXCoord() {
-<span class="nc" id="L159">        return xCoord;</span>
+<span class="nc" id="L165">        return xCoord;</span>
     }
 
     public void setXCoord(Short xCoord) {
-<span class="nc" id="L163">        this.xCoord = xCoord;</span>
-<span class="nc" id="L164">    }</span>
+<span class="nc" id="L169">        this.xCoord = xCoord;</span>
+<span class="nc" id="L170">    }</span>
 
     public Short getYCoord() {
-<span class="nc" id="L167">        return yCoord;</span>
+<span class="nc" id="L173">        return yCoord;</span>
     }
 
     public void setYCoord(Short yCoord) {
-<span class="nc" id="L171">        this.yCoord = yCoord;</span>
-<span class="nc" id="L172">    }</span>
+<span class="nc" id="L177">        this.yCoord = yCoord;</span>
+<span class="nc" id="L178">    }</span>
 
     public String getCaption() {
-<span class="nc" id="L175">        return caption;</span>
+<span class="nc" id="L181">        return caption;</span>
     }
 
     public void setCaption(String caption) {
-<span class="nc" id="L179">        this.caption = caption;</span>
-<span class="nc" id="L180">    }</span>
+<span class="nc" id="L185">        this.caption = caption;</span>
+<span class="nc" id="L186">    }</span>
 
     public Boolean getCarryForward() {
-<span class="nc" id="L183">        return carryForward;</span>
+<span class="nc" id="L189">        return carryForward;</span>
     }
 
     public void setCarryForward(Boolean carryForward) {
-<span class="nc" id="L187">        this.carryForward = carryForward;</span>
-<span class="nc" id="L188">    }</span>
+<span class="nc" id="L193">        this.carryForward = carryForward;</span>
+<span class="nc" id="L194">    }</span>
 
     public Short getDataFieldLength() {
-<span class="nc" id="L191">        return dataFieldLength;</span>
+<span class="nc" id="L197">        return dataFieldLength;</span>
     }
 
     public void setDataFieldLength(Short dataFieldLength) {
-<span class="nc" id="L195">        this.dataFieldLength = dataFieldLength;</span>
-<span class="nc" id="L196">    }</span>
+<span class="nc" id="L201">        this.dataFieldLength = dataFieldLength;</span>
+<span class="nc" id="L202">    }</span>
 
     public String getFieldName() {
-<span class="nc" id="L199">        return fieldName;</span>
+<span class="nc" id="L205">        return fieldName;</span>
     }
 
     public void setFieldName(String fieldName) {
-<span class="nc" id="L203">        this.fieldName = fieldName;</span>
-<span class="nc" id="L204">    }</span>
+<span class="nc" id="L209">        this.fieldName = fieldName;</span>
+<span class="nc" id="L210">    }</span>
 
     public Short getFieldType() {
-<span class="nc" id="L207">        return fieldType;</span>
+<span class="nc" id="L213">        return fieldType;</span>
     }
 
     public void setFieldType(Short fieldType) {
-<span class="nc" id="L211">        this.fieldType = fieldType;</span>
-<span class="nc" id="L212">    }</span>
+<span class="nc" id="L217">        this.fieldType = fieldType;</span>
+<span class="nc" id="L218">    }</span>
 
     public String getImportedColName() {
-<span class="nc" id="L215">        return importedColName;</span>
+<span class="nc" id="L221">        return importedColName;</span>
     }
 
     public void setImportedColName(String importedColName) {
-<span class="nc" id="L219">        this.importedColName = importedColName;</span>
-<span class="nc" id="L220">    }</span>
+<span class="nc" id="L225">        this.importedColName = importedColName;</span>
+<span class="nc" id="L226">    }</span>
 
     public Boolean getIsExportableToContent() {
-<span class="nc" id="L223">        return isExportableToContent;</span>
+<span class="nc" id="L229">        return isExportableToContent;</span>
     }
 
     public void setIsExportableToContent(Boolean isExportableToContent) {
-<span class="nc" id="L227">        this.isExportableToContent = isExportableToContent;</span>
-<span class="nc" id="L228">    }</span>
+<span class="nc" id="L233">        this.isExportableToContent = isExportableToContent;</span>
+<span class="nc" id="L234">    }</span>
 
     public Boolean getIsIncludedInTitle() {
-<span class="nc" id="L231">        return isIncludedInTitle;</span>
+<span class="nc" id="L237">        return isIncludedInTitle;</span>
     }
 
     public void setIsIncludedInTitle(Boolean isIncludedInTitle) {
-<span class="nc" id="L235">        this.isIncludedInTitle = isIncludedInTitle;</span>
-<span class="nc" id="L236">    }</span>
+<span class="nc" id="L241">        this.isIncludedInTitle = isIncludedInTitle;</span>
+<span class="nc" id="L242">    }</span>
 
     public Boolean getIsRequired() {
-<span class="nc" id="L239">        return isRequired;</span>
+<span class="nc" id="L245">        return isRequired;</span>
     }
 
     public void setIsRequired(Boolean isRequired) {
-<span class="nc" id="L243">        this.isRequired = isRequired;</span>
-<span class="nc" id="L244">    }</span>
+<span class="nc" id="L249">        this.isRequired = isRequired;</span>
+<span class="nc" id="L250">    }</span>
 
     public String getMetaData() {
-<span class="nc" id="L247">        return metaData;</span>
+<span class="nc" id="L253">        return metaData;</span>
     }
 
     public void setMetaData(String metaData) {
-<span class="nc" id="L251">        this.metaData = metaData;</span>
-<span class="nc" id="L252">    }</span>
+<span class="nc" id="L257">        this.metaData = metaData;</span>
+<span class="nc" id="L258">    }</span>
 
     public Short getDataColumnIndex() {
-<span class="nc" id="L255">        return dataColumnIndex;</span>
+<span class="nc" id="L261">        return dataColumnIndex;</span>
     }
 
     public void setDataColumnIndex(Short dataColumnIndex) {
-<span class="nc" id="L259">        this.dataColumnIndex = dataColumnIndex;</span>
-<span class="nc" id="L260">    }</span>
+<span class="nc" id="L265">        this.dataColumnIndex = dataColumnIndex;</span>
+<span class="nc" id="L266">    }</span>
 
     public Integer getTableId() {
-<span class="nc" id="L263">        return tableId;</span>
+<span class="nc" id="L269">        return tableId;</span>
     }
 
     public void setTableId(Integer tableId) {
-<span class="nc" id="L267">        this.tableId = tableId;</span>
-<span class="nc" id="L268">    }</span>
+<span class="nc" id="L273">        this.tableId = tableId;</span>
+<span class="nc" id="L274">    }</span>
 
     public String getTableName() {
-<span class="nc" id="L271">        return tableName;</span>
+<span class="nc" id="L277">        return tableName;</span>
     }
 
     public void setTableName(String tableName) {
-<span class="nc" id="L275">        this.tableName = tableName;</span>
-<span class="nc" id="L276">    }</span>
+<span class="nc" id="L281">        this.tableName = tableName;</span>
+<span class="nc" id="L282">    }</span>
 
     public Short getViewOrder() {
-<span class="nc" id="L279">        return viewOrder;</span>
+<span class="nc" id="L285">        return viewOrder;</span>
     }
 
     public void setViewOrder(Short viewOrder) {
-<span class="nc" id="L283">        this.viewOrder = viewOrder;</span>
-<span class="nc" id="L284">    }</span>
+<span class="nc" id="L289">        this.viewOrder = viewOrder;</span>
+<span class="nc" id="L290">    }</span>
 
     public Boolean getIsEditable() {
-<span class="nc" id="L287">        return isEditable;</span>
+<span class="nc" id="L293">        return isEditable;</span>
     }
 
     public void setIsEditable(Boolean isEditable) {
-<span class="nc" id="L291">        this.isEditable = isEditable;</span>
-<span class="nc" id="L292">    }</span>
+<span class="nc" id="L297">        this.isEditable = isEditable;</span>
+<span class="nc" id="L298">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L296">        return modifiedByAgentID;</span>
+<span class="nc" id="L302">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L300">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L301">    }</span>
+<span class="nc" id="L306">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L307">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L305">        return createdByAgentID;</span>
+<span class="nc" id="L311">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L309">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L310">    }</span>
+<span class="nc" id="L315">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L316">    }</span>
 
     @XmlIDREF
     public Workbenchtemplate getWorkbenchTemplateID() {
-<span class="nc" id="L314">        return workbenchTemplateID;</span>
+<span class="nc" id="L320">        return workbenchTemplateID;</span>
     }
 
     public void setWorkbenchTemplateID(Workbenchtemplate workbenchTemplateID) {
-<span class="nc" id="L318">        this.workbenchTemplateID = workbenchTemplateID;</span>
-<span class="nc" id="L319">    }</span>
+<span class="nc" id="L324">        this.workbenchTemplateID = workbenchTemplateID;</span>
+<span class="nc" id="L325">    }</span>
 
     @XmlTransient
     public List&lt;Workbenchdataitem&gt; getWorkbenchdataitemList() {
-<span class="nc" id="L323">        return workbenchdataitemList;</span>
+<span class="nc" id="L329">        return workbenchdataitemList;</span>
     }
 
     public void setWorkbenchdataitemList(List&lt;Workbenchdataitem&gt; workbenchdataitemList) {
-<span class="nc" id="L327">        this.workbenchdataitemList = workbenchdataitemList;</span>
-<span class="nc" id="L328">    }</span>
+<span class="nc" id="L333">        this.workbenchdataitemList = workbenchdataitemList;</span>
+<span class="nc" id="L334">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L332">        int hash = 0;</span>
-<span class="nc bnc" id="L333" title="All 2 branches missed.">        hash += (workbenchTemplateMappingItemID != null ? workbenchTemplateMappingItemID.hashCode() : 0);</span>
-<span class="nc" id="L334">        return hash;</span>
+<span class="nc" id="L338">        int hash = 0;</span>
+<span class="nc bnc" id="L339" title="All 2 branches missed.">        hash += (workbenchTemplateMappingItemID != null ? workbenchTemplateMappingItemID.hashCode() : 0);</span>
+<span class="nc" id="L340">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L340" title="All 2 branches missed.">        if (!(object instanceof Workbenchtemplatemappingitem)) {</span>
-<span class="nc" id="L341">            return false;</span>
+<span class="nc bnc" id="L346" title="All 2 branches missed.">        if (!(object instanceof Workbenchtemplatemappingitem)) {</span>
+<span class="nc" id="L347">            return false;</span>
         }
-<span class="nc" id="L343">        Workbenchtemplatemappingitem other = (Workbenchtemplatemappingitem) object;</span>
-<span class="nc bnc" id="L344" title="All 8 branches missed.">        return !((this.workbenchTemplateMappingItemID == null &amp;&amp; other.workbenchTemplateMappingItemID != null) || (this.workbenchTemplateMappingItemID != null &amp;&amp; !this.workbenchTemplateMappingItemID.equals(other.workbenchTemplateMappingItemID)));</span>
+<span class="nc" id="L349">        Workbenchtemplatemappingitem other = (Workbenchtemplatemappingitem) object;</span>
+<span class="nc bnc" id="L350" title="All 8 branches missed.">        return !((this.workbenchTemplateMappingItemID == null &amp;&amp; other.workbenchTemplateMappingItemID != null) || (this.workbenchTemplateMappingItemID != null &amp;&amp; !this.workbenchTemplateMappingItemID.equals(other.workbenchTemplateMappingItemID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L349">        return &quot;se.nrm.dina.datamodel.Workbenchtemplatemappingitem[ workbenchTemplateMappingItemID=&quot; + workbenchTemplateMappingItemID + &quot; ]&quot;;</span>
+<span class="nc" id="L355">        return &quot;se.nrm.dina.datamodel.Workbenchtemplatemappingitem[ workbenchTemplateMappingItemID=&quot; + workbenchTemplateMappingItemID + &quot; ]&quot;;</span>
     }
     
 }

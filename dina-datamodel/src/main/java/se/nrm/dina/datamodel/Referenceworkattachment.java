@@ -94,6 +94,11 @@ public class Referenceworkattachment extends BaseEntity {
     @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
+        return String.valueOf(referenceWorkAttachmentID);
+    }
+    
+    @Override
+    public String getUUID() {
         return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + referenceWorkAttachmentID;
     }
     
@@ -179,6 +184,5 @@ public class Referenceworkattachment extends BaseEntity {
     @Override
     public String toString() {
         return "se.nrm.dina.datamodel.Referenceworkattachment[ referenceWorkAttachmentID=" + referenceWorkAttachmentID + " ]";
-    }
-    
+    } 
 }

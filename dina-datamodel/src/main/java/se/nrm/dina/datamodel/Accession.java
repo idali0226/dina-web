@@ -187,10 +187,15 @@ public class Accession extends BaseEntity {
         this.accessionNumber = accessionNumber;
     }
 
-    @XmlID 
-    @XmlAttribute(name = "uuid") 
+    @XmlID  
     @Override
     public String getIdentityString() {
+        return String.valueOf(accessionID);
+    }
+    
+    @XmlAttribute(name = "uuid") 
+    @Override
+    public String getUUID() {
         return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + accessionID;
     }
     

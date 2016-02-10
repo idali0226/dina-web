@@ -86,75 +86,81 @@ public class Sgrbatchmatchresultitem implements EntityBean, Serializable {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L89">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + id;</span>
+<span class="nc" id="L89">        return String.valueOf(id);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L95">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + id;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L94">        return  id.intValue();</span>
+<span class="nc" id="L100">        return  id.intValue();</span>
     }
 
     public Long getId() {
-<span class="nc" id="L98">        return id;</span>
+<span class="nc" id="L104">        return id;</span>
     }
 
     public void setId(Long id) {
-<span class="nc" id="L102">        this.id = id;</span>
-<span class="nc" id="L103">    }</span>
+<span class="nc" id="L108">        this.id = id;</span>
+<span class="nc" id="L109">    }</span>
 
     public String getMatchedId() {
-<span class="nc" id="L106">        return matchedId;</span>
+<span class="nc" id="L112">        return matchedId;</span>
     }
 
     public void setMatchedId(String matchedId) {
-<span class="nc" id="L110">        this.matchedId = matchedId;</span>
-<span class="nc" id="L111">    }</span>
+<span class="nc" id="L116">        this.matchedId = matchedId;</span>
+<span class="nc" id="L117">    }</span>
 
     public float getMaxScore() {
-<span class="nc" id="L114">        return maxScore;</span>
+<span class="nc" id="L120">        return maxScore;</span>
     }
 
     public void setMaxScore(float maxScore) {
-<span class="nc" id="L118">        this.maxScore = maxScore;</span>
-<span class="nc" id="L119">    }</span>
+<span class="nc" id="L124">        this.maxScore = maxScore;</span>
+<span class="nc" id="L125">    }</span>
 
     public int getQTime() {
-<span class="nc" id="L122">        return qTime;</span>
+<span class="nc" id="L128">        return qTime;</span>
     }
 
     public void setQTime(int qTime) {
-<span class="nc" id="L126">        this.qTime = qTime;</span>
-<span class="nc" id="L127">    }</span>
+<span class="nc" id="L132">        this.qTime = qTime;</span>
+<span class="nc" id="L133">    }</span>
 
     @XmlIDREF
     public Sgrbatchmatchresultset getBatchMatchResultSetId() {
-<span class="nc" id="L131">        return batchMatchResultSetId;</span>
+<span class="nc" id="L137">        return batchMatchResultSetId;</span>
     }
 
     public void setBatchMatchResultSetId(Sgrbatchmatchresultset batchMatchResultSetId) {
-<span class="nc" id="L135">        this.batchMatchResultSetId = batchMatchResultSetId;</span>
-<span class="nc" id="L136">    }</span>
+<span class="nc" id="L141">        this.batchMatchResultSetId = batchMatchResultSetId;</span>
+<span class="nc" id="L142">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L140">        int hash = 0;</span>
-<span class="nc bnc" id="L141" title="All 2 branches missed.">        hash += (id != null ? id.hashCode() : 0);</span>
-<span class="nc" id="L142">        return hash;</span>
+<span class="nc" id="L146">        int hash = 0;</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">        hash += (id != null ? id.hashCode() : 0);</span>
+<span class="nc" id="L148">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L148" title="All 2 branches missed.">        if (!(object instanceof Sgrbatchmatchresultitem)) {</span>
-<span class="nc" id="L149">            return false;</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">        if (!(object instanceof Sgrbatchmatchresultitem)) {</span>
+<span class="nc" id="L155">            return false;</span>
         }
-<span class="nc" id="L151">        Sgrbatchmatchresultitem other = (Sgrbatchmatchresultitem) object;</span>
-<span class="nc bnc" id="L152" title="All 8 branches missed.">        return !((this.id == null &amp;&amp; other.id != null) || (this.id != null &amp;&amp; !this.id.equals(other.id)));</span>
+<span class="nc" id="L157">        Sgrbatchmatchresultitem other = (Sgrbatchmatchresultitem) object;</span>
+<span class="nc bnc" id="L158" title="All 8 branches missed.">        return !((this.id == null &amp;&amp; other.id != null) || (this.id != null &amp;&amp; !this.id.equals(other.id)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L157">        return &quot;se.nrm.dina.datamodel.Sgrbatchmatchresultitem[ id=&quot; + id + &quot; ]&quot;;</span>
+<span class="nc" id="L163">        return &quot;se.nrm.dina.datamodel.Sgrbatchmatchresultitem[ id=&quot; + id + &quot; ]&quot;;</span>
     }
     
 }

@@ -91,8 +91,15 @@ public class Spexportschemaitemmapping extends BaseEntity {
     @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
+        return String.valueOf(spExportSchemaItemMappingID);
+    }
+    
+    @XmlAttribute(name = "uuid") 
+    @Override
+    public String getUUID() {
         return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spExportSchemaItemMappingID;
     }
+    
     
     @Override
     public int getEntityId() {

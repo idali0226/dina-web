@@ -164,269 +164,275 @@ public class Paleocontext extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L167">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + paleoContextID;</span>
+<span class="nc" id="L167">        return String.valueOf(paleoContextID);</span>
     }
 
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L173">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + paleoContextID;</span>
+    }
+    
     @Override
     public int getEntityId() {
-<span class="nc" id="L172">        return paleoContextID;</span>
+<span class="nc" id="L178">        return paleoContextID;</span>
     }
     
     public Integer getPaleoContextID() {
-<span class="nc" id="L176">        return paleoContextID;</span>
+<span class="nc" id="L182">        return paleoContextID;</span>
     }
 
     public void setPaleoContextID(Integer paleoContextID) {
-<span class="nc" id="L180">        this.paleoContextID = paleoContextID;</span>
-<span class="nc" id="L181">    }</span>
+<span class="nc" id="L186">        this.paleoContextID = paleoContextID;</span>
+<span class="nc" id="L187">    }</span>
  
 
     public String getText1() {
-<span class="nc" id="L185">        return text1;</span>
+<span class="nc" id="L191">        return text1;</span>
     }
 
     public void setText1(String text1) {
-<span class="nc" id="L189">        this.text1 = text1;</span>
-<span class="nc" id="L190">    }</span>
+<span class="nc" id="L195">        this.text1 = text1;</span>
+<span class="nc" id="L196">    }</span>
 
     public String getText2() {
-<span class="nc" id="L193">        return text2;</span>
+<span class="nc" id="L199">        return text2;</span>
     }
 
     public void setText2(String text2) {
-<span class="nc" id="L197">        this.text2 = text2;</span>
-<span class="nc" id="L198">    }</span>
+<span class="nc" id="L203">        this.text2 = text2;</span>
+<span class="nc" id="L204">    }</span>
 
     public Boolean getYesNo1() {
-<span class="nc" id="L201">        return yesNo1;</span>
+<span class="nc" id="L207">        return yesNo1;</span>
     }
 
     public void setYesNo1(Boolean yesNo1) {
-<span class="nc" id="L205">        this.yesNo1 = yesNo1;</span>
-<span class="nc" id="L206">    }</span>
+<span class="nc" id="L211">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L212">    }</span>
 
     public Boolean getYesNo2() {
-<span class="nc" id="L209">        return yesNo2;</span>
+<span class="nc" id="L215">        return yesNo2;</span>
     }
 
     public void setYesNo2(Boolean yesNo2) {
-<span class="nc" id="L213">        this.yesNo2 = yesNo2;</span>
-<span class="nc" id="L214">    }</span>
+<span class="nc" id="L219">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L220">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L217">        return remarks;</span>
+<span class="nc" id="L223">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L221">        this.remarks = remarks;</span>
-<span class="nc" id="L222">    }</span>
+<span class="nc" id="L227">        this.remarks = remarks;</span>
+<span class="nc" id="L228">    }</span>
 
     public Double getNumber1() {
-<span class="nc" id="L225">        return number1;</span>
+<span class="nc" id="L231">        return number1;</span>
     }
 
     public void setNumber1(Double number1) {
-<span class="nc" id="L229">        this.number1 = number1;</span>
-<span class="nc" id="L230">    }</span>
+<span class="nc" id="L235">        this.number1 = number1;</span>
+<span class="nc" id="L236">    }</span>
 
     public Double getNumber2() {
-<span class="nc" id="L233">        return number2;</span>
+<span class="nc" id="L239">        return number2;</span>
     }
 
     public void setNumber2(Double number2) {
-<span class="nc" id="L237">        this.number2 = number2;</span>
-<span class="nc" id="L238">    }</span>
+<span class="nc" id="L243">        this.number2 = number2;</span>
+<span class="nc" id="L244">    }</span>
 
     public Double getNumber3() {
-<span class="nc" id="L241">        return number3;</span>
+<span class="nc" id="L247">        return number3;</span>
     }
 
     public void setNumber3(Double number3) {
-<span class="nc" id="L245">        this.number3 = number3;</span>
-<span class="nc" id="L246">    }</span>
+<span class="nc" id="L251">        this.number3 = number3;</span>
+<span class="nc" id="L252">    }</span>
 
     public Double getNumber4() {
-<span class="nc" id="L249">        return number4;</span>
+<span class="nc" id="L255">        return number4;</span>
     }
 
     public void setNumber4(Double number4) {
-<span class="nc" id="L253">        this.number4 = number4;</span>
-<span class="nc" id="L254">    }</span>
+<span class="nc" id="L259">        this.number4 = number4;</span>
+<span class="nc" id="L260">    }</span>
 
     public Double getNumber5() {
-<span class="nc" id="L257">        return number5;</span>
+<span class="nc" id="L263">        return number5;</span>
     }
 
     public void setNumber5(Double number5) {
-<span class="nc" id="L261">        this.number5 = number5;</span>
-<span class="nc" id="L262">    }</span>
+<span class="nc" id="L267">        this.number5 = number5;</span>
+<span class="nc" id="L268">    }</span>
 
     public String getPaleoContextName() {
-<span class="nc" id="L265">        return paleoContextName;</span>
+<span class="nc" id="L271">        return paleoContextName;</span>
     }
 
     public void setPaleoContextName(String paleoContextName) {
-<span class="nc" id="L269">        this.paleoContextName = paleoContextName;</span>
-<span class="nc" id="L270">    }</span>
+<span class="nc" id="L275">        this.paleoContextName = paleoContextName;</span>
+<span class="nc" id="L276">    }</span>
 
     public String getText3() {
-<span class="nc" id="L273">        return text3;</span>
+<span class="nc" id="L279">        return text3;</span>
     }
 
     public void setText3(String text3) {
-<span class="nc" id="L277">        this.text3 = text3;</span>
-<span class="nc" id="L278">    }</span>
+<span class="nc" id="L283">        this.text3 = text3;</span>
+<span class="nc" id="L284">    }</span>
 
     public String getText4() {
-<span class="nc" id="L281">        return text4;</span>
+<span class="nc" id="L287">        return text4;</span>
     }
 
     public void setText4(String text4) {
-<span class="nc" id="L285">        this.text4 = text4;</span>
-<span class="nc" id="L286">    }</span>
+<span class="nc" id="L291">        this.text4 = text4;</span>
+<span class="nc" id="L292">    }</span>
 
     public String getText5() {
-<span class="nc" id="L289">        return text5;</span>
+<span class="nc" id="L295">        return text5;</span>
     }
 
     public void setText5(String text5) {
-<span class="nc" id="L293">        this.text5 = text5;</span>
-<span class="nc" id="L294">    }</span>
+<span class="nc" id="L299">        this.text5 = text5;</span>
+<span class="nc" id="L300">    }</span>
 
     public Boolean getYesNo3() {
-<span class="nc" id="L297">        return yesNo3;</span>
+<span class="nc" id="L303">        return yesNo3;</span>
     }
 
     public void setYesNo3(Boolean yesNo3) {
-<span class="nc" id="L301">        this.yesNo3 = yesNo3;</span>
-<span class="nc" id="L302">    }</span>
+<span class="nc" id="L307">        this.yesNo3 = yesNo3;</span>
+<span class="nc" id="L308">    }</span>
 
     public Boolean getYesNo4() {
-<span class="nc" id="L305">        return yesNo4;</span>
+<span class="nc" id="L311">        return yesNo4;</span>
     }
 
     public void setYesNo4(Boolean yesNo4) {
-<span class="nc" id="L309">        this.yesNo4 = yesNo4;</span>
-<span class="nc" id="L310">    }</span>
+<span class="nc" id="L315">        this.yesNo4 = yesNo4;</span>
+<span class="nc" id="L316">    }</span>
 
     public Boolean getYesNo5() {
-<span class="nc" id="L313">        return yesNo5;</span>
+<span class="nc" id="L319">        return yesNo5;</span>
     }
 
     public void setYesNo5(Boolean yesNo5) {
-<span class="nc" id="L317">        this.yesNo5 = yesNo5;</span>
-<span class="nc" id="L318">    }</span>
+<span class="nc" id="L323">        this.yesNo5 = yesNo5;</span>
+<span class="nc" id="L324">    }</span>
 
     @XmlTransient
     public List&lt;Locality&gt; getLocalityList() {
-<span class="nc" id="L322">        return localityList;</span>
+<span class="nc" id="L328">        return localityList;</span>
     }
 
     public void setLocalityList(List&lt;Locality&gt; localityList) {
-<span class="nc" id="L326">        this.localityList = localityList;</span>
-<span class="nc" id="L327">    }</span>
+<span class="nc" id="L332">        this.localityList = localityList;</span>
+<span class="nc" id="L333">    }</span>
 
     @XmlIDREF
     public Geologictimeperiod getChronosStratEndID() {
-<span class="nc" id="L331">        return chronosStratEndID;</span>
+<span class="nc" id="L337">        return chronosStratEndID;</span>
     }
 
     public void setChronosStratEndID(Geologictimeperiod chronosStratEndID) {
-<span class="nc" id="L335">        this.chronosStratEndID = chronosStratEndID;</span>
-<span class="nc" id="L336">    }</span>
+<span class="nc" id="L341">        this.chronosStratEndID = chronosStratEndID;</span>
+<span class="nc" id="L342">    }</span>
 
     @XmlIDREF
     public Discipline getDisciplineID() {
-<span class="nc" id="L340">        return disciplineID;</span>
+<span class="nc" id="L346">        return disciplineID;</span>
     }
 
     public void setDisciplineID(Discipline disciplineID) {
-<span class="nc" id="L344">        this.disciplineID = disciplineID;</span>
-<span class="nc" id="L345">    }</span>
+<span class="nc" id="L350">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L351">    }</span>
 
     @XmlIDREF
     public Geologictimeperiod getChronosStratID() {
-<span class="nc" id="L349">        return chronosStratID;</span>
+<span class="nc" id="L355">        return chronosStratID;</span>
     }
 
     public void setChronosStratID(Geologictimeperiod chronosStratID) {
-<span class="nc" id="L353">        this.chronosStratID = chronosStratID;</span>
-<span class="nc" id="L354">    }</span>
+<span class="nc" id="L359">        this.chronosStratID = chronosStratID;</span>
+<span class="nc" id="L360">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L358">        return modifiedByAgentID;</span>
+<span class="nc" id="L364">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L362">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L363">    }</span>
+<span class="nc" id="L368">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L369">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L367">        return createdByAgentID;</span>
+<span class="nc" id="L373">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L371">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L372">    }</span>
+<span class="nc" id="L377">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L378">    }</span>
 
     @XmlIDREF
     public Geologictimeperiod getBioStratID() {
-<span class="nc" id="L376">        return bioStratID;</span>
+<span class="nc" id="L382">        return bioStratID;</span>
     }
 
     public void setBioStratID(Geologictimeperiod bioStratID) {
-<span class="nc" id="L380">        this.bioStratID = bioStratID;</span>
-<span class="nc" id="L381">    }</span>
+<span class="nc" id="L386">        this.bioStratID = bioStratID;</span>
+<span class="nc" id="L387">    }</span>
 
     @XmlIDREF
     public Lithostrat getLithoStratID() {
-<span class="nc" id="L385">        return lithoStratID;</span>
+<span class="nc" id="L391">        return lithoStratID;</span>
     }
 
     public void setLithoStratID(Lithostrat lithoStratID) {
-<span class="nc" id="L389">        this.lithoStratID = lithoStratID;</span>
-<span class="nc" id="L390">    }</span>
+<span class="nc" id="L395">        this.lithoStratID = lithoStratID;</span>
+<span class="nc" id="L396">    }</span>
 
     @XmlTransient
     public List&lt;Collectionobject&gt; getCollectionobjectList() {
-<span class="nc" id="L394">        return collectionobjectList;</span>
+<span class="nc" id="L400">        return collectionobjectList;</span>
     }
 
     public void setCollectionobjectList(List&lt;Collectionobject&gt; collectionobjectList) {
-<span class="nc" id="L398">        this.collectionobjectList = collectionobjectList;</span>
-<span class="nc" id="L399">    }</span>
+<span class="nc" id="L404">        this.collectionobjectList = collectionobjectList;</span>
+<span class="nc" id="L405">    }</span>
 
     @XmlTransient
     public List&lt;Collectingevent&gt; getCollectingeventList() {
-<span class="nc" id="L403">        return collectingeventList;</span>
+<span class="nc" id="L409">        return collectingeventList;</span>
     }
 
     public void setCollectingeventList(List&lt;Collectingevent&gt; collectingeventList) {
-<span class="nc" id="L407">        this.collectingeventList = collectingeventList;</span>
-<span class="nc" id="L408">    }</span>
+<span class="nc" id="L413">        this.collectingeventList = collectingeventList;</span>
+<span class="nc" id="L414">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L412">        int hash = 0;</span>
-<span class="nc bnc" id="L413" title="All 2 branches missed.">        hash += (paleoContextID != null ? paleoContextID.hashCode() : 0);</span>
-<span class="nc" id="L414">        return hash;</span>
+<span class="nc" id="L418">        int hash = 0;</span>
+<span class="nc bnc" id="L419" title="All 2 branches missed.">        hash += (paleoContextID != null ? paleoContextID.hashCode() : 0);</span>
+<span class="nc" id="L420">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L420" title="All 2 branches missed.">        if (!(object instanceof Paleocontext)) {</span>
-<span class="nc" id="L421">            return false;</span>
+<span class="nc bnc" id="L426" title="All 2 branches missed.">        if (!(object instanceof Paleocontext)) {</span>
+<span class="nc" id="L427">            return false;</span>
         }
-<span class="nc" id="L423">        Paleocontext other = (Paleocontext) object;</span>
-<span class="nc bnc" id="L424" title="All 8 branches missed.">        return !((this.paleoContextID == null &amp;&amp; other.paleoContextID != null) || (this.paleoContextID != null &amp;&amp; !this.paleoContextID.equals(other.paleoContextID)));</span>
+<span class="nc" id="L429">        Paleocontext other = (Paleocontext) object;</span>
+<span class="nc bnc" id="L430" title="All 8 branches missed.">        return !((this.paleoContextID == null &amp;&amp; other.paleoContextID != null) || (this.paleoContextID != null &amp;&amp; !this.paleoContextID.equals(other.paleoContextID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L429">        return &quot;se.nrm.dina.datamodel.Paleocontext[ paleoContextID=&quot; + paleoContextID + &quot; ]&quot;;</span>
+<span class="nc" id="L435">        return &quot;se.nrm.dina.datamodel.Paleocontext[ paleoContextID=&quot; + paleoContextID + &quot; ]&quot;;</span>
     }
     
 }

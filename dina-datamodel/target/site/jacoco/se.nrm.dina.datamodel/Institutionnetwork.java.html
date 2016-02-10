@@ -127,163 +127,170 @@ public class Institutionnetwork extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L130">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + institutionNetworkID;</span>
+<span class="nc" id="L130">        return String.valueOf(institutionNetworkID);</span>
+    }
+    
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L137">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + institutionNetworkID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L135">        return institutionNetworkID;</span>
+<span class="nc" id="L142">        return institutionNetworkID;</span>
     }
 
     public Integer getInstitutionNetworkID() {
-<span class="nc" id="L139">        return institutionNetworkID;</span>
+<span class="nc" id="L146">        return institutionNetworkID;</span>
     }
 
     public void setInstitutionNetworkID(Integer institutionNetworkID) {
-<span class="nc" id="L143">        this.institutionNetworkID = institutionNetworkID;</span>
-<span class="nc" id="L144">    }</span>
+<span class="nc" id="L150">        this.institutionNetworkID = institutionNetworkID;</span>
+<span class="nc" id="L151">    }</span>
 
  
     public String getAltName() {
-<span class="nc" id="L148">        return altName;</span>
+<span class="nc" id="L155">        return altName;</span>
     }
 
     public void setAltName(String altName) {
-<span class="nc" id="L152">        this.altName = altName;</span>
-<span class="nc" id="L153">    }</span>
+<span class="nc" id="L159">        this.altName = altName;</span>
+<span class="nc" id="L160">    }</span>
 
     public String getCode() {
-<span class="nc" id="L156">        return code;</span>
+<span class="nc" id="L163">        return code;</span>
     }
 
     public void setCode(String code) {
-<span class="nc" id="L160">        this.code = code;</span>
-<span class="nc" id="L161">    }</span>
+<span class="nc" id="L167">        this.code = code;</span>
+<span class="nc" id="L168">    }</span>
 
     public String getCopyright() {
-<span class="nc" id="L164">        return copyright;</span>
+<span class="nc" id="L171">        return copyright;</span>
     }
 
     public void setCopyright(String copyright) {
-<span class="nc" id="L168">        this.copyright = copyright;</span>
-<span class="nc" id="L169">    }</span>
+<span class="nc" id="L175">        this.copyright = copyright;</span>
+<span class="nc" id="L176">    }</span>
 
     public String getDescription() {
-<span class="nc" id="L172">        return description;</span>
+<span class="nc" id="L179">        return description;</span>
     }
 
     public void setDescription(String description) {
-<span class="nc" id="L176">        this.description = description;</span>
-<span class="nc" id="L177">    }</span>
+<span class="nc" id="L183">        this.description = description;</span>
+<span class="nc" id="L184">    }</span>
 
     public String getDisclaimer() {
-<span class="nc" id="L180">        return disclaimer;</span>
+<span class="nc" id="L187">        return disclaimer;</span>
     }
 
     public void setDisclaimer(String disclaimer) {
-<span class="nc" id="L184">        this.disclaimer = disclaimer;</span>
-<span class="nc" id="L185">    }</span>
+<span class="nc" id="L191">        this.disclaimer = disclaimer;</span>
+<span class="nc" id="L192">    }</span>
 
     public String getIconURI() {
-<span class="nc" id="L188">        return iconURI;</span>
+<span class="nc" id="L195">        return iconURI;</span>
     }
 
     public void setIconURI(String iconURI) {
-<span class="nc" id="L192">        this.iconURI = iconURI;</span>
-<span class="nc" id="L193">    }</span>
+<span class="nc" id="L199">        this.iconURI = iconURI;</span>
+<span class="nc" id="L200">    }</span>
 
     public String getIpr() {
-<span class="nc" id="L196">        return ipr;</span>
+<span class="nc" id="L203">        return ipr;</span>
     }
 
     public void setIpr(String ipr) {
-<span class="nc" id="L200">        this.ipr = ipr;</span>
-<span class="nc" id="L201">    }</span>
+<span class="nc" id="L207">        this.ipr = ipr;</span>
+<span class="nc" id="L208">    }</span>
 
     public String getLicense() {
-<span class="nc" id="L204">        return license;</span>
+<span class="nc" id="L211">        return license;</span>
     }
 
     public void setLicense(String license) {
-<span class="nc" id="L208">        this.license = license;</span>
-<span class="nc" id="L209">    }</span>
+<span class="nc" id="L215">        this.license = license;</span>
+<span class="nc" id="L216">    }</span>
 
     public String getName() {
-<span class="nc" id="L212">        return name;</span>
+<span class="nc" id="L219">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L216">        this.name = name;</span>
-<span class="nc" id="L217">    }</span>
+<span class="nc" id="L223">        this.name = name;</span>
+<span class="nc" id="L224">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L220">        return remarks;</span>
+<span class="nc" id="L227">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L224">        this.remarks = remarks;</span>
-<span class="nc" id="L225">    }</span>
+<span class="nc" id="L231">        this.remarks = remarks;</span>
+<span class="nc" id="L232">    }</span>
 
     public String getTermsOfUse() {
-<span class="nc" id="L228">        return termsOfUse;</span>
+<span class="nc" id="L235">        return termsOfUse;</span>
     }
 
     public void setTermsOfUse(String termsOfUse) {
-<span class="nc" id="L232">        this.termsOfUse = termsOfUse;</span>
-<span class="nc" id="L233">    }</span>
+<span class="nc" id="L239">        this.termsOfUse = termsOfUse;</span>
+<span class="nc" id="L240">    }</span>
 
     public String getUri() {
-<span class="nc" id="L236">        return uri;</span>
+<span class="nc" id="L243">        return uri;</span>
     }
 
     public void setUri(String uri) {
-<span class="nc" id="L240">        this.uri = uri;</span>
-<span class="nc" id="L241">    }</span>
+<span class="nc" id="L247">        this.uri = uri;</span>
+<span class="nc" id="L248">    }</span>
 
     public Integer getAddressID() {
-<span class="nc" id="L244">        return addressID;</span>
+<span class="nc" id="L251">        return addressID;</span>
     }
 
     public void setAddressID(Integer addressID) {
-<span class="nc" id="L248">        this.addressID = addressID;</span>
-<span class="nc" id="L249">    }</span>
+<span class="nc" id="L255">        this.addressID = addressID;</span>
+<span class="nc" id="L256">    }</span>
 
     public Integer getModifiedByAgentID() {
-<span class="nc" id="L252">        return modifiedByAgentID;</span>
+<span class="nc" id="L259">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Integer modifiedByAgentID) {
-<span class="nc" id="L256">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L257">    }</span>
+<span class="nc" id="L263">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L264">    }</span>
 
     public Integer getCreatedByAgentID() {
-<span class="nc" id="L260">        return createdByAgentID;</span>
+<span class="nc" id="L267">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Integer createdByAgentID) {
-<span class="nc" id="L264">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L265">    }</span>
+<span class="nc" id="L271">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L272">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L269">        int hash = 0;</span>
-<span class="nc bnc" id="L270" title="All 2 branches missed.">        hash += (institutionNetworkID != null ? institutionNetworkID.hashCode() : 0);</span>
-<span class="nc" id="L271">        return hash;</span>
+<span class="nc" id="L276">        int hash = 0;</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">        hash += (institutionNetworkID != null ? institutionNetworkID.hashCode() : 0);</span>
+<span class="nc" id="L278">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L277" title="All 2 branches missed.">        if (!(object instanceof Institutionnetwork)) {</span>
-<span class="nc" id="L278">            return false;</span>
+<span class="nc bnc" id="L284" title="All 2 branches missed.">        if (!(object instanceof Institutionnetwork)) {</span>
+<span class="nc" id="L285">            return false;</span>
         }
-<span class="nc" id="L280">        Institutionnetwork other = (Institutionnetwork) object;</span>
-<span class="nc bnc" id="L281" title="All 8 branches missed.">        return !((this.institutionNetworkID == null &amp;&amp; other.institutionNetworkID != null) || (this.institutionNetworkID != null &amp;&amp; !this.institutionNetworkID.equals(other.institutionNetworkID)));</span>
+<span class="nc" id="L287">        Institutionnetwork other = (Institutionnetwork) object;</span>
+<span class="nc bnc" id="L288" title="All 8 branches missed.">        return !((this.institutionNetworkID == null &amp;&amp; other.institutionNetworkID != null) || (this.institutionNetworkID != null &amp;&amp; !this.institutionNetworkID.equals(other.institutionNetworkID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L286">        return &quot;se.nrm.dina.datamodel.Institutionnetwork[ institutionNetworkID=&quot; + institutionNetworkID + &quot; ]&quot;;</span>
+<span class="nc" id="L293">        return &quot;se.nrm.dina.datamodel.Institutionnetwork[ institutionNetworkID=&quot; + institutionNetworkID + &quot; ]&quot;;</span>
     }
     
 }

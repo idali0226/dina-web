@@ -77,6 +77,12 @@ public class Workbenchdataitem implements EntityBean, Serializable {
     @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
+        return String.valueOf(workbenchDataItemID);
+    }
+    
+    @XmlAttribute(name = "uuid") 
+    @Override
+    public String getUUID() {
         return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchDataItemID;
     }
     

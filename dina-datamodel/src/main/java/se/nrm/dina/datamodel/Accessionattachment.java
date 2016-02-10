@@ -8,8 +8,7 @@ package se.nrm.dina.datamodel;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.Entity; 
-import javax.persistence.FetchType;
+import javax.persistence.Entity;  
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -93,6 +92,12 @@ public class Accessionattachment extends BaseEntity {
     @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
+        return String.valueOf(accessionAttachmentID);
+    }
+    
+    @XmlAttribute(name = "uuid") 
+    @Override
+    public String getUUID() {
         return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + accessionAttachmentID;
     }
 
@@ -101,6 +106,8 @@ public class Accessionattachment extends BaseEntity {
     public int getEntityId() {
         return accessionAttachmentID;
     }
+    
+    
 
 
     public Integer getAccessionAttachmentID() {

@@ -106,118 +106,124 @@ public class Spauditlog extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L109">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spAuditLogID;</span>
+<span class="nc" id="L109">        return String.valueOf(spAuditLogID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L115">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spAuditLogID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L114">        return spAuditLogID;</span>
+<span class="nc" id="L120">        return spAuditLogID;</span>
     }
 
     public Integer getSpAuditLogID() {
-<span class="nc" id="L118">        return spAuditLogID;</span>
+<span class="nc" id="L124">        return spAuditLogID;</span>
     }
 
     public void setSpAuditLogID(Integer spAuditLogID) {
-<span class="nc" id="L122">        this.spAuditLogID = spAuditLogID;</span>
-<span class="nc" id="L123">    }</span>
+<span class="nc" id="L128">        this.spAuditLogID = spAuditLogID;</span>
+<span class="nc" id="L129">    }</span>
  
 
     public int getAction() {
-<span class="nc" id="L127">        return action;</span>
+<span class="nc" id="L133">        return action;</span>
     }
 
     public void setAction(int action) {
-<span class="nc" id="L131">        this.action = action;</span>
-<span class="nc" id="L132">    }</span>
+<span class="nc" id="L137">        this.action = action;</span>
+<span class="nc" id="L138">    }</span>
 
     public Integer getRecordId() {
-<span class="nc" id="L135">        return recordId;</span>
+<span class="nc" id="L141">        return recordId;</span>
     }
 
     public void setRecordId(Integer recordId) {
-<span class="nc" id="L139">        this.recordId = recordId;</span>
-<span class="nc" id="L140">    }</span>
+<span class="nc" id="L145">        this.recordId = recordId;</span>
+<span class="nc" id="L146">    }</span>
 
     public int getTableNum() {
-<span class="nc" id="L143">        return tableNum;</span>
+<span class="nc" id="L149">        return tableNum;</span>
     }
 
     public void setTableNum(int tableNum) {
-<span class="nc" id="L147">        this.tableNum = tableNum;</span>
-<span class="nc" id="L148">    }</span>
+<span class="nc" id="L153">        this.tableNum = tableNum;</span>
+<span class="nc" id="L154">    }</span>
 
     public Integer getParentRecordId() {
-<span class="nc" id="L151">        return parentRecordId;</span>
+<span class="nc" id="L157">        return parentRecordId;</span>
     }
 
     public void setParentRecordId(Integer parentRecordId) {
-<span class="nc" id="L155">        this.parentRecordId = parentRecordId;</span>
-<span class="nc" id="L156">    }</span>
+<span class="nc" id="L161">        this.parentRecordId = parentRecordId;</span>
+<span class="nc" id="L162">    }</span>
 
     public Short getParentTableNum() {
-<span class="nc" id="L159">        return parentTableNum;</span>
+<span class="nc" id="L165">        return parentTableNum;</span>
     }
 
     public void setParentTableNum(Short parentTableNum) {
-<span class="nc" id="L163">        this.parentTableNum = parentTableNum;</span>
-<span class="nc" id="L164">    }</span>
+<span class="nc" id="L169">        this.parentTableNum = parentTableNum;</span>
+<span class="nc" id="L170">    }</span>
 
     public Integer getRecordVersion() {
-<span class="nc" id="L167">        return recordVersion;</span>
+<span class="nc" id="L173">        return recordVersion;</span>
     }
 
     public void setRecordVersion(Integer recordVersion) {
-<span class="nc" id="L171">        this.recordVersion = recordVersion;</span>
-<span class="nc" id="L172">    }</span>
+<span class="nc" id="L177">        this.recordVersion = recordVersion;</span>
+<span class="nc" id="L178">    }</span>
 
     @XmlTransient
     public List&lt;Spauditlogfield&gt; getSpauditlogfieldList() {
-<span class="nc" id="L176">        return spauditlogfieldList;</span>
+<span class="nc" id="L182">        return spauditlogfieldList;</span>
     }
 
     public void setSpauditlogfieldList(List&lt;Spauditlogfield&gt; spauditlogfieldList) {
-<span class="nc" id="L180">        this.spauditlogfieldList = spauditlogfieldList;</span>
-<span class="nc" id="L181">    }</span>
+<span class="nc" id="L186">        this.spauditlogfieldList = spauditlogfieldList;</span>
+<span class="nc" id="L187">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L185">        return modifiedByAgentID;</span>
+<span class="nc" id="L191">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L189">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L190">    }</span>
+<span class="nc" id="L195">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L196">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L194">        return createdByAgentID;</span>
+<span class="nc" id="L200">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L198">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L199">    }</span>
+<span class="nc" id="L204">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L205">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L203">        int hash = 0;</span>
-<span class="nc bnc" id="L204" title="All 2 branches missed.">        hash += (spAuditLogID != null ? spAuditLogID.hashCode() : 0);</span>
-<span class="nc" id="L205">        return hash;</span>
+<span class="nc" id="L209">        int hash = 0;</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">        hash += (spAuditLogID != null ? spAuditLogID.hashCode() : 0);</span>
+<span class="nc" id="L211">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L211" title="All 2 branches missed.">        if (!(object instanceof Spauditlog)) {</span>
-<span class="nc" id="L212">            return false;</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">        if (!(object instanceof Spauditlog)) {</span>
+<span class="nc" id="L218">            return false;</span>
         }
-<span class="nc" id="L214">        Spauditlog other = (Spauditlog) object;</span>
-<span class="nc bnc" id="L215" title="All 8 branches missed.">        return !((this.spAuditLogID == null &amp;&amp; other.spAuditLogID != null) || (this.spAuditLogID != null &amp;&amp; !this.spAuditLogID.equals(other.spAuditLogID)));</span>
+<span class="nc" id="L220">        Spauditlog other = (Spauditlog) object;</span>
+<span class="nc bnc" id="L221" title="All 8 branches missed.">        return !((this.spAuditLogID == null &amp;&amp; other.spAuditLogID != null) || (this.spAuditLogID != null &amp;&amp; !this.spAuditLogID.equals(other.spAuditLogID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L220">        return &quot;se.nrm.dina.datamodel.Spauditlog[ spAuditLogID=&quot; + spAuditLogID + &quot; ]&quot;;</span>
+<span class="nc" id="L226">        return &quot;se.nrm.dina.datamodel.Spauditlog[ spAuditLogID=&quot; + spAuditLogID + &quot; ]&quot;;</span>
     }
     
 }

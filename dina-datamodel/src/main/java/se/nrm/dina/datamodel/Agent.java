@@ -1190,6 +1190,12 @@ public class Agent extends BaseEntity {
     @XmlAttribute(name = "id") 
     @Override
     public String getIdentityString() {
+        return String.valueOf(agentID);
+    }
+    
+    @XmlAttribute(name = "uuid") 
+    @Override
+    public String getUUID() {
         return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + agentID;
     }
 

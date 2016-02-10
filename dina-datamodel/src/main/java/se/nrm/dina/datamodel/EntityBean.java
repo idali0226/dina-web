@@ -12,6 +12,7 @@ package se.nrm.dina.datamodel;
 public interface EntityBean {
     
     public String getIdentityString();
+    public String getUUID();
     public int getEntityId();
     
 }

@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package se.nrm.dina.datamodel;
+ 
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -160,207 +160,213 @@ public class Project extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L163">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + projectID;</span>
+<span class="nc" id="L163">        return String.valueOf(projectID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L169">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + projectID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L168">        return projectID;</span>
+<span class="nc" id="L174">        return projectID;</span>
     }
     
     public Integer getProjectID() {
-<span class="nc" id="L172">        return projectID;</span>
+<span class="nc" id="L178">        return projectID;</span>
     }
 
     public void setProjectID(Integer projectID) {
-<span class="nc" id="L176">        this.projectID = projectID;</span>
-<span class="nc" id="L177">    }</span>
+<span class="nc" id="L182">        this.projectID = projectID;</span>
+<span class="nc" id="L183">    }</span>
  
 
     public int getCollectionMemberID() {
-<span class="nc" id="L181">        return collectionMemberID;</span>
+<span class="nc" id="L187">        return collectionMemberID;</span>
     }
 
     public void setCollectionMemberID(int collectionMemberID) {
-<span class="nc" id="L185">        this.collectionMemberID = collectionMemberID;</span>
-<span class="nc" id="L186">    }</span>
+<span class="nc" id="L191">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L192">    }</span>
 
     public Date getEndDate() {
-<span class="nc" id="L189">        return endDate;</span>
+<span class="nc" id="L195">        return endDate;</span>
     }
 
     public void setEndDate(Date endDate) {
-<span class="nc" id="L193">        this.endDate = endDate;</span>
-<span class="nc" id="L194">    }</span>
+<span class="nc" id="L199">        this.endDate = endDate;</span>
+<span class="nc" id="L200">    }</span>
 
     public String getGrantAgency() {
-<span class="nc" id="L197">        return grantAgency;</span>
+<span class="nc" id="L203">        return grantAgency;</span>
     }
 
     public void setGrantAgency(String grantAgency) {
-<span class="nc" id="L201">        this.grantAgency = grantAgency;</span>
-<span class="nc" id="L202">    }</span>
+<span class="nc" id="L207">        this.grantAgency = grantAgency;</span>
+<span class="nc" id="L208">    }</span>
 
     public String getGrantNumber() {
-<span class="nc" id="L205">        return grantNumber;</span>
+<span class="nc" id="L211">        return grantNumber;</span>
     }
 
     public void setGrantNumber(String grantNumber) {
-<span class="nc" id="L209">        this.grantNumber = grantNumber;</span>
-<span class="nc" id="L210">    }</span>
+<span class="nc" id="L215">        this.grantNumber = grantNumber;</span>
+<span class="nc" id="L216">    }</span>
 
     public Float getNumber1() {
-<span class="nc" id="L213">        return number1;</span>
+<span class="nc" id="L219">        return number1;</span>
     }
 
     public void setNumber1(Float number1) {
-<span class="nc" id="L217">        this.number1 = number1;</span>
-<span class="nc" id="L218">    }</span>
+<span class="nc" id="L223">        this.number1 = number1;</span>
+<span class="nc" id="L224">    }</span>
 
     public Float getNumber2() {
-<span class="nc" id="L221">        return number2;</span>
+<span class="nc" id="L227">        return number2;</span>
     }
 
     public void setNumber2(Float number2) {
-<span class="nc" id="L225">        this.number2 = number2;</span>
-<span class="nc" id="L226">    }</span>
+<span class="nc" id="L231">        this.number2 = number2;</span>
+<span class="nc" id="L232">    }</span>
 
     public String getProjectDescription() {
-<span class="nc" id="L229">        return projectDescription;</span>
+<span class="nc" id="L235">        return projectDescription;</span>
     }
 
     public void setProjectDescription(String projectDescription) {
-<span class="nc" id="L233">        this.projectDescription = projectDescription;</span>
-<span class="nc" id="L234">    }</span>
+<span class="nc" id="L239">        this.projectDescription = projectDescription;</span>
+<span class="nc" id="L240">    }</span>
 
     public String getProjectname() {
-<span class="nc" id="L237">        return projectname;</span>
+<span class="nc" id="L243">        return projectname;</span>
     }
 
     public void setProjectname(String projectname) {
-<span class="nc" id="L241">        this.projectname = projectname;</span>
-<span class="nc" id="L242">    }</span>
+<span class="nc" id="L247">        this.projectname = projectname;</span>
+<span class="nc" id="L248">    }</span>
 
     public String getProjectNumber() {
-<span class="nc" id="L245">        return projectNumber;</span>
+<span class="nc" id="L251">        return projectNumber;</span>
     }
 
     public void setProjectNumber(String projectNumber) {
-<span class="nc" id="L249">        this.projectNumber = projectNumber;</span>
-<span class="nc" id="L250">    }</span>
+<span class="nc" id="L255">        this.projectNumber = projectNumber;</span>
+<span class="nc" id="L256">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L253">        return remarks;</span>
+<span class="nc" id="L259">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L257">        this.remarks = remarks;</span>
-<span class="nc" id="L258">    }</span>
+<span class="nc" id="L263">        this.remarks = remarks;</span>
+<span class="nc" id="L264">    }</span>
 
     public Date getStartDate() {
-<span class="nc" id="L261">        return startDate;</span>
+<span class="nc" id="L267">        return startDate;</span>
     }
 
     public void setStartDate(Date startDate) {
-<span class="nc" id="L265">        this.startDate = startDate;</span>
-<span class="nc" id="L266">    }</span>
+<span class="nc" id="L271">        this.startDate = startDate;</span>
+<span class="nc" id="L272">    }</span>
 
     public String getText1() {
-<span class="nc" id="L269">        return text1;</span>
+<span class="nc" id="L275">        return text1;</span>
     }
 
     public void setText1(String text1) {
-<span class="nc" id="L273">        this.text1 = text1;</span>
-<span class="nc" id="L274">    }</span>
+<span class="nc" id="L279">        this.text1 = text1;</span>
+<span class="nc" id="L280">    }</span>
 
     public String getText2() {
-<span class="nc" id="L277">        return text2;</span>
+<span class="nc" id="L283">        return text2;</span>
     }
 
     public void setText2(String text2) {
-<span class="nc" id="L281">        this.text2 = text2;</span>
-<span class="nc" id="L282">    }</span>
+<span class="nc" id="L287">        this.text2 = text2;</span>
+<span class="nc" id="L288">    }</span>
 
     public String getUrl() {
-<span class="nc" id="L285">        return url;</span>
+<span class="nc" id="L291">        return url;</span>
     }
 
     public void setUrl(String url) {
-<span class="nc" id="L289">        this.url = url;</span>
-<span class="nc" id="L290">    }</span>
+<span class="nc" id="L295">        this.url = url;</span>
+<span class="nc" id="L296">    }</span>
 
     public Boolean getYesNo1() {
-<span class="nc" id="L293">        return yesNo1;</span>
+<span class="nc" id="L299">        return yesNo1;</span>
     }
 
     public void setYesNo1(Boolean yesNo1) {
-<span class="nc" id="L297">        this.yesNo1 = yesNo1;</span>
-<span class="nc" id="L298">    }</span>
+<span class="nc" id="L303">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L304">    }</span>
 
     public Boolean getYesNo2() {
-<span class="nc" id="L301">        return yesNo2;</span>
+<span class="nc" id="L307">        return yesNo2;</span>
     }
 
     public void setYesNo2(Boolean yesNo2) {
-<span class="nc" id="L305">        this.yesNo2 = yesNo2;</span>
-<span class="nc" id="L306">    }</span>
+<span class="nc" id="L311">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L312">    }</span>
 
     @XmlTransient
     public List&lt;Collectionobject&gt; getCollectionobjectList() {
-<span class="nc" id="L310">        return collectionobjectList;</span>
+<span class="nc" id="L316">        return collectionobjectList;</span>
     }
 
     public void setCollectionobjectList(List&lt;Collectionobject&gt; collectionobjectList) {
-<span class="nc" id="L314">        this.collectionobjectList = collectionobjectList;</span>
-<span class="nc" id="L315">    }</span>
+<span class="nc" id="L320">        this.collectionobjectList = collectionobjectList;</span>
+<span class="nc" id="L321">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L319">        return modifiedByAgentID;</span>
+<span class="nc" id="L325">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L323">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L324">    }</span>
+<span class="nc" id="L329">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L330">    }</span>
 
     @XmlIDREF
     public Agent getProjectAgentID() {
-<span class="nc" id="L328">        return projectAgentID;</span>
+<span class="nc" id="L334">        return projectAgentID;</span>
     }
 
     public void setProjectAgentID(Agent projectAgentID) {
-<span class="nc" id="L332">        this.projectAgentID = projectAgentID;</span>
-<span class="nc" id="L333">    }</span>
+<span class="nc" id="L338">        this.projectAgentID = projectAgentID;</span>
+<span class="nc" id="L339">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L337">        return createdByAgentID;</span>
+<span class="nc" id="L343">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L341">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L342">    }</span>
+<span class="nc" id="L347">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L348">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L346">        int hash = 0;</span>
-<span class="nc bnc" id="L347" title="All 2 branches missed.">        hash += (projectID != null ? projectID.hashCode() : 0);</span>
-<span class="nc" id="L348">        return hash;</span>
+<span class="nc" id="L352">        int hash = 0;</span>
+<span class="nc bnc" id="L353" title="All 2 branches missed.">        hash += (projectID != null ? projectID.hashCode() : 0);</span>
+<span class="nc" id="L354">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L354" title="All 2 branches missed.">        if (!(object instanceof Project)) {</span>
-<span class="nc" id="L355">            return false;</span>
+<span class="nc bnc" id="L360" title="All 2 branches missed.">        if (!(object instanceof Project)) {</span>
+<span class="nc" id="L361">            return false;</span>
         }
-<span class="nc" id="L357">        Project other = (Project) object;</span>
-<span class="nc bnc" id="L358" title="All 8 branches missed.">        return !((this.projectID == null &amp;&amp; other.projectID != null) || (this.projectID != null &amp;&amp; !this.projectID.equals(other.projectID)));</span>
+<span class="nc" id="L363">        Project other = (Project) object;</span>
+<span class="nc bnc" id="L364" title="All 8 branches missed.">        return !((this.projectID == null &amp;&amp; other.projectID != null) || (this.projectID != null &amp;&amp; !this.projectID.equals(other.projectID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L363">        return &quot;se.nrm.dina.datamodel.Project[ projectID=&quot; + projectID + &quot; ]&quot;;</span>
+<span class="nc" id="L369">        return &quot;se.nrm.dina.datamodel.Project[ projectID=&quot; + projectID + &quot; ]&quot;;</span>
     }
     
 }

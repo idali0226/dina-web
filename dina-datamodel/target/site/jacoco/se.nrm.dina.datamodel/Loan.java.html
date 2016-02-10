@@ -203,298 +203,304 @@ public class Loan extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L206">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + loanID;</span>
+<span class="nc" id="L206">        return String.valueOf(loanID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L212">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + loanID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L211">        return loanID;</span>
+<span class="nc" id="L217">        return loanID;</span>
     }
     
     public Integer getLoanID() {
-<span class="nc" id="L215">        return loanID;</span>
+<span class="nc" id="L221">        return loanID;</span>
     }
 
     public void setLoanID(Integer loanID) {
-<span class="nc" id="L219">        this.loanID = loanID;</span>
-<span class="nc" id="L220">    }</span>
+<span class="nc" id="L225">        this.loanID = loanID;</span>
+<span class="nc" id="L226">    }</span>
  
     public Date getCurrentDueDate() {
-<span class="nc" id="L223">        return currentDueDate;</span>
+<span class="nc" id="L229">        return currentDueDate;</span>
     }
 
     public void setCurrentDueDate(Date currentDueDate) {
-<span class="nc" id="L227">        this.currentDueDate = currentDueDate;</span>
-<span class="nc" id="L228">    }</span>
+<span class="nc" id="L233">        this.currentDueDate = currentDueDate;</span>
+<span class="nc" id="L234">    }</span>
 
     public Date getDateClosed() {
-<span class="nc" id="L231">        return dateClosed;</span>
+<span class="nc" id="L237">        return dateClosed;</span>
     }
 
     public void setDateClosed(Date dateClosed) {
-<span class="nc" id="L235">        this.dateClosed = dateClosed;</span>
-<span class="nc" id="L236">    }</span>
+<span class="nc" id="L241">        this.dateClosed = dateClosed;</span>
+<span class="nc" id="L242">    }</span>
 
     public Date getDateReceived() {
-<span class="nc" id="L239">        return dateReceived;</span>
+<span class="nc" id="L245">        return dateReceived;</span>
     }
 
     public void setDateReceived(Date dateReceived) {
-<span class="nc" id="L243">        this.dateReceived = dateReceived;</span>
-<span class="nc" id="L244">    }</span>
+<span class="nc" id="L249">        this.dateReceived = dateReceived;</span>
+<span class="nc" id="L250">    }</span>
 
     public Boolean getIsClosed() {
-<span class="nc" id="L247">        return isClosed;</span>
+<span class="nc" id="L253">        return isClosed;</span>
     }
 
     public void setIsClosed(Boolean isClosed) {
-<span class="nc" id="L251">        this.isClosed = isClosed;</span>
-<span class="nc" id="L252">    }</span>
+<span class="nc" id="L257">        this.isClosed = isClosed;</span>
+<span class="nc" id="L258">    }</span>
 
     public Boolean getIsFinancialResponsibility() {
-<span class="nc" id="L255">        return isFinancialResponsibility;</span>
+<span class="nc" id="L261">        return isFinancialResponsibility;</span>
     }
 
     public void setIsFinancialResponsibility(Boolean isFinancialResponsibility) {
-<span class="nc" id="L259">        this.isFinancialResponsibility = isFinancialResponsibility;</span>
-<span class="nc" id="L260">    }</span>
+<span class="nc" id="L265">        this.isFinancialResponsibility = isFinancialResponsibility;</span>
+<span class="nc" id="L266">    }</span>
 
     public Date getLoanDate() {
-<span class="nc" id="L263">        return loanDate;</span>
+<span class="nc" id="L269">        return loanDate;</span>
     }
 
     public void setLoanDate(Date loanDate) {
-<span class="nc" id="L267">        this.loanDate = loanDate;</span>
-<span class="nc" id="L268">    }</span>
+<span class="nc" id="L273">        this.loanDate = loanDate;</span>
+<span class="nc" id="L274">    }</span>
 
     public String getLoanNumber() {
-<span class="nc" id="L271">        return loanNumber;</span>
+<span class="nc" id="L277">        return loanNumber;</span>
     }
 
     public void setLoanNumber(String loanNumber) {
-<span class="nc" id="L275">        this.loanNumber = loanNumber;</span>
-<span class="nc" id="L276">    }</span>
+<span class="nc" id="L281">        this.loanNumber = loanNumber;</span>
+<span class="nc" id="L282">    }</span>
 
     public Float getNumber1() {
-<span class="nc" id="L279">        return number1;</span>
+<span class="nc" id="L285">        return number1;</span>
     }
 
     public void setNumber1(Float number1) {
-<span class="nc" id="L283">        this.number1 = number1;</span>
-<span class="nc" id="L284">    }</span>
+<span class="nc" id="L289">        this.number1 = number1;</span>
+<span class="nc" id="L290">    }</span>
 
     public Float getNumber2() {
-<span class="nc" id="L287">        return number2;</span>
+<span class="nc" id="L293">        return number2;</span>
     }
 
     public void setNumber2(Float number2) {
-<span class="nc" id="L291">        this.number2 = number2;</span>
-<span class="nc" id="L292">    }</span>
+<span class="nc" id="L297">        this.number2 = number2;</span>
+<span class="nc" id="L298">    }</span>
 
     public Date getOriginalDueDate() {
-<span class="nc" id="L295">        return originalDueDate;</span>
+<span class="nc" id="L301">        return originalDueDate;</span>
     }
 
     public void setOriginalDueDate(Date originalDueDate) {
-<span class="nc" id="L299">        this.originalDueDate = originalDueDate;</span>
-<span class="nc" id="L300">    }</span>
+<span class="nc" id="L305">        this.originalDueDate = originalDueDate;</span>
+<span class="nc" id="L306">    }</span>
 
     public Date getOverdueNotiSetDate() {
-<span class="nc" id="L303">        return overdueNotiSetDate;</span>
+<span class="nc" id="L309">        return overdueNotiSetDate;</span>
     }
 
     public void setOverdueNotiSetDate(Date overdueNotiSetDate) {
-<span class="nc" id="L307">        this.overdueNotiSetDate = overdueNotiSetDate;</span>
-<span class="nc" id="L308">    }</span>
+<span class="nc" id="L313">        this.overdueNotiSetDate = overdueNotiSetDate;</span>
+<span class="nc" id="L314">    }</span>
 
     public String getPurposeOfLoan() {
-<span class="nc" id="L311">        return purposeOfLoan;</span>
+<span class="nc" id="L317">        return purposeOfLoan;</span>
     }
 
     public void setPurposeOfLoan(String purposeOfLoan) {
-<span class="nc" id="L315">        this.purposeOfLoan = purposeOfLoan;</span>
-<span class="nc" id="L316">    }</span>
+<span class="nc" id="L321">        this.purposeOfLoan = purposeOfLoan;</span>
+<span class="nc" id="L322">    }</span>
 
     public String getReceivedComments() {
-<span class="nc" id="L319">        return receivedComments;</span>
+<span class="nc" id="L325">        return receivedComments;</span>
     }
 
     public void setReceivedComments(String receivedComments) {
-<span class="nc" id="L323">        this.receivedComments = receivedComments;</span>
-<span class="nc" id="L324">    }</span>
+<span class="nc" id="L329">        this.receivedComments = receivedComments;</span>
+<span class="nc" id="L330">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L327">        return remarks;</span>
+<span class="nc" id="L333">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L331">        this.remarks = remarks;</span>
-<span class="nc" id="L332">    }</span>
+<span class="nc" id="L337">        this.remarks = remarks;</span>
+<span class="nc" id="L338">    }</span>
 
     public String getSpecialConditions() {
-<span class="nc" id="L335">        return specialConditions;</span>
+<span class="nc" id="L341">        return specialConditions;</span>
     }
 
     public void setSpecialConditions(String specialConditions) {
-<span class="nc" id="L339">        this.specialConditions = specialConditions;</span>
-<span class="nc" id="L340">    }</span>
+<span class="nc" id="L345">        this.specialConditions = specialConditions;</span>
+<span class="nc" id="L346">    }</span>
 
     public String getSrcGeography() {
-<span class="nc" id="L343">        return srcGeography;</span>
+<span class="nc" id="L349">        return srcGeography;</span>
     }
 
     public void setSrcGeography(String srcGeography) {
-<span class="nc" id="L347">        this.srcGeography = srcGeography;</span>
-<span class="nc" id="L348">    }</span>
+<span class="nc" id="L353">        this.srcGeography = srcGeography;</span>
+<span class="nc" id="L354">    }</span>
 
     public String getSrcTaxonomy() {
-<span class="nc" id="L351">        return srcTaxonomy;</span>
+<span class="nc" id="L357">        return srcTaxonomy;</span>
     }
 
     public void setSrcTaxonomy(String srcTaxonomy) {
-<span class="nc" id="L355">        this.srcTaxonomy = srcTaxonomy;</span>
-<span class="nc" id="L356">    }</span>
+<span class="nc" id="L361">        this.srcTaxonomy = srcTaxonomy;</span>
+<span class="nc" id="L362">    }</span>
 
     public String getText1() {
-<span class="nc" id="L359">        return text1;</span>
+<span class="nc" id="L365">        return text1;</span>
     }
 
     public void setText1(String text1) {
-<span class="nc" id="L363">        this.text1 = text1;</span>
-<span class="nc" id="L364">    }</span>
+<span class="nc" id="L369">        this.text1 = text1;</span>
+<span class="nc" id="L370">    }</span>
 
     public String getText2() {
-<span class="nc" id="L367">        return text2;</span>
+<span class="nc" id="L373">        return text2;</span>
     }
 
     public void setText2(String text2) {
-<span class="nc" id="L371">        this.text2 = text2;</span>
-<span class="nc" id="L372">    }</span>
+<span class="nc" id="L377">        this.text2 = text2;</span>
+<span class="nc" id="L378">    }</span>
 
     public Boolean getYesNo1() {
-<span class="nc" id="L375">        return yesNo1;</span>
+<span class="nc" id="L381">        return yesNo1;</span>
     }
 
     public void setYesNo1(Boolean yesNo1) {
-<span class="nc" id="L379">        this.yesNo1 = yesNo1;</span>
-<span class="nc" id="L380">    }</span>
+<span class="nc" id="L385">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L386">    }</span>
 
     public Boolean getYesNo2() {
-<span class="nc" id="L383">        return yesNo2;</span>
+<span class="nc" id="L389">        return yesNo2;</span>
     }
 
     public void setYesNo2(Boolean yesNo2) {
-<span class="nc" id="L387">        this.yesNo2 = yesNo2;</span>
-<span class="nc" id="L388">    }</span>
+<span class="nc" id="L393">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L394">    }</span>
 
     public String getContents() {
-<span class="nc" id="L391">        return contents;</span>
+<span class="nc" id="L397">        return contents;</span>
     }
 
     public void setContents(String contents) {
-<span class="nc" id="L395">        this.contents = contents;</span>
-<span class="nc" id="L396">    }</span>
+<span class="nc" id="L401">        this.contents = contents;</span>
+<span class="nc" id="L402">    }</span>
 
     @XmlTransient
     public List&lt;Shipment&gt; getShipmentList() {
-<span class="nc" id="L400">        return shipmentList;</span>
+<span class="nc" id="L406">        return shipmentList;</span>
     }
 
     public void setShipmentList(List&lt;Shipment&gt; shipmentList) {
-<span class="nc" id="L404">        this.shipmentList = shipmentList;</span>
-<span class="nc" id="L405">    }</span>
+<span class="nc" id="L410">        this.shipmentList = shipmentList;</span>
+<span class="nc" id="L411">    }</span>
 
     @XmlIDREF
     public Discipline getDisciplineID() {
-<span class="nc" id="L409">        return disciplineID;</span>
+<span class="nc" id="L415">        return disciplineID;</span>
     }
 
     public void setDisciplineID(Discipline disciplineID) {
-<span class="nc" id="L413">        this.disciplineID = disciplineID;</span>
-<span class="nc" id="L414">    }</span>
+<span class="nc" id="L419">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L420">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L418">        return modifiedByAgentID;</span>
+<span class="nc" id="L424">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L422">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L423">    }</span>
+<span class="nc" id="L428">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L429">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L427">        return createdByAgentID;</span>
+<span class="nc" id="L433">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L431">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L432">    }</span>
+<span class="nc" id="L437">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L438">    }</span>
 
     @XmlIDREF
     public Division getDivisionID() {
-<span class="nc" id="L436">        return divisionID;</span>
+<span class="nc" id="L442">        return divisionID;</span>
     }
 
     public void setDivisionID(Division divisionID) {
-<span class="nc" id="L440">        this.divisionID = divisionID;</span>
-<span class="nc" id="L441">    }</span>
+<span class="nc" id="L446">        this.divisionID = divisionID;</span>
+<span class="nc" id="L447">    }</span>
 
     public Addressofrecord getAddressOfRecordID() {
-<span class="nc" id="L444">        return addressOfRecordID;</span>
+<span class="nc" id="L450">        return addressOfRecordID;</span>
     }
 
     public void setAddressOfRecordID(Addressofrecord addressOfRecordID) {
-<span class="nc" id="L448">        this.addressOfRecordID = addressOfRecordID;</span>
-<span class="nc" id="L449">    }</span>
+<span class="nc" id="L454">        this.addressOfRecordID = addressOfRecordID;</span>
+<span class="nc" id="L455">    }</span>
 
     @XmlTransient
     public List&lt;Loanpreparation&gt; getLoanpreparationList() {
-<span class="nc" id="L453">        return loanpreparationList;</span>
+<span class="nc" id="L459">        return loanpreparationList;</span>
     }
 
     public void setLoanpreparationList(List&lt;Loanpreparation&gt; loanpreparationList) {
-<span class="nc" id="L457">        this.loanpreparationList = loanpreparationList;</span>
-<span class="nc" id="L458">    }</span>
+<span class="nc" id="L463">        this.loanpreparationList = loanpreparationList;</span>
+<span class="nc" id="L464">    }</span>
 
     @XmlTransient
     public List&lt;Loanagent&gt; getLoanagentList() {
-<span class="nc" id="L462">        return loanagentList;</span>
+<span class="nc" id="L468">        return loanagentList;</span>
     }
 
     public void setLoanagentList(List&lt;Loanagent&gt; loanagentList) {
-<span class="nc" id="L466">        this.loanagentList = loanagentList;</span>
-<span class="nc" id="L467">    }</span>
+<span class="nc" id="L472">        this.loanagentList = loanagentList;</span>
+<span class="nc" id="L473">    }</span>
 
     @XmlTransient
     public List&lt;Loanattachment&gt; getLoanattachmentList() {
-<span class="nc" id="L471">        return loanattachmentList;</span>
+<span class="nc" id="L477">        return loanattachmentList;</span>
     }
 
     public void setLoanattachmentList(List&lt;Loanattachment&gt; loanattachmentList) {
-<span class="nc" id="L475">        this.loanattachmentList = loanattachmentList;</span>
-<span class="nc" id="L476">    }</span>
+<span class="nc" id="L481">        this.loanattachmentList = loanattachmentList;</span>
+<span class="nc" id="L482">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L480">        int hash = 0;</span>
-<span class="nc bnc" id="L481" title="All 2 branches missed.">        hash += (loanID != null ? loanID.hashCode() : 0);</span>
-<span class="nc" id="L482">        return hash;</span>
+<span class="nc" id="L486">        int hash = 0;</span>
+<span class="nc bnc" id="L487" title="All 2 branches missed.">        hash += (loanID != null ? loanID.hashCode() : 0);</span>
+<span class="nc" id="L488">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L488" title="All 2 branches missed.">        if (!(object instanceof Loan)) {</span>
-<span class="nc" id="L489">            return false;</span>
+<span class="nc bnc" id="L494" title="All 2 branches missed.">        if (!(object instanceof Loan)) {</span>
+<span class="nc" id="L495">            return false;</span>
         }
-<span class="nc" id="L491">        Loan other = (Loan) object;</span>
-<span class="nc bnc" id="L492" title="All 8 branches missed.">        return !((this.loanID == null &amp;&amp; other.loanID != null) || (this.loanID != null &amp;&amp; !this.loanID.equals(other.loanID)));</span>
+<span class="nc" id="L497">        Loan other = (Loan) object;</span>
+<span class="nc bnc" id="L498" title="All 8 branches missed.">        return !((this.loanID == null &amp;&amp; other.loanID != null) || (this.loanID != null &amp;&amp; !this.loanID.equals(other.loanID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L497">        return &quot;se.nrm.dina.datamodel.Loan[ loanID=&quot; + loanID + &quot; ]&quot;;</span>
+<span class="nc" id="L503">        return &quot;se.nrm.dina.datamodel.Loan[ loanID=&quot; + loanID + &quot; ]&quot;;</span>
     }
     
 }

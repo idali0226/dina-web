@@ -137,168 +137,174 @@ public class Lithostrattreedefitem extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L140">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + lithoStratTreeDefItemID;</span>
+<span class="nc" id="L140">        return String.valueOf(lithoStratTreeDefItemID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L146">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + lithoStratTreeDefItemID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L145">        return lithoStratTreeDefItemID;</span>
+<span class="nc" id="L151">        return lithoStratTreeDefItemID;</span>
     }
 
     public Integer getLithoStratTreeDefItemID() {
-<span class="nc" id="L149">        return lithoStratTreeDefItemID;</span>
+<span class="nc" id="L155">        return lithoStratTreeDefItemID;</span>
     }
 
     public void setLithoStratTreeDefItemID(Integer lithoStratTreeDefItemID) {
-<span class="nc" id="L153">        this.lithoStratTreeDefItemID = lithoStratTreeDefItemID;</span>
-<span class="nc" id="L154">    }</span>
+<span class="nc" id="L159">        this.lithoStratTreeDefItemID = lithoStratTreeDefItemID;</span>
+<span class="nc" id="L160">    }</span>
  
     public String getFullNameSeparator() {
-<span class="nc" id="L157">        return fullNameSeparator;</span>
+<span class="nc" id="L163">        return fullNameSeparator;</span>
     }
 
     public void setFullNameSeparator(String fullNameSeparator) {
-<span class="nc" id="L161">        this.fullNameSeparator = fullNameSeparator;</span>
-<span class="nc" id="L162">    }</span>
+<span class="nc" id="L167">        this.fullNameSeparator = fullNameSeparator;</span>
+<span class="nc" id="L168">    }</span>
 
     public Boolean getIsEnforced() {
-<span class="nc" id="L165">        return isEnforced;</span>
+<span class="nc" id="L171">        return isEnforced;</span>
     }
 
     public void setIsEnforced(Boolean isEnforced) {
-<span class="nc" id="L169">        this.isEnforced = isEnforced;</span>
-<span class="nc" id="L170">    }</span>
+<span class="nc" id="L175">        this.isEnforced = isEnforced;</span>
+<span class="nc" id="L176">    }</span>
 
     public Boolean getIsInFullName() {
-<span class="nc" id="L173">        return isInFullName;</span>
+<span class="nc" id="L179">        return isInFullName;</span>
     }
 
     public void setIsInFullName(Boolean isInFullName) {
-<span class="nc" id="L177">        this.isInFullName = isInFullName;</span>
-<span class="nc" id="L178">    }</span>
+<span class="nc" id="L183">        this.isInFullName = isInFullName;</span>
+<span class="nc" id="L184">    }</span>
 
     public String getName() {
-<span class="nc" id="L181">        return name;</span>
+<span class="nc" id="L187">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L185">        this.name = name;</span>
-<span class="nc" id="L186">    }</span>
+<span class="nc" id="L191">        this.name = name;</span>
+<span class="nc" id="L192">    }</span>
 
     public int getRankID() {
-<span class="nc" id="L189">        return rankID;</span>
+<span class="nc" id="L195">        return rankID;</span>
     }
 
     public void setRankID(int rankID) {
-<span class="nc" id="L193">        this.rankID = rankID;</span>
-<span class="nc" id="L194">    }</span>
+<span class="nc" id="L199">        this.rankID = rankID;</span>
+<span class="nc" id="L200">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L197">        return remarks;</span>
+<span class="nc" id="L203">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L201">        this.remarks = remarks;</span>
-<span class="nc" id="L202">    }</span>
+<span class="nc" id="L207">        this.remarks = remarks;</span>
+<span class="nc" id="L208">    }</span>
 
     public String getTextAfter() {
-<span class="nc" id="L205">        return textAfter;</span>
+<span class="nc" id="L211">        return textAfter;</span>
     }
 
     public void setTextAfter(String textAfter) {
-<span class="nc" id="L209">        this.textAfter = textAfter;</span>
-<span class="nc" id="L210">    }</span>
+<span class="nc" id="L215">        this.textAfter = textAfter;</span>
+<span class="nc" id="L216">    }</span>
 
     public String getTextBefore() {
-<span class="nc" id="L213">        return textBefore;</span>
+<span class="nc" id="L219">        return textBefore;</span>
     }
 
     public void setTextBefore(String textBefore) {
-<span class="nc" id="L217">        this.textBefore = textBefore;</span>
-<span class="nc" id="L218">    }</span>
+<span class="nc" id="L223">        this.textBefore = textBefore;</span>
+<span class="nc" id="L224">    }</span>
 
     public String getTitle() {
-<span class="nc" id="L221">        return title;</span>
+<span class="nc" id="L227">        return title;</span>
     }
 
     public void setTitle(String title) {
-<span class="nc" id="L225">        this.title = title;</span>
-<span class="nc" id="L226">    }</span>
+<span class="nc" id="L231">        this.title = title;</span>
+<span class="nc" id="L232">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L230">        return modifiedByAgentID;</span>
+<span class="nc" id="L236">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L234">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L235">    }</span>
+<span class="nc" id="L240">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L241">    }</span>
 
     @XmlIDREF
     public Lithostrattreedef getLithoStratTreeDefID() {
-<span class="nc" id="L239">        return lithoStratTreeDefID;</span>
+<span class="nc" id="L245">        return lithoStratTreeDefID;</span>
     }
 
     public void setLithoStratTreeDefID(Lithostrattreedef lithoStratTreeDefID) {
-<span class="nc" id="L243">        this.lithoStratTreeDefID = lithoStratTreeDefID;</span>
-<span class="nc" id="L244">    }</span>
+<span class="nc" id="L249">        this.lithoStratTreeDefID = lithoStratTreeDefID;</span>
+<span class="nc" id="L250">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L248">        return createdByAgentID;</span>
+<span class="nc" id="L254">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L252">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L253">    }</span>
+<span class="nc" id="L258">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L259">    }</span>
 
     @XmlTransient
     public List&lt;Lithostrattreedefitem&gt; getLithostrattreedefitemList() {
-<span class="nc" id="L257">        return lithostrattreedefitemList;</span>
+<span class="nc" id="L263">        return lithostrattreedefitemList;</span>
     }
 
     public void setLithostrattreedefitemList(List&lt;Lithostrattreedefitem&gt; lithostrattreedefitemList) {
-<span class="nc" id="L261">        this.lithostrattreedefitemList = lithostrattreedefitemList;</span>
-<span class="nc" id="L262">    }</span>
+<span class="nc" id="L267">        this.lithostrattreedefitemList = lithostrattreedefitemList;</span>
+<span class="nc" id="L268">    }</span>
 
     @XmlIDREF
     public Lithostrattreedefitem getParentItemID() {
-<span class="nc" id="L266">        return parentItemID;</span>
+<span class="nc" id="L272">        return parentItemID;</span>
     }
 
     public void setParentItemID(Lithostrattreedefitem parentItemID) {
-<span class="nc" id="L270">        this.parentItemID = parentItemID;</span>
-<span class="nc" id="L271">    }</span>
+<span class="nc" id="L276">        this.parentItemID = parentItemID;</span>
+<span class="nc" id="L277">    }</span>
 
     @XmlTransient
     public List&lt;Lithostrat&gt; getLithostratList() {
-<span class="nc" id="L275">        return lithostratList;</span>
+<span class="nc" id="L281">        return lithostratList;</span>
     }
 
     public void setLithostratList(List&lt;Lithostrat&gt; lithostratList) {
-<span class="nc" id="L279">        this.lithostratList = lithostratList;</span>
-<span class="nc" id="L280">    }</span>
+<span class="nc" id="L285">        this.lithostratList = lithostratList;</span>
+<span class="nc" id="L286">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L284">        int hash = 0;</span>
-<span class="nc bnc" id="L285" title="All 2 branches missed.">        hash += (lithoStratTreeDefItemID != null ? lithoStratTreeDefItemID.hashCode() : 0);</span>
-<span class="nc" id="L286">        return hash;</span>
+<span class="nc" id="L290">        int hash = 0;</span>
+<span class="nc bnc" id="L291" title="All 2 branches missed.">        hash += (lithoStratTreeDefItemID != null ? lithoStratTreeDefItemID.hashCode() : 0);</span>
+<span class="nc" id="L292">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L292" title="All 2 branches missed.">        if (!(object instanceof Lithostrattreedefitem)) {</span>
-<span class="nc" id="L293">            return false;</span>
+<span class="nc bnc" id="L298" title="All 2 branches missed.">        if (!(object instanceof Lithostrattreedefitem)) {</span>
+<span class="nc" id="L299">            return false;</span>
         }
-<span class="nc" id="L295">        Lithostrattreedefitem other = (Lithostrattreedefitem) object;</span>
-<span class="nc bnc" id="L296" title="All 8 branches missed.">        return !((this.lithoStratTreeDefItemID == null &amp;&amp; other.lithoStratTreeDefItemID != null) || (this.lithoStratTreeDefItemID != null &amp;&amp; !this.lithoStratTreeDefItemID.equals(other.lithoStratTreeDefItemID)));</span>
+<span class="nc" id="L301">        Lithostrattreedefitem other = (Lithostrattreedefitem) object;</span>
+<span class="nc bnc" id="L302" title="All 8 branches missed.">        return !((this.lithoStratTreeDefItemID == null &amp;&amp; other.lithoStratTreeDefItemID != null) || (this.lithoStratTreeDefItemID != null &amp;&amp; !this.lithoStratTreeDefItemID.equals(other.lithoStratTreeDefItemID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L301">        return &quot;se.nrm.dina.datamodel.Lithostrattreedefitem[ lithoStratTreeDefItemID=&quot; + lithoStratTreeDefItemID + &quot; ]&quot;;</span>
+<span class="nc" id="L307">        return &quot;se.nrm.dina.datamodel.Lithostrattreedefitem[ lithoStratTreeDefItemID=&quot; + lithoStratTreeDefItemID + &quot; ]&quot;;</span>
     }
     
 }

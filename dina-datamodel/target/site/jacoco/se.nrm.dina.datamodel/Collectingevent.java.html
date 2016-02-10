@@ -204,347 +204,353 @@ public class Collectingevent extends BaseEntity {
 <span class="nc" id="L204">        this.timestampCreated = timestampCreated;</span>
 <span class="nc" id="L205">    }</span>
     
-        @XmlID
+    @XmlID
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L211">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + collectingEventID;</span>
+<span class="nc" id="L211">        return String.valueOf(collectingEventID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L217">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + collectingEventID;</span>
     }
 
     @Override
     public int getEntityId() {
-<span class="nc" id="L216">        return collectingEventID;</span>
+<span class="nc" id="L222">        return collectingEventID;</span>
     }
     
     public Integer getCollectingEventID() {
-<span class="nc" id="L220">        return collectingEventID;</span>
+<span class="nc" id="L226">        return collectingEventID;</span>
     }
 
     public void setCollectingEventID(Integer collectingEventID) {
-<span class="nc" id="L224">        this.collectingEventID = collectingEventID;</span>
-<span class="nc" id="L225">    }</span>
+<span class="nc" id="L230">        this.collectingEventID = collectingEventID;</span>
+<span class="nc" id="L231">    }</span>
  
 
     public Date getEndDate() {
-<span class="nc" id="L229">        return endDate;</span>
+<span class="nc" id="L235">        return endDate;</span>
     }
 
     public void setEndDate(Date endDate) {
-<span class="nc" id="L233">        this.endDate = endDate;</span>
-<span class="nc" id="L234">    }</span>
+<span class="nc" id="L239">        this.endDate = endDate;</span>
+<span class="nc" id="L240">    }</span>
 
     public Short getEndDatePrecision() {
-<span class="nc" id="L237">        return endDatePrecision;</span>
+<span class="nc" id="L243">        return endDatePrecision;</span>
     }
 
     public void setEndDatePrecision(Short endDatePrecision) {
-<span class="nc" id="L241">        this.endDatePrecision = endDatePrecision;</span>
-<span class="nc" id="L242">    }</span>
+<span class="nc" id="L247">        this.endDatePrecision = endDatePrecision;</span>
+<span class="nc" id="L248">    }</span>
 
     public String getEndDateVerbatim() {
-<span class="nc" id="L245">        return endDateVerbatim;</span>
+<span class="nc" id="L251">        return endDateVerbatim;</span>
     }
 
     public void setEndDateVerbatim(String endDateVerbatim) {
-<span class="nc" id="L249">        this.endDateVerbatim = endDateVerbatim;</span>
-<span class="nc" id="L250">    }</span>
+<span class="nc" id="L255">        this.endDateVerbatim = endDateVerbatim;</span>
+<span class="nc" id="L256">    }</span>
 
     public Short getEndTime() {
-<span class="nc" id="L253">        return endTime;</span>
+<span class="nc" id="L259">        return endTime;</span>
     }
 
     public void setEndTime(Short endTime) {
-<span class="nc" id="L257">        this.endTime = endTime;</span>
-<span class="nc" id="L258">    }</span>
+<span class="nc" id="L263">        this.endTime = endTime;</span>
+<span class="nc" id="L264">    }</span>
 
     public String getMethod() {
-<span class="nc" id="L261">        return method;</span>
+<span class="nc" id="L267">        return method;</span>
     }
 
     public void setMethod(String method) {
-<span class="nc" id="L265">        this.method = method;</span>
-<span class="nc" id="L266">    }</span>
+<span class="nc" id="L271">        this.method = method;</span>
+<span class="nc" id="L272">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L269">        return remarks;</span>
+<span class="nc" id="L275">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L273">        this.remarks = remarks;</span>
-<span class="nc" id="L274">    }</span>
+<span class="nc" id="L279">        this.remarks = remarks;</span>
+<span class="nc" id="L280">    }</span>
 
     public Date getStartDate() {
-<span class="nc" id="L277">        return startDate;</span>
+<span class="nc" id="L283">        return startDate;</span>
     }
 
     public void setStartDate(Date startDate) {
-<span class="nc" id="L281">        this.startDate = startDate;</span>
-<span class="nc" id="L282">    }</span>
+<span class="nc" id="L287">        this.startDate = startDate;</span>
+<span class="nc" id="L288">    }</span>
 
     public Short getStartDatePrecision() {
-<span class="nc" id="L285">        return startDatePrecision;</span>
+<span class="nc" id="L291">        return startDatePrecision;</span>
     }
 
     public void setStartDatePrecision(Short startDatePrecision) {
-<span class="nc" id="L289">        this.startDatePrecision = startDatePrecision;</span>
-<span class="nc" id="L290">    }</span>
+<span class="nc" id="L295">        this.startDatePrecision = startDatePrecision;</span>
+<span class="nc" id="L296">    }</span>
 
     public String getStartDateVerbatim() {
-<span class="nc" id="L293">        return startDateVerbatim;</span>
+<span class="nc" id="L299">        return startDateVerbatim;</span>
     }
 
     public void setStartDateVerbatim(String startDateVerbatim) {
-<span class="nc" id="L297">        this.startDateVerbatim = startDateVerbatim;</span>
-<span class="nc" id="L298">    }</span>
+<span class="nc" id="L303">        this.startDateVerbatim = startDateVerbatim;</span>
+<span class="nc" id="L304">    }</span>
 
     public Short getStartTime() {
-<span class="nc" id="L301">        return startTime;</span>
+<span class="nc" id="L307">        return startTime;</span>
     }
 
     public void setStartTime(Short startTime) {
-<span class="nc" id="L305">        this.startTime = startTime;</span>
-<span class="nc" id="L306">    }</span>
+<span class="nc" id="L311">        this.startTime = startTime;</span>
+<span class="nc" id="L312">    }</span>
 
     public String getStationFieldNumber() {
-<span class="nc" id="L309">        return stationFieldNumber;</span>
+<span class="nc" id="L315">        return stationFieldNumber;</span>
     }
 
     public void setStationFieldNumber(String stationFieldNumber) {
-<span class="nc" id="L313">        this.stationFieldNumber = stationFieldNumber;</span>
-<span class="nc" id="L314">    }</span>
+<span class="nc" id="L319">        this.stationFieldNumber = stationFieldNumber;</span>
+<span class="nc" id="L320">    }</span>
 
     public String getVerbatimDate() {
-<span class="nc" id="L317">        return verbatimDate;</span>
+<span class="nc" id="L323">        return verbatimDate;</span>
     }
 
     public void setVerbatimDate(String verbatimDate) {
-<span class="nc" id="L321">        this.verbatimDate = verbatimDate;</span>
-<span class="nc" id="L322">    }</span>
+<span class="nc" id="L327">        this.verbatimDate = verbatimDate;</span>
+<span class="nc" id="L328">    }</span>
 
     public String getVerbatimLocality() {
-<span class="nc" id="L325">        return verbatimLocality;</span>
+<span class="nc" id="L331">        return verbatimLocality;</span>
     }
 
     public void setVerbatimLocality(String verbatimLocality) {
-<span class="nc" id="L329">        this.verbatimLocality = verbatimLocality;</span>
-<span class="nc" id="L330">    }</span>
+<span class="nc" id="L335">        this.verbatimLocality = verbatimLocality;</span>
+<span class="nc" id="L336">    }</span>
 
     public Short getVisibility() {
-<span class="nc" id="L333">        return visibility;</span>
+<span class="nc" id="L339">        return visibility;</span>
     }
 
     public void setVisibility(Short visibility) {
-<span class="nc" id="L337">        this.visibility = visibility;</span>
-<span class="nc" id="L338">    }</span>
+<span class="nc" id="L343">        this.visibility = visibility;</span>
+<span class="nc" id="L344">    }</span>
 
     public Short getSGRStatus() {
-<span class="nc" id="L341">        return sGRStatus;</span>
+<span class="nc" id="L347">        return sGRStatus;</span>
     }
 
     public void setSGRStatus(Short sGRStatus) {
-<span class="nc" id="L345">        this.sGRStatus = sGRStatus;</span>
-<span class="nc" id="L346">    }</span>
+<span class="nc" id="L351">        this.sGRStatus = sGRStatus;</span>
+<span class="nc" id="L352">    }</span>
 
     public String getGuid() {
-<span class="nc" id="L349">        return guid;</span>
+<span class="nc" id="L355">        return guid;</span>
     }
 
     public void setGuid(String guid) {
-<span class="nc" id="L353">        this.guid = guid;</span>
-<span class="nc" id="L354">    }</span>
+<span class="nc" id="L359">        this.guid = guid;</span>
+<span class="nc" id="L360">    }</span>
 
     public Integer getInteger1() {
-<span class="nc" id="L357">        return integer1;</span>
+<span class="nc" id="L363">        return integer1;</span>
     }
 
     public void setInteger1(Integer integer1) {
-<span class="nc" id="L361">        this.integer1 = integer1;</span>
-<span class="nc" id="L362">    }</span>
+<span class="nc" id="L367">        this.integer1 = integer1;</span>
+<span class="nc" id="L368">    }</span>
 
     public Integer getInteger2() {
-<span class="nc" id="L365">        return integer2;</span>
+<span class="nc" id="L371">        return integer2;</span>
     }
 
     public void setInteger2(Integer integer2) {
-<span class="nc" id="L369">        this.integer2 = integer2;</span>
-<span class="nc" id="L370">    }</span>
+<span class="nc" id="L375">        this.integer2 = integer2;</span>
+<span class="nc" id="L376">    }</span>
 
     public Integer getReservedInteger3() {
-<span class="nc" id="L373">        return reservedInteger3;</span>
+<span class="nc" id="L379">        return reservedInteger3;</span>
     }
 
     public void setReservedInteger3(Integer reservedInteger3) {
-<span class="nc" id="L377">        this.reservedInteger3 = reservedInteger3;</span>
-<span class="nc" id="L378">    }</span>
+<span class="nc" id="L383">        this.reservedInteger3 = reservedInteger3;</span>
+<span class="nc" id="L384">    }</span>
 
     public Integer getReservedInteger4() {
-<span class="nc" id="L381">        return reservedInteger4;</span>
+<span class="nc" id="L387">        return reservedInteger4;</span>
     }
 
     public void setReservedInteger4(Integer reservedInteger4) {
-<span class="nc" id="L385">        this.reservedInteger4 = reservedInteger4;</span>
-<span class="nc" id="L386">    }</span>
+<span class="nc" id="L391">        this.reservedInteger4 = reservedInteger4;</span>
+<span class="nc" id="L392">    }</span>
 
     public String getReservedText1() {
-<span class="nc" id="L389">        return reservedText1;</span>
+<span class="nc" id="L395">        return reservedText1;</span>
     }
 
     public void setReservedText1(String reservedText1) {
-<span class="nc" id="L393">        this.reservedText1 = reservedText1;</span>
-<span class="nc" id="L394">    }</span>
+<span class="nc" id="L399">        this.reservedText1 = reservedText1;</span>
+<span class="nc" id="L400">    }</span>
 
     public String getReservedText2() {
-<span class="nc" id="L397">        return reservedText2;</span>
+<span class="nc" id="L403">        return reservedText2;</span>
     }
 
     public void setReservedText2(String reservedText2) {
-<span class="nc" id="L401">        this.reservedText2 = reservedText2;</span>
-<span class="nc" id="L402">    }</span>
+<span class="nc" id="L407">        this.reservedText2 = reservedText2;</span>
+<span class="nc" id="L408">    }</span>
 
     public String getText1() {
-<span class="nc" id="L405">        return text1;</span>
+<span class="nc" id="L411">        return text1;</span>
     }
 
     public void setText1(String text1) {
-<span class="nc" id="L409">        this.text1 = text1;</span>
-<span class="nc" id="L410">    }</span>
+<span class="nc" id="L415">        this.text1 = text1;</span>
+<span class="nc" id="L416">    }</span>
 
     public String getText2() {
-<span class="nc" id="L413">        return text2;</span>
+<span class="nc" id="L419">        return text2;</span>
     }
 
     public void setText2(String text2) {
-<span class="nc" id="L417">        this.text2 = text2;</span>
-<span class="nc" id="L418">    }</span>
+<span class="nc" id="L423">        this.text2 = text2;</span>
+<span class="nc" id="L424">    }</span>
 
     @XmlTransient
     public List&lt;Collectingeventattachment&gt; getCollectingeventattachmentList() {
-<span class="nc" id="L422">        return collectingeventattachmentList;</span>
+<span class="nc" id="L428">        return collectingeventattachmentList;</span>
     }
 
     public void setCollectingeventattachmentList(List&lt;Collectingeventattachment&gt; collectingeventattachmentList) {
-<span class="nc" id="L426">        this.collectingeventattachmentList = collectingeventattachmentList;</span>
-<span class="nc" id="L427">    }</span>
+<span class="nc" id="L432">        this.collectingeventattachmentList = collectingeventattachmentList;</span>
+<span class="nc" id="L433">    }</span>
 
     @XmlTransient
     public List&lt;Collectionobject&gt; getCollectionobjectList() {
-<span class="nc" id="L431">        return collectionobjectList;</span>
+<span class="nc" id="L437">        return collectionobjectList;</span>
     }
 
     public void setCollectionobjectList(List&lt;Collectionobject&gt; collectionobjectList) {
-<span class="nc" id="L435">        this.collectionobjectList = collectionobjectList;</span>
-<span class="nc" id="L436">    }</span>
+<span class="nc" id="L441">        this.collectionobjectList = collectionobjectList;</span>
+<span class="nc" id="L442">    }</span>
 
     @XmlIDREF
     public Discipline getDisciplineID() {
-<span class="nc" id="L440">        return disciplineID;</span>
+<span class="nc" id="L446">        return disciplineID;</span>
     }
 
     public void setDisciplineID(Discipline disciplineID) {
-<span class="nc" id="L444">        this.disciplineID = disciplineID;</span>
-<span class="nc" id="L445">    }</span>
+<span class="nc" id="L450">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L451">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L449">        return modifiedByAgentID;</span>
+<span class="nc" id="L455">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L453">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L454">    }</span>
+<span class="nc" id="L459">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L460">    }</span>
 
     @XmlIDREF
     public Collectingtrip getCollectingTripID() {
-<span class="nc" id="L458">        return collectingTripID;</span>
+<span class="nc" id="L464">        return collectingTripID;</span>
     }
 
     public void setCollectingTripID(Collectingtrip collectingTripID) {
-<span class="nc" id="L462">        this.collectingTripID = collectingTripID;</span>
-<span class="nc" id="L463">    }</span>
+<span class="nc" id="L468">        this.collectingTripID = collectingTripID;</span>
+<span class="nc" id="L469">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L467">        return createdByAgentID;</span>
+<span class="nc" id="L473">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L471">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L472">    }</span>
+<span class="nc" id="L477">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L478">    }</span>
 
     @XmlIDREF
     public Specifyuser getVisibilitySetByID() {
-<span class="nc" id="L476">        return visibilitySetByID;</span>
+<span class="nc" id="L482">        return visibilitySetByID;</span>
     }
 
     public void setVisibilitySetByID(Specifyuser visibilitySetByID) {
-<span class="nc" id="L480">        this.visibilitySetByID = visibilitySetByID;</span>
-<span class="nc" id="L481">    }</span>
+<span class="nc" id="L486">        this.visibilitySetByID = visibilitySetByID;</span>
+<span class="nc" id="L487">    }</span>
 
     @XmlIDREF
     public Paleocontext getPaleoContextID() {
-<span class="nc" id="L485">        return paleoContextID;</span>
+<span class="nc" id="L491">        return paleoContextID;</span>
     }
 
     public void setPaleoContextID(Paleocontext paleoContextID) {
-<span class="nc" id="L489">        this.paleoContextID = paleoContextID;</span>
-<span class="nc" id="L490">    }</span>
+<span class="nc" id="L495">        this.paleoContextID = paleoContextID;</span>
+<span class="nc" id="L496">    }</span>
 
     @XmlIDREF
     public Locality getLocalityID() {
-<span class="nc" id="L494">        return localityID;</span>
+<span class="nc" id="L500">        return localityID;</span>
     }
 
     public void setLocalityID(Locality localityID) {
-<span class="nc" id="L498">        this.localityID = localityID;</span>
-<span class="nc" id="L499">    }</span>
+<span class="nc" id="L504">        this.localityID = localityID;</span>
+<span class="nc" id="L505">    }</span>
 
     @XmlIDREF
     public Collectingeventattribute getCollectingEventAttributeID() {
-<span class="nc" id="L503">        return collectingEventAttributeID;</span>
+<span class="nc" id="L509">        return collectingEventAttributeID;</span>
     }
 
     public void setCollectingEventAttributeID(Collectingeventattribute collectingEventAttributeID) {
-<span class="nc" id="L507">        this.collectingEventAttributeID = collectingEventAttributeID;</span>
-<span class="nc" id="L508">    }</span>
+<span class="nc" id="L513">        this.collectingEventAttributeID = collectingEventAttributeID;</span>
+<span class="nc" id="L514">    }</span>
 
     @XmlTransient
     public List&lt;Collectingeventattr&gt; getCollectingeventattrList() {
-<span class="nc" id="L512">        return collectingeventattrList;</span>
+<span class="nc" id="L518">        return collectingeventattrList;</span>
     }
 
     public void setCollectingeventattrList(List&lt;Collectingeventattr&gt; collectingeventattrList) {
-<span class="nc" id="L516">        this.collectingeventattrList = collectingeventattrList;</span>
-<span class="nc" id="L517">    }</span>
+<span class="nc" id="L522">        this.collectingeventattrList = collectingeventattrList;</span>
+<span class="nc" id="L523">    }</span>
 
     @XmlTransient
     public List&lt;Collector&gt; getCollectorList() {
-<span class="nc" id="L521">        return collectorList;</span>
+<span class="nc" id="L527">        return collectorList;</span>
     }
 
     public void setCollectorList(List&lt;Collector&gt; collectorList) {
-<span class="nc" id="L525">        this.collectorList = collectorList;</span>
-<span class="nc" id="L526">    }</span>
+<span class="nc" id="L531">        this.collectorList = collectorList;</span>
+<span class="nc" id="L532">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L530">        int hash = 0;</span>
-<span class="nc bnc" id="L531" title="All 2 branches missed.">        hash += (collectingEventID != null ? collectingEventID.hashCode() : 0);</span>
-<span class="nc" id="L532">        return hash;</span>
+<span class="nc" id="L536">        int hash = 0;</span>
+<span class="nc bnc" id="L537" title="All 2 branches missed.">        hash += (collectingEventID != null ? collectingEventID.hashCode() : 0);</span>
+<span class="nc" id="L538">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L538" title="All 2 branches missed.">        if (!(object instanceof Collectingevent)) {</span>
-<span class="nc" id="L539">            return false;</span>
+<span class="nc bnc" id="L544" title="All 2 branches missed.">        if (!(object instanceof Collectingevent)) {</span>
+<span class="nc" id="L545">            return false;</span>
         }
-<span class="nc" id="L541">        Collectingevent other = (Collectingevent) object;</span>
-<span class="nc bnc" id="L542" title="All 8 branches missed.">        return !((this.collectingEventID == null &amp;&amp; other.collectingEventID != null) || (this.collectingEventID != null &amp;&amp; !this.collectingEventID.equals(other.collectingEventID)));</span>
+<span class="nc" id="L547">        Collectingevent other = (Collectingevent) object;</span>
+<span class="nc bnc" id="L548" title="All 8 branches missed.">        return !((this.collectingEventID == null &amp;&amp; other.collectingEventID != null) || (this.collectingEventID != null &amp;&amp; !this.collectingEventID.equals(other.collectingEventID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L547">        return &quot;se.nrm.dina.datamodel.Collectingevent[ collectingEventID=&quot; + collectingEventID + &quot; ]&quot;;</span>
+<span class="nc" id="L553">        return &quot;se.nrm.dina.datamodel.Collectingevent[ collectingEventID=&quot; + collectingEventID + &quot; ]&quot;;</span>
     }
     
 }

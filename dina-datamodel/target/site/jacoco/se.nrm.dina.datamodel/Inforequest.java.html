@@ -125,158 +125,164 @@ public class Inforequest extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L128">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + infoRequestID;</span>
+<span class="nc" id="L128">        return String.valueOf(infoRequestID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L134">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + infoRequestID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L133">        return infoRequestID;</span>
+<span class="nc" id="L139">        return infoRequestID;</span>
     }
     
-<span class="nc" id="L136">    public Inforequest(Integer infoRequestID, Date timestampCreated, int collectionMemberID) {</span>
-<span class="nc" id="L137">        this.infoRequestID = infoRequestID;</span>
-<span class="nc" id="L138">        this.timestampCreated = timestampCreated;</span>
-<span class="nc" id="L139">        this.collectionMemberID = collectionMemberID;</span>
-<span class="nc" id="L140">    }</span>
+<span class="nc" id="L142">    public Inforequest(Integer infoRequestID, Date timestampCreated, int collectionMemberID) {</span>
+<span class="nc" id="L143">        this.infoRequestID = infoRequestID;</span>
+<span class="nc" id="L144">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L145">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L146">    }</span>
 
     public Integer getInfoRequestID() {
-<span class="nc" id="L143">        return infoRequestID;</span>
+<span class="nc" id="L149">        return infoRequestID;</span>
     }
 
     public void setInfoRequestID(Integer infoRequestID) {
-<span class="nc" id="L147">        this.infoRequestID = infoRequestID;</span>
-<span class="nc" id="L148">    }</span>
+<span class="nc" id="L153">        this.infoRequestID = infoRequestID;</span>
+<span class="nc" id="L154">    }</span>
 
    
 
     public int getCollectionMemberID() {
-<span class="nc" id="L153">        return collectionMemberID;</span>
+<span class="nc" id="L159">        return collectionMemberID;</span>
     }
 
     public void setCollectionMemberID(int collectionMemberID) {
-<span class="nc" id="L157">        this.collectionMemberID = collectionMemberID;</span>
-<span class="nc" id="L158">    }</span>
+<span class="nc" id="L163">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L164">    }</span>
 
     public String getEmail() {
-<span class="nc" id="L161">        return email;</span>
+<span class="nc" id="L167">        return email;</span>
     }
 
     public void setEmail(String email) {
-<span class="nc" id="L165">        this.email = email;</span>
-<span class="nc" id="L166">    }</span>
+<span class="nc" id="L171">        this.email = email;</span>
+<span class="nc" id="L172">    }</span>
 
     public String getFirstname() {
-<span class="nc" id="L169">        return firstname;</span>
+<span class="nc" id="L175">        return firstname;</span>
     }
 
     public void setFirstname(String firstname) {
-<span class="nc" id="L173">        this.firstname = firstname;</span>
-<span class="nc" id="L174">    }</span>
+<span class="nc" id="L179">        this.firstname = firstname;</span>
+<span class="nc" id="L180">    }</span>
 
     public String getInfoReqNumber() {
-<span class="nc" id="L177">        return infoReqNumber;</span>
+<span class="nc" id="L183">        return infoReqNumber;</span>
     }
 
     public void setInfoReqNumber(String infoReqNumber) {
-<span class="nc" id="L181">        this.infoReqNumber = infoReqNumber;</span>
-<span class="nc" id="L182">    }</span>
+<span class="nc" id="L187">        this.infoReqNumber = infoReqNumber;</span>
+<span class="nc" id="L188">    }</span>
 
     public String getInstitution() {
-<span class="nc" id="L185">        return institution;</span>
+<span class="nc" id="L191">        return institution;</span>
     }
 
     public void setInstitution(String institution) {
-<span class="nc" id="L189">        this.institution = institution;</span>
-<span class="nc" id="L190">    }</span>
+<span class="nc" id="L195">        this.institution = institution;</span>
+<span class="nc" id="L196">    }</span>
 
     public String getLastname() {
-<span class="nc" id="L193">        return lastname;</span>
+<span class="nc" id="L199">        return lastname;</span>
     }
 
     public void setLastname(String lastname) {
-<span class="nc" id="L197">        this.lastname = lastname;</span>
-<span class="nc" id="L198">    }</span>
+<span class="nc" id="L203">        this.lastname = lastname;</span>
+<span class="nc" id="L204">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L201">        return remarks;</span>
+<span class="nc" id="L207">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L205">        this.remarks = remarks;</span>
-<span class="nc" id="L206">    }</span>
+<span class="nc" id="L211">        this.remarks = remarks;</span>
+<span class="nc" id="L212">    }</span>
 
     public Date getReplyDate() {
-<span class="nc" id="L209">        return replyDate;</span>
+<span class="nc" id="L215">        return replyDate;</span>
     }
 
     public void setReplyDate(Date replyDate) {
-<span class="nc" id="L213">        this.replyDate = replyDate;</span>
-<span class="nc" id="L214">    }</span>
+<span class="nc" id="L219">        this.replyDate = replyDate;</span>
+<span class="nc" id="L220">    }</span>
 
     public Date getRequestDate() {
-<span class="nc" id="L217">        return requestDate;</span>
+<span class="nc" id="L223">        return requestDate;</span>
     }
 
     public void setRequestDate(Date requestDate) {
-<span class="nc" id="L221">        this.requestDate = requestDate;</span>
-<span class="nc" id="L222">    }</span>
+<span class="nc" id="L227">        this.requestDate = requestDate;</span>
+<span class="nc" id="L228">    }</span>
 
     @XmlTransient
     public List&lt;Recordset&gt; getRecordsetList() {
-<span class="nc" id="L226">        return recordsetList;</span>
+<span class="nc" id="L232">        return recordsetList;</span>
     }
 
     public void setRecordsetList(List&lt;Recordset&gt; recordsetList) {
-<span class="nc" id="L230">        this.recordsetList = recordsetList;</span>
-<span class="nc" id="L231">    }</span>
+<span class="nc" id="L236">        this.recordsetList = recordsetList;</span>
+<span class="nc" id="L237">    }</span>
 
     @XmlIDREF
     public Agent getAgentID() {
-<span class="nc" id="L235">        return agentID;</span>
+<span class="nc" id="L241">        return agentID;</span>
     }
 
     public void setAgentID(Agent agentID) {
-<span class="nc" id="L239">        this.agentID = agentID;</span>
-<span class="nc" id="L240">    }</span>
+<span class="nc" id="L245">        this.agentID = agentID;</span>
+<span class="nc" id="L246">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L244">        return modifiedByAgentID;</span>
+<span class="nc" id="L250">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L248">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L249">    }</span>
+<span class="nc" id="L254">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L255">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L253">        return createdByAgentID;</span>
+<span class="nc" id="L259">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L257">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L258">    }</span>
+<span class="nc" id="L263">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L264">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L262">        int hash = 0;</span>
-<span class="nc bnc" id="L263" title="All 2 branches missed.">        hash += (infoRequestID != null ? infoRequestID.hashCode() : 0);</span>
-<span class="nc" id="L264">        return hash;</span>
+<span class="nc" id="L268">        int hash = 0;</span>
+<span class="nc bnc" id="L269" title="All 2 branches missed.">        hash += (infoRequestID != null ? infoRequestID.hashCode() : 0);</span>
+<span class="nc" id="L270">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L270" title="All 2 branches missed.">        if (!(object instanceof Inforequest)) {</span>
-<span class="nc" id="L271">            return false;</span>
+<span class="nc bnc" id="L276" title="All 2 branches missed.">        if (!(object instanceof Inforequest)) {</span>
+<span class="nc" id="L277">            return false;</span>
         }
-<span class="nc" id="L273">        Inforequest other = (Inforequest) object;</span>
-<span class="nc bnc" id="L274" title="All 8 branches missed.">        return !((this.infoRequestID == null &amp;&amp; other.infoRequestID != null) || (this.infoRequestID != null &amp;&amp; !this.infoRequestID.equals(other.infoRequestID)));</span>
+<span class="nc" id="L279">        Inforequest other = (Inforequest) object;</span>
+<span class="nc bnc" id="L280" title="All 8 branches missed.">        return !((this.infoRequestID == null &amp;&amp; other.infoRequestID != null) || (this.infoRequestID != null &amp;&amp; !this.infoRequestID.equals(other.infoRequestID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L279">        return &quot;se.nrm.dina.datamodel.Inforequest[ infoRequestID=&quot; + infoRequestID + &quot; ]&quot;;</span>
+<span class="nc" id="L285">        return &quot;se.nrm.dina.datamodel.Inforequest[ infoRequestID=&quot; + infoRequestID + &quot; ]&quot;;</span>
     }
     
 }

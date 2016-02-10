@@ -134,170 +134,176 @@ public class Geologictimeperiodtreedefitem extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L137">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + geologicTimePeriodTreeDefItemID;</span>
+<span class="nc" id="L137">        return String.valueOf(geologicTimePeriodTreeDefItemID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L143">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + geologicTimePeriodTreeDefItemID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L142">        return geologicTimePeriodTreeDefItemID;</span>
+<span class="nc" id="L148">        return geologicTimePeriodTreeDefItemID;</span>
     }
 
     public Integer getGeologicTimePeriodTreeDefItemID() {
-<span class="nc" id="L146">        return geologicTimePeriodTreeDefItemID;</span>
+<span class="nc" id="L152">        return geologicTimePeriodTreeDefItemID;</span>
     }
 
     public void setGeologicTimePeriodTreeDefItemID(Integer geologicTimePeriodTreeDefItemID) {
-<span class="nc" id="L150">        this.geologicTimePeriodTreeDefItemID = geologicTimePeriodTreeDefItemID;</span>
-<span class="nc" id="L151">    }</span>
+<span class="nc" id="L156">        this.geologicTimePeriodTreeDefItemID = geologicTimePeriodTreeDefItemID;</span>
+<span class="nc" id="L157">    }</span>
 
     
 
     public String getFullNameSeparator() {
-<span class="nc" id="L156">        return fullNameSeparator;</span>
+<span class="nc" id="L162">        return fullNameSeparator;</span>
     }
 
     public void setFullNameSeparator(String fullNameSeparator) {
-<span class="nc" id="L160">        this.fullNameSeparator = fullNameSeparator;</span>
-<span class="nc" id="L161">    }</span>
+<span class="nc" id="L166">        this.fullNameSeparator = fullNameSeparator;</span>
+<span class="nc" id="L167">    }</span>
 
     public Boolean getIsEnforced() {
-<span class="nc" id="L164">        return isEnforced;</span>
+<span class="nc" id="L170">        return isEnforced;</span>
     }
 
     public void setIsEnforced(Boolean isEnforced) {
-<span class="nc" id="L168">        this.isEnforced = isEnforced;</span>
-<span class="nc" id="L169">    }</span>
+<span class="nc" id="L174">        this.isEnforced = isEnforced;</span>
+<span class="nc" id="L175">    }</span>
 
     public Boolean getIsInFullName() {
-<span class="nc" id="L172">        return isInFullName;</span>
+<span class="nc" id="L178">        return isInFullName;</span>
     }
 
     public void setIsInFullName(Boolean isInFullName) {
-<span class="nc" id="L176">        this.isInFullName = isInFullName;</span>
-<span class="nc" id="L177">    }</span>
+<span class="nc" id="L182">        this.isInFullName = isInFullName;</span>
+<span class="nc" id="L183">    }</span>
 
     public String getName() {
-<span class="nc" id="L180">        return name;</span>
+<span class="nc" id="L186">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L184">        this.name = name;</span>
-<span class="nc" id="L185">    }</span>
+<span class="nc" id="L190">        this.name = name;</span>
+<span class="nc" id="L191">    }</span>
 
     public int getRankID() {
-<span class="nc" id="L188">        return rankID;</span>
+<span class="nc" id="L194">        return rankID;</span>
     }
 
     public void setRankID(int rankID) {
-<span class="nc" id="L192">        this.rankID = rankID;</span>
-<span class="nc" id="L193">    }</span>
+<span class="nc" id="L198">        this.rankID = rankID;</span>
+<span class="nc" id="L199">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L196">        return remarks;</span>
+<span class="nc" id="L202">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L200">        this.remarks = remarks;</span>
-<span class="nc" id="L201">    }</span>
+<span class="nc" id="L206">        this.remarks = remarks;</span>
+<span class="nc" id="L207">    }</span>
 
     public String getTextAfter() {
-<span class="nc" id="L204">        return textAfter;</span>
+<span class="nc" id="L210">        return textAfter;</span>
     }
 
     public void setTextAfter(String textAfter) {
-<span class="nc" id="L208">        this.textAfter = textAfter;</span>
-<span class="nc" id="L209">    }</span>
+<span class="nc" id="L214">        this.textAfter = textAfter;</span>
+<span class="nc" id="L215">    }</span>
 
     public String getTextBefore() {
-<span class="nc" id="L212">        return textBefore;</span>
+<span class="nc" id="L218">        return textBefore;</span>
     }
 
     public void setTextBefore(String textBefore) {
-<span class="nc" id="L216">        this.textBefore = textBefore;</span>
-<span class="nc" id="L217">    }</span>
+<span class="nc" id="L222">        this.textBefore = textBefore;</span>
+<span class="nc" id="L223">    }</span>
 
     public String getTitle() {
-<span class="nc" id="L220">        return title;</span>
+<span class="nc" id="L226">        return title;</span>
     }
 
     public void setTitle(String title) {
-<span class="nc" id="L224">        this.title = title;</span>
-<span class="nc" id="L225">    }</span>
+<span class="nc" id="L230">        this.title = title;</span>
+<span class="nc" id="L231">    }</span>
 
     @XmlTransient
     public List&lt;Geologictimeperiod&gt; getGeologictimeperiodList() {
-<span class="nc" id="L229">        return geologictimeperiodList;</span>
+<span class="nc" id="L235">        return geologictimeperiodList;</span>
     }
 
     public void setGeologictimeperiodList(List&lt;Geologictimeperiod&gt; geologictimeperiodList) {
-<span class="nc" id="L233">        this.geologictimeperiodList = geologictimeperiodList;</span>
-<span class="nc" id="L234">    }</span>
+<span class="nc" id="L239">        this.geologictimeperiodList = geologictimeperiodList;</span>
+<span class="nc" id="L240">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L238">        return modifiedByAgentID;</span>
+<span class="nc" id="L244">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L242">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L243">    }</span>
+<span class="nc" id="L248">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L249">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L247">        return createdByAgentID;</span>
+<span class="nc" id="L253">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L251">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L252">    }</span>
+<span class="nc" id="L257">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L258">    }</span>
 
     @XmlTransient
     public List&lt;Geologictimeperiodtreedefitem&gt; getGeologictimeperiodtreedefitemList() {
-<span class="nc" id="L256">        return geologictimeperiodtreedefitemList;</span>
+<span class="nc" id="L262">        return geologictimeperiodtreedefitemList;</span>
     }
 
     public void setGeologictimeperiodtreedefitemList(List&lt;Geologictimeperiodtreedefitem&gt; geologictimeperiodtreedefitemList) {
-<span class="nc" id="L260">        this.geologictimeperiodtreedefitemList = geologictimeperiodtreedefitemList;</span>
-<span class="nc" id="L261">    }</span>
+<span class="nc" id="L266">        this.geologictimeperiodtreedefitemList = geologictimeperiodtreedefitemList;</span>
+<span class="nc" id="L267">    }</span>
 
     @XmlIDREF
     public Geologictimeperiodtreedefitem getParentItemID() {
-<span class="nc" id="L265">        return parentItemID;</span>
+<span class="nc" id="L271">        return parentItemID;</span>
     }
 
     public void setParentItemID(Geologictimeperiodtreedefitem parentItemID) {
-<span class="nc" id="L269">        this.parentItemID = parentItemID;</span>
-<span class="nc" id="L270">    }</span>
+<span class="nc" id="L275">        this.parentItemID = parentItemID;</span>
+<span class="nc" id="L276">    }</span>
 
     @XmlIDREF
     public Geologictimeperiodtreedef getGeologicTimePeriodTreeDefID() {
-<span class="nc" id="L274">        return geologicTimePeriodTreeDefID;</span>
+<span class="nc" id="L280">        return geologicTimePeriodTreeDefID;</span>
     }
 
     public void setGeologicTimePeriodTreeDefID(Geologictimeperiodtreedef geologicTimePeriodTreeDefID) {
-<span class="nc" id="L278">        this.geologicTimePeriodTreeDefID = geologicTimePeriodTreeDefID;</span>
-<span class="nc" id="L279">    }</span>
+<span class="nc" id="L284">        this.geologicTimePeriodTreeDefID = geologicTimePeriodTreeDefID;</span>
+<span class="nc" id="L285">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L283">        int hash = 0;</span>
-<span class="nc bnc" id="L284" title="All 2 branches missed.">        hash += (geologicTimePeriodTreeDefItemID != null ? geologicTimePeriodTreeDefItemID.hashCode() : 0);</span>
-<span class="nc" id="L285">        return hash;</span>
+<span class="nc" id="L289">        int hash = 0;</span>
+<span class="nc bnc" id="L290" title="All 2 branches missed.">        hash += (geologicTimePeriodTreeDefItemID != null ? geologicTimePeriodTreeDefItemID.hashCode() : 0);</span>
+<span class="nc" id="L291">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L291" title="All 2 branches missed.">        if (!(object instanceof Geologictimeperiodtreedefitem)) {</span>
-<span class="nc" id="L292">            return false;</span>
+<span class="nc bnc" id="L297" title="All 2 branches missed.">        if (!(object instanceof Geologictimeperiodtreedefitem)) {</span>
+<span class="nc" id="L298">            return false;</span>
         }
-<span class="nc" id="L294">        Geologictimeperiodtreedefitem other = (Geologictimeperiodtreedefitem) object;</span>
-<span class="nc bnc" id="L295" title="All 8 branches missed.">        return !((this.geologicTimePeriodTreeDefItemID == null &amp;&amp; other.geologicTimePeriodTreeDefItemID != null) || (this.geologicTimePeriodTreeDefItemID != null &amp;&amp; !this.geologicTimePeriodTreeDefItemID.equals(other.geologicTimePeriodTreeDefItemID)));</span>
+<span class="nc" id="L300">        Geologictimeperiodtreedefitem other = (Geologictimeperiodtreedefitem) object;</span>
+<span class="nc bnc" id="L301" title="All 8 branches missed.">        return !((this.geologicTimePeriodTreeDefItemID == null &amp;&amp; other.geologicTimePeriodTreeDefItemID != null) || (this.geologicTimePeriodTreeDefItemID != null &amp;&amp; !this.geologicTimePeriodTreeDefItemID.equals(other.geologicTimePeriodTreeDefItemID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L300">        return &quot;se.nrm.dina.datamodel.Geologictimeperiodtreedefitem[ geologicTimePeriodTreeDefItemID=&quot; + geologicTimePeriodTreeDefItemID + &quot; ]&quot;;</span>
+<span class="nc" id="L306">        return &quot;se.nrm.dina.datamodel.Geologictimeperiodtreedefitem[ geologicTimePeriodTreeDefItemID=&quot; + geologicTimePeriodTreeDefItemID + &quot; ]&quot;;</span>
     }
     
 }

@@ -131,6 +131,12 @@ public class Countryinfo implements EntityBean, Serializable {
     @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
+        return  name;
+    }
+    
+    @XmlAttribute(name = "uuid") 
+    @Override
+    public String getUUID() {
         return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + name;
     }
 

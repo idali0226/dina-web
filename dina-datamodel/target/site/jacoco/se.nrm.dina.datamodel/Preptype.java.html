@@ -100,103 +100,109 @@ public class Preptype extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L103">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + prepTypeID;</span>
+<span class="nc" id="L103">        return String.valueOf(prepTypeID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L109">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + prepTypeID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L108">        return prepTypeID;</span>
+<span class="nc" id="L114">        return prepTypeID;</span>
     }
 
     public Integer getPrepTypeID() {
-<span class="nc" id="L112">        return prepTypeID;</span>
+<span class="nc" id="L118">        return prepTypeID;</span>
     }
 
     public void setPrepTypeID(Integer prepTypeID) {
-<span class="nc" id="L116">        this.prepTypeID = prepTypeID;</span>
-<span class="nc" id="L117">    }</span>
+<span class="nc" id="L122">        this.prepTypeID = prepTypeID;</span>
+<span class="nc" id="L123">    }</span>
  
     public boolean getIsLoanable() {
-<span class="nc" id="L120">        return isLoanable;</span>
+<span class="nc" id="L126">        return isLoanable;</span>
     }
 
     public void setIsLoanable(boolean isLoanable) {
-<span class="nc" id="L124">        this.isLoanable = isLoanable;</span>
-<span class="nc" id="L125">    }</span>
+<span class="nc" id="L130">        this.isLoanable = isLoanable;</span>
+<span class="nc" id="L131">    }</span>
 
     public String getName() {
-<span class="nc" id="L128">        return name;</span>
+<span class="nc" id="L134">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L132">        this.name = name;</span>
-<span class="nc" id="L133">    }</span>
+<span class="nc" id="L138">        this.name = name;</span>
+<span class="nc" id="L139">    }</span>
 
     @XmlTransient
     public List&lt;Preparation&gt; getPreparationList() {
-<span class="nc" id="L137">        return preparationList;</span>
+<span class="nc" id="L143">        return preparationList;</span>
     }
 
     public void setPreparationList(List&lt;Preparation&gt; preparationList) {
-<span class="nc" id="L141">        this.preparationList = preparationList;</span>
-<span class="nc" id="L142">    }</span>
+<span class="nc" id="L147">        this.preparationList = preparationList;</span>
+<span class="nc" id="L148">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L146">        return modifiedByAgentID;</span>
+<span class="nc" id="L152">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L150">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L151">    }</span>
+<span class="nc" id="L156">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L157">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L155">        return createdByAgentID;</span>
+<span class="nc" id="L161">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L159">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L160">    }</span>
+<span class="nc" id="L165">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L166">    }</span>
 
     @XmlIDREF
     public Collection getCollectionID() {
-<span class="nc" id="L164">        return collectionID;</span>
+<span class="nc" id="L170">        return collectionID;</span>
     }
 
     public void setCollectionID(Collection collectionID) {
-<span class="nc" id="L168">        this.collectionID = collectionID;</span>
-<span class="nc" id="L169">    }</span>
+<span class="nc" id="L174">        this.collectionID = collectionID;</span>
+<span class="nc" id="L175">    }</span>
 
     @XmlTransient
     public List&lt;Attributedef&gt; getAttributedefList() {
-<span class="nc" id="L173">        return attributedefList;</span>
+<span class="nc" id="L179">        return attributedefList;</span>
     }
 
     public void setAttributedefList(List&lt;Attributedef&gt; attributedefList) {
-<span class="nc" id="L177">        this.attributedefList = attributedefList;</span>
-<span class="nc" id="L178">    }</span>
+<span class="nc" id="L183">        this.attributedefList = attributedefList;</span>
+<span class="nc" id="L184">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L182">        int hash = 0;</span>
-<span class="nc bnc" id="L183" title="All 2 branches missed.">        hash += (prepTypeID != null ? prepTypeID.hashCode() : 0);</span>
-<span class="nc" id="L184">        return hash;</span>
+<span class="nc" id="L188">        int hash = 0;</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">        hash += (prepTypeID != null ? prepTypeID.hashCode() : 0);</span>
+<span class="nc" id="L190">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L190" title="All 2 branches missed.">        if (!(object instanceof Preptype)) {</span>
-<span class="nc" id="L191">            return false;</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">        if (!(object instanceof Preptype)) {</span>
+<span class="nc" id="L197">            return false;</span>
         }
-<span class="nc" id="L193">        Preptype other = (Preptype) object;</span>
-<span class="nc bnc" id="L194" title="All 8 branches missed.">        return !((this.prepTypeID == null &amp;&amp; other.prepTypeID != null) || (this.prepTypeID != null &amp;&amp; !this.prepTypeID.equals(other.prepTypeID)));</span>
+<span class="nc" id="L199">        Preptype other = (Preptype) object;</span>
+<span class="nc bnc" id="L200" title="All 8 branches missed.">        return !((this.prepTypeID == null &amp;&amp; other.prepTypeID != null) || (this.prepTypeID != null &amp;&amp; !this.prepTypeID.equals(other.prepTypeID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L199">        return &quot;se.nrm.dina.datamodel.Preptype[ prepTypeID=&quot; + prepTypeID + &quot; ]&quot;;</span>
+<span class="nc" id="L205">        return &quot;se.nrm.dina.datamodel.Preptype[ prepTypeID=&quot; + prepTypeID + &quot; ]&quot;;</span>
     }
     
 }

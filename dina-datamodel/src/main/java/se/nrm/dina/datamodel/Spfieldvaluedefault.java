@@ -96,6 +96,12 @@ public class Spfieldvaluedefault extends BaseEntity {
     @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
+        return String.valueOf(spFieldValueDefaultID);
+    }
+    
+    @XmlAttribute(name = "uuid") 
+    @Override
+    public String getUUID() {
         return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spFieldValueDefaultID;
     }
     

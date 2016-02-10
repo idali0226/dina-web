@@ -94,92 +94,96 @@ public class Referenceworkattachment extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L97">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + referenceWorkAttachmentID;</span>
+<span class="nc" id="L97">        return String.valueOf(referenceWorkAttachmentID);</span>
+    }
+    
+    @Override
+    public String getUUID() {
+<span class="nc" id="L102">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + referenceWorkAttachmentID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L102">        return referenceWorkAttachmentID;</span>
+<span class="nc" id="L107">        return referenceWorkAttachmentID;</span>
     }
 
     public Integer getReferenceWorkAttachmentID() {
-<span class="nc" id="L106">        return referenceWorkAttachmentID;</span>
+<span class="nc" id="L111">        return referenceWorkAttachmentID;</span>
     }
 
     public void setReferenceWorkAttachmentID(Integer referenceWorkAttachmentID) {
-<span class="nc" id="L110">        this.referenceWorkAttachmentID = referenceWorkAttachmentID;</span>
-<span class="nc" id="L111">    }</span>
+<span class="nc" id="L115">        this.referenceWorkAttachmentID = referenceWorkAttachmentID;</span>
+<span class="nc" id="L116">    }</span>
  
 
     public int getOrdinal() {
-<span class="nc" id="L115">        return ordinal;</span>
+<span class="nc" id="L120">        return ordinal;</span>
     }
 
     public void setOrdinal(int ordinal) {
-<span class="nc" id="L119">        this.ordinal = ordinal;</span>
-<span class="nc" id="L120">    }</span>
+<span class="nc" id="L124">        this.ordinal = ordinal;</span>
+<span class="nc" id="L125">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L123">        return remarks;</span>
+<span class="nc" id="L128">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L127">        this.remarks = remarks;</span>
-<span class="nc" id="L128">    }</span>
+<span class="nc" id="L132">        this.remarks = remarks;</span>
+<span class="nc" id="L133">    }</span>
 
     public int getReferenceWorkID() {
-<span class="nc" id="L131">        return referenceWorkID;</span>
+<span class="nc" id="L136">        return referenceWorkID;</span>
     }
 
     public void setReferenceWorkID(int referenceWorkID) {
-<span class="nc" id="L135">        this.referenceWorkID = referenceWorkID;</span>
-<span class="nc" id="L136">    }</span>
+<span class="nc" id="L140">        this.referenceWorkID = referenceWorkID;</span>
+<span class="nc" id="L141">    }</span>
 
     public Integer getModifiedByAgentID() {
-<span class="nc" id="L139">        return modifiedByAgentID;</span>
+<span class="nc" id="L144">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Integer modifiedByAgentID) {
-<span class="nc" id="L143">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L144">    }</span>
+<span class="nc" id="L148">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L149">    }</span>
 
     public Integer getCreatedByAgentID() {
-<span class="nc" id="L147">        return createdByAgentID;</span>
+<span class="nc" id="L152">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Integer createdByAgentID) {
-<span class="nc" id="L151">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L152">    }</span>
+<span class="nc" id="L156">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L157">    }</span>
 
     public int getAttachmentID() {
-<span class="nc" id="L155">        return attachmentID;</span>
+<span class="nc" id="L160">        return attachmentID;</span>
     }
 
     public void setAttachmentID(int attachmentID) {
-<span class="nc" id="L159">        this.attachmentID = attachmentID;</span>
-<span class="nc" id="L160">    }</span>
+<span class="nc" id="L164">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L165">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L164">        int hash = 0;</span>
-<span class="nc bnc" id="L165" title="All 2 branches missed.">        hash += (referenceWorkAttachmentID != null ? referenceWorkAttachmentID.hashCode() : 0);</span>
-<span class="nc" id="L166">        return hash;</span>
+<span class="nc" id="L169">        int hash = 0;</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">        hash += (referenceWorkAttachmentID != null ? referenceWorkAttachmentID.hashCode() : 0);</span>
+<span class="nc" id="L171">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L172" title="All 2 branches missed.">        if (!(object instanceof Referenceworkattachment)) {</span>
-<span class="nc" id="L173">            return false;</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">        if (!(object instanceof Referenceworkattachment)) {</span>
+<span class="nc" id="L178">            return false;</span>
         }
-<span class="nc" id="L175">        Referenceworkattachment other = (Referenceworkattachment) object;</span>
-<span class="nc bnc" id="L176" title="All 8 branches missed.">        return !((this.referenceWorkAttachmentID == null &amp;&amp; other.referenceWorkAttachmentID != null) || (this.referenceWorkAttachmentID != null &amp;&amp; !this.referenceWorkAttachmentID.equals(other.referenceWorkAttachmentID)));</span>
+<span class="nc" id="L180">        Referenceworkattachment other = (Referenceworkattachment) object;</span>
+<span class="nc bnc" id="L181" title="All 8 branches missed.">        return !((this.referenceWorkAttachmentID == null &amp;&amp; other.referenceWorkAttachmentID != null) || (this.referenceWorkAttachmentID != null &amp;&amp; !this.referenceWorkAttachmentID.equals(other.referenceWorkAttachmentID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L181">        return &quot;se.nrm.dina.datamodel.Referenceworkattachment[ referenceWorkAttachmentID=&quot; + referenceWorkAttachmentID + &quot; ]&quot;;</span>
-    }
-    
+<span class="nc" id="L186">        return &quot;se.nrm.dina.datamodel.Referenceworkattachment[ referenceWorkAttachmentID=&quot; + referenceWorkAttachmentID + &quot; ]&quot;;</span>
+    } 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

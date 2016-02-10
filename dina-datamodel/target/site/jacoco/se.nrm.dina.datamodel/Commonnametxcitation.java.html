@@ -106,134 +106,140 @@ public class Commonnametxcitation extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L109">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + commonNameTxCitationID;</span>
+<span class="nc" id="L109">        return String.valueOf(commonNameTxCitationID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L115">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + commonNameTxCitationID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L114">        return commonNameTxCitationID;</span>
+<span class="nc" id="L120">        return commonNameTxCitationID;</span>
     }
 
     public Integer getCommonNameTxCitationID() {
-<span class="nc" id="L118">        return commonNameTxCitationID;</span>
+<span class="nc" id="L124">        return commonNameTxCitationID;</span>
     }
 
     public void setCommonNameTxCitationID(Integer commonNameTxCitationID) {
-<span class="nc" id="L122">        this.commonNameTxCitationID = commonNameTxCitationID;</span>
-<span class="nc" id="L123">    }</span>
+<span class="nc" id="L128">        this.commonNameTxCitationID = commonNameTxCitationID;</span>
+<span class="nc" id="L129">    }</span>
 
    
     public Float getNumber1() {
-<span class="nc" id="L127">        return number1;</span>
+<span class="nc" id="L133">        return number1;</span>
     }
 
     public void setNumber1(Float number1) {
-<span class="nc" id="L131">        this.number1 = number1;</span>
-<span class="nc" id="L132">    }</span>
+<span class="nc" id="L137">        this.number1 = number1;</span>
+<span class="nc" id="L138">    }</span>
 
     public Float getNumber2() {
-<span class="nc" id="L135">        return number2;</span>
+<span class="nc" id="L141">        return number2;</span>
     }
 
     public void setNumber2(Float number2) {
-<span class="nc" id="L139">        this.number2 = number2;</span>
-<span class="nc" id="L140">    }</span>
+<span class="nc" id="L145">        this.number2 = number2;</span>
+<span class="nc" id="L146">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L143">        return remarks;</span>
+<span class="nc" id="L149">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L147">        this.remarks = remarks;</span>
-<span class="nc" id="L148">    }</span>
+<span class="nc" id="L153">        this.remarks = remarks;</span>
+<span class="nc" id="L154">    }</span>
 
     public String getText1() {
-<span class="nc" id="L151">        return text1;</span>
+<span class="nc" id="L157">        return text1;</span>
     }
 
     public void setText1(String text1) {
-<span class="nc" id="L155">        this.text1 = text1;</span>
-<span class="nc" id="L156">    }</span>
+<span class="nc" id="L161">        this.text1 = text1;</span>
+<span class="nc" id="L162">    }</span>
 
     public String getText2() {
-<span class="nc" id="L159">        return text2;</span>
+<span class="nc" id="L165">        return text2;</span>
     }
 
     public void setText2(String text2) {
-<span class="nc" id="L163">        this.text2 = text2;</span>
-<span class="nc" id="L164">    }</span>
+<span class="nc" id="L169">        this.text2 = text2;</span>
+<span class="nc" id="L170">    }</span>
 
     public Boolean getYesNo1() {
-<span class="nc" id="L167">        return yesNo1;</span>
+<span class="nc" id="L173">        return yesNo1;</span>
     }
 
     public void setYesNo1(Boolean yesNo1) {
-<span class="nc" id="L171">        this.yesNo1 = yesNo1;</span>
-<span class="nc" id="L172">    }</span>
+<span class="nc" id="L177">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L178">    }</span>
 
     public Boolean getYesNo2() {
-<span class="nc" id="L175">        return yesNo2;</span>
+<span class="nc" id="L181">        return yesNo2;</span>
     }
 
     public void setYesNo2(Boolean yesNo2) {
-<span class="nc" id="L179">        this.yesNo2 = yesNo2;</span>
-<span class="nc" id="L180">    }</span>
+<span class="nc" id="L185">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L186">    }</span>
 
     public Commonnametx getCommonNameTxID() {
-<span class="nc" id="L183">        return commonNameTxID;</span>
+<span class="nc" id="L189">        return commonNameTxID;</span>
     }
 
     public void setCommonNameTxID(Commonnametx commonNameTxID) {
-<span class="nc" id="L187">        this.commonNameTxID = commonNameTxID;</span>
-<span class="nc" id="L188">    }</span>
+<span class="nc" id="L193">        this.commonNameTxID = commonNameTxID;</span>
+<span class="nc" id="L194">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L192">        return modifiedByAgentID;</span>
+<span class="nc" id="L198">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L196">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L197">    }</span>
+<span class="nc" id="L202">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L203">    }</span>
 
     @XmlIDREF
     public Referencework getReferenceWorkID() {
-<span class="nc" id="L201">        return referenceWorkID;</span>
+<span class="nc" id="L207">        return referenceWorkID;</span>
     }
 
     public void setReferenceWorkID(Referencework referenceWorkID) {
-<span class="nc" id="L205">        this.referenceWorkID = referenceWorkID;</span>
-<span class="nc" id="L206">    }</span>
+<span class="nc" id="L211">        this.referenceWorkID = referenceWorkID;</span>
+<span class="nc" id="L212">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L210">        return createdByAgentID;</span>
+<span class="nc" id="L216">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L214">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L215">    }</span>
+<span class="nc" id="L220">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L221">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L219">        int hash = 0;</span>
-<span class="nc bnc" id="L220" title="All 2 branches missed.">        hash += (commonNameTxCitationID != null ? commonNameTxCitationID.hashCode() : 0);</span>
-<span class="nc" id="L221">        return hash;</span>
+<span class="nc" id="L225">        int hash = 0;</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">        hash += (commonNameTxCitationID != null ? commonNameTxCitationID.hashCode() : 0);</span>
+<span class="nc" id="L227">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L227" title="All 2 branches missed.">        if (!(object instanceof Commonnametxcitation)) {</span>
-<span class="nc" id="L228">            return false;</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">        if (!(object instanceof Commonnametxcitation)) {</span>
+<span class="nc" id="L234">            return false;</span>
         }
-<span class="nc" id="L230">        Commonnametxcitation other = (Commonnametxcitation) object;</span>
-<span class="nc bnc" id="L231" title="All 8 branches missed.">        return !((this.commonNameTxCitationID == null &amp;&amp; other.commonNameTxCitationID != null) || (this.commonNameTxCitationID != null &amp;&amp; !this.commonNameTxCitationID.equals(other.commonNameTxCitationID)));</span>
+<span class="nc" id="L236">        Commonnametxcitation other = (Commonnametxcitation) object;</span>
+<span class="nc bnc" id="L237" title="All 8 branches missed.">        return !((this.commonNameTxCitationID == null &amp;&amp; other.commonNameTxCitationID != null) || (this.commonNameTxCitationID != null &amp;&amp; !this.commonNameTxCitationID.equals(other.commonNameTxCitationID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L236">        return &quot;se.nrm.dina.datamodel.Commonnametxcitation[ commonNameTxCitationID=&quot; + commonNameTxCitationID + &quot; ]&quot;;</span>
+<span class="nc" id="L242">        return &quot;se.nrm.dina.datamodel.Commonnametxcitation[ commonNameTxCitationID=&quot; + commonNameTxCitationID + &quot; ]&quot;;</span>
     }
     
 }

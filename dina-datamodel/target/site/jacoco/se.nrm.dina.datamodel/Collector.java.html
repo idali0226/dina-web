@@ -103,112 +103,118 @@ public class Collector extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L106">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + collectorID;</span>
+<span class="nc" id="L106">        return String.valueOf(collectorID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L112">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + collectorID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L111">        return collectorID;</span>
+<span class="nc" id="L117">        return collectorID;</span>
     }
 
     public Integer getCollectorID() {
-<span class="nc" id="L115">        return collectorID;</span>
+<span class="nc" id="L121">        return collectorID;</span>
     }
 
     public void setCollectorID(Integer collectorID) {
-<span class="nc" id="L119">        this.collectorID = collectorID;</span>
-<span class="nc" id="L120">    }</span>
+<span class="nc" id="L125">        this.collectorID = collectorID;</span>
+<span class="nc" id="L126">    }</span>
  
 
     public boolean getIsPrimary() {
-<span class="nc" id="L124">        return isPrimary;</span>
+<span class="nc" id="L130">        return isPrimary;</span>
     }
 
     public void setIsPrimary(boolean isPrimary) {
-<span class="nc" id="L128">        this.isPrimary = isPrimary;</span>
-<span class="nc" id="L129">    }</span>
+<span class="nc" id="L134">        this.isPrimary = isPrimary;</span>
+<span class="nc" id="L135">    }</span>
 
     public int getOrderNumber() {
-<span class="nc" id="L132">        return orderNumber;</span>
+<span class="nc" id="L138">        return orderNumber;</span>
     }
 
     public void setOrderNumber(int orderNumber) {
-<span class="nc" id="L136">        this.orderNumber = orderNumber;</span>
-<span class="nc" id="L137">    }</span>
+<span class="nc" id="L142">        this.orderNumber = orderNumber;</span>
+<span class="nc" id="L143">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L140">        return remarks;</span>
+<span class="nc" id="L146">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L144">        this.remarks = remarks;</span>
-<span class="nc" id="L145">    }</span>
+<span class="nc" id="L150">        this.remarks = remarks;</span>
+<span class="nc" id="L151">    }</span>
 
     @XmlIDREF
     public Agent getAgentID() {
-<span class="nc" id="L149">        return agentID;</span>
+<span class="nc" id="L155">        return agentID;</span>
     }
 
     public void setAgentID(Agent agentID) {
-<span class="nc" id="L153">        this.agentID = agentID;</span>
-<span class="nc" id="L154">    }</span>
+<span class="nc" id="L159">        this.agentID = agentID;</span>
+<span class="nc" id="L160">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L158">        return modifiedByAgentID;</span>
+<span class="nc" id="L164">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L162">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L163">    }</span>
+<span class="nc" id="L168">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L169">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L167">        return createdByAgentID;</span>
+<span class="nc" id="L173">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L171">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L172">    }</span>
+<span class="nc" id="L177">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L178">    }</span>
 
     @XmlIDREF
     public Division getDivisionID() {
-<span class="nc" id="L176">        return divisionID;</span>
+<span class="nc" id="L182">        return divisionID;</span>
     }
 
     public void setDivisionID(Division divisionID) {
-<span class="nc" id="L180">        this.divisionID = divisionID;</span>
-<span class="nc" id="L181">    }</span>
+<span class="nc" id="L186">        this.divisionID = divisionID;</span>
+<span class="nc" id="L187">    }</span>
 
     @XmlIDREF
     public Collectingevent getCollectingEventID() {
-<span class="nc" id="L185">        return collectingEventID;</span>
+<span class="nc" id="L191">        return collectingEventID;</span>
     }
 
     public void setCollectingEventID(Collectingevent collectingEventID) {
-<span class="nc" id="L189">        this.collectingEventID = collectingEventID;</span>
-<span class="nc" id="L190">    }</span>
+<span class="nc" id="L195">        this.collectingEventID = collectingEventID;</span>
+<span class="nc" id="L196">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L194">        int hash = 0;</span>
-<span class="nc bnc" id="L195" title="All 2 branches missed.">        hash += (collectorID != null ? collectorID.hashCode() : 0);</span>
-<span class="nc" id="L196">        return hash;</span>
+<span class="nc" id="L200">        int hash = 0;</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">        hash += (collectorID != null ? collectorID.hashCode() : 0);</span>
+<span class="nc" id="L202">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L202" title="All 2 branches missed.">        if (!(object instanceof Collector)) {</span>
-<span class="nc" id="L203">            return false;</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">        if (!(object instanceof Collector)) {</span>
+<span class="nc" id="L209">            return false;</span>
         }
-<span class="nc" id="L205">        Collector other = (Collector) object;</span>
-<span class="nc bnc" id="L206" title="All 8 branches missed.">        return !((this.collectorID == null &amp;&amp; other.collectorID != null) || (this.collectorID != null &amp;&amp; !this.collectorID.equals(other.collectorID)));</span>
+<span class="nc" id="L211">        Collector other = (Collector) object;</span>
+<span class="nc bnc" id="L212" title="All 8 branches missed.">        return !((this.collectorID == null &amp;&amp; other.collectorID != null) || (this.collectorID != null &amp;&amp; !this.collectorID.equals(other.collectorID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L211">        return &quot;se.nrm.dina.datamodel.Collector[ collectorID=&quot; + collectorID + &quot; ]&quot;;</span>
+<span class="nc" id="L217">        return &quot;se.nrm.dina.datamodel.Collector[ collectorID=&quot; + collectorID + &quot; ]&quot;;</span>
     }
     
 }

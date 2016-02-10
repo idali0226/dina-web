@@ -91,96 +91,102 @@ public class Conservdescriptionattachment extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L94">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + conservDescriptionAttachmentID;</span>
+<span class="nc" id="L94">        return String.valueOf(conservDescriptionAttachmentID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L100">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + conservDescriptionAttachmentID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L99">        return conservDescriptionAttachmentID;</span>
+<span class="nc" id="L105">        return conservDescriptionAttachmentID;</span>
     }
 
     public Integer getConservDescriptionAttachmentID() {
-<span class="nc" id="L103">        return conservDescriptionAttachmentID;</span>
+<span class="nc" id="L109">        return conservDescriptionAttachmentID;</span>
     }
 
     public void setConservDescriptionAttachmentID(Integer conservDescriptionAttachmentID) {
-<span class="nc" id="L107">        this.conservDescriptionAttachmentID = conservDescriptionAttachmentID;</span>
-<span class="nc" id="L108">    }</span>
+<span class="nc" id="L113">        this.conservDescriptionAttachmentID = conservDescriptionAttachmentID;</span>
+<span class="nc" id="L114">    }</span>
 
     
 
     public int getOrdinal() {
-<span class="nc" id="L113">        return ordinal;</span>
+<span class="nc" id="L119">        return ordinal;</span>
     }
 
     public void setOrdinal(int ordinal) {
-<span class="nc" id="L117">        this.ordinal = ordinal;</span>
-<span class="nc" id="L118">    }</span>
+<span class="nc" id="L123">        this.ordinal = ordinal;</span>
+<span class="nc" id="L124">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L121">        return remarks;</span>
+<span class="nc" id="L127">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L125">        this.remarks = remarks;</span>
-<span class="nc" id="L126">    }</span>
+<span class="nc" id="L131">        this.remarks = remarks;</span>
+<span class="nc" id="L132">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L130">        return modifiedByAgentID;</span>
+<span class="nc" id="L136">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L134">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L135">    }</span>
+<span class="nc" id="L140">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L141">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L139">        return createdByAgentID;</span>
+<span class="nc" id="L145">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L143">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L144">    }</span>
+<span class="nc" id="L149">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L150">    }</span>
 
     @XmlIDREF
     public Conservdescription getConservDescriptionID() {
-<span class="nc" id="L148">        return conservDescriptionID;</span>
+<span class="nc" id="L154">        return conservDescriptionID;</span>
     }
 
     public void setConservDescriptionID(Conservdescription conservDescriptionID) {
-<span class="nc" id="L152">        this.conservDescriptionID = conservDescriptionID;</span>
-<span class="nc" id="L153">    }</span>
+<span class="nc" id="L158">        this.conservDescriptionID = conservDescriptionID;</span>
+<span class="nc" id="L159">    }</span>
 
     @XmlIDREF
     public Attachment getAttachmentID() {
-<span class="nc" id="L157">        return attachmentID;</span>
+<span class="nc" id="L163">        return attachmentID;</span>
     }
 
     public void setAttachmentID(Attachment attachmentID) {
-<span class="nc" id="L161">        this.attachmentID = attachmentID;</span>
-<span class="nc" id="L162">    }</span>
+<span class="nc" id="L167">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L168">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L166">        int hash = 0;</span>
-<span class="nc bnc" id="L167" title="All 2 branches missed.">        hash += (conservDescriptionAttachmentID != null ? conservDescriptionAttachmentID.hashCode() : 0);</span>
-<span class="nc" id="L168">        return hash;</span>
+<span class="nc" id="L172">        int hash = 0;</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        hash += (conservDescriptionAttachmentID != null ? conservDescriptionAttachmentID.hashCode() : 0);</span>
+<span class="nc" id="L174">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L174" title="All 2 branches missed.">        if (!(object instanceof Conservdescriptionattachment)) {</span>
-<span class="nc" id="L175">            return false;</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">        if (!(object instanceof Conservdescriptionattachment)) {</span>
+<span class="nc" id="L181">            return false;</span>
         }
-<span class="nc" id="L177">        Conservdescriptionattachment other = (Conservdescriptionattachment) object;</span>
-<span class="nc bnc" id="L178" title="All 8 branches missed.">        return !((this.conservDescriptionAttachmentID == null &amp;&amp; other.conservDescriptionAttachmentID != null) || (this.conservDescriptionAttachmentID != null &amp;&amp; !this.conservDescriptionAttachmentID.equals(other.conservDescriptionAttachmentID)));</span>
+<span class="nc" id="L183">        Conservdescriptionattachment other = (Conservdescriptionattachment) object;</span>
+<span class="nc bnc" id="L184" title="All 8 branches missed.">        return !((this.conservDescriptionAttachmentID == null &amp;&amp; other.conservDescriptionAttachmentID != null) || (this.conservDescriptionAttachmentID != null &amp;&amp; !this.conservDescriptionAttachmentID.equals(other.conservDescriptionAttachmentID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L183">        return &quot;se.nrm.dina.datamodel.Conservdescriptionattachment[ conservDescriptionAttachmentID=&quot; + conservDescriptionAttachmentID + &quot; ]&quot;;</span>
+<span class="nc" id="L189">        return &quot;se.nrm.dina.datamodel.Conservdescriptionattachment[ conservDescriptionAttachmentID=&quot; + conservDescriptionAttachmentID + &quot; ]&quot;;</span>
     }
     
 }

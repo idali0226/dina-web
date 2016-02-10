@@ -140,166 +140,172 @@ public class Picklist extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L143">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + pickListID;</span>
+<span class="nc" id="L143">        return String.valueOf(pickListID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L149">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + pickListID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L148">        return pickListID;</span>
+<span class="nc" id="L154">        return pickListID;</span>
     }
     
     public Integer getPickListID() {
-<span class="nc" id="L152">        return pickListID;</span>
+<span class="nc" id="L158">        return pickListID;</span>
     }
 
     public void setPickListID(Integer pickListID) {
-<span class="nc" id="L156">        this.pickListID = pickListID;</span>
-<span class="nc" id="L157">    }</span>
+<span class="nc" id="L162">        this.pickListID = pickListID;</span>
+<span class="nc" id="L163">    }</span>
   
     public String getFieldName() {
-<span class="nc" id="L160">        return fieldName;</span>
+<span class="nc" id="L166">        return fieldName;</span>
     }
 
     public void setFieldName(String fieldName) {
-<span class="nc" id="L164">        this.fieldName = fieldName;</span>
-<span class="nc" id="L165">    }</span>
+<span class="nc" id="L170">        this.fieldName = fieldName;</span>
+<span class="nc" id="L171">    }</span>
 
     public String getFilterFieldName() {
-<span class="nc" id="L168">        return filterFieldName;</span>
+<span class="nc" id="L174">        return filterFieldName;</span>
     }
 
     public void setFilterFieldName(String filterFieldName) {
-<span class="nc" id="L172">        this.filterFieldName = filterFieldName;</span>
-<span class="nc" id="L173">    }</span>
+<span class="nc" id="L178">        this.filterFieldName = filterFieldName;</span>
+<span class="nc" id="L179">    }</span>
 
     public String getFilterValue() {
-<span class="nc" id="L176">        return filterValue;</span>
+<span class="nc" id="L182">        return filterValue;</span>
     }
 
     public void setFilterValue(String filterValue) {
-<span class="nc" id="L180">        this.filterValue = filterValue;</span>
-<span class="nc" id="L181">    }</span>
+<span class="nc" id="L186">        this.filterValue = filterValue;</span>
+<span class="nc" id="L187">    }</span>
 
     public String getFormatter() {
-<span class="nc" id="L184">        return formatter;</span>
+<span class="nc" id="L190">        return formatter;</span>
     }
 
     public void setFormatter(String formatter) {
-<span class="nc" id="L188">        this.formatter = formatter;</span>
-<span class="nc" id="L189">    }</span>
+<span class="nc" id="L194">        this.formatter = formatter;</span>
+<span class="nc" id="L195">    }</span>
 
     public boolean getIsSystem() {
-<span class="nc" id="L192">        return isSystem;</span>
+<span class="nc" id="L198">        return isSystem;</span>
     }
 
     public void setIsSystem(boolean isSystem) {
-<span class="nc" id="L196">        this.isSystem = isSystem;</span>
-<span class="nc" id="L197">    }</span>
+<span class="nc" id="L202">        this.isSystem = isSystem;</span>
+<span class="nc" id="L203">    }</span>
 
     public String getName() {
-<span class="nc" id="L200">        return name;</span>
+<span class="nc" id="L206">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L204">        this.name = name;</span>
-<span class="nc" id="L205">    }</span>
+<span class="nc" id="L210">        this.name = name;</span>
+<span class="nc" id="L211">    }</span>
 
     public boolean getReadOnly() {
-<span class="nc" id="L208">        return readOnly;</span>
+<span class="nc" id="L214">        return readOnly;</span>
     }
 
     public void setReadOnly(boolean readOnly) {
-<span class="nc" id="L212">        this.readOnly = readOnly;</span>
-<span class="nc" id="L213">    }</span>
+<span class="nc" id="L218">        this.readOnly = readOnly;</span>
+<span class="nc" id="L219">    }</span>
 
     public Integer getSizeLimit() {
-<span class="nc" id="L216">        return sizeLimit;</span>
+<span class="nc" id="L222">        return sizeLimit;</span>
     }
 
     public void setSizeLimit(Integer sizeLimit) {
-<span class="nc" id="L220">        this.sizeLimit = sizeLimit;</span>
-<span class="nc" id="L221">    }</span>
+<span class="nc" id="L226">        this.sizeLimit = sizeLimit;</span>
+<span class="nc" id="L227">    }</span>
 
     public Short getSortType() {
-<span class="nc" id="L224">        return sortType;</span>
+<span class="nc" id="L230">        return sortType;</span>
     }
 
     public void setSortType(Short sortType) {
-<span class="nc" id="L228">        this.sortType = sortType;</span>
-<span class="nc" id="L229">    }</span>
+<span class="nc" id="L234">        this.sortType = sortType;</span>
+<span class="nc" id="L235">    }</span>
 
     public String getTableName() {
-<span class="nc" id="L232">        return tableName;</span>
+<span class="nc" id="L238">        return tableName;</span>
     }
 
     public void setTableName(String tableName) {
-<span class="nc" id="L236">        this.tableName = tableName;</span>
-<span class="nc" id="L237">    }</span>
+<span class="nc" id="L242">        this.tableName = tableName;</span>
+<span class="nc" id="L243">    }</span>
 
     public short getType() {
-<span class="nc" id="L240">        return type;</span>
+<span class="nc" id="L246">        return type;</span>
     }
 
     public void setType(short type) {
-<span class="nc" id="L244">        this.type = type;</span>
-<span class="nc" id="L245">    }</span>
+<span class="nc" id="L250">        this.type = type;</span>
+<span class="nc" id="L251">    }</span>
 
     @XmlTransient
     public List&lt;Picklistitem&gt; getPicklistitemList() {
-<span class="nc" id="L249">        return picklistitemList;</span>
+<span class="nc" id="L255">        return picklistitemList;</span>
     }
 
     public void setPicklistitemList(List&lt;Picklistitem&gt; picklistitemList) {
-<span class="nc" id="L253">        this.picklistitemList = picklistitemList;</span>
-<span class="nc" id="L254">    }</span>
+<span class="nc" id="L259">        this.picklistitemList = picklistitemList;</span>
+<span class="nc" id="L260">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L258">        return modifiedByAgentID;</span>
+<span class="nc" id="L264">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L262">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L263">    }</span>
+<span class="nc" id="L268">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L269">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L267">        return createdByAgentID;</span>
+<span class="nc" id="L273">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L271">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L272">    }</span>
+<span class="nc" id="L277">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L278">    }</span>
 
     @XmlIDREF
     public Collection getCollectionID() {
-<span class="nc" id="L276">        return collectionID;</span>
+<span class="nc" id="L282">        return collectionID;</span>
     }
 
     public void setCollectionID(Collection collectionID) {
-<span class="nc" id="L280">        this.collectionID = collectionID;</span>
-<span class="nc" id="L281">    }</span>
+<span class="nc" id="L286">        this.collectionID = collectionID;</span>
+<span class="nc" id="L287">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L285">        int hash = 0;</span>
-<span class="nc bnc" id="L286" title="All 2 branches missed.">        hash += (pickListID != null ? pickListID.hashCode() : 0);</span>
-<span class="nc" id="L287">        return hash;</span>
+<span class="nc" id="L291">        int hash = 0;</span>
+<span class="nc bnc" id="L292" title="All 2 branches missed.">        hash += (pickListID != null ? pickListID.hashCode() : 0);</span>
+<span class="nc" id="L293">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L293" title="All 2 branches missed.">        if (!(object instanceof Picklist)) {</span>
-<span class="nc" id="L294">            return false;</span>
+<span class="nc bnc" id="L299" title="All 2 branches missed.">        if (!(object instanceof Picklist)) {</span>
+<span class="nc" id="L300">            return false;</span>
         }
-<span class="nc" id="L296">        Picklist other = (Picklist) object;</span>
-<span class="nc bnc" id="L297" title="All 8 branches missed.">        return !((this.pickListID == null &amp;&amp; other.pickListID != null) || (this.pickListID != null &amp;&amp; !this.pickListID.equals(other.pickListID)));</span>
+<span class="nc" id="L302">        Picklist other = (Picklist) object;</span>
+<span class="nc bnc" id="L303" title="All 8 branches missed.">        return !((this.pickListID == null &amp;&amp; other.pickListID != null) || (this.pickListID != null &amp;&amp; !this.pickListID.equals(other.pickListID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L302">        return &quot;se.nrm.dina.datamodel.Picklist[ pickListID=&quot; + pickListID + &quot; ]&quot;;</span>
+<span class="nc" id="L308">        return &quot;se.nrm.dina.datamodel.Picklist[ pickListID=&quot; + pickListID + &quot; ]&quot;;</span>
     }
     
 }

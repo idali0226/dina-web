@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package se.nrm.dina.datamodel;
+ 
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -160,6 +160,12 @@ public class Project extends BaseEntity {
     @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
+        return String.valueOf(projectID);
+    }
+    
+    @XmlAttribute(name = "uuid") 
+    @Override
+    public String getUUID() {
         return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + projectID;
     }
     

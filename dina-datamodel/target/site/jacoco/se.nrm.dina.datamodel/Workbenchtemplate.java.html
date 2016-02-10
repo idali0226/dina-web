@@ -103,121 +103,127 @@ public class Workbenchtemplate extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L106">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchTemplateID;</span>
+<span class="nc" id="L106">        return String.valueOf(workbenchTemplateID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L112">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchTemplateID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L111">        return workbenchTemplateID;</span>
+<span class="nc" id="L117">        return workbenchTemplateID;</span>
     }
     
     public Integer getWorkbenchTemplateID() {
-<span class="nc" id="L115">        return workbenchTemplateID;</span>
+<span class="nc" id="L121">        return workbenchTemplateID;</span>
     }
 
     public void setWorkbenchTemplateID(Integer workbenchTemplateID) {
-<span class="nc" id="L119">        this.workbenchTemplateID = workbenchTemplateID;</span>
-<span class="nc" id="L120">    }</span>
+<span class="nc" id="L125">        this.workbenchTemplateID = workbenchTemplateID;</span>
+<span class="nc" id="L126">    }</span>
 
      
     public String getName() {
-<span class="nc" id="L124">        return name;</span>
+<span class="nc" id="L130">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L128">        this.name = name;</span>
-<span class="nc" id="L129">    }</span>
+<span class="nc" id="L134">        this.name = name;</span>
+<span class="nc" id="L135">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L132">        return remarks;</span>
+<span class="nc" id="L138">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L136">        this.remarks = remarks;</span>
-<span class="nc" id="L137">    }</span>
+<span class="nc" id="L142">        this.remarks = remarks;</span>
+<span class="nc" id="L143">    }</span>
 
     public String getSrcFilePath() {
-<span class="nc" id="L140">        return srcFilePath;</span>
+<span class="nc" id="L146">        return srcFilePath;</span>
     }
 
     public void setSrcFilePath(String srcFilePath) {
-<span class="nc" id="L144">        this.srcFilePath = srcFilePath;</span>
-<span class="nc" id="L145">    }</span>
+<span class="nc" id="L150">        this.srcFilePath = srcFilePath;</span>
+<span class="nc" id="L151">    }</span>
 
     @XmlTransient
     public List&lt;Workbenchtemplatemappingitem&gt; getWorkbenchtemplatemappingitemList() {
-<span class="nc" id="L149">        return workbenchtemplatemappingitemList;</span>
+<span class="nc" id="L155">        return workbenchtemplatemappingitemList;</span>
     }
 
     public void setWorkbenchtemplatemappingitemList(List&lt;Workbenchtemplatemappingitem&gt; workbenchtemplatemappingitemList) {
-<span class="nc" id="L153">        this.workbenchtemplatemappingitemList = workbenchtemplatemappingitemList;</span>
-<span class="nc" id="L154">    }</span>
+<span class="nc" id="L159">        this.workbenchtemplatemappingitemList = workbenchtemplatemappingitemList;</span>
+<span class="nc" id="L160">    }</span>
 
     @XmlTransient
     public List&lt;Workbench&gt; getWorkbenchList() {
-<span class="nc" id="L158">        return workbenchList;</span>
+<span class="nc" id="L164">        return workbenchList;</span>
     }
 
     public void setWorkbenchList(List&lt;Workbench&gt; workbenchList) {
-<span class="nc" id="L162">        this.workbenchList = workbenchList;</span>
-<span class="nc" id="L163">    }</span>
+<span class="nc" id="L168">        this.workbenchList = workbenchList;</span>
+<span class="nc" id="L169">    }</span>
 
     @XmlIDREF
     public Specifyuser getSpecifyUserID() {
-<span class="nc" id="L167">        return specifyUserID;</span>
+<span class="nc" id="L173">        return specifyUserID;</span>
     }
 
     public void setSpecifyUserID(Specifyuser specifyUserID) {
-<span class="nc" id="L171">        this.specifyUserID = specifyUserID;</span>
-<span class="nc" id="L172">    }</span>
+<span class="nc" id="L177">        this.specifyUserID = specifyUserID;</span>
+<span class="nc" id="L178">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L176">        return modifiedByAgentID;</span>
+<span class="nc" id="L182">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L180">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L181">    }</span>
+<span class="nc" id="L186">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L187">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L185">        return createdByAgentID;</span>
+<span class="nc" id="L191">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L189">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L190">    }</span>
+<span class="nc" id="L195">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L196">    }</span>
 
     @XmlTransient
     public List&lt;Spreport&gt; getSpreportList() {
-<span class="nc" id="L194">        return spreportList;</span>
+<span class="nc" id="L200">        return spreportList;</span>
     }
 
     public void setSpreportList(List&lt;Spreport&gt; spreportList) {
-<span class="nc" id="L198">        this.spreportList = spreportList;</span>
-<span class="nc" id="L199">    }</span>
+<span class="nc" id="L204">        this.spreportList = spreportList;</span>
+<span class="nc" id="L205">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L203">        int hash = 0;</span>
-<span class="nc bnc" id="L204" title="All 2 branches missed.">        hash += (workbenchTemplateID != null ? workbenchTemplateID.hashCode() : 0);</span>
-<span class="nc" id="L205">        return hash;</span>
+<span class="nc" id="L209">        int hash = 0;</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">        hash += (workbenchTemplateID != null ? workbenchTemplateID.hashCode() : 0);</span>
+<span class="nc" id="L211">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L211" title="All 2 branches missed.">        if (!(object instanceof Workbenchtemplate)) {</span>
-<span class="nc" id="L212">            return false;</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">        if (!(object instanceof Workbenchtemplate)) {</span>
+<span class="nc" id="L218">            return false;</span>
         }
-<span class="nc" id="L214">        Workbenchtemplate other = (Workbenchtemplate) object;</span>
-<span class="nc bnc" id="L215" title="All 8 branches missed.">        return !((this.workbenchTemplateID == null &amp;&amp; other.workbenchTemplateID != null) || (this.workbenchTemplateID != null &amp;&amp; !this.workbenchTemplateID.equals(other.workbenchTemplateID)));</span>
+<span class="nc" id="L220">        Workbenchtemplate other = (Workbenchtemplate) object;</span>
+<span class="nc bnc" id="L221" title="All 8 branches missed.">        return !((this.workbenchTemplateID == null &amp;&amp; other.workbenchTemplateID != null) || (this.workbenchTemplateID != null &amp;&amp; !this.workbenchTemplateID.equals(other.workbenchTemplateID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L220">        return &quot;se.nrm.dina.datamodel.Workbenchtemplate[ workbenchTemplateID=&quot; + workbenchTemplateID + &quot; ]&quot;;</span>
+<span class="nc" id="L226">        return &quot;se.nrm.dina.datamodel.Workbenchtemplate[ workbenchTemplateID=&quot; + workbenchTemplateID + &quot; ]&quot;;</span>
     }
     
 }

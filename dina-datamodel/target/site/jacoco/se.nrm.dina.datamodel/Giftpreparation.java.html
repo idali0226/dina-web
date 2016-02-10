@@ -106,128 +106,134 @@ public class Giftpreparation extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L109">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + giftPreparationID;</span>
+<span class="nc" id="L109">        return String.valueOf(giftPreparationID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L115">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + giftPreparationID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L114">        return giftPreparationID;</span>
+<span class="nc" id="L120">        return giftPreparationID;</span>
     }
 
     public Integer getGiftPreparationID() {
-<span class="nc" id="L118">        return giftPreparationID;</span>
+<span class="nc" id="L124">        return giftPreparationID;</span>
     }
 
     public void setGiftPreparationID(Integer giftPreparationID) {
-<span class="nc" id="L122">        this.giftPreparationID = giftPreparationID;</span>
-<span class="nc" id="L123">    }</span>
+<span class="nc" id="L128">        this.giftPreparationID = giftPreparationID;</span>
+<span class="nc" id="L129">    }</span>
 
      
     public String getDescriptionOfMaterial() {
-<span class="nc" id="L127">        return descriptionOfMaterial;</span>
+<span class="nc" id="L133">        return descriptionOfMaterial;</span>
     }
 
     public void setDescriptionOfMaterial(String descriptionOfMaterial) {
-<span class="nc" id="L131">        this.descriptionOfMaterial = descriptionOfMaterial;</span>
-<span class="nc" id="L132">    }</span>
+<span class="nc" id="L137">        this.descriptionOfMaterial = descriptionOfMaterial;</span>
+<span class="nc" id="L138">    }</span>
 
     public String getInComments() {
-<span class="nc" id="L135">        return inComments;</span>
+<span class="nc" id="L141">        return inComments;</span>
     }
 
     public void setInComments(String inComments) {
-<span class="nc" id="L139">        this.inComments = inComments;</span>
-<span class="nc" id="L140">    }</span>
+<span class="nc" id="L145">        this.inComments = inComments;</span>
+<span class="nc" id="L146">    }</span>
 
     public String getOutComments() {
-<span class="nc" id="L143">        return outComments;</span>
+<span class="nc" id="L149">        return outComments;</span>
     }
 
     public void setOutComments(String outComments) {
-<span class="nc" id="L147">        this.outComments = outComments;</span>
-<span class="nc" id="L148">    }</span>
+<span class="nc" id="L153">        this.outComments = outComments;</span>
+<span class="nc" id="L154">    }</span>
 
     public Integer getQuantity() {
-<span class="nc" id="L151">        return quantity;</span>
+<span class="nc" id="L157">        return quantity;</span>
     }
 
     public void setQuantity(Integer quantity) {
-<span class="nc" id="L155">        this.quantity = quantity;</span>
-<span class="nc" id="L156">    }</span>
+<span class="nc" id="L161">        this.quantity = quantity;</span>
+<span class="nc" id="L162">    }</span>
 
     public String getReceivedComments() {
-<span class="nc" id="L159">        return receivedComments;</span>
+<span class="nc" id="L165">        return receivedComments;</span>
     }
 
     public void setReceivedComments(String receivedComments) {
-<span class="nc" id="L163">        this.receivedComments = receivedComments;</span>
-<span class="nc" id="L164">    }</span>
+<span class="nc" id="L169">        this.receivedComments = receivedComments;</span>
+<span class="nc" id="L170">    }</span>
 
     @XmlIDREF
     public Preparation getPreparationID() {
-<span class="nc" id="L168">        return preparationID;</span>
+<span class="nc" id="L174">        return preparationID;</span>
     }
 
     public void setPreparationID(Preparation preparationID) {
-<span class="nc" id="L172">        this.preparationID = preparationID;</span>
-<span class="nc" id="L173">    }</span>
+<span class="nc" id="L178">        this.preparationID = preparationID;</span>
+<span class="nc" id="L179">    }</span>
 
     @XmlIDREF
     public Discipline getDisciplineID() {
-<span class="nc" id="L177">        return disciplineID;</span>
+<span class="nc" id="L183">        return disciplineID;</span>
     }
 
     public void setDisciplineID(Discipline disciplineID) {
-<span class="nc" id="L181">        this.disciplineID = disciplineID;</span>
-<span class="nc" id="L182">    }</span>
+<span class="nc" id="L187">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L188">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L186">        return modifiedByAgentID;</span>
+<span class="nc" id="L192">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L190">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L191">    }</span>
+<span class="nc" id="L196">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L197">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L195">        return createdByAgentID;</span>
+<span class="nc" id="L201">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L199">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L200">    }</span>
+<span class="nc" id="L205">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L206">    }</span>
 
     @XmlIDREF
     public Gift getGiftID() {
-<span class="nc" id="L204">        return giftID;</span>
+<span class="nc" id="L210">        return giftID;</span>
     }
 
     public void setGiftID(Gift giftID) {
-<span class="nc" id="L208">        this.giftID = giftID;</span>
-<span class="nc" id="L209">    }</span>
+<span class="nc" id="L214">        this.giftID = giftID;</span>
+<span class="nc" id="L215">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L213">        int hash = 0;</span>
-<span class="nc bnc" id="L214" title="All 2 branches missed.">        hash += (giftPreparationID != null ? giftPreparationID.hashCode() : 0);</span>
-<span class="nc" id="L215">        return hash;</span>
+<span class="nc" id="L219">        int hash = 0;</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">        hash += (giftPreparationID != null ? giftPreparationID.hashCode() : 0);</span>
+<span class="nc" id="L221">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L221" title="All 2 branches missed.">        if (!(object instanceof Giftpreparation)) {</span>
-<span class="nc" id="L222">            return false;</span>
+<span class="nc bnc" id="L227" title="All 2 branches missed.">        if (!(object instanceof Giftpreparation)) {</span>
+<span class="nc" id="L228">            return false;</span>
         }
-<span class="nc" id="L224">        Giftpreparation other = (Giftpreparation) object;</span>
-<span class="nc bnc" id="L225" title="All 8 branches missed.">        return !((this.giftPreparationID == null &amp;&amp; other.giftPreparationID != null) || (this.giftPreparationID != null &amp;&amp; !this.giftPreparationID.equals(other.giftPreparationID)));</span>
+<span class="nc" id="L230">        Giftpreparation other = (Giftpreparation) object;</span>
+<span class="nc bnc" id="L231" title="All 8 branches missed.">        return !((this.giftPreparationID == null &amp;&amp; other.giftPreparationID != null) || (this.giftPreparationID != null &amp;&amp; !this.giftPreparationID.equals(other.giftPreparationID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L230">        return &quot;se.nrm.dina.datamodel.Giftpreparation[ giftPreparationID=&quot; + giftPreparationID + &quot; ]&quot;;</span>
+<span class="nc" id="L236">        return &quot;se.nrm.dina.datamodel.Giftpreparation[ giftPreparationID=&quot; + giftPreparationID + &quot; ]&quot;;</span>
     }
     
 }

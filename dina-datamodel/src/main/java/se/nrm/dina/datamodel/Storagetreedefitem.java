@@ -138,10 +138,15 @@ public class Storagetreedefitem extends BaseEntity {
     @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
-        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + storageTreeDefItemID;
+        return String.valueOf(storageTreeDefItemID);
     }
     
+    @XmlAttribute(name = "uuid") 
     @Override
+    public String getUUID() {
+        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + storageTreeDefItemID;
+    }
+     
     public int getEntityId() {
         return storageTreeDefItemID;
     }

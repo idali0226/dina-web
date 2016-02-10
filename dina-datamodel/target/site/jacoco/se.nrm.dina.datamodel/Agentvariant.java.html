@@ -101,109 +101,115 @@ public class Agentvariant extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L104">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + agentVariantID;</span>
+<span class="nc" id="L104">        return String.valueOf(agentVariantID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L110">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + agentVariantID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L109">        return agentVariantID;</span>
+<span class="nc" id="L115">        return agentVariantID;</span>
     }
 
     public Integer getAgentVariantID() {
-<span class="nc" id="L113">        return agentVariantID;</span>
+<span class="nc" id="L119">        return agentVariantID;</span>
     }
 
     public void setAgentVariantID(Integer agentVariantID) {
-<span class="nc" id="L117">        this.agentVariantID = agentVariantID;</span>
-<span class="nc" id="L118">    }</span>
+<span class="nc" id="L123">        this.agentVariantID = agentVariantID;</span>
+<span class="nc" id="L124">    }</span>
  
     public String getCountry() {
-<span class="nc" id="L121">        return country;</span>
+<span class="nc" id="L127">        return country;</span>
     }
 
     public void setCountry(String country) {
-<span class="nc" id="L125">        this.country = country;</span>
-<span class="nc" id="L126">    }</span>
+<span class="nc" id="L131">        this.country = country;</span>
+<span class="nc" id="L132">    }</span>
 
     public String getLanguage() {
-<span class="nc" id="L129">        return language;</span>
+<span class="nc" id="L135">        return language;</span>
     }
 
     public void setLanguage(String language) {
-<span class="nc" id="L133">        this.language = language;</span>
-<span class="nc" id="L134">    }</span>
+<span class="nc" id="L139">        this.language = language;</span>
+<span class="nc" id="L140">    }</span>
 
     public String getName() {
-<span class="nc" id="L137">        return name;</span>
+<span class="nc" id="L143">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L141">        this.name = name;</span>
-<span class="nc" id="L142">    }</span>
+<span class="nc" id="L147">        this.name = name;</span>
+<span class="nc" id="L148">    }</span>
 
     public short getVarType() {
-<span class="nc" id="L145">        return varType;</span>
+<span class="nc" id="L151">        return varType;</span>
     }
 
     public void setVarType(short varType) {
-<span class="nc" id="L149">        this.varType = varType;</span>
-<span class="nc" id="L150">    }</span>
+<span class="nc" id="L155">        this.varType = varType;</span>
+<span class="nc" id="L156">    }</span>
 
     public String getVariant() {
-<span class="nc" id="L153">        return variant;</span>
+<span class="nc" id="L159">        return variant;</span>
     }
 
     public void setVariant(String variant) {
-<span class="nc" id="L157">        this.variant = variant;</span>
-<span class="nc" id="L158">    }</span>
+<span class="nc" id="L163">        this.variant = variant;</span>
+<span class="nc" id="L164">    }</span>
 
     @XmlIDREF
     public Agent getAgentID() {
-<span class="nc" id="L162">        return agentID;</span>
+<span class="nc" id="L168">        return agentID;</span>
     }
 
     public void setAgentID(Agent agentID) {
-<span class="nc" id="L166">        this.agentID = agentID;</span>
-<span class="nc" id="L167">    }</span>
+<span class="nc" id="L172">        this.agentID = agentID;</span>
+<span class="nc" id="L173">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L171">        return modifiedByAgentID;</span>
+<span class="nc" id="L177">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L175">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L176">    }</span>
+<span class="nc" id="L181">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L182">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L180">        return createdByAgentID;</span>
+<span class="nc" id="L186">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L184">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L185">    }</span>
+<span class="nc" id="L190">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L191">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L189">        int hash = 0;</span>
-<span class="nc bnc" id="L190" title="All 2 branches missed.">        hash += (agentVariantID != null ? agentVariantID.hashCode() : 0);</span>
-<span class="nc" id="L191">        return hash;</span>
+<span class="nc" id="L195">        int hash = 0;</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">        hash += (agentVariantID != null ? agentVariantID.hashCode() : 0);</span>
+<span class="nc" id="L197">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L197" title="All 2 branches missed.">        if (!(object instanceof Agentvariant)) {</span>
-<span class="nc" id="L198">            return false;</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">        if (!(object instanceof Agentvariant)) {</span>
+<span class="nc" id="L204">            return false;</span>
         }
-<span class="nc" id="L200">        Agentvariant other = (Agentvariant) object;</span>
-<span class="nc bnc" id="L201" title="All 8 branches missed.">        return !((this.agentVariantID == null &amp;&amp; other.agentVariantID != null) || (this.agentVariantID != null &amp;&amp; !this.agentVariantID.equals(other.agentVariantID)));</span>
+<span class="nc" id="L206">        Agentvariant other = (Agentvariant) object;</span>
+<span class="nc bnc" id="L207" title="All 8 branches missed.">        return !((this.agentVariantID == null &amp;&amp; other.agentVariantID != null) || (this.agentVariantID != null &amp;&amp; !this.agentVariantID.equals(other.agentVariantID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L206">        return &quot;se.nrm.dina.datamodel.Agentvariant[ agentVariantID=&quot; + agentVariantID + &quot; ]&quot;;</span>
+<span class="nc" id="L212">        return &quot;se.nrm.dina.datamodel.Agentvariant[ agentVariantID=&quot; + agentVariantID + &quot; ]&quot;;</span>
     }
     
 }

@@ -95,103 +95,109 @@ public class Groupperson extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L98">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + groupPersonID;</span>
+<span class="nc" id="L98">        return String.valueOf(groupPersonID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L104">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + groupPersonID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L103">        return groupPersonID;</span>
+<span class="nc" id="L109">        return groupPersonID;</span>
     }
     
     public Integer getGroupPersonID() {
-<span class="nc" id="L107">        return groupPersonID;</span>
+<span class="nc" id="L113">        return groupPersonID;</span>
     }
 
     public void setGroupPersonID(Integer groupPersonID) {
-<span class="nc" id="L111">        this.groupPersonID = groupPersonID;</span>
-<span class="nc" id="L112">    }</span>
+<span class="nc" id="L117">        this.groupPersonID = groupPersonID;</span>
+<span class="nc" id="L118">    }</span>
  
     public short getOrderNumber() {
-<span class="nc" id="L115">        return orderNumber;</span>
+<span class="nc" id="L121">        return orderNumber;</span>
     }
 
     public void setOrderNumber(short orderNumber) {
-<span class="nc" id="L119">        this.orderNumber = orderNumber;</span>
-<span class="nc" id="L120">    }</span>
+<span class="nc" id="L125">        this.orderNumber = orderNumber;</span>
+<span class="nc" id="L126">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L123">        return remarks;</span>
+<span class="nc" id="L129">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L127">        this.remarks = remarks;</span>
-<span class="nc" id="L128">    }</span>
+<span class="nc" id="L133">        this.remarks = remarks;</span>
+<span class="nc" id="L134">    }</span>
 
     @XmlIDREF
     public Agent getMemberID() {
-<span class="nc" id="L132">        return memberID;</span>
+<span class="nc" id="L138">        return memberID;</span>
     }
 
     public void setMemberID(Agent memberID) {
-<span class="nc" id="L136">        this.memberID = memberID;</span>
-<span class="nc" id="L137">    }</span>
+<span class="nc" id="L142">        this.memberID = memberID;</span>
+<span class="nc" id="L143">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L141">        return modifiedByAgentID;</span>
+<span class="nc" id="L147">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L145">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L146">    }</span>
+<span class="nc" id="L151">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L152">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L150">        return createdByAgentID;</span>
+<span class="nc" id="L156">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L154">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L155">    }</span>
+<span class="nc" id="L160">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L161">    }</span>
 
     @XmlIDREF
     public Agent getGroupID() {
-<span class="nc" id="L159">        return groupID;</span>
+<span class="nc" id="L165">        return groupID;</span>
     }
 
     public void setGroupID(Agent groupID) {
-<span class="nc" id="L163">        this.groupID = groupID;</span>
-<span class="nc" id="L164">    }</span>
+<span class="nc" id="L169">        this.groupID = groupID;</span>
+<span class="nc" id="L170">    }</span>
 
     @XmlIDREF
     public Division getDivisionID() {
-<span class="nc" id="L168">        return divisionID;</span>
+<span class="nc" id="L174">        return divisionID;</span>
     }
 
     public void setDivisionID(Division divisionID) {
-<span class="nc" id="L172">        this.divisionID = divisionID;</span>
-<span class="nc" id="L173">    }</span>
+<span class="nc" id="L178">        this.divisionID = divisionID;</span>
+<span class="nc" id="L179">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L177">        int hash = 0;</span>
-<span class="nc bnc" id="L178" title="All 2 branches missed.">        hash += (groupPersonID != null ? groupPersonID.hashCode() : 0);</span>
-<span class="nc" id="L179">        return hash;</span>
+<span class="nc" id="L183">        int hash = 0;</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">        hash += (groupPersonID != null ? groupPersonID.hashCode() : 0);</span>
+<span class="nc" id="L185">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L185" title="All 2 branches missed.">        if (!(object instanceof Groupperson)) {</span>
-<span class="nc" id="L186">            return false;</span>
+<span class="nc bnc" id="L191" title="All 2 branches missed.">        if (!(object instanceof Groupperson)) {</span>
+<span class="nc" id="L192">            return false;</span>
         }
-<span class="nc" id="L188">        Groupperson other = (Groupperson) object;</span>
-<span class="nc bnc" id="L189" title="All 8 branches missed.">        return !((this.groupPersonID == null &amp;&amp; other.groupPersonID != null) || (this.groupPersonID != null &amp;&amp; !this.groupPersonID.equals(other.groupPersonID)));</span>
+<span class="nc" id="L194">        Groupperson other = (Groupperson) object;</span>
+<span class="nc bnc" id="L195" title="All 8 branches missed.">        return !((this.groupPersonID == null &amp;&amp; other.groupPersonID != null) || (this.groupPersonID != null &amp;&amp; !this.groupPersonID.equals(other.groupPersonID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L194">        return &quot;se.nrm.dina.datamodel.Groupperson[ groupPersonID=&quot; + groupPersonID + &quot; ]&quot;;</span>
+<span class="nc" id="L200">        return &quot;se.nrm.dina.datamodel.Groupperson[ groupPersonID=&quot; + groupPersonID + &quot; ]&quot;;</span>
     }
     
 }

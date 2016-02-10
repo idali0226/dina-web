@@ -90,6 +90,12 @@ public class Latlonpolygonpnt implements EntityBean, Serializable {
     @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
+        return String.valueOf(latLonPolygonPntID);
+    }
+    
+    @XmlAttribute(name = "uuid") 
+    @Override
+    public String getUUID() {
         return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + latLonPolygonPntID;
     }
     

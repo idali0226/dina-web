@@ -210,315 +210,321 @@ public class Dnasequencingrun extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L213">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + dNASequencingRunID;</span>
+<span class="nc" id="L213">        return String.valueOf(dNASequencingRunID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L219">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + dNASequencingRunID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L218">        return dNASequencingRunID;</span>
+<span class="nc" id="L224">        return dNASequencingRunID;</span>
     }
 
     public Integer getDNASequencingRunID() {
-<span class="nc" id="L222">        return dNASequencingRunID;</span>
+<span class="nc" id="L228">        return dNASequencingRunID;</span>
     }
 
     public void setDNASequencingRunID(Integer dNASequencingRunID) {
-<span class="nc" id="L226">        this.dNASequencingRunID = dNASequencingRunID;</span>
-<span class="nc" id="L227">    }</span>
+<span class="nc" id="L232">        this.dNASequencingRunID = dNASequencingRunID;</span>
+<span class="nc" id="L233">    }</span>
 
     
 
     public int getCollectionMemberID() {
-<span class="nc" id="L232">        return collectionMemberID;</span>
+<span class="nc" id="L238">        return collectionMemberID;</span>
     }
 
     public void setCollectionMemberID(int collectionMemberID) {
-<span class="nc" id="L236">        this.collectionMemberID = collectionMemberID;</span>
-<span class="nc" id="L237">    }</span>
+<span class="nc" id="L242">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L243">    }</span>
 
     public Float getNumber1() {
-<span class="nc" id="L240">        return number1;</span>
+<span class="nc" id="L246">        return number1;</span>
     }
 
     public void setNumber1(Float number1) {
-<span class="nc" id="L244">        this.number1 = number1;</span>
-<span class="nc" id="L245">    }</span>
+<span class="nc" id="L250">        this.number1 = number1;</span>
+<span class="nc" id="L251">    }</span>
 
     public Float getNumber2() {
-<span class="nc" id="L248">        return number2;</span>
+<span class="nc" id="L254">        return number2;</span>
     }
 
     public void setNumber2(Float number2) {
-<span class="nc" id="L252">        this.number2 = number2;</span>
-<span class="nc" id="L253">    }</span>
+<span class="nc" id="L258">        this.number2 = number2;</span>
+<span class="nc" id="L259">    }</span>
 
     public Float getNumber3() {
-<span class="nc" id="L256">        return number3;</span>
+<span class="nc" id="L262">        return number3;</span>
     }
 
     public void setNumber3(Float number3) {
-<span class="nc" id="L260">        this.number3 = number3;</span>
-<span class="nc" id="L261">    }</span>
+<span class="nc" id="L266">        this.number3 = number3;</span>
+<span class="nc" id="L267">    }</span>
 
     public Integer getOrdinal() {
-<span class="nc" id="L264">        return ordinal;</span>
+<span class="nc" id="L270">        return ordinal;</span>
     }
 
     public void setOrdinal(Integer ordinal) {
-<span class="nc" id="L268">        this.ordinal = ordinal;</span>
-<span class="nc" id="L269">    }</span>
+<span class="nc" id="L274">        this.ordinal = ordinal;</span>
+<span class="nc" id="L275">    }</span>
 
     public Boolean getPCRCocktailPrimer() {
-<span class="nc" id="L272">        return pCRCocktailPrimer;</span>
+<span class="nc" id="L278">        return pCRCocktailPrimer;</span>
     }
 
     public void setPCRCocktailPrimer(Boolean pCRCocktailPrimer) {
-<span class="nc" id="L276">        this.pCRCocktailPrimer = pCRCocktailPrimer;</span>
-<span class="nc" id="L277">    }</span>
+<span class="nc" id="L282">        this.pCRCocktailPrimer = pCRCocktailPrimer;</span>
+<span class="nc" id="L283">    }</span>
 
     public String getPCRForwardPrimerCode() {
-<span class="nc" id="L280">        return pCRForwardPrimerCode;</span>
+<span class="nc" id="L286">        return pCRForwardPrimerCode;</span>
     }
 
     public void setPCRForwardPrimerCode(String pCRForwardPrimerCode) {
-<span class="nc" id="L284">        this.pCRForwardPrimerCode = pCRForwardPrimerCode;</span>
-<span class="nc" id="L285">    }</span>
+<span class="nc" id="L290">        this.pCRForwardPrimerCode = pCRForwardPrimerCode;</span>
+<span class="nc" id="L291">    }</span>
 
     public String getPCRPrimerName() {
-<span class="nc" id="L288">        return pCRPrimerName;</span>
+<span class="nc" id="L294">        return pCRPrimerName;</span>
     }
 
     public void setPCRPrimerName(String pCRPrimerName) {
-<span class="nc" id="L292">        this.pCRPrimerName = pCRPrimerName;</span>
-<span class="nc" id="L293">    }</span>
+<span class="nc" id="L298">        this.pCRPrimerName = pCRPrimerName;</span>
+<span class="nc" id="L299">    }</span>
 
     public String getPCRPrimerSequence53() {
-<span class="nc" id="L296">        return pCRPrimerSequence53;</span>
+<span class="nc" id="L302">        return pCRPrimerSequence53;</span>
     }
 
     public void setPCRPrimerSequence53(String pCRPrimerSequence53) {
-<span class="nc" id="L300">        this.pCRPrimerSequence53 = pCRPrimerSequence53;</span>
-<span class="nc" id="L301">    }</span>
+<span class="nc" id="L306">        this.pCRPrimerSequence53 = pCRPrimerSequence53;</span>
+<span class="nc" id="L307">    }</span>
 
     public String getPCRReversePrimerCode() {
-<span class="nc" id="L304">        return pCRReversePrimerCode;</span>
+<span class="nc" id="L310">        return pCRReversePrimerCode;</span>
     }
 
     public void setPCRReversePrimerCode(String pCRReversePrimerCode) {
-<span class="nc" id="L308">        this.pCRReversePrimerCode = pCRReversePrimerCode;</span>
-<span class="nc" id="L309">    }</span>
+<span class="nc" id="L314">        this.pCRReversePrimerCode = pCRReversePrimerCode;</span>
+<span class="nc" id="L315">    }</span>
 
     public String getReadDirection() {
-<span class="nc" id="L312">        return readDirection;</span>
+<span class="nc" id="L318">        return readDirection;</span>
     }
 
     public void setReadDirection(String readDirection) {
-<span class="nc" id="L316">        this.readDirection = readDirection;</span>
-<span class="nc" id="L317">    }</span>
+<span class="nc" id="L322">        this.readDirection = readDirection;</span>
+<span class="nc" id="L323">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L320">        return remarks;</span>
+<span class="nc" id="L326">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L324">        this.remarks = remarks;</span>
-<span class="nc" id="L325">    }</span>
+<span class="nc" id="L330">        this.remarks = remarks;</span>
+<span class="nc" id="L331">    }</span>
 
     public Date getRunDate() {
-<span class="nc" id="L328">        return runDate;</span>
+<span class="nc" id="L334">        return runDate;</span>
     }
 
     public void setRunDate(Date runDate) {
-<span class="nc" id="L332">        this.runDate = runDate;</span>
-<span class="nc" id="L333">    }</span>
+<span class="nc" id="L338">        this.runDate = runDate;</span>
+<span class="nc" id="L339">    }</span>
 
     public String getScoreFileName() {
-<span class="nc" id="L336">        return scoreFileName;</span>
+<span class="nc" id="L342">        return scoreFileName;</span>
     }
 
     public void setScoreFileName(String scoreFileName) {
-<span class="nc" id="L340">        this.scoreFileName = scoreFileName;</span>
-<span class="nc" id="L341">    }</span>
+<span class="nc" id="L346">        this.scoreFileName = scoreFileName;</span>
+<span class="nc" id="L347">    }</span>
 
     public Boolean getSequenceCocktailPrimer() {
-<span class="nc" id="L344">        return sequenceCocktailPrimer;</span>
+<span class="nc" id="L350">        return sequenceCocktailPrimer;</span>
     }
 
     public void setSequenceCocktailPrimer(Boolean sequenceCocktailPrimer) {
-<span class="nc" id="L348">        this.sequenceCocktailPrimer = sequenceCocktailPrimer;</span>
-<span class="nc" id="L349">    }</span>
+<span class="nc" id="L354">        this.sequenceCocktailPrimer = sequenceCocktailPrimer;</span>
+<span class="nc" id="L355">    }</span>
 
     public String getSequencePrimerCode() {
-<span class="nc" id="L352">        return sequencePrimerCode;</span>
+<span class="nc" id="L358">        return sequencePrimerCode;</span>
     }
 
     public void setSequencePrimerCode(String sequencePrimerCode) {
-<span class="nc" id="L356">        this.sequencePrimerCode = sequencePrimerCode;</span>
-<span class="nc" id="L357">    }</span>
+<span class="nc" id="L362">        this.sequencePrimerCode = sequencePrimerCode;</span>
+<span class="nc" id="L363">    }</span>
 
     public String getSequencePrimerName() {
-<span class="nc" id="L360">        return sequencePrimerName;</span>
+<span class="nc" id="L366">        return sequencePrimerName;</span>
     }
 
     public void setSequencePrimerName(String sequencePrimerName) {
-<span class="nc" id="L364">        this.sequencePrimerName = sequencePrimerName;</span>
-<span class="nc" id="L365">    }</span>
+<span class="nc" id="L370">        this.sequencePrimerName = sequencePrimerName;</span>
+<span class="nc" id="L371">    }</span>
 
     public String getSequencePrimerSequence53() {
-<span class="nc" id="L368">        return sequencePrimerSequence53;</span>
+<span class="nc" id="L374">        return sequencePrimerSequence53;</span>
     }
 
     public void setSequencePrimerSequence53(String sequencePrimerSequence53) {
-<span class="nc" id="L372">        this.sequencePrimerSequence53 = sequencePrimerSequence53;</span>
-<span class="nc" id="L373">    }</span>
+<span class="nc" id="L378">        this.sequencePrimerSequence53 = sequencePrimerSequence53;</span>
+<span class="nc" id="L379">    }</span>
 
     public String getText1() {
-<span class="nc" id="L376">        return text1;</span>
+<span class="nc" id="L382">        return text1;</span>
     }
 
     public void setText1(String text1) {
-<span class="nc" id="L380">        this.text1 = text1;</span>
-<span class="nc" id="L381">    }</span>
+<span class="nc" id="L386">        this.text1 = text1;</span>
+<span class="nc" id="L387">    }</span>
 
     public String getText2() {
-<span class="nc" id="L384">        return text2;</span>
+<span class="nc" id="L390">        return text2;</span>
     }
 
     public void setText2(String text2) {
-<span class="nc" id="L388">        this.text2 = text2;</span>
-<span class="nc" id="L389">    }</span>
+<span class="nc" id="L394">        this.text2 = text2;</span>
+<span class="nc" id="L395">    }</span>
 
     public String getText3() {
-<span class="nc" id="L392">        return text3;</span>
+<span class="nc" id="L398">        return text3;</span>
     }
 
     public void setText3(String text3) {
-<span class="nc" id="L396">        this.text3 = text3;</span>
-<span class="nc" id="L397">    }</span>
+<span class="nc" id="L402">        this.text3 = text3;</span>
+<span class="nc" id="L403">    }</span>
 
     public String getTraceFileName() {
-<span class="nc" id="L400">        return traceFileName;</span>
+<span class="nc" id="L406">        return traceFileName;</span>
     }
 
     public void setTraceFileName(String traceFileName) {
-<span class="nc" id="L404">        this.traceFileName = traceFileName;</span>
-<span class="nc" id="L405">    }</span>
+<span class="nc" id="L410">        this.traceFileName = traceFileName;</span>
+<span class="nc" id="L411">    }</span>
 
     public Boolean getYesNo1() {
-<span class="nc" id="L408">        return yesNo1;</span>
+<span class="nc" id="L414">        return yesNo1;</span>
     }
 
     public void setYesNo1(Boolean yesNo1) {
-<span class="nc" id="L412">        this.yesNo1 = yesNo1;</span>
-<span class="nc" id="L413">    }</span>
+<span class="nc" id="L418">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L419">    }</span>
 
     public Boolean getYesNo2() {
-<span class="nc" id="L416">        return yesNo2;</span>
+<span class="nc" id="L422">        return yesNo2;</span>
     }
 
     public void setYesNo2(Boolean yesNo2) {
-<span class="nc" id="L420">        this.yesNo2 = yesNo2;</span>
-<span class="nc" id="L421">    }</span>
+<span class="nc" id="L426">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L427">    }</span>
 
     public Boolean getYesNo3() {
-<span class="nc" id="L424">        return yesNo3;</span>
+<span class="nc" id="L430">        return yesNo3;</span>
     }
 
     public void setYesNo3(Boolean yesNo3) {
-<span class="nc" id="L428">        this.yesNo3 = yesNo3;</span>
-<span class="nc" id="L429">    }</span>
+<span class="nc" id="L434">        this.yesNo3 = yesNo3;</span>
+<span class="nc" id="L435">    }</span>
 
     public String getGeneSequence() {
-<span class="nc" id="L432">        return geneSequence;</span>
+<span class="nc" id="L438">        return geneSequence;</span>
     }
 
     public void setGeneSequence(String geneSequence) {
-<span class="nc" id="L436">        this.geneSequence = geneSequence;</span>
-<span class="nc" id="L437">    }</span>
+<span class="nc" id="L442">        this.geneSequence = geneSequence;</span>
+<span class="nc" id="L443">    }</span>
 
     @XmlIDREF
     public Dnasequence getDNASequenceID() {
-<span class="nc" id="L441">        return dNASequenceID;</span>
+<span class="nc" id="L447">        return dNASequenceID;</span>
     }
 
     public void setDNASequenceID(Dnasequence dNASequenceID) {
-<span class="nc" id="L445">        this.dNASequenceID = dNASequenceID;</span>
-<span class="nc" id="L446">    }</span>
+<span class="nc" id="L451">        this.dNASequenceID = dNASequenceID;</span>
+<span class="nc" id="L452">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L450">        return modifiedByAgentID;</span>
+<span class="nc" id="L456">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L454">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L455">    }</span>
+<span class="nc" id="L460">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L461">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L459">        return createdByAgentID;</span>
+<span class="nc" id="L465">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L463">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L464">    }</span>
+<span class="nc" id="L469">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L470">    }</span>
 
     @XmlIDREF
     public Agent getRunByAgentID() {
-<span class="nc" id="L468">        return runByAgentID;</span>
+<span class="nc" id="L474">        return runByAgentID;</span>
     }
 
     public void setRunByAgentID(Agent runByAgentID) {
-<span class="nc" id="L472">        this.runByAgentID = runByAgentID;</span>
-<span class="nc" id="L473">    }</span>
+<span class="nc" id="L478">        this.runByAgentID = runByAgentID;</span>
+<span class="nc" id="L479">    }</span>
 
     @XmlIDREF
     public Agent getPreparedByAgentID() {
-<span class="nc" id="L477">        return preparedByAgentID;</span>
+<span class="nc" id="L483">        return preparedByAgentID;</span>
     }
 
     public void setPreparedByAgentID(Agent preparedByAgentID) {
-<span class="nc" id="L481">        this.preparedByAgentID = preparedByAgentID;</span>
-<span class="nc" id="L482">    }</span>
+<span class="nc" id="L487">        this.preparedByAgentID = preparedByAgentID;</span>
+<span class="nc" id="L488">    }</span>
 
     @XmlTransient
     public List&lt;Dnasequencingruncitation&gt; getDnasequencingruncitationList() {
-<span class="nc" id="L486">        return dnasequencingruncitationList;</span>
+<span class="nc" id="L492">        return dnasequencingruncitationList;</span>
     }
 
     public void setDnasequencingruncitationList(List&lt;Dnasequencingruncitation&gt; dnasequencingruncitationList) {
-<span class="nc" id="L490">        this.dnasequencingruncitationList = dnasequencingruncitationList;</span>
-<span class="nc" id="L491">    }</span>
+<span class="nc" id="L496">        this.dnasequencingruncitationList = dnasequencingruncitationList;</span>
+<span class="nc" id="L497">    }</span>
 
     @XmlTransient
     public List&lt;Dnasequencerunattachment&gt; getDnasequencerunattachmentList() {
-<span class="nc" id="L495">        return dnasequencerunattachmentList;</span>
+<span class="nc" id="L501">        return dnasequencerunattachmentList;</span>
     }
 
     public void setDnasequencerunattachmentList(List&lt;Dnasequencerunattachment&gt; dnasequencerunattachmentList) {
-<span class="nc" id="L499">        this.dnasequencerunattachmentList = dnasequencerunattachmentList;</span>
-<span class="nc" id="L500">    }</span>
+<span class="nc" id="L505">        this.dnasequencerunattachmentList = dnasequencerunattachmentList;</span>
+<span class="nc" id="L506">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L504">        int hash = 0;</span>
-<span class="nc bnc" id="L505" title="All 2 branches missed.">        hash += (dNASequencingRunID != null ? dNASequencingRunID.hashCode() : 0);</span>
-<span class="nc" id="L506">        return hash;</span>
+<span class="nc" id="L510">        int hash = 0;</span>
+<span class="nc bnc" id="L511" title="All 2 branches missed.">        hash += (dNASequencingRunID != null ? dNASequencingRunID.hashCode() : 0);</span>
+<span class="nc" id="L512">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L512" title="All 2 branches missed.">        if (!(object instanceof Dnasequencingrun)) {</span>
-<span class="nc" id="L513">            return false;</span>
+<span class="nc bnc" id="L518" title="All 2 branches missed.">        if (!(object instanceof Dnasequencingrun)) {</span>
+<span class="nc" id="L519">            return false;</span>
         }
-<span class="nc" id="L515">        Dnasequencingrun other = (Dnasequencingrun) object;</span>
-<span class="nc bnc" id="L516" title="All 8 branches missed.">        return !((this.dNASequencingRunID == null &amp;&amp; other.dNASequencingRunID != null) || (this.dNASequencingRunID != null &amp;&amp; !this.dNASequencingRunID.equals(other.dNASequencingRunID)));</span>
+<span class="nc" id="L521">        Dnasequencingrun other = (Dnasequencingrun) object;</span>
+<span class="nc bnc" id="L522" title="All 8 branches missed.">        return !((this.dNASequencingRunID == null &amp;&amp; other.dNASequencingRunID != null) || (this.dNASequencingRunID != null &amp;&amp; !this.dNASequencingRunID.equals(other.dNASequencingRunID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L521">        return &quot;se.nrm.dina.datamodel.Dnasequencingrun[ dNASequencingRunID=&quot; + dNASequencingRunID + &quot; ]&quot;;</span>
+<span class="nc" id="L527">        return &quot;se.nrm.dina.datamodel.Dnasequencingrun[ dNASequencingRunID=&quot; + dNASequencingRunID + &quot; ]&quot;;</span>
     }
     
 }

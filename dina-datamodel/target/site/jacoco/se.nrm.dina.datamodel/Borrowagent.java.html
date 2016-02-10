@@ -101,102 +101,108 @@ public class Borrowagent extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L104">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + borrowAgentID;</span>
+<span class="nc" id="L104">        return String.valueOf(borrowAgentID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L110">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + borrowAgentID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L109">        return borrowAgentID;</span>
+<span class="nc" id="L115">        return borrowAgentID;</span>
     }
 
     public Integer getBorrowAgentID() {
-<span class="nc" id="L113">        return borrowAgentID;</span>
+<span class="nc" id="L119">        return borrowAgentID;</span>
     }
 
     public void setBorrowAgentID(Integer borrowAgentID) {
-<span class="nc" id="L117">        this.borrowAgentID = borrowAgentID;</span>
-<span class="nc" id="L118">    }</span>
+<span class="nc" id="L123">        this.borrowAgentID = borrowAgentID;</span>
+<span class="nc" id="L124">    }</span>
  
     public int getCollectionMemberID() {
-<span class="nc" id="L121">        return collectionMemberID;</span>
+<span class="nc" id="L127">        return collectionMemberID;</span>
     }
 
     public void setCollectionMemberID(int collectionMemberID) {
-<span class="nc" id="L125">        this.collectionMemberID = collectionMemberID;</span>
-<span class="nc" id="L126">    }</span>
+<span class="nc" id="L131">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L132">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L129">        return remarks;</span>
+<span class="nc" id="L135">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L133">        this.remarks = remarks;</span>
-<span class="nc" id="L134">    }</span>
+<span class="nc" id="L139">        this.remarks = remarks;</span>
+<span class="nc" id="L140">    }</span>
 
     public String getRole() {
-<span class="nc" id="L137">        return role;</span>
+<span class="nc" id="L143">        return role;</span>
     }
 
     public void setRole(String role) {
-<span class="nc" id="L141">        this.role = role;</span>
-<span class="nc" id="L142">    }</span>
+<span class="nc" id="L147">        this.role = role;</span>
+<span class="nc" id="L148">    }</span>
 
     @XmlIDREF
     public Agent getAgentID() {
-<span class="nc" id="L146">        return agentID;</span>
+<span class="nc" id="L152">        return agentID;</span>
     }
 
     public void setAgentID(Agent agentID) {
-<span class="nc" id="L150">        this.agentID = agentID;</span>
-<span class="nc" id="L151">    }</span>
+<span class="nc" id="L156">        this.agentID = agentID;</span>
+<span class="nc" id="L157">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L155">        return modifiedByAgentID;</span>
+<span class="nc" id="L161">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L159">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L160">    }</span>
+<span class="nc" id="L165">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L166">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L164">        return createdByAgentID;</span>
+<span class="nc" id="L170">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L168">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L169">    }</span>
+<span class="nc" id="L174">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L175">    }</span>
 
     @XmlIDREF
     public Borrow getBorrowID() {
-<span class="nc" id="L173">        return borrowID;</span>
+<span class="nc" id="L179">        return borrowID;</span>
     }
 
     public void setBorrowID(Borrow borrowID) {
-<span class="nc" id="L177">        this.borrowID = borrowID;</span>
-<span class="nc" id="L178">    }</span>
+<span class="nc" id="L183">        this.borrowID = borrowID;</span>
+<span class="nc" id="L184">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L182">        int hash = 0;</span>
-<span class="nc bnc" id="L183" title="All 2 branches missed.">        hash += (borrowAgentID != null ? borrowAgentID.hashCode() : 0);</span>
-<span class="nc" id="L184">        return hash;</span>
+<span class="nc" id="L188">        int hash = 0;</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">        hash += (borrowAgentID != null ? borrowAgentID.hashCode() : 0);</span>
+<span class="nc" id="L190">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L190" title="All 2 branches missed.">        if (!(object instanceof Borrowagent)) {</span>
-<span class="nc" id="L191">            return false;</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">        if (!(object instanceof Borrowagent)) {</span>
+<span class="nc" id="L197">            return false;</span>
         }
-<span class="nc" id="L193">        Borrowagent other = (Borrowagent) object;</span>
-<span class="nc bnc" id="L194" title="All 8 branches missed.">        return !((this.borrowAgentID == null &amp;&amp; other.borrowAgentID != null) || (this.borrowAgentID != null &amp;&amp; !this.borrowAgentID.equals(other.borrowAgentID)));</span>
+<span class="nc" id="L199">        Borrowagent other = (Borrowagent) object;</span>
+<span class="nc bnc" id="L200" title="All 8 branches missed.">        return !((this.borrowAgentID == null &amp;&amp; other.borrowAgentID != null) || (this.borrowAgentID != null &amp;&amp; !this.borrowAgentID.equals(other.borrowAgentID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L199">        return &quot;se.nrm.dina.datamodel.Borrowagent[ borrowAgentID=&quot; + borrowAgentID + &quot; ]&quot;;</span>
+<span class="nc" id="L205">        return &quot;se.nrm.dina.datamodel.Borrowagent[ borrowAgentID=&quot; + borrowAgentID + &quot; ]&quot;;</span>
     }
     
 }

@@ -82,78 +82,84 @@ public class Attachmenttag extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L85">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + attachmentTagID;</span>
+<span class="nc" id="L85">        return String.valueOf(attachmentTagID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L91">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + attachmentTagID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L90">        return attachmentTagID;</span>
+<span class="nc" id="L96">        return attachmentTagID;</span>
     }
 
     public Integer getAttachmentTagID() {
-<span class="nc" id="L94">        return attachmentTagID;</span>
+<span class="nc" id="L100">        return attachmentTagID;</span>
     }
 
     public void setAttachmentTagID(Integer attachmentTagID) {
-<span class="nc" id="L98">        this.attachmentTagID = attachmentTagID;</span>
-<span class="nc" id="L99">    }</span>
+<span class="nc" id="L104">        this.attachmentTagID = attachmentTagID;</span>
+<span class="nc" id="L105">    }</span>
  
 
     public String getTag() {
-<span class="nc" id="L103">        return tag;</span>
+<span class="nc" id="L109">        return tag;</span>
     }
 
     public void setTag(String tag) {
-<span class="nc" id="L107">        this.tag = tag;</span>
-<span class="nc" id="L108">    }</span>
+<span class="nc" id="L113">        this.tag = tag;</span>
+<span class="nc" id="L114">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L112">        return modifiedByAgentID;</span>
+<span class="nc" id="L118">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L116">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L117">    }</span>
+<span class="nc" id="L122">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L123">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L121">        return createdByAgentID;</span>
+<span class="nc" id="L127">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L125">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L126">    }</span>
+<span class="nc" id="L131">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L132">    }</span>
 
     @XmlIDREF
     public Attachment getAttachmentID() {
-<span class="nc" id="L130">        return attachmentID;</span>
+<span class="nc" id="L136">        return attachmentID;</span>
     }
 
     public void setAttachmentID(Attachment attachmentID) {
-<span class="nc" id="L134">        this.attachmentID = attachmentID;</span>
-<span class="nc" id="L135">    }</span>
+<span class="nc" id="L140">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L141">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L139">        int hash = 0;</span>
-<span class="nc bnc" id="L140" title="All 2 branches missed.">        hash += (attachmentTagID != null ? attachmentTagID.hashCode() : 0);</span>
-<span class="nc" id="L141">        return hash;</span>
+<span class="nc" id="L145">        int hash = 0;</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">        hash += (attachmentTagID != null ? attachmentTagID.hashCode() : 0);</span>
+<span class="nc" id="L147">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L147" title="All 2 branches missed.">        if (!(object instanceof Attachmenttag)) {</span>
-<span class="nc" id="L148">            return false;</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">        if (!(object instanceof Attachmenttag)) {</span>
+<span class="nc" id="L154">            return false;</span>
         }
-<span class="nc" id="L150">        Attachmenttag other = (Attachmenttag) object;</span>
-<span class="nc bnc" id="L151" title="All 8 branches missed.">        return !((this.attachmentTagID == null &amp;&amp; other.attachmentTagID != null) || (this.attachmentTagID != null &amp;&amp; !this.attachmentTagID.equals(other.attachmentTagID)));</span>
+<span class="nc" id="L156">        Attachmenttag other = (Attachmenttag) object;</span>
+<span class="nc bnc" id="L157" title="All 8 branches missed.">        return !((this.attachmentTagID == null &amp;&amp; other.attachmentTagID != null) || (this.attachmentTagID != null &amp;&amp; !this.attachmentTagID.equals(other.attachmentTagID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L156">        return &quot;se.nrm.dina.datamodel.Attachmenttag[ attachmentTagID=&quot; + attachmentTagID + &quot; ]&quot;;</span>
+<span class="nc" id="L162">        return &quot;se.nrm.dina.datamodel.Attachmenttag[ attachmentTagID=&quot; + attachmentTagID + &quot; ]&quot;;</span>
     }
     
 }

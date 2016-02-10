@@ -89,8 +89,15 @@ public class Agentgeography extends BaseEntity {
     @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
+        return String.valueOf(agentGeographyID);
+    }
+    
+    @XmlAttribute(name = "uuid") 
+    @Override
+    public String getUUID() {
         return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + agentGeographyID;
     }
+
     
     @Override
     public int getEntityId() {

@@ -109,121 +109,127 @@ public class Fieldnotebookpage extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L112">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + fieldNotebookPageID;</span>
+<span class="nc" id="L112">        return String.valueOf(fieldNotebookPageID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L118">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + fieldNotebookPageID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L117">        return fieldNotebookPageID;</span>
+<span class="nc" id="L123">        return fieldNotebookPageID;</span>
     }
     
     public Integer getFieldNotebookPageID() {
-<span class="nc" id="L121">        return fieldNotebookPageID;</span>
+<span class="nc" id="L127">        return fieldNotebookPageID;</span>
     }
 
     public void setFieldNotebookPageID(Integer fieldNotebookPageID) {
-<span class="nc" id="L125">        this.fieldNotebookPageID = fieldNotebookPageID;</span>
-<span class="nc" id="L126">    }</span>
+<span class="nc" id="L131">        this.fieldNotebookPageID = fieldNotebookPageID;</span>
+<span class="nc" id="L132">    }</span>
 
     
     public String getDescription() {
-<span class="nc" id="L130">        return description;</span>
+<span class="nc" id="L136">        return description;</span>
     }
 
     public void setDescription(String description) {
-<span class="nc" id="L134">        this.description = description;</span>
-<span class="nc" id="L135">    }</span>
+<span class="nc" id="L140">        this.description = description;</span>
+<span class="nc" id="L141">    }</span>
 
     public String getPageNumber() {
-<span class="nc" id="L138">        return pageNumber;</span>
+<span class="nc" id="L144">        return pageNumber;</span>
     }
 
     public void setPageNumber(String pageNumber) {
-<span class="nc" id="L142">        this.pageNumber = pageNumber;</span>
-<span class="nc" id="L143">    }</span>
+<span class="nc" id="L148">        this.pageNumber = pageNumber;</span>
+<span class="nc" id="L149">    }</span>
 
     public Date getScanDate() {
-<span class="nc" id="L146">        return scanDate;</span>
+<span class="nc" id="L152">        return scanDate;</span>
     }
 
     public void setScanDate(Date scanDate) {
-<span class="nc" id="L150">        this.scanDate = scanDate;</span>
-<span class="nc" id="L151">    }</span>
+<span class="nc" id="L156">        this.scanDate = scanDate;</span>
+<span class="nc" id="L157">    }</span>
 
     @XmlTransient
     public List&lt;Collectionobject&gt; getCollectionobjectList() {
-<span class="nc" id="L155">        return collectionobjectList;</span>
+<span class="nc" id="L161">        return collectionobjectList;</span>
     }
 
     public void setCollectionobjectList(List&lt;Collectionobject&gt; collectionobjectList) {
-<span class="nc" id="L159">        this.collectionobjectList = collectionobjectList;</span>
-<span class="nc" id="L160">    }</span>
+<span class="nc" id="L165">        this.collectionobjectList = collectionobjectList;</span>
+<span class="nc" id="L166">    }</span>
 
     @XmlTransient
     public List&lt;Fieldnotebookpageattachment&gt; getFieldnotebookpageattachmentList() {
-<span class="nc" id="L164">        return fieldnotebookpageattachmentList;</span>
+<span class="nc" id="L170">        return fieldnotebookpageattachmentList;</span>
     }
 
     public void setFieldnotebookpageattachmentList(List&lt;Fieldnotebookpageattachment&gt; fieldnotebookpageattachmentList) {
-<span class="nc" id="L168">        this.fieldnotebookpageattachmentList = fieldnotebookpageattachmentList;</span>
-<span class="nc" id="L169">    }</span>
+<span class="nc" id="L174">        this.fieldnotebookpageattachmentList = fieldnotebookpageattachmentList;</span>
+<span class="nc" id="L175">    }</span>
 
     @XmlIDREF
     public Discipline getDisciplineID() {
-<span class="nc" id="L173">        return disciplineID;</span>
+<span class="nc" id="L179">        return disciplineID;</span>
     }
 
     public void setDisciplineID(Discipline disciplineID) {
-<span class="nc" id="L177">        this.disciplineID = disciplineID;</span>
-<span class="nc" id="L178">    }</span>
+<span class="nc" id="L183">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L184">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L182">        return modifiedByAgentID;</span>
+<span class="nc" id="L188">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L186">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L187">    }</span>
+<span class="nc" id="L192">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L193">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L191">        return createdByAgentID;</span>
+<span class="nc" id="L197">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L195">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L196">    }</span>
+<span class="nc" id="L201">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L202">    }</span>
 
     @XmlIDREF
     public Fieldnotebookpageset getFieldNotebookPageSetID() {
-<span class="nc" id="L200">        return fieldNotebookPageSetID;</span>
+<span class="nc" id="L206">        return fieldNotebookPageSetID;</span>
     }
 
     public void setFieldNotebookPageSetID(Fieldnotebookpageset fieldNotebookPageSetID) {
-<span class="nc" id="L204">        this.fieldNotebookPageSetID = fieldNotebookPageSetID;</span>
-<span class="nc" id="L205">    }</span>
+<span class="nc" id="L210">        this.fieldNotebookPageSetID = fieldNotebookPageSetID;</span>
+<span class="nc" id="L211">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L209">        int hash = 0;</span>
-<span class="nc bnc" id="L210" title="All 2 branches missed.">        hash += (fieldNotebookPageID != null ? fieldNotebookPageID.hashCode() : 0);</span>
-<span class="nc" id="L211">        return hash;</span>
+<span class="nc" id="L215">        int hash = 0;</span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">        hash += (fieldNotebookPageID != null ? fieldNotebookPageID.hashCode() : 0);</span>
+<span class="nc" id="L217">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L217" title="All 2 branches missed.">        if (!(object instanceof Fieldnotebookpage)) {</span>
-<span class="nc" id="L218">            return false;</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">        if (!(object instanceof Fieldnotebookpage)) {</span>
+<span class="nc" id="L224">            return false;</span>
         }
-<span class="nc" id="L220">        Fieldnotebookpage other = (Fieldnotebookpage) object;</span>
-<span class="nc bnc" id="L221" title="All 8 branches missed.">        return !((this.fieldNotebookPageID == null &amp;&amp; other.fieldNotebookPageID != null) || (this.fieldNotebookPageID != null &amp;&amp; !this.fieldNotebookPageID.equals(other.fieldNotebookPageID)));</span>
+<span class="nc" id="L226">        Fieldnotebookpage other = (Fieldnotebookpage) object;</span>
+<span class="nc bnc" id="L227" title="All 8 branches missed.">        return !((this.fieldNotebookPageID == null &amp;&amp; other.fieldNotebookPageID != null) || (this.fieldNotebookPageID != null &amp;&amp; !this.fieldNotebookPageID.equals(other.fieldNotebookPageID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L226">        return &quot;se.nrm.dina.datamodel.Fieldnotebookpage[ fieldNotebookPageID=&quot; + fieldNotebookPageID + &quot; ]&quot;;</span>
+<span class="nc" id="L232">        return &quot;se.nrm.dina.datamodel.Fieldnotebookpage[ fieldNotebookPageID=&quot; + fieldNotebookPageID + &quot; ]&quot;;</span>
     }
     
 }

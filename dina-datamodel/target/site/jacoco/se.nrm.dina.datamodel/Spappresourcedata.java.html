@@ -81,86 +81,92 @@ public class Spappresourcedata extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L84">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spAppResourceDataID;</span>
+<span class="nc" id="L84">        return String.valueOf(spAppResourceDataID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L90">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spAppResourceDataID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L89">        return spAppResourceDataID;</span>
+<span class="nc" id="L95">        return spAppResourceDataID;</span>
     }
 
     public Integer getSpAppResourceDataID() {
-<span class="nc" id="L93">        return spAppResourceDataID;</span>
+<span class="nc" id="L99">        return spAppResourceDataID;</span>
     }
 
     public void setSpAppResourceDataID(Integer spAppResourceDataID) {
-<span class="nc" id="L97">        this.spAppResourceDataID = spAppResourceDataID;</span>
-<span class="nc" id="L98">    }</span>
+<span class="nc" id="L103">        this.spAppResourceDataID = spAppResourceDataID;</span>
+<span class="nc" id="L104">    }</span>
   
     public byte[] getData() {
-<span class="nc" id="L101">        return data;</span>
+<span class="nc" id="L107">        return data;</span>
     }
 
     public void setData(byte[] data) {
-<span class="nc" id="L105">        this.data = data;</span>
-<span class="nc" id="L106">    }</span>
+<span class="nc" id="L111">        this.data = data;</span>
+<span class="nc" id="L112">    }</span>
 
     @XmlIDREF
     public Spviewsetobj getSpViewSetObjID() {
-<span class="nc" id="L110">        return spViewSetObjID;</span>
+<span class="nc" id="L116">        return spViewSetObjID;</span>
     }
 
     public void setSpViewSetObjID(Spviewsetobj spViewSetObjID) {
-<span class="nc" id="L114">        this.spViewSetObjID = spViewSetObjID;</span>
-<span class="nc" id="L115">    }</span>
+<span class="nc" id="L120">        this.spViewSetObjID = spViewSetObjID;</span>
+<span class="nc" id="L121">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L119">        return modifiedByAgentID;</span>
+<span class="nc" id="L125">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L123">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L124">    }</span>
+<span class="nc" id="L129">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L130">    }</span>
 
     @XmlIDREF
     public Spappresource getSpAppResourceID() {
-<span class="nc" id="L128">        return spAppResourceID;</span>
+<span class="nc" id="L134">        return spAppResourceID;</span>
     }
 
     public void setSpAppResourceID(Spappresource spAppResourceID) {
-<span class="nc" id="L132">        this.spAppResourceID = spAppResourceID;</span>
-<span class="nc" id="L133">    }</span>
+<span class="nc" id="L138">        this.spAppResourceID = spAppResourceID;</span>
+<span class="nc" id="L139">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L137">        return createdByAgentID;</span>
+<span class="nc" id="L143">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L141">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L142">    }</span>
+<span class="nc" id="L147">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L148">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L146">        int hash = 0;</span>
-<span class="nc bnc" id="L147" title="All 2 branches missed.">        hash += (spAppResourceDataID != null ? spAppResourceDataID.hashCode() : 0);</span>
-<span class="nc" id="L148">        return hash;</span>
+<span class="nc" id="L152">        int hash = 0;</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">        hash += (spAppResourceDataID != null ? spAppResourceDataID.hashCode() : 0);</span>
+<span class="nc" id="L154">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L154" title="All 2 branches missed.">        if (!(object instanceof Spappresourcedata)) {</span>
-<span class="nc" id="L155">            return false;</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">        if (!(object instanceof Spappresourcedata)) {</span>
+<span class="nc" id="L161">            return false;</span>
         }
-<span class="nc" id="L157">        Spappresourcedata other = (Spappresourcedata) object;</span>
-<span class="nc bnc" id="L158" title="All 8 branches missed.">        return !((this.spAppResourceDataID == null &amp;&amp; other.spAppResourceDataID != null) || (this.spAppResourceDataID != null &amp;&amp; !this.spAppResourceDataID.equals(other.spAppResourceDataID)));</span>
+<span class="nc" id="L163">        Spappresourcedata other = (Spappresourcedata) object;</span>
+<span class="nc bnc" id="L164" title="All 8 branches missed.">        return !((this.spAppResourceDataID == null &amp;&amp; other.spAppResourceDataID != null) || (this.spAppResourceDataID != null &amp;&amp; !this.spAppResourceDataID.equals(other.spAppResourceDataID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L163">        return &quot;se.nrm.dina.datamodel.Spappresourcedata[ spAppResourceDataID=&quot; + spAppResourceDataID + &quot; ]&quot;;</span>
+<span class="nc" id="L169">        return &quot;se.nrm.dina.datamodel.Spappresourcedata[ spAppResourceDataID=&quot; + spAppResourceDataID + &quot; ]&quot;;</span>
     }
     
 }

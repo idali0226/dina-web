@@ -94,91 +94,97 @@ public class Giftattachment extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L97">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + giftAttachmentID;</span>
+<span class="nc" id="L97">        return String.valueOf(giftAttachmentID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L103">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + giftAttachmentID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L102">        return giftAttachmentID;</span>
+<span class="nc" id="L108">        return giftAttachmentID;</span>
     }
 
     public Integer getGiftAttachmentID() {
-<span class="nc" id="L106">        return giftAttachmentID;</span>
+<span class="nc" id="L112">        return giftAttachmentID;</span>
     }
 
     public void setGiftAttachmentID(Integer giftAttachmentID) {
-<span class="nc" id="L110">        this.giftAttachmentID = giftAttachmentID;</span>
-<span class="nc" id="L111">    }</span>
+<span class="nc" id="L116">        this.giftAttachmentID = giftAttachmentID;</span>
+<span class="nc" id="L117">    }</span>
 
     
     public int getOrdinal() {
-<span class="nc" id="L115">        return ordinal;</span>
+<span class="nc" id="L121">        return ordinal;</span>
     }
 
     public void setOrdinal(int ordinal) {
-<span class="nc" id="L119">        this.ordinal = ordinal;</span>
-<span class="nc" id="L120">    }</span>
+<span class="nc" id="L125">        this.ordinal = ordinal;</span>
+<span class="nc" id="L126">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L123">        return remarks;</span>
+<span class="nc" id="L129">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L127">        this.remarks = remarks;</span>
-<span class="nc" id="L128">    }</span>
+<span class="nc" id="L133">        this.remarks = remarks;</span>
+<span class="nc" id="L134">    }</span>
 
     public Integer getCreatedByAgentID() {
-<span class="nc" id="L131">        return createdByAgentID;</span>
+<span class="nc" id="L137">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Integer createdByAgentID) {
-<span class="nc" id="L135">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L136">    }</span>
+<span class="nc" id="L141">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L142">    }</span>
 
     public int getAttachmentID() {
-<span class="nc" id="L139">        return attachmentID;</span>
+<span class="nc" id="L145">        return attachmentID;</span>
     }
 
     public void setAttachmentID(int attachmentID) {
-<span class="nc" id="L143">        this.attachmentID = attachmentID;</span>
-<span class="nc" id="L144">    }</span>
+<span class="nc" id="L149">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L150">    }</span>
 
     public int getGiftID() {
-<span class="nc" id="L147">        return giftID;</span>
+<span class="nc" id="L153">        return giftID;</span>
     }
 
     public void setGiftID(int giftID) {
-<span class="nc" id="L151">        this.giftID = giftID;</span>
-<span class="nc" id="L152">    }</span>
+<span class="nc" id="L157">        this.giftID = giftID;</span>
+<span class="nc" id="L158">    }</span>
 
     public Integer getModifiedByAgentID() {
-<span class="nc" id="L155">        return modifiedByAgentID;</span>
+<span class="nc" id="L161">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Integer modifiedByAgentID) {
-<span class="nc" id="L159">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L160">    }</span>
+<span class="nc" id="L165">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L166">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L164">        int hash = 0;</span>
-<span class="nc bnc" id="L165" title="All 2 branches missed.">        hash += (giftAttachmentID != null ? giftAttachmentID.hashCode() : 0);</span>
-<span class="nc" id="L166">        return hash;</span>
+<span class="nc" id="L170">        int hash = 0;</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">        hash += (giftAttachmentID != null ? giftAttachmentID.hashCode() : 0);</span>
+<span class="nc" id="L172">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L172" title="All 2 branches missed.">        if (!(object instanceof Giftattachment)) {</span>
-<span class="nc" id="L173">            return false;</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">        if (!(object instanceof Giftattachment)) {</span>
+<span class="nc" id="L179">            return false;</span>
         }
-<span class="nc" id="L175">        Giftattachment other = (Giftattachment) object;</span>
-<span class="nc bnc" id="L176" title="All 8 branches missed.">        return !((this.giftAttachmentID == null &amp;&amp; other.giftAttachmentID != null) || (this.giftAttachmentID != null &amp;&amp; !this.giftAttachmentID.equals(other.giftAttachmentID)));</span>
+<span class="nc" id="L181">        Giftattachment other = (Giftattachment) object;</span>
+<span class="nc bnc" id="L182" title="All 8 branches missed.">        return !((this.giftAttachmentID == null &amp;&amp; other.giftAttachmentID != null) || (this.giftAttachmentID != null &amp;&amp; !this.giftAttachmentID.equals(other.giftAttachmentID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L181">        return &quot;se.nrm.dina.datamodel.Giftattachment[ giftAttachmentID=&quot; + giftAttachmentID + &quot; ]&quot;;</span>
+<span class="nc" id="L187">        return &quot;se.nrm.dina.datamodel.Giftattachment[ giftAttachmentID=&quot; + giftAttachmentID + &quot; ]&quot;;</span>
     }
     
 }

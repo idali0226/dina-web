@@ -116,157 +116,163 @@ public class Workbenchrow implements EntityBean, Serializable {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L119">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchRowID;</span>
+<span class="nc" id="L119">        return String.valueOf(workbenchRowID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L125">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchRowID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L124">        return workbenchRowID;</span>
+<span class="nc" id="L130">        return workbenchRowID;</span>
     }
 
     public Integer getWorkbenchRowID() {
-<span class="nc" id="L128">        return workbenchRowID;</span>
+<span class="nc" id="L134">        return workbenchRowID;</span>
     }
 
     public void setWorkbenchRowID(Integer workbenchRowID) {
-<span class="nc" id="L132">        this.workbenchRowID = workbenchRowID;</span>
-<span class="nc" id="L133">    }</span>
+<span class="nc" id="L138">        this.workbenchRowID = workbenchRowID;</span>
+<span class="nc" id="L139">    }</span>
 
     public String getBioGeomancerResults() {
-<span class="nc" id="L136">        return bioGeomancerResults;</span>
+<span class="nc" id="L142">        return bioGeomancerResults;</span>
     }
 
     public void setBioGeomancerResults(String bioGeomancerResults) {
-<span class="nc" id="L140">        this.bioGeomancerResults = bioGeomancerResults;</span>
-<span class="nc" id="L141">    }</span>
+<span class="nc" id="L146">        this.bioGeomancerResults = bioGeomancerResults;</span>
+<span class="nc" id="L147">    }</span>
 
     public byte[] getCardImageData() {
-<span class="nc" id="L144">        return cardImageData;</span>
+<span class="nc" id="L150">        return cardImageData;</span>
     }
 
     public void setCardImageData(byte[] cardImageData) {
-<span class="nc" id="L148">        this.cardImageData = cardImageData;</span>
-<span class="nc" id="L149">    }</span>
+<span class="nc" id="L154">        this.cardImageData = cardImageData;</span>
+<span class="nc" id="L155">    }</span>
 
     public String getCardImageFullPath() {
-<span class="nc" id="L152">        return cardImageFullPath;</span>
+<span class="nc" id="L158">        return cardImageFullPath;</span>
     }
 
     public void setCardImageFullPath(String cardImageFullPath) {
-<span class="nc" id="L156">        this.cardImageFullPath = cardImageFullPath;</span>
-<span class="nc" id="L157">    }</span>
+<span class="nc" id="L162">        this.cardImageFullPath = cardImageFullPath;</span>
+<span class="nc" id="L163">    }</span>
 
     public String getLat1Text() {
-<span class="nc" id="L160">        return lat1Text;</span>
+<span class="nc" id="L166">        return lat1Text;</span>
     }
 
     public void setLat1Text(String lat1Text) {
-<span class="nc" id="L164">        this.lat1Text = lat1Text;</span>
-<span class="nc" id="L165">    }</span>
+<span class="nc" id="L170">        this.lat1Text = lat1Text;</span>
+<span class="nc" id="L171">    }</span>
 
     public String getLat2Text() {
-<span class="nc" id="L168">        return lat2Text;</span>
+<span class="nc" id="L174">        return lat2Text;</span>
     }
 
     public void setLat2Text(String lat2Text) {
-<span class="nc" id="L172">        this.lat2Text = lat2Text;</span>
-<span class="nc" id="L173">    }</span>
+<span class="nc" id="L178">        this.lat2Text = lat2Text;</span>
+<span class="nc" id="L179">    }</span>
 
     public String getLong1Text() {
-<span class="nc" id="L176">        return long1Text;</span>
+<span class="nc" id="L182">        return long1Text;</span>
     }
 
     public void setLong1Text(String long1Text) {
-<span class="nc" id="L180">        this.long1Text = long1Text;</span>
-<span class="nc" id="L181">    }</span>
+<span class="nc" id="L186">        this.long1Text = long1Text;</span>
+<span class="nc" id="L187">    }</span>
 
     public String getLong2Text() {
-<span class="nc" id="L184">        return long2Text;</span>
+<span class="nc" id="L190">        return long2Text;</span>
     }
 
     public void setLong2Text(String long2Text) {
-<span class="nc" id="L188">        this.long2Text = long2Text;</span>
-<span class="nc" id="L189">    }</span>
+<span class="nc" id="L194">        this.long2Text = long2Text;</span>
+<span class="nc" id="L195">    }</span>
 
     public Short getRowNumber() {
-<span class="nc" id="L192">        return rowNumber;</span>
+<span class="nc" id="L198">        return rowNumber;</span>
     }
 
     public void setRowNumber(Short rowNumber) {
-<span class="nc" id="L196">        this.rowNumber = rowNumber;</span>
-<span class="nc" id="L197">    }</span>
+<span class="nc" id="L202">        this.rowNumber = rowNumber;</span>
+<span class="nc" id="L203">    }</span>
 
     public Short getUploadStatus() {
-<span class="nc" id="L200">        return uploadStatus;</span>
+<span class="nc" id="L206">        return uploadStatus;</span>
     }
 
     public void setUploadStatus(Short uploadStatus) {
-<span class="nc" id="L204">        this.uploadStatus = uploadStatus;</span>
-<span class="nc" id="L205">    }</span>
+<span class="nc" id="L210">        this.uploadStatus = uploadStatus;</span>
+<span class="nc" id="L211">    }</span>
 
     public Integer getRecordID() {
-<span class="nc" id="L208">        return recordID;</span>
+<span class="nc" id="L214">        return recordID;</span>
     }
 
     public void setRecordID(Integer recordID) {
-<span class="nc" id="L212">        this.recordID = recordID;</span>
-<span class="nc" id="L213">    }</span>
+<span class="nc" id="L218">        this.recordID = recordID;</span>
+<span class="nc" id="L219">    }</span>
 
     public Short getSGRStatus() {
-<span class="nc" id="L216">        return sGRStatus;</span>
+<span class="nc" id="L222">        return sGRStatus;</span>
     }
 
     public void setSGRStatus(Short sGRStatus) {
-<span class="nc" id="L220">        this.sGRStatus = sGRStatus;</span>
-<span class="nc" id="L221">    }</span>
+<span class="nc" id="L226">        this.sGRStatus = sGRStatus;</span>
+<span class="nc" id="L227">    }</span>
 
     @XmlTransient
     public List&lt;Workbenchdataitem&gt; getWorkbenchdataitemList() {
-<span class="nc" id="L225">        return workbenchdataitemList;</span>
+<span class="nc" id="L231">        return workbenchdataitemList;</span>
     }
 
     public void setWorkbenchdataitemList(List&lt;Workbenchdataitem&gt; workbenchdataitemList) {
-<span class="nc" id="L229">        this.workbenchdataitemList = workbenchdataitemList;</span>
-<span class="nc" id="L230">    }</span>
+<span class="nc" id="L235">        this.workbenchdataitemList = workbenchdataitemList;</span>
+<span class="nc" id="L236">    }</span>
 
     @XmlIDREF
     public Workbench getWorkbenchID() {
-<span class="nc" id="L234">        return workbenchID;</span>
+<span class="nc" id="L240">        return workbenchID;</span>
     }
 
     public void setWorkbenchID(Workbench workbenchID) {
-<span class="nc" id="L238">        this.workbenchID = workbenchID;</span>
-<span class="nc" id="L239">    }</span>
+<span class="nc" id="L244">        this.workbenchID = workbenchID;</span>
+<span class="nc" id="L245">    }</span>
 
     @XmlTransient
     public List&lt;Workbenchrowimage&gt; getWorkbenchrowimageList() {
-<span class="nc" id="L243">        return workbenchrowimageList;</span>
+<span class="nc" id="L249">        return workbenchrowimageList;</span>
     }
 
     public void setWorkbenchrowimageList(List&lt;Workbenchrowimage&gt; workbenchrowimageList) {
-<span class="nc" id="L247">        this.workbenchrowimageList = workbenchrowimageList;</span>
-<span class="nc" id="L248">    }</span>
+<span class="nc" id="L253">        this.workbenchrowimageList = workbenchrowimageList;</span>
+<span class="nc" id="L254">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L252">        int hash = 0;</span>
-<span class="nc bnc" id="L253" title="All 2 branches missed.">        hash += (workbenchRowID != null ? workbenchRowID.hashCode() : 0);</span>
-<span class="nc" id="L254">        return hash;</span>
+<span class="nc" id="L258">        int hash = 0;</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">        hash += (workbenchRowID != null ? workbenchRowID.hashCode() : 0);</span>
+<span class="nc" id="L260">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L260" title="All 2 branches missed.">        if (!(object instanceof Workbenchrow)) {</span>
-<span class="nc" id="L261">            return false;</span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">        if (!(object instanceof Workbenchrow)) {</span>
+<span class="nc" id="L267">            return false;</span>
         }
-<span class="nc" id="L263">        Workbenchrow other = (Workbenchrow) object;</span>
-<span class="nc bnc" id="L264" title="All 8 branches missed.">        return !((this.workbenchRowID == null &amp;&amp; other.workbenchRowID != null) || (this.workbenchRowID != null &amp;&amp; !this.workbenchRowID.equals(other.workbenchRowID)));</span>
+<span class="nc" id="L269">        Workbenchrow other = (Workbenchrow) object;</span>
+<span class="nc bnc" id="L270" title="All 8 branches missed.">        return !((this.workbenchRowID == null &amp;&amp; other.workbenchRowID != null) || (this.workbenchRowID != null &amp;&amp; !this.workbenchRowID.equals(other.workbenchRowID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L269">        return &quot;se.nrm.dina.datamodel.Workbenchrow[ workbenchRowID=&quot; + workbenchRowID + &quot; ]&quot;;</span>
+<span class="nc" id="L275">        return &quot;se.nrm.dina.datamodel.Workbenchrow[ workbenchRowID=&quot; + workbenchRowID + &quot; ]&quot;;</span>
     }
     
 }

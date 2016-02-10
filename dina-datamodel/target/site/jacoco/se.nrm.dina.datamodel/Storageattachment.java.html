@@ -91,96 +91,102 @@ public class Storageattachment extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L94">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + storageAttachmentID;</span>
+<span class="nc" id="L94">        return String.valueOf(storageAttachmentID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L100">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + storageAttachmentID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L99">        return storageAttachmentID;</span>
+<span class="nc" id="L105">        return storageAttachmentID;</span>
     }
 
     public Integer getStorageAttachmentID() {
-<span class="nc" id="L103">        return storageAttachmentID;</span>
+<span class="nc" id="L109">        return storageAttachmentID;</span>
     }
 
     public void setStorageAttachmentID(Integer storageAttachmentID) {
-<span class="nc" id="L107">        this.storageAttachmentID = storageAttachmentID;</span>
-<span class="nc" id="L108">    }</span>
+<span class="nc" id="L113">        this.storageAttachmentID = storageAttachmentID;</span>
+<span class="nc" id="L114">    }</span>
  
  
 
     public int getOrdinal() {
-<span class="nc" id="L113">        return ordinal;</span>
+<span class="nc" id="L119">        return ordinal;</span>
     }
 
     public void setOrdinal(int ordinal) {
-<span class="nc" id="L117">        this.ordinal = ordinal;</span>
-<span class="nc" id="L118">    }</span>
+<span class="nc" id="L123">        this.ordinal = ordinal;</span>
+<span class="nc" id="L124">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L121">        return remarks;</span>
+<span class="nc" id="L127">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L125">        this.remarks = remarks;</span>
-<span class="nc" id="L126">    }</span>
+<span class="nc" id="L131">        this.remarks = remarks;</span>
+<span class="nc" id="L132">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L130">        return modifiedByAgentID;</span>
+<span class="nc" id="L136">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L134">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L135">    }</span>
+<span class="nc" id="L140">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L141">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L139">        return createdByAgentID;</span>
+<span class="nc" id="L145">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L143">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L144">    }</span>
+<span class="nc" id="L149">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L150">    }</span>
 
     @XmlIDREF
     public Attachment getAttachmentID() {
-<span class="nc" id="L148">        return attachmentID;</span>
+<span class="nc" id="L154">        return attachmentID;</span>
     }
 
     public void setAttachmentID(Attachment attachmentID) {
-<span class="nc" id="L152">        this.attachmentID = attachmentID;</span>
-<span class="nc" id="L153">    }</span>
+<span class="nc" id="L158">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L159">    }</span>
 
     @XmlIDREF
     public Storage getStorageID() {
-<span class="nc" id="L157">        return storageID;</span>
+<span class="nc" id="L163">        return storageID;</span>
     }
 
     public void setStorageID(Storage storageID) {
-<span class="nc" id="L161">        this.storageID = storageID;</span>
-<span class="nc" id="L162">    }</span>
+<span class="nc" id="L167">        this.storageID = storageID;</span>
+<span class="nc" id="L168">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L166">        int hash = 0;</span>
-<span class="nc bnc" id="L167" title="All 2 branches missed.">        hash += (storageAttachmentID != null ? storageAttachmentID.hashCode() : 0);</span>
-<span class="nc" id="L168">        return hash;</span>
+<span class="nc" id="L172">        int hash = 0;</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        hash += (storageAttachmentID != null ? storageAttachmentID.hashCode() : 0);</span>
+<span class="nc" id="L174">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L174" title="All 2 branches missed.">        if (!(object instanceof Storageattachment)) {</span>
-<span class="nc" id="L175">            return false;</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">        if (!(object instanceof Storageattachment)) {</span>
+<span class="nc" id="L181">            return false;</span>
         }
-<span class="nc" id="L177">        Storageattachment other = (Storageattachment) object;</span>
-<span class="nc bnc" id="L178" title="All 8 branches missed.">        return !((this.storageAttachmentID == null &amp;&amp; other.storageAttachmentID != null) || (this.storageAttachmentID != null &amp;&amp; !this.storageAttachmentID.equals(other.storageAttachmentID)));</span>
+<span class="nc" id="L183">        Storageattachment other = (Storageattachment) object;</span>
+<span class="nc bnc" id="L184" title="All 8 branches missed.">        return !((this.storageAttachmentID == null &amp;&amp; other.storageAttachmentID != null) || (this.storageAttachmentID != null &amp;&amp; !this.storageAttachmentID.equals(other.storageAttachmentID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L183">        return &quot;se.nrm.dina.datamodel.Storageattachment[ storageAttachmentID=&quot; + storageAttachmentID + &quot; ]&quot;;</span>
+<span class="nc" id="L189">        return &quot;se.nrm.dina.datamodel.Storageattachment[ storageAttachmentID=&quot; + storageAttachmentID + &quot; ]&quot;;</span>
     }
     
 }

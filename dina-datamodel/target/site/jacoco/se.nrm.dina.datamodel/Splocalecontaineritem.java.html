@@ -134,168 +134,174 @@ public class Splocalecontaineritem extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L137">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spLocaleContainerItemID;</span>
+<span class="nc" id="L137">        return String.valueOf(spLocaleContainerItemID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L143">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spLocaleContainerItemID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L142">        return spLocaleContainerItemID;</span>
+<span class="nc" id="L148">        return spLocaleContainerItemID;</span>
     }
 
     public Integer getSpLocaleContainerItemID() {
-<span class="nc" id="L146">        return spLocaleContainerItemID;</span>
+<span class="nc" id="L152">        return spLocaleContainerItemID;</span>
     }
 
     public void setSpLocaleContainerItemID(Integer spLocaleContainerItemID) {
-<span class="nc" id="L150">        this.spLocaleContainerItemID = spLocaleContainerItemID;</span>
-<span class="nc" id="L151">    }</span>
+<span class="nc" id="L156">        this.spLocaleContainerItemID = spLocaleContainerItemID;</span>
+<span class="nc" id="L157">    }</span>
  
     public String getFormat() {
-<span class="nc" id="L154">        return format;</span>
+<span class="nc" id="L160">        return format;</span>
     }
 
     public void setFormat(String format) {
-<span class="nc" id="L158">        this.format = format;</span>
-<span class="nc" id="L159">    }</span>
+<span class="nc" id="L164">        this.format = format;</span>
+<span class="nc" id="L165">    }</span>
 
     public boolean getIsHidden() {
-<span class="nc" id="L162">        return isHidden;</span>
+<span class="nc" id="L168">        return isHidden;</span>
     }
 
     public void setIsHidden(boolean isHidden) {
-<span class="nc" id="L166">        this.isHidden = isHidden;</span>
-<span class="nc" id="L167">    }</span>
+<span class="nc" id="L172">        this.isHidden = isHidden;</span>
+<span class="nc" id="L173">    }</span>
 
     public boolean getIsSystem() {
-<span class="nc" id="L170">        return isSystem;</span>
+<span class="nc" id="L176">        return isSystem;</span>
     }
 
     public void setIsSystem(boolean isSystem) {
-<span class="nc" id="L174">        this.isSystem = isSystem;</span>
-<span class="nc" id="L175">    }</span>
+<span class="nc" id="L180">        this.isSystem = isSystem;</span>
+<span class="nc" id="L181">    }</span>
 
     public Boolean getIsUIFormatter() {
-<span class="nc" id="L178">        return isUIFormatter;</span>
+<span class="nc" id="L184">        return isUIFormatter;</span>
     }
 
     public void setIsUIFormatter(Boolean isUIFormatter) {
-<span class="nc" id="L182">        this.isUIFormatter = isUIFormatter;</span>
-<span class="nc" id="L183">    }</span>
+<span class="nc" id="L188">        this.isUIFormatter = isUIFormatter;</span>
+<span class="nc" id="L189">    }</span>
 
     public String getName() {
-<span class="nc" id="L186">        return name;</span>
+<span class="nc" id="L192">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L190">        this.name = name;</span>
-<span class="nc" id="L191">    }</span>
+<span class="nc" id="L196">        this.name = name;</span>
+<span class="nc" id="L197">    }</span>
 
     public String getPickListName() {
-<span class="nc" id="L194">        return pickListName;</span>
+<span class="nc" id="L200">        return pickListName;</span>
     }
 
     public void setPickListName(String pickListName) {
-<span class="nc" id="L198">        this.pickListName = pickListName;</span>
-<span class="nc" id="L199">    }</span>
+<span class="nc" id="L204">        this.pickListName = pickListName;</span>
+<span class="nc" id="L205">    }</span>
 
     public String getType() {
-<span class="nc" id="L202">        return type;</span>
+<span class="nc" id="L208">        return type;</span>
     }
 
     public void setType(String type) {
-<span class="nc" id="L206">        this.type = type;</span>
-<span class="nc" id="L207">    }</span>
+<span class="nc" id="L212">        this.type = type;</span>
+<span class="nc" id="L213">    }</span>
 
     public Boolean getIsRequired() {
-<span class="nc" id="L210">        return isRequired;</span>
+<span class="nc" id="L216">        return isRequired;</span>
     }
 
     public void setIsRequired(Boolean isRequired) {
-<span class="nc" id="L214">        this.isRequired = isRequired;</span>
-<span class="nc" id="L215">    }</span>
+<span class="nc" id="L220">        this.isRequired = isRequired;</span>
+<span class="nc" id="L221">    }</span>
 
     public String getWebLinkName() {
-<span class="nc" id="L218">        return webLinkName;</span>
+<span class="nc" id="L224">        return webLinkName;</span>
     }
 
     public void setWebLinkName(String webLinkName) {
-<span class="nc" id="L222">        this.webLinkName = webLinkName;</span>
-<span class="nc" id="L223">    }</span>
+<span class="nc" id="L228">        this.webLinkName = webLinkName;</span>
+<span class="nc" id="L229">    }</span>
 
     @XmlTransient
     public List&lt;Spexportschemaitem&gt; getSpexportschemaitemList() {
-<span class="nc" id="L227">        return spexportschemaitemList;</span>
+<span class="nc" id="L233">        return spexportschemaitemList;</span>
     }
 
     public void setSpexportschemaitemList(List&lt;Spexportschemaitem&gt; spexportschemaitemList) {
-<span class="nc" id="L231">        this.spexportschemaitemList = spexportschemaitemList;</span>
-<span class="nc" id="L232">    }</span>
+<span class="nc" id="L237">        this.spexportschemaitemList = spexportschemaitemList;</span>
+<span class="nc" id="L238">    }</span>
 
     @XmlTransient
     public List&lt;Splocaleitemstr&gt; getSplocaleitemstrList() {
-<span class="nc" id="L236">        return splocaleitemstrList;</span>
+<span class="nc" id="L242">        return splocaleitemstrList;</span>
     }
 
     public void setSplocaleitemstrList(List&lt;Splocaleitemstr&gt; splocaleitemstrList) {
-<span class="nc" id="L240">        this.splocaleitemstrList = splocaleitemstrList;</span>
-<span class="nc" id="L241">    }</span>
+<span class="nc" id="L246">        this.splocaleitemstrList = splocaleitemstrList;</span>
+<span class="nc" id="L247">    }</span>
 
     @XmlTransient
     public List&lt;Splocaleitemstr&gt; getSplocaleitemstrList1() {
-<span class="nc" id="L245">        return splocaleitemstrList1;</span>
+<span class="nc" id="L251">        return splocaleitemstrList1;</span>
     }
 
     public void setSplocaleitemstrList1(List&lt;Splocaleitemstr&gt; splocaleitemstrList1) {
-<span class="nc" id="L249">        this.splocaleitemstrList1 = splocaleitemstrList1;</span>
-<span class="nc" id="L250">    }</span>
+<span class="nc" id="L255">        this.splocaleitemstrList1 = splocaleitemstrList1;</span>
+<span class="nc" id="L256">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L254">        return modifiedByAgentID;</span>
+<span class="nc" id="L260">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L258">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L259">    }</span>
+<span class="nc" id="L264">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L265">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L263">        return createdByAgentID;</span>
+<span class="nc" id="L269">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L267">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L268">    }</span>
+<span class="nc" id="L273">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L274">    }</span>
 
     @XmlIDREF
     public Splocalecontainer getSpLocaleContainerID() {
-<span class="nc" id="L272">        return spLocaleContainerID;</span>
+<span class="nc" id="L278">        return spLocaleContainerID;</span>
     }
 
     public void setSpLocaleContainerID(Splocalecontainer spLocaleContainerID) {
-<span class="nc" id="L276">        this.spLocaleContainerID = spLocaleContainerID;</span>
-<span class="nc" id="L277">    }</span>
+<span class="nc" id="L282">        this.spLocaleContainerID = spLocaleContainerID;</span>
+<span class="nc" id="L283">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L281">        int hash = 0;</span>
-<span class="nc bnc" id="L282" title="All 2 branches missed.">        hash += (spLocaleContainerItemID != null ? spLocaleContainerItemID.hashCode() : 0);</span>
-<span class="nc" id="L283">        return hash;</span>
+<span class="nc" id="L287">        int hash = 0;</span>
+<span class="nc bnc" id="L288" title="All 2 branches missed.">        hash += (spLocaleContainerItemID != null ? spLocaleContainerItemID.hashCode() : 0);</span>
+<span class="nc" id="L289">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L289" title="All 2 branches missed.">        if (!(object instanceof Splocalecontaineritem)) {</span>
-<span class="nc" id="L290">            return false;</span>
+<span class="nc bnc" id="L295" title="All 2 branches missed.">        if (!(object instanceof Splocalecontaineritem)) {</span>
+<span class="nc" id="L296">            return false;</span>
         }
-<span class="nc" id="L292">        Splocalecontaineritem other = (Splocalecontaineritem) object;</span>
-<span class="nc bnc" id="L293" title="All 8 branches missed.">        return !((this.spLocaleContainerItemID == null &amp;&amp; other.spLocaleContainerItemID != null) || (this.spLocaleContainerItemID != null &amp;&amp; !this.spLocaleContainerItemID.equals(other.spLocaleContainerItemID)));</span>
+<span class="nc" id="L298">        Splocalecontaineritem other = (Splocalecontaineritem) object;</span>
+<span class="nc bnc" id="L299" title="All 8 branches missed.">        return !((this.spLocaleContainerItemID == null &amp;&amp; other.spLocaleContainerItemID != null) || (this.spLocaleContainerItemID != null &amp;&amp; !this.spLocaleContainerItemID.equals(other.spLocaleContainerItemID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L298">        return &quot;se.nrm.dina.datamodel.Splocalecontaineritem[ spLocaleContainerItemID=&quot; + spLocaleContainerItemID + &quot; ]&quot;;</span>
+<span class="nc" id="L304">        return &quot;se.nrm.dina.datamodel.Splocalecontaineritem[ spLocaleContainerItemID=&quot; + spLocaleContainerItemID + &quot; ]&quot;;</span>
     }
     
 }

@@ -164,9 +164,15 @@ public class Paleocontext extends BaseEntity {
     @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
-        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + paleoContextID;
+        return String.valueOf(paleoContextID);
     }
 
+    @XmlAttribute(name = "uuid") 
+    @Override
+    public String getUUID() {
+        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + paleoContextID;
+    }
+    
     @Override
     public int getEntityId() {
         return paleoContextID;

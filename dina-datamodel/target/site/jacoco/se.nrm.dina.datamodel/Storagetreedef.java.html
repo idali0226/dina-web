@@ -102,111 +102,117 @@ public class Storagetreedef extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L105">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + storageTreeDefID;</span>
+<span class="nc" id="L105">        return String.valueOf(storageTreeDefID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L111">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + storageTreeDefID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L110">        return storageTreeDefID;</span>
+<span class="nc" id="L116">        return storageTreeDefID;</span>
     }
 
     public Integer getStorageTreeDefID() {
-<span class="nc" id="L114">        return storageTreeDefID;</span>
+<span class="nc" id="L120">        return storageTreeDefID;</span>
     }
 
     public void setStorageTreeDefID(Integer storageTreeDefID) {
-<span class="nc" id="L118">        this.storageTreeDefID = storageTreeDefID;</span>
-<span class="nc" id="L119">    }</span>
+<span class="nc" id="L124">        this.storageTreeDefID = storageTreeDefID;</span>
+<span class="nc" id="L125">    }</span>
  
     public Integer getFullNameDirection() {
-<span class="nc" id="L122">        return fullNameDirection;</span>
+<span class="nc" id="L128">        return fullNameDirection;</span>
     }
 
     public void setFullNameDirection(Integer fullNameDirection) {
-<span class="nc" id="L126">        this.fullNameDirection = fullNameDirection;</span>
-<span class="nc" id="L127">    }</span>
+<span class="nc" id="L132">        this.fullNameDirection = fullNameDirection;</span>
+<span class="nc" id="L133">    }</span>
 
     public String getName() {
-<span class="nc" id="L130">        return name;</span>
+<span class="nc" id="L136">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L134">        this.name = name;</span>
-<span class="nc" id="L135">    }</span>
+<span class="nc" id="L140">        this.name = name;</span>
+<span class="nc" id="L141">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L138">        return remarks;</span>
+<span class="nc" id="L144">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L142">        this.remarks = remarks;</span>
-<span class="nc" id="L143">    }</span>
+<span class="nc" id="L148">        this.remarks = remarks;</span>
+<span class="nc" id="L149">    }</span>
 
     @XmlTransient
     public List&lt;Storagetreedefitem&gt; getStoragetreedefitemList() {
-<span class="nc" id="L147">        return storagetreedefitemList;</span>
+<span class="nc" id="L153">        return storagetreedefitemList;</span>
     }
 
     public void setStoragetreedefitemList(List&lt;Storagetreedefitem&gt; storagetreedefitemList) {
-<span class="nc" id="L151">        this.storagetreedefitemList = storagetreedefitemList;</span>
-<span class="nc" id="L152">    }</span>
+<span class="nc" id="L157">        this.storagetreedefitemList = storagetreedefitemList;</span>
+<span class="nc" id="L158">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L156">        return modifiedByAgentID;</span>
+<span class="nc" id="L162">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L160">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L161">    }</span>
+<span class="nc" id="L166">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L167">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L165">        return createdByAgentID;</span>
+<span class="nc" id="L171">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L169">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L170">    }</span>
+<span class="nc" id="L175">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L176">    }</span>
 
     @XmlTransient
     public List&lt;Institution&gt; getInstitutionList() {
-<span class="nc" id="L174">        return institutionList;</span>
+<span class="nc" id="L180">        return institutionList;</span>
     }
 
     public void setInstitutionList(List&lt;Institution&gt; institutionList) {
-<span class="nc" id="L178">        this.institutionList = institutionList;</span>
-<span class="nc" id="L179">    }</span>
+<span class="nc" id="L184">        this.institutionList = institutionList;</span>
+<span class="nc" id="L185">    }</span>
 
     @XmlTransient
     public List&lt;Storage&gt; getStorageList() {
-<span class="nc" id="L183">        return storageList;</span>
+<span class="nc" id="L189">        return storageList;</span>
     }
 
     public void setStorageList(List&lt;Storage&gt; storageList) {
-<span class="nc" id="L187">        this.storageList = storageList;</span>
-<span class="nc" id="L188">    }</span>
+<span class="nc" id="L193">        this.storageList = storageList;</span>
+<span class="nc" id="L194">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L192">        int hash = 0;</span>
-<span class="nc bnc" id="L193" title="All 2 branches missed.">        hash += (storageTreeDefID != null ? storageTreeDefID.hashCode() : 0);</span>
-<span class="nc" id="L194">        return hash;</span>
+<span class="nc" id="L198">        int hash = 0;</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">        hash += (storageTreeDefID != null ? storageTreeDefID.hashCode() : 0);</span>
+<span class="nc" id="L200">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L200" title="All 2 branches missed.">        if (!(object instanceof Storagetreedef)) {</span>
-<span class="nc" id="L201">            return false;</span>
+<span class="nc bnc" id="L206" title="All 2 branches missed.">        if (!(object instanceof Storagetreedef)) {</span>
+<span class="nc" id="L207">            return false;</span>
         }
-<span class="nc" id="L203">        Storagetreedef other = (Storagetreedef) object;</span>
-<span class="nc bnc" id="L204" title="All 8 branches missed.">        return !((this.storageTreeDefID == null &amp;&amp; other.storageTreeDefID != null) || (this.storageTreeDefID != null &amp;&amp; !this.storageTreeDefID.equals(other.storageTreeDefID)));</span>
+<span class="nc" id="L209">        Storagetreedef other = (Storagetreedef) object;</span>
+<span class="nc bnc" id="L210" title="All 8 branches missed.">        return !((this.storageTreeDefID == null &amp;&amp; other.storageTreeDefID != null) || (this.storageTreeDefID != null &amp;&amp; !this.storageTreeDefID.equals(other.storageTreeDefID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L209">        return &quot;se.nrm.dina.datamodel.Storagetreedef[ storageTreeDefID=&quot; + storageTreeDefID + &quot; ]&quot;;</span>
+<span class="nc" id="L215">        return &quot;se.nrm.dina.datamodel.Storagetreedef[ storageTreeDefID=&quot; + storageTreeDefID + &quot; ]&quot;;</span>
     }
     
 }

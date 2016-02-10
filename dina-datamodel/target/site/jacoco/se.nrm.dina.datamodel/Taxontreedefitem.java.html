@@ -141,177 +141,183 @@ public class Taxontreedefitem extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L144">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + taxonTreeDefItemID;</span>
+<span class="nc" id="L144">        return String.valueOf(taxonTreeDefItemID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L150">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + taxonTreeDefItemID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L149">        return taxonTreeDefItemID;</span>
+<span class="nc" id="L155">        return taxonTreeDefItemID;</span>
     }
 
     public Integer getTaxonTreeDefItemID() {
-<span class="nc" id="L153">        return taxonTreeDefItemID;</span>
+<span class="nc" id="L159">        return taxonTreeDefItemID;</span>
     }
 
     public void setTaxonTreeDefItemID(Integer taxonTreeDefItemID) {
-<span class="nc" id="L157">        this.taxonTreeDefItemID = taxonTreeDefItemID;</span>
-<span class="nc" id="L158">    }</span>
+<span class="nc" id="L163">        this.taxonTreeDefItemID = taxonTreeDefItemID;</span>
+<span class="nc" id="L164">    }</span>
   
 
     public String getFormatToken() {
-<span class="nc" id="L162">        return formatToken;</span>
+<span class="nc" id="L168">        return formatToken;</span>
     }
 
     public void setFormatToken(String formatToken) {
-<span class="nc" id="L166">        this.formatToken = formatToken;</span>
-<span class="nc" id="L167">    }</span>
+<span class="nc" id="L172">        this.formatToken = formatToken;</span>
+<span class="nc" id="L173">    }</span>
 
     public String getFullNameSeparator() {
-<span class="nc" id="L170">        return fullNameSeparator;</span>
+<span class="nc" id="L176">        return fullNameSeparator;</span>
     }
 
     public void setFullNameSeparator(String fullNameSeparator) {
-<span class="nc" id="L174">        this.fullNameSeparator = fullNameSeparator;</span>
-<span class="nc" id="L175">    }</span>
+<span class="nc" id="L180">        this.fullNameSeparator = fullNameSeparator;</span>
+<span class="nc" id="L181">    }</span>
 
     public Boolean getIsEnforced() {
-<span class="nc" id="L178">        return isEnforced;</span>
+<span class="nc" id="L184">        return isEnforced;</span>
     }
 
     public void setIsEnforced(Boolean isEnforced) {
-<span class="nc" id="L182">        this.isEnforced = isEnforced;</span>
-<span class="nc" id="L183">    }</span>
+<span class="nc" id="L188">        this.isEnforced = isEnforced;</span>
+<span class="nc" id="L189">    }</span>
 
     public Boolean getIsInFullName() {
-<span class="nc" id="L186">        return isInFullName;</span>
+<span class="nc" id="L192">        return isInFullName;</span>
     }
 
     public void setIsInFullName(Boolean isInFullName) {
-<span class="nc" id="L190">        this.isInFullName = isInFullName;</span>
-<span class="nc" id="L191">    }</span>
+<span class="nc" id="L196">        this.isInFullName = isInFullName;</span>
+<span class="nc" id="L197">    }</span>
 
     public String getName() {
-<span class="nc" id="L194">        return name;</span>
+<span class="nc" id="L200">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L198">        this.name = name;</span>
-<span class="nc" id="L199">    }</span>
+<span class="nc" id="L204">        this.name = name;</span>
+<span class="nc" id="L205">    }</span>
 
     public int getRankID() {
-<span class="nc" id="L202">        return rankID;</span>
+<span class="nc" id="L208">        return rankID;</span>
     }
 
     public void setRankID(int rankID) {
-<span class="nc" id="L206">        this.rankID = rankID;</span>
-<span class="nc" id="L207">    }</span>
+<span class="nc" id="L212">        this.rankID = rankID;</span>
+<span class="nc" id="L213">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L210">        return remarks;</span>
+<span class="nc" id="L216">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L214">        this.remarks = remarks;</span>
-<span class="nc" id="L215">    }</span>
+<span class="nc" id="L220">        this.remarks = remarks;</span>
+<span class="nc" id="L221">    }</span>
 
     public String getTextAfter() {
-<span class="nc" id="L218">        return textAfter;</span>
+<span class="nc" id="L224">        return textAfter;</span>
     }
 
     public void setTextAfter(String textAfter) {
-<span class="nc" id="L222">        this.textAfter = textAfter;</span>
-<span class="nc" id="L223">    }</span>
+<span class="nc" id="L228">        this.textAfter = textAfter;</span>
+<span class="nc" id="L229">    }</span>
 
     public String getTextBefore() {
-<span class="nc" id="L226">        return textBefore;</span>
+<span class="nc" id="L232">        return textBefore;</span>
     }
 
     public void setTextBefore(String textBefore) {
-<span class="nc" id="L230">        this.textBefore = textBefore;</span>
-<span class="nc" id="L231">    }</span>
+<span class="nc" id="L236">        this.textBefore = textBefore;</span>
+<span class="nc" id="L237">    }</span>
 
     public String getTitle() {
-<span class="nc" id="L234">        return title;</span>
+<span class="nc" id="L240">        return title;</span>
     }
 
     public void setTitle(String title) {
-<span class="nc" id="L238">        this.title = title;</span>
-<span class="nc" id="L239">    }</span>
+<span class="nc" id="L244">        this.title = title;</span>
+<span class="nc" id="L245">    }</span>
 
     @XmlTransient
     public List&lt;Taxon&gt; getTaxonList() {
-<span class="nc" id="L243">        return taxonList;</span>
+<span class="nc" id="L249">        return taxonList;</span>
     }
 
     public void setTaxonList(List&lt;Taxon&gt; taxonList) {
-<span class="nc" id="L247">        this.taxonList = taxonList;</span>
-<span class="nc" id="L248">    }</span>
+<span class="nc" id="L253">        this.taxonList = taxonList;</span>
+<span class="nc" id="L254">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L252">        return modifiedByAgentID;</span>
+<span class="nc" id="L258">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L256">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L257">    }</span>
+<span class="nc" id="L262">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L263">    }</span>
 
     @XmlTransient
     public List&lt;Taxontreedefitem&gt; getTaxontreedefitemList() {
-<span class="nc" id="L261">        return taxontreedefitemList;</span>
+<span class="nc" id="L267">        return taxontreedefitemList;</span>
     }
 
     public void setTaxontreedefitemList(List&lt;Taxontreedefitem&gt; taxontreedefitemList) {
-<span class="nc" id="L265">        this.taxontreedefitemList = taxontreedefitemList;</span>
-<span class="nc" id="L266">    }</span>
+<span class="nc" id="L271">        this.taxontreedefitemList = taxontreedefitemList;</span>
+<span class="nc" id="L272">    }</span>
 
     @XmlIDREF
     public Taxontreedefitem getParentItemID() {
-<span class="nc" id="L270">        return parentItemID;</span>
+<span class="nc" id="L276">        return parentItemID;</span>
     }
 
     public void setParentItemID(Taxontreedefitem parentItemID) {
-<span class="nc" id="L274">        this.parentItemID = parentItemID;</span>
-<span class="nc" id="L275">    }</span>
+<span class="nc" id="L280">        this.parentItemID = parentItemID;</span>
+<span class="nc" id="L281">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L279">        return createdByAgentID;</span>
+<span class="nc" id="L285">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L283">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L284">    }</span>
+<span class="nc" id="L289">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L290">    }</span>
 
     @XmlIDREF
     public Taxontreedef getTaxonTreeDefID() {
-<span class="nc" id="L288">        return taxonTreeDefID;</span>
+<span class="nc" id="L294">        return taxonTreeDefID;</span>
     }
 
     public void setTaxonTreeDefID(Taxontreedef taxonTreeDefID) {
-<span class="nc" id="L292">        this.taxonTreeDefID = taxonTreeDefID;</span>
-<span class="nc" id="L293">    }</span>
+<span class="nc" id="L298">        this.taxonTreeDefID = taxonTreeDefID;</span>
+<span class="nc" id="L299">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L297">        int hash = 0;</span>
-<span class="nc bnc" id="L298" title="All 2 branches missed.">        hash += (taxonTreeDefItemID != null ? taxonTreeDefItemID.hashCode() : 0);</span>
-<span class="nc" id="L299">        return hash;</span>
+<span class="nc" id="L303">        int hash = 0;</span>
+<span class="nc bnc" id="L304" title="All 2 branches missed.">        hash += (taxonTreeDefItemID != null ? taxonTreeDefItemID.hashCode() : 0);</span>
+<span class="nc" id="L305">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L305" title="All 2 branches missed.">        if (!(object instanceof Taxontreedefitem)) {</span>
-<span class="nc" id="L306">            return false;</span>
+<span class="nc bnc" id="L311" title="All 2 branches missed.">        if (!(object instanceof Taxontreedefitem)) {</span>
+<span class="nc" id="L312">            return false;</span>
         }
-<span class="nc" id="L308">        Taxontreedefitem other = (Taxontreedefitem) object;</span>
-<span class="nc bnc" id="L309" title="All 8 branches missed.">        return !((this.taxonTreeDefItemID == null &amp;&amp; other.taxonTreeDefItemID != null) || (this.taxonTreeDefItemID != null &amp;&amp; !this.taxonTreeDefItemID.equals(other.taxonTreeDefItemID)));</span>
+<span class="nc" id="L314">        Taxontreedefitem other = (Taxontreedefitem) object;</span>
+<span class="nc bnc" id="L315" title="All 8 branches missed.">        return !((this.taxonTreeDefItemID == null &amp;&amp; other.taxonTreeDefItemID != null) || (this.taxonTreeDefItemID != null &amp;&amp; !this.taxonTreeDefItemID.equals(other.taxonTreeDefItemID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L314">        return &quot;se.nrm.dina.datamodel.Taxontreedefitem[ taxonTreeDefItemID=&quot; + taxonTreeDefItemID + &quot; ]&quot;;</span>
+<span class="nc" id="L320">        return &quot;se.nrm.dina.datamodel.Taxontreedefitem[ taxonTreeDefItemID=&quot; + taxonTreeDefItemID + &quot; ]&quot;;</span>
     }
     
 }

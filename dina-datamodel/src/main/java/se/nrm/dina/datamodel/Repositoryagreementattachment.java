@@ -91,6 +91,12 @@ public class Repositoryagreementattachment extends BaseEntity {
     @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
+        return String.valueOf(repositoryAgreementAttachmentID);
+    }
+    
+    @XmlAttribute(name = "uuid") 
+    @Override
+    public String getUUID() {
         return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + repositoryAgreementAttachmentID;
     }
     

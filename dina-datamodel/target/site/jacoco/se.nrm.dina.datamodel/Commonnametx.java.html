@@ -106,118 +106,124 @@ public class Commonnametx extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L109">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + commonNameTxID;</span>
+<span class="nc" id="L109">        return String.valueOf(commonNameTxID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L115">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + commonNameTxID;</span>
     }
 
     @Override
     public int getEntityId() {
-<span class="nc" id="L114">        return commonNameTxID;</span>
+<span class="nc" id="L120">        return commonNameTxID;</span>
     }
     
     public Integer getCommonNameTxID() {
-<span class="nc" id="L118">        return commonNameTxID;</span>
+<span class="nc" id="L124">        return commonNameTxID;</span>
     }
 
     public void setCommonNameTxID(Integer commonNameTxID) {
-<span class="nc" id="L122">        this.commonNameTxID = commonNameTxID;</span>
-<span class="nc" id="L123">    }</span>
+<span class="nc" id="L128">        this.commonNameTxID = commonNameTxID;</span>
+<span class="nc" id="L129">    }</span>
  
     public String getAuthor() {
-<span class="nc" id="L126">        return author;</span>
+<span class="nc" id="L132">        return author;</span>
     }
 
     public void setAuthor(String author) {
-<span class="nc" id="L130">        this.author = author;</span>
-<span class="nc" id="L131">    }</span>
+<span class="nc" id="L136">        this.author = author;</span>
+<span class="nc" id="L137">    }</span>
 
     public String getCountry() {
-<span class="nc" id="L134">        return country;</span>
+<span class="nc" id="L140">        return country;</span>
     }
 
     public void setCountry(String country) {
-<span class="nc" id="L138">        this.country = country;</span>
-<span class="nc" id="L139">    }</span>
+<span class="nc" id="L144">        this.country = country;</span>
+<span class="nc" id="L145">    }</span>
 
     public String getLanguage() {
-<span class="nc" id="L142">        return language;</span>
+<span class="nc" id="L148">        return language;</span>
     }
 
     public void setLanguage(String language) {
-<span class="nc" id="L146">        this.language = language;</span>
-<span class="nc" id="L147">    }</span>
+<span class="nc" id="L152">        this.language = language;</span>
+<span class="nc" id="L153">    }</span>
 
     public String getName() {
-<span class="nc" id="L150">        return name;</span>
+<span class="nc" id="L156">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L154">        this.name = name;</span>
-<span class="nc" id="L155">    }</span>
+<span class="nc" id="L160">        this.name = name;</span>
+<span class="nc" id="L161">    }</span>
 
     public String getVariant() {
-<span class="nc" id="L158">        return variant;</span>
+<span class="nc" id="L164">        return variant;</span>
     }
 
     public void setVariant(String variant) {
-<span class="nc" id="L162">        this.variant = variant;</span>
-<span class="nc" id="L163">    }</span>
+<span class="nc" id="L168">        this.variant = variant;</span>
+<span class="nc" id="L169">    }</span>
 
     @XmlTransient
     public List&lt;Commonnametxcitation&gt; getCommonnametxcitationList() {
-<span class="nc" id="L167">        return commonnametxcitationList;</span>
+<span class="nc" id="L173">        return commonnametxcitationList;</span>
     }
 
     public void setCommonnametxcitationList(List&lt;Commonnametxcitation&gt; commonnametxcitationList) {
-<span class="nc" id="L171">        this.commonnametxcitationList = commonnametxcitationList;</span>
-<span class="nc" id="L172">    }</span>
+<span class="nc" id="L177">        this.commonnametxcitationList = commonnametxcitationList;</span>
+<span class="nc" id="L178">    }</span>
 
     @XmlIDREF
     public Taxon getTaxonID() {
-<span class="nc" id="L176">        return taxonID;</span>
+<span class="nc" id="L182">        return taxonID;</span>
     }
 
     public void setTaxonID(Taxon taxonID) {
-<span class="nc" id="L180">        this.taxonID = taxonID;</span>
-<span class="nc" id="L181">    }</span>
+<span class="nc" id="L186">        this.taxonID = taxonID;</span>
+<span class="nc" id="L187">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L185">        return modifiedByAgentID;</span>
+<span class="nc" id="L191">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L189">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L190">    }</span>
+<span class="nc" id="L195">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L196">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L194">        return createdByAgentID;</span>
+<span class="nc" id="L200">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L198">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L199">    }</span>
+<span class="nc" id="L204">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L205">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L203">        int hash = 0;</span>
-<span class="nc bnc" id="L204" title="All 2 branches missed.">        hash += (commonNameTxID != null ? commonNameTxID.hashCode() : 0);</span>
-<span class="nc" id="L205">        return hash;</span>
+<span class="nc" id="L209">        int hash = 0;</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">        hash += (commonNameTxID != null ? commonNameTxID.hashCode() : 0);</span>
+<span class="nc" id="L211">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L211" title="All 2 branches missed.">        if (!(object instanceof Commonnametx)) {</span>
-<span class="nc" id="L212">            return false;</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">        if (!(object instanceof Commonnametx)) {</span>
+<span class="nc" id="L218">            return false;</span>
         }
-<span class="nc" id="L214">        Commonnametx other = (Commonnametx) object;</span>
-<span class="nc bnc" id="L215" title="All 8 branches missed.">        return !((this.commonNameTxID == null &amp;&amp; other.commonNameTxID != null) || (this.commonNameTxID != null &amp;&amp; !this.commonNameTxID.equals(other.commonNameTxID)));</span>
+<span class="nc" id="L220">        Commonnametx other = (Commonnametx) object;</span>
+<span class="nc bnc" id="L221" title="All 8 branches missed.">        return !((this.commonNameTxID == null &amp;&amp; other.commonNameTxID != null) || (this.commonNameTxID != null &amp;&amp; !this.commonNameTxID.equals(other.commonNameTxID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L220">        return &quot;se.nrm.dina.datamodel.Commonnametx[ commonNameTxID=&quot; + commonNameTxID + &quot; ]&quot;;</span>
+<span class="nc" id="L226">        return &quot;se.nrm.dina.datamodel.Commonnametx[ commonNameTxID=&quot; + commonNameTxID + &quot; ]&quot;;</span>
     }
     
 }

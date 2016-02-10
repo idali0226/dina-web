@@ -89,86 +89,92 @@ public class Agentspecialty extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L92">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + agentSpecialtyID;</span>
+<span class="nc" id="L92">        return String.valueOf(agentSpecialtyID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L98">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + agentSpecialtyID;</span>
     }
 
     @Override
     public int getEntityId() {
-<span class="nc" id="L97">        return agentSpecialtyID;</span>
+<span class="nc" id="L103">        return agentSpecialtyID;</span>
     }
     
     public Integer getAgentSpecialtyID() {
-<span class="nc" id="L101">        return agentSpecialtyID;</span>
+<span class="nc" id="L107">        return agentSpecialtyID;</span>
     }
 
     public void setAgentSpecialtyID(Integer agentSpecialtyID) {
-<span class="nc" id="L105">        this.agentSpecialtyID = agentSpecialtyID;</span>
-<span class="nc" id="L106">    }</span>
+<span class="nc" id="L111">        this.agentSpecialtyID = agentSpecialtyID;</span>
+<span class="nc" id="L112">    }</span>
   
 
     public int getOrderNumber() {
-<span class="nc" id="L110">        return orderNumber;</span>
+<span class="nc" id="L116">        return orderNumber;</span>
     }
 
     public void setOrderNumber(int orderNumber) {
-<span class="nc" id="L114">        this.orderNumber = orderNumber;</span>
-<span class="nc" id="L115">    }</span>
+<span class="nc" id="L120">        this.orderNumber = orderNumber;</span>
+<span class="nc" id="L121">    }</span>
 
     public String getSpecialtyName() {
-<span class="nc" id="L118">        return specialtyName;</span>
+<span class="nc" id="L124">        return specialtyName;</span>
     }
 
     public void setSpecialtyName(String specialtyName) {
-<span class="nc" id="L122">        this.specialtyName = specialtyName;</span>
-<span class="nc" id="L123">    }</span>
+<span class="nc" id="L128">        this.specialtyName = specialtyName;</span>
+<span class="nc" id="L129">    }</span>
 
     @XmlIDREF
     public Agent getAgentID() {
-<span class="nc" id="L127">        return agentID;</span>
+<span class="nc" id="L133">        return agentID;</span>
     }
 
     public void setAgentID(Agent agentID) {
-<span class="nc" id="L131">        this.agentID = agentID;</span>
-<span class="nc" id="L132">    }</span>
+<span class="nc" id="L137">        this.agentID = agentID;</span>
+<span class="nc" id="L138">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L136">        return modifiedByAgentID;</span>
+<span class="nc" id="L142">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L140">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L141">    }</span>
+<span class="nc" id="L146">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L147">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L145">        return createdByAgentID;</span>
+<span class="nc" id="L151">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L149">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L150">    }</span>
+<span class="nc" id="L155">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L156">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L154">        int hash = 0;</span>
-<span class="nc bnc" id="L155" title="All 2 branches missed.">        hash += (agentSpecialtyID != null ? agentSpecialtyID.hashCode() : 0);</span>
-<span class="nc" id="L156">        return hash;</span>
+<span class="nc" id="L160">        int hash = 0;</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">        hash += (agentSpecialtyID != null ? agentSpecialtyID.hashCode() : 0);</span>
+<span class="nc" id="L162">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L162" title="All 2 branches missed.">        if (!(object instanceof Agentspecialty)) {</span>
-<span class="nc" id="L163">            return false;</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">        if (!(object instanceof Agentspecialty)) {</span>
+<span class="nc" id="L169">            return false;</span>
         }
-<span class="nc" id="L165">        Agentspecialty other = (Agentspecialty) object;</span>
-<span class="nc bnc" id="L166" title="All 8 branches missed.">        return !((this.agentSpecialtyID == null &amp;&amp; other.agentSpecialtyID != null) || (this.agentSpecialtyID != null &amp;&amp; !this.agentSpecialtyID.equals(other.agentSpecialtyID)));</span>
+<span class="nc" id="L171">        Agentspecialty other = (Agentspecialty) object;</span>
+<span class="nc bnc" id="L172" title="All 8 branches missed.">        return !((this.agentSpecialtyID == null &amp;&amp; other.agentSpecialtyID != null) || (this.agentSpecialtyID != null &amp;&amp; !this.agentSpecialtyID.equals(other.agentSpecialtyID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L171">        return &quot;se.nrm.dina.datamodel.Agentspecialty[ agentSpecialtyID=&quot; + agentSpecialtyID + &quot; ]&quot;;</span>
+<span class="nc" id="L177">        return &quot;se.nrm.dina.datamodel.Agentspecialty[ agentSpecialtyID=&quot; + agentSpecialtyID + &quot; ]&quot;;</span>
     }
     
 }

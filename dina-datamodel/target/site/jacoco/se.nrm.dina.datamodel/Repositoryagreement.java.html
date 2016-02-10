@@ -160,228 +160,234 @@ public class Repositoryagreement extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L163">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + repositoryAgreementID;</span>
+<span class="nc" id="L163">        return String.valueOf(repositoryAgreementID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L169">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + repositoryAgreementID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L168">        return repositoryAgreementID;</span>
+<span class="nc" id="L174">        return repositoryAgreementID;</span>
     }
 
     public Integer getRepositoryAgreementID() {
-<span class="nc" id="L172">        return repositoryAgreementID;</span>
+<span class="nc" id="L178">        return repositoryAgreementID;</span>
     }
 
     public void setRepositoryAgreementID(Integer repositoryAgreementID) {
-<span class="nc" id="L176">        this.repositoryAgreementID = repositoryAgreementID;</span>
-<span class="nc" id="L177">    }</span>
+<span class="nc" id="L182">        this.repositoryAgreementID = repositoryAgreementID;</span>
+<span class="nc" id="L183">    }</span>
  
 
     public Date getDateReceived() {
-<span class="nc" id="L181">        return dateReceived;</span>
+<span class="nc" id="L187">        return dateReceived;</span>
     }
 
     public void setDateReceived(Date dateReceived) {
-<span class="nc" id="L185">        this.dateReceived = dateReceived;</span>
-<span class="nc" id="L186">    }</span>
+<span class="nc" id="L191">        this.dateReceived = dateReceived;</span>
+<span class="nc" id="L192">    }</span>
 
     public Date getEndDate() {
-<span class="nc" id="L189">        return endDate;</span>
+<span class="nc" id="L195">        return endDate;</span>
     }
 
     public void setEndDate(Date endDate) {
-<span class="nc" id="L193">        this.endDate = endDate;</span>
-<span class="nc" id="L194">    }</span>
+<span class="nc" id="L199">        this.endDate = endDate;</span>
+<span class="nc" id="L200">    }</span>
 
     public Float getNumber1() {
-<span class="nc" id="L197">        return number1;</span>
+<span class="nc" id="L203">        return number1;</span>
     }
 
     public void setNumber1(Float number1) {
-<span class="nc" id="L201">        this.number1 = number1;</span>
-<span class="nc" id="L202">    }</span>
+<span class="nc" id="L207">        this.number1 = number1;</span>
+<span class="nc" id="L208">    }</span>
 
     public Float getNumber2() {
-<span class="nc" id="L205">        return number2;</span>
+<span class="nc" id="L211">        return number2;</span>
     }
 
     public void setNumber2(Float number2) {
-<span class="nc" id="L209">        this.number2 = number2;</span>
-<span class="nc" id="L210">    }</span>
+<span class="nc" id="L215">        this.number2 = number2;</span>
+<span class="nc" id="L216">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L213">        return remarks;</span>
+<span class="nc" id="L219">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L217">        this.remarks = remarks;</span>
-<span class="nc" id="L218">    }</span>
+<span class="nc" id="L223">        this.remarks = remarks;</span>
+<span class="nc" id="L224">    }</span>
 
     public String getRepositoryAgreementNumber() {
-<span class="nc" id="L221">        return repositoryAgreementNumber;</span>
+<span class="nc" id="L227">        return repositoryAgreementNumber;</span>
     }
 
     public void setRepositoryAgreementNumber(String repositoryAgreementNumber) {
-<span class="nc" id="L225">        this.repositoryAgreementNumber = repositoryAgreementNumber;</span>
-<span class="nc" id="L226">    }</span>
+<span class="nc" id="L231">        this.repositoryAgreementNumber = repositoryAgreementNumber;</span>
+<span class="nc" id="L232">    }</span>
 
     public Date getStartDate() {
-<span class="nc" id="L229">        return startDate;</span>
+<span class="nc" id="L235">        return startDate;</span>
     }
 
     public void setStartDate(Date startDate) {
-<span class="nc" id="L233">        this.startDate = startDate;</span>
-<span class="nc" id="L234">    }</span>
+<span class="nc" id="L239">        this.startDate = startDate;</span>
+<span class="nc" id="L240">    }</span>
 
     public String getStatus() {
-<span class="nc" id="L237">        return status;</span>
+<span class="nc" id="L243">        return status;</span>
     }
 
     public void setStatus(String status) {
-<span class="nc" id="L241">        this.status = status;</span>
-<span class="nc" id="L242">    }</span>
+<span class="nc" id="L247">        this.status = status;</span>
+<span class="nc" id="L248">    }</span>
 
     public String getText1() {
-<span class="nc" id="L245">        return text1;</span>
+<span class="nc" id="L251">        return text1;</span>
     }
 
     public void setText1(String text1) {
-<span class="nc" id="L249">        this.text1 = text1;</span>
-<span class="nc" id="L250">    }</span>
+<span class="nc" id="L255">        this.text1 = text1;</span>
+<span class="nc" id="L256">    }</span>
 
     public String getText2() {
-<span class="nc" id="L253">        return text2;</span>
+<span class="nc" id="L259">        return text2;</span>
     }
 
     public void setText2(String text2) {
-<span class="nc" id="L257">        this.text2 = text2;</span>
-<span class="nc" id="L258">    }</span>
+<span class="nc" id="L263">        this.text2 = text2;</span>
+<span class="nc" id="L264">    }</span>
 
     public String getText3() {
-<span class="nc" id="L261">        return text3;</span>
+<span class="nc" id="L267">        return text3;</span>
     }
 
     public void setText3(String text3) {
-<span class="nc" id="L265">        this.text3 = text3;</span>
-<span class="nc" id="L266">    }</span>
+<span class="nc" id="L271">        this.text3 = text3;</span>
+<span class="nc" id="L272">    }</span>
 
     public Boolean getYesNo1() {
-<span class="nc" id="L269">        return yesNo1;</span>
+<span class="nc" id="L275">        return yesNo1;</span>
     }
 
     public void setYesNo1(Boolean yesNo1) {
-<span class="nc" id="L273">        this.yesNo1 = yesNo1;</span>
-<span class="nc" id="L274">    }</span>
+<span class="nc" id="L279">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L280">    }</span>
 
     public Boolean getYesNo2() {
-<span class="nc" id="L277">        return yesNo2;</span>
+<span class="nc" id="L283">        return yesNo2;</span>
     }
 
     public void setYesNo2(Boolean yesNo2) {
-<span class="nc" id="L281">        this.yesNo2 = yesNo2;</span>
-<span class="nc" id="L282">    }</span>
+<span class="nc" id="L287">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L288">    }</span>
 
     @XmlTransient
     public List&lt;Repositoryagreementattachment&gt; getRepositoryagreementattachmentList() {
-<span class="nc" id="L286">        return repositoryagreementattachmentList;</span>
+<span class="nc" id="L292">        return repositoryagreementattachmentList;</span>
     }
 
     public void setRepositoryagreementattachmentList(List&lt;Repositoryagreementattachment&gt; repositoryagreementattachmentList) {
-<span class="nc" id="L290">        this.repositoryagreementattachmentList = repositoryagreementattachmentList;</span>
-<span class="nc" id="L291">    }</span>
+<span class="nc" id="L296">        this.repositoryagreementattachmentList = repositoryagreementattachmentList;</span>
+<span class="nc" id="L297">    }</span>
 
     @XmlIDREF
     public Agent getAgentID() {
-<span class="nc" id="L295">        return agentID;</span>
+<span class="nc" id="L301">        return agentID;</span>
     }
 
     public void setAgentID(Agent agentID) {
-<span class="nc" id="L299">        this.agentID = agentID;</span>
-<span class="nc" id="L300">    }</span>
+<span class="nc" id="L305">        this.agentID = agentID;</span>
+<span class="nc" id="L306">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L304">        return modifiedByAgentID;</span>
+<span class="nc" id="L310">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L308">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L309">    }</span>
+<span class="nc" id="L314">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L315">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L313">        return createdByAgentID;</span>
+<span class="nc" id="L319">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L317">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L318">    }</span>
+<span class="nc" id="L323">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L324">    }</span>
 
     @XmlIDREF
     public Division getDivisionID() {
-<span class="nc" id="L322">        return divisionID;</span>
+<span class="nc" id="L328">        return divisionID;</span>
     }
 
     public void setDivisionID(Division divisionID) {
-<span class="nc" id="L326">        this.divisionID = divisionID;</span>
-<span class="nc" id="L327">    }</span>
+<span class="nc" id="L332">        this.divisionID = divisionID;</span>
+<span class="nc" id="L333">    }</span>
 
     @XmlIDREF
     public Addressofrecord getAddressOfRecordID() {
-<span class="nc" id="L331">        return addressOfRecordID;</span>
+<span class="nc" id="L337">        return addressOfRecordID;</span>
     }
 
     public void setAddressOfRecordID(Addressofrecord addressOfRecordID) {
-<span class="nc" id="L335">        this.addressOfRecordID = addressOfRecordID;</span>
-<span class="nc" id="L336">    }</span>
+<span class="nc" id="L341">        this.addressOfRecordID = addressOfRecordID;</span>
+<span class="nc" id="L342">    }</span>
 
     @XmlTransient
     public List&lt;Accessionagent&gt; getAccessionagentList() {
-<span class="nc" id="L340">        return accessionagentList;</span>
+<span class="nc" id="L346">        return accessionagentList;</span>
     }
 
     public void setAccessionagentList(List&lt;Accessionagent&gt; accessionagentList) {
-<span class="nc" id="L344">        this.accessionagentList = accessionagentList;</span>
-<span class="nc" id="L345">    }</span>
+<span class="nc" id="L350">        this.accessionagentList = accessionagentList;</span>
+<span class="nc" id="L351">    }</span>
 
     @XmlTransient
     public List&lt;Accession&gt; getAccessionList() {
-<span class="nc" id="L349">        return accessionList;</span>
+<span class="nc" id="L355">        return accessionList;</span>
     }
 
     public void setAccessionList(List&lt;Accession&gt; accessionList) {
-<span class="nc" id="L353">        this.accessionList = accessionList;</span>
-<span class="nc" id="L354">    }</span>
+<span class="nc" id="L359">        this.accessionList = accessionList;</span>
+<span class="nc" id="L360">    }</span>
 
     @XmlTransient
     public List&lt;Accessionauthorization&gt; getAccessionauthorizationList() {
-<span class="nc" id="L358">        return accessionauthorizationList;</span>
+<span class="nc" id="L364">        return accessionauthorizationList;</span>
     }
 
     public void setAccessionauthorizationList(List&lt;Accessionauthorization&gt; accessionauthorizationList) {
-<span class="nc" id="L362">        this.accessionauthorizationList = accessionauthorizationList;</span>
-<span class="nc" id="L363">    }</span>
+<span class="nc" id="L368">        this.accessionauthorizationList = accessionauthorizationList;</span>
+<span class="nc" id="L369">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L367">        int hash = 0;</span>
-<span class="nc bnc" id="L368" title="All 2 branches missed.">        hash += (repositoryAgreementID != null ? repositoryAgreementID.hashCode() : 0);</span>
-<span class="nc" id="L369">        return hash;</span>
+<span class="nc" id="L373">        int hash = 0;</span>
+<span class="nc bnc" id="L374" title="All 2 branches missed.">        hash += (repositoryAgreementID != null ? repositoryAgreementID.hashCode() : 0);</span>
+<span class="nc" id="L375">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L375" title="All 2 branches missed.">        if (!(object instanceof Repositoryagreement)) {</span>
-<span class="nc" id="L376">            return false;</span>
+<span class="nc bnc" id="L381" title="All 2 branches missed.">        if (!(object instanceof Repositoryagreement)) {</span>
+<span class="nc" id="L382">            return false;</span>
         }
-<span class="nc" id="L378">        Repositoryagreement other = (Repositoryagreement) object;</span>
-<span class="nc bnc" id="L379" title="All 8 branches missed.">        return !((this.repositoryAgreementID == null &amp;&amp; other.repositoryAgreementID != null) || (this.repositoryAgreementID != null &amp;&amp; !this.repositoryAgreementID.equals(other.repositoryAgreementID)));</span>
+<span class="nc" id="L384">        Repositoryagreement other = (Repositoryagreement) object;</span>
+<span class="nc bnc" id="L385" title="All 8 branches missed.">        return !((this.repositoryAgreementID == null &amp;&amp; other.repositoryAgreementID != null) || (this.repositoryAgreementID != null &amp;&amp; !this.repositoryAgreementID.equals(other.repositoryAgreementID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L384">        return &quot;se.nrm.dina.datamodel.Repositoryagreement[ repositoryAgreementID=&quot; + repositoryAgreementID + &quot; ]&quot;;</span>
+<span class="nc" id="L390">        return &quot;se.nrm.dina.datamodel.Repositoryagreement[ repositoryAgreementID=&quot; + repositoryAgreementID + &quot; ]&quot;;</span>
     }
     
 }

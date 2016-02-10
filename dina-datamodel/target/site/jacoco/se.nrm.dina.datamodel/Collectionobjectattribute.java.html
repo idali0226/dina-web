@@ -320,638 +320,645 @@ public class Collectionobjectattribute extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L323">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + collectionObjectAttributeID;</span>
+<span class="nc" id="L323">        return String.valueOf(collectionObjectAttributeID);</span>
+    }
+    
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L330">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + collectionObjectAttributeID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L328">        return collectionObjectAttributeID;</span>
+<span class="nc" id="L335">        return collectionObjectAttributeID;</span>
     }
 
     public Integer getCollectionObjectAttributeID() {
-<span class="nc" id="L332">        return collectionObjectAttributeID;</span>
+<span class="nc" id="L339">        return collectionObjectAttributeID;</span>
     }
 
     public void setCollectionObjectAttributeID(Integer collectionObjectAttributeID) {
-<span class="nc" id="L336">        this.collectionObjectAttributeID = collectionObjectAttributeID;</span>
-<span class="nc" id="L337">    }</span>
+<span class="nc" id="L343">        this.collectionObjectAttributeID = collectionObjectAttributeID;</span>
+<span class="nc" id="L344">    }</span>
  
 
     public int getCollectionMemberID() {
-<span class="nc" id="L341">        return collectionMemberID;</span>
+<span class="nc" id="L348">        return collectionMemberID;</span>
     }
 
     public void setCollectionMemberID(int collectionMemberID) {
-<span class="nc" id="L345">        this.collectionMemberID = collectionMemberID;</span>
-<span class="nc" id="L346">    }</span>
+<span class="nc" id="L352">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L353">    }</span>
 
     public Float getNumber1() {
-<span class="nc" id="L349">        return number1;</span>
+<span class="nc" id="L356">        return number1;</span>
     }
 
     public void setNumber1(Float number1) {
-<span class="nc" id="L353">        this.number1 = number1;</span>
-<span class="nc" id="L354">    }</span>
+<span class="nc" id="L360">        this.number1 = number1;</span>
+<span class="nc" id="L361">    }</span>
 
     public Float getNumber10() {
-<span class="nc" id="L357">        return number10;</span>
+<span class="nc" id="L364">        return number10;</span>
     }
 
     public void setNumber10(Float number10) {
-<span class="nc" id="L361">        this.number10 = number10;</span>
-<span class="nc" id="L362">    }</span>
+<span class="nc" id="L368">        this.number10 = number10;</span>
+<span class="nc" id="L369">    }</span>
 
     public Float getNumber11() {
-<span class="nc" id="L365">        return number11;</span>
+<span class="nc" id="L372">        return number11;</span>
     }
 
     public void setNumber11(Float number11) {
-<span class="nc" id="L369">        this.number11 = number11;</span>
-<span class="nc" id="L370">    }</span>
+<span class="nc" id="L376">        this.number11 = number11;</span>
+<span class="nc" id="L377">    }</span>
 
     public Float getNumber12() {
-<span class="nc" id="L373">        return number12;</span>
+<span class="nc" id="L380">        return number12;</span>
     }
 
     public void setNumber12(Float number12) {
-<span class="nc" id="L377">        this.number12 = number12;</span>
-<span class="nc" id="L378">    }</span>
+<span class="nc" id="L384">        this.number12 = number12;</span>
+<span class="nc" id="L385">    }</span>
 
     public Float getNumber13() {
-<span class="nc" id="L381">        return number13;</span>
+<span class="nc" id="L388">        return number13;</span>
     }
 
     public void setNumber13(Float number13) {
-<span class="nc" id="L385">        this.number13 = number13;</span>
-<span class="nc" id="L386">    }</span>
+<span class="nc" id="L392">        this.number13 = number13;</span>
+<span class="nc" id="L393">    }</span>
 
     public Float getNumber14() {
-<span class="nc" id="L389">        return number14;</span>
+<span class="nc" id="L396">        return number14;</span>
     }
 
     public void setNumber14(Float number14) {
-<span class="nc" id="L393">        this.number14 = number14;</span>
-<span class="nc" id="L394">    }</span>
+<span class="nc" id="L400">        this.number14 = number14;</span>
+<span class="nc" id="L401">    }</span>
 
     public Float getNumber15() {
-<span class="nc" id="L397">        return number15;</span>
+<span class="nc" id="L404">        return number15;</span>
     }
 
     public void setNumber15(Float number15) {
-<span class="nc" id="L401">        this.number15 = number15;</span>
-<span class="nc" id="L402">    }</span>
+<span class="nc" id="L408">        this.number15 = number15;</span>
+<span class="nc" id="L409">    }</span>
 
     public Float getNumber16() {
-<span class="nc" id="L405">        return number16;</span>
+<span class="nc" id="L412">        return number16;</span>
     }
 
     public void setNumber16(Float number16) {
-<span class="nc" id="L409">        this.number16 = number16;</span>
-<span class="nc" id="L410">    }</span>
+<span class="nc" id="L416">        this.number16 = number16;</span>
+<span class="nc" id="L417">    }</span>
 
     public Float getNumber17() {
-<span class="nc" id="L413">        return number17;</span>
+<span class="nc" id="L420">        return number17;</span>
     }
 
     public void setNumber17(Float number17) {
-<span class="nc" id="L417">        this.number17 = number17;</span>
-<span class="nc" id="L418">    }</span>
+<span class="nc" id="L424">        this.number17 = number17;</span>
+<span class="nc" id="L425">    }</span>
 
     public Float getNumber18() {
-<span class="nc" id="L421">        return number18;</span>
+<span class="nc" id="L428">        return number18;</span>
     }
 
     public void setNumber18(Float number18) {
-<span class="nc" id="L425">        this.number18 = number18;</span>
-<span class="nc" id="L426">    }</span>
+<span class="nc" id="L432">        this.number18 = number18;</span>
+<span class="nc" id="L433">    }</span>
 
     public Float getNumber19() {
-<span class="nc" id="L429">        return number19;</span>
+<span class="nc" id="L436">        return number19;</span>
     }
 
     public void setNumber19(Float number19) {
-<span class="nc" id="L433">        this.number19 = number19;</span>
-<span class="nc" id="L434">    }</span>
+<span class="nc" id="L440">        this.number19 = number19;</span>
+<span class="nc" id="L441">    }</span>
 
     public Float getNumber2() {
-<span class="nc" id="L437">        return number2;</span>
+<span class="nc" id="L444">        return number2;</span>
     }
 
     public void setNumber2(Float number2) {
-<span class="nc" id="L441">        this.number2 = number2;</span>
-<span class="nc" id="L442">    }</span>
+<span class="nc" id="L448">        this.number2 = number2;</span>
+<span class="nc" id="L449">    }</span>
 
     public Float getNumber20() {
-<span class="nc" id="L445">        return number20;</span>
+<span class="nc" id="L452">        return number20;</span>
     }
 
     public void setNumber20(Float number20) {
-<span class="nc" id="L449">        this.number20 = number20;</span>
-<span class="nc" id="L450">    }</span>
+<span class="nc" id="L456">        this.number20 = number20;</span>
+<span class="nc" id="L457">    }</span>
 
     public Float getNumber21() {
-<span class="nc" id="L453">        return number21;</span>
+<span class="nc" id="L460">        return number21;</span>
     }
 
     public void setNumber21(Float number21) {
-<span class="nc" id="L457">        this.number21 = number21;</span>
-<span class="nc" id="L458">    }</span>
+<span class="nc" id="L464">        this.number21 = number21;</span>
+<span class="nc" id="L465">    }</span>
 
     public Float getNumber22() {
-<span class="nc" id="L461">        return number22;</span>
+<span class="nc" id="L468">        return number22;</span>
     }
 
     public void setNumber22(Float number22) {
-<span class="nc" id="L465">        this.number22 = number22;</span>
-<span class="nc" id="L466">    }</span>
+<span class="nc" id="L472">        this.number22 = number22;</span>
+<span class="nc" id="L473">    }</span>
 
     public Float getNumber23() {
-<span class="nc" id="L469">        return number23;</span>
+<span class="nc" id="L476">        return number23;</span>
     }
 
     public void setNumber23(Float number23) {
-<span class="nc" id="L473">        this.number23 = number23;</span>
-<span class="nc" id="L474">    }</span>
+<span class="nc" id="L480">        this.number23 = number23;</span>
+<span class="nc" id="L481">    }</span>
 
     public Float getNumber24() {
-<span class="nc" id="L477">        return number24;</span>
+<span class="nc" id="L484">        return number24;</span>
     }
 
     public void setNumber24(Float number24) {
-<span class="nc" id="L481">        this.number24 = number24;</span>
-<span class="nc" id="L482">    }</span>
+<span class="nc" id="L488">        this.number24 = number24;</span>
+<span class="nc" id="L489">    }</span>
 
     public Float getNumber25() {
-<span class="nc" id="L485">        return number25;</span>
+<span class="nc" id="L492">        return number25;</span>
     }
 
     public void setNumber25(Float number25) {
-<span class="nc" id="L489">        this.number25 = number25;</span>
-<span class="nc" id="L490">    }</span>
+<span class="nc" id="L496">        this.number25 = number25;</span>
+<span class="nc" id="L497">    }</span>
 
     public Float getNumber26() {
-<span class="nc" id="L493">        return number26;</span>
+<span class="nc" id="L500">        return number26;</span>
     }
 
     public void setNumber26(Float number26) {
-<span class="nc" id="L497">        this.number26 = number26;</span>
-<span class="nc" id="L498">    }</span>
+<span class="nc" id="L504">        this.number26 = number26;</span>
+<span class="nc" id="L505">    }</span>
 
     public Float getNumber27() {
-<span class="nc" id="L501">        return number27;</span>
+<span class="nc" id="L508">        return number27;</span>
     }
 
     public void setNumber27(Float number27) {
-<span class="nc" id="L505">        this.number27 = number27;</span>
-<span class="nc" id="L506">    }</span>
+<span class="nc" id="L512">        this.number27 = number27;</span>
+<span class="nc" id="L513">    }</span>
 
     public Float getNumber28() {
-<span class="nc" id="L509">        return number28;</span>
+<span class="nc" id="L516">        return number28;</span>
     }
 
     public void setNumber28(Float number28) {
-<span class="nc" id="L513">        this.number28 = number28;</span>
-<span class="nc" id="L514">    }</span>
+<span class="nc" id="L520">        this.number28 = number28;</span>
+<span class="nc" id="L521">    }</span>
 
     public Float getNumber29() {
-<span class="nc" id="L517">        return number29;</span>
+<span class="nc" id="L524">        return number29;</span>
     }
 
     public void setNumber29(Float number29) {
-<span class="nc" id="L521">        this.number29 = number29;</span>
-<span class="nc" id="L522">    }</span>
+<span class="nc" id="L528">        this.number29 = number29;</span>
+<span class="nc" id="L529">    }</span>
 
     public Float getNumber3() {
-<span class="nc" id="L525">        return number3;</span>
+<span class="nc" id="L532">        return number3;</span>
     }
 
     public void setNumber3(Float number3) {
-<span class="nc" id="L529">        this.number3 = number3;</span>
-<span class="nc" id="L530">    }</span>
+<span class="nc" id="L536">        this.number3 = number3;</span>
+<span class="nc" id="L537">    }</span>
 
     public Short getNumber30() {
-<span class="nc" id="L533">        return number30;</span>
+<span class="nc" id="L540">        return number30;</span>
     }
 
     public void setNumber30(Short number30) {
-<span class="nc" id="L537">        this.number30 = number30;</span>
-<span class="nc" id="L538">    }</span>
+<span class="nc" id="L544">        this.number30 = number30;</span>
+<span class="nc" id="L545">    }</span>
 
     public Float getNumber31() {
-<span class="nc" id="L541">        return number31;</span>
+<span class="nc" id="L548">        return number31;</span>
     }
 
     public void setNumber31(Float number31) {
-<span class="nc" id="L545">        this.number31 = number31;</span>
-<span class="nc" id="L546">    }</span>
+<span class="nc" id="L552">        this.number31 = number31;</span>
+<span class="nc" id="L553">    }</span>
 
     public Float getNumber32() {
-<span class="nc" id="L549">        return number32;</span>
+<span class="nc" id="L556">        return number32;</span>
     }
 
     public void setNumber32(Float number32) {
-<span class="nc" id="L553">        this.number32 = number32;</span>
-<span class="nc" id="L554">    }</span>
+<span class="nc" id="L560">        this.number32 = number32;</span>
+<span class="nc" id="L561">    }</span>
 
     public Float getNumber33() {
-<span class="nc" id="L557">        return number33;</span>
+<span class="nc" id="L564">        return number33;</span>
     }
 
     public void setNumber33(Float number33) {
-<span class="nc" id="L561">        this.number33 = number33;</span>
-<span class="nc" id="L562">    }</span>
+<span class="nc" id="L568">        this.number33 = number33;</span>
+<span class="nc" id="L569">    }</span>
 
     public Float getNumber34() {
-<span class="nc" id="L565">        return number34;</span>
+<span class="nc" id="L572">        return number34;</span>
     }
 
     public void setNumber34(Float number34) {
-<span class="nc" id="L569">        this.number34 = number34;</span>
-<span class="nc" id="L570">    }</span>
+<span class="nc" id="L576">        this.number34 = number34;</span>
+<span class="nc" id="L577">    }</span>
 
     public Float getNumber35() {
-<span class="nc" id="L573">        return number35;</span>
+<span class="nc" id="L580">        return number35;</span>
     }
 
     public void setNumber35(Float number35) {
-<span class="nc" id="L577">        this.number35 = number35;</span>
-<span class="nc" id="L578">    }</span>
+<span class="nc" id="L584">        this.number35 = number35;</span>
+<span class="nc" id="L585">    }</span>
 
     public Float getNumber36() {
-<span class="nc" id="L581">        return number36;</span>
+<span class="nc" id="L588">        return number36;</span>
     }
 
     public void setNumber36(Float number36) {
-<span class="nc" id="L585">        this.number36 = number36;</span>
-<span class="nc" id="L586">    }</span>
+<span class="nc" id="L592">        this.number36 = number36;</span>
+<span class="nc" id="L593">    }</span>
 
     public Float getNumber37() {
-<span class="nc" id="L589">        return number37;</span>
+<span class="nc" id="L596">        return number37;</span>
     }
 
     public void setNumber37(Float number37) {
-<span class="nc" id="L593">        this.number37 = number37;</span>
-<span class="nc" id="L594">    }</span>
+<span class="nc" id="L600">        this.number37 = number37;</span>
+<span class="nc" id="L601">    }</span>
 
     public Float getNumber38() {
-<span class="nc" id="L597">        return number38;</span>
+<span class="nc" id="L604">        return number38;</span>
     }
 
     public void setNumber38(Float number38) {
-<span class="nc" id="L601">        this.number38 = number38;</span>
-<span class="nc" id="L602">    }</span>
+<span class="nc" id="L608">        this.number38 = number38;</span>
+<span class="nc" id="L609">    }</span>
 
     public Float getNumber39() {
-<span class="nc" id="L605">        return number39;</span>
+<span class="nc" id="L612">        return number39;</span>
     }
 
     public void setNumber39(Float number39) {
-<span class="nc" id="L609">        this.number39 = number39;</span>
-<span class="nc" id="L610">    }</span>
+<span class="nc" id="L616">        this.number39 = number39;</span>
+<span class="nc" id="L617">    }</span>
 
     public Float getNumber4() {
-<span class="nc" id="L613">        return number4;</span>
+<span class="nc" id="L620">        return number4;</span>
     }
 
     public void setNumber4(Float number4) {
-<span class="nc" id="L617">        this.number4 = number4;</span>
-<span class="nc" id="L618">    }</span>
+<span class="nc" id="L624">        this.number4 = number4;</span>
+<span class="nc" id="L625">    }</span>
 
     public Float getNumber40() {
-<span class="nc" id="L621">        return number40;</span>
+<span class="nc" id="L628">        return number40;</span>
     }
 
     public void setNumber40(Float number40) {
-<span class="nc" id="L625">        this.number40 = number40;</span>
-<span class="nc" id="L626">    }</span>
+<span class="nc" id="L632">        this.number40 = number40;</span>
+<span class="nc" id="L633">    }</span>
 
     public Float getNumber41() {
-<span class="nc" id="L629">        return number41;</span>
+<span class="nc" id="L636">        return number41;</span>
     }
 
     public void setNumber41(Float number41) {
-<span class="nc" id="L633">        this.number41 = number41;</span>
-<span class="nc" id="L634">    }</span>
+<span class="nc" id="L640">        this.number41 = number41;</span>
+<span class="nc" id="L641">    }</span>
 
     public Float getNumber42() {
-<span class="nc" id="L637">        return number42;</span>
+<span class="nc" id="L644">        return number42;</span>
     }
 
     public void setNumber42(Float number42) {
-<span class="nc" id="L641">        this.number42 = number42;</span>
-<span class="nc" id="L642">    }</span>
+<span class="nc" id="L648">        this.number42 = number42;</span>
+<span class="nc" id="L649">    }</span>
 
     public Float getNumber5() {
-<span class="nc" id="L645">        return number5;</span>
+<span class="nc" id="L652">        return number5;</span>
     }
 
     public void setNumber5(Float number5) {
-<span class="nc" id="L649">        this.number5 = number5;</span>
-<span class="nc" id="L650">    }</span>
+<span class="nc" id="L656">        this.number5 = number5;</span>
+<span class="nc" id="L657">    }</span>
 
     public Float getNumber6() {
-<span class="nc" id="L653">        return number6;</span>
+<span class="nc" id="L660">        return number6;</span>
     }
 
     public void setNumber6(Float number6) {
-<span class="nc" id="L657">        this.number6 = number6;</span>
-<span class="nc" id="L658">    }</span>
+<span class="nc" id="L664">        this.number6 = number6;</span>
+<span class="nc" id="L665">    }</span>
 
     public Float getNumber7() {
-<span class="nc" id="L661">        return number7;</span>
+<span class="nc" id="L668">        return number7;</span>
     }
 
     public void setNumber7(Float number7) {
-<span class="nc" id="L665">        this.number7 = number7;</span>
-<span class="nc" id="L666">    }</span>
+<span class="nc" id="L672">        this.number7 = number7;</span>
+<span class="nc" id="L673">    }</span>
 
     public Short getNumber8() {
-<span class="nc" id="L669">        return number8;</span>
+<span class="nc" id="L676">        return number8;</span>
     }
 
     public void setNumber8(Short number8) {
-<span class="nc" id="L673">        this.number8 = number8;</span>
-<span class="nc" id="L674">    }</span>
+<span class="nc" id="L680">        this.number8 = number8;</span>
+<span class="nc" id="L681">    }</span>
 
     public Float getNumber9() {
-<span class="nc" id="L677">        return number9;</span>
+<span class="nc" id="L684">        return number9;</span>
     }
 
     public void setNumber9(Float number9) {
-<span class="nc" id="L681">        this.number9 = number9;</span>
-<span class="nc" id="L682">    }</span>
+<span class="nc" id="L688">        this.number9 = number9;</span>
+<span class="nc" id="L689">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L685">        return remarks;</span>
+<span class="nc" id="L692">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L689">        this.remarks = remarks;</span>
-<span class="nc" id="L690">    }</span>
+<span class="nc" id="L696">        this.remarks = remarks;</span>
+<span class="nc" id="L697">    }</span>
 
     public String getText1() {
-<span class="nc" id="L693">        return text1;</span>
+<span class="nc" id="L700">        return text1;</span>
     }
 
     public void setText1(String text1) {
-<span class="nc" id="L697">        this.text1 = text1;</span>
-<span class="nc" id="L698">    }</span>
+<span class="nc" id="L704">        this.text1 = text1;</span>
+<span class="nc" id="L705">    }</span>
 
     public String getText10() {
-<span class="nc" id="L701">        return text10;</span>
+<span class="nc" id="L708">        return text10;</span>
     }
 
     public void setText10(String text10) {
-<span class="nc" id="L705">        this.text10 = text10;</span>
-<span class="nc" id="L706">    }</span>
+<span class="nc" id="L712">        this.text10 = text10;</span>
+<span class="nc" id="L713">    }</span>
 
     public String getText11() {
-<span class="nc" id="L709">        return text11;</span>
+<span class="nc" id="L716">        return text11;</span>
     }
 
     public void setText11(String text11) {
-<span class="nc" id="L713">        this.text11 = text11;</span>
-<span class="nc" id="L714">    }</span>
+<span class="nc" id="L720">        this.text11 = text11;</span>
+<span class="nc" id="L721">    }</span>
 
     public String getText12() {
-<span class="nc" id="L717">        return text12;</span>
+<span class="nc" id="L724">        return text12;</span>
     }
 
     public void setText12(String text12) {
-<span class="nc" id="L721">        this.text12 = text12;</span>
-<span class="nc" id="L722">    }</span>
+<span class="nc" id="L728">        this.text12 = text12;</span>
+<span class="nc" id="L729">    }</span>
 
     public String getText13() {
-<span class="nc" id="L725">        return text13;</span>
+<span class="nc" id="L732">        return text13;</span>
     }
 
     public void setText13(String text13) {
-<span class="nc" id="L729">        this.text13 = text13;</span>
-<span class="nc" id="L730">    }</span>
+<span class="nc" id="L736">        this.text13 = text13;</span>
+<span class="nc" id="L737">    }</span>
 
     public String getText14() {
-<span class="nc" id="L733">        return text14;</span>
+<span class="nc" id="L740">        return text14;</span>
     }
 
     public void setText14(String text14) {
-<span class="nc" id="L737">        this.text14 = text14;</span>
-<span class="nc" id="L738">    }</span>
+<span class="nc" id="L744">        this.text14 = text14;</span>
+<span class="nc" id="L745">    }</span>
 
     public String getText15() {
-<span class="nc" id="L741">        return text15;</span>
+<span class="nc" id="L748">        return text15;</span>
     }
 
     public void setText15(String text15) {
-<span class="nc" id="L745">        this.text15 = text15;</span>
-<span class="nc" id="L746">    }</span>
+<span class="nc" id="L752">        this.text15 = text15;</span>
+<span class="nc" id="L753">    }</span>
 
     public String getText2() {
-<span class="nc" id="L749">        return text2;</span>
+<span class="nc" id="L756">        return text2;</span>
     }
 
     public void setText2(String text2) {
-<span class="nc" id="L753">        this.text2 = text2;</span>
-<span class="nc" id="L754">    }</span>
+<span class="nc" id="L760">        this.text2 = text2;</span>
+<span class="nc" id="L761">    }</span>
 
     public String getText3() {
-<span class="nc" id="L757">        return text3;</span>
+<span class="nc" id="L764">        return text3;</span>
     }
 
     public void setText3(String text3) {
-<span class="nc" id="L761">        this.text3 = text3;</span>
-<span class="nc" id="L762">    }</span>
+<span class="nc" id="L768">        this.text3 = text3;</span>
+<span class="nc" id="L769">    }</span>
 
     public String getText4() {
-<span class="nc" id="L765">        return text4;</span>
+<span class="nc" id="L772">        return text4;</span>
     }
 
     public void setText4(String text4) {
-<span class="nc" id="L769">        this.text4 = text4;</span>
-<span class="nc" id="L770">    }</span>
+<span class="nc" id="L776">        this.text4 = text4;</span>
+<span class="nc" id="L777">    }</span>
 
     public String getText5() {
-<span class="nc" id="L773">        return text5;</span>
+<span class="nc" id="L780">        return text5;</span>
     }
 
     public void setText5(String text5) {
-<span class="nc" id="L777">        this.text5 = text5;</span>
-<span class="nc" id="L778">    }</span>
+<span class="nc" id="L784">        this.text5 = text5;</span>
+<span class="nc" id="L785">    }</span>
 
     public String getText6() {
-<span class="nc" id="L781">        return text6;</span>
+<span class="nc" id="L788">        return text6;</span>
     }
 
     public void setText6(String text6) {
-<span class="nc" id="L785">        this.text6 = text6;</span>
-<span class="nc" id="L786">    }</span>
+<span class="nc" id="L792">        this.text6 = text6;</span>
+<span class="nc" id="L793">    }</span>
 
     public String getText7() {
-<span class="nc" id="L789">        return text7;</span>
+<span class="nc" id="L796">        return text7;</span>
     }
 
     public void setText7(String text7) {
-<span class="nc" id="L793">        this.text7 = text7;</span>
-<span class="nc" id="L794">    }</span>
+<span class="nc" id="L800">        this.text7 = text7;</span>
+<span class="nc" id="L801">    }</span>
 
     public String getText8() {
-<span class="nc" id="L797">        return text8;</span>
+<span class="nc" id="L804">        return text8;</span>
     }
 
     public void setText8(String text8) {
-<span class="nc" id="L801">        this.text8 = text8;</span>
-<span class="nc" id="L802">    }</span>
+<span class="nc" id="L808">        this.text8 = text8;</span>
+<span class="nc" id="L809">    }</span>
 
     public String getText9() {
-<span class="nc" id="L805">        return text9;</span>
+<span class="nc" id="L812">        return text9;</span>
     }
 
     public void setText9(String text9) {
-<span class="nc" id="L809">        this.text9 = text9;</span>
-<span class="nc" id="L810">    }</span>
+<span class="nc" id="L816">        this.text9 = text9;</span>
+<span class="nc" id="L817">    }</span>
 
     public Boolean getYesNo1() {
-<span class="nc" id="L813">        return yesNo1;</span>
+<span class="nc" id="L820">        return yesNo1;</span>
     }
 
     public void setYesNo1(Boolean yesNo1) {
-<span class="nc" id="L817">        this.yesNo1 = yesNo1;</span>
-<span class="nc" id="L818">    }</span>
+<span class="nc" id="L824">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L825">    }</span>
 
     public Boolean getYesNo2() {
-<span class="nc" id="L821">        return yesNo2;</span>
+<span class="nc" id="L828">        return yesNo2;</span>
     }
 
     public void setYesNo2(Boolean yesNo2) {
-<span class="nc" id="L825">        this.yesNo2 = yesNo2;</span>
-<span class="nc" id="L826">    }</span>
+<span class="nc" id="L832">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L833">    }</span>
 
     public Boolean getYesNo3() {
-<span class="nc" id="L829">        return yesNo3;</span>
+<span class="nc" id="L836">        return yesNo3;</span>
     }
 
     public void setYesNo3(Boolean yesNo3) {
-<span class="nc" id="L833">        this.yesNo3 = yesNo3;</span>
-<span class="nc" id="L834">    }</span>
+<span class="nc" id="L840">        this.yesNo3 = yesNo3;</span>
+<span class="nc" id="L841">    }</span>
 
     public Boolean getYesNo4() {
-<span class="nc" id="L837">        return yesNo4;</span>
+<span class="nc" id="L844">        return yesNo4;</span>
     }
 
     public void setYesNo4(Boolean yesNo4) {
-<span class="nc" id="L841">        this.yesNo4 = yesNo4;</span>
-<span class="nc" id="L842">    }</span>
+<span class="nc" id="L848">        this.yesNo4 = yesNo4;</span>
+<span class="nc" id="L849">    }</span>
 
     public Boolean getYesNo5() {
-<span class="nc" id="L845">        return yesNo5;</span>
+<span class="nc" id="L852">        return yesNo5;</span>
     }
 
     public void setYesNo5(Boolean yesNo5) {
-<span class="nc" id="L849">        this.yesNo5 = yesNo5;</span>
-<span class="nc" id="L850">    }</span>
+<span class="nc" id="L856">        this.yesNo5 = yesNo5;</span>
+<span class="nc" id="L857">    }</span>
 
     public Boolean getYesNo6() {
-<span class="nc" id="L853">        return yesNo6;</span>
+<span class="nc" id="L860">        return yesNo6;</span>
     }
 
     public void setYesNo6(Boolean yesNo6) {
-<span class="nc" id="L857">        this.yesNo6 = yesNo6;</span>
-<span class="nc" id="L858">    }</span>
+<span class="nc" id="L864">        this.yesNo6 = yesNo6;</span>
+<span class="nc" id="L865">    }</span>
 
     public Boolean getYesNo7() {
-<span class="nc" id="L861">        return yesNo7;</span>
+<span class="nc" id="L868">        return yesNo7;</span>
     }
 
     public void setYesNo7(Boolean yesNo7) {
-<span class="nc" id="L865">        this.yesNo7 = yesNo7;</span>
-<span class="nc" id="L866">    }</span>
+<span class="nc" id="L872">        this.yesNo7 = yesNo7;</span>
+<span class="nc" id="L873">    }</span>
 
     public Float getBottomDistance() {
-<span class="nc" id="L869">        return bottomDistance;</span>
+<span class="nc" id="L876">        return bottomDistance;</span>
     }
 
     public void setBottomDistance(Float bottomDistance) {
-<span class="nc" id="L873">        this.bottomDistance = bottomDistance;</span>
-<span class="nc" id="L874">    }</span>
+<span class="nc" id="L880">        this.bottomDistance = bottomDistance;</span>
+<span class="nc" id="L881">    }</span>
 
     public String getDirection() {
-<span class="nc" id="L877">        return direction;</span>
+<span class="nc" id="L884">        return direction;</span>
     }
 
     public void setDirection(String direction) {
-<span class="nc" id="L881">        this.direction = direction;</span>
-<span class="nc" id="L882">    }</span>
+<span class="nc" id="L888">        this.direction = direction;</span>
+<span class="nc" id="L889">    }</span>
 
     public String getDistanceUnits() {
-<span class="nc" id="L885">        return distanceUnits;</span>
+<span class="nc" id="L892">        return distanceUnits;</span>
     }
 
     public void setDistanceUnits(String distanceUnits) {
-<span class="nc" id="L889">        this.distanceUnits = distanceUnits;</span>
-<span class="nc" id="L890">    }</span>
+<span class="nc" id="L896">        this.distanceUnits = distanceUnits;</span>
+<span class="nc" id="L897">    }</span>
 
     public String getPositionState() {
-<span class="nc" id="L893">        return positionState;</span>
+<span class="nc" id="L900">        return positionState;</span>
     }
 
     public void setPositionState(String positionState) {
-<span class="nc" id="L897">        this.positionState = positionState;</span>
-<span class="nc" id="L898">    }</span>
+<span class="nc" id="L904">        this.positionState = positionState;</span>
+<span class="nc" id="L905">    }</span>
 
     public Float getTopDistance() {
-<span class="nc" id="L901">        return topDistance;</span>
+<span class="nc" id="L908">        return topDistance;</span>
     }
 
     public void setTopDistance(Float topDistance) {
-<span class="nc" id="L905">        this.topDistance = topDistance;</span>
-<span class="nc" id="L906">    }</span>
+<span class="nc" id="L912">        this.topDistance = topDistance;</span>
+<span class="nc" id="L913">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L910">        return modifiedByAgentID;</span>
+<span class="nc" id="L917">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L914">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L915">    }</span>
+<span class="nc" id="L921">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L922">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L919">        return createdByAgentID;</span>
+<span class="nc" id="L926">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L923">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L924">    }</span>
+<span class="nc" id="L930">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L931">    }</span>
 
     @XmlTransient
     public List&lt;Collectionobject&gt; getCollectionobjectList() {
-<span class="nc" id="L928">        return collectionobjectList;</span>
+<span class="nc" id="L935">        return collectionobjectList;</span>
     }
 
     public void setCollectionobjectList(List&lt;Collectionobject&gt; collectionobjectList) {
-<span class="nc" id="L932">        this.collectionobjectList = collectionobjectList;</span>
-<span class="nc" id="L933">    }</span>
+<span class="nc" id="L939">        this.collectionobjectList = collectionobjectList;</span>
+<span class="nc" id="L940">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L937">        int hash = 0;</span>
-<span class="nc bnc" id="L938" title="All 2 branches missed.">        hash += (collectionObjectAttributeID != null ? collectionObjectAttributeID.hashCode() : 0);</span>
-<span class="nc" id="L939">        return hash;</span>
+<span class="nc" id="L944">        int hash = 0;</span>
+<span class="nc bnc" id="L945" title="All 2 branches missed.">        hash += (collectionObjectAttributeID != null ? collectionObjectAttributeID.hashCode() : 0);</span>
+<span class="nc" id="L946">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L945" title="All 2 branches missed.">        if (!(object instanceof Collectionobjectattribute)) {</span>
-<span class="nc" id="L946">            return false;</span>
+<span class="nc bnc" id="L952" title="All 2 branches missed.">        if (!(object instanceof Collectionobjectattribute)) {</span>
+<span class="nc" id="L953">            return false;</span>
         }
-<span class="nc" id="L948">        Collectionobjectattribute other = (Collectionobjectattribute) object;</span>
-<span class="nc bnc" id="L949" title="All 8 branches missed.">        return !((this.collectionObjectAttributeID == null &amp;&amp; other.collectionObjectAttributeID != null) || (this.collectionObjectAttributeID != null &amp;&amp; !this.collectionObjectAttributeID.equals(other.collectionObjectAttributeID)));</span>
+<span class="nc" id="L955">        Collectionobjectattribute other = (Collectionobjectattribute) object;</span>
+<span class="nc bnc" id="L956" title="All 8 branches missed.">        return !((this.collectionObjectAttributeID == null &amp;&amp; other.collectionObjectAttributeID != null) || (this.collectionObjectAttributeID != null &amp;&amp; !this.collectionObjectAttributeID.equals(other.collectionObjectAttributeID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L954">        return &quot;se.nrm.dina.datamodel.Collectionobjectattribute[ collectionObjectAttributeID=&quot; + collectionObjectAttributeID + &quot; ]&quot;;</span>
+<span class="nc" id="L961">        return &quot;se.nrm.dina.datamodel.Collectionobjectattribute[ collectionObjectAttributeID=&quot; + collectionObjectAttributeID + &quot; ]&quot;;</span>
     }
     
 }

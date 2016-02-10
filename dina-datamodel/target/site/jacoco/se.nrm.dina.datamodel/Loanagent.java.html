@@ -95,104 +95,110 @@ public class Loanagent extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L98">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + loanAgentID;</span>
+<span class="nc" id="L98">        return String.valueOf(loanAgentID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L104">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + loanAgentID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L103">        return loanAgentID;</span>
+<span class="nc" id="L109">        return loanAgentID;</span>
     }
 
     public Integer getLoanAgentID() {
-<span class="nc" id="L107">        return loanAgentID;</span>
+<span class="nc" id="L113">        return loanAgentID;</span>
     }
 
     public void setLoanAgentID(Integer loanAgentID) {
-<span class="nc" id="L111">        this.loanAgentID = loanAgentID;</span>
-<span class="nc" id="L112">    }</span>
+<span class="nc" id="L117">        this.loanAgentID = loanAgentID;</span>
+<span class="nc" id="L118">    }</span>
 
    
     public String getRemarks() {
-<span class="nc" id="L116">        return remarks;</span>
+<span class="nc" id="L122">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L120">        this.remarks = remarks;</span>
-<span class="nc" id="L121">    }</span>
+<span class="nc" id="L126">        this.remarks = remarks;</span>
+<span class="nc" id="L127">    }</span>
 
     public String getRole() {
-<span class="nc" id="L124">        return role;</span>
+<span class="nc" id="L130">        return role;</span>
     }
 
     public void setRole(String role) {
-<span class="nc" id="L128">        this.role = role;</span>
-<span class="nc" id="L129">    }</span>
+<span class="nc" id="L134">        this.role = role;</span>
+<span class="nc" id="L135">    }</span>
 
     @XmlIDREF
     public Agent getAgentID() {
-<span class="nc" id="L133">        return agentID;</span>
+<span class="nc" id="L139">        return agentID;</span>
     }
 
     public void setAgentID(Agent agentID) {
-<span class="nc" id="L137">        this.agentID = agentID;</span>
-<span class="nc" id="L138">    }</span>
+<span class="nc" id="L143">        this.agentID = agentID;</span>
+<span class="nc" id="L144">    }</span>
 
     @XmlIDREF
     public Discipline getDisciplineID() {
-<span class="nc" id="L142">        return disciplineID;</span>
+<span class="nc" id="L148">        return disciplineID;</span>
     }
 
     public void setDisciplineID(Discipline disciplineID) {
-<span class="nc" id="L146">        this.disciplineID = disciplineID;</span>
-<span class="nc" id="L147">    }</span>
+<span class="nc" id="L152">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L153">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L151">        return modifiedByAgentID;</span>
+<span class="nc" id="L157">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L155">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L156">    }</span>
+<span class="nc" id="L161">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L162">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L160">        return createdByAgentID;</span>
+<span class="nc" id="L166">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L164">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L165">    }</span>
+<span class="nc" id="L170">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L171">    }</span>
 
     @XmlIDREF
     public Loan getLoanID() {
-<span class="nc" id="L169">        return loanID;</span>
+<span class="nc" id="L175">        return loanID;</span>
     }
 
     public void setLoanID(Loan loanID) {
-<span class="nc" id="L173">        this.loanID = loanID;</span>
-<span class="nc" id="L174">    }</span>
+<span class="nc" id="L179">        this.loanID = loanID;</span>
+<span class="nc" id="L180">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L178">        int hash = 0;</span>
-<span class="nc bnc" id="L179" title="All 2 branches missed.">        hash += (loanAgentID != null ? loanAgentID.hashCode() : 0);</span>
-<span class="nc" id="L180">        return hash;</span>
+<span class="nc" id="L184">        int hash = 0;</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">        hash += (loanAgentID != null ? loanAgentID.hashCode() : 0);</span>
+<span class="nc" id="L186">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L186" title="All 2 branches missed.">        if (!(object instanceof Loanagent)) {</span>
-<span class="nc" id="L187">            return false;</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">        if (!(object instanceof Loanagent)) {</span>
+<span class="nc" id="L193">            return false;</span>
         }
-<span class="nc" id="L189">        Loanagent other = (Loanagent) object;</span>
-<span class="nc bnc" id="L190" title="All 8 branches missed.">        return !((this.loanAgentID == null &amp;&amp; other.loanAgentID != null) || (this.loanAgentID != null &amp;&amp; !this.loanAgentID.equals(other.loanAgentID)));</span>
+<span class="nc" id="L195">        Loanagent other = (Loanagent) object;</span>
+<span class="nc bnc" id="L196" title="All 8 branches missed.">        return !((this.loanAgentID == null &amp;&amp; other.loanAgentID != null) || (this.loanAgentID != null &amp;&amp; !this.loanAgentID.equals(other.loanAgentID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L195">        return &quot;se.nrm.dina.datamodel.Loanagent[ loanAgentID=&quot; + loanAgentID + &quot; ]&quot;;</span>
+<span class="nc" id="L201">        return &quot;se.nrm.dina.datamodel.Loanagent[ loanAgentID=&quot; + loanAgentID + &quot; ]&quot;;</span>
     }
     
 }

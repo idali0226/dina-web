@@ -97,102 +97,108 @@ public class Collectionobjectcitation extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L100">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + collectionObjectCitationID;</span>
+<span class="nc" id="L100">        return String.valueOf(collectionObjectCitationID);</span>
+    }
+
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L106">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + collectionObjectCitationID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L105">        return collectionObjectCitationID;</span>
+<span class="nc" id="L111">        return collectionObjectCitationID;</span>
     }
 
     public Integer getCollectionObjectCitationID() {
-<span class="nc" id="L109">        return collectionObjectCitationID;</span>
+<span class="nc" id="L115">        return collectionObjectCitationID;</span>
     }
 
     public void setCollectionObjectCitationID(Integer collectionObjectCitationID) {
-<span class="nc" id="L113">        this.collectionObjectCitationID = collectionObjectCitationID;</span>
-<span class="nc" id="L114">    }</span>
+<span class="nc" id="L119">        this.collectionObjectCitationID = collectionObjectCitationID;</span>
+<span class="nc" id="L120">    }</span>
  
     public int getCollectionMemberID() {
-<span class="nc" id="L117">        return collectionMemberID;</span>
+<span class="nc" id="L123">        return collectionMemberID;</span>
     }
 
     public void setCollectionMemberID(int collectionMemberID) {
-<span class="nc" id="L121">        this.collectionMemberID = collectionMemberID;</span>
-<span class="nc" id="L122">    }</span>
+<span class="nc" id="L127">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L128">    }</span>
 
     public Boolean getIsFigured() {
-<span class="nc" id="L125">        return isFigured;</span>
+<span class="nc" id="L131">        return isFigured;</span>
     }
 
     public void setIsFigured(Boolean isFigured) {
-<span class="nc" id="L129">        this.isFigured = isFigured;</span>
-<span class="nc" id="L130">    }</span>
+<span class="nc" id="L135">        this.isFigured = isFigured;</span>
+<span class="nc" id="L136">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L133">        return remarks;</span>
+<span class="nc" id="L139">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L137">        this.remarks = remarks;</span>
-<span class="nc" id="L138">    }</span>
+<span class="nc" id="L143">        this.remarks = remarks;</span>
+<span class="nc" id="L144">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L142">        return modifiedByAgentID;</span>
+<span class="nc" id="L148">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L146">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L147">    }</span>
+<span class="nc" id="L152">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L153">    }</span>
 
     @XmlIDREF
     public Referencework getReferenceWorkID() {
-<span class="nc" id="L151">        return referenceWorkID;</span>
+<span class="nc" id="L157">        return referenceWorkID;</span>
     }
 
     public void setReferenceWorkID(Referencework referenceWorkID) {
-<span class="nc" id="L155">        this.referenceWorkID = referenceWorkID;</span>
-<span class="nc" id="L156">    }</span>
+<span class="nc" id="L161">        this.referenceWorkID = referenceWorkID;</span>
+<span class="nc" id="L162">    }</span>
 
     @XmlTransient
     public Collectionobject getCollectionObjectID() {
-<span class="nc" id="L160">        return collectionObjectID;</span>
+<span class="nc" id="L166">        return collectionObjectID;</span>
     }
 
     public void setCollectionObjectID(Collectionobject collectionObjectID) {
-<span class="nc" id="L164">        this.collectionObjectID = collectionObjectID;</span>
-<span class="nc" id="L165">    }</span>
+<span class="nc" id="L170">        this.collectionObjectID = collectionObjectID;</span>
+<span class="nc" id="L171">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L169">        return createdByAgentID;</span>
+<span class="nc" id="L175">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L173">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L174">    }</span>
+<span class="nc" id="L179">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L180">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L178">        int hash = 0;</span>
-<span class="nc bnc" id="L179" title="All 2 branches missed.">        hash += (collectionObjectCitationID != null ? collectionObjectCitationID.hashCode() : 0);</span>
-<span class="nc" id="L180">        return hash;</span>
+<span class="nc" id="L184">        int hash = 0;</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">        hash += (collectionObjectCitationID != null ? collectionObjectCitationID.hashCode() : 0);</span>
+<span class="nc" id="L186">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L186" title="All 2 branches missed.">        if (!(object instanceof Collectionobjectcitation)) {</span>
-<span class="nc" id="L187">            return false;</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">        if (!(object instanceof Collectionobjectcitation)) {</span>
+<span class="nc" id="L193">            return false;</span>
         }
-<span class="nc" id="L189">        Collectionobjectcitation other = (Collectionobjectcitation) object;</span>
-<span class="nc bnc" id="L190" title="All 8 branches missed.">        return !((this.collectionObjectCitationID == null &amp;&amp; other.collectionObjectCitationID != null) || (this.collectionObjectCitationID != null &amp;&amp; !this.collectionObjectCitationID.equals(other.collectionObjectCitationID)));</span>
+<span class="nc" id="L195">        Collectionobjectcitation other = (Collectionobjectcitation) object;</span>
+<span class="nc bnc" id="L196" title="All 8 branches missed.">        return !((this.collectionObjectCitationID == null &amp;&amp; other.collectionObjectCitationID != null) || (this.collectionObjectCitationID != null &amp;&amp; !this.collectionObjectCitationID.equals(other.collectionObjectCitationID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L195">        return &quot;se.nrm.dina.datamodel.Collectionobjectcitation[ collectionObjectCitationID=&quot; + collectionObjectCitationID + &quot; ]&quot;;</span>
+<span class="nc" id="L201">        return &quot;se.nrm.dina.datamodel.Collectionobjectcitation[ collectionObjectCitationID=&quot; + collectionObjectCitationID + &quot; ]&quot;;</span>
     }
     
 }

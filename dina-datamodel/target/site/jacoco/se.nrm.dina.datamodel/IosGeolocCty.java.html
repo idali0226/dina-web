@@ -53,62 +53,69 @@ public class IosGeolocCty implements EntityBean, Serializable {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L56">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + oldID;</span>
+<span class="nc" id="L56">        return String.valueOf(oldID);</span>
     }
 
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
     @Override
-    public int getEntityId() {
-<span class="nc" id="L61">        return oldID;</span>
+    public String getUUID() {
+<span class="nc" id="L63">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + oldID;</span>
     }
     
-<span class="nc" id="L64">    public IosGeolocCty(Integer oldID) {</span>
-<span class="nc" id="L65">        this.oldID = oldID;</span>
-<span class="nc" id="L66">    }</span>
+    @Override
+    public int getEntityId() {
+<span class="nc" id="L68">        return oldID;</span>
+    }
+    
+<span class="nc" id="L71">    public IosGeolocCty(Integer oldID) {</span>
+<span class="nc" id="L72">        this.oldID = oldID;</span>
+<span class="nc" id="L73">    }</span>
 
-<span class="nc" id="L68">    public IosGeolocCty(Integer oldID, int newID) {</span>
-<span class="nc" id="L69">        this.oldID = oldID;</span>
-<span class="nc" id="L70">        this.newID = newID;</span>
-<span class="nc" id="L71">    }</span>
+<span class="nc" id="L75">    public IosGeolocCty(Integer oldID, int newID) {</span>
+<span class="nc" id="L76">        this.oldID = oldID;</span>
+<span class="nc" id="L77">        this.newID = newID;</span>
+<span class="nc" id="L78">    }</span>
 
     public Integer getOldID() {
-<span class="nc" id="L74">        return oldID;</span>
+<span class="nc" id="L81">        return oldID;</span>
     }
 
     public void setOldID(Integer oldID) {
-<span class="nc" id="L78">        this.oldID = oldID;</span>
-<span class="nc" id="L79">    }</span>
+<span class="nc" id="L85">        this.oldID = oldID;</span>
+<span class="nc" id="L86">    }</span>
 
     public int getNewID() {
-<span class="nc" id="L82">        return newID;</span>
+<span class="nc" id="L89">        return newID;</span>
     }
 
     public void setNewID(int newID) {
-<span class="nc" id="L86">        this.newID = newID;</span>
-<span class="nc" id="L87">    }</span>
+<span class="nc" id="L93">        this.newID = newID;</span>
+<span class="nc" id="L94">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L91">        int hash = 0;</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">        hash += (oldID != null ? oldID.hashCode() : 0);</span>
-<span class="nc" id="L93">        return hash;</span>
+<span class="nc" id="L98">        int hash = 0;</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        hash += (oldID != null ? oldID.hashCode() : 0);</span>
+<span class="nc" id="L100">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L99" title="All 2 branches missed.">        if (!(object instanceof IosGeolocCty)) {</span>
-<span class="nc" id="L100">            return false;</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        if (!(object instanceof IosGeolocCty)) {</span>
+<span class="nc" id="L107">            return false;</span>
         }
-<span class="nc" id="L102">        IosGeolocCty other = (IosGeolocCty) object;</span>
-<span class="nc bnc" id="L103" title="All 8 branches missed.">        if ((this.oldID == null &amp;&amp; other.oldID != null) || (this.oldID != null &amp;&amp; !this.oldID.equals(other.oldID))) {</span>
-<span class="nc" id="L104">            return false;</span>
+<span class="nc" id="L109">        IosGeolocCty other = (IosGeolocCty) object;</span>
+<span class="nc bnc" id="L110" title="All 8 branches missed.">        if ((this.oldID == null &amp;&amp; other.oldID != null) || (this.oldID != null &amp;&amp; !this.oldID.equals(other.oldID))) {</span>
+<span class="nc" id="L111">            return false;</span>
         }
-<span class="nc" id="L106">        return true;</span>
+<span class="nc" id="L113">        return true;</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L111">        return &quot;se.nrm.dina.datamodel.IosGeolocCty[ oldID=&quot; + oldID + &quot; ]&quot;;</span>
+<span class="nc" id="L118">        return &quot;se.nrm.dina.datamodel.IosGeolocCty[ oldID=&quot; + oldID + &quot; ]&quot;;</span>
     }
 
 }

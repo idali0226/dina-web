@@ -22,9 +22,8 @@ public class Util {
         return instance;
     }
     
-    public String getURLLink(String entityName) {
-        return "";
-//        return URL_LINK + entityName + "/";
+    public String getURLLink(String entityName) { 
+        return URL_LINK + entityName + "/";
     }
 
 }

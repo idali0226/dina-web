@@ -135,170 +135,176 @@ public class Geographytreedefitem extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L138">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + geographyTreeDefItemID;</span>
+<span class="nc" id="L138">        return String.valueOf(geographyTreeDefItemID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L144">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + geographyTreeDefItemID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L143">        return geographyTreeDefItemID;</span>
+<span class="nc" id="L149">        return geographyTreeDefItemID;</span>
     }
     
     public Integer getGeographyTreeDefItemID() {
-<span class="nc" id="L147">        return geographyTreeDefItemID;</span>
+<span class="nc" id="L153">        return geographyTreeDefItemID;</span>
     }
 
     public void setGeographyTreeDefItemID(Integer geographyTreeDefItemID) {
-<span class="nc" id="L151">        this.geographyTreeDefItemID = geographyTreeDefItemID;</span>
-<span class="nc" id="L152">    }</span>
+<span class="nc" id="L157">        this.geographyTreeDefItemID = geographyTreeDefItemID;</span>
+<span class="nc" id="L158">    }</span>
 
    
 
     public String getFullNameSeparator() {
-<span class="nc" id="L157">        return fullNameSeparator;</span>
+<span class="nc" id="L163">        return fullNameSeparator;</span>
     }
 
     public void setFullNameSeparator(String fullNameSeparator) {
-<span class="nc" id="L161">        this.fullNameSeparator = fullNameSeparator;</span>
-<span class="nc" id="L162">    }</span>
+<span class="nc" id="L167">        this.fullNameSeparator = fullNameSeparator;</span>
+<span class="nc" id="L168">    }</span>
 
     public Boolean getIsEnforced() {
-<span class="nc" id="L165">        return isEnforced;</span>
+<span class="nc" id="L171">        return isEnforced;</span>
     }
 
     public void setIsEnforced(Boolean isEnforced) {
-<span class="nc" id="L169">        this.isEnforced = isEnforced;</span>
-<span class="nc" id="L170">    }</span>
+<span class="nc" id="L175">        this.isEnforced = isEnforced;</span>
+<span class="nc" id="L176">    }</span>
 
     public Boolean getIsInFullName() {
-<span class="nc" id="L173">        return isInFullName;</span>
+<span class="nc" id="L179">        return isInFullName;</span>
     }
 
     public void setIsInFullName(Boolean isInFullName) {
-<span class="nc" id="L177">        this.isInFullName = isInFullName;</span>
-<span class="nc" id="L178">    }</span>
+<span class="nc" id="L183">        this.isInFullName = isInFullName;</span>
+<span class="nc" id="L184">    }</span>
 
     public String getName() {
-<span class="nc" id="L181">        return name;</span>
+<span class="nc" id="L187">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L185">        this.name = name;</span>
-<span class="nc" id="L186">    }</span>
+<span class="nc" id="L191">        this.name = name;</span>
+<span class="nc" id="L192">    }</span>
 
     public int getRankID() {
-<span class="nc" id="L189">        return rankID;</span>
+<span class="nc" id="L195">        return rankID;</span>
     }
 
     public void setRankID(int rankID) {
-<span class="nc" id="L193">        this.rankID = rankID;</span>
-<span class="nc" id="L194">    }</span>
+<span class="nc" id="L199">        this.rankID = rankID;</span>
+<span class="nc" id="L200">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L197">        return remarks;</span>
+<span class="nc" id="L203">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L201">        this.remarks = remarks;</span>
-<span class="nc" id="L202">    }</span>
+<span class="nc" id="L207">        this.remarks = remarks;</span>
+<span class="nc" id="L208">    }</span>
 
     public String getTextAfter() {
-<span class="nc" id="L205">        return textAfter;</span>
+<span class="nc" id="L211">        return textAfter;</span>
     }
 
     public void setTextAfter(String textAfter) {
-<span class="nc" id="L209">        this.textAfter = textAfter;</span>
-<span class="nc" id="L210">    }</span>
+<span class="nc" id="L215">        this.textAfter = textAfter;</span>
+<span class="nc" id="L216">    }</span>
 
     public String getTextBefore() {
-<span class="nc" id="L213">        return textBefore;</span>
+<span class="nc" id="L219">        return textBefore;</span>
     }
 
     public void setTextBefore(String textBefore) {
-<span class="nc" id="L217">        this.textBefore = textBefore;</span>
-<span class="nc" id="L218">    }</span>
+<span class="nc" id="L223">        this.textBefore = textBefore;</span>
+<span class="nc" id="L224">    }</span>
 
     public String getTitle() {
-<span class="nc" id="L221">        return title;</span>
+<span class="nc" id="L227">        return title;</span>
     }
 
     public void setTitle(String title) {
-<span class="nc" id="L225">        this.title = title;</span>
-<span class="nc" id="L226">    }</span>
+<span class="nc" id="L231">        this.title = title;</span>
+<span class="nc" id="L232">    }</span>
 
     @XmlTransient
     public List&lt;Geography&gt; getGeographyList() {
-<span class="nc" id="L230">        return geographyList;</span>
+<span class="nc" id="L236">        return geographyList;</span>
     }
 
     public void setGeographyList(List&lt;Geography&gt; geographyList) {
-<span class="nc" id="L234">        this.geographyList = geographyList;</span>
-<span class="nc" id="L235">    }</span>
+<span class="nc" id="L240">        this.geographyList = geographyList;</span>
+<span class="nc" id="L241">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L239">        return modifiedByAgentID;</span>
+<span class="nc" id="L245">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L243">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L244">    }</span>
+<span class="nc" id="L249">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L250">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L248">        return createdByAgentID;</span>
+<span class="nc" id="L254">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L252">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L253">    }</span>
+<span class="nc" id="L258">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L259">    }</span>
 
     @XmlTransient
     public List&lt;Geographytreedefitem&gt; getGeographytreedefitemList() {
-<span class="nc" id="L257">        return geographytreedefitemList;</span>
+<span class="nc" id="L263">        return geographytreedefitemList;</span>
     }
 
     public void setGeographytreedefitemList(List&lt;Geographytreedefitem&gt; geographytreedefitemList) {
-<span class="nc" id="L261">        this.geographytreedefitemList = geographytreedefitemList;</span>
-<span class="nc" id="L262">    }</span>
+<span class="nc" id="L267">        this.geographytreedefitemList = geographytreedefitemList;</span>
+<span class="nc" id="L268">    }</span>
 
     @XmlIDREF
     public Geographytreedefitem getParentItemID() {
-<span class="nc" id="L266">        return parentItemID;</span>
+<span class="nc" id="L272">        return parentItemID;</span>
     }
 
     public void setParentItemID(Geographytreedefitem parentItemID) {
-<span class="nc" id="L270">        this.parentItemID = parentItemID;</span>
-<span class="nc" id="L271">    }</span>
+<span class="nc" id="L276">        this.parentItemID = parentItemID;</span>
+<span class="nc" id="L277">    }</span>
 
     @XmlIDREF
     public Geographytreedef getGeographyTreeDefID() {
-<span class="nc" id="L275">        return geographyTreeDefID;</span>
+<span class="nc" id="L281">        return geographyTreeDefID;</span>
     }
 
     public void setGeographyTreeDefID(Geographytreedef geographyTreeDefID) {
-<span class="nc" id="L279">        this.geographyTreeDefID = geographyTreeDefID;</span>
-<span class="nc" id="L280">    }</span>
+<span class="nc" id="L285">        this.geographyTreeDefID = geographyTreeDefID;</span>
+<span class="nc" id="L286">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L284">        int hash = 0;</span>
-<span class="nc bnc" id="L285" title="All 2 branches missed.">        hash += (geographyTreeDefItemID != null ? geographyTreeDefItemID.hashCode() : 0);</span>
-<span class="nc" id="L286">        return hash;</span>
+<span class="nc" id="L290">        int hash = 0;</span>
+<span class="nc bnc" id="L291" title="All 2 branches missed.">        hash += (geographyTreeDefItemID != null ? geographyTreeDefItemID.hashCode() : 0);</span>
+<span class="nc" id="L292">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L292" title="All 2 branches missed.">        if (!(object instanceof Geographytreedefitem)) {</span>
-<span class="nc" id="L293">            return false;</span>
+<span class="nc bnc" id="L298" title="All 2 branches missed.">        if (!(object instanceof Geographytreedefitem)) {</span>
+<span class="nc" id="L299">            return false;</span>
         }
-<span class="nc" id="L295">        Geographytreedefitem other = (Geographytreedefitem) object;</span>
-<span class="nc bnc" id="L296" title="All 8 branches missed.">        return !((this.geographyTreeDefItemID == null &amp;&amp; other.geographyTreeDefItemID != null) || (this.geographyTreeDefItemID != null &amp;&amp; !this.geographyTreeDefItemID.equals(other.geographyTreeDefItemID)));</span>
+<span class="nc" id="L301">        Geographytreedefitem other = (Geographytreedefitem) object;</span>
+<span class="nc bnc" id="L302" title="All 8 branches missed.">        return !((this.geographyTreeDefItemID == null &amp;&amp; other.geographyTreeDefItemID != null) || (this.geographyTreeDefItemID != null &amp;&amp; !this.geographyTreeDefItemID.equals(other.geographyTreeDefItemID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L301">        return &quot;se.nrm.dina.datamodel.Geographytreedefitem[ geographyTreeDefItemID=&quot; + geographyTreeDefItemID + &quot; ]&quot;;</span>
+<span class="nc" id="L307">        return &quot;se.nrm.dina.datamodel.Geographytreedefitem[ geographyTreeDefItemID=&quot; + geographyTreeDefItemID + &quot; ]&quot;;</span>
     }
     
 }

@@ -119,134 +119,140 @@ public class Spsymbiotainstance extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L122">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spSymbiotaInstanceID;</span>
+<span class="nc" id="L122">        return String.valueOf(spSymbiotaInstanceID);</span>
     }
 
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L128">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spSymbiotaInstanceID;</span>
+    }
+    
     @Override
     public int getEntityId() {
-<span class="nc" id="L127">        return spSymbiotaInstanceID;</span>
+<span class="nc" id="L133">        return spSymbiotaInstanceID;</span>
     }
     
     public Integer getSpSymbiotaInstanceID() {
-<span class="nc" id="L131">        return spSymbiotaInstanceID;</span>
+<span class="nc" id="L137">        return spSymbiotaInstanceID;</span>
     }
 
     public void setSpSymbiotaInstanceID(Integer spSymbiotaInstanceID) {
-<span class="nc" id="L135">        this.spSymbiotaInstanceID = spSymbiotaInstanceID;</span>
-<span class="nc" id="L136">    }</span>
+<span class="nc" id="L141">        this.spSymbiotaInstanceID = spSymbiotaInstanceID;</span>
+<span class="nc" id="L142">    }</span>
  
 
     public int getCollectionMemberID() {
-<span class="nc" id="L140">        return collectionMemberID;</span>
+<span class="nc" id="L146">        return collectionMemberID;</span>
     }
 
     public void setCollectionMemberID(int collectionMemberID) {
-<span class="nc" id="L144">        this.collectionMemberID = collectionMemberID;</span>
-<span class="nc" id="L145">    }</span>
+<span class="nc" id="L150">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L151">    }</span>
 
     public String getDescription() {
-<span class="nc" id="L148">        return description;</span>
+<span class="nc" id="L154">        return description;</span>
     }
 
     public void setDescription(String description) {
-<span class="nc" id="L152">        this.description = description;</span>
-<span class="nc" id="L153">    }</span>
+<span class="nc" id="L158">        this.description = description;</span>
+<span class="nc" id="L159">    }</span>
 
     public String getInstanceName() {
-<span class="nc" id="L156">        return instanceName;</span>
+<span class="nc" id="L162">        return instanceName;</span>
     }
 
     public void setInstanceName(String instanceName) {
-<span class="nc" id="L160">        this.instanceName = instanceName;</span>
-<span class="nc" id="L161">    }</span>
+<span class="nc" id="L166">        this.instanceName = instanceName;</span>
+<span class="nc" id="L167">    }</span>
 
     public Date getLastCacheBuild() {
-<span class="nc" id="L164">        return lastCacheBuild;</span>
+<span class="nc" id="L170">        return lastCacheBuild;</span>
     }
 
     public void setLastCacheBuild(Date lastCacheBuild) {
-<span class="nc" id="L168">        this.lastCacheBuild = lastCacheBuild;</span>
-<span class="nc" id="L169">    }</span>
+<span class="nc" id="L174">        this.lastCacheBuild = lastCacheBuild;</span>
+<span class="nc" id="L175">    }</span>
 
     public Date getLastPull() {
-<span class="nc" id="L172">        return lastPull;</span>
+<span class="nc" id="L178">        return lastPull;</span>
     }
 
     public void setLastPull(Date lastPull) {
-<span class="nc" id="L176">        this.lastPull = lastPull;</span>
-<span class="nc" id="L177">    }</span>
+<span class="nc" id="L182">        this.lastPull = lastPull;</span>
+<span class="nc" id="L183">    }</span>
 
     public Date getLastPush() {
-<span class="nc" id="L180">        return lastPush;</span>
+<span class="nc" id="L186">        return lastPush;</span>
     }
 
     public void setLastPush(Date lastPush) {
-<span class="nc" id="L184">        this.lastPush = lastPush;</span>
-<span class="nc" id="L185">    }</span>
+<span class="nc" id="L190">        this.lastPush = lastPush;</span>
+<span class="nc" id="L191">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L188">        return remarks;</span>
+<span class="nc" id="L194">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L192">        this.remarks = remarks;</span>
-<span class="nc" id="L193">    }</span>
+<span class="nc" id="L198">        this.remarks = remarks;</span>
+<span class="nc" id="L199">    }</span>
 
     public String getSymbiotaKey() {
-<span class="nc" id="L196">        return symbiotaKey;</span>
+<span class="nc" id="L202">        return symbiotaKey;</span>
     }
 
     public void setSymbiotaKey(String symbiotaKey) {
-<span class="nc" id="L200">        this.symbiotaKey = symbiotaKey;</span>
-<span class="nc" id="L201">    }</span>
+<span class="nc" id="L206">        this.symbiotaKey = symbiotaKey;</span>
+<span class="nc" id="L207">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L205">        return modifiedByAgentID;</span>
+<span class="nc" id="L211">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L209">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L210">    }</span>
+<span class="nc" id="L215">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L216">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L214">        return createdByAgentID;</span>
+<span class="nc" id="L220">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L218">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L219">    }</span>
+<span class="nc" id="L224">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L225">    }</span>
 
     @XmlIDREF
     public Spexportschemamapping getSchemaMappingID() {
-<span class="nc" id="L223">        return schemaMappingID;</span>
+<span class="nc" id="L229">        return schemaMappingID;</span>
     }
 
     public void setSchemaMappingID(Spexportschemamapping schemaMappingID) {
-<span class="nc" id="L227">        this.schemaMappingID = schemaMappingID;</span>
-<span class="nc" id="L228">    }</span>
+<span class="nc" id="L233">        this.schemaMappingID = schemaMappingID;</span>
+<span class="nc" id="L234">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L232">        int hash = 0;</span>
-<span class="nc bnc" id="L233" title="All 2 branches missed.">        hash += (spSymbiotaInstanceID != null ? spSymbiotaInstanceID.hashCode() : 0);</span>
-<span class="nc" id="L234">        return hash;</span>
+<span class="nc" id="L238">        int hash = 0;</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">        hash += (spSymbiotaInstanceID != null ? spSymbiotaInstanceID.hashCode() : 0);</span>
+<span class="nc" id="L240">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L240" title="All 2 branches missed.">        if (!(object instanceof Spsymbiotainstance)) {</span>
-<span class="nc" id="L241">            return false;</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">        if (!(object instanceof Spsymbiotainstance)) {</span>
+<span class="nc" id="L247">            return false;</span>
         }
-<span class="nc" id="L243">        Spsymbiotainstance other = (Spsymbiotainstance) object;</span>
-<span class="nc bnc" id="L244" title="All 8 branches missed.">        return !((this.spSymbiotaInstanceID == null &amp;&amp; other.spSymbiotaInstanceID != null) || (this.spSymbiotaInstanceID != null &amp;&amp; !this.spSymbiotaInstanceID.equals(other.spSymbiotaInstanceID)));</span>
+<span class="nc" id="L249">        Spsymbiotainstance other = (Spsymbiotainstance) object;</span>
+<span class="nc bnc" id="L250" title="All 8 branches missed.">        return !((this.spSymbiotaInstanceID == null &amp;&amp; other.spSymbiotaInstanceID != null) || (this.spSymbiotaInstanceID != null &amp;&amp; !this.spSymbiotaInstanceID.equals(other.spSymbiotaInstanceID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L249">        return &quot;se.nrm.dina.datamodel.Spsymbiotainstance[ spSymbiotaInstanceID=&quot; + spSymbiotaInstanceID + &quot; ]&quot;;</span>
+<span class="nc" id="L255">        return &quot;se.nrm.dina.datamodel.Spsymbiotainstance[ spSymbiotaInstanceID=&quot; + spSymbiotaInstanceID + &quot; ]&quot;;</span>
     }
     
 }

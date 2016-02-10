@@ -111,128 +111,134 @@ public class Splocaleitemstr extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L114">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spLocaleItemStrID;</span>
+<span class="nc" id="L114">        return String.valueOf(spLocaleItemStrID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L120">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spLocaleItemStrID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L119">        return spLocaleItemStrID;</span>
+<span class="nc" id="L125">        return spLocaleItemStrID;</span>
     }
 
     public Integer getSpLocaleItemStrID() {
-<span class="nc" id="L123">        return spLocaleItemStrID;</span>
+<span class="nc" id="L129">        return spLocaleItemStrID;</span>
     }
 
     public void setSpLocaleItemStrID(Integer spLocaleItemStrID) {
-<span class="nc" id="L127">        this.spLocaleItemStrID = spLocaleItemStrID;</span>
-<span class="nc" id="L128">    }</span>
+<span class="nc" id="L133">        this.spLocaleItemStrID = spLocaleItemStrID;</span>
+<span class="nc" id="L134">    }</span>
  
     public String getCountry() {
-<span class="nc" id="L131">        return country;</span>
+<span class="nc" id="L137">        return country;</span>
     }
 
     public void setCountry(String country) {
-<span class="nc" id="L135">        this.country = country;</span>
-<span class="nc" id="L136">    }</span>
+<span class="nc" id="L141">        this.country = country;</span>
+<span class="nc" id="L142">    }</span>
 
     public String getLanguage() {
-<span class="nc" id="L139">        return language;</span>
+<span class="nc" id="L145">        return language;</span>
     }
 
     public void setLanguage(String language) {
-<span class="nc" id="L143">        this.language = language;</span>
-<span class="nc" id="L144">    }</span>
+<span class="nc" id="L149">        this.language = language;</span>
+<span class="nc" id="L150">    }</span>
 
     public String getText() {
-<span class="nc" id="L147">        return text;</span>
+<span class="nc" id="L153">        return text;</span>
     }
 
     public void setText(String text) {
-<span class="nc" id="L151">        this.text = text;</span>
-<span class="nc" id="L152">    }</span>
+<span class="nc" id="L157">        this.text = text;</span>
+<span class="nc" id="L158">    }</span>
 
     public String getVariant() {
-<span class="nc" id="L155">        return variant;</span>
+<span class="nc" id="L161">        return variant;</span>
     }
 
     public void setVariant(String variant) {
-<span class="nc" id="L159">        this.variant = variant;</span>
-<span class="nc" id="L160">    }</span>
+<span class="nc" id="L165">        this.variant = variant;</span>
+<span class="nc" id="L166">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L164">        return modifiedByAgentID;</span>
+<span class="nc" id="L170">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L168">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L169">    }</span>
+<span class="nc" id="L174">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L175">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L173">        return createdByAgentID;</span>
+<span class="nc" id="L179">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L177">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L178">    }</span>
+<span class="nc" id="L183">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L184">    }</span>
 
     @XmlIDREF
     public Splocalecontainer getSpLocaleContainerDescID() {
-<span class="nc" id="L182">        return spLocaleContainerDescID;</span>
+<span class="nc" id="L188">        return spLocaleContainerDescID;</span>
     }
 
     public void setSpLocaleContainerDescID(Splocalecontainer spLocaleContainerDescID) {
-<span class="nc" id="L186">        this.spLocaleContainerDescID = spLocaleContainerDescID;</span>
-<span class="nc" id="L187">    }</span>
+<span class="nc" id="L192">        this.spLocaleContainerDescID = spLocaleContainerDescID;</span>
+<span class="nc" id="L193">    }</span>
 
     @XmlIDREF
     public Splocalecontainer getSpLocaleContainerNameID() {
-<span class="nc" id="L191">        return spLocaleContainerNameID;</span>
+<span class="nc" id="L197">        return spLocaleContainerNameID;</span>
     }
 
     public void setSpLocaleContainerNameID(Splocalecontainer spLocaleContainerNameID) {
-<span class="nc" id="L195">        this.spLocaleContainerNameID = spLocaleContainerNameID;</span>
-<span class="nc" id="L196">    }</span>
+<span class="nc" id="L201">        this.spLocaleContainerNameID = spLocaleContainerNameID;</span>
+<span class="nc" id="L202">    }</span>
 
     @XmlIDREF
     public Splocalecontaineritem getSpLocaleContainerItemDescID() {
-<span class="nc" id="L200">        return spLocaleContainerItemDescID;</span>
+<span class="nc" id="L206">        return spLocaleContainerItemDescID;</span>
     }
 
     public void setSpLocaleContainerItemDescID(Splocalecontaineritem spLocaleContainerItemDescID) {
-<span class="nc" id="L204">        this.spLocaleContainerItemDescID = spLocaleContainerItemDescID;</span>
-<span class="nc" id="L205">    }</span>
+<span class="nc" id="L210">        this.spLocaleContainerItemDescID = spLocaleContainerItemDescID;</span>
+<span class="nc" id="L211">    }</span>
 
     @XmlIDREF
     public Splocalecontaineritem getSpLocaleContainerItemNameID() {
-<span class="nc" id="L209">        return spLocaleContainerItemNameID;</span>
+<span class="nc" id="L215">        return spLocaleContainerItemNameID;</span>
     }
 
     public void setSpLocaleContainerItemNameID(Splocalecontaineritem spLocaleContainerItemNameID) {
-<span class="nc" id="L213">        this.spLocaleContainerItemNameID = spLocaleContainerItemNameID;</span>
-<span class="nc" id="L214">    }</span>
+<span class="nc" id="L219">        this.spLocaleContainerItemNameID = spLocaleContainerItemNameID;</span>
+<span class="nc" id="L220">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L218">        int hash = 0;</span>
-<span class="nc bnc" id="L219" title="All 2 branches missed.">        hash += (spLocaleItemStrID != null ? spLocaleItemStrID.hashCode() : 0);</span>
-<span class="nc" id="L220">        return hash;</span>
+<span class="nc" id="L224">        int hash = 0;</span>
+<span class="nc bnc" id="L225" title="All 2 branches missed.">        hash += (spLocaleItemStrID != null ? spLocaleItemStrID.hashCode() : 0);</span>
+<span class="nc" id="L226">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L226" title="All 2 branches missed.">        if (!(object instanceof Splocaleitemstr)) {</span>
-<span class="nc" id="L227">            return false;</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">        if (!(object instanceof Splocaleitemstr)) {</span>
+<span class="nc" id="L233">            return false;</span>
         }
-<span class="nc" id="L229">        Splocaleitemstr other = (Splocaleitemstr) object;</span>
-<span class="nc bnc" id="L230" title="All 8 branches missed.">        return !((this.spLocaleItemStrID == null &amp;&amp; other.spLocaleItemStrID != null) || (this.spLocaleItemStrID != null &amp;&amp; !this.spLocaleItemStrID.equals(other.spLocaleItemStrID)));</span>
+<span class="nc" id="L235">        Splocaleitemstr other = (Splocaleitemstr) object;</span>
+<span class="nc bnc" id="L236" title="All 8 branches missed.">        return !((this.spLocaleItemStrID == null &amp;&amp; other.spLocaleItemStrID != null) || (this.spLocaleItemStrID != null &amp;&amp; !this.spLocaleItemStrID.equals(other.spLocaleItemStrID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L235">        return &quot;se.nrm.dina.datamodel.Splocaleitemstr[ spLocaleItemStrID=&quot; + spLocaleItemStrID + &quot; ]&quot;;</span>
+<span class="nc" id="L241">        return &quot;se.nrm.dina.datamodel.Splocaleitemstr[ spLocaleItemStrID=&quot; + spLocaleItemStrID + &quot; ]&quot;;</span>
     }
     
 }

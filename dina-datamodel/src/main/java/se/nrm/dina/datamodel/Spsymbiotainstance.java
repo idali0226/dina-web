@@ -119,9 +119,15 @@ public class Spsymbiotainstance extends BaseEntity {
     @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
-        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spSymbiotaInstanceID;
+        return String.valueOf(spSymbiotaInstanceID);
     }
 
+    @XmlAttribute(name = "uuid") 
+    @Override
+    public String getUUID() {
+        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spSymbiotaInstanceID;
+    }
+    
     @Override
     public int getEntityId() {
         return spSymbiotaInstanceID;

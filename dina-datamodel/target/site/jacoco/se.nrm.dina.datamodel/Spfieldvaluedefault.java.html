@@ -96,101 +96,107 @@ public class Spfieldvaluedefault extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L99">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spFieldValueDefaultID;</span>
+<span class="nc" id="L99">        return String.valueOf(spFieldValueDefaultID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L105">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spFieldValueDefaultID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L104">        return spFieldValueDefaultID;</span>
+<span class="nc" id="L110">        return spFieldValueDefaultID;</span>
     }
     
     public Integer getSpFieldValueDefaultID() {
-<span class="nc" id="L108">        return spFieldValueDefaultID;</span>
+<span class="nc" id="L114">        return spFieldValueDefaultID;</span>
     }
 
     public void setSpFieldValueDefaultID(Integer spFieldValueDefaultID) {
-<span class="nc" id="L112">        this.spFieldValueDefaultID = spFieldValueDefaultID;</span>
-<span class="nc" id="L113">    }</span>
+<span class="nc" id="L118">        this.spFieldValueDefaultID = spFieldValueDefaultID;</span>
+<span class="nc" id="L119">    }</span>
  
 
     public int getCollectionMemberID() {
-<span class="nc" id="L117">        return collectionMemberID;</span>
+<span class="nc" id="L123">        return collectionMemberID;</span>
     }
 
     public void setCollectionMemberID(int collectionMemberID) {
-<span class="nc" id="L121">        this.collectionMemberID = collectionMemberID;</span>
-<span class="nc" id="L122">    }</span>
+<span class="nc" id="L127">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L128">    }</span>
 
     public String getFieldName() {
-<span class="nc" id="L125">        return fieldName;</span>
+<span class="nc" id="L131">        return fieldName;</span>
     }
 
     public void setFieldName(String fieldName) {
-<span class="nc" id="L129">        this.fieldName = fieldName;</span>
-<span class="nc" id="L130">    }</span>
+<span class="nc" id="L135">        this.fieldName = fieldName;</span>
+<span class="nc" id="L136">    }</span>
 
     public Integer getIdValue() {
-<span class="nc" id="L133">        return idValue;</span>
+<span class="nc" id="L139">        return idValue;</span>
     }
 
     public void setIdValue(Integer idValue) {
-<span class="nc" id="L137">        this.idValue = idValue;</span>
-<span class="nc" id="L138">    }</span>
+<span class="nc" id="L143">        this.idValue = idValue;</span>
+<span class="nc" id="L144">    }</span>
 
     public String getStrValue() {
-<span class="nc" id="L141">        return strValue;</span>
+<span class="nc" id="L147">        return strValue;</span>
     }
 
     public void setStrValue(String strValue) {
-<span class="nc" id="L145">        this.strValue = strValue;</span>
-<span class="nc" id="L146">    }</span>
+<span class="nc" id="L151">        this.strValue = strValue;</span>
+<span class="nc" id="L152">    }</span>
 
     public String getTableName() {
-<span class="nc" id="L149">        return tableName;</span>
+<span class="nc" id="L155">        return tableName;</span>
     }
 
     public void setTableName(String tableName) {
-<span class="nc" id="L153">        this.tableName = tableName;</span>
-<span class="nc" id="L154">    }</span>
+<span class="nc" id="L159">        this.tableName = tableName;</span>
+<span class="nc" id="L160">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L158">        return modifiedByAgentID;</span>
+<span class="nc" id="L164">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L162">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L163">    }</span>
+<span class="nc" id="L168">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L169">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L167">        return createdByAgentID;</span>
+<span class="nc" id="L173">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L171">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L172">    }</span>
+<span class="nc" id="L177">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L178">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L176">        int hash = 0;</span>
-<span class="nc bnc" id="L177" title="All 2 branches missed.">        hash += (spFieldValueDefaultID != null ? spFieldValueDefaultID.hashCode() : 0);</span>
-<span class="nc" id="L178">        return hash;</span>
+<span class="nc" id="L182">        int hash = 0;</span>
+<span class="nc bnc" id="L183" title="All 2 branches missed.">        hash += (spFieldValueDefaultID != null ? spFieldValueDefaultID.hashCode() : 0);</span>
+<span class="nc" id="L184">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L184" title="All 2 branches missed.">        if (!(object instanceof Spfieldvaluedefault)) {</span>
-<span class="nc" id="L185">            return false;</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">        if (!(object instanceof Spfieldvaluedefault)) {</span>
+<span class="nc" id="L191">            return false;</span>
         }
-<span class="nc" id="L187">        Spfieldvaluedefault other = (Spfieldvaluedefault) object;</span>
-<span class="nc bnc" id="L188" title="All 8 branches missed.">        return !((this.spFieldValueDefaultID == null &amp;&amp; other.spFieldValueDefaultID != null) || (this.spFieldValueDefaultID != null &amp;&amp; !this.spFieldValueDefaultID.equals(other.spFieldValueDefaultID)));</span>
+<span class="nc" id="L193">        Spfieldvaluedefault other = (Spfieldvaluedefault) object;</span>
+<span class="nc bnc" id="L194" title="All 8 branches missed.">        return !((this.spFieldValueDefaultID == null &amp;&amp; other.spFieldValueDefaultID != null) || (this.spFieldValueDefaultID != null &amp;&amp; !this.spFieldValueDefaultID.equals(other.spFieldValueDefaultID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L193">        return &quot;se.nrm.dina.datamodel.Spfieldvaluedefault[ spFieldValueDefaultID=&quot; + spFieldValueDefaultID + &quot; ]&quot;;</span>
+<span class="nc" id="L199">        return &quot;se.nrm.dina.datamodel.Spfieldvaluedefault[ spFieldValueDefaultID=&quot; + spFieldValueDefaultID + &quot; ]&quot;;</span>
     }
     
 }

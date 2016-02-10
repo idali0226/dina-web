@@ -92,96 +92,102 @@ public class Fieldnotebookpagesetattachment extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L95">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + fieldNotebookPageSetAttachmentId;</span>
+<span class="nc" id="L95">        return String.valueOf(fieldNotebookPageSetAttachmentId);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L101">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + fieldNotebookPageSetAttachmentId;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L100">        return fieldNotebookPageSetAttachmentId;</span>
+<span class="nc" id="L106">        return fieldNotebookPageSetAttachmentId;</span>
     }
     
     public Integer getFieldNotebookPageSetAttachmentId() {
-<span class="nc" id="L104">        return fieldNotebookPageSetAttachmentId;</span>
+<span class="nc" id="L110">        return fieldNotebookPageSetAttachmentId;</span>
     }
 
     public void setFieldNotebookPageSetAttachmentId(Integer fieldNotebookPageSetAttachmentId) {
-<span class="nc" id="L108">        this.fieldNotebookPageSetAttachmentId = fieldNotebookPageSetAttachmentId;</span>
-<span class="nc" id="L109">    }</span>
+<span class="nc" id="L114">        this.fieldNotebookPageSetAttachmentId = fieldNotebookPageSetAttachmentId;</span>
+<span class="nc" id="L115">    }</span>
 
    
 
     public int getOrdinal() {
-<span class="nc" id="L114">        return ordinal;</span>
+<span class="nc" id="L120">        return ordinal;</span>
     }
 
     public void setOrdinal(int ordinal) {
-<span class="nc" id="L118">        this.ordinal = ordinal;</span>
-<span class="nc" id="L119">    }</span>
+<span class="nc" id="L124">        this.ordinal = ordinal;</span>
+<span class="nc" id="L125">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L122">        return remarks;</span>
+<span class="nc" id="L128">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L126">        this.remarks = remarks;</span>
-<span class="nc" id="L127">    }</span>
+<span class="nc" id="L132">        this.remarks = remarks;</span>
+<span class="nc" id="L133">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L131">        return modifiedByAgentID;</span>
+<span class="nc" id="L137">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L135">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L136">    }</span>
+<span class="nc" id="L141">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L142">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L140">        return createdByAgentID;</span>
+<span class="nc" id="L146">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L144">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L145">    }</span>
+<span class="nc" id="L150">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L151">    }</span>
 
     @XmlIDREF
     public Fieldnotebookpageset getFieldNotebookPageSetID() {
-<span class="nc" id="L149">        return fieldNotebookPageSetID;</span>
+<span class="nc" id="L155">        return fieldNotebookPageSetID;</span>
     }
 
     public void setFieldNotebookPageSetID(Fieldnotebookpageset fieldNotebookPageSetID) {
-<span class="nc" id="L153">        this.fieldNotebookPageSetID = fieldNotebookPageSetID;</span>
-<span class="nc" id="L154">    }</span>
+<span class="nc" id="L159">        this.fieldNotebookPageSetID = fieldNotebookPageSetID;</span>
+<span class="nc" id="L160">    }</span>
 
     @XmlIDREF
     public Attachment getAttachmentID() {
-<span class="nc" id="L158">        return attachmentID;</span>
+<span class="nc" id="L164">        return attachmentID;</span>
     }
 
     public void setAttachmentID(Attachment attachmentID) {
-<span class="nc" id="L162">        this.attachmentID = attachmentID;</span>
-<span class="nc" id="L163">    }</span>
+<span class="nc" id="L168">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L169">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L167">        int hash = 0;</span>
-<span class="nc bnc" id="L168" title="All 2 branches missed.">        hash += (fieldNotebookPageSetAttachmentId != null ? fieldNotebookPageSetAttachmentId.hashCode() : 0);</span>
-<span class="nc" id="L169">        return hash;</span>
+<span class="nc" id="L173">        int hash = 0;</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">        hash += (fieldNotebookPageSetAttachmentId != null ? fieldNotebookPageSetAttachmentId.hashCode() : 0);</span>
+<span class="nc" id="L175">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L175" title="All 2 branches missed.">        if (!(object instanceof Fieldnotebookpagesetattachment)) {</span>
-<span class="nc" id="L176">            return false;</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">        if (!(object instanceof Fieldnotebookpagesetattachment)) {</span>
+<span class="nc" id="L182">            return false;</span>
         }
-<span class="nc" id="L178">        Fieldnotebookpagesetattachment other = (Fieldnotebookpagesetattachment) object;</span>
-<span class="nc bnc" id="L179" title="All 8 branches missed.">        return !((this.fieldNotebookPageSetAttachmentId == null &amp;&amp; other.fieldNotebookPageSetAttachmentId != null) || (this.fieldNotebookPageSetAttachmentId != null &amp;&amp; !this.fieldNotebookPageSetAttachmentId.equals(other.fieldNotebookPageSetAttachmentId)));</span>
+<span class="nc" id="L184">        Fieldnotebookpagesetattachment other = (Fieldnotebookpagesetattachment) object;</span>
+<span class="nc bnc" id="L185" title="All 8 branches missed.">        return !((this.fieldNotebookPageSetAttachmentId == null &amp;&amp; other.fieldNotebookPageSetAttachmentId != null) || (this.fieldNotebookPageSetAttachmentId != null &amp;&amp; !this.fieldNotebookPageSetAttachmentId.equals(other.fieldNotebookPageSetAttachmentId)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L184">        return &quot;se.nrm.dina.datamodel.Fieldnotebookpagesetattachment[ fieldNotebookPageSetAttachmentId=&quot; + fieldNotebookPageSetAttachmentId + &quot; ]&quot;;</span>
+<span class="nc" id="L190">        return &quot;se.nrm.dina.datamodel.Fieldnotebookpagesetattachment[ fieldNotebookPageSetAttachmentId=&quot; + fieldNotebookPageSetAttachmentId + &quot; ]&quot;;</span>
     }
     
 }

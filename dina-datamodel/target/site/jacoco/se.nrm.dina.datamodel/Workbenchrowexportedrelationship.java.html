@@ -90,98 +90,104 @@ public class Workbenchrowexportedrelationship extends BaseEntity{
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L93">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchRowExportedRelationshipID;</span>
+<span class="nc" id="L93">        return String.valueOf(workbenchRowExportedRelationshipID) ;</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L99">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchRowExportedRelationshipID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L98">        return workbenchRowExportedRelationshipID;</span>
+<span class="nc" id="L104">        return workbenchRowExportedRelationshipID;</span>
     }
 
     public Integer getWorkbenchRowExportedRelationshipID() {
-<span class="nc" id="L102">        return workbenchRowExportedRelationshipID;</span>
+<span class="nc" id="L108">        return workbenchRowExportedRelationshipID;</span>
     }
 
     public void setWorkbenchRowExportedRelationshipID(Integer workbenchRowExportedRelationshipID) {
-<span class="nc" id="L106">        this.workbenchRowExportedRelationshipID = workbenchRowExportedRelationshipID;</span>
-<span class="nc" id="L107">    }</span>
+<span class="nc" id="L112">        this.workbenchRowExportedRelationshipID = workbenchRowExportedRelationshipID;</span>
+<span class="nc" id="L113">    }</span>
  
     public Integer getRecordID() {
-<span class="nc" id="L110">        return recordID;</span>
+<span class="nc" id="L116">        return recordID;</span>
     }
 
     public void setRecordID(Integer recordID) {
-<span class="nc" id="L114">        this.recordID = recordID;</span>
-<span class="nc" id="L115">    }</span>
+<span class="nc" id="L120">        this.recordID = recordID;</span>
+<span class="nc" id="L121">    }</span>
 
     public String getRelationshipName() {
-<span class="nc" id="L118">        return relationshipName;</span>
+<span class="nc" id="L124">        return relationshipName;</span>
     }
 
     public void setRelationshipName(String relationshipName) {
-<span class="nc" id="L122">        this.relationshipName = relationshipName;</span>
-<span class="nc" id="L123">    }</span>
+<span class="nc" id="L128">        this.relationshipName = relationshipName;</span>
+<span class="nc" id="L129">    }</span>
 
     public Integer getSequence() {
-<span class="nc" id="L126">        return sequence;</span>
+<span class="nc" id="L132">        return sequence;</span>
     }
 
     public void setSequence(Integer sequence) {
-<span class="nc" id="L130">        this.sequence = sequence;</span>
-<span class="nc" id="L131">    }</span>
+<span class="nc" id="L136">        this.sequence = sequence;</span>
+<span class="nc" id="L137">    }</span>
 
     public String getTableName() {
-<span class="nc" id="L134">        return tableName;</span>
+<span class="nc" id="L140">        return tableName;</span>
     }
 
     public void setTableName(String tableName) {
-<span class="nc" id="L138">        this.tableName = tableName;</span>
-<span class="nc" id="L139">    }</span>
+<span class="nc" id="L144">        this.tableName = tableName;</span>
+<span class="nc" id="L145">    }</span>
 
     public Integer getModifiedByAgentID() {
-<span class="nc" id="L142">        return modifiedByAgentID;</span>
+<span class="nc" id="L148">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Integer modifiedByAgentID) {
-<span class="nc" id="L146">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L147">    }</span>
+<span class="nc" id="L152">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L153">    }</span>
 
     public int getWorkbenchRowID() {
-<span class="nc" id="L150">        return workbenchRowID;</span>
+<span class="nc" id="L156">        return workbenchRowID;</span>
     }
 
     public void setWorkbenchRowID(int workbenchRowID) {
-<span class="nc" id="L154">        this.workbenchRowID = workbenchRowID;</span>
-<span class="nc" id="L155">    }</span>
+<span class="nc" id="L160">        this.workbenchRowID = workbenchRowID;</span>
+<span class="nc" id="L161">    }</span>
 
     public Integer getCreatedByAgentID() {
-<span class="nc" id="L158">        return createdByAgentID;</span>
+<span class="nc" id="L164">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Integer createdByAgentID) {
-<span class="nc" id="L162">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L163">    }</span>
+<span class="nc" id="L168">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L169">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L167">        int hash = 0;</span>
-<span class="nc bnc" id="L168" title="All 2 branches missed.">        hash += (workbenchRowExportedRelationshipID != null ? workbenchRowExportedRelationshipID.hashCode() : 0);</span>
-<span class="nc" id="L169">        return hash;</span>
+<span class="nc" id="L173">        int hash = 0;</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">        hash += (workbenchRowExportedRelationshipID != null ? workbenchRowExportedRelationshipID.hashCode() : 0);</span>
+<span class="nc" id="L175">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L175" title="All 2 branches missed.">        if (!(object instanceof Workbenchrowexportedrelationship)) {</span>
-<span class="nc" id="L176">            return false;</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">        if (!(object instanceof Workbenchrowexportedrelationship)) {</span>
+<span class="nc" id="L182">            return false;</span>
         }
-<span class="nc" id="L178">        Workbenchrowexportedrelationship other = (Workbenchrowexportedrelationship) object;</span>
-<span class="nc bnc" id="L179" title="All 8 branches missed.">        return !((this.workbenchRowExportedRelationshipID == null &amp;&amp; other.workbenchRowExportedRelationshipID != null) || (this.workbenchRowExportedRelationshipID != null &amp;&amp; !this.workbenchRowExportedRelationshipID.equals(other.workbenchRowExportedRelationshipID)));</span>
+<span class="nc" id="L184">        Workbenchrowexportedrelationship other = (Workbenchrowexportedrelationship) object;</span>
+<span class="nc bnc" id="L185" title="All 8 branches missed.">        return !((this.workbenchRowExportedRelationshipID == null &amp;&amp; other.workbenchRowExportedRelationshipID != null) || (this.workbenchRowExportedRelationshipID != null &amp;&amp; !this.workbenchRowExportedRelationshipID.equals(other.workbenchRowExportedRelationshipID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L184">        return &quot;se.nrm.dina.datamodel.Workbenchrowexportedrelationship[ workbenchRowExportedRelationshipID=&quot; + workbenchRowExportedRelationshipID + &quot; ]&quot;;</span>
+<span class="nc" id="L190">        return &quot;se.nrm.dina.datamodel.Workbenchrowexportedrelationship[ workbenchRowExportedRelationshipID=&quot; + workbenchRowExportedRelationshipID + &quot; ]&quot;;</span>
     }
     
 }

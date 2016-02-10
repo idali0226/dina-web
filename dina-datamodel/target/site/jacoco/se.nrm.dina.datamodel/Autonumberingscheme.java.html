@@ -111,129 +111,135 @@ public class Autonumberingscheme extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L114">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + autoNumberingSchemeID;</span>
+<span class="nc" id="L114">        return String.valueOf(autoNumberingSchemeID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L120">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + autoNumberingSchemeID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L119">        return autoNumberingSchemeID;</span>
+<span class="nc" id="L125">        return autoNumberingSchemeID;</span>
     }
     
 
     public Integer getAutoNumberingSchemeID() {
-<span class="nc" id="L124">        return autoNumberingSchemeID;</span>
+<span class="nc" id="L130">        return autoNumberingSchemeID;</span>
     }
 
     public void setAutoNumberingSchemeID(Integer autoNumberingSchemeID) {
-<span class="nc" id="L128">        this.autoNumberingSchemeID = autoNumberingSchemeID;</span>
-<span class="nc" id="L129">    }</span>
+<span class="nc" id="L134">        this.autoNumberingSchemeID = autoNumberingSchemeID;</span>
+<span class="nc" id="L135">    }</span>
  
 
     public String getFormatName() {
-<span class="nc" id="L133">        return formatName;</span>
+<span class="nc" id="L139">        return formatName;</span>
     }
 
     public void setFormatName(String formatName) {
-<span class="nc" id="L137">        this.formatName = formatName;</span>
-<span class="nc" id="L138">    }</span>
+<span class="nc" id="L143">        this.formatName = formatName;</span>
+<span class="nc" id="L144">    }</span>
 
     public boolean getIsNumericOnly() {
-<span class="nc" id="L141">        return isNumericOnly;</span>
+<span class="nc" id="L147">        return isNumericOnly;</span>
     }
 
     public void setIsNumericOnly(boolean isNumericOnly) {
-<span class="nc" id="L145">        this.isNumericOnly = isNumericOnly;</span>
-<span class="nc" id="L146">    }</span>
+<span class="nc" id="L151">        this.isNumericOnly = isNumericOnly;</span>
+<span class="nc" id="L152">    }</span>
 
     public String getSchemeClassName() {
-<span class="nc" id="L149">        return schemeClassName;</span>
+<span class="nc" id="L155">        return schemeClassName;</span>
     }
 
     public void setSchemeClassName(String schemeClassName) {
-<span class="nc" id="L153">        this.schemeClassName = schemeClassName;</span>
-<span class="nc" id="L154">    }</span>
+<span class="nc" id="L159">        this.schemeClassName = schemeClassName;</span>
+<span class="nc" id="L160">    }</span>
 
     public String getSchemeName() {
-<span class="nc" id="L157">        return schemeName;</span>
+<span class="nc" id="L163">        return schemeName;</span>
     }
 
     public void setSchemeName(String schemeName) {
-<span class="nc" id="L161">        this.schemeName = schemeName;</span>
-<span class="nc" id="L162">    }</span>
+<span class="nc" id="L167">        this.schemeName = schemeName;</span>
+<span class="nc" id="L168">    }</span>
 
     public int getTableNumber() {
-<span class="nc" id="L165">        return tableNumber;</span>
+<span class="nc" id="L171">        return tableNumber;</span>
     }
 
     public void setTableNumber(int tableNumber) {
-<span class="nc" id="L169">        this.tableNumber = tableNumber;</span>
-<span class="nc" id="L170">    }</span>
+<span class="nc" id="L175">        this.tableNumber = tableNumber;</span>
+<span class="nc" id="L176">    }</span>
 
     @XmlTransient
     public List&lt;Division&gt; getDivisionList() {
-<span class="nc" id="L174">        return divisionList;</span>
+<span class="nc" id="L180">        return divisionList;</span>
     }
 
     public void setDivisionList(List&lt;Division&gt; divisionList) {
-<span class="nc" id="L178">        this.divisionList = divisionList;</span>
-<span class="nc" id="L179">    }</span>
+<span class="nc" id="L184">        this.divisionList = divisionList;</span>
+<span class="nc" id="L185">    }</span>
 
     @XmlTransient
     public List&lt;Discipline&gt; getDisciplineList() {
-<span class="nc" id="L183">        return disciplineList;</span>
+<span class="nc" id="L189">        return disciplineList;</span>
     }
 
     public void setDisciplineList(List&lt;Discipline&gt; disciplineList) {
-<span class="nc" id="L187">        this.disciplineList = disciplineList;</span>
-<span class="nc" id="L188">    }</span>
+<span class="nc" id="L193">        this.disciplineList = disciplineList;</span>
+<span class="nc" id="L194">    }</span>
 
     @XmlTransient
     public List&lt;Collection&gt; getCollectionList() {
-<span class="nc" id="L192">        return collectionList;</span>
+<span class="nc" id="L198">        return collectionList;</span>
     }
 
     public void setCollectionList(List&lt;Collection&gt; collectionList) {
-<span class="nc" id="L196">        this.collectionList = collectionList;</span>
-<span class="nc" id="L197">    }</span>
+<span class="nc" id="L202">        this.collectionList = collectionList;</span>
+<span class="nc" id="L203">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L201">        return modifiedByAgentID;</span>
+<span class="nc" id="L207">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L205">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L206">    }</span>
+<span class="nc" id="L211">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L212">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L210">        return createdByAgentID;</span>
+<span class="nc" id="L216">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L214">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L215">    }</span>
+<span class="nc" id="L220">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L221">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L219">        int hash = 0;</span>
-<span class="nc bnc" id="L220" title="All 2 branches missed.">        hash += (autoNumberingSchemeID != null ? autoNumberingSchemeID.hashCode() : 0);</span>
-<span class="nc" id="L221">        return hash;</span>
+<span class="nc" id="L225">        int hash = 0;</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">        hash += (autoNumberingSchemeID != null ? autoNumberingSchemeID.hashCode() : 0);</span>
+<span class="nc" id="L227">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L227" title="All 2 branches missed.">        if (!(object instanceof Autonumberingscheme)) {</span>
-<span class="nc" id="L228">            return false;</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">        if (!(object instanceof Autonumberingscheme)) {</span>
+<span class="nc" id="L234">            return false;</span>
         }
-<span class="nc" id="L230">        Autonumberingscheme other = (Autonumberingscheme) object;</span>
-<span class="nc bnc" id="L231" title="All 8 branches missed.">        return !((this.autoNumberingSchemeID == null &amp;&amp; other.autoNumberingSchemeID != null) || (this.autoNumberingSchemeID != null &amp;&amp; !this.autoNumberingSchemeID.equals(other.autoNumberingSchemeID)));</span>
+<span class="nc" id="L236">        Autonumberingscheme other = (Autonumberingscheme) object;</span>
+<span class="nc bnc" id="L237" title="All 8 branches missed.">        return !((this.autoNumberingSchemeID == null &amp;&amp; other.autoNumberingSchemeID != null) || (this.autoNumberingSchemeID != null &amp;&amp; !this.autoNumberingSchemeID.equals(other.autoNumberingSchemeID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L236">        return &quot;se.nrm.dina.datamodel.Autonumberingscheme[ autoNumberingSchemeID=&quot; + autoNumberingSchemeID + &quot; ]&quot;;</span>
+<span class="nc" id="L242">        return &quot;se.nrm.dina.datamodel.Autonumberingscheme[ autoNumberingSchemeID=&quot; + autoNumberingSchemeID + &quot; ]&quot;;</span>
     }
     
 }

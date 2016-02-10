@@ -74,67 +74,73 @@ public class Recordsetitem implements EntityBean, Serializable {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L77">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + recordSetItemID;</span>
+<span class="nc" id="L77">        return String.valueOf(recordSetItemID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L83">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + recordSetItemID;</span>
     }
 
     @Override
     public int getEntityId() {
-<span class="nc" id="L82">        return recordSetItemID;</span>
+<span class="nc" id="L88">        return recordSetItemID;</span>
     }
     
     public Integer getRecordSetItemID() {
-<span class="nc" id="L86">        return recordSetItemID;</span>
+<span class="nc" id="L92">        return recordSetItemID;</span>
     }
 
     public void setRecordSetItemID(Integer recordSetItemID) {
-<span class="nc" id="L90">        this.recordSetItemID = recordSetItemID;</span>
-<span class="nc" id="L91">    }</span>
+<span class="nc" id="L96">        this.recordSetItemID = recordSetItemID;</span>
+<span class="nc" id="L97">    }</span>
 
     public int getRecordId() {
-<span class="nc" id="L94">        return recordId;</span>
+<span class="nc" id="L100">        return recordId;</span>
     }
 
     public void setRecordId(int recordId) {
-<span class="nc" id="L98">        this.recordId = recordId;</span>
-<span class="nc" id="L99">    }</span>
+<span class="nc" id="L104">        this.recordId = recordId;</span>
+<span class="nc" id="L105">    }</span>
 
     public Integer getOrderNumber() {
-<span class="nc" id="L102">        return orderNumber;</span>
+<span class="nc" id="L108">        return orderNumber;</span>
     }
 
     public void setOrderNumber(Integer orderNumber) {
-<span class="nc" id="L106">        this.orderNumber = orderNumber;</span>
-<span class="nc" id="L107">    }</span>
+<span class="nc" id="L112">        this.orderNumber = orderNumber;</span>
+<span class="nc" id="L113">    }</span>
     
     @XmlIDREF
     public Recordset getRecordSetID() {
-<span class="nc" id="L111">        return recordSetID;</span>
+<span class="nc" id="L117">        return recordSetID;</span>
     }
 
     public void setRecordSetID(Recordset recordSetID) {
-<span class="nc" id="L115">        this.recordSetID = recordSetID;</span>
-<span class="nc" id="L116">    }</span>
+<span class="nc" id="L121">        this.recordSetID = recordSetID;</span>
+<span class="nc" id="L122">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L120">        int hash = 0;</span>
-<span class="nc bnc" id="L121" title="All 2 branches missed.">        hash += (recordSetItemID != null ? recordSetItemID.hashCode() : 0);</span>
-<span class="nc" id="L122">        return hash;</span>
+<span class="nc" id="L126">        int hash = 0;</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">        hash += (recordSetItemID != null ? recordSetItemID.hashCode() : 0);</span>
+<span class="nc" id="L128">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L128" title="All 2 branches missed.">        if (!(object instanceof Recordsetitem)) {</span>
-<span class="nc" id="L129">            return false;</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        if (!(object instanceof Recordsetitem)) {</span>
+<span class="nc" id="L135">            return false;</span>
         }
-<span class="nc" id="L131">        Recordsetitem other = (Recordsetitem) object;</span>
-<span class="nc bnc" id="L132" title="All 8 branches missed.">        return !((this.recordSetItemID == null &amp;&amp; other.recordSetItemID != null) || (this.recordSetItemID != null &amp;&amp; !this.recordSetItemID.equals(other.recordSetItemID)));</span>
+<span class="nc" id="L137">        Recordsetitem other = (Recordsetitem) object;</span>
+<span class="nc bnc" id="L138" title="All 8 branches missed.">        return !((this.recordSetItemID == null &amp;&amp; other.recordSetItemID != null) || (this.recordSetItemID != null &amp;&amp; !this.recordSetItemID.equals(other.recordSetItemID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L137">        return &quot;se.nrm.dina.datamodel.Recordsetitem[ recordSetItemID=&quot; + recordSetItemID + &quot; ]&quot;;</span>
+<span class="nc" id="L143">        return &quot;se.nrm.dina.datamodel.Recordsetitem[ recordSetItemID=&quot; + recordSetItemID + &quot; ]&quot;;</span>
     }
     
 }

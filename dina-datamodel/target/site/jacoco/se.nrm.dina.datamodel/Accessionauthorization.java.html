@@ -86,97 +86,105 @@ public class Accessionauthorization extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;) 
     @Override
     public String getIdentityString() {
-<span class="nc" id="L89">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + accessionAuthorizationID;</span>
+<span class="nc" id="L89">        return String.valueOf(accessionAuthorizationID);</span>
     }
+    
+        
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L96">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + accessionAuthorizationID;</span>
+    }
+    
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L94">        return accessionAuthorizationID;</span>
+<span class="nc" id="L102">        return accessionAuthorizationID;</span>
     }
 
     
     public Integer getAccessionAuthorizationID() {
-<span class="nc" id="L99">        return accessionAuthorizationID;</span>
+<span class="nc" id="L107">        return accessionAuthorizationID;</span>
     }
 
     public void setAccessionAuthorizationID(Integer accessionAuthorizationID) {
-<span class="nc" id="L103">        this.accessionAuthorizationID = accessionAuthorizationID;</span>
-<span class="nc" id="L104">    }</span>
+<span class="nc" id="L111">        this.accessionAuthorizationID = accessionAuthorizationID;</span>
+<span class="nc" id="L112">    }</span>
 
    
     public String getRemarks() {
-<span class="nc" id="L108">        return remarks;</span>
+<span class="nc" id="L116">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L112">        this.remarks = remarks;</span>
-<span class="nc" id="L113">    }</span>
+<span class="nc" id="L120">        this.remarks = remarks;</span>
+<span class="nc" id="L121">    }</span>
 
     @XmlIDREF
     public Accession getAccessionID() {
-<span class="nc" id="L117">        return accessionID;</span>
+<span class="nc" id="L125">        return accessionID;</span>
     }
 
     public void setAccessionID(Accession accessionID) {
-<span class="nc" id="L121">        this.accessionID = accessionID;</span>
-<span class="nc" id="L122">    }</span>
+<span class="nc" id="L129">        this.accessionID = accessionID;</span>
+<span class="nc" id="L130">    }</span>
 
     @XmlIDREF
     public Repositoryagreement getRepositoryAgreementID() {
-<span class="nc" id="L126">        return repositoryAgreementID;</span>
+<span class="nc" id="L134">        return repositoryAgreementID;</span>
     }
 
     public void setRepositoryAgreementID(Repositoryagreement repositoryAgreementID) {
-<span class="nc" id="L130">        this.repositoryAgreementID = repositoryAgreementID;</span>
-<span class="nc" id="L131">    }</span>
+<span class="nc" id="L138">        this.repositoryAgreementID = repositoryAgreementID;</span>
+<span class="nc" id="L139">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L135">        return modifiedByAgentID;</span>
+<span class="nc" id="L143">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L139">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L140">    }</span>
+<span class="nc" id="L147">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L148">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L144">        return createdByAgentID;</span>
+<span class="nc" id="L152">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L148">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L149">    }</span>
+<span class="nc" id="L156">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L157">    }</span>
 
     @XmlIDREF
     public Permit getPermitID() {
-<span class="nc" id="L153">        return permitID;</span>
+<span class="nc" id="L161">        return permitID;</span>
     }
 
     public void setPermitID(Permit permitID) {
-<span class="nc" id="L157">        this.permitID = permitID;</span>
-<span class="nc" id="L158">    }</span>
+<span class="nc" id="L165">        this.permitID = permitID;</span>
+<span class="nc" id="L166">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L162">        int hash = 0;</span>
-<span class="nc bnc" id="L163" title="All 2 branches missed.">        hash += (accessionAuthorizationID != null ? accessionAuthorizationID.hashCode() : 0);</span>
-<span class="nc" id="L164">        return hash;</span>
+<span class="nc" id="L170">        int hash = 0;</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">        hash += (accessionAuthorizationID != null ? accessionAuthorizationID.hashCode() : 0);</span>
+<span class="nc" id="L172">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L170" title="All 2 branches missed.">        if (!(object instanceof Accessionauthorization)) {</span>
-<span class="nc" id="L171">            return false;</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">        if (!(object instanceof Accessionauthorization)) {</span>
+<span class="nc" id="L179">            return false;</span>
         }
-<span class="nc" id="L173">        Accessionauthorization other = (Accessionauthorization) object;</span>
-<span class="nc bnc" id="L174" title="All 8 branches missed.">        return !((this.accessionAuthorizationID == null &amp;&amp; other.accessionAuthorizationID != null) || (this.accessionAuthorizationID != null &amp;&amp; !this.accessionAuthorizationID.equals(other.accessionAuthorizationID)));</span>
+<span class="nc" id="L181">        Accessionauthorization other = (Accessionauthorization) object;</span>
+<span class="nc bnc" id="L182" title="All 8 branches missed.">        return !((this.accessionAuthorizationID == null &amp;&amp; other.accessionAuthorizationID != null) || (this.accessionAuthorizationID != null &amp;&amp; !this.accessionAuthorizationID.equals(other.accessionAuthorizationID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L179">        return &quot;se.nrm.dina.datamodel.Accessionauthorization[ accessionAuthorizationID=&quot; + accessionAuthorizationID + &quot; ]&quot;;</span>
+<span class="nc" id="L187">        return &quot;se.nrm.dina.datamodel.Accessionauthorization[ accessionAuthorizationID=&quot; + accessionAuthorizationID + &quot; ]&quot;;</span>
     }
 
     

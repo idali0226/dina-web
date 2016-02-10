@@ -137,203 +137,209 @@ public class Attachmentimageattribute extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L140">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + attachmentImageAttributeID;</span>
+<span class="nc" id="L140">        return String.valueOf(attachmentImageAttributeID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L146">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + attachmentImageAttributeID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L145">        return attachmentImageAttributeID;</span>
+<span class="nc" id="L151">        return attachmentImageAttributeID;</span>
     }
 
     public Integer getAttachmentImageAttributeID() {
-<span class="nc" id="L149">        return attachmentImageAttributeID;</span>
+<span class="nc" id="L155">        return attachmentImageAttributeID;</span>
     }
 
     public void setAttachmentImageAttributeID(Integer attachmentImageAttributeID) {
-<span class="nc" id="L153">        this.attachmentImageAttributeID = attachmentImageAttributeID;</span>
-<span class="nc" id="L154">    }</span>
+<span class="nc" id="L159">        this.attachmentImageAttributeID = attachmentImageAttributeID;</span>
+<span class="nc" id="L160">    }</span>
 
    
     public String getCreativeCommons() {
-<span class="nc" id="L158">        return creativeCommons;</span>
+<span class="nc" id="L164">        return creativeCommons;</span>
     }
 
     public void setCreativeCommons(String creativeCommons) {
-<span class="nc" id="L162">        this.creativeCommons = creativeCommons;</span>
-<span class="nc" id="L163">    }</span>
+<span class="nc" id="L168">        this.creativeCommons = creativeCommons;</span>
+<span class="nc" id="L169">    }</span>
 
     public Integer getHeight() {
-<span class="nc" id="L166">        return height;</span>
+<span class="nc" id="L172">        return height;</span>
     }
 
     public void setHeight(Integer height) {
-<span class="nc" id="L170">        this.height = height;</span>
-<span class="nc" id="L171">    }</span>
+<span class="nc" id="L176">        this.height = height;</span>
+<span class="nc" id="L177">    }</span>
 
     public Double getMagnification() {
-<span class="nc" id="L174">        return magnification;</span>
+<span class="nc" id="L180">        return magnification;</span>
     }
 
     public void setMagnification(Double magnification) {
-<span class="nc" id="L178">        this.magnification = magnification;</span>
-<span class="nc" id="L179">    }</span>
+<span class="nc" id="L184">        this.magnification = magnification;</span>
+<span class="nc" id="L185">    }</span>
 
     public Integer getMBImageID() {
-<span class="nc" id="L182">        return mBImageID;</span>
+<span class="nc" id="L188">        return mBImageID;</span>
     }
 
     public void setMBImageID(Integer mBImageID) {
-<span class="nc" id="L186">        this.mBImageID = mBImageID;</span>
-<span class="nc" id="L187">    }</span>
+<span class="nc" id="L192">        this.mBImageID = mBImageID;</span>
+<span class="nc" id="L193">    }</span>
 
     public Double getResolution() {
-<span class="nc" id="L190">        return resolution;</span>
+<span class="nc" id="L196">        return resolution;</span>
     }
 
     public void setResolution(Double resolution) {
-<span class="nc" id="L194">        this.resolution = resolution;</span>
-<span class="nc" id="L195">    }</span>
+<span class="nc" id="L200">        this.resolution = resolution;</span>
+<span class="nc" id="L201">    }</span>
 
     public Date getTimestampLastSend() {
-<span class="nc" id="L198">        return timestampLastSend;</span>
+<span class="nc" id="L204">        return timestampLastSend;</span>
     }
 
     public void setTimestampLastSend(Date timestampLastSend) {
-<span class="nc" id="L202">        this.timestampLastSend = timestampLastSend;</span>
-<span class="nc" id="L203">    }</span>
+<span class="nc" id="L208">        this.timestampLastSend = timestampLastSend;</span>
+<span class="nc" id="L209">    }</span>
 
     public Date getTimestampLastUpdateCheck() {
-<span class="nc" id="L206">        return timestampLastUpdateCheck;</span>
+<span class="nc" id="L212">        return timestampLastUpdateCheck;</span>
     }
 
     public void setTimestampLastUpdateCheck(Date timestampLastUpdateCheck) {
-<span class="nc" id="L210">        this.timestampLastUpdateCheck = timestampLastUpdateCheck;</span>
-<span class="nc" id="L211">    }</span>
+<span class="nc" id="L216">        this.timestampLastUpdateCheck = timestampLastUpdateCheck;</span>
+<span class="nc" id="L217">    }</span>
 
     public Integer getWidth() {
-<span class="nc" id="L214">        return width;</span>
+<span class="nc" id="L220">        return width;</span>
     }
 
     public void setWidth(Integer width) {
-<span class="nc" id="L218">        this.width = width;</span>
-<span class="nc" id="L219">    }</span>
+<span class="nc" id="L224">        this.width = width;</span>
+<span class="nc" id="L225">    }</span>
 
     public Integer getCreatedByAgentID() {
-<span class="nc" id="L222">        return createdByAgentID;</span>
+<span class="nc" id="L228">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Integer createdByAgentID) {
-<span class="nc" id="L226">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L227">    }</span>
+<span class="nc" id="L232">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L233">    }</span>
 
     public Integer getModifiedByAgentID() {
-<span class="nc" id="L230">        return modifiedByAgentID;</span>
+<span class="nc" id="L236">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Integer modifiedByAgentID) {
-<span class="nc" id="L234">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L235">    }</span>
+<span class="nc" id="L240">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L241">    }</span>
 
     public Integer getMorphBankViewID() {
-<span class="nc" id="L238">        return morphBankViewID;</span>
+<span class="nc" id="L244">        return morphBankViewID;</span>
     }
 
     public void setMorphBankViewID(Integer morphBankViewID) {
-<span class="nc" id="L242">        this.morphBankViewID = morphBankViewID;</span>
-<span class="nc" id="L243">    }</span>
+<span class="nc" id="L248">        this.morphBankViewID = morphBankViewID;</span>
+<span class="nc" id="L249">    }</span>
 
     public String getImageType() {
-<span class="nc" id="L246">        return imageType;</span>
+<span class="nc" id="L252">        return imageType;</span>
     }
 
     public void setImageType(String imageType) {
-<span class="nc" id="L250">        this.imageType = imageType;</span>
-<span class="nc" id="L251">    }</span>
+<span class="nc" id="L256">        this.imageType = imageType;</span>
+<span class="nc" id="L257">    }</span>
 
     public Double getNumber1() {
-<span class="nc" id="L254">        return number1;</span>
+<span class="nc" id="L260">        return number1;</span>
     }
 
     public void setNumber1(Double number1) {
-<span class="nc" id="L258">        this.number1 = number1;</span>
-<span class="nc" id="L259">    }</span>
+<span class="nc" id="L264">        this.number1 = number1;</span>
+<span class="nc" id="L265">    }</span>
 
     public Double getNumber2() {
-<span class="nc" id="L262">        return number2;</span>
+<span class="nc" id="L268">        return number2;</span>
     }
 
     public void setNumber2(Double number2) {
-<span class="nc" id="L266">        this.number2 = number2;</span>
-<span class="nc" id="L267">    }</span>
+<span class="nc" id="L272">        this.number2 = number2;</span>
+<span class="nc" id="L273">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L270">        return remarks;</span>
+<span class="nc" id="L276">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L274">        this.remarks = remarks;</span>
-<span class="nc" id="L275">    }</span>
+<span class="nc" id="L280">        this.remarks = remarks;</span>
+<span class="nc" id="L281">    }</span>
 
     public String getText1() {
-<span class="nc" id="L278">        return text1;</span>
+<span class="nc" id="L284">        return text1;</span>
     }
 
     public void setText1(String text1) {
-<span class="nc" id="L282">        this.text1 = text1;</span>
-<span class="nc" id="L283">    }</span>
+<span class="nc" id="L288">        this.text1 = text1;</span>
+<span class="nc" id="L289">    }</span>
 
     public String getText2() {
-<span class="nc" id="L286">        return text2;</span>
+<span class="nc" id="L292">        return text2;</span>
     }
 
     public void setText2(String text2) {
-<span class="nc" id="L290">        this.text2 = text2;</span>
-<span class="nc" id="L291">    }</span>
+<span class="nc" id="L296">        this.text2 = text2;</span>
+<span class="nc" id="L297">    }</span>
 
     public String getViewDescription() {
-<span class="nc" id="L294">        return viewDescription;</span>
+<span class="nc" id="L300">        return viewDescription;</span>
     }
 
     public void setViewDescription(String viewDescription) {
-<span class="nc" id="L298">        this.viewDescription = viewDescription;</span>
-<span class="nc" id="L299">    }</span>
+<span class="nc" id="L304">        this.viewDescription = viewDescription;</span>
+<span class="nc" id="L305">    }</span>
 
     public Boolean getYesNo1() {
-<span class="nc" id="L302">        return yesNo1;</span>
+<span class="nc" id="L308">        return yesNo1;</span>
     }
 
     public void setYesNo1(Boolean yesNo1) {
-<span class="nc" id="L306">        this.yesNo1 = yesNo1;</span>
-<span class="nc" id="L307">    }</span>
+<span class="nc" id="L312">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L313">    }</span>
 
     public Boolean getYesNo2() {
-<span class="nc" id="L310">        return yesNo2;</span>
+<span class="nc" id="L316">        return yesNo2;</span>
     }
 
     public void setYesNo2(Boolean yesNo2) {
-<span class="nc" id="L314">        this.yesNo2 = yesNo2;</span>
-<span class="nc" id="L315">    }</span>
+<span class="nc" id="L320">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L321">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L319">        int hash = 0;</span>
-<span class="nc bnc" id="L320" title="All 2 branches missed.">        hash += (attachmentImageAttributeID != null ? attachmentImageAttributeID.hashCode() : 0);</span>
-<span class="nc" id="L321">        return hash;</span>
+<span class="nc" id="L325">        int hash = 0;</span>
+<span class="nc bnc" id="L326" title="All 2 branches missed.">        hash += (attachmentImageAttributeID != null ? attachmentImageAttributeID.hashCode() : 0);</span>
+<span class="nc" id="L327">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L327" title="All 2 branches missed.">        if (!(object instanceof Attachmentimageattribute)) {</span>
-<span class="nc" id="L328">            return false;</span>
+<span class="nc bnc" id="L333" title="All 2 branches missed.">        if (!(object instanceof Attachmentimageattribute)) {</span>
+<span class="nc" id="L334">            return false;</span>
         }
-<span class="nc" id="L330">        Attachmentimageattribute other = (Attachmentimageattribute) object;</span>
-<span class="nc bnc" id="L331" title="All 8 branches missed.">        return !((this.attachmentImageAttributeID == null &amp;&amp; other.attachmentImageAttributeID != null) || (this.attachmentImageAttributeID != null &amp;&amp; !this.attachmentImageAttributeID.equals(other.attachmentImageAttributeID)));</span>
+<span class="nc" id="L336">        Attachmentimageattribute other = (Attachmentimageattribute) object;</span>
+<span class="nc bnc" id="L337" title="All 8 branches missed.">        return !((this.attachmentImageAttributeID == null &amp;&amp; other.attachmentImageAttributeID != null) || (this.attachmentImageAttributeID != null &amp;&amp; !this.attachmentImageAttributeID.equals(other.attachmentImageAttributeID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L336">        return &quot;se.nrm.dina.datamodel.Attachmentimageattribute[ attachmentImageAttributeID=&quot; + attachmentImageAttributeID + &quot; ]&quot;;</span>
+<span class="nc" id="L342">        return &quot;se.nrm.dina.datamodel.Attachmentimageattribute[ attachmentImageAttributeID=&quot; + attachmentImageAttributeID + &quot; ]&quot;;</span>
     }
     
 }

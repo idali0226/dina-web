@@ -163,237 +163,243 @@ public class Shipment extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L166">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + shipmentID;</span>
+<span class="nc" id="L166">        return String.valueOf(shipmentID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L172">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + shipmentID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L171">        return shipmentID;</span>
+<span class="nc" id="L177">        return shipmentID;</span>
     }
 
     public Integer getShipmentID() {
-<span class="nc" id="L175">        return shipmentID;</span>
+<span class="nc" id="L181">        return shipmentID;</span>
     }
 
     public void setShipmentID(Integer shipmentID) {
-<span class="nc" id="L179">        this.shipmentID = shipmentID;</span>
-<span class="nc" id="L180">    }</span>
+<span class="nc" id="L185">        this.shipmentID = shipmentID;</span>
+<span class="nc" id="L186">    }</span>
   
 
     public String getInsuredForAmount() {
-<span class="nc" id="L184">        return insuredForAmount;</span>
+<span class="nc" id="L190">        return insuredForAmount;</span>
     }
 
     public void setInsuredForAmount(String insuredForAmount) {
-<span class="nc" id="L188">        this.insuredForAmount = insuredForAmount;</span>
-<span class="nc" id="L189">    }</span>
+<span class="nc" id="L194">        this.insuredForAmount = insuredForAmount;</span>
+<span class="nc" id="L195">    }</span>
 
     public Float getNumber1() {
-<span class="nc" id="L192">        return number1;</span>
+<span class="nc" id="L198">        return number1;</span>
     }
 
     public void setNumber1(Float number1) {
-<span class="nc" id="L196">        this.number1 = number1;</span>
-<span class="nc" id="L197">    }</span>
+<span class="nc" id="L202">        this.number1 = number1;</span>
+<span class="nc" id="L203">    }</span>
 
     public Float getNumber2() {
-<span class="nc" id="L200">        return number2;</span>
+<span class="nc" id="L206">        return number2;</span>
     }
 
     public void setNumber2(Float number2) {
-<span class="nc" id="L204">        this.number2 = number2;</span>
-<span class="nc" id="L205">    }</span>
+<span class="nc" id="L210">        this.number2 = number2;</span>
+<span class="nc" id="L211">    }</span>
 
     public Short getNumberOfPackages() {
-<span class="nc" id="L208">        return numberOfPackages;</span>
+<span class="nc" id="L214">        return numberOfPackages;</span>
     }
 
     public void setNumberOfPackages(Short numberOfPackages) {
-<span class="nc" id="L212">        this.numberOfPackages = numberOfPackages;</span>
-<span class="nc" id="L213">    }</span>
+<span class="nc" id="L218">        this.numberOfPackages = numberOfPackages;</span>
+<span class="nc" id="L219">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L216">        return remarks;</span>
+<span class="nc" id="L222">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L220">        this.remarks = remarks;</span>
-<span class="nc" id="L221">    }</span>
+<span class="nc" id="L226">        this.remarks = remarks;</span>
+<span class="nc" id="L227">    }</span>
 
     public Date getShipmentDate() {
-<span class="nc" id="L224">        return shipmentDate;</span>
+<span class="nc" id="L230">        return shipmentDate;</span>
     }
 
     public void setShipmentDate(Date shipmentDate) {
-<span class="nc" id="L228">        this.shipmentDate = shipmentDate;</span>
-<span class="nc" id="L229">    }</span>
+<span class="nc" id="L234">        this.shipmentDate = shipmentDate;</span>
+<span class="nc" id="L235">    }</span>
 
     public String getShipmentMethod() {
-<span class="nc" id="L232">        return shipmentMethod;</span>
+<span class="nc" id="L238">        return shipmentMethod;</span>
     }
 
     public void setShipmentMethod(String shipmentMethod) {
-<span class="nc" id="L236">        this.shipmentMethod = shipmentMethod;</span>
-<span class="nc" id="L237">    }</span>
+<span class="nc" id="L242">        this.shipmentMethod = shipmentMethod;</span>
+<span class="nc" id="L243">    }</span>
 
     public String getShipmentNumber() {
-<span class="nc" id="L240">        return shipmentNumber;</span>
+<span class="nc" id="L246">        return shipmentNumber;</span>
     }
 
     public void setShipmentNumber(String shipmentNumber) {
-<span class="nc" id="L244">        this.shipmentNumber = shipmentNumber;</span>
-<span class="nc" id="L245">    }</span>
+<span class="nc" id="L250">        this.shipmentNumber = shipmentNumber;</span>
+<span class="nc" id="L251">    }</span>
 
     public String getText1() {
-<span class="nc" id="L248">        return text1;</span>
+<span class="nc" id="L254">        return text1;</span>
     }
 
     public void setText1(String text1) {
-<span class="nc" id="L252">        this.text1 = text1;</span>
-<span class="nc" id="L253">    }</span>
+<span class="nc" id="L258">        this.text1 = text1;</span>
+<span class="nc" id="L259">    }</span>
 
     public String getText2() {
-<span class="nc" id="L256">        return text2;</span>
+<span class="nc" id="L262">        return text2;</span>
     }
 
     public void setText2(String text2) {
-<span class="nc" id="L260">        this.text2 = text2;</span>
-<span class="nc" id="L261">    }</span>
+<span class="nc" id="L266">        this.text2 = text2;</span>
+<span class="nc" id="L267">    }</span>
 
     public String getWeight() {
-<span class="nc" id="L264">        return weight;</span>
+<span class="nc" id="L270">        return weight;</span>
     }
 
     public void setWeight(String weight) {
-<span class="nc" id="L268">        this.weight = weight;</span>
-<span class="nc" id="L269">    }</span>
+<span class="nc" id="L274">        this.weight = weight;</span>
+<span class="nc" id="L275">    }</span>
 
     public Boolean getYesNo1() {
-<span class="nc" id="L272">        return yesNo1;</span>
+<span class="nc" id="L278">        return yesNo1;</span>
     }
 
     public void setYesNo1(Boolean yesNo1) {
-<span class="nc" id="L276">        this.yesNo1 = yesNo1;</span>
-<span class="nc" id="L277">    }</span>
+<span class="nc" id="L282">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L283">    }</span>
 
     public Boolean getYesNo2() {
-<span class="nc" id="L280">        return yesNo2;</span>
+<span class="nc" id="L286">        return yesNo2;</span>
     }
 
     public void setYesNo2(Boolean yesNo2) {
-<span class="nc" id="L284">        this.yesNo2 = yesNo2;</span>
-<span class="nc" id="L285">    }</span>
+<span class="nc" id="L290">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L291">    }</span>
 
     @XmlIDREF
     public Discipline getDisciplineID() {
-<span class="nc" id="L289">        return disciplineID;</span>
+<span class="nc" id="L295">        return disciplineID;</span>
     }
 
     public void setDisciplineID(Discipline disciplineID) {
-<span class="nc" id="L293">        this.disciplineID = disciplineID;</span>
-<span class="nc" id="L294">    }</span>
+<span class="nc" id="L299">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L300">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L298">        return modifiedByAgentID;</span>
+<span class="nc" id="L304">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L302">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L303">    }</span>
+<span class="nc" id="L308">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L309">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L307">        return createdByAgentID;</span>
+<span class="nc" id="L313">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L311">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L312">    }</span>
+<span class="nc" id="L317">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L318">    }</span>
 
     @XmlIDREF
     public Gift getGiftID() {
-<span class="nc" id="L316">        return giftID;</span>
+<span class="nc" id="L322">        return giftID;</span>
     }
 
     public void setGiftID(Gift giftID) {
-<span class="nc" id="L320">        this.giftID = giftID;</span>
-<span class="nc" id="L321">    }</span>
+<span class="nc" id="L326">        this.giftID = giftID;</span>
+<span class="nc" id="L327">    }</span>
 
     @XmlIDREF
     public Loan getLoanID() {
-<span class="nc" id="L325">        return loanID;</span>
+<span class="nc" id="L331">        return loanID;</span>
     }
 
     public void setLoanID(Loan loanID) {
-<span class="nc" id="L329">        this.loanID = loanID;</span>
-<span class="nc" id="L330">    }</span>
+<span class="nc" id="L335">        this.loanID = loanID;</span>
+<span class="nc" id="L336">    }</span>
 
     @XmlIDREF
     public Exchangeout getExchangeOutID() {
-<span class="nc" id="L334">        return exchangeOutID;</span>
+<span class="nc" id="L340">        return exchangeOutID;</span>
     }
 
     public void setExchangeOutID(Exchangeout exchangeOutID) {
-<span class="nc" id="L338">        this.exchangeOutID = exchangeOutID;</span>
-<span class="nc" id="L339">    }</span>
+<span class="nc" id="L344">        this.exchangeOutID = exchangeOutID;</span>
+<span class="nc" id="L345">    }</span>
 
     @XmlIDREF
     public Agent getShippedByID() {
-<span class="nc" id="L343">        return shippedByID;</span>
+<span class="nc" id="L349">        return shippedByID;</span>
     }
 
     public void setShippedByID(Agent shippedByID) {
-<span class="nc" id="L347">        this.shippedByID = shippedByID;</span>
-<span class="nc" id="L348">    }</span>
+<span class="nc" id="L353">        this.shippedByID = shippedByID;</span>
+<span class="nc" id="L354">    }</span>
 
     @XmlIDREF
     public Agent getShippedToID() {
-<span class="nc" id="L352">        return shippedToID;</span>
+<span class="nc" id="L358">        return shippedToID;</span>
     }
 
     public void setShippedToID(Agent shippedToID) {
-<span class="nc" id="L356">        this.shippedToID = shippedToID;</span>
-<span class="nc" id="L357">    }</span>
+<span class="nc" id="L362">        this.shippedToID = shippedToID;</span>
+<span class="nc" id="L363">    }</span>
 
     @XmlIDREF
     public Agent getShipperID() {
-<span class="nc" id="L361">        return shipperID;</span>
+<span class="nc" id="L367">        return shipperID;</span>
     }
 
     public void setShipperID(Agent shipperID) {
-<span class="nc" id="L365">        this.shipperID = shipperID;</span>
-<span class="nc" id="L366">    }</span>
+<span class="nc" id="L371">        this.shipperID = shipperID;</span>
+<span class="nc" id="L372">    }</span>
 
     @XmlIDREF
     public Borrow getBorrowID() {
-<span class="nc" id="L370">        return borrowID;</span>
+<span class="nc" id="L376">        return borrowID;</span>
     }
 
     public void setBorrowID(Borrow borrowID) {
-<span class="nc" id="L374">        this.borrowID = borrowID;</span>
-<span class="nc" id="L375">    }</span>
+<span class="nc" id="L380">        this.borrowID = borrowID;</span>
+<span class="nc" id="L381">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L379">        int hash = 0;</span>
-<span class="nc bnc" id="L380" title="All 2 branches missed.">        hash += (shipmentID != null ? shipmentID.hashCode() : 0);</span>
-<span class="nc" id="L381">        return hash;</span>
+<span class="nc" id="L385">        int hash = 0;</span>
+<span class="nc bnc" id="L386" title="All 2 branches missed.">        hash += (shipmentID != null ? shipmentID.hashCode() : 0);</span>
+<span class="nc" id="L387">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L387" title="All 2 branches missed.">        if (!(object instanceof Shipment)) {</span>
-<span class="nc" id="L388">            return false;</span>
+<span class="nc bnc" id="L393" title="All 2 branches missed.">        if (!(object instanceof Shipment)) {</span>
+<span class="nc" id="L394">            return false;</span>
         }
-<span class="nc" id="L390">        Shipment other = (Shipment) object;</span>
-<span class="nc bnc" id="L391" title="All 8 branches missed.">        return !((this.shipmentID == null &amp;&amp; other.shipmentID != null) || (this.shipmentID != null &amp;&amp; !this.shipmentID.equals(other.shipmentID)));</span>
+<span class="nc" id="L396">        Shipment other = (Shipment) object;</span>
+<span class="nc bnc" id="L397" title="All 8 branches missed.">        return !((this.shipmentID == null &amp;&amp; other.shipmentID != null) || (this.shipmentID != null &amp;&amp; !this.shipmentID.equals(other.shipmentID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L396">        return &quot;se.nrm.dina.datamodel.Shipment[ shipmentID=&quot; + shipmentID + &quot; ]&quot;;</span>
+<span class="nc" id="L402">        return &quot;se.nrm.dina.datamodel.Shipment[ shipmentID=&quot; + shipmentID + &quot; ]&quot;;</span>
     }
     
 }

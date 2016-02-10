@@ -78,83 +78,89 @@ public class Workbenchrowimage implements EntityBean, Serializable {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L81">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchRowImageID;</span>
+<span class="nc" id="L81">        return String.valueOf(workbenchRowImageID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L87">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchRowImageID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L86">        return workbenchRowImageID;</span>
+<span class="nc" id="L92">        return workbenchRowImageID;</span>
     }
 
     public Integer getWorkbenchRowImageID() {
-<span class="nc" id="L90">        return workbenchRowImageID;</span>
+<span class="nc" id="L96">        return workbenchRowImageID;</span>
     }
 
     public void setWorkbenchRowImageID(Integer workbenchRowImageID) {
-<span class="nc" id="L94">        this.workbenchRowImageID = workbenchRowImageID;</span>
-<span class="nc" id="L95">    }</span>
+<span class="nc" id="L100">        this.workbenchRowImageID = workbenchRowImageID;</span>
+<span class="nc" id="L101">    }</span>
 
     public String getAttachToTableName() {
-<span class="nc" id="L98">        return attachToTableName;</span>
+<span class="nc" id="L104">        return attachToTableName;</span>
     }
 
     public void setAttachToTableName(String attachToTableName) {
-<span class="nc" id="L102">        this.attachToTableName = attachToTableName;</span>
-<span class="nc" id="L103">    }</span>
+<span class="nc" id="L108">        this.attachToTableName = attachToTableName;</span>
+<span class="nc" id="L109">    }</span>
 
     public byte[] getCardImageData() {
-<span class="nc" id="L106">        return cardImageData;</span>
+<span class="nc" id="L112">        return cardImageData;</span>
     }
 
     public void setCardImageData(byte[] cardImageData) {
-<span class="nc" id="L110">        this.cardImageData = cardImageData;</span>
-<span class="nc" id="L111">    }</span>
+<span class="nc" id="L116">        this.cardImageData = cardImageData;</span>
+<span class="nc" id="L117">    }</span>
 
     public String getCardImageFullPath() {
-<span class="nc" id="L114">        return cardImageFullPath;</span>
+<span class="nc" id="L120">        return cardImageFullPath;</span>
     }
 
     public void setCardImageFullPath(String cardImageFullPath) {
-<span class="nc" id="L118">        this.cardImageFullPath = cardImageFullPath;</span>
-<span class="nc" id="L119">    }</span>
+<span class="nc" id="L124">        this.cardImageFullPath = cardImageFullPath;</span>
+<span class="nc" id="L125">    }</span>
 
     public Integer getImageOrder() {
-<span class="nc" id="L122">        return imageOrder;</span>
+<span class="nc" id="L128">        return imageOrder;</span>
     }
 
     public void setImageOrder(Integer imageOrder) {
-<span class="nc" id="L126">        this.imageOrder = imageOrder;</span>
-<span class="nc" id="L127">    }</span>
+<span class="nc" id="L132">        this.imageOrder = imageOrder;</span>
+<span class="nc" id="L133">    }</span>
 
     @XmlIDREF
     public Workbenchrow getWorkbenchRowID() {
-<span class="nc" id="L131">        return workbenchRowID;</span>
+<span class="nc" id="L137">        return workbenchRowID;</span>
     }
 
     public void setWorkbenchRowID(Workbenchrow workbenchRowID) {
-<span class="nc" id="L135">        this.workbenchRowID = workbenchRowID;</span>
-<span class="nc" id="L136">    }</span>
+<span class="nc" id="L141">        this.workbenchRowID = workbenchRowID;</span>
+<span class="nc" id="L142">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L140">        int hash = 0;</span>
-<span class="nc bnc" id="L141" title="All 2 branches missed.">        hash += (workbenchRowImageID != null ? workbenchRowImageID.hashCode() : 0);</span>
-<span class="nc" id="L142">        return hash;</span>
+<span class="nc" id="L146">        int hash = 0;</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">        hash += (workbenchRowImageID != null ? workbenchRowImageID.hashCode() : 0);</span>
+<span class="nc" id="L148">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L148" title="All 2 branches missed.">        if (!(object instanceof Workbenchrowimage)) {</span>
-<span class="nc" id="L149">            return false;</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">        if (!(object instanceof Workbenchrowimage)) {</span>
+<span class="nc" id="L155">            return false;</span>
         }
-<span class="nc" id="L151">        Workbenchrowimage other = (Workbenchrowimage) object;</span>
-<span class="nc bnc" id="L152" title="All 8 branches missed.">        return !((this.workbenchRowImageID == null &amp;&amp; other.workbenchRowImageID != null) || (this.workbenchRowImageID != null &amp;&amp; !this.workbenchRowImageID.equals(other.workbenchRowImageID)));</span>
+<span class="nc" id="L157">        Workbenchrowimage other = (Workbenchrowimage) object;</span>
+<span class="nc bnc" id="L158" title="All 8 branches missed.">        return !((this.workbenchRowImageID == null &amp;&amp; other.workbenchRowImageID != null) || (this.workbenchRowImageID != null &amp;&amp; !this.workbenchRowImageID.equals(other.workbenchRowImageID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L157">        return &quot;se.nrm.dina.datamodel.Workbenchrowimage[ workbenchRowImageID=&quot; + workbenchRowImageID + &quot; ]&quot;;</span>
+<span class="nc" id="L163">        return &quot;se.nrm.dina.datamodel.Workbenchrowimage[ workbenchRowImageID=&quot; + workbenchRowImageID + &quot; ]&quot;;</span>
     }
     
 }

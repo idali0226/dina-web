@@ -186,276 +186,282 @@ public class Specifyuser extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L189">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + specifyUserID;</span>
+<span class="nc" id="L189">        return String.valueOf(specifyUserID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L195">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + specifyUserID;</span>
     }
 
     @Override
     public int getEntityId() {
-<span class="nc" id="L194">        return specifyUserID;</span>
+<span class="nc" id="L200">        return specifyUserID;</span>
     }
     
     public Integer getSpecifyUserID() {
-<span class="nc" id="L198">        return specifyUserID;</span>
+<span class="nc" id="L204">        return specifyUserID;</span>
     }
 
     public void setSpecifyUserID(Integer specifyUserID) {
-<span class="nc" id="L202">        this.specifyUserID = specifyUserID;</span>
-<span class="nc" id="L203">    }</span>
+<span class="nc" id="L208">        this.specifyUserID = specifyUserID;</span>
+<span class="nc" id="L209">    }</span>
  
 
     public BigInteger getAccumMinLoggedIn() {
-<span class="nc" id="L207">        return accumMinLoggedIn;</span>
+<span class="nc" id="L213">        return accumMinLoggedIn;</span>
     }
 
     public void setAccumMinLoggedIn(BigInteger accumMinLoggedIn) {
-<span class="nc" id="L211">        this.accumMinLoggedIn = accumMinLoggedIn;</span>
-<span class="nc" id="L212">    }</span>
+<span class="nc" id="L217">        this.accumMinLoggedIn = accumMinLoggedIn;</span>
+<span class="nc" id="L218">    }</span>
 
     public String getEMail() {
-<span class="nc" id="L215">        return eMail;</span>
+<span class="nc" id="L221">        return eMail;</span>
     }
 
     public void setEMail(String eMail) {
-<span class="nc" id="L219">        this.eMail = eMail;</span>
-<span class="nc" id="L220">    }</span>
+<span class="nc" id="L225">        this.eMail = eMail;</span>
+<span class="nc" id="L226">    }</span>
 
     public boolean getIsLoggedIn() {
-<span class="nc" id="L223">        return isLoggedIn;</span>
+<span class="nc" id="L229">        return isLoggedIn;</span>
     }
 
     public void setIsLoggedIn(boolean isLoggedIn) {
-<span class="nc" id="L227">        this.isLoggedIn = isLoggedIn;</span>
-<span class="nc" id="L228">    }</span>
+<span class="nc" id="L233">        this.isLoggedIn = isLoggedIn;</span>
+<span class="nc" id="L234">    }</span>
 
     public boolean getIsLoggedInReport() {
-<span class="nc" id="L231">        return isLoggedInReport;</span>
+<span class="nc" id="L237">        return isLoggedInReport;</span>
     }
 
     public void setIsLoggedInReport(boolean isLoggedInReport) {
-<span class="nc" id="L235">        this.isLoggedInReport = isLoggedInReport;</span>
-<span class="nc" id="L236">    }</span>
+<span class="nc" id="L241">        this.isLoggedInReport = isLoggedInReport;</span>
+<span class="nc" id="L242">    }</span>
 
     public String getLoginCollectionName() {
-<span class="nc" id="L239">        return loginCollectionName;</span>
+<span class="nc" id="L245">        return loginCollectionName;</span>
     }
 
     public void setLoginCollectionName(String loginCollectionName) {
-<span class="nc" id="L243">        this.loginCollectionName = loginCollectionName;</span>
-<span class="nc" id="L244">    }</span>
+<span class="nc" id="L249">        this.loginCollectionName = loginCollectionName;</span>
+<span class="nc" id="L250">    }</span>
 
     public String getLoginDisciplineName() {
-<span class="nc" id="L247">        return loginDisciplineName;</span>
+<span class="nc" id="L253">        return loginDisciplineName;</span>
     }
 
     public void setLoginDisciplineName(String loginDisciplineName) {
-<span class="nc" id="L251">        this.loginDisciplineName = loginDisciplineName;</span>
-<span class="nc" id="L252">    }</span>
+<span class="nc" id="L257">        this.loginDisciplineName = loginDisciplineName;</span>
+<span class="nc" id="L258">    }</span>
 
     public Date getLoginOutTime() {
-<span class="nc" id="L255">        return loginOutTime;</span>
+<span class="nc" id="L261">        return loginOutTime;</span>
     }
 
     public void setLoginOutTime(Date loginOutTime) {
-<span class="nc" id="L259">        this.loginOutTime = loginOutTime;</span>
-<span class="nc" id="L260">    }</span>
+<span class="nc" id="L265">        this.loginOutTime = loginOutTime;</span>
+<span class="nc" id="L266">    }</span>
 
     public String getName() {
-<span class="nc" id="L263">        return name;</span>
+<span class="nc" id="L269">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L267">        this.name = name;</span>
-<span class="nc" id="L268">    }</span>
+<span class="nc" id="L273">        this.name = name;</span>
+<span class="nc" id="L274">    }</span>
 
     public String getPassword() {
-<span class="nc" id="L271">        return password;</span>
+<span class="nc" id="L277">        return password;</span>
     }
 
     public void setPassword(String password) {
-<span class="nc" id="L275">        this.password = password;</span>
-<span class="nc" id="L276">    }</span>
+<span class="nc" id="L281">        this.password = password;</span>
+<span class="nc" id="L282">    }</span>
 
     public String getUserType() {
-<span class="nc" id="L279">        return userType;</span>
+<span class="nc" id="L285">        return userType;</span>
     }
 
     public void setUserType(String userType) {
-<span class="nc" id="L283">        this.userType = userType;</span>
-<span class="nc" id="L284">    }</span>
+<span class="nc" id="L289">        this.userType = userType;</span>
+<span class="nc" id="L290">    }</span>
 
     @XmlTransient
     public List&lt;Spprincipal&gt; getSpprincipalList() {
-<span class="nc" id="L288">        return spprincipalList;</span>
+<span class="nc" id="L294">        return spprincipalList;</span>
     }
 
     public void setSpprincipalList(List&lt;Spprincipal&gt; spprincipalList) {
-<span class="nc" id="L292">        this.spprincipalList = spprincipalList;</span>
-<span class="nc" id="L293">    }</span>
+<span class="nc" id="L298">        this.spprincipalList = spprincipalList;</span>
+<span class="nc" id="L299">    }</span>
 
     @XmlTransient
     public List&lt;Sptasksemaphore&gt; getSptasksemaphoreList() {
-<span class="nc" id="L297">        return sptasksemaphoreList;</span>
+<span class="nc" id="L303">        return sptasksemaphoreList;</span>
     }
 
     public void setSptasksemaphoreList(List&lt;Sptasksemaphore&gt; sptasksemaphoreList) {
-<span class="nc" id="L301">        this.sptasksemaphoreList = sptasksemaphoreList;</span>
-<span class="nc" id="L302">    }</span>
+<span class="nc" id="L307">        this.sptasksemaphoreList = sptasksemaphoreList;</span>
+<span class="nc" id="L308">    }</span>
 
     @XmlTransient
     public List&lt;Locality&gt; getLocalityList() {
-<span class="nc" id="L306">        return localityList;</span>
+<span class="nc" id="L312">        return localityList;</span>
     }
 
     public void setLocalityList(List&lt;Locality&gt; localityList) {
-<span class="nc" id="L310">        this.localityList = localityList;</span>
-<span class="nc" id="L311">    }</span>
+<span class="nc" id="L316">        this.localityList = localityList;</span>
+<span class="nc" id="L317">    }</span>
 
     @XmlTransient
     public List&lt;Recordset&gt; getRecordsetList() {
-<span class="nc" id="L315">        return recordsetList;</span>
+<span class="nc" id="L321">        return recordsetList;</span>
     }
 
     public void setRecordsetList(List&lt;Recordset&gt; recordsetList) {
-<span class="nc" id="L319">        this.recordsetList = recordsetList;</span>
-<span class="nc" id="L320">    }</span>
+<span class="nc" id="L325">        this.recordsetList = recordsetList;</span>
+<span class="nc" id="L326">    }</span>
 
     @XmlTransient
     public List&lt;Spappresource&gt; getSpappresourceList() {
-<span class="nc" id="L324">        return spappresourceList;</span>
+<span class="nc" id="L330">        return spappresourceList;</span>
     }
 
     public void setSpappresourceList(List&lt;Spappresource&gt; spappresourceList) {
-<span class="nc" id="L328">        this.spappresourceList = spappresourceList;</span>
-<span class="nc" id="L329">    }</span>
+<span class="nc" id="L334">        this.spappresourceList = spappresourceList;</span>
+<span class="nc" id="L335">    }</span>
 
     @XmlTransient
     public List&lt;Taxon&gt; getTaxonList() {
-<span class="nc" id="L333">        return taxonList;</span>
+<span class="nc" id="L339">        return taxonList;</span>
     }
 
     public void setTaxonList(List&lt;Taxon&gt; taxonList) {
-<span class="nc" id="L337">        this.taxonList = taxonList;</span>
-<span class="nc" id="L338">    }</span>
+<span class="nc" id="L343">        this.taxonList = taxonList;</span>
+<span class="nc" id="L344">    }</span>
 
     @XmlTransient
     public List&lt;Spquery&gt; getSpqueryList() {
-<span class="nc" id="L342">        return spqueryList;</span>
+<span class="nc" id="L348">        return spqueryList;</span>
     }
 
     public void setSpqueryList(List&lt;Spquery&gt; spqueryList) {
-<span class="nc" id="L346">        this.spqueryList = spqueryList;</span>
-<span class="nc" id="L347">    }</span>
+<span class="nc" id="L352">        this.spqueryList = spqueryList;</span>
+<span class="nc" id="L353">    }</span>
 
     @XmlTransient
     public List&lt;Agent&gt; getAgentList() {
-<span class="nc" id="L351">        return agentList;</span>
+<span class="nc" id="L357">        return agentList;</span>
     }
 
     public void setAgentList(List&lt;Agent&gt; agentList) {
-<span class="nc" id="L355">        this.agentList = agentList;</span>
-<span class="nc" id="L356">    }</span>
+<span class="nc" id="L361">        this.agentList = agentList;</span>
+<span class="nc" id="L362">    }</span>
 
     @XmlTransient
     public List&lt;Collectionobject&gt; getCollectionobjectList() {
-<span class="nc" id="L360">        return collectionobjectList;</span>
+<span class="nc" id="L366">        return collectionobjectList;</span>
     }
 
     public void setCollectionobjectList(List&lt;Collectionobject&gt; collectionobjectList) {
-<span class="nc" id="L364">        this.collectionobjectList = collectionobjectList;</span>
-<span class="nc" id="L365">    }</span>
+<span class="nc" id="L370">        this.collectionobjectList = collectionobjectList;</span>
+<span class="nc" id="L371">    }</span>
 
     @XmlTransient
     public List&lt;Collectingevent&gt; getCollectingeventList() {
-<span class="nc" id="L369">        return collectingeventList;</span>
+<span class="nc" id="L375">        return collectingeventList;</span>
     }
 
     public void setCollectingeventList(List&lt;Collectingevent&gt; collectingeventList) {
-<span class="nc" id="L373">        this.collectingeventList = collectingeventList;</span>
-<span class="nc" id="L374">    }</span>
+<span class="nc" id="L379">        this.collectingeventList = collectingeventList;</span>
+<span class="nc" id="L380">    }</span>
 
     @XmlTransient
     public List&lt;Workbench&gt; getWorkbenchList() {
-<span class="nc" id="L378">        return workbenchList;</span>
+<span class="nc" id="L384">        return workbenchList;</span>
     }
 
     public void setWorkbenchList(List&lt;Workbench&gt; workbenchList) {
-<span class="nc" id="L382">        this.workbenchList = workbenchList;</span>
-<span class="nc" id="L383">    }</span>
+<span class="nc" id="L388">        this.workbenchList = workbenchList;</span>
+<span class="nc" id="L389">    }</span>
 
     @XmlTransient
     public List&lt;Workbenchtemplate&gt; getWorkbenchtemplateList() {
-<span class="nc" id="L387">        return workbenchtemplateList;</span>
+<span class="nc" id="L393">        return workbenchtemplateList;</span>
     }
 
     public void setWorkbenchtemplateList(List&lt;Workbenchtemplate&gt; workbenchtemplateList) {
-<span class="nc" id="L391">        this.workbenchtemplateList = workbenchtemplateList;</span>
-<span class="nc" id="L392">    }</span>
+<span class="nc" id="L397">        this.workbenchtemplateList = workbenchtemplateList;</span>
+<span class="nc" id="L398">    }</span>
 
     @XmlTransient
     public List&lt;Spappresourcedir&gt; getSpappresourcedirList() {
-<span class="nc" id="L396">        return spappresourcedirList;</span>
+<span class="nc" id="L402">        return spappresourcedirList;</span>
     }
 
     public void setSpappresourcedirList(List&lt;Spappresourcedir&gt; spappresourcedirList) {
-<span class="nc" id="L400">        this.spappresourcedirList = spappresourcedirList;</span>
-<span class="nc" id="L401">    }</span>
+<span class="nc" id="L406">        this.spappresourcedirList = spappresourcedirList;</span>
+<span class="nc" id="L407">    }</span>
 
     @XmlTransient
     public List&lt;Attachment&gt; getAttachmentList() {
-<span class="nc" id="L405">        return attachmentList;</span>
+<span class="nc" id="L411">        return attachmentList;</span>
     }
 
     public void setAttachmentList(List&lt;Attachment&gt; attachmentList) {
-<span class="nc" id="L409">        this.attachmentList = attachmentList;</span>
-<span class="nc" id="L410">    }</span>
+<span class="nc" id="L415">        this.attachmentList = attachmentList;</span>
+<span class="nc" id="L416">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L414">        return modifiedByAgentID;</span>
+<span class="nc" id="L420">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L418">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L419">    }</span>
+<span class="nc" id="L424">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L425">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L423">        return createdByAgentID;</span>
+<span class="nc" id="L429">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L427">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L428">    }</span>
+<span class="nc" id="L433">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L434">    }</span>
 
     @XmlTransient
     public List&lt;Spreport&gt; getSpreportList() {
-<span class="nc" id="L432">        return spreportList;</span>
+<span class="nc" id="L438">        return spreportList;</span>
     }
 
     public void setSpreportList(List&lt;Spreport&gt; spreportList) {
-<span class="nc" id="L436">        this.spreportList = spreportList;</span>
-<span class="nc" id="L437">    }</span>
+<span class="nc" id="L442">        this.spreportList = spreportList;</span>
+<span class="nc" id="L443">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L441">        int hash = 0;</span>
-<span class="nc bnc" id="L442" title="All 2 branches missed.">        hash += (specifyUserID != null ? specifyUserID.hashCode() : 0);</span>
-<span class="nc" id="L443">        return hash;</span>
+<span class="nc" id="L447">        int hash = 0;</span>
+<span class="nc bnc" id="L448" title="All 2 branches missed.">        hash += (specifyUserID != null ? specifyUserID.hashCode() : 0);</span>
+<span class="nc" id="L449">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L449" title="All 2 branches missed.">        if (!(object instanceof Specifyuser)) {</span>
-<span class="nc" id="L450">            return false;</span>
+<span class="nc bnc" id="L455" title="All 2 branches missed.">        if (!(object instanceof Specifyuser)) {</span>
+<span class="nc" id="L456">            return false;</span>
         }
-<span class="nc" id="L452">        Specifyuser other = (Specifyuser) object;</span>
-<span class="nc bnc" id="L453" title="All 8 branches missed.">        return !((this.specifyUserID == null &amp;&amp; other.specifyUserID != null) || (this.specifyUserID != null &amp;&amp; !this.specifyUserID.equals(other.specifyUserID)));</span>
+<span class="nc" id="L458">        Specifyuser other = (Specifyuser) object;</span>
+<span class="nc bnc" id="L459" title="All 8 branches missed.">        return !((this.specifyUserID == null &amp;&amp; other.specifyUserID != null) || (this.specifyUserID != null &amp;&amp; !this.specifyUserID.equals(other.specifyUserID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L458">        return &quot;se.nrm.dina.datamodel.Specifyuser[ specifyUserID=&quot; + specifyUserID + &quot; ]&quot;;</span>
+<span class="nc" id="L464">        return &quot;se.nrm.dina.datamodel.Specifyuser[ specifyUserID=&quot; + specifyUserID + &quot; ]&quot;;</span>
     }
     
 }

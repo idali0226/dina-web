@@ -91,93 +91,99 @@ public class Picklistitem extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L94">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + pickListItemID;</span>
+<span class="nc" id="L94">        return String.valueOf(pickListItemID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L100">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + pickListItemID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L99">        return pickListItemID;</span>
+<span class="nc" id="L105">        return pickListItemID;</span>
     }
 
     public Integer getPickListItemID() {
-<span class="nc" id="L103">        return pickListItemID;</span>
+<span class="nc" id="L109">        return pickListItemID;</span>
     }
 
     public void setPickListItemID(Integer pickListItemID) {
-<span class="nc" id="L107">        this.pickListItemID = pickListItemID;</span>
-<span class="nc" id="L108">    }</span>
+<span class="nc" id="L113">        this.pickListItemID = pickListItemID;</span>
+<span class="nc" id="L114">    }</span>
  
     public Integer getOrdinal() {
-<span class="nc" id="L111">        return ordinal;</span>
+<span class="nc" id="L117">        return ordinal;</span>
     }
 
     public void setOrdinal(Integer ordinal) {
-<span class="nc" id="L115">        this.ordinal = ordinal;</span>
-<span class="nc" id="L116">    }</span>
+<span class="nc" id="L121">        this.ordinal = ordinal;</span>
+<span class="nc" id="L122">    }</span>
 
     public String getTitle() {
-<span class="nc" id="L119">        return title;</span>
+<span class="nc" id="L125">        return title;</span>
     }
 
     public void setTitle(String title) {
-<span class="nc" id="L123">        this.title = title;</span>
-<span class="nc" id="L124">    }</span>
+<span class="nc" id="L129">        this.title = title;</span>
+<span class="nc" id="L130">    }</span>
 
     public String getValue() {
-<span class="nc" id="L127">        return value;</span>
+<span class="nc" id="L133">        return value;</span>
     }
 
     public void setValue(String value) {
-<span class="nc" id="L131">        this.value = value;</span>
-<span class="nc" id="L132">    }</span>
+<span class="nc" id="L137">        this.value = value;</span>
+<span class="nc" id="L138">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L136">        return modifiedByAgentID;</span>
+<span class="nc" id="L142">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L140">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L141">    }</span>
+<span class="nc" id="L146">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L147">    }</span>
 
     @XmlIDREF
     public Picklist getPickListID() {
-<span class="nc" id="L145">        return pickListID;</span>
+<span class="nc" id="L151">        return pickListID;</span>
     }
 
     public void setPickListID(Picklist pickListID) {
-<span class="nc" id="L149">        this.pickListID = pickListID;</span>
-<span class="nc" id="L150">    }</span>
+<span class="nc" id="L155">        this.pickListID = pickListID;</span>
+<span class="nc" id="L156">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L154">        return createdByAgentID;</span>
+<span class="nc" id="L160">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L158">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L159">    }</span>
+<span class="nc" id="L164">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L165">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L163">        int hash = 0;</span>
-<span class="nc bnc" id="L164" title="All 2 branches missed.">        hash += (pickListItemID != null ? pickListItemID.hashCode() : 0);</span>
-<span class="nc" id="L165">        return hash;</span>
+<span class="nc" id="L169">        int hash = 0;</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">        hash += (pickListItemID != null ? pickListItemID.hashCode() : 0);</span>
+<span class="nc" id="L171">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L171" title="All 2 branches missed.">        if (!(object instanceof Picklistitem)) {</span>
-<span class="nc" id="L172">            return false;</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">        if (!(object instanceof Picklistitem)) {</span>
+<span class="nc" id="L178">            return false;</span>
         }
-<span class="nc" id="L174">        Picklistitem other = (Picklistitem) object;</span>
-<span class="nc bnc" id="L175" title="All 8 branches missed.">        return !((this.pickListItemID == null &amp;&amp; other.pickListItemID != null) || (this.pickListItemID != null &amp;&amp; !this.pickListItemID.equals(other.pickListItemID)));</span>
+<span class="nc" id="L180">        Picklistitem other = (Picklistitem) object;</span>
+<span class="nc bnc" id="L181" title="All 8 branches missed.">        return !((this.pickListItemID == null &amp;&amp; other.pickListItemID != null) || (this.pickListItemID != null &amp;&amp; !this.pickListItemID.equals(other.pickListItemID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L180">        return &quot;se.nrm.dina.datamodel.Picklistitem[ pickListItemID=&quot; + pickListItemID + &quot; ]&quot;;</span>
+<span class="nc" id="L186">        return &quot;se.nrm.dina.datamodel.Picklistitem[ pickListItemID=&quot; + pickListItemID + &quot; ]&quot;;</span>
     }
     
 }

@@ -135,170 +135,176 @@ public class Spappresource extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L138">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spAppResourceID;</span>
+<span class="nc" id="L138">        return String.valueOf(spAppResourceID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L144">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spAppResourceID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L143">        return spAppResourceID;</span>
+<span class="nc" id="L149">        return spAppResourceID;</span>
     }
     
     public Integer getSpAppResourceID() {
-<span class="nc" id="L147">        return spAppResourceID;</span>
+<span class="nc" id="L153">        return spAppResourceID;</span>
     }
 
     public void setSpAppResourceID(Integer spAppResourceID) {
-<span class="nc" id="L151">        this.spAppResourceID = spAppResourceID;</span>
-<span class="nc" id="L152">    }</span>
+<span class="nc" id="L157">        this.spAppResourceID = spAppResourceID;</span>
+<span class="nc" id="L158">    }</span>
  
 
     public Integer getAllPermissionLevel() {
-<span class="nc" id="L156">        return allPermissionLevel;</span>
+<span class="nc" id="L162">        return allPermissionLevel;</span>
     }
 
     public void setAllPermissionLevel(Integer allPermissionLevel) {
-<span class="nc" id="L160">        this.allPermissionLevel = allPermissionLevel;</span>
-<span class="nc" id="L161">    }</span>
+<span class="nc" id="L166">        this.allPermissionLevel = allPermissionLevel;</span>
+<span class="nc" id="L167">    }</span>
 
     public String getDescription() {
-<span class="nc" id="L164">        return description;</span>
+<span class="nc" id="L170">        return description;</span>
     }
 
     public void setDescription(String description) {
-<span class="nc" id="L168">        this.description = description;</span>
-<span class="nc" id="L169">    }</span>
+<span class="nc" id="L174">        this.description = description;</span>
+<span class="nc" id="L175">    }</span>
 
     public Integer getGroupPermissionLevel() {
-<span class="nc" id="L172">        return groupPermissionLevel;</span>
+<span class="nc" id="L178">        return groupPermissionLevel;</span>
     }
 
     public void setGroupPermissionLevel(Integer groupPermissionLevel) {
-<span class="nc" id="L176">        this.groupPermissionLevel = groupPermissionLevel;</span>
-<span class="nc" id="L177">    }</span>
+<span class="nc" id="L182">        this.groupPermissionLevel = groupPermissionLevel;</span>
+<span class="nc" id="L183">    }</span>
 
     public short getLevel() {
-<span class="nc" id="L180">        return level;</span>
+<span class="nc" id="L186">        return level;</span>
     }
 
     public void setLevel(short level) {
-<span class="nc" id="L184">        this.level = level;</span>
-<span class="nc" id="L185">    }</span>
+<span class="nc" id="L190">        this.level = level;</span>
+<span class="nc" id="L191">    }</span>
 
     public String getMetaData() {
-<span class="nc" id="L188">        return metaData;</span>
+<span class="nc" id="L194">        return metaData;</span>
     }
 
     public void setMetaData(String metaData) {
-<span class="nc" id="L192">        this.metaData = metaData;</span>
-<span class="nc" id="L193">    }</span>
+<span class="nc" id="L198">        this.metaData = metaData;</span>
+<span class="nc" id="L199">    }</span>
 
     public String getMimeType() {
-<span class="nc" id="L196">        return mimeType;</span>
+<span class="nc" id="L202">        return mimeType;</span>
     }
 
     public void setMimeType(String mimeType) {
-<span class="nc" id="L200">        this.mimeType = mimeType;</span>
-<span class="nc" id="L201">    }</span>
+<span class="nc" id="L206">        this.mimeType = mimeType;</span>
+<span class="nc" id="L207">    }</span>
 
     public String getName() {
-<span class="nc" id="L204">        return name;</span>
+<span class="nc" id="L210">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L208">        this.name = name;</span>
-<span class="nc" id="L209">    }</span>
+<span class="nc" id="L214">        this.name = name;</span>
+<span class="nc" id="L215">    }</span>
 
     public Integer getOwnerPermissionLevel() {
-<span class="nc" id="L212">        return ownerPermissionLevel;</span>
+<span class="nc" id="L218">        return ownerPermissionLevel;</span>
     }
 
     public void setOwnerPermissionLevel(Integer ownerPermissionLevel) {
-<span class="nc" id="L216">        this.ownerPermissionLevel = ownerPermissionLevel;</span>
-<span class="nc" id="L217">    }</span>
+<span class="nc" id="L222">        this.ownerPermissionLevel = ownerPermissionLevel;</span>
+<span class="nc" id="L223">    }</span>
 
     @XmlIDREF
     public Spappresourcedir getSpAppResourceDirID() {
-<span class="nc" id="L221">        return spAppResourceDirID;</span>
+<span class="nc" id="L227">        return spAppResourceDirID;</span>
     }
 
     public void setSpAppResourceDirID(Spappresourcedir spAppResourceDirID) {
-<span class="nc" id="L225">        this.spAppResourceDirID = spAppResourceDirID;</span>
-<span class="nc" id="L226">    }</span>
+<span class="nc" id="L231">        this.spAppResourceDirID = spAppResourceDirID;</span>
+<span class="nc" id="L232">    }</span>
 
     @XmlIDREF
     public Specifyuser getSpecifyUserID() {
-<span class="nc" id="L230">        return specifyUserID;</span>
+<span class="nc" id="L236">        return specifyUserID;</span>
     }
 
     public void setSpecifyUserID(Specifyuser specifyUserID) {
-<span class="nc" id="L234">        this.specifyUserID = specifyUserID;</span>
-<span class="nc" id="L235">    }</span>
+<span class="nc" id="L240">        this.specifyUserID = specifyUserID;</span>
+<span class="nc" id="L241">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L239">        return modifiedByAgentID;</span>
+<span class="nc" id="L245">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L243">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L244">    }</span>
+<span class="nc" id="L249">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L250">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L248">        return createdByAgentID;</span>
+<span class="nc" id="L254">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L252">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L253">    }</span>
+<span class="nc" id="L258">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L259">    }</span>
 
     @XmlIDREF
     public Spprincipal getSpPrincipalID() {
-<span class="nc" id="L257">        return spPrincipalID;</span>
+<span class="nc" id="L263">        return spPrincipalID;</span>
     }
 
     public void setSpPrincipalID(Spprincipal spPrincipalID) {
-<span class="nc" id="L261">        this.spPrincipalID = spPrincipalID;</span>
-<span class="nc" id="L262">    }</span>
+<span class="nc" id="L267">        this.spPrincipalID = spPrincipalID;</span>
+<span class="nc" id="L268">    }</span>
 
     @XmlTransient
     public List&lt;Spappresourcedata&gt; getSpappresourcedataList() {
-<span class="nc" id="L266">        return spappresourcedataList;</span>
+<span class="nc" id="L272">        return spappresourcedataList;</span>
     }
 
     public void setSpappresourcedataList(List&lt;Spappresourcedata&gt; spappresourcedataList) {
-<span class="nc" id="L270">        this.spappresourcedataList = spappresourcedataList;</span>
-<span class="nc" id="L271">    }</span>
+<span class="nc" id="L276">        this.spappresourcedataList = spappresourcedataList;</span>
+<span class="nc" id="L277">    }</span>
 
     @XmlTransient
     public List&lt;Spreport&gt; getSpreportList() {
-<span class="nc" id="L275">        return spreportList;</span>
+<span class="nc" id="L281">        return spreportList;</span>
     }
 
     public void setSpreportList(List&lt;Spreport&gt; spreportList) {
-<span class="nc" id="L279">        this.spreportList = spreportList;</span>
-<span class="nc" id="L280">    }</span>
+<span class="nc" id="L285">        this.spreportList = spreportList;</span>
+<span class="nc" id="L286">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L284">        int hash = 0;</span>
-<span class="nc bnc" id="L285" title="All 2 branches missed.">        hash += (spAppResourceID != null ? spAppResourceID.hashCode() : 0);</span>
-<span class="nc" id="L286">        return hash;</span>
+<span class="nc" id="L290">        int hash = 0;</span>
+<span class="nc bnc" id="L291" title="All 2 branches missed.">        hash += (spAppResourceID != null ? spAppResourceID.hashCode() : 0);</span>
+<span class="nc" id="L292">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L292" title="All 2 branches missed.">        if (!(object instanceof Spappresource)) {</span>
-<span class="nc" id="L293">            return false;</span>
+<span class="nc bnc" id="L298" title="All 2 branches missed.">        if (!(object instanceof Spappresource)) {</span>
+<span class="nc" id="L299">            return false;</span>
         }
-<span class="nc" id="L295">        Spappresource other = (Spappresource) object;</span>
-<span class="nc bnc" id="L296" title="All 8 branches missed.">        return !((this.spAppResourceID == null &amp;&amp; other.spAppResourceID != null) || (this.spAppResourceID != null &amp;&amp; !this.spAppResourceID.equals(other.spAppResourceID)));</span>
+<span class="nc" id="L301">        Spappresource other = (Spappresource) object;</span>
+<span class="nc bnc" id="L302" title="All 8 branches missed.">        return !((this.spAppResourceID == null &amp;&amp; other.spAppResourceID != null) || (this.spAppResourceID != null &amp;&amp; !this.spAppResourceID.equals(other.spAppResourceID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L301">        return &quot;se.nrm.dina.datamodel.Spappresource[ spAppResourceID=&quot; + spAppResourceID + &quot; ]&quot;;</span>
+<span class="nc" id="L307">        return &quot;se.nrm.dina.datamodel.Spappresource[ spAppResourceID=&quot; + spAppResourceID + &quot; ]&quot;;</span>
     }
     
 }

@@ -140,185 +140,191 @@ public class Workbench extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L143">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchID;</span>
+<span class="nc" id="L143">        return String.valueOf(workbenchID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L149">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L148">        return workbenchID;</span>
+<span class="nc" id="L154">        return workbenchID;</span>
     }
 
     public Integer getWorkbenchID() {
-<span class="nc" id="L152">        return workbenchID;</span>
+<span class="nc" id="L158">        return workbenchID;</span>
     }
 
     public void setWorkbenchID(Integer workbenchID) {
-<span class="nc" id="L156">        this.workbenchID = workbenchID;</span>
-<span class="nc" id="L157">    }</span>
+<span class="nc" id="L162">        this.workbenchID = workbenchID;</span>
+<span class="nc" id="L163">    }</span>
  
 
     public Integer getAllPermissionLevel() {
-<span class="nc" id="L161">        return allPermissionLevel;</span>
+<span class="nc" id="L167">        return allPermissionLevel;</span>
     }
 
     public void setAllPermissionLevel(Integer allPermissionLevel) {
-<span class="nc" id="L165">        this.allPermissionLevel = allPermissionLevel;</span>
-<span class="nc" id="L166">    }</span>
+<span class="nc" id="L171">        this.allPermissionLevel = allPermissionLevel;</span>
+<span class="nc" id="L172">    }</span>
 
     public Integer getTableID() {
-<span class="nc" id="L169">        return tableID;</span>
+<span class="nc" id="L175">        return tableID;</span>
     }
 
     public void setTableID(Integer tableID) {
-<span class="nc" id="L173">        this.tableID = tableID;</span>
-<span class="nc" id="L174">    }</span>
+<span class="nc" id="L179">        this.tableID = tableID;</span>
+<span class="nc" id="L180">    }</span>
 
     public String getExportInstitutionName() {
-<span class="nc" id="L177">        return exportInstitutionName;</span>
+<span class="nc" id="L183">        return exportInstitutionName;</span>
     }
 
     public void setExportInstitutionName(String exportInstitutionName) {
-<span class="nc" id="L181">        this.exportInstitutionName = exportInstitutionName;</span>
-<span class="nc" id="L182">    }</span>
+<span class="nc" id="L187">        this.exportInstitutionName = exportInstitutionName;</span>
+<span class="nc" id="L188">    }</span>
 
     public Integer getFormId() {
-<span class="nc" id="L185">        return formId;</span>
+<span class="nc" id="L191">        return formId;</span>
     }
 
     public void setFormId(Integer formId) {
-<span class="nc" id="L189">        this.formId = formId;</span>
-<span class="nc" id="L190">    }</span>
+<span class="nc" id="L195">        this.formId = formId;</span>
+<span class="nc" id="L196">    }</span>
 
     public Integer getGroupPermissionLevel() {
-<span class="nc" id="L193">        return groupPermissionLevel;</span>
+<span class="nc" id="L199">        return groupPermissionLevel;</span>
     }
 
     public void setGroupPermissionLevel(Integer groupPermissionLevel) {
-<span class="nc" id="L197">        this.groupPermissionLevel = groupPermissionLevel;</span>
-<span class="nc" id="L198">    }</span>
+<span class="nc" id="L203">        this.groupPermissionLevel = groupPermissionLevel;</span>
+<span class="nc" id="L204">    }</span>
 
     public String getLockedByUserName() {
-<span class="nc" id="L201">        return lockedByUserName;</span>
+<span class="nc" id="L207">        return lockedByUserName;</span>
     }
 
     public void setLockedByUserName(String lockedByUserName) {
-<span class="nc" id="L205">        this.lockedByUserName = lockedByUserName;</span>
-<span class="nc" id="L206">    }</span>
+<span class="nc" id="L211">        this.lockedByUserName = lockedByUserName;</span>
+<span class="nc" id="L212">    }</span>
 
     public String getName() {
-<span class="nc" id="L209">        return name;</span>
+<span class="nc" id="L215">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L213">        this.name = name;</span>
-<span class="nc" id="L214">    }</span>
+<span class="nc" id="L219">        this.name = name;</span>
+<span class="nc" id="L220">    }</span>
 
     public Integer getOwnerPermissionLevel() {
-<span class="nc" id="L217">        return ownerPermissionLevel;</span>
+<span class="nc" id="L223">        return ownerPermissionLevel;</span>
     }
 
     public void setOwnerPermissionLevel(Integer ownerPermissionLevel) {
-<span class="nc" id="L221">        this.ownerPermissionLevel = ownerPermissionLevel;</span>
-<span class="nc" id="L222">    }</span>
+<span class="nc" id="L227">        this.ownerPermissionLevel = ownerPermissionLevel;</span>
+<span class="nc" id="L228">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L225">        return remarks;</span>
+<span class="nc" id="L231">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L229">        this.remarks = remarks;</span>
-<span class="nc" id="L230">    }</span>
+<span class="nc" id="L235">        this.remarks = remarks;</span>
+<span class="nc" id="L236">    }</span>
 
     public String getSrcFilePath() {
-<span class="nc" id="L233">        return srcFilePath;</span>
+<span class="nc" id="L239">        return srcFilePath;</span>
     }
 
     public void setSrcFilePath(String srcFilePath) {
-<span class="nc" id="L237">        this.srcFilePath = srcFilePath;</span>
-<span class="nc" id="L238">    }</span>
+<span class="nc" id="L243">        this.srcFilePath = srcFilePath;</span>
+<span class="nc" id="L244">    }</span>
 
     public String getExportedFromTableName() {
-<span class="nc" id="L241">        return exportedFromTableName;</span>
+<span class="nc" id="L247">        return exportedFromTableName;</span>
     }
 
     public void setExportedFromTableName(String exportedFromTableName) {
-<span class="nc" id="L245">        this.exportedFromTableName = exportedFromTableName;</span>
-<span class="nc" id="L246">    }</span>
+<span class="nc" id="L251">        this.exportedFromTableName = exportedFromTableName;</span>
+<span class="nc" id="L252">    }</span>
 
     @XmlIDREF
     public Specifyuser getSpecifyUserID() {
-<span class="nc" id="L250">        return specifyUserID;</span>
+<span class="nc" id="L256">        return specifyUserID;</span>
     }
 
     public void setSpecifyUserID(Specifyuser specifyUserID) {
-<span class="nc" id="L254">        this.specifyUserID = specifyUserID;</span>
-<span class="nc" id="L255">    }</span>
+<span class="nc" id="L260">        this.specifyUserID = specifyUserID;</span>
+<span class="nc" id="L261">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L259">        return modifiedByAgentID;</span>
+<span class="nc" id="L265">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L263">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L264">    }</span>
+<span class="nc" id="L269">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L270">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L268">        return createdByAgentID;</span>
+<span class="nc" id="L274">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L272">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L273">    }</span>
+<span class="nc" id="L278">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L279">    }</span>
 
     @XmlIDREF
     public Workbenchtemplate getWorkbenchTemplateID() {
-<span class="nc" id="L277">        return workbenchTemplateID;</span>
+<span class="nc" id="L283">        return workbenchTemplateID;</span>
     }
 
     public void setWorkbenchTemplateID(Workbenchtemplate workbenchTemplateID) {
-<span class="nc" id="L281">        this.workbenchTemplateID = workbenchTemplateID;</span>
-<span class="nc" id="L282">    }</span>
+<span class="nc" id="L287">        this.workbenchTemplateID = workbenchTemplateID;</span>
+<span class="nc" id="L288">    }</span>
 
     @XmlIDREF
     public Spprincipal getSpPrincipalID() {
-<span class="nc" id="L286">        return spPrincipalID;</span>
+<span class="nc" id="L292">        return spPrincipalID;</span>
     }
 
     public void setSpPrincipalID(Spprincipal spPrincipalID) {
-<span class="nc" id="L290">        this.spPrincipalID = spPrincipalID;</span>
-<span class="nc" id="L291">    }</span>
+<span class="nc" id="L296">        this.spPrincipalID = spPrincipalID;</span>
+<span class="nc" id="L297">    }</span>
 
     @XmlTransient
     public List&lt;Workbenchrow&gt; getWorkbenchrowList() {
-<span class="nc" id="L295">        return workbenchrowList;</span>
+<span class="nc" id="L301">        return workbenchrowList;</span>
     }
 
     public void setWorkbenchrowList(List&lt;Workbenchrow&gt; workbenchrowList) {
-<span class="nc" id="L299">        this.workbenchrowList = workbenchrowList;</span>
-<span class="nc" id="L300">    }</span>
+<span class="nc" id="L305">        this.workbenchrowList = workbenchrowList;</span>
+<span class="nc" id="L306">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L304">        int hash = 0;</span>
-<span class="nc bnc" id="L305" title="All 2 branches missed.">        hash += (workbenchID != null ? workbenchID.hashCode() : 0);</span>
-<span class="nc" id="L306">        return hash;</span>
+<span class="nc" id="L310">        int hash = 0;</span>
+<span class="nc bnc" id="L311" title="All 2 branches missed.">        hash += (workbenchID != null ? workbenchID.hashCode() : 0);</span>
+<span class="nc" id="L312">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L312" title="All 2 branches missed.">        if (!(object instanceof Workbench)) {</span>
-<span class="nc" id="L313">            return false;</span>
+<span class="nc bnc" id="L318" title="All 2 branches missed.">        if (!(object instanceof Workbench)) {</span>
+<span class="nc" id="L319">            return false;</span>
         }
-<span class="nc" id="L315">        Workbench other = (Workbench) object;</span>
-<span class="nc bnc" id="L316" title="All 8 branches missed.">        return !((this.workbenchID == null &amp;&amp; other.workbenchID != null) || (this.workbenchID != null &amp;&amp; !this.workbenchID.equals(other.workbenchID)));</span>
+<span class="nc" id="L321">        Workbench other = (Workbench) object;</span>
+<span class="nc bnc" id="L322" title="All 8 branches missed.">        return !((this.workbenchID == null &amp;&amp; other.workbenchID != null) || (this.workbenchID != null &amp;&amp; !this.workbenchID.equals(other.workbenchID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L321">        return &quot;se.nrm.dina.datamodel.Workbench[ workbenchID=&quot; + workbenchID + &quot; ]&quot;;</span>
+<span class="nc" id="L327">        return &quot;se.nrm.dina.datamodel.Workbench[ workbenchID=&quot; + workbenchID + &quot; ]&quot;;</span>
     }
     
 }

@@ -105,131 +105,138 @@ public class Morphbankview extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L108">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + morphBankViewID;</span>
+<span class="nc" id="L108">        return String.valueOf(morphBankViewID);</span>
+    }
+    
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L115">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + morphBankViewID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L113">        return morphBankViewID;</span>
+<span class="nc" id="L120">        return morphBankViewID;</span>
     }
     
     public Integer getMorphBankViewID() {
-<span class="nc" id="L117">        return morphBankViewID;</span>
+<span class="nc" id="L124">        return morphBankViewID;</span>
     }
 
     public void setMorphBankViewID(Integer morphBankViewID) {
-<span class="nc" id="L121">        this.morphBankViewID = morphBankViewID;</span>
-<span class="nc" id="L122">    }</span>
+<span class="nc" id="L128">        this.morphBankViewID = morphBankViewID;</span>
+<span class="nc" id="L129">    }</span>
  
 
     public String getDevelopmentState() {
-<span class="nc" id="L126">        return developmentState;</span>
+<span class="nc" id="L133">        return developmentState;</span>
     }
 
     public void setDevelopmentState(String developmentState) {
-<span class="nc" id="L130">        this.developmentState = developmentState;</span>
-<span class="nc" id="L131">    }</span>
+<span class="nc" id="L137">        this.developmentState = developmentState;</span>
+<span class="nc" id="L138">    }</span>
 
     public String getForm() {
-<span class="nc" id="L134">        return form;</span>
+<span class="nc" id="L141">        return form;</span>
     }
 
     public void setForm(String form) {
-<span class="nc" id="L138">        this.form = form;</span>
-<span class="nc" id="L139">    }</span>
+<span class="nc" id="L145">        this.form = form;</span>
+<span class="nc" id="L146">    }</span>
 
     public String getImagingPreparationTechnique() {
-<span class="nc" id="L142">        return imagingPreparationTechnique;</span>
+<span class="nc" id="L149">        return imagingPreparationTechnique;</span>
     }
 
     public void setImagingPreparationTechnique(String imagingPreparationTechnique) {
-<span class="nc" id="L146">        this.imagingPreparationTechnique = imagingPreparationTechnique;</span>
-<span class="nc" id="L147">    }</span>
+<span class="nc" id="L153">        this.imagingPreparationTechnique = imagingPreparationTechnique;</span>
+<span class="nc" id="L154">    }</span>
 
     public String getImagingTechnique() {
-<span class="nc" id="L150">        return imagingTechnique;</span>
+<span class="nc" id="L157">        return imagingTechnique;</span>
     }
 
     public void setImagingTechnique(String imagingTechnique) {
-<span class="nc" id="L154">        this.imagingTechnique = imagingTechnique;</span>
-<span class="nc" id="L155">    }</span>
+<span class="nc" id="L161">        this.imagingTechnique = imagingTechnique;</span>
+<span class="nc" id="L162">    }</span>
 
     public Integer getMorphBankExternalViewID() {
-<span class="nc" id="L158">        return morphBankExternalViewID;</span>
+<span class="nc" id="L165">        return morphBankExternalViewID;</span>
     }
 
     public void setMorphBankExternalViewID(Integer morphBankExternalViewID) {
-<span class="nc" id="L162">        this.morphBankExternalViewID = morphBankExternalViewID;</span>
-<span class="nc" id="L163">    }</span>
+<span class="nc" id="L169">        this.morphBankExternalViewID = morphBankExternalViewID;</span>
+<span class="nc" id="L170">    }</span>
 
     public String getSex() {
-<span class="nc" id="L166">        return sex;</span>
+<span class="nc" id="L173">        return sex;</span>
     }
 
     public void setSex(String sex) {
-<span class="nc" id="L170">        this.sex = sex;</span>
-<span class="nc" id="L171">    }</span>
+<span class="nc" id="L177">        this.sex = sex;</span>
+<span class="nc" id="L178">    }</span>
 
     public String getSpecimenPart() {
-<span class="nc" id="L174">        return specimenPart;</span>
+<span class="nc" id="L181">        return specimenPart;</span>
     }
 
     public void setSpecimenPart(String specimenPart) {
-<span class="nc" id="L178">        this.specimenPart = specimenPart;</span>
-<span class="nc" id="L179">    }</span>
+<span class="nc" id="L185">        this.specimenPart = specimenPart;</span>
+<span class="nc" id="L186">    }</span>
 
     public String getViewAngle() {
-<span class="nc" id="L182">        return viewAngle;</span>
+<span class="nc" id="L189">        return viewAngle;</span>
     }
 
     public void setViewAngle(String viewAngle) {
-<span class="nc" id="L186">        this.viewAngle = viewAngle;</span>
-<span class="nc" id="L187">    }</span>
+<span class="nc" id="L193">        this.viewAngle = viewAngle;</span>
+<span class="nc" id="L194">    }</span>
 
     public String getViewName() {
-<span class="nc" id="L190">        return viewName;</span>
+<span class="nc" id="L197">        return viewName;</span>
     }
 
     public void setViewName(String viewName) {
-<span class="nc" id="L194">        this.viewName = viewName;</span>
-<span class="nc" id="L195">    }</span>
+<span class="nc" id="L201">        this.viewName = viewName;</span>
+<span class="nc" id="L202">    }</span>
 
     public Integer getCreatedByAgentID() {
-<span class="nc" id="L198">        return createdByAgentID;</span>
+<span class="nc" id="L205">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Integer createdByAgentID) {
-<span class="nc" id="L202">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L203">    }</span>
+<span class="nc" id="L209">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L210">    }</span>
 
     public Integer getModifiedByAgentID() {
-<span class="nc" id="L206">        return modifiedByAgentID;</span>
+<span class="nc" id="L213">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Integer modifiedByAgentID) {
-<span class="nc" id="L210">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L211">    }</span>
+<span class="nc" id="L217">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L218">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L215">        int hash = 0;</span>
-<span class="nc bnc" id="L216" title="All 2 branches missed.">        hash += (morphBankViewID != null ? morphBankViewID.hashCode() : 0);</span>
-<span class="nc" id="L217">        return hash;</span>
+<span class="nc" id="L222">        int hash = 0;</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">        hash += (morphBankViewID != null ? morphBankViewID.hashCode() : 0);</span>
+<span class="nc" id="L224">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L223" title="All 2 branches missed.">        if (!(object instanceof Morphbankview)) {</span>
-<span class="nc" id="L224">            return false;</span>
+<span class="nc bnc" id="L230" title="All 2 branches missed.">        if (!(object instanceof Morphbankview)) {</span>
+<span class="nc" id="L231">            return false;</span>
         }
-<span class="nc" id="L226">        Morphbankview other = (Morphbankview) object;</span>
-<span class="nc bnc" id="L227" title="All 8 branches missed.">        return !((this.morphBankViewID == null &amp;&amp; other.morphBankViewID != null) || (this.morphBankViewID != null &amp;&amp; !this.morphBankViewID.equals(other.morphBankViewID)));</span>
+<span class="nc" id="L233">        Morphbankview other = (Morphbankview) object;</span>
+<span class="nc bnc" id="L234" title="All 8 branches missed.">        return !((this.morphBankViewID == null &amp;&amp; other.morphBankViewID != null) || (this.morphBankViewID != null &amp;&amp; !this.morphBankViewID.equals(other.morphBankViewID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L232">        return &quot;se.nrm.dina.datamodel.Morphbankview[ morphBankViewID=&quot; + morphBankViewID + &quot; ]&quot;;</span>
+<span class="nc" id="L239">        return &quot;se.nrm.dina.datamodel.Morphbankview[ morphBankViewID=&quot; + morphBankViewID + &quot; ]&quot;;</span>
     }
     
 }

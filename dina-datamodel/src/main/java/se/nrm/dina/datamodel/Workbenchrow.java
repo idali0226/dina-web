@@ -116,6 +116,12 @@ public class Workbenchrow implements EntityBean, Serializable {
     @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
+        return String.valueOf(workbenchRowID);
+    }
+    
+    @XmlAttribute(name = "uuid") 
+    @Override
+    public String getUUID() {
         return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + workbenchRowID;
     }
     

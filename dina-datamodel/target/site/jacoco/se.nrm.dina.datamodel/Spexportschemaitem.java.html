@@ -105,119 +105,125 @@ public class Spexportschemaitem extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L108">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spExportSchemaItemID;</span>
+<span class="nc" id="L108">        return String.valueOf(spExportSchemaItemID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L114">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spExportSchemaItemID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L113">        return spExportSchemaItemID;</span>
+<span class="nc" id="L119">        return spExportSchemaItemID;</span>
     }
     
     public Integer getSpExportSchemaItemID() {
-<span class="nc" id="L117">        return spExportSchemaItemID;</span>
+<span class="nc" id="L123">        return spExportSchemaItemID;</span>
     }
 
     public void setSpExportSchemaItemID(Integer spExportSchemaItemID) {
-<span class="nc" id="L121">        this.spExportSchemaItemID = spExportSchemaItemID;</span>
-<span class="nc" id="L122">    }</span>
+<span class="nc" id="L127">        this.spExportSchemaItemID = spExportSchemaItemID;</span>
+<span class="nc" id="L128">    }</span>
  
     public String getDataType() {
-<span class="nc" id="L125">        return dataType;</span>
+<span class="nc" id="L131">        return dataType;</span>
     }
 
     public void setDataType(String dataType) {
-<span class="nc" id="L129">        this.dataType = dataType;</span>
-<span class="nc" id="L130">    }</span>
+<span class="nc" id="L135">        this.dataType = dataType;</span>
+<span class="nc" id="L136">    }</span>
 
     public String getDescription() {
-<span class="nc" id="L133">        return description;</span>
+<span class="nc" id="L139">        return description;</span>
     }
 
     public void setDescription(String description) {
-<span class="nc" id="L137">        this.description = description;</span>
-<span class="nc" id="L138">    }</span>
+<span class="nc" id="L143">        this.description = description;</span>
+<span class="nc" id="L144">    }</span>
 
     public String getFieldName() {
-<span class="nc" id="L141">        return fieldName;</span>
+<span class="nc" id="L147">        return fieldName;</span>
     }
 
     public void setFieldName(String fieldName) {
-<span class="nc" id="L145">        this.fieldName = fieldName;</span>
-<span class="nc" id="L146">    }</span>
+<span class="nc" id="L151">        this.fieldName = fieldName;</span>
+<span class="nc" id="L152">    }</span>
 
     public String getFormatter() {
-<span class="nc" id="L149">        return formatter;</span>
+<span class="nc" id="L155">        return formatter;</span>
     }
 
     public void setFormatter(String formatter) {
-<span class="nc" id="L153">        this.formatter = formatter;</span>
-<span class="nc" id="L154">    }</span>
+<span class="nc" id="L159">        this.formatter = formatter;</span>
+<span class="nc" id="L160">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L158">        return modifiedByAgentID;</span>
+<span class="nc" id="L164">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L162">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L163">    }</span>
+<span class="nc" id="L168">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L169">    }</span>
 
     @XmlIDREF
     public Spexportschema getSpExportSchemaID() {
-<span class="nc" id="L167">        return spExportSchemaID;</span>
+<span class="nc" id="L173">        return spExportSchemaID;</span>
     }
 
     public void setSpExportSchemaID(Spexportschema spExportSchemaID) {
-<span class="nc" id="L171">        this.spExportSchemaID = spExportSchemaID;</span>
-<span class="nc" id="L172">    }</span>
+<span class="nc" id="L177">        this.spExportSchemaID = spExportSchemaID;</span>
+<span class="nc" id="L178">    }</span>
 
     @XmlIDREF
     public Splocalecontaineritem getSpLocaleContainerItemID() {
-<span class="nc" id="L176">        return spLocaleContainerItemID;</span>
+<span class="nc" id="L182">        return spLocaleContainerItemID;</span>
     }
 
     public void setSpLocaleContainerItemID(Splocalecontaineritem spLocaleContainerItemID) {
-<span class="nc" id="L180">        this.spLocaleContainerItemID = spLocaleContainerItemID;</span>
-<span class="nc" id="L181">    }</span>
+<span class="nc" id="L186">        this.spLocaleContainerItemID = spLocaleContainerItemID;</span>
+<span class="nc" id="L187">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L185">        return createdByAgentID;</span>
+<span class="nc" id="L191">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L189">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L190">    }</span>
+<span class="nc" id="L195">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L196">    }</span>
 
     @XmlTransient
     public List&lt;Spexportschemaitemmapping&gt; getSpexportschemaitemmappingList() {
-<span class="nc" id="L194">        return spexportschemaitemmappingList;</span>
+<span class="nc" id="L200">        return spexportschemaitemmappingList;</span>
     }
 
     public void setSpexportschemaitemmappingList(List&lt;Spexportschemaitemmapping&gt; spexportschemaitemmappingList) {
-<span class="nc" id="L198">        this.spexportschemaitemmappingList = spexportschemaitemmappingList;</span>
-<span class="nc" id="L199">    }</span>
+<span class="nc" id="L204">        this.spexportschemaitemmappingList = spexportschemaitemmappingList;</span>
+<span class="nc" id="L205">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L203">        int hash = 0;</span>
-<span class="nc bnc" id="L204" title="All 2 branches missed.">        hash += (spExportSchemaItemID != null ? spExportSchemaItemID.hashCode() : 0);</span>
-<span class="nc" id="L205">        return hash;</span>
+<span class="nc" id="L209">        int hash = 0;</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">        hash += (spExportSchemaItemID != null ? spExportSchemaItemID.hashCode() : 0);</span>
+<span class="nc" id="L211">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L211" title="All 2 branches missed.">        if (!(object instanceof Spexportschemaitem)) {</span>
-<span class="nc" id="L212">            return false;</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">        if (!(object instanceof Spexportschemaitem)) {</span>
+<span class="nc" id="L218">            return false;</span>
         }
-<span class="nc" id="L214">        Spexportschemaitem other = (Spexportschemaitem) object;</span>
-<span class="nc bnc" id="L215" title="All 8 branches missed.">        return !((this.spExportSchemaItemID == null &amp;&amp; other.spExportSchemaItemID != null) || (this.spExportSchemaItemID != null &amp;&amp; !this.spExportSchemaItemID.equals(other.spExportSchemaItemID)));</span>
+<span class="nc" id="L220">        Spexportschemaitem other = (Spexportschemaitem) object;</span>
+<span class="nc bnc" id="L221" title="All 8 branches missed.">        return !((this.spExportSchemaItemID == null &amp;&amp; other.spExportSchemaItemID != null) || (this.spExportSchemaItemID != null &amp;&amp; !this.spExportSchemaItemID.equals(other.spExportSchemaItemID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L220">        return &quot;se.nrm.dina.datamodel.Spexportschemaitem[ spExportSchemaItemID=&quot; + spExportSchemaItemID + &quot; ]&quot;;</span>
+<span class="nc" id="L226">        return &quot;se.nrm.dina.datamodel.Spexportschemaitem[ spExportSchemaItemID=&quot; + spExportSchemaItemID + &quot; ]&quot;;</span>
     }
     
 }

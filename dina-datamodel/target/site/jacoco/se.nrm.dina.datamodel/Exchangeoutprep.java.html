@@ -112,131 +112,137 @@ public class Exchangeoutprep extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L115">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + exchangeOutPrepID;</span>
+<span class="nc" id="L115">        return String.valueOf(exchangeOutPrepID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L121">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + exchangeOutPrepID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L120">        return exchangeOutPrepID;</span>
+<span class="nc" id="L126">        return exchangeOutPrepID;</span>
     }
     
     public Integer getExchangeOutPrepID() {
-<span class="nc" id="L124">        return exchangeOutPrepID;</span>
+<span class="nc" id="L130">        return exchangeOutPrepID;</span>
     }
 
     public void setExchangeOutPrepID(Integer exchangeOutPrepID) {
-<span class="nc" id="L128">        this.exchangeOutPrepID = exchangeOutPrepID;</span>
-<span class="nc" id="L129">    }</span>
+<span class="nc" id="L134">        this.exchangeOutPrepID = exchangeOutPrepID;</span>
+<span class="nc" id="L135">    }</span>
 
    
     public String getComments() {
-<span class="nc" id="L133">        return comments;</span>
+<span class="nc" id="L139">        return comments;</span>
     }
 
     public void setComments(String comments) {
-<span class="nc" id="L137">        this.comments = comments;</span>
-<span class="nc" id="L138">    }</span>
+<span class="nc" id="L143">        this.comments = comments;</span>
+<span class="nc" id="L144">    }</span>
 
     public String getDescriptionOfMaterial() {
-<span class="nc" id="L141">        return descriptionOfMaterial;</span>
+<span class="nc" id="L147">        return descriptionOfMaterial;</span>
     }
 
     public void setDescriptionOfMaterial(String descriptionOfMaterial) {
-<span class="nc" id="L145">        this.descriptionOfMaterial = descriptionOfMaterial;</span>
-<span class="nc" id="L146">    }</span>
+<span class="nc" id="L151">        this.descriptionOfMaterial = descriptionOfMaterial;</span>
+<span class="nc" id="L152">    }</span>
 
     public Integer getNumber1() {
-<span class="nc" id="L149">        return number1;</span>
+<span class="nc" id="L155">        return number1;</span>
     }
 
     public void setNumber1(Integer number1) {
-<span class="nc" id="L153">        this.number1 = number1;</span>
-<span class="nc" id="L154">    }</span>
+<span class="nc" id="L159">        this.number1 = number1;</span>
+<span class="nc" id="L160">    }</span>
 
     public Integer getQuantity() {
-<span class="nc" id="L157">        return quantity;</span>
+<span class="nc" id="L163">        return quantity;</span>
     }
 
     public void setQuantity(Integer quantity) {
-<span class="nc" id="L161">        this.quantity = quantity;</span>
-<span class="nc" id="L162">    }</span>
+<span class="nc" id="L167">        this.quantity = quantity;</span>
+<span class="nc" id="L168">    }</span>
 
     public String getText1() {
-<span class="nc" id="L165">        return text1;</span>
+<span class="nc" id="L171">        return text1;</span>
     }
 
     public void setText1(String text1) {
-<span class="nc" id="L169">        this.text1 = text1;</span>
-<span class="nc" id="L170">    }</span>
+<span class="nc" id="L175">        this.text1 = text1;</span>
+<span class="nc" id="L176">    }</span>
 
     public String getText2() {
-<span class="nc" id="L173">        return text2;</span>
+<span class="nc" id="L179">        return text2;</span>
     }
 
     public void setText2(String text2) {
-<span class="nc" id="L177">        this.text2 = text2;</span>
-<span class="nc" id="L178">    }</span>
+<span class="nc" id="L183">        this.text2 = text2;</span>
+<span class="nc" id="L184">    }</span>
 
     public Integer getPreparationID() {
-<span class="nc" id="L181">        return preparationID;</span>
+<span class="nc" id="L187">        return preparationID;</span>
     }
 
     public void setPreparationID(Integer preparationID) {
-<span class="nc" id="L185">        this.preparationID = preparationID;</span>
-<span class="nc" id="L186">    }</span>
+<span class="nc" id="L191">        this.preparationID = preparationID;</span>
+<span class="nc" id="L192">    }</span>
 
     public Integer getCreatedByAgentID() {
-<span class="nc" id="L189">        return createdByAgentID;</span>
+<span class="nc" id="L195">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Integer createdByAgentID) {
-<span class="nc" id="L193">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L194">    }</span>
+<span class="nc" id="L199">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L200">    }</span>
 
     public Integer getExchangeOutID() {
-<span class="nc" id="L197">        return exchangeOutID;</span>
+<span class="nc" id="L203">        return exchangeOutID;</span>
     }
 
     public void setExchangeOutID(Integer exchangeOutID) {
-<span class="nc" id="L201">        this.exchangeOutID = exchangeOutID;</span>
-<span class="nc" id="L202">    }</span>
+<span class="nc" id="L207">        this.exchangeOutID = exchangeOutID;</span>
+<span class="nc" id="L208">    }</span>
 
     public Integer getModifiedByAgentID() {
-<span class="nc" id="L205">        return modifiedByAgentID;</span>
+<span class="nc" id="L211">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Integer modifiedByAgentID) {
-<span class="nc" id="L209">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L210">    }</span>
+<span class="nc" id="L215">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L216">    }</span>
 
     public int getDisciplineID() {
-<span class="nc" id="L213">        return disciplineID;</span>
+<span class="nc" id="L219">        return disciplineID;</span>
     }
 
     public void setDisciplineID(int disciplineID) {
-<span class="nc" id="L217">        this.disciplineID = disciplineID;</span>
-<span class="nc" id="L218">    }</span>
+<span class="nc" id="L223">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L224">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L222">        int hash = 0;</span>
-<span class="nc bnc" id="L223" title="All 2 branches missed.">        hash += (exchangeOutPrepID != null ? exchangeOutPrepID.hashCode() : 0);</span>
-<span class="nc" id="L224">        return hash;</span>
+<span class="nc" id="L228">        int hash = 0;</span>
+<span class="nc bnc" id="L229" title="All 2 branches missed.">        hash += (exchangeOutPrepID != null ? exchangeOutPrepID.hashCode() : 0);</span>
+<span class="nc" id="L230">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L230" title="All 2 branches missed.">        if (!(object instanceof Exchangeoutprep)) {</span>
-<span class="nc" id="L231">            return false;</span>
+<span class="nc bnc" id="L236" title="All 2 branches missed.">        if (!(object instanceof Exchangeoutprep)) {</span>
+<span class="nc" id="L237">            return false;</span>
         }
-<span class="nc" id="L233">        Exchangeoutprep other = (Exchangeoutprep) object;</span>
-<span class="nc bnc" id="L234" title="All 8 branches missed.">        return !((this.exchangeOutPrepID == null &amp;&amp; other.exchangeOutPrepID != null) || (this.exchangeOutPrepID != null &amp;&amp; !this.exchangeOutPrepID.equals(other.exchangeOutPrepID)));</span>
+<span class="nc" id="L239">        Exchangeoutprep other = (Exchangeoutprep) object;</span>
+<span class="nc bnc" id="L240" title="All 8 branches missed.">        return !((this.exchangeOutPrepID == null &amp;&amp; other.exchangeOutPrepID != null) || (this.exchangeOutPrepID != null &amp;&amp; !this.exchangeOutPrepID.equals(other.exchangeOutPrepID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L239">        return &quot;se.nrm.dina.datamodel.Exchangeoutprep[ exchangeOutPrepID=&quot; + exchangeOutPrepID + &quot; ]&quot;;</span>
+<span class="nc" id="L245">        return &quot;se.nrm.dina.datamodel.Exchangeoutprep[ exchangeOutPrepID=&quot; + exchangeOutPrepID + &quot; ]&quot;;</span>
     }
     
 }

@@ -94,99 +94,105 @@ public class Latlonpolygon extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L97">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + latLonPolygonID;</span>
+<span class="nc" id="L97">        return String.valueOf(latLonPolygonID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L103">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + latLonPolygonID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L102">        return latLonPolygonID;</span>
+<span class="nc" id="L108">        return latLonPolygonID;</span>
     }
 
     public Integer getLatLonPolygonID() {
-<span class="nc" id="L106">        return latLonPolygonID;</span>
+<span class="nc" id="L112">        return latLonPolygonID;</span>
     }
 
     public void setLatLonPolygonID(Integer latLonPolygonID) {
-<span class="nc" id="L110">        this.latLonPolygonID = latLonPolygonID;</span>
-<span class="nc" id="L111">    }</span>
+<span class="nc" id="L116">        this.latLonPolygonID = latLonPolygonID;</span>
+<span class="nc" id="L117">    }</span>
  
 
     public String getDescription() {
-<span class="nc" id="L115">        return description;</span>
+<span class="nc" id="L121">        return description;</span>
     }
 
     public void setDescription(String description) {
-<span class="nc" id="L119">        this.description = description;</span>
-<span class="nc" id="L120">    }</span>
+<span class="nc" id="L125">        this.description = description;</span>
+<span class="nc" id="L126">    }</span>
 
     public boolean getIsPolyline() {
-<span class="nc" id="L123">        return isPolyline;</span>
+<span class="nc" id="L129">        return isPolyline;</span>
     }
 
     public void setIsPolyline(boolean isPolyline) {
-<span class="nc" id="L127">        this.isPolyline = isPolyline;</span>
-<span class="nc" id="L128">    }</span>
+<span class="nc" id="L133">        this.isPolyline = isPolyline;</span>
+<span class="nc" id="L134">    }</span>
 
     public String getName() {
-<span class="nc" id="L131">        return name;</span>
+<span class="nc" id="L137">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L135">        this.name = name;</span>
-<span class="nc" id="L136">    }</span>
+<span class="nc" id="L141">        this.name = name;</span>
+<span class="nc" id="L142">    }</span>
 
     public Integer getSpVisualQueryID() {
-<span class="nc" id="L139">        return spVisualQueryID;</span>
+<span class="nc" id="L145">        return spVisualQueryID;</span>
     }
 
     public void setSpVisualQueryID(Integer spVisualQueryID) {
-<span class="nc" id="L143">        this.spVisualQueryID = spVisualQueryID;</span>
-<span class="nc" id="L144">    }</span>
+<span class="nc" id="L149">        this.spVisualQueryID = spVisualQueryID;</span>
+<span class="nc" id="L150">    }</span>
 
     public Integer getLocalityID() {
-<span class="nc" id="L147">        return localityID;</span>
+<span class="nc" id="L153">        return localityID;</span>
     }
 
     public void setLocalityID(Integer localityID) {
-<span class="nc" id="L151">        this.localityID = localityID;</span>
-<span class="nc" id="L152">    }</span>
+<span class="nc" id="L157">        this.localityID = localityID;</span>
+<span class="nc" id="L158">    }</span>
 
     public Integer getCreatedByAgentID() {
-<span class="nc" id="L155">        return createdByAgentID;</span>
+<span class="nc" id="L161">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Integer createdByAgentID) {
-<span class="nc" id="L159">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L160">    }</span>
+<span class="nc" id="L165">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L166">    }</span>
 
     public Integer getModifiedByAgentID() {
-<span class="nc" id="L163">        return modifiedByAgentID;</span>
+<span class="nc" id="L169">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Integer modifiedByAgentID) {
-<span class="nc" id="L167">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L168">    }</span>
+<span class="nc" id="L173">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L174">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L172">        int hash = 0;</span>
-<span class="nc bnc" id="L173" title="All 2 branches missed.">        hash += (latLonPolygonID != null ? latLonPolygonID.hashCode() : 0);</span>
-<span class="nc" id="L174">        return hash;</span>
+<span class="nc" id="L178">        int hash = 0;</span>
+<span class="nc bnc" id="L179" title="All 2 branches missed.">        hash += (latLonPolygonID != null ? latLonPolygonID.hashCode() : 0);</span>
+<span class="nc" id="L180">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L180" title="All 2 branches missed.">        if (!(object instanceof Latlonpolygon)) {</span>
-<span class="nc" id="L181">            return false;</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">        if (!(object instanceof Latlonpolygon)) {</span>
+<span class="nc" id="L187">            return false;</span>
         }
-<span class="nc" id="L183">        Latlonpolygon other = (Latlonpolygon) object;</span>
-<span class="nc bnc" id="L184" title="All 8 branches missed.">        return !((this.latLonPolygonID == null &amp;&amp; other.latLonPolygonID != null) || (this.latLonPolygonID != null &amp;&amp; !this.latLonPolygonID.equals(other.latLonPolygonID)));</span>
+<span class="nc" id="L189">        Latlonpolygon other = (Latlonpolygon) object;</span>
+<span class="nc bnc" id="L190" title="All 8 branches missed.">        return !((this.latLonPolygonID == null &amp;&amp; other.latLonPolygonID != null) || (this.latLonPolygonID != null &amp;&amp; !this.latLonPolygonID.equals(other.latLonPolygonID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L189">        return &quot;se.nrm.dina.datamodel.Latlonpolygon[ latLonPolygonID=&quot; + latLonPolygonID + &quot; ]&quot;;</span>
+<span class="nc" id="L195">        return &quot;se.nrm.dina.datamodel.Latlonpolygon[ latLonPolygonID=&quot; + latLonPolygonID + &quot; ]&quot;;</span>
     }
     
 }

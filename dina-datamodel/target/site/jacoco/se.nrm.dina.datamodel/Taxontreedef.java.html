@@ -99,112 +99,118 @@ public class Taxontreedef extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L102">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + taxonTreeDefID;</span>
+<span class="nc" id="L102">        return String.valueOf(taxonTreeDefID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L108">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + taxonTreeDefID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L107">        return taxonTreeDefID;</span>
+<span class="nc" id="L113">        return taxonTreeDefID;</span>
     }
 
     public Integer getTaxonTreeDefID() {
-<span class="nc" id="L111">        return taxonTreeDefID;</span>
+<span class="nc" id="L117">        return taxonTreeDefID;</span>
     }
 
     public void setTaxonTreeDefID(Integer taxonTreeDefID) {
-<span class="nc" id="L115">        this.taxonTreeDefID = taxonTreeDefID;</span>
-<span class="nc" id="L116">    }</span>
+<span class="nc" id="L121">        this.taxonTreeDefID = taxonTreeDefID;</span>
+<span class="nc" id="L122">    }</span>
 
     
     public Integer getFullNameDirection() {
-<span class="nc" id="L120">        return fullNameDirection;</span>
+<span class="nc" id="L126">        return fullNameDirection;</span>
     }
 
     public void setFullNameDirection(Integer fullNameDirection) {
-<span class="nc" id="L124">        this.fullNameDirection = fullNameDirection;</span>
-<span class="nc" id="L125">    }</span>
+<span class="nc" id="L130">        this.fullNameDirection = fullNameDirection;</span>
+<span class="nc" id="L131">    }</span>
 
     public String getName() {
-<span class="nc" id="L128">        return name;</span>
+<span class="nc" id="L134">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L132">        this.name = name;</span>
-<span class="nc" id="L133">    }</span>
+<span class="nc" id="L138">        this.name = name;</span>
+<span class="nc" id="L139">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L136">        return remarks;</span>
+<span class="nc" id="L142">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L140">        this.remarks = remarks;</span>
-<span class="nc" id="L141">    }</span>
+<span class="nc" id="L146">        this.remarks = remarks;</span>
+<span class="nc" id="L147">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L145">        return modifiedByAgentID;</span>
+<span class="nc" id="L151">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L149">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L150">    }</span>
+<span class="nc" id="L155">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L156">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L154">        return createdByAgentID;</span>
+<span class="nc" id="L160">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L158">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L159">    }</span>
+<span class="nc" id="L164">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L165">    }</span>
 
     @XmlTransient
     public List&lt;Discipline&gt; getDisciplineList() {
-<span class="nc" id="L163">        return disciplineList;</span>
+<span class="nc" id="L169">        return disciplineList;</span>
     }
 
     public void setDisciplineList(List&lt;Discipline&gt; disciplineList) {
-<span class="nc" id="L167">        this.disciplineList = disciplineList;</span>
-<span class="nc" id="L168">    }</span>
+<span class="nc" id="L173">        this.disciplineList = disciplineList;</span>
+<span class="nc" id="L174">    }</span>
 
     @XmlTransient
     public List&lt;Taxon&gt; getTaxonList() {
-<span class="nc" id="L172">        return taxonList;</span>
+<span class="nc" id="L178">        return taxonList;</span>
     }
 
     public void setTaxonList(List&lt;Taxon&gt; taxonList) {
-<span class="nc" id="L176">        this.taxonList = taxonList;</span>
-<span class="nc" id="L177">    }</span>
+<span class="nc" id="L182">        this.taxonList = taxonList;</span>
+<span class="nc" id="L183">    }</span>
 
     @XmlTransient
     public List&lt;Taxontreedefitem&gt; getTaxontreedefitemList() {
-<span class="nc" id="L181">        return taxontreedefitemList;</span>
+<span class="nc" id="L187">        return taxontreedefitemList;</span>
     }
 
     public void setTaxontreedefitemList(List&lt;Taxontreedefitem&gt; taxontreedefitemList) {
-<span class="nc" id="L185">        this.taxontreedefitemList = taxontreedefitemList;</span>
-<span class="nc" id="L186">    }</span>
+<span class="nc" id="L191">        this.taxontreedefitemList = taxontreedefitemList;</span>
+<span class="nc" id="L192">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L190">        int hash = 0;</span>
-<span class="nc bnc" id="L191" title="All 2 branches missed.">        hash += (taxonTreeDefID != null ? taxonTreeDefID.hashCode() : 0);</span>
-<span class="nc" id="L192">        return hash;</span>
+<span class="nc" id="L196">        int hash = 0;</span>
+<span class="nc bnc" id="L197" title="All 2 branches missed.">        hash += (taxonTreeDefID != null ? taxonTreeDefID.hashCode() : 0);</span>
+<span class="nc" id="L198">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L198" title="All 2 branches missed.">        if (!(object instanceof Taxontreedef)) {</span>
-<span class="nc" id="L199">            return false;</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">        if (!(object instanceof Taxontreedef)) {</span>
+<span class="nc" id="L205">            return false;</span>
         }
-<span class="nc" id="L201">        Taxontreedef other = (Taxontreedef) object;</span>
-<span class="nc bnc" id="L202" title="All 8 branches missed.">        return !((this.taxonTreeDefID == null &amp;&amp; other.taxonTreeDefID != null) || (this.taxonTreeDefID != null &amp;&amp; !this.taxonTreeDefID.equals(other.taxonTreeDefID)));</span>
+<span class="nc" id="L207">        Taxontreedef other = (Taxontreedef) object;</span>
+<span class="nc bnc" id="L208" title="All 8 branches missed.">        return !((this.taxonTreeDefID == null &amp;&amp; other.taxonTreeDefID != null) || (this.taxonTreeDefID != null &amp;&amp; !this.taxonTreeDefID.equals(other.taxonTreeDefID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L207">        return &quot;se.nrm.dina.datamodel.Taxontreedef[ taxonTreeDefID=&quot; + taxonTreeDefID + &quot; ]&quot;;</span>
+<span class="nc" id="L213">        return &quot;se.nrm.dina.datamodel.Taxontreedef[ taxonTreeDefID=&quot; + taxonTreeDefID + &quot; ]&quot;;</span>
     }
     
 }

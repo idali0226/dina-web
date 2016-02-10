@@ -89,85 +89,91 @@ public class Attachmentmetadata extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L92">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + attachmentMetadataID;</span>
+<span class="nc" id="L92">        return String.valueOf(attachmentMetadataID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L98">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + attachmentMetadataID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L97">        return attachmentMetadataID;</span>
+<span class="nc" id="L103">        return attachmentMetadataID;</span>
     }
 
     public Integer getAttachmentMetadataID() {
-<span class="nc" id="L101">        return attachmentMetadataID;</span>
+<span class="nc" id="L107">        return attachmentMetadataID;</span>
     }
 
     public void setAttachmentMetadataID(Integer attachmentMetadataID) {
-<span class="nc" id="L105">        this.attachmentMetadataID = attachmentMetadataID;</span>
-<span class="nc" id="L106">    }</span>
+<span class="nc" id="L111">        this.attachmentMetadataID = attachmentMetadataID;</span>
+<span class="nc" id="L112">    }</span>
  
     public String getName() {
-<span class="nc" id="L109">        return name;</span>
+<span class="nc" id="L115">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L113">        this.name = name;</span>
-<span class="nc" id="L114">    }</span>
+<span class="nc" id="L119">        this.name = name;</span>
+<span class="nc" id="L120">    }</span>
 
     public String getValue() {
-<span class="nc" id="L117">        return value;</span>
+<span class="nc" id="L123">        return value;</span>
     }
 
     public void setValue(String value) {
-<span class="nc" id="L121">        this.value = value;</span>
-<span class="nc" id="L122">    }</span>
+<span class="nc" id="L127">        this.value = value;</span>
+<span class="nc" id="L128">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L126">        return modifiedByAgentID;</span>
+<span class="nc" id="L132">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L130">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L131">    }</span>
+<span class="nc" id="L136">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L137">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L135">        return createdByAgentID;</span>
+<span class="nc" id="L141">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L139">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L140">    }</span>
+<span class="nc" id="L145">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L146">    }</span>
 
     @XmlIDREF
     public Attachment getAttachmentID() {
-<span class="nc" id="L144">        return attachmentID;</span>
+<span class="nc" id="L150">        return attachmentID;</span>
     }
 
     public void setAttachmentID(Attachment attachmentID) {
-<span class="nc" id="L148">        this.attachmentID = attachmentID;</span>
-<span class="nc" id="L149">    }</span>
+<span class="nc" id="L154">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L155">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L153">        int hash = 0;</span>
-<span class="nc bnc" id="L154" title="All 2 branches missed.">        hash += (attachmentMetadataID != null ? attachmentMetadataID.hashCode() : 0);</span>
-<span class="nc" id="L155">        return hash;</span>
+<span class="nc" id="L159">        int hash = 0;</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">        hash += (attachmentMetadataID != null ? attachmentMetadataID.hashCode() : 0);</span>
+<span class="nc" id="L161">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L161" title="All 2 branches missed.">        if (!(object instanceof Attachmentmetadata)) {</span>
-<span class="nc" id="L162">            return false;</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">        if (!(object instanceof Attachmentmetadata)) {</span>
+<span class="nc" id="L168">            return false;</span>
         }
-<span class="nc" id="L164">        Attachmentmetadata other = (Attachmentmetadata) object;</span>
-<span class="nc bnc" id="L165" title="All 8 branches missed.">        return !((this.attachmentMetadataID == null &amp;&amp; other.attachmentMetadataID != null) || (this.attachmentMetadataID != null &amp;&amp; !this.attachmentMetadataID.equals(other.attachmentMetadataID)));</span>
+<span class="nc" id="L170">        Attachmentmetadata other = (Attachmentmetadata) object;</span>
+<span class="nc bnc" id="L171" title="All 8 branches missed.">        return !((this.attachmentMetadataID == null &amp;&amp; other.attachmentMetadataID != null) || (this.attachmentMetadataID != null &amp;&amp; !this.attachmentMetadataID.equals(other.attachmentMetadataID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L170">        return &quot;se.nrm.dina.datamodel.Attachmentmetadata[ attachmentMetadataID=&quot; + attachmentMetadataID + &quot; ]&quot;;</span>
+<span class="nc" id="L176">        return &quot;se.nrm.dina.datamodel.Attachmentmetadata[ attachmentMetadataID=&quot; + attachmentMetadataID + &quot; ]&quot;;</span>
     }
     
 }

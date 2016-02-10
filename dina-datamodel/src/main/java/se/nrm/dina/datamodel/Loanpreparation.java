@@ -125,6 +125,13 @@ public class Loanpreparation extends BaseEntity {
     @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
+        return String.valueOf(loanPreparationID);
+    }
+    
+    
+    @XmlAttribute(name = "uuid") 
+    @Override
+    public String getUUID() {
         return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + loanPreparationID;
     }
     

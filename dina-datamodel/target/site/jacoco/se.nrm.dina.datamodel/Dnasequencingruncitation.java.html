@@ -106,135 +106,141 @@ public class Dnasequencingruncitation extends  BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L109">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + dNASequencingRunCitationID;</span>
+<span class="nc" id="L109">        return String.valueOf(dNASequencingRunCitationID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L115">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + dNASequencingRunCitationID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L114">        return dNASequencingRunCitationID;</span>
+<span class="nc" id="L120">        return dNASequencingRunCitationID;</span>
     }
 
     public Integer getDNASequencingRunCitationID() {
-<span class="nc" id="L118">        return dNASequencingRunCitationID;</span>
+<span class="nc" id="L124">        return dNASequencingRunCitationID;</span>
     }
 
     public void setDNASequencingRunCitationID(Integer dNASequencingRunCitationID) {
-<span class="nc" id="L122">        this.dNASequencingRunCitationID = dNASequencingRunCitationID;</span>
-<span class="nc" id="L123">    }</span>
+<span class="nc" id="L128">        this.dNASequencingRunCitationID = dNASequencingRunCitationID;</span>
+<span class="nc" id="L129">    }</span>
  
 
     public Float getNumber1() {
-<span class="nc" id="L127">        return number1;</span>
+<span class="nc" id="L133">        return number1;</span>
     }
 
     public void setNumber1(Float number1) {
-<span class="nc" id="L131">        this.number1 = number1;</span>
-<span class="nc" id="L132">    }</span>
+<span class="nc" id="L137">        this.number1 = number1;</span>
+<span class="nc" id="L138">    }</span>
 
     public Float getNumber2() {
-<span class="nc" id="L135">        return number2;</span>
+<span class="nc" id="L141">        return number2;</span>
     }
 
     public void setNumber2(Float number2) {
-<span class="nc" id="L139">        this.number2 = number2;</span>
-<span class="nc" id="L140">    }</span>
+<span class="nc" id="L145">        this.number2 = number2;</span>
+<span class="nc" id="L146">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L143">        return remarks;</span>
+<span class="nc" id="L149">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L147">        this.remarks = remarks;</span>
-<span class="nc" id="L148">    }</span>
+<span class="nc" id="L153">        this.remarks = remarks;</span>
+<span class="nc" id="L154">    }</span>
 
     public String getText1() {
-<span class="nc" id="L151">        return text1;</span>
+<span class="nc" id="L157">        return text1;</span>
     }
 
     public void setText1(String text1) {
-<span class="nc" id="L155">        this.text1 = text1;</span>
-<span class="nc" id="L156">    }</span>
+<span class="nc" id="L161">        this.text1 = text1;</span>
+<span class="nc" id="L162">    }</span>
 
     public String getText2() {
-<span class="nc" id="L159">        return text2;</span>
+<span class="nc" id="L165">        return text2;</span>
     }
 
     public void setText2(String text2) {
-<span class="nc" id="L163">        this.text2 = text2;</span>
-<span class="nc" id="L164">    }</span>
+<span class="nc" id="L169">        this.text2 = text2;</span>
+<span class="nc" id="L170">    }</span>
 
     public Boolean getYesNo1() {
-<span class="nc" id="L167">        return yesNo1;</span>
+<span class="nc" id="L173">        return yesNo1;</span>
     }
 
     public void setYesNo1(Boolean yesNo1) {
-<span class="nc" id="L171">        this.yesNo1 = yesNo1;</span>
-<span class="nc" id="L172">    }</span>
+<span class="nc" id="L177">        this.yesNo1 = yesNo1;</span>
+<span class="nc" id="L178">    }</span>
 
     public Boolean getYesNo2() {
-<span class="nc" id="L175">        return yesNo2;</span>
+<span class="nc" id="L181">        return yesNo2;</span>
     }
 
     public void setYesNo2(Boolean yesNo2) {
-<span class="nc" id="L179">        this.yesNo2 = yesNo2;</span>
-<span class="nc" id="L180">    }</span>
+<span class="nc" id="L185">        this.yesNo2 = yesNo2;</span>
+<span class="nc" id="L186">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L184">        return modifiedByAgentID;</span>
+<span class="nc" id="L190">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L188">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L189">    }</span>
+<span class="nc" id="L194">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L195">    }</span>
 
     @XmlIDREF
     public Referencework getReferenceWorkID() {
-<span class="nc" id="L193">        return referenceWorkID;</span>
+<span class="nc" id="L199">        return referenceWorkID;</span>
     }
 
     public void setReferenceWorkID(Referencework referenceWorkID) {
-<span class="nc" id="L197">        this.referenceWorkID = referenceWorkID;</span>
-<span class="nc" id="L198">    }</span>
+<span class="nc" id="L203">        this.referenceWorkID = referenceWorkID;</span>
+<span class="nc" id="L204">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L202">        return createdByAgentID;</span>
+<span class="nc" id="L208">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L206">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L207">    }</span>
+<span class="nc" id="L212">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L213">    }</span>
 
     @XmlIDREF
     public Dnasequencingrun getDNASequencingRunID() {
-<span class="nc" id="L211">        return dNASequencingRunID;</span>
+<span class="nc" id="L217">        return dNASequencingRunID;</span>
     }
 
     public void setDNASequencingRunID(Dnasequencingrun dNASequencingRunID) {
-<span class="nc" id="L215">        this.dNASequencingRunID = dNASequencingRunID;</span>
-<span class="nc" id="L216">    }</span>
+<span class="nc" id="L221">        this.dNASequencingRunID = dNASequencingRunID;</span>
+<span class="nc" id="L222">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L220">        int hash = 0;</span>
-<span class="nc bnc" id="L221" title="All 2 branches missed.">        hash += (dNASequencingRunCitationID != null ? dNASequencingRunCitationID.hashCode() : 0);</span>
-<span class="nc" id="L222">        return hash;</span>
+<span class="nc" id="L226">        int hash = 0;</span>
+<span class="nc bnc" id="L227" title="All 2 branches missed.">        hash += (dNASequencingRunCitationID != null ? dNASequencingRunCitationID.hashCode() : 0);</span>
+<span class="nc" id="L228">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L228" title="All 2 branches missed.">        if (!(object instanceof Dnasequencingruncitation)) {</span>
-<span class="nc" id="L229">            return false;</span>
+<span class="nc bnc" id="L234" title="All 2 branches missed.">        if (!(object instanceof Dnasequencingruncitation)) {</span>
+<span class="nc" id="L235">            return false;</span>
         }
-<span class="nc" id="L231">        Dnasequencingruncitation other = (Dnasequencingruncitation) object;</span>
-<span class="nc bnc" id="L232" title="All 8 branches missed.">        return !((this.dNASequencingRunCitationID == null &amp;&amp; other.dNASequencingRunCitationID != null) || (this.dNASequencingRunCitationID != null &amp;&amp; !this.dNASequencingRunCitationID.equals(other.dNASequencingRunCitationID)));</span>
+<span class="nc" id="L237">        Dnasequencingruncitation other = (Dnasequencingruncitation) object;</span>
+<span class="nc bnc" id="L238" title="All 8 branches missed.">        return !((this.dNASequencingRunCitationID == null &amp;&amp; other.dNASequencingRunCitationID != null) || (this.dNASequencingRunCitationID != null &amp;&amp; !this.dNASequencingRunCitationID.equals(other.dNASequencingRunCitationID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L237">        return &quot;se.nrm.dina.datamodel.Dnasequencingruncitation[ dNASequencingRunCitationID=&quot; + dNASequencingRunCitationID + &quot; ]&quot;;</span>
+<span class="nc" id="L243">        return &quot;se.nrm.dina.datamodel.Dnasequencingruncitation[ dNASequencingRunCitationID=&quot; + dNASequencingRunCitationID + &quot; ]&quot;;</span>
     }
     
 }

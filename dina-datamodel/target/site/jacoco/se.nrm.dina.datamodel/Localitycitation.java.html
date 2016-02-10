@@ -86,95 +86,101 @@ public class Localitycitation extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L89">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + localityCitationID;</span>
+<span class="nc" id="L89">        return String.valueOf(localityCitationID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L95">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + localityCitationID;</span>
     }
 
     @Override
     public int getEntityId() {
-<span class="nc" id="L94">        return localityCitationID;</span>
+<span class="nc" id="L100">        return localityCitationID;</span>
     }
     
     public Integer getLocalityCitationID() {
-<span class="nc" id="L98">        return localityCitationID;</span>
+<span class="nc" id="L104">        return localityCitationID;</span>
     }
 
     public void setLocalityCitationID(Integer localityCitationID) {
-<span class="nc" id="L102">        this.localityCitationID = localityCitationID;</span>
-<span class="nc" id="L103">    }</span>
+<span class="nc" id="L108">        this.localityCitationID = localityCitationID;</span>
+<span class="nc" id="L109">    }</span>
  
     public String getRemarks() {
-<span class="nc" id="L106">        return remarks;</span>
+<span class="nc" id="L112">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L110">        this.remarks = remarks;</span>
-<span class="nc" id="L111">    }</span>
+<span class="nc" id="L116">        this.remarks = remarks;</span>
+<span class="nc" id="L117">    }</span>
 
     @XmlIDREF
     public Discipline getDisciplineID() {
-<span class="nc" id="L115">        return disciplineID;</span>
+<span class="nc" id="L121">        return disciplineID;</span>
     }
 
     public void setDisciplineID(Discipline disciplineID) {
-<span class="nc" id="L119">        this.disciplineID = disciplineID;</span>
-<span class="nc" id="L120">    }</span>
+<span class="nc" id="L125">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L126">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L124">        return modifiedByAgentID;</span>
+<span class="nc" id="L130">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L128">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L129">    }</span>
+<span class="nc" id="L134">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L135">    }</span>
 
     @XmlIDREF
     public Referencework getReferenceWorkID() {
-<span class="nc" id="L133">        return referenceWorkID;</span>
+<span class="nc" id="L139">        return referenceWorkID;</span>
     }
 
     public void setReferenceWorkID(Referencework referenceWorkID) {
-<span class="nc" id="L137">        this.referenceWorkID = referenceWorkID;</span>
-<span class="nc" id="L138">    }</span>
+<span class="nc" id="L143">        this.referenceWorkID = referenceWorkID;</span>
+<span class="nc" id="L144">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L142">        return createdByAgentID;</span>
+<span class="nc" id="L148">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L146">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L147">    }</span>
+<span class="nc" id="L152">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L153">    }</span>
 
     @XmlIDREF
     public Locality getLocalityID() {
-<span class="nc" id="L151">        return localityID;</span>
+<span class="nc" id="L157">        return localityID;</span>
     }
 
     public void setLocalityID(Locality localityID) {
-<span class="nc" id="L155">        this.localityID = localityID;</span>
-<span class="nc" id="L156">    }</span>
+<span class="nc" id="L161">        this.localityID = localityID;</span>
+<span class="nc" id="L162">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L160">        int hash = 0;</span>
-<span class="nc bnc" id="L161" title="All 2 branches missed.">        hash += (localityCitationID != null ? localityCitationID.hashCode() : 0);</span>
-<span class="nc" id="L162">        return hash;</span>
+<span class="nc" id="L166">        int hash = 0;</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">        hash += (localityCitationID != null ? localityCitationID.hashCode() : 0);</span>
+<span class="nc" id="L168">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L168" title="All 2 branches missed.">        if (!(object instanceof Localitycitation)) {</span>
-<span class="nc" id="L169">            return false;</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">        if (!(object instanceof Localitycitation)) {</span>
+<span class="nc" id="L175">            return false;</span>
         }
-<span class="nc" id="L171">        Localitycitation other = (Localitycitation) object;</span>
-<span class="nc bnc" id="L172" title="All 8 branches missed.">        return !((this.localityCitationID == null &amp;&amp; other.localityCitationID != null) || (this.localityCitationID != null &amp;&amp; !this.localityCitationID.equals(other.localityCitationID)));</span>
+<span class="nc" id="L177">        Localitycitation other = (Localitycitation) object;</span>
+<span class="nc bnc" id="L178" title="All 8 branches missed.">        return !((this.localityCitationID == null &amp;&amp; other.localityCitationID != null) || (this.localityCitationID != null &amp;&amp; !this.localityCitationID.equals(other.localityCitationID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L177">        return &quot;se.nrm.dina.datamodel.Localitycitation[ localityCitationID=&quot; + localityCitationID + &quot; ]&quot;;</span>
+<span class="nc" id="L183">        return &quot;se.nrm.dina.datamodel.Localitycitation[ localityCitationID=&quot; + localityCitationID + &quot; ]&quot;;</span>
     }
     
 }

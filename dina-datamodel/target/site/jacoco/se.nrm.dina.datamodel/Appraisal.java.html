@@ -120,128 +120,134 @@ public class Appraisal extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L123">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + appraisalID;</span>
+<span class="nc" id="L123">        return String.valueOf(appraisalID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L129">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + appraisalID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L128">        return appraisalID;</span>
+<span class="nc" id="L134">        return appraisalID;</span>
     }
     
     public Integer getAppraisalID() {
-<span class="nc" id="L132">        return appraisalID;</span>
+<span class="nc" id="L138">        return appraisalID;</span>
     }
 
     public void setAppraisalID(Integer appraisalID) {
-<span class="nc" id="L136">        this.appraisalID = appraisalID;</span>
-<span class="nc" id="L137">    }</span>
+<span class="nc" id="L142">        this.appraisalID = appraisalID;</span>
+<span class="nc" id="L143">    }</span>
 
     
     public Date getAppraisalDate() {
-<span class="nc" id="L141">        return appraisalDate;</span>
+<span class="nc" id="L147">        return appraisalDate;</span>
     }
 
     public void setAppraisalDate(Date appraisalDate) {
-<span class="nc" id="L145">        this.appraisalDate = appraisalDate;</span>
-<span class="nc" id="L146">    }</span>
+<span class="nc" id="L151">        this.appraisalDate = appraisalDate;</span>
+<span class="nc" id="L152">    }</span>
 
     public String getAppraisalNumber() {
-<span class="nc" id="L149">        return appraisalNumber;</span>
+<span class="nc" id="L155">        return appraisalNumber;</span>
     }
 
     public void setAppraisalNumber(String appraisalNumber) {
-<span class="nc" id="L153">        this.appraisalNumber = appraisalNumber;</span>
-<span class="nc" id="L154">    }</span>
+<span class="nc" id="L159">        this.appraisalNumber = appraisalNumber;</span>
+<span class="nc" id="L160">    }</span>
 
     public BigDecimal getAppraisalValue() {
-<span class="nc" id="L157">        return appraisalValue;</span>
+<span class="nc" id="L163">        return appraisalValue;</span>
     }
 
     public void setAppraisalValue(BigDecimal appraisalValue) {
-<span class="nc" id="L161">        this.appraisalValue = appraisalValue;</span>
-<span class="nc" id="L162">    }</span>
+<span class="nc" id="L167">        this.appraisalValue = appraisalValue;</span>
+<span class="nc" id="L168">    }</span>
 
     public String getMonetaryUnitType() {
-<span class="nc" id="L165">        return monetaryUnitType;</span>
+<span class="nc" id="L171">        return monetaryUnitType;</span>
     }
 
     public void setMonetaryUnitType(String monetaryUnitType) {
-<span class="nc" id="L169">        this.monetaryUnitType = monetaryUnitType;</span>
-<span class="nc" id="L170">    }</span>
+<span class="nc" id="L175">        this.monetaryUnitType = monetaryUnitType;</span>
+<span class="nc" id="L176">    }</span>
 
     public String getNotes() {
-<span class="nc" id="L173">        return notes;</span>
+<span class="nc" id="L179">        return notes;</span>
     }
 
     public void setNotes(String notes) {
-<span class="nc" id="L177">        this.notes = notes;</span>
-<span class="nc" id="L178">    }</span>
+<span class="nc" id="L183">        this.notes = notes;</span>
+<span class="nc" id="L184">    }</span>
 
     @XmlTransient
     public List&lt;Collectionobject&gt; getCollectionobjectList() {
-<span class="nc" id="L182">        return collectionobjectList;</span>
+<span class="nc" id="L188">        return collectionobjectList;</span>
     }
 
     public void setCollectionobjectList(List&lt;Collectionobject&gt; collectionobjectList) {
-<span class="nc" id="L186">        this.collectionobjectList = collectionobjectList;</span>
-<span class="nc" id="L187">    }</span>
+<span class="nc" id="L192">        this.collectionobjectList = collectionobjectList;</span>
+<span class="nc" id="L193">    }</span>
 
     @XmlIDREF
     public Agent getAgentID() {
-<span class="nc" id="L191">        return agentID;</span>
+<span class="nc" id="L197">        return agentID;</span>
     }
 
     public void setAgentID(Agent agentID) {
-<span class="nc" id="L195">        this.agentID = agentID;</span>
-<span class="nc" id="L196">    }</span>
+<span class="nc" id="L201">        this.agentID = agentID;</span>
+<span class="nc" id="L202">    }</span>
 
     @XmlIDREF
     public Accession getAccessionID() {
-<span class="nc" id="L200">        return accessionID;</span>
+<span class="nc" id="L206">        return accessionID;</span>
     }
 
     public void setAccessionID(Accession accessionID) {
-<span class="nc" id="L204">        this.accessionID = accessionID;</span>
-<span class="nc" id="L205">    }</span>
+<span class="nc" id="L210">        this.accessionID = accessionID;</span>
+<span class="nc" id="L211">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L209">        return modifiedByAgentID;</span>
+<span class="nc" id="L215">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L213">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L214">    }</span>
+<span class="nc" id="L219">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L220">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L218">        return createdByAgentID;</span>
+<span class="nc" id="L224">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L222">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L223">    }</span>
+<span class="nc" id="L228">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L229">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L227">        int hash = 0;</span>
-<span class="nc bnc" id="L228" title="All 2 branches missed.">        hash += (appraisalID != null ? appraisalID.hashCode() : 0);</span>
-<span class="nc" id="L229">        return hash;</span>
+<span class="nc" id="L233">        int hash = 0;</span>
+<span class="nc bnc" id="L234" title="All 2 branches missed.">        hash += (appraisalID != null ? appraisalID.hashCode() : 0);</span>
+<span class="nc" id="L235">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L235" title="All 2 branches missed.">        if (!(object instanceof Appraisal)) {</span>
-<span class="nc" id="L236">            return false;</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">        if (!(object instanceof Appraisal)) {</span>
+<span class="nc" id="L242">            return false;</span>
         }
-<span class="nc" id="L238">        Appraisal other = (Appraisal) object;</span>
-<span class="nc bnc" id="L239" title="All 8 branches missed.">        return !((this.appraisalID == null &amp;&amp; other.appraisalID != null) || (this.appraisalID != null &amp;&amp; !this.appraisalID.equals(other.appraisalID)));</span>
+<span class="nc" id="L244">        Appraisal other = (Appraisal) object;</span>
+<span class="nc bnc" id="L245" title="All 8 branches missed.">        return !((this.appraisalID == null &amp;&amp; other.appraisalID != null) || (this.appraisalID != null &amp;&amp; !this.appraisalID.equals(other.appraisalID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L244">        return &quot;se.nrm.dina.datamodel.Appraisal[ appraisalID=&quot; + appraisalID + &quot; ]&quot;;</span>
+<span class="nc" id="L250">        return &quot;se.nrm.dina.datamodel.Appraisal[ appraisalID=&quot; + appraisalID + &quot; ]&quot;;</span>
     }
     
 }

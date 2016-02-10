@@ -108,115 +108,121 @@ public class Fundingagent extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L111">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + fundingAgentID;</span>
+<span class="nc" id="L111">        return String.valueOf(fundingAgentID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L117">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + fundingAgentID;</span>
     }
 
     @Override
     public int getEntityId() {
-<span class="nc" id="L116">        return fundingAgentID;</span>
+<span class="nc" id="L122">        return fundingAgentID;</span>
     }
     
     public Integer getFundingAgentID() {
-<span class="nc" id="L120">        return fundingAgentID;</span>
+<span class="nc" id="L126">        return fundingAgentID;</span>
     }
 
     public void setFundingAgentID(Integer fundingAgentID) {
-<span class="nc" id="L124">        this.fundingAgentID = fundingAgentID;</span>
-<span class="nc" id="L125">    }</span>
+<span class="nc" id="L130">        this.fundingAgentID = fundingAgentID;</span>
+<span class="nc" id="L131">    }</span>
 
   
     public boolean getIsPrimary() {
-<span class="nc" id="L129">        return isPrimary;</span>
+<span class="nc" id="L135">        return isPrimary;</span>
     }
 
     public void setIsPrimary(boolean isPrimary) {
-<span class="nc" id="L133">        this.isPrimary = isPrimary;</span>
-<span class="nc" id="L134">    }</span>
+<span class="nc" id="L139">        this.isPrimary = isPrimary;</span>
+<span class="nc" id="L140">    }</span>
 
     public int getOrderNumber() {
-<span class="nc" id="L137">        return orderNumber;</span>
+<span class="nc" id="L143">        return orderNumber;</span>
     }
 
     public void setOrderNumber(int orderNumber) {
-<span class="nc" id="L141">        this.orderNumber = orderNumber;</span>
-<span class="nc" id="L142">    }</span>
+<span class="nc" id="L147">        this.orderNumber = orderNumber;</span>
+<span class="nc" id="L148">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L145">        return remarks;</span>
+<span class="nc" id="L151">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L149">        this.remarks = remarks;</span>
-<span class="nc" id="L150">    }</span>
+<span class="nc" id="L155">        this.remarks = remarks;</span>
+<span class="nc" id="L156">    }</span>
 
     public String getType() {
-<span class="nc" id="L153">        return type;</span>
+<span class="nc" id="L159">        return type;</span>
     }
 
     public void setType(String type) {
-<span class="nc" id="L157">        this.type = type;</span>
-<span class="nc" id="L158">    }</span>
+<span class="nc" id="L163">        this.type = type;</span>
+<span class="nc" id="L164">    }</span>
 
     public Integer getDivisionID() {
-<span class="nc" id="L161">        return divisionID;</span>
+<span class="nc" id="L167">        return divisionID;</span>
     }
 
     public void setDivisionID(Integer divisionID) {
-<span class="nc" id="L165">        this.divisionID = divisionID;</span>
-<span class="nc" id="L166">    }</span>
+<span class="nc" id="L171">        this.divisionID = divisionID;</span>
+<span class="nc" id="L172">    }</span>
 
     public Integer getCreatedByAgentID() {
-<span class="nc" id="L169">        return createdByAgentID;</span>
+<span class="nc" id="L175">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Integer createdByAgentID) {
-<span class="nc" id="L173">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L174">    }</span>
+<span class="nc" id="L179">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L180">    }</span>
 
     public Integer getModifiedByAgentID() {
-<span class="nc" id="L177">        return modifiedByAgentID;</span>
+<span class="nc" id="L183">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Integer modifiedByAgentID) {
-<span class="nc" id="L181">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L182">    }</span>
+<span class="nc" id="L187">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L188">    }</span>
 
     public int getCollectingTripID() {
-<span class="nc" id="L185">        return collectingTripID;</span>
+<span class="nc" id="L191">        return collectingTripID;</span>
     }
 
     public void setCollectingTripID(int collectingTripID) {
-<span class="nc" id="L189">        this.collectingTripID = collectingTripID;</span>
-<span class="nc" id="L190">    }</span>
+<span class="nc" id="L195">        this.collectingTripID = collectingTripID;</span>
+<span class="nc" id="L196">    }</span>
 
     public int getAgentID() {
-<span class="nc" id="L193">        return agentID;</span>
+<span class="nc" id="L199">        return agentID;</span>
     }
 
     public void setAgentID(int agentID) {
-<span class="nc" id="L197">        this.agentID = agentID;</span>
-<span class="nc" id="L198">    }</span>
+<span class="nc" id="L203">        this.agentID = agentID;</span>
+<span class="nc" id="L204">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L202">        int hash = 0;</span>
-<span class="nc bnc" id="L203" title="All 2 branches missed.">        hash += (fundingAgentID != null ? fundingAgentID.hashCode() : 0);</span>
-<span class="nc" id="L204">        return hash;</span>
+<span class="nc" id="L208">        int hash = 0;</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">        hash += (fundingAgentID != null ? fundingAgentID.hashCode() : 0);</span>
+<span class="nc" id="L210">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L210" title="All 2 branches missed.">        if (!(object instanceof Fundingagent)) {</span>
-<span class="nc" id="L211">            return false;</span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">        if (!(object instanceof Fundingagent)) {</span>
+<span class="nc" id="L217">            return false;</span>
         }
-<span class="nc" id="L213">        Fundingagent other = (Fundingagent) object;</span>
-<span class="nc bnc" id="L214" title="All 8 branches missed.">        return !((this.fundingAgentID == null &amp;&amp; other.fundingAgentID != null) || (this.fundingAgentID != null &amp;&amp; !this.fundingAgentID.equals(other.fundingAgentID)));</span>
+<span class="nc" id="L219">        Fundingagent other = (Fundingagent) object;</span>
+<span class="nc bnc" id="L220" title="All 8 branches missed.">        return !((this.fundingAgentID == null &amp;&amp; other.fundingAgentID != null) || (this.fundingAgentID != null &amp;&amp; !this.fundingAgentID.equals(other.fundingAgentID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L219">        return &quot;se.nrm.dina.datamodel.Fundingagent[ fundingAgentID=&quot; + fundingAgentID + &quot; ]&quot;;</span>
+<span class="nc" id="L225">        return &quot;se.nrm.dina.datamodel.Fundingagent[ fundingAgentID=&quot; + fundingAgentID + &quot; ]&quot;;</span>
     }
     
 }

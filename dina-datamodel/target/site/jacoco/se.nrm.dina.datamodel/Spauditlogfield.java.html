@@ -98,93 +98,99 @@ public class Spauditlogfield extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L101">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spAuditLogFieldID;</span>
+<span class="nc" id="L101">        return String.valueOf(spAuditLogFieldID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L107">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spAuditLogFieldID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L106">        return spAuditLogFieldID;</span>
+<span class="nc" id="L112">        return spAuditLogFieldID;</span>
     }
 
     public Integer getSpAuditLogFieldID() {
-<span class="nc" id="L110">        return spAuditLogFieldID;</span>
+<span class="nc" id="L116">        return spAuditLogFieldID;</span>
     }
 
     public void setSpAuditLogFieldID(Integer spAuditLogFieldID) {
-<span class="nc" id="L114">        this.spAuditLogFieldID = spAuditLogFieldID;</span>
-<span class="nc" id="L115">    }</span>
+<span class="nc" id="L120">        this.spAuditLogFieldID = spAuditLogFieldID;</span>
+<span class="nc" id="L121">    }</span>
  
     public String getFieldName() {
-<span class="nc" id="L118">        return fieldName;</span>
+<span class="nc" id="L124">        return fieldName;</span>
     }
 
     public void setFieldName(String fieldName) {
-<span class="nc" id="L122">        this.fieldName = fieldName;</span>
-<span class="nc" id="L123">    }</span>
+<span class="nc" id="L128">        this.fieldName = fieldName;</span>
+<span class="nc" id="L129">    }</span>
 
     public String getNewValue() {
-<span class="nc" id="L126">        return newValue;</span>
+<span class="nc" id="L132">        return newValue;</span>
     }
 
     public void setNewValue(String newValue) {
-<span class="nc" id="L130">        this.newValue = newValue;</span>
-<span class="nc" id="L131">    }</span>
+<span class="nc" id="L136">        this.newValue = newValue;</span>
+<span class="nc" id="L137">    }</span>
 
     public String getOldValue() {
-<span class="nc" id="L134">        return oldValue;</span>
+<span class="nc" id="L140">        return oldValue;</span>
     }
 
     public void setOldValue(String oldValue) {
-<span class="nc" id="L138">        this.oldValue = oldValue;</span>
-<span class="nc" id="L139">    }</span>
+<span class="nc" id="L144">        this.oldValue = oldValue;</span>
+<span class="nc" id="L145">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L143">        return modifiedByAgentID;</span>
+<span class="nc" id="L149">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L147">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L148">    }</span>
+<span class="nc" id="L153">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L154">    }</span>
 
     @XmlIDREF
     public Spauditlog getSpAuditLogID() {
-<span class="nc" id="L152">        return spAuditLogID;</span>
+<span class="nc" id="L158">        return spAuditLogID;</span>
     }
 
     public void setSpAuditLogID(Spauditlog spAuditLogID) {
-<span class="nc" id="L156">        this.spAuditLogID = spAuditLogID;</span>
-<span class="nc" id="L157">    }</span>
+<span class="nc" id="L162">        this.spAuditLogID = spAuditLogID;</span>
+<span class="nc" id="L163">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L161">        return createdByAgentID;</span>
+<span class="nc" id="L167">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L165">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L166">    }</span>
+<span class="nc" id="L171">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L172">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L170">        int hash = 0;</span>
-<span class="nc bnc" id="L171" title="All 2 branches missed.">        hash += (spAuditLogFieldID != null ? spAuditLogFieldID.hashCode() : 0);</span>
-<span class="nc" id="L172">        return hash;</span>
+<span class="nc" id="L176">        int hash = 0;</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">        hash += (spAuditLogFieldID != null ? spAuditLogFieldID.hashCode() : 0);</span>
+<span class="nc" id="L178">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L178" title="All 2 branches missed.">        if (!(object instanceof Spauditlogfield)) {</span>
-<span class="nc" id="L179">            return false;</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">        if (!(object instanceof Spauditlogfield)) {</span>
+<span class="nc" id="L185">            return false;</span>
         }
-<span class="nc" id="L181">        Spauditlogfield other = (Spauditlogfield) object;</span>
-<span class="nc bnc" id="L182" title="All 8 branches missed.">        return !((this.spAuditLogFieldID == null &amp;&amp; other.spAuditLogFieldID != null) || (this.spAuditLogFieldID != null &amp;&amp; !this.spAuditLogFieldID.equals(other.spAuditLogFieldID)));</span>
+<span class="nc" id="L187">        Spauditlogfield other = (Spauditlogfield) object;</span>
+<span class="nc bnc" id="L188" title="All 8 branches missed.">        return !((this.spAuditLogFieldID == null &amp;&amp; other.spAuditLogFieldID != null) || (this.spAuditLogFieldID != null &amp;&amp; !this.spAuditLogFieldID.equals(other.spAuditLogFieldID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L187">        return &quot;se.nrm.dina.datamodel.Spauditlogfield[ spAuditLogFieldID=&quot; + spAuditLogFieldID + &quot; ]&quot;;</span>
+<span class="nc" id="L193">        return &quot;se.nrm.dina.datamodel.Spauditlogfield[ spAuditLogFieldID=&quot; + spAuditLogFieldID + &quot; ]&quot;;</span>
     }
     
 }

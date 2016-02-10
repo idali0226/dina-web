@@ -121,146 +121,152 @@ public class Fieldnotebook extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L124">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + fieldNotebookID;</span>
+<span class="nc" id="L124">        return String.valueOf(fieldNotebookID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L130">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + fieldNotebookID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L129">        return fieldNotebookID;</span>
+<span class="nc" id="L135">        return fieldNotebookID;</span>
     }
     
     public Integer getFieldNotebookID() {
-<span class="nc" id="L133">        return fieldNotebookID;</span>
+<span class="nc" id="L139">        return fieldNotebookID;</span>
     }
 
     public void setFieldNotebookID(Integer fieldNotebookID) {
-<span class="nc" id="L137">        this.fieldNotebookID = fieldNotebookID;</span>
-<span class="nc" id="L138">    }</span>
+<span class="nc" id="L143">        this.fieldNotebookID = fieldNotebookID;</span>
+<span class="nc" id="L144">    }</span>
 
     
     public String getDescription() {
-<span class="nc" id="L142">        return description;</span>
+<span class="nc" id="L148">        return description;</span>
     }
 
     public void setDescription(String description) {
-<span class="nc" id="L146">        this.description = description;</span>
-<span class="nc" id="L147">    }</span>
+<span class="nc" id="L152">        this.description = description;</span>
+<span class="nc" id="L153">    }</span>
 
     public Date getEndDate() {
-<span class="nc" id="L150">        return endDate;</span>
+<span class="nc" id="L156">        return endDate;</span>
     }
 
     public void setEndDate(Date endDate) {
-<span class="nc" id="L154">        this.endDate = endDate;</span>
-<span class="nc" id="L155">    }</span>
+<span class="nc" id="L160">        this.endDate = endDate;</span>
+<span class="nc" id="L161">    }</span>
 
     public String getStorage() {
-<span class="nc" id="L158">        return storage;</span>
+<span class="nc" id="L164">        return storage;</span>
     }
 
     public void setStorage(String storage) {
-<span class="nc" id="L162">        this.storage = storage;</span>
-<span class="nc" id="L163">    }</span>
+<span class="nc" id="L168">        this.storage = storage;</span>
+<span class="nc" id="L169">    }</span>
 
     public String getName() {
-<span class="nc" id="L166">        return name;</span>
+<span class="nc" id="L172">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L170">        this.name = name;</span>
-<span class="nc" id="L171">    }</span>
+<span class="nc" id="L176">        this.name = name;</span>
+<span class="nc" id="L177">    }</span>
 
     public Date getStartDate() {
-<span class="nc" id="L174">        return startDate;</span>
+<span class="nc" id="L180">        return startDate;</span>
     }
 
     public void setStartDate(Date startDate) {
-<span class="nc" id="L178">        this.startDate = startDate;</span>
-<span class="nc" id="L179">    }</span>
+<span class="nc" id="L184">        this.startDate = startDate;</span>
+<span class="nc" id="L185">    }</span>
 
     @XmlTransient
     public List&lt;Fieldnotebookpageset&gt; getFieldnotebookpagesetList() {
-<span class="nc" id="L183">        return fieldnotebookpagesetList;</span>
+<span class="nc" id="L189">        return fieldnotebookpagesetList;</span>
     }
 
     public void setFieldnotebookpagesetList(List&lt;Fieldnotebookpageset&gt; fieldnotebookpagesetList) {
-<span class="nc" id="L187">        this.fieldnotebookpagesetList = fieldnotebookpagesetList;</span>
-<span class="nc" id="L188">    }</span>
+<span class="nc" id="L193">        this.fieldnotebookpagesetList = fieldnotebookpagesetList;</span>
+<span class="nc" id="L194">    }</span>
 
     @XmlIDREF
     public Agent getAgentID() {
-<span class="nc" id="L192">        return agentID;</span>
+<span class="nc" id="L198">        return agentID;</span>
     }
 
     public void setAgentID(Agent agentID) {
-<span class="nc" id="L196">        this.agentID = agentID;</span>
-<span class="nc" id="L197">    }</span>
+<span class="nc" id="L202">        this.agentID = agentID;</span>
+<span class="nc" id="L203">    }</span>
 
     @XmlIDREF
     public Discipline getDisciplineID() {
-<span class="nc" id="L201">        return disciplineID;</span>
+<span class="nc" id="L207">        return disciplineID;</span>
     }
 
     public void setDisciplineID(Discipline disciplineID) {
-<span class="nc" id="L205">        this.disciplineID = disciplineID;</span>
-<span class="nc" id="L206">    }</span>
+<span class="nc" id="L211">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L212">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L210">        return modifiedByAgentID;</span>
+<span class="nc" id="L216">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L214">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L215">    }</span>
+<span class="nc" id="L220">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L221">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L219">        return createdByAgentID;</span>
+<span class="nc" id="L225">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L223">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L224">    }</span>
+<span class="nc" id="L229">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L230">    }</span>
 
     @XmlIDREF
     public Collection getCollectionID() {
-<span class="nc" id="L228">        return collectionID;</span>
+<span class="nc" id="L234">        return collectionID;</span>
     }
 
     public void setCollectionID(Collection collectionID) {
-<span class="nc" id="L232">        this.collectionID = collectionID;</span>
-<span class="nc" id="L233">    }</span>
+<span class="nc" id="L238">        this.collectionID = collectionID;</span>
+<span class="nc" id="L239">    }</span>
 
     @XmlTransient
     public List&lt;Fieldnotebookattachment&gt; getFieldnotebookattachmentList() {
-<span class="nc" id="L237">        return fieldnotebookattachmentList;</span>
+<span class="nc" id="L243">        return fieldnotebookattachmentList;</span>
     }
 
     public void setFieldnotebookattachmentList(List&lt;Fieldnotebookattachment&gt; fieldnotebookattachmentList) {
-<span class="nc" id="L241">        this.fieldnotebookattachmentList = fieldnotebookattachmentList;</span>
-<span class="nc" id="L242">    }</span>
+<span class="nc" id="L247">        this.fieldnotebookattachmentList = fieldnotebookattachmentList;</span>
+<span class="nc" id="L248">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L246">        int hash = 0;</span>
-<span class="nc bnc" id="L247" title="All 2 branches missed.">        hash += (fieldNotebookID != null ? fieldNotebookID.hashCode() : 0);</span>
-<span class="nc" id="L248">        return hash;</span>
+<span class="nc" id="L252">        int hash = 0;</span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">        hash += (fieldNotebookID != null ? fieldNotebookID.hashCode() : 0);</span>
+<span class="nc" id="L254">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L254" title="All 2 branches missed.">        if (!(object instanceof Fieldnotebook)) {</span>
-<span class="nc" id="L255">            return false;</span>
+<span class="nc bnc" id="L260" title="All 2 branches missed.">        if (!(object instanceof Fieldnotebook)) {</span>
+<span class="nc" id="L261">            return false;</span>
         }
-<span class="nc" id="L257">        Fieldnotebook other = (Fieldnotebook) object;</span>
-<span class="nc bnc" id="L258" title="All 8 branches missed.">        return !((this.fieldNotebookID == null &amp;&amp; other.fieldNotebookID != null) || (this.fieldNotebookID != null &amp;&amp; !this.fieldNotebookID.equals(other.fieldNotebookID)));</span>
+<span class="nc" id="L263">        Fieldnotebook other = (Fieldnotebook) object;</span>
+<span class="nc bnc" id="L264" title="All 8 branches missed.">        return !((this.fieldNotebookID == null &amp;&amp; other.fieldNotebookID != null) || (this.fieldNotebookID != null &amp;&amp; !this.fieldNotebookID.equals(other.fieldNotebookID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L263">        return &quot;se.nrm.dina.datamodel.Fieldnotebook[ fieldNotebookID=&quot; + fieldNotebookID + &quot; ]&quot;;</span>
+<span class="nc" id="L269">        return &quot;se.nrm.dina.datamodel.Fieldnotebook[ fieldNotebookID=&quot; + fieldNotebookID + &quot; ]&quot;;</span>
     }
     
 }

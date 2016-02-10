@@ -95,104 +95,110 @@ public class Collectionreltype extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L98">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + collectionRelTypeID;</span>
+<span class="nc" id="L98">        return String.valueOf(collectionRelTypeID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L104">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + collectionRelTypeID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L103">        return collectionRelTypeID;</span>
+<span class="nc" id="L109">        return collectionRelTypeID;</span>
     }
 
     public Integer getCollectionRelTypeID() {
-<span class="nc" id="L107">        return collectionRelTypeID;</span>
+<span class="nc" id="L113">        return collectionRelTypeID;</span>
     }
 
     public void setCollectionRelTypeID(Integer collectionRelTypeID) {
-<span class="nc" id="L111">        this.collectionRelTypeID = collectionRelTypeID;</span>
-<span class="nc" id="L112">    }</span>
+<span class="nc" id="L117">        this.collectionRelTypeID = collectionRelTypeID;</span>
+<span class="nc" id="L118">    }</span>
  
 
     public String getName() {
-<span class="nc" id="L116">        return name;</span>
+<span class="nc" id="L122">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L120">        this.name = name;</span>
-<span class="nc" id="L121">    }</span>
+<span class="nc" id="L126">        this.name = name;</span>
+<span class="nc" id="L127">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L124">        return remarks;</span>
+<span class="nc" id="L130">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L128">        this.remarks = remarks;</span>
-<span class="nc" id="L129">    }</span>
+<span class="nc" id="L134">        this.remarks = remarks;</span>
+<span class="nc" id="L135">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L133">        return modifiedByAgentID;</span>
+<span class="nc" id="L139">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L137">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L138">    }</span>
+<span class="nc" id="L143">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L144">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L142">        return createdByAgentID;</span>
+<span class="nc" id="L148">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L146">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L147">    }</span>
+<span class="nc" id="L152">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L153">    }</span>
 
     @XmlIDREF
     public Collection getLeftSideCollectionID() {
-<span class="nc" id="L151">        return leftSideCollectionID;</span>
+<span class="nc" id="L157">        return leftSideCollectionID;</span>
     }
 
     public void setLeftSideCollectionID(Collection leftSideCollectionID) {
-<span class="nc" id="L155">        this.leftSideCollectionID = leftSideCollectionID;</span>
-<span class="nc" id="L156">    }</span>
+<span class="nc" id="L161">        this.leftSideCollectionID = leftSideCollectionID;</span>
+<span class="nc" id="L162">    }</span>
 
     @XmlIDREF
     public Collection getRightSideCollectionID() {
-<span class="nc" id="L160">        return rightSideCollectionID;</span>
+<span class="nc" id="L166">        return rightSideCollectionID;</span>
     }
 
     public void setRightSideCollectionID(Collection rightSideCollectionID) {
-<span class="nc" id="L164">        this.rightSideCollectionID = rightSideCollectionID;</span>
-<span class="nc" id="L165">    }</span>
+<span class="nc" id="L170">        this.rightSideCollectionID = rightSideCollectionID;</span>
+<span class="nc" id="L171">    }</span>
 
     @XmlTransient
     public List&lt;Collectionrelationship&gt; getCollectionrelationshipList() {
-<span class="nc" id="L169">        return collectionrelationshipList;</span>
+<span class="nc" id="L175">        return collectionrelationshipList;</span>
     }
 
     public void setCollectionrelationshipList(List&lt;Collectionrelationship&gt; collectionrelationshipList) {
-<span class="nc" id="L173">        this.collectionrelationshipList = collectionrelationshipList;</span>
-<span class="nc" id="L174">    }</span>
+<span class="nc" id="L179">        this.collectionrelationshipList = collectionrelationshipList;</span>
+<span class="nc" id="L180">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L178">        int hash = 0;</span>
-<span class="nc bnc" id="L179" title="All 2 branches missed.">        hash += (collectionRelTypeID != null ? collectionRelTypeID.hashCode() : 0);</span>
-<span class="nc" id="L180">        return hash;</span>
+<span class="nc" id="L184">        int hash = 0;</span>
+<span class="nc bnc" id="L185" title="All 2 branches missed.">        hash += (collectionRelTypeID != null ? collectionRelTypeID.hashCode() : 0);</span>
+<span class="nc" id="L186">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L186" title="All 2 branches missed.">        if (!(object instanceof Collectionreltype)) {</span>
-<span class="nc" id="L187">            return false;</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">        if (!(object instanceof Collectionreltype)) {</span>
+<span class="nc" id="L193">            return false;</span>
         }
-<span class="nc" id="L189">        Collectionreltype other = (Collectionreltype) object;</span>
-<span class="nc bnc" id="L190" title="All 8 branches missed.">        return !((this.collectionRelTypeID == null &amp;&amp; other.collectionRelTypeID != null) || (this.collectionRelTypeID != null &amp;&amp; !this.collectionRelTypeID.equals(other.collectionRelTypeID)));</span>
+<span class="nc" id="L195">        Collectionreltype other = (Collectionreltype) object;</span>
+<span class="nc bnc" id="L196" title="All 8 branches missed.">        return !((this.collectionRelTypeID == null &amp;&amp; other.collectionRelTypeID != null) || (this.collectionRelTypeID != null &amp;&amp; !this.collectionRelTypeID.equals(other.collectionRelTypeID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L195">        return &quot;se.nrm.dina.datamodel.Collectionreltype[ collectionRelTypeID=&quot; + collectionRelTypeID + &quot; ]&quot;;</span>
+<span class="nc" id="L201">        return &quot;se.nrm.dina.datamodel.Collectionreltype[ collectionRelTypeID=&quot; + collectionRelTypeID + &quot; ]&quot;;</span>
     }
     
 }

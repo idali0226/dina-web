@@ -142,175 +142,181 @@ public class Spquery extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L145">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spQueryID;</span>
+<span class="nc" id="L145">        return String.valueOf(spQueryID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L151">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + spQueryID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L150">        return spQueryID;</span>
+<span class="nc" id="L156">        return spQueryID;</span>
     }
     
     public Integer getSpQueryID() {
-<span class="nc" id="L154">        return spQueryID;</span>
+<span class="nc" id="L160">        return spQueryID;</span>
     }
 
     public void setSpQueryID(Integer spQueryID) {
-<span class="nc" id="L158">        this.spQueryID = spQueryID;</span>
-<span class="nc" id="L159">    }</span>
+<span class="nc" id="L164">        this.spQueryID = spQueryID;</span>
+<span class="nc" id="L165">    }</span>
  
     public String getContextName() {
-<span class="nc" id="L162">        return contextName;</span>
+<span class="nc" id="L168">        return contextName;</span>
     }
 
     public void setContextName(String contextName) {
-<span class="nc" id="L166">        this.contextName = contextName;</span>
-<span class="nc" id="L167">    }</span>
+<span class="nc" id="L172">        this.contextName = contextName;</span>
+<span class="nc" id="L173">    }</span>
 
     public short getContextTableId() {
-<span class="nc" id="L170">        return contextTableId;</span>
+<span class="nc" id="L176">        return contextTableId;</span>
     }
 
     public void setContextTableId(short contextTableId) {
-<span class="nc" id="L174">        this.contextTableId = contextTableId;</span>
-<span class="nc" id="L175">    }</span>
+<span class="nc" id="L180">        this.contextTableId = contextTableId;</span>
+<span class="nc" id="L181">    }</span>
 
     public Boolean getCountOnly() {
-<span class="nc" id="L178">        return countOnly;</span>
+<span class="nc" id="L184">        return countOnly;</span>
     }
 
     public void setCountOnly(Boolean countOnly) {
-<span class="nc" id="L182">        this.countOnly = countOnly;</span>
-<span class="nc" id="L183">    }</span>
+<span class="nc" id="L188">        this.countOnly = countOnly;</span>
+<span class="nc" id="L189">    }</span>
 
     public Boolean getIsFavorite() {
-<span class="nc" id="L186">        return isFavorite;</span>
+<span class="nc" id="L192">        return isFavorite;</span>
     }
 
     public void setIsFavorite(Boolean isFavorite) {
-<span class="nc" id="L190">        this.isFavorite = isFavorite;</span>
-<span class="nc" id="L191">    }</span>
+<span class="nc" id="L196">        this.isFavorite = isFavorite;</span>
+<span class="nc" id="L197">    }</span>
 
     public String getName() {
-<span class="nc" id="L194">        return name;</span>
+<span class="nc" id="L200">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L198">        this.name = name;</span>
-<span class="nc" id="L199">    }</span>
+<span class="nc" id="L204">        this.name = name;</span>
+<span class="nc" id="L205">    }</span>
 
     public Short getOrdinal() {
-<span class="nc" id="L202">        return ordinal;</span>
+<span class="nc" id="L208">        return ordinal;</span>
     }
 
     public void setOrdinal(Short ordinal) {
-<span class="nc" id="L206">        this.ordinal = ordinal;</span>
-<span class="nc" id="L207">    }</span>
+<span class="nc" id="L212">        this.ordinal = ordinal;</span>
+<span class="nc" id="L213">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L210">        return remarks;</span>
+<span class="nc" id="L216">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L214">        this.remarks = remarks;</span>
-<span class="nc" id="L215">    }</span>
+<span class="nc" id="L220">        this.remarks = remarks;</span>
+<span class="nc" id="L221">    }</span>
 
     public Boolean getSearchSynonymy() {
-<span class="nc" id="L218">        return searchSynonymy;</span>
+<span class="nc" id="L224">        return searchSynonymy;</span>
     }
 
     public void setSearchSynonymy(Boolean searchSynonymy) {
-<span class="nc" id="L222">        this.searchSynonymy = searchSynonymy;</span>
-<span class="nc" id="L223">    }</span>
+<span class="nc" id="L228">        this.searchSynonymy = searchSynonymy;</span>
+<span class="nc" id="L229">    }</span>
 
     public Boolean getSelectDistinct() {
-<span class="nc" id="L226">        return selectDistinct;</span>
+<span class="nc" id="L232">        return selectDistinct;</span>
     }
 
     public void setSelectDistinct(Boolean selectDistinct) {
-<span class="nc" id="L230">        this.selectDistinct = selectDistinct;</span>
-<span class="nc" id="L231">    }</span>
+<span class="nc" id="L236">        this.selectDistinct = selectDistinct;</span>
+<span class="nc" id="L237">    }</span>
 
     public String getSqlStr() {
-<span class="nc" id="L234">        return sqlStr;</span>
+<span class="nc" id="L240">        return sqlStr;</span>
     }
 
     public void setSqlStr(String sqlStr) {
-<span class="nc" id="L238">        this.sqlStr = sqlStr;</span>
-<span class="nc" id="L239">    }</span>
+<span class="nc" id="L244">        this.sqlStr = sqlStr;</span>
+<span class="nc" id="L245">    }</span>
 
     public Boolean getSmushed() {
-<span class="nc" id="L242">        return smushed;</span>
+<span class="nc" id="L248">        return smushed;</span>
     }
 
     public void setSmushed(Boolean smushed) {
-<span class="nc" id="L246">        this.smushed = smushed;</span>
-<span class="nc" id="L247">    }</span>
+<span class="nc" id="L252">        this.smushed = smushed;</span>
+<span class="nc" id="L253">    }</span>
 
     @XmlIDREF
     public Specifyuser getSpecifyUserID() {
-<span class="nc" id="L251">        return specifyUserID;</span>
+<span class="nc" id="L257">        return specifyUserID;</span>
     }
 
     public void setSpecifyUserID(Specifyuser specifyUserID) {
-<span class="nc" id="L255">        this.specifyUserID = specifyUserID;</span>
-<span class="nc" id="L256">    }</span>
+<span class="nc" id="L261">        this.specifyUserID = specifyUserID;</span>
+<span class="nc" id="L262">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L260">        return modifiedByAgentID;</span>
+<span class="nc" id="L266">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L264">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L265">    }</span>
+<span class="nc" id="L270">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L271">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L269">        return createdByAgentID;</span>
+<span class="nc" id="L275">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L273">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L274">    }</span>
+<span class="nc" id="L279">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L280">    }</span>
 
     @XmlTransient
     public List&lt;Spqueryfield&gt; getSpqueryfieldList() {
-<span class="nc" id="L278">        return spqueryfieldList;</span>
+<span class="nc" id="L284">        return spqueryfieldList;</span>
     }
 
     public void setSpqueryfieldList(List&lt;Spqueryfield&gt; spqueryfieldList) {
-<span class="nc" id="L282">        this.spqueryfieldList = spqueryfieldList;</span>
-<span class="nc" id="L283">    }</span>
+<span class="nc" id="L288">        this.spqueryfieldList = spqueryfieldList;</span>
+<span class="nc" id="L289">    }</span>
 
     @XmlTransient
     public List&lt;Spreport&gt; getSpreportList() {
-<span class="nc" id="L287">        return spreportList;</span>
+<span class="nc" id="L293">        return spreportList;</span>
     }
 
     public void setSpreportList(List&lt;Spreport&gt; spreportList) {
-<span class="nc" id="L291">        this.spreportList = spreportList;</span>
-<span class="nc" id="L292">    }</span>
+<span class="nc" id="L297">        this.spreportList = spreportList;</span>
+<span class="nc" id="L298">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L296">        int hash = 0;</span>
-<span class="nc bnc" id="L297" title="All 2 branches missed.">        hash += (spQueryID != null ? spQueryID.hashCode() : 0);</span>
-<span class="nc" id="L298">        return hash;</span>
+<span class="nc" id="L302">        int hash = 0;</span>
+<span class="nc bnc" id="L303" title="All 2 branches missed.">        hash += (spQueryID != null ? spQueryID.hashCode() : 0);</span>
+<span class="nc" id="L304">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L304" title="All 2 branches missed.">        if (!(object instanceof Spquery)) {</span>
-<span class="nc" id="L305">            return false;</span>
+<span class="nc bnc" id="L310" title="All 2 branches missed.">        if (!(object instanceof Spquery)) {</span>
+<span class="nc" id="L311">            return false;</span>
         }
-<span class="nc" id="L307">        Spquery other = (Spquery) object;</span>
-<span class="nc bnc" id="L308" title="All 8 branches missed.">        return !((this.spQueryID == null &amp;&amp; other.spQueryID != null) || (this.spQueryID != null &amp;&amp; !this.spQueryID.equals(other.spQueryID)));</span>
+<span class="nc" id="L313">        Spquery other = (Spquery) object;</span>
+<span class="nc bnc" id="L314" title="All 8 branches missed.">        return !((this.spQueryID == null &amp;&amp; other.spQueryID != null) || (this.spQueryID != null &amp;&amp; !this.spQueryID.equals(other.spQueryID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L313">        return &quot;se.nrm.dina.datamodel.Spquery[ spQueryID=&quot; + spQueryID + &quot; ]&quot;;</span>
+<span class="nc" id="L319">        return &quot;se.nrm.dina.datamodel.Spquery[ spQueryID=&quot; + spQueryID + &quot; ]&quot;;</span>
     }
     
 }

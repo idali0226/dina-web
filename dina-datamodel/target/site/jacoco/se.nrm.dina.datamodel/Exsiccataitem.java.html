@@ -87,96 +87,102 @@ public class Exsiccataitem extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L90">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + exsiccataItemID;</span>
+<span class="nc" id="L90">        return String.valueOf(exsiccataItemID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L96">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + exsiccataItemID;</span>
     }
 
     @Override
     public int getEntityId() {
-<span class="nc" id="L95">        return exsiccataItemID;</span>
+<span class="nc" id="L101">        return exsiccataItemID;</span>
     }
 
     public Integer getExsiccataItemID() {
-<span class="nc" id="L99">        return exsiccataItemID;</span>
+<span class="nc" id="L105">        return exsiccataItemID;</span>
     }
 
     public void setExsiccataItemID(Integer exsiccataItemID) {
-<span class="nc" id="L103">        this.exsiccataItemID = exsiccataItemID;</span>
-<span class="nc" id="L104">    }</span>
+<span class="nc" id="L109">        this.exsiccataItemID = exsiccataItemID;</span>
+<span class="nc" id="L110">    }</span>
 
  
 
     public String getFascicle() {
-<span class="nc" id="L109">        return fascicle;</span>
+<span class="nc" id="L115">        return fascicle;</span>
     }
 
     public void setFascicle(String fascicle) {
-<span class="nc" id="L113">        this.fascicle = fascicle;</span>
-<span class="nc" id="L114">    }</span>
+<span class="nc" id="L119">        this.fascicle = fascicle;</span>
+<span class="nc" id="L120">    }</span>
 
     public String getNumber() {
-<span class="nc" id="L117">        return number;</span>
+<span class="nc" id="L123">        return number;</span>
     }
 
     public void setNumber(String number) {
-<span class="nc" id="L121">        this.number = number;</span>
-<span class="nc" id="L122">    }</span>
+<span class="nc" id="L127">        this.number = number;</span>
+<span class="nc" id="L128">    }</span>
 
     @XmlIDREF
     public Exsiccata getExsiccataID() {
-<span class="nc" id="L126">        return exsiccataID;</span>
+<span class="nc" id="L132">        return exsiccataID;</span>
     }
 
     public void setExsiccataID(Exsiccata exsiccataID) {
-<span class="nc" id="L130">        this.exsiccataID = exsiccataID;</span>
-<span class="nc" id="L131">    }</span>
+<span class="nc" id="L136">        this.exsiccataID = exsiccataID;</span>
+<span class="nc" id="L137">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L135">        return modifiedByAgentID;</span>
+<span class="nc" id="L141">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L139">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L140">    }</span>
+<span class="nc" id="L145">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L146">    }</span>
 
     @XmlIDREF
     public Collectionobject getCollectionObjectID() {
-<span class="nc" id="L144">        return collectionObjectID;</span>
+<span class="nc" id="L150">        return collectionObjectID;</span>
     }
 
     public void setCollectionObjectID(Collectionobject collectionObjectID) {
-<span class="nc" id="L148">        this.collectionObjectID = collectionObjectID;</span>
-<span class="nc" id="L149">    }</span>
+<span class="nc" id="L154">        this.collectionObjectID = collectionObjectID;</span>
+<span class="nc" id="L155">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L153">        return createdByAgentID;</span>
+<span class="nc" id="L159">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L157">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L158">    }</span>
+<span class="nc" id="L163">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L164">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L162">        int hash = 0;</span>
-<span class="nc bnc" id="L163" title="All 2 branches missed.">        hash += (exsiccataItemID != null ? exsiccataItemID.hashCode() : 0);</span>
-<span class="nc" id="L164">        return hash;</span>
+<span class="nc" id="L168">        int hash = 0;</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">        hash += (exsiccataItemID != null ? exsiccataItemID.hashCode() : 0);</span>
+<span class="nc" id="L170">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L170" title="All 2 branches missed.">        if (!(object instanceof Exsiccataitem)) {</span>
-<span class="nc" id="L171">            return false;</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">        if (!(object instanceof Exsiccataitem)) {</span>
+<span class="nc" id="L177">            return false;</span>
         }
-<span class="nc" id="L173">        Exsiccataitem other = (Exsiccataitem) object;</span>
-<span class="nc bnc" id="L174" title="All 8 branches missed.">        return !((this.exsiccataItemID == null &amp;&amp; other.exsiccataItemID != null) || (this.exsiccataItemID != null &amp;&amp; !this.exsiccataItemID.equals(other.exsiccataItemID)));</span>
+<span class="nc" id="L179">        Exsiccataitem other = (Exsiccataitem) object;</span>
+<span class="nc bnc" id="L180" title="All 8 branches missed.">        return !((this.exsiccataItemID == null &amp;&amp; other.exsiccataItemID != null) || (this.exsiccataItemID != null &amp;&amp; !this.exsiccataItemID.equals(other.exsiccataItemID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L179">        return &quot;se.nrm.dina.datamodel.Exsiccataitem[ exsiccataItemID=&quot; + exsiccataItemID + &quot; ]&quot;;</span>
+<span class="nc" id="L185">        return &quot;se.nrm.dina.datamodel.Exsiccataitem[ exsiccataItemID=&quot; + exsiccataItemID + &quot; ]&quot;;</span>
     }
     
 }

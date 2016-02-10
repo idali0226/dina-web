@@ -102,113 +102,119 @@ public class Geographytreedef extends BaseEntity {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L105">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + geographyTreeDefID;</span>
+<span class="nc" id="L105">        return String.valueOf(geographyTreeDefID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L111">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + geographyTreeDefID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L110">        return geographyTreeDefID;</span>
+<span class="nc" id="L116">        return geographyTreeDefID;</span>
     }
 
     public Integer getGeographyTreeDefID() {
-<span class="nc" id="L114">        return geographyTreeDefID;</span>
+<span class="nc" id="L120">        return geographyTreeDefID;</span>
     }
 
     public void setGeographyTreeDefID(Integer geographyTreeDefID) {
-<span class="nc" id="L118">        this.geographyTreeDefID = geographyTreeDefID;</span>
-<span class="nc" id="L119">    }</span>
+<span class="nc" id="L124">        this.geographyTreeDefID = geographyTreeDefID;</span>
+<span class="nc" id="L125">    }</span>
 
    
 
     public Integer getFullNameDirection() {
-<span class="nc" id="L124">        return fullNameDirection;</span>
+<span class="nc" id="L130">        return fullNameDirection;</span>
     }
 
     public void setFullNameDirection(Integer fullNameDirection) {
-<span class="nc" id="L128">        this.fullNameDirection = fullNameDirection;</span>
-<span class="nc" id="L129">    }</span>
+<span class="nc" id="L134">        this.fullNameDirection = fullNameDirection;</span>
+<span class="nc" id="L135">    }</span>
 
     public String getName() {
-<span class="nc" id="L132">        return name;</span>
+<span class="nc" id="L138">        return name;</span>
     }
 
     public void setName(String name) {
-<span class="nc" id="L136">        this.name = name;</span>
-<span class="nc" id="L137">    }</span>
+<span class="nc" id="L142">        this.name = name;</span>
+<span class="nc" id="L143">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L140">        return remarks;</span>
+<span class="nc" id="L146">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L144">        this.remarks = remarks;</span>
-<span class="nc" id="L145">    }</span>
+<span class="nc" id="L150">        this.remarks = remarks;</span>
+<span class="nc" id="L151">    }</span>
 
     @XmlTransient
     public List&lt;Discipline&gt; getDisciplineList() {
-<span class="nc" id="L149">        return disciplineList;</span>
+<span class="nc" id="L155">        return disciplineList;</span>
     }
 
     public void setDisciplineList(List&lt;Discipline&gt; disciplineList) {
-<span class="nc" id="L153">        this.disciplineList = disciplineList;</span>
-<span class="nc" id="L154">    }</span>
+<span class="nc" id="L159">        this.disciplineList = disciplineList;</span>
+<span class="nc" id="L160">    }</span>
 
     @XmlTransient
     public List&lt;Geography&gt; getGeographyList() {
-<span class="nc" id="L158">        return geographyList;</span>
+<span class="nc" id="L164">        return geographyList;</span>
     }
 
     public void setGeographyList(List&lt;Geography&gt; geographyList) {
-<span class="nc" id="L162">        this.geographyList = geographyList;</span>
-<span class="nc" id="L163">    }</span>
+<span class="nc" id="L168">        this.geographyList = geographyList;</span>
+<span class="nc" id="L169">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L167">        return modifiedByAgentID;</span>
+<span class="nc" id="L173">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L171">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L172">    }</span>
+<span class="nc" id="L177">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L178">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L176">        return createdByAgentID;</span>
+<span class="nc" id="L182">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L180">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L181">    }</span>
+<span class="nc" id="L186">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L187">    }</span>
 
     @XmlTransient
     public List&lt;Geographytreedefitem&gt; getGeographytreedefitemList() {
-<span class="nc" id="L185">        return geographytreedefitemList;</span>
+<span class="nc" id="L191">        return geographytreedefitemList;</span>
     }
 
     public void setGeographytreedefitemList(List&lt;Geographytreedefitem&gt; geographytreedefitemList) {
-<span class="nc" id="L189">        this.geographytreedefitemList = geographytreedefitemList;</span>
-<span class="nc" id="L190">    }</span>
+<span class="nc" id="L195">        this.geographytreedefitemList = geographytreedefitemList;</span>
+<span class="nc" id="L196">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L194">        int hash = 0;</span>
-<span class="nc bnc" id="L195" title="All 2 branches missed.">        hash += (geographyTreeDefID != null ? geographyTreeDefID.hashCode() : 0);</span>
-<span class="nc" id="L196">        return hash;</span>
+<span class="nc" id="L200">        int hash = 0;</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">        hash += (geographyTreeDefID != null ? geographyTreeDefID.hashCode() : 0);</span>
+<span class="nc" id="L202">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L202" title="All 2 branches missed.">        if (!(object instanceof Geographytreedef)) {</span>
-<span class="nc" id="L203">            return false;</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">        if (!(object instanceof Geographytreedef)) {</span>
+<span class="nc" id="L209">            return false;</span>
         }
-<span class="nc" id="L205">        Geographytreedef other = (Geographytreedef) object;</span>
-<span class="nc bnc" id="L206" title="All 8 branches missed.">        return !((this.geographyTreeDefID == null &amp;&amp; other.geographyTreeDefID != null) || (this.geographyTreeDefID != null &amp;&amp; !this.geographyTreeDefID.equals(other.geographyTreeDefID)));</span>
+<span class="nc" id="L211">        Geographytreedef other = (Geographytreedef) object;</span>
+<span class="nc bnc" id="L212" title="All 8 branches missed.">        return !((this.geographyTreeDefID == null &amp;&amp; other.geographyTreeDefID != null) || (this.geographyTreeDefID != null &amp;&amp; !this.geographyTreeDefID.equals(other.geographyTreeDefID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L211">        return &quot;se.nrm.dina.datamodel.Geographytreedef[ geographyTreeDefID=&quot; + geographyTreeDefID + &quot; ]&quot;;</span>
+<span class="nc" id="L217">        return &quot;se.nrm.dina.datamodel.Geographytreedef[ geographyTreeDefID=&quot; + geographyTreeDefID + &quot; ]&quot;;</span>
     }
     
 }

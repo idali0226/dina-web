@@ -90,82 +90,88 @@ public class Latlonpolygonpnt implements EntityBean, Serializable {
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L93">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + latLonPolygonPntID;</span>
+<span class="nc" id="L93">        return String.valueOf(latLonPolygonPntID);</span>
+    }
+    
+    @XmlAttribute(name = &quot;uuid&quot;) 
+    @Override
+    public String getUUID() {
+<span class="nc" id="L99">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + latLonPolygonPntID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L98">        return latLonPolygonPntID;</span>
+<span class="nc" id="L104">        return latLonPolygonPntID;</span>
     }
 
     public Integer getLatLonPolygonPntID() {
-<span class="nc" id="L102">        return latLonPolygonPntID;</span>
+<span class="nc" id="L108">        return latLonPolygonPntID;</span>
     }
 
     public void setLatLonPolygonPntID(Integer latLonPolygonPntID) {
-<span class="nc" id="L106">        this.latLonPolygonPntID = latLonPolygonPntID;</span>
-<span class="nc" id="L107">    }</span>
+<span class="nc" id="L112">        this.latLonPolygonPntID = latLonPolygonPntID;</span>
+<span class="nc" id="L113">    }</span>
 
     public Integer getElevation() {
-<span class="nc" id="L110">        return elevation;</span>
+<span class="nc" id="L116">        return elevation;</span>
     }
 
     public void setElevation(Integer elevation) {
-<span class="nc" id="L114">        this.elevation = elevation;</span>
-<span class="nc" id="L115">    }</span>
+<span class="nc" id="L120">        this.elevation = elevation;</span>
+<span class="nc" id="L121">    }</span>
 
     public BigDecimal getLatitude() {
-<span class="nc" id="L118">        return latitude;</span>
+<span class="nc" id="L124">        return latitude;</span>
     }
 
     public void setLatitude(BigDecimal latitude) {
-<span class="nc" id="L122">        this.latitude = latitude;</span>
-<span class="nc" id="L123">    }</span>
+<span class="nc" id="L128">        this.latitude = latitude;</span>
+<span class="nc" id="L129">    }</span>
 
     public BigDecimal getLongitude() {
-<span class="nc" id="L126">        return longitude;</span>
+<span class="nc" id="L132">        return longitude;</span>
     }
 
     public void setLongitude(BigDecimal longitude) {
-<span class="nc" id="L130">        this.longitude = longitude;</span>
-<span class="nc" id="L131">    }</span>
+<span class="nc" id="L136">        this.longitude = longitude;</span>
+<span class="nc" id="L137">    }</span>
 
     public int getOrdinal() {
-<span class="nc" id="L134">        return ordinal;</span>
+<span class="nc" id="L140">        return ordinal;</span>
     }
 
     public void setOrdinal(int ordinal) {
-<span class="nc" id="L138">        this.ordinal = ordinal;</span>
-<span class="nc" id="L139">    }</span>
+<span class="nc" id="L144">        this.ordinal = ordinal;</span>
+<span class="nc" id="L145">    }</span>
 
     public int getLatLonPolygonID() {
-<span class="nc" id="L142">        return latLonPolygonID;</span>
+<span class="nc" id="L148">        return latLonPolygonID;</span>
     }
 
     public void setLatLonPolygonID(int latLonPolygonID) {
-<span class="nc" id="L146">        this.latLonPolygonID = latLonPolygonID;</span>
-<span class="nc" id="L147">    }</span>
+<span class="nc" id="L152">        this.latLonPolygonID = latLonPolygonID;</span>
+<span class="nc" id="L153">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L151">        int hash = 0;</span>
-<span class="nc bnc" id="L152" title="All 2 branches missed.">        hash += (latLonPolygonPntID != null ? latLonPolygonPntID.hashCode() : 0);</span>
-<span class="nc" id="L153">        return hash;</span>
+<span class="nc" id="L157">        int hash = 0;</span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">        hash += (latLonPolygonPntID != null ? latLonPolygonPntID.hashCode() : 0);</span>
+<span class="nc" id="L159">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L159" title="All 2 branches missed.">        if (!(object instanceof Latlonpolygonpnt)) {</span>
-<span class="nc" id="L160">            return false;</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">        if (!(object instanceof Latlonpolygonpnt)) {</span>
+<span class="nc" id="L166">            return false;</span>
         }
-<span class="nc" id="L162">        Latlonpolygonpnt other = (Latlonpolygonpnt) object;</span>
-<span class="nc bnc" id="L163" title="All 8 branches missed.">        return !((this.latLonPolygonPntID == null &amp;&amp; other.latLonPolygonPntID != null) || (this.latLonPolygonPntID != null &amp;&amp; !this.latLonPolygonPntID.equals(other.latLonPolygonPntID)));</span>
+<span class="nc" id="L168">        Latlonpolygonpnt other = (Latlonpolygonpnt) object;</span>
+<span class="nc bnc" id="L169" title="All 8 branches missed.">        return !((this.latLonPolygonPntID == null &amp;&amp; other.latLonPolygonPntID != null) || (this.latLonPolygonPntID != null &amp;&amp; !this.latLonPolygonPntID.equals(other.latLonPolygonPntID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L168">        return &quot;se.nrm.dina.datamodel.Latlonpolygonpnt[ latLonPolygonPntID=&quot; + latLonPolygonPntID + &quot; ]&quot;;</span>
+<span class="nc" id="L174">        return &quot;se.nrm.dina.datamodel.Latlonpolygonpnt[ latLonPolygonPntID=&quot; + latLonPolygonPntID + &quot; ]&quot;;</span>
     }
     
 }
