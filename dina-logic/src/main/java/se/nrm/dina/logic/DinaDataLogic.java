@@ -194,32 +194,15 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
     public EntityBean createEntity(String entityName, String json) {
 
         logger.info("createEntity : {} ", entityName);
-         
+
         try {
             EntityBean bean = mappObject(entityName, json);
-            
+
             Field[] fields = bean.getClass().getDeclaredFields();
             Arrays.stream(fields)
                     .forEach(f -> {
-                        boolean isEntity = Util.getInstance().isEntity(bean.getClass(), f.getName());
-                        if (isEntity) {
-                            try { 
-                                f.setAccessible(true);
-                                EntityBean instance = (EntityBean) f.get(bean);
-                                if (instance != null) {
-                                    Field field = Util.getInstance().getIDField(instance);
-
-                                    field.setAccessible(true);
-                                    int value = (Integer) field.get(instance); 
-                                    EntityBean eb = dao.findById(value, instance.getClass()); 
-
-                                    f.set(bean, eb);
-                                }  
-                            } catch (IllegalArgumentException | IllegalAccessException ex) {
-                                throw new DinaException("Save " + entityName + " is failed.");
-                            }
-                        }
-                    }); 
+                        setValueToBean(bean, f);
+                    });
             return dao.create(bean);
         } catch (DinaException ex) {
             throw new DinaException(ex.getMessage());
@@ -266,15 +249,35 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
 
         logger.info("deleteEntity : {} -- {}", entityName, id);
 
-        try { 
+        try {
             EntityBean bean = dao.findByReference(id, Util.getInstance().convertClassNameToClass(entityName));
-         
-            if (bean != null) { 
+
+            if (bean != null) {
                 dao.delete(bean);
             }
         } catch (DinaException e) {
             logger.error(e.getMessage());
             throw new DinaException(e.getMessage());
         }
+    }
+
+    private void setValueToBean(EntityBean parent, Field f) {
+        if (Util.getInstance().isEntity(parent.getClass(), f.getName())) {
+            try {
+                f.setAccessible(true);
+                EntityBean child = (EntityBean) f.get(parent);
+                if (child != null) {
+                    Field field = Util.getInstance().getIDField(child);
+
+                    field.setAccessible(true);
+                    int value = (Integer) field.get(child);
+                    EntityBean eb = dao.findById(value, child.getClass());
+
+                    f.set(parent, eb);
+                }
+            } catch (IllegalArgumentException | IllegalAccessException ex) {
+                throw new DinaException("Save data failed.");
+            }
+        } 
     }
 }

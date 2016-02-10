@@ -156,9 +156,7 @@ public class Util {
      */
     public boolean isEntity(Class clazz, String fieldName) {
         logger.info("isIntField : {} -- {}", clazz, fieldName);
-        try {
-
-            logger.info("fieldName {}", clazz.getDeclaredField(fieldName).getType().getName());
+        try { 
             return clazz.getDeclaredField(fieldName).getType().getName().contains(ENTITY_PACKAGE);
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
@@ -178,9 +176,7 @@ public class Util {
      */
     public boolean isCollection(Class clazz, String fieldName) {
         logger.info("isIntField : {} -- {}", clazz, fieldName);
-        try {
-
-            logger.info("fieldName {}", clazz.getDeclaredField(fieldName).getType().getName());
+        try { 
             return clazz.getDeclaredField(fieldName).getType().getName().equals("java.util.List");
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
@@ -191,6 +187,9 @@ public class Util {
             }
         }
     }
+    
+    
+    
     
     /**
      * Creates an Entity
@@ -279,6 +278,9 @@ public class Util {
         EntityBean bean = createNewInstance(entityName);
         return getIDFieldName(bean);
     }
+    
+    
+
     
     /**
      * Checks if the String is numeric
