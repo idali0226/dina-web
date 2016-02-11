@@ -9,7 +9,7 @@ import se.nrm.dina.datamodel.Discipline;
 import se.nrm.dina.datamodel.Taxon;
 import se.nrm.dina.datamodel.Taxontreedefitem;
 
-@Generated(value="EclipseLink-2.7.0.v20160208-rNA", date="2016-02-10T17:35:03")
+@Generated(value="EclipseLink-2.7.0.v20160210-rNA", date="2016-02-11T12:23:20")
 @StaticMetamodel(Taxontreedef.class)
 public class Taxontreedef_ extends BaseEntity_ {
 

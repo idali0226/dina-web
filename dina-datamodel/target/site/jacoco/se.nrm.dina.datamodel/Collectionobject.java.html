@@ -30,8 +30,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
+//import javax.xml.bind.annotation.XmlElement;
+//import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -707,8 +707,8 @@ public class Collectionobject extends BaseEntity {
 <span class="nc" id="L707">    }</span>
 
     @XmlIDREF
-    @XmlElementWrapper(name=&quot;determinations&quot;)
-    @XmlElement(name=&quot;determination&quot;) 
+//    @XmlElementWrapper(name=&quot;determinations&quot;)
+//    @XmlElement(name=&quot;determination&quot;) 
     public List&lt;Determination&gt; getDeterminationList() {
 <span class="nc" id="L713">        return determinationList;</span>
     }
@@ -727,8 +727,8 @@ public class Collectionobject extends BaseEntity {
 <span class="nc" id="L727">    }</span>
 
     @XmlIDREF
-    @XmlElementWrapper(name=&quot;preparations&quot;)
-    @XmlElement(name=&quot;preparation&quot;) 
+//    @XmlElementWrapper(name=&quot;preparations&quot;)
+//    @XmlElement(name=&quot;preparation&quot;) 
     public List&lt;Preparation&gt; getPreparationList() {
 <span class="nc" id="L733">        return preparationList;</span>
     }

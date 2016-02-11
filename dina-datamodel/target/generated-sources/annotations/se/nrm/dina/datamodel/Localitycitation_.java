@@ -8,7 +8,7 @@ import se.nrm.dina.datamodel.Discipline;
 import se.nrm.dina.datamodel.Locality;
 import se.nrm.dina.datamodel.Referencework;
 
-@Generated(value="EclipseLink-2.7.0.v20160208-rNA", date="2016-02-10T17:35:03")
+@Generated(value="EclipseLink-2.7.0.v20160210-rNA", date="2016-02-11T12:23:21")
 @StaticMetamodel(Localitycitation.class)
 public class Localitycitation_ extends BaseEntity_ {
 

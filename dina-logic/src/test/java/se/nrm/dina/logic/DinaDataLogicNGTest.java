@@ -5,7 +5,7 @@
  */
 package se.nrm.dina.logic;
 
-import se.nrm.dina.logic.DinaDataLogic;
+import java.io.IOException; 
 import java.util.ArrayList; 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -48,6 +48,7 @@ public class DinaDataLogicNGTest {
     private List<Accession> accessions;
     private List<Accession> accessions1;
     private Accession accession1;
+    private String jsonInString;
    
     public DinaDataLogicNGTest() {
         
@@ -685,11 +686,11 @@ public class DinaDataLogicNGTest {
         String entityName = "Accession";
          
         ObjectMapper mapper = new ObjectMapper();
-        String jsonInString = mapper.writeValueAsString(accession1);
+        String json = mapper.writeValueAsString(accession1);
         
         when(dao.create(accession1)).thenReturn(accession1);
         
-        EntityBean result = instance.createEntity(entityName, jsonInString);
+        EntityBean result = instance.createEntity(entityName, json);
         verify(dao).create(accession1);
         assertEquals(result, accession1);
         assertTrue(result instanceof Accession);
@@ -706,12 +707,12 @@ public class DinaDataLogicNGTest {
         String entityName = "Accession";
          
         ObjectMapper mapper = new ObjectMapper();
-        String jsonInString = mapper.writeValueAsString(accession1);
+        String json = mapper.writeValueAsString(accession1);
         
         when(dao.create(accession1)).thenThrow(new DinaException("error"));
         
         try {
-            instance.createEntity(entityName, jsonInString);
+            instance.createEntity(entityName, json);
             fail();
         } catch(DinaException e) {
             verify(dao).create(accession1);
@@ -728,17 +729,22 @@ public class DinaDataLogicNGTest {
     public void testUpdateEntity() throws Exception {
         System.out.println("updateEntity");
         
-        String entityName = "Accession";
-        
+        String entityName = "Accession"; 
         ObjectMapper mapper = new ObjectMapper();
-        String jsonInString = mapper.writeValueAsString(accession1);
 
-        when(dao.merge(accession1)).thenReturn(accession1);
+        EntityBean bean = null;
+        try {
+            bean = (EntityBean) mapper.readValue(jsonInString, Util.getInstance().convertClassNameToClass(entityName));
+        } catch (IOException ex) {
+            throw new DinaException(ex.getMessage());
+        }
+   
+        when(dao.merge(bean)).thenReturn(bean);
         
         EntityBean result = instance.updateEntity(entityName, jsonInString);
          
-        verify(dao).merge(accession1);
-        assertEquals(result, accession1);
+        verify(dao).merge(bean);
+        assertEquals(result, bean);
         assertTrue(result instanceof Accession);
     }
     
@@ -751,17 +757,23 @@ public class DinaDataLogicNGTest {
     public void testUpdateEntityFailure() throws Exception {
         System.out.println("updateEntity");
 
-        String entityName = "Accession";
-
+        String entityName = "Accession"; 
+        
         ObjectMapper mapper = new ObjectMapper();
-        String jsonInString = mapper.writeValueAsString(accession1);
 
-        when(dao.merge(accession1)).thenThrow(new DinaException("error"));
+        EntityBean bean = null;
+        try {
+            bean = (EntityBean) mapper.readValue(jsonInString, Util.getInstance().convertClassNameToClass(entityName));
+        } catch (IOException ex) {
+            throw new DinaException(ex.getMessage());
+        }
+
+        when(dao.merge(bean)).thenThrow(new DinaException("error"));
         try {
             instance.updateEntity(entityName, jsonInString);
             fail();
         } catch(DinaException e) {
-            verify(dao).merge(accession1);
+            verify(dao).merge(bean);
             assertEquals("error", e.getMessage());
         }  
     }
@@ -778,10 +790,10 @@ public class DinaDataLogicNGTest {
         String entityName = "Accessionddd";
 
         ObjectMapper mapper = new ObjectMapper();
-        String jsonInString = mapper.writeValueAsString(accession1);
+        String json = mapper.writeValueAsString(accession1);
  
         try {
-            instance.updateEntity(entityName, jsonInString);
+            instance.updateEntity(entityName, json);
             fail();
         } catch(DinaException e) {
             verify(dao, times(0)).merge(accession1);
@@ -883,6 +895,20 @@ public class DinaDataLogicNGTest {
 
         accession1 = new Accession(20);
         accession1.setAccessionNumber("acc00020");
+        
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append("{ \"timestampCreated\": 1297691649000,");
+        sb.append("\"accessionID\": 20,");
+        sb.append("\"accessionNumber\": \"2004-NHRS-001\",");
+        sb.append("\"dateAccessioned\": \"2004-07-07\",");
+        sb.append("\"dateReceived\": \"2004-07-07\",");
+        sb.append("\"status\": \"inprocess\",");
+        sb.append("\"modifiedByAgentID\": 1,");
+        sb.append("\"createdByAgentID\": 1,");
+        sb.append("\"version\": 10,");
+        sb.append("\"accessionagentList\": [1, 2, 7]}");
+        jsonInString = sb.toString();
     }
     
 }

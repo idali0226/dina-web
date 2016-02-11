@@ -30,8 +30,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
+//import javax.xml.bind.annotation.XmlElement;
+//import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -707,8 +707,8 @@ public class Collectionobject extends BaseEntity {
     }
 
     @XmlIDREF
-    @XmlElementWrapper(name="determinations")
-    @XmlElement(name="determination") 
+//    @XmlElementWrapper(name="determinations")
+//    @XmlElement(name="determination") 
     public List<Determination> getDeterminationList() {
         return determinationList;
     }
@@ -727,8 +727,8 @@ public class Collectionobject extends BaseEntity {
     }
 
     @XmlIDREF
-    @XmlElementWrapper(name="preparations")
-    @XmlElement(name="preparation") 
+//    @XmlElementWrapper(name="preparations")
+//    @XmlElement(name="preparation") 
     public List<Preparation> getPreparationList() {
         return preparationList;
     }

@@ -27,14 +27,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size; 
-import javax.xml.bind.annotation.XmlAttribute; 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlAttribute;  
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;  
+import javax.xml.bind.annotation.XmlTransient; 
 import se.nrm.dina.datamodel.util.Util;
 
 /**
@@ -52,7 +49,7 @@ import se.nrm.dina.datamodel.util.Util;
     @NamedQuery(name = "Accession.findByDateAcknowledged", query = "SELECT a FROM Accession a WHERE a.dateAcknowledged = :dateAcknowledged"),
     @NamedQuery(name = "Accession.findByDateReceived", query = "SELECT a FROM Accession a WHERE a.dateReceived = :dateReceived"), 
     @NamedQuery(name = "Accession.findByType", query = "SELECT a FROM Accession a WHERE a.type = :type") })
-@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Accession extends BaseEntity {
     
     private static final long serialVersionUID = 1L;
@@ -187,7 +184,8 @@ public class Accession extends BaseEntity {
         this.accessionNumber = accessionNumber;
     }
 
-    @XmlID  
+    @XmlID
+    @XmlAttribute(name = "id")
     @Override
     public String getIdentityString() {
         return String.valueOf(accessionID);
@@ -377,8 +375,8 @@ public class Accession extends BaseEntity {
     }
 
     @XmlIDREF
-    @XmlElementWrapper(name = "accessionAgents")
-    @XmlElement(name = "accessionAgent")
+//    @XmlElementWrapper(name = "accessionAgents")
+//    @XmlElement(name = "accessionAgent")
     public List<Accessionagent> getAccessionagentList() {
         return accessionagentList;
     }
