@@ -8,6 +8,7 @@ package se.nrm.dina.data.util;
 import java.util.HashMap;
 import java.util.Map; 
 import org.junit.Test;
+import org.mockito.Mock;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass; 
 import org.testng.annotations.BeforeClass;  
@@ -118,12 +119,11 @@ public class UtilNGTest {
     @Test
     public void testCreateNewInstance() {
         System.out.println("testCreateNewInstance");
-        
-        String classname = "Accession";
+         
         testInstance = new Util(); 
-        Accession result = testInstance.createNewInstance(classname);
+        Accession result = testInstance.createNewInstance(Accession.class);
         assertNotNull(result);
-        assertEquals(result.getClass().getSimpleName(), classname);
+        assertEquals(result.getClass().getSimpleName(), "Accession");
     }
 
     /**
@@ -132,10 +132,9 @@ public class UtilNGTest {
     @Test(expected = DinaException.class)
     public void testFailedCreateNewInstance() {
         System.out.println("testCreateNewInstance");
-
-        String classname = "Accessions";
+ 
         testInstance = new Util();
-        testInstance.createNewInstance(classname); 
+        testInstance.createNewInstance(Mock.class); 
     }
 
     /**
@@ -447,21 +446,7 @@ public class UtilNGTest {
         String result = testInstance.getIDFieldName(bean);
         assertEquals(result, expResult); 
     }
-
-    /**
-     * Test of getIDFieldName method, of class Util.
-     */
-    @Test
-    public void testGetIDFieldName_String() {
-        System.out.println("getIDFieldName");
-        
-        String entityName = "Accession";
-        testInstance = new Util();
-        String expResult = "accessionID";
-        String result = testInstance.getIDFieldName(entityName);
-        assertEquals(result, expResult); 
-    }
-
+ 
     /**
      * Test of isNumric method, of class Util.
      */

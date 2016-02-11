@@ -75,7 +75,7 @@ public class NamedQueries {
  
     private String buildConditions(Class clazz, int minid, int maxid, Map<String, String> criteria, boolean isExact) {
 
-        EntityBean bean = Util.getInstance().createNewInstance(clazz.getSimpleName());
+        EntityBean bean = Util.getInstance().createNewInstance(clazz);
         String idFieldName = Util.getInstance().getIDFieldName(bean);
 
         StringBuilder sb = new StringBuilder();
@@ -97,7 +97,7 @@ public class NamedQueries {
 
     private String buildConditions(Class clazz, int offset, Map<String, String> criteria, boolean isExact) {
 
-        EntityBean bean = Util.getInstance().createNewInstance(clazz.getSimpleName());
+        EntityBean bean = Util.getInstance().createNewInstance(clazz);
         String idFieldName = Util.getInstance().getIDFieldName(bean);
 
         StringBuilder sb = new StringBuilder();

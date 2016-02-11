@@ -8,7 +8,7 @@ package se.nrm.dina.data.util;
 import java.lang.reflect.Field;
 import java.util.Arrays; 
 import java.util.Map;
-import java.util.function.Predicate;
+import java.util.function.Predicate; 
 import javax.persistence.Id; 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -47,7 +47,7 @@ public class Util {
      */
     public Class convertClassNameToClass(String classname) {
  
-        logger.info("convertClassNameToClass : {}", classname);
+//        logger.info("convertClassNameToClass : {}", classname);
         
         try {
             return Class.forName(ENTITY_PACKAGE + reformClassName(classname));   
@@ -62,7 +62,7 @@ public class Util {
      * @return 
      */
     public String reformClassName(String s) {
-        logger.info("reformClassName : {}", s);
+//        logger.info("reformClassName : {}", s);
         
         if (s.length() == 0) {
             return s;
@@ -72,16 +72,14 @@ public class Util {
     
     /**
      * Creates an instance of entity of the given name
-     * @param <T>
-     * @param classname
+     * @param <T> 
+     * @param clazz 
      * @return EntityBean
      */
-    public <T extends EntityBean> T createNewInstance(String classname) {
- 
-        try {
-            Class classDefinition = Class.forName(ENTITY_PACKAGE + classname);
-            return (T) classDefinition.newInstance(); 
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoClassDefFoundError ex) {
+    public <T extends EntityBean> T createNewInstance(Class clazz) {
+        try { 
+            return (T) clazz.newInstance(); 
+        } catch (InstantiationException | IllegalAccessException ex) {
             throw new DinaException(ErrorMsg.getInstance().getEntityNameErrorMsg());
         }
     }
@@ -92,14 +90,14 @@ public class Util {
      * @param entityName
      * @return entityName
      */
-    public String validateEntityName(String entityName) {
-        entityName = reformClassName(entityName);
+    public String validateEntityName(String entityName) { 
+        EntityBean entity;
         try {
-            createNewInstance(entityName);
+            entity = createNewInstance(convertClassNameToClass(entityName));
         } catch (DinaException e) {
             throw new DinaException(e.getMessage());
         } 
-        return entityName;
+        return entity.getClass().getSimpleName();
     }
     
     /**
@@ -134,7 +132,7 @@ public class Util {
      * @return boolean
      */
     public boolean isIntField(Class clazz, String fieldName) {
-        logger.info("isIntField : {} -- {}", clazz, fieldName); 
+//        logger.info("isIntField : {} -- {}", clazz, fieldName); 
         try { 
             return clazz.getDeclaredField(fieldName).getType().getName().equals("int") || 
                    clazz.getDeclaredField(fieldName).getType().getName().equals("java.lang.Integer") ;
@@ -155,7 +153,7 @@ public class Util {
      * @return boolean
      */
     public boolean isEntity(Class clazz, String fieldName) {
-        logger.info("isIntField : {} -- {}", clazz, fieldName);
+//        logger.info("isIntField : {} -- {}", clazz, fieldName);
         try { 
             return clazz.getDeclaredField(fieldName).getType().getName().contains(ENTITY_PACKAGE);
         } catch (NoSuchFieldException e) {
@@ -175,7 +173,7 @@ public class Util {
      * @return 
      */
     public boolean isCollection(Class clazz, String fieldName) {
-        logger.info("isIntField : {} -- {}", clazz, fieldName);
+//        logger.info("isIntField : {} -- {}", clazz, fieldName);
         try { 
             return clazz.getDeclaredField(fieldName).getType().getName().equals("java.util.List");
         } catch (NoSuchFieldException e) {
@@ -199,9 +197,8 @@ public class Util {
      */
     public EntityBean getEntity(Class clazz, String fieldName) {
         logger.info("getEntity : {} -- {}", clazz, fieldName);
-        try { 
-     
-            return createNewInstance(clazz.getDeclaredField(fieldName).getType().getSimpleName());
+        try {  
+            return createNewInstance(convertClassNameToClass(clazz.getDeclaredField(fieldName).getType().getSimpleName()));
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
@@ -240,14 +237,7 @@ public class Util {
      * @return String, name of the id field of this entity bean
      */
     public String getIDFieldName(EntityBean bean) {
-        Field[] fields = bean.getClass().getDeclaredFields();
-
-        return Arrays.asList(fields)
-                .stream()
-                .filter(f -> f.isAnnotationPresent(Id.class))
-                .findFirst()
-                .get()
-                .getName();
+        return getIDField(bean).getName(); 
     }
 
     
@@ -266,22 +256,7 @@ public class Util {
                 .findFirst()
                 .get();
     }
-    
-    
-    /**
-     * Find id field name for the entity bean
-     *
-     * @param entityName
-     * @return String, name of the id field of this entity bean
-     */
-    public String getIDFieldName(String entityName) {
-        EntityBean bean = createNewInstance(entityName);
-        return getIDFieldName(bean);
-    }
-    
-    
-
-    
+  
     /**
      * Checks if the String is numeric
      * @param s
