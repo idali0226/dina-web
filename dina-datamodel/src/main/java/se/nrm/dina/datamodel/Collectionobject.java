@@ -287,7 +287,7 @@ public class Collectionobject extends BaseEntity {
     private Collectingevent collectingEventID;
     
     @JoinColumn(name = "CollectionObjectAttributeID", referencedColumnName = "CollectionObjectAttributeID")
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Collectionobjectattribute collectionObjectAttributeID;
     
     @JoinColumn(name = "ContainerOwnerID", referencedColumnName = "ContainerID")
