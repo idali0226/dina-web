@@ -9,7 +9,7 @@ import se.nrm.dina.datamodel.Discipline;
 import se.nrm.dina.datamodel.Spexportschemaitem;
 import se.nrm.dina.datamodel.Spexportschemamapping;
 
-@Generated(value="EclipseLink-2.7.0.v20160210-rNA", date="2016-02-11T12:23:20")
+@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-15T15:12:39")
 @StaticMetamodel(Spexportschema.class)
 public class Spexportschema_ extends BaseEntity_ {
 

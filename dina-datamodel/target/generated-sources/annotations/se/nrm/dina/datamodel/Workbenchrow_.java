@@ -8,7 +8,7 @@ import se.nrm.dina.datamodel.Workbench;
 import se.nrm.dina.datamodel.Workbenchdataitem;
 import se.nrm.dina.datamodel.Workbenchrowimage;
 
-@Generated(value="EclipseLink-2.7.0.v20160210-rNA", date="2016-02-11T12:23:20")
+@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-15T15:12:39")
 @StaticMetamodel(Workbenchrow.class)
 public class Workbenchrow_ { 
 

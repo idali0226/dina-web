@@ -287,7 +287,7 @@ public class Collectionobject extends BaseEntity {
     private Collectingevent collectingEventID;
     
     @JoinColumn(name = &quot;CollectionObjectAttributeID&quot;, referencedColumnName = &quot;CollectionObjectAttributeID&quot;)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collectionobjectattribute collectionObjectAttributeID;
     
     @JoinColumn(name = &quot;ContainerOwnerID&quot;, referencedColumnName = &quot;ContainerID&quot;)
@@ -845,7 +845,7 @@ public class Collectionobject extends BaseEntity {
 <span class="nc" id="L845">        this.collectingEventID = collectingEventID;</span>
 <span class="nc" id="L846">    }</span>
 
-    @XmlTransient
+    @XmlIDREF
     public Collectionobjectattribute getCollectionObjectAttributeID() {
 <span class="nc" id="L850">        return collectionObjectAttributeID;</span>
     }

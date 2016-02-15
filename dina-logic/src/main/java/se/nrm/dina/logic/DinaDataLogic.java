@@ -274,10 +274,15 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
             if (child != null) {
                 Field field = Util.getInstance().getIDField(child);
 
-                field.setAccessible(true);
-                EntityBean entity = dao.findById((Integer) field.get(child), child.getClass());
-
-                f.set(parent, entity);
+                field.setAccessible(true); 
+                if (field.get(child) != null && (Integer) field.get(child) > 0) {
+                    EntityBean entity = dao.findById((Integer) field.get(child), child.getClass());
+                    f.set(parent, entity);
+                } else {
+                    f.set(parent, child);
+                    Field[] fields = child.getClass().getDeclaredFields();
+                    setParentToChild(fields, child, parent);
+                }  
             }
         } catch (IllegalArgumentException | IllegalAccessException ex) {
             throw new DinaException("Save data failed.");

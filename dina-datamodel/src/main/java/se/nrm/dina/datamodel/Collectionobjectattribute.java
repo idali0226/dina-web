@@ -8,6 +8,7 @@ package se.nrm.dina.datamodel;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -300,7 +301,7 @@ public class Collectionobjectattribute extends BaseEntity {
     @ManyToOne
     private Agent createdByAgentID;
     
-    @OneToMany(mappedBy = "collectionObjectAttributeID", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "collectionObjectAttributeID", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Collectionobject> collectionobjectList;
 
     public Collectionobjectattribute() {
