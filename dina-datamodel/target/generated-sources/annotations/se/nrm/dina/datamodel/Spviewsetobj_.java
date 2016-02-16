@@ -8,7 +8,7 @@ import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Spappresourcedata;
 import se.nrm.dina.datamodel.Spappresourcedir;
 
-@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-15T16:21:30")
+@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-16T16:33:04")
 @StaticMetamodel(Spviewsetobj.class)
 public class Spviewsetobj_ extends BaseEntity_ {
 

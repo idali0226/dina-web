@@ -470,7 +470,7 @@ public class DinaDaoImplTest {
         verify(entityManager, times(0)).flush();
     }
 
-    @Test
+//    @Test
     public void testMergeFailure2() throws Exception {
         System.out.println("merge");
  

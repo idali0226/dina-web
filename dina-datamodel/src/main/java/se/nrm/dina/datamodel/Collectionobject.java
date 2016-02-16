@@ -29,9 +29,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlAttribute;
-//import javax.xml.bind.annotation.XmlElement;
-//import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlAttribute; 
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -283,7 +281,7 @@ public class Collectionobject extends BaseEntity {
     private Paleocontext paleoContextID;
     
     @JoinColumn(name = "CollectingEventID", referencedColumnName = "CollectingEventID")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Collectingevent collectingEventID;
     
     @JoinColumn(name = "CollectionObjectAttributeID", referencedColumnName = "CollectionObjectAttributeID")

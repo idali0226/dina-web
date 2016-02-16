@@ -13,7 +13,7 @@ import se.nrm.dina.datamodel.Giftagent;
 import se.nrm.dina.datamodel.Giftpreparation;
 import se.nrm.dina.datamodel.Shipment;
 
-@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-15T16:21:31")
+@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-16T16:33:04")
 @StaticMetamodel(Gift.class)
 public class Gift_ extends BaseEntity_ {
 

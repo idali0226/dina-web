@@ -7,7 +7,7 @@ import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Discipline;
 import se.nrm.dina.datamodel.Gift;
 
-@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-15T16:21:31")
+@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-16T16:33:04")
 @StaticMetamodel(Giftagent.class)
 public class Giftagent_ extends BaseEntity_ {
 

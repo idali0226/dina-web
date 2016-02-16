@@ -9,7 +9,7 @@ import se.nrm.dina.datamodel.Deaccession;
 import se.nrm.dina.datamodel.Loanreturnpreparation;
 import se.nrm.dina.datamodel.Preparation;
 
-@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-15T16:21:30")
+@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-16T16:33:04")
 @StaticMetamodel(Deaccessionpreparation.class)
 public class Deaccessionpreparation_ extends BaseEntity_ {
 

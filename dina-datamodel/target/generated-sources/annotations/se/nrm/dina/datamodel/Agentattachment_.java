@@ -6,7 +6,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Attachment;
 
-@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-15T16:21:30")
+@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-16T16:33:04")
 @StaticMetamodel(Agentattachment.class)
 public class Agentattachment_ extends BaseEntity_ {
 

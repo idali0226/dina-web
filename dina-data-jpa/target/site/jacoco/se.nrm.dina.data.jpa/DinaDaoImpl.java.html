@@ -169,9 +169,9 @@ public class DinaDaoImpl&lt;T extends EntityBean&gt; implements DinaDao&lt;T&gt;
 <span class="fc" id="L169">            entityManager.flush();                              // this one used for throwing OptimisticLockException if method called with web service</span>
 <span class="fc" id="L170">        } catch (OptimisticLockException e) { </span>
 <span class="fc" id="L171">            logger.warn(e.getMessage());</span>
-<span class="fc" id="L172">        } catch (ConstraintViolationException e) { </span>
-<span class="fc" id="L173">            logger.warn(e.getMessage());</span>
-<span class="fc" id="L174">            throw new DinaException(handleConstraintViolation(e));</span>
+<span class="nc" id="L172">        } catch (ConstraintViolationException e) { </span>
+<span class="nc" id="L173">            logger.warn(e.getMessage());</span>
+<span class="nc" id="L174">            throw new DinaException(handleConstraintViolation(e));</span>
 <span class="fc" id="L175">        } catch (Exception e) {  </span>
 <span class="fc" id="L176">            logger.warn(e.getMessage());</span>
 <span class="fc" id="L177">        }  </span>

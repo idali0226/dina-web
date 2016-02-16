@@ -28,7 +28,7 @@ import se.nrm.dina.datamodel.Preparation;
 import se.nrm.dina.datamodel.Specifyuser;
 import se.nrm.dina.datamodel.Treatmentevent;
 
-@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-15T16:21:31")
+@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-16T16:33:04")
 @StaticMetamodel(Collectionobject.class)
 public class Collectionobject_ extends BaseEntity_ {
 
