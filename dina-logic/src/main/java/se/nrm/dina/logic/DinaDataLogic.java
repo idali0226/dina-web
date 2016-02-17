@@ -279,8 +279,13 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
                     EntityBean entity = dao.findById((Integer) field.get(child), child.getClass());
                     f.set(parent, entity);
                 } else {
-                    f.set(parent, child);
+                    f.set(parent, child); 
                     Field[] fields = child.getClass().getDeclaredFields();
+                    Arrays.stream(fields)
+                            .forEach(fd -> {
+                                setValueToBean(child, fd);
+                            });
+
                     setParentToChild(fields, child, parent);
                 }  
             }

@@ -15,7 +15,7 @@ import se.nrm.dina.datamodel.Taxoncitation;
 import se.nrm.dina.datamodel.Taxontreedef;
 import se.nrm.dina.datamodel.Taxontreedefitem;
 
-@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-16T16:33:04")
+@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-17T11:15:58")
 @StaticMetamodel(Taxon.class)
 public class Taxon_ extends BaseEntity_ {
 

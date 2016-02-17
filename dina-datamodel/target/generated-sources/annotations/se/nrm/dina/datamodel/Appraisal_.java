@@ -10,7 +10,7 @@ import se.nrm.dina.datamodel.Accession;
 import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Collectionobject;
 
-@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-16T16:33:04")
+@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-17T11:15:58")
 @StaticMetamodel(Appraisal.class)
 public class Appraisal_ extends BaseEntity_ {
 

@@ -189,7 +189,7 @@ public class Collectingevent extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;collectingEventID&quot;, fetch = FetchType.LAZY)
     private List&lt;Collectingeventattr&gt; collectingeventattrList;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;collectingEventID&quot;, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;collectingEventID&quot;, fetch = FetchType.EAGER)
     private List&lt;Collector&gt; collectorList;
 
 <span class="nc" id="L195">    public Collectingevent() {</span>
@@ -522,7 +522,7 @@ public class Collectingevent extends BaseEntity {
 <span class="nc" id="L522">        this.collectingeventattrList = collectingeventattrList;</span>
 <span class="nc" id="L523">    }</span>
 
-    @XmlTransient
+    @XmlIDREF
     public List&lt;Collector&gt; getCollectorList() {
 <span class="nc" id="L527">        return collectorList;</span>
     }

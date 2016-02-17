@@ -10,7 +10,7 @@ import se.nrm.dina.datamodel.Lithostrattreedef;
 import se.nrm.dina.datamodel.Lithostrattreedefitem;
 import se.nrm.dina.datamodel.Paleocontext;
 
-@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-16T16:33:04")
+@Generated(value="EclipseLink-2.7.0.v20160211-rNA", date="2016-02-17T11:15:58")
 @StaticMetamodel(Lithostrat.class)
 public class Lithostrat_ extends BaseEntity_ {
 
