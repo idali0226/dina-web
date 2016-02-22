@@ -186,7 +186,26 @@ public class Util {
         }
     }
     
-    
+        
+    /**
+     * Checks if the field is a java.util.date
+     * @param clazz
+     * @param fieldName
+     * @return 
+     */
+    public boolean isDate(Class clazz, String fieldName) {
+        logger.info("isIntField : {} -- {}", clazz, fieldName);
+        try { 
+            return clazz.getDeclaredField(fieldName).getType().getName().equals("java.util.Date");
+        } catch (NoSuchFieldException e) {
+            Class superClass = clazz.getSuperclass();
+            if (superClass == null) {
+                throw new DinaException(e.getMessage());
+            } else {
+                return validateFields(superClass, fieldName);
+            }
+        }
+    }
     
     
     /**
@@ -229,7 +248,28 @@ public class Util {
             }
         } 
     }
-
+    
+    
+    public Field getTimestampCreated(Class clazz) {
+        logger.info("getTimestampCreated : {} ", clazz ); 
+        try {  
+            return clazz.getDeclaredField("timestampCreated"); 
+        } catch (NoSuchFieldException e) {
+            Class superClass = clazz.getSuperclass();
+            if (superClass == null) {
+                throw new DinaException(e.getMessage());
+            } else {
+                return getTimestampCreated(superClass);
+            }
+        } 
+    }
+    
+    
+    
+    
+    
+    
+    
     /**
      * Find id field name for the entity bean
      *

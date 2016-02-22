@@ -186,7 +186,26 @@ import se.nrm.dina.datamodel.EntityBean;
         }
     }
     
-    
+        
+    /**
+     * Checks if the field is a java.util.date
+     * @param clazz
+     * @param fieldName
+     * @return 
+     */
+    public boolean isDate(Class clazz, String fieldName) {
+<span class="nc" id="L197">        logger.info(&quot;isIntField : {} -- {}&quot;, clazz, fieldName);</span>
+        try { 
+<span class="nc" id="L199">            return clazz.getDeclaredField(fieldName).getType().getName().equals(&quot;java.util.Date&quot;);</span>
+<span class="nc" id="L200">        } catch (NoSuchFieldException e) {</span>
+<span class="nc" id="L201">            Class superClass = clazz.getSuperclass();</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">            if (superClass == null) {</span>
+<span class="nc" id="L203">                throw new DinaException(e.getMessage());</span>
+            } else {
+<span class="nc" id="L205">                return validateFields(superClass, fieldName);</span>
+            }
+        }
+    }
     
     
     /**
@@ -196,15 +215,15 @@ import se.nrm.dina.datamodel.EntityBean;
      * @return EntityBean
      */
     public EntityBean getEntity(Class clazz, String fieldName) {
-<span class="fc" id="L199">        logger.info(&quot;getEntity : {} -- {}&quot;, clazz, fieldName);</span>
+<span class="fc" id="L218">        logger.info(&quot;getEntity : {} -- {}&quot;, clazz, fieldName);</span>
         try {  
-<span class="fc" id="L201">            return createNewInstance(convertClassNameToClass(clazz.getDeclaredField(fieldName).getType().getSimpleName()));</span>
-<span class="fc" id="L202">        } catch (NoSuchFieldException e) {</span>
-<span class="fc" id="L203">            Class superClass = clazz.getSuperclass();</span>
-<span class="pc bpc" id="L204" title="1 of 2 branches missed.">            if (superClass == null) {</span>
-<span class="fc" id="L205">                throw new DinaException(e.getMessage());</span>
+<span class="fc" id="L220">            return createNewInstance(convertClassNameToClass(clazz.getDeclaredField(fieldName).getType().getSimpleName()));</span>
+<span class="fc" id="L221">        } catch (NoSuchFieldException e) {</span>
+<span class="fc" id="L222">            Class superClass = clazz.getSuperclass();</span>
+<span class="pc bpc" id="L223" title="1 of 2 branches missed.">            if (superClass == null) {</span>
+<span class="fc" id="L224">                throw new DinaException(e.getMessage());</span>
             } else {
-<span class="nc" id="L207">                return getEntity(superClass, fieldName);</span>
+<span class="nc" id="L226">                return getEntity(superClass, fieldName);</span>
             }
         }
     }
@@ -216,20 +235,41 @@ import se.nrm.dina.datamodel.EntityBean;
      * @return boolean
      */
     public boolean validateFields(Class clazz, String fieldName) {
-<span class="fc" id="L219">        logger.info(&quot;validateFields : {} -- {}&quot;, clazz, fieldName); </span>
+<span class="fc" id="L238">        logger.info(&quot;validateFields : {} -- {}&quot;, clazz, fieldName); </span>
         try {  
-<span class="fc" id="L221">            clazz.getDeclaredField(fieldName);</span>
-<span class="fc" id="L222">            return true;</span>
-<span class="fc" id="L223">        } catch (NoSuchFieldException e) {</span>
-<span class="fc" id="L224">            Class superClass = clazz.getSuperclass();</span>
-<span class="pc bpc" id="L225" title="1 of 2 branches missed.">            if (superClass == null) {</span>
-<span class="fc" id="L226">                throw new DinaException(e.getMessage());</span>
+<span class="fc" id="L240">            clazz.getDeclaredField(fieldName);</span>
+<span class="fc" id="L241">            return true;</span>
+<span class="fc" id="L242">        } catch (NoSuchFieldException e) {</span>
+<span class="fc" id="L243">            Class superClass = clazz.getSuperclass();</span>
+<span class="pc bpc" id="L244" title="1 of 2 branches missed.">            if (superClass == null) {</span>
+<span class="fc" id="L245">                throw new DinaException(e.getMessage());</span>
             } else {
-<span class="nc" id="L228">                return validateFields(superClass, fieldName);</span>
+<span class="nc" id="L247">                return validateFields(superClass, fieldName);</span>
             }
         } 
     }
-
+    
+    
+    public Field getTimestampCreated(Class clazz) {
+<span class="nc" id="L254">        logger.info(&quot;getTimestampCreated : {} &quot;, clazz ); </span>
+        try {  
+<span class="nc" id="L256">            return clazz.getDeclaredField(&quot;timestampCreated&quot;); </span>
+<span class="nc" id="L257">        } catch (NoSuchFieldException e) {</span>
+<span class="nc" id="L258">            Class superClass = clazz.getSuperclass();</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">            if (superClass == null) {</span>
+<span class="nc" id="L260">                throw new DinaException(e.getMessage());</span>
+            } else {
+<span class="nc" id="L262">                return getTimestampCreated(superClass);</span>
+            }
+        } 
+    }
+    
+    
+    
+    
+    
+    
+    
     /**
      * Find id field name for the entity bean
      *
@@ -237,7 +277,7 @@ import se.nrm.dina.datamodel.EntityBean;
      * @return String, name of the id field of this entity bean
      */
     public String getIDFieldName(EntityBean bean) {
-<span class="fc" id="L240">        return getIDField(bean).getName(); </span>
+<span class="fc" id="L280">        return getIDField(bean).getName(); </span>
     }
 
     
@@ -248,13 +288,13 @@ import se.nrm.dina.datamodel.EntityBean;
      * @return String, name of the id field of this entity bean
      */
     public Field getIDField(EntityBean bean) {
-<span class="fc" id="L251">        Field[] fields = bean.getClass().getDeclaredFields();</span>
+<span class="fc" id="L291">        Field[] fields = bean.getClass().getDeclaredFields();</span>
 
-<span class="fc" id="L253">        return Arrays.asList(fields)</span>
-<span class="fc" id="L254">                .stream()</span>
-<span class="fc" id="L255">                .filter(f -&gt; f.isAnnotationPresent(Id.class))</span>
-<span class="fc" id="L256">                .findFirst()</span>
-<span class="fc" id="L257">                .get();</span>
+<span class="fc" id="L293">        return Arrays.asList(fields)</span>
+<span class="fc" id="L294">                .stream()</span>
+<span class="fc" id="L295">                .filter(f -&gt; f.isAnnotationPresent(Id.class))</span>
+<span class="fc" id="L296">                .findFirst()</span>
+<span class="fc" id="L297">                .get();</span>
     }
   
     /**
@@ -263,7 +303,7 @@ import se.nrm.dina.datamodel.EntityBean;
      * @return 
      */    
     public boolean isNumric(String s) { 
-<span class="fc" id="L266">        return StringUtils.isNumeric(s);</span>
+<span class="fc" id="L306">        return StringUtils.isNumeric(s);</span>
     }
     
     /**
@@ -272,12 +312,12 @@ import se.nrm.dina.datamodel.EntityBean;
      * @return int
      */
     public int maxLimit(int limit) {
-<span class="fc bfc" id="L275" title="All 2 branches covered.">        if(limit &gt; MAX_LIMIT) {</span>
-<span class="fc" id="L276">            return MAX_LIMIT;</span>
-<span class="fc bfc" id="L277" title="All 2 branches covered.">        } else if(limit == 0) {</span>
-<span class="fc" id="L278">            return DEFAULT_LIMIT;</span>
+<span class="fc bfc" id="L315" title="All 2 branches covered.">        if(limit &gt; MAX_LIMIT) {</span>
+<span class="fc" id="L316">            return MAX_LIMIT;</span>
+<span class="fc bfc" id="L317" title="All 2 branches covered.">        } else if(limit == 0) {</span>
+<span class="fc" id="L318">            return DEFAULT_LIMIT;</span>
         } else {
-<span class="fc" id="L280">            return limit;</span>
+<span class="fc" id="L320">            return limit;</span>
         } 
     } 
 }

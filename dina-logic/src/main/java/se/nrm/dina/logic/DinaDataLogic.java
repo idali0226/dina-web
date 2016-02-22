@@ -9,12 +9,15 @@ package se.nrm.dina.logic;
 import java.io.IOException;
 import java.io.Serializable; 
 import java.lang.reflect.Field;
+import java.sql.Timestamp; 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Arrays; 
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Predicate;    
+import java.util.logging.Level;
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.ejb.Stateless; 
@@ -37,6 +40,7 @@ import se.nrm.dina.datamodel.EntityBean;
 public class DinaDataLogic<T extends EntityBean> implements Serializable {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private java.util.Date date;
 
     @EJB
     private DinaDao dao;
@@ -200,19 +204,24 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
 
         logger.info("createEntity : {} ", entityName);
 
+        LocalDateTime ld = LocalDateTime.now();
+        date = Timestamp.valueOf(ld);
+        
         try {
             EntityBean bean = mappObject(entityName, json);
 
             Field[] fields = bean.getClass().getDeclaredFields();
             Arrays.stream(fields)
-                    .forEach(f -> {
+                    .forEach(f -> {  
                         setValueToBean(bean, f);
-                    });
+                    }); 
+            setTimeStampCreated(bean); 
             return dao.create(bean);
-        } catch (DinaException ex) {
-            throw new DinaException(ex.getMessage());
+        } catch (DinaException ex) { 
+            throw new DinaException(ex.getMessage()); 
         }
     }
+
 
     /**
      * Updates an entity in database
@@ -279,13 +288,13 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
                     EntityBean entity = dao.findById((Integer) field.get(child), child.getClass());
                     f.set(parent, entity);
                 } else {
+                    setTimeStampCreated(child);
                     f.set(parent, child); 
                     Field[] fields = child.getClass().getDeclaredFields();
                     Arrays.stream(fields)
                             .forEach(fd -> {
                                 setValueToBean(child, fd);
-                            });
-
+                            }); 
                     setParentToChild(fields, child, parent);
                 }  
             }
@@ -302,8 +311,8 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
             Field[] fields;
             if (children != null && !children.isEmpty()) {
                 for (EntityBean child : children) {
-
-                    fields = child.getClass().getDeclaredFields();
+                    setTimeStampCreated(child);
+                    fields = child.getClass().getDeclaredFields(); 
                     setParentToChild(fields, child, parent);
                 }
                 field.set(parent, children);
@@ -338,4 +347,18 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
             setChildrenToBean(parent, f);
         }
     }
+    
+    
+    private void setTimeStampCreated(EntityBean bean) {
+        Field field = Util.getInstance().getTimestampCreated(bean.getClass());
+        if (field != null) {
+            try {
+                field.setAccessible(true);
+                field.set(bean, date);
+            } catch (IllegalArgumentException | IllegalAccessException ex) {
+                throw new DinaException(ex.getMessage()); 
+            }
+        }
+    }
+
 }
