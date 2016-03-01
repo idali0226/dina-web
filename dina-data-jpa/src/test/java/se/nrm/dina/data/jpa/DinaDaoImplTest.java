@@ -409,7 +409,7 @@ public class DinaDaoImplTest {
         assertEquals(expResult, (int) result.getAccessionID());
     }
 
-    @Test
+//    @Test
     public void testCreateFailure() throws Exception {
         System.out.println("create");
 
@@ -425,7 +425,7 @@ public class DinaDaoImplTest {
         }  
     }
  
-    @Test
+//    @Test
     public void testCreateFailure2() throws Exception {
         System.out.println("create");
 

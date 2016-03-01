@@ -5,7 +5,7 @@
  */
 package se.nrm.dina.logic;
  
-//import com.fasterxml.jackson.databind.ObjectMapper; 
+//import com.fasterxml.jackson.databind.ObjectMapper;    
 import java.io.IOException;
 import java.io.Serializable; 
 import java.lang.reflect.Field;
@@ -16,12 +16,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.function.Predicate;    
-import java.util.logging.Level;
+import java.util.function.Predicate;     
 import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.ejb.Stateless; 
-import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.MultivaluedMap; 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +29,7 @@ import se.nrm.dina.data.jpa.DinaDao;
 import se.nrm.dina.logic.util.NamedQueries;
 import se.nrm.dina.data.util.Util;  
 import se.nrm.dina.datamodel.EntityBean; 
+import se.nrm.dina.datamodel.ErrorBean;
 
 /**
  *
@@ -56,7 +56,7 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
     /**
      * Finds all the instances of an entity
      * @param entityName
-     * @return List<T> 
+     * @return List
      */
     public List<T> findAll(String entityName) { 
         try {
@@ -75,7 +75,7 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
      * @param maxid
      * @param sort
      * @param conditions
-     * @return List<T>
+     * @return List
      */
     public List<T> findAll(String entityName, int offset, int limit,
             int minid, int maxid, List<String> sort, Map<String, String> conditions) {
@@ -207,8 +207,9 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
         LocalDateTime ld = LocalDateTime.now();
         date = Timestamp.valueOf(ld);
         
+        EntityBean bean;
         try {
-            EntityBean bean = mappObject(entityName, json);
+            bean = mappObject(entityName, json);
 
             Field[] fields = bean.getClass().getDeclaredFields();
             Arrays.stream(fields)
@@ -217,11 +218,13 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
                     }); 
             setTimeStampCreated(bean); 
             return dao.create(bean);
-        } catch (DinaException ex) { 
-            throw new DinaException(ex.getMessage()); 
+        } catch (DinaException ex) {  
+            throw new DinaException(ex.getMessage(), 400); 
+        } catch(Exception e) {  
+            throw new DinaException();
         }
     }
-
+ 
 
     /**
      * Updates an entity in database

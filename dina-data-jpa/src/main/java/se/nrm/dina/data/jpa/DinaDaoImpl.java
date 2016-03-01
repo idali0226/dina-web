@@ -7,6 +7,7 @@
 package se.nrm.dina.data.jpa;
 
 import java.io.Serializable;    
+import java.util.ArrayList;
 import java.util.List; 
 import java.util.Map;  
 import java.util.Set;
@@ -18,8 +19,9 @@ import javax.persistence.LockModeType;
 import javax.persistence.OptimisticLockException; 
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query; 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;  
+import javax.validation.ConstraintViolation; 
+import javax.validation.ConstraintViolationException;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger; 
 import org.slf4j.LoggerFactory;  
 import se.nrm.dina.data.exceptions.DinaException;  
@@ -146,21 +148,22 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
         T tmp = entity;
         try {
             entityManager.persist(entity);
-            entityManager.flush();  
-            
-            logger.info("temp : {}", tmp);
-        } catch (ConstraintViolationException e) {  
-            throw new DinaException(handleConstraintViolation(e));
-        } catch (Exception e) { 
-            logger.warn(e.getMessage());
-        }    
-        
+            entityManager.flush();
+            logger.info("temp : {}", tmp);     
+        } catch (javax.persistence.PersistenceException ex) { 
+            logger.error("PersistenceException : {}", ex.getMessage());
+            if (ex.getCause() instanceof  org.hibernate.exception.ConstraintViolationException) {  
+                throw new DinaException(getRootCause(ex).getMessage());
+            }
+        } catch (Exception e) {
+            logger.error("exception : {}", e.getMessage());
+        }
         return tmp;
     }
 
     @Override
     public T merge(T entity) {
-                
+
         logger.info("merge: {}", entity);
 
         T tmp = entity;
@@ -285,7 +288,25 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
         }
         return query;
     }
+    
+    
+    
+    
+    public static Throwable getRootCause(final Throwable throwable) {
+        final List<Throwable> list = getThrowableList(throwable);
+        return list.size() < 2 ? null : (Throwable) list.get(list.size() - 1);
+    }
 
+    public static List<Throwable> getThrowableList(Throwable throwable) {
+        final List<Throwable> list = new ArrayList<>();
+        while (throwable != null && list.contains(throwable) == false) {
+            list.add(throwable);
+            throwable = ExceptionUtils.getCause(throwable);
+        }
+        return list;
+    }
+ 
+    
     /**
      * Method handles ConstraintViolationException. It logs exception messages,
      * entity properties with invalid values.
@@ -294,7 +315,7 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
      * @return 
      */
     private String handleConstraintViolation(ConstraintViolationException e) {
-
+        logger.error("handleConstraintViolation : {}", e.getMessage());
         StringBuilder sb = new StringBuilder();
 
         Set<ConstraintViolation<?>> cvs = e.getConstraintViolations();

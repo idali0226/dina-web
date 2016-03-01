@@ -223,6 +223,7 @@ se/nrm/dina/datamodel/Agentgeography.class
 se/nrm/dina/datamodel/Geocoorddetail_.class
 se/nrm/dina/datamodel/Taxontreedefitem.class
 se/nrm/dina/datamodel/Spauditlogfield_.class
+se/nrm/dina/datamodel/ErrorBean.class
 se/nrm/dina/datamodel/Groupperson_.class
 se/nrm/dina/datamodel/Exchangeinprep.class
 se/nrm/dina/datamodel/Agentvariant_.class

@@ -26,7 +26,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.TemporalType; 
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAttribute; 
@@ -41,7 +42,8 @@ import se.nrm.dina.datamodel.util.Util;
  * @author idali
  */
 @Entity
-@Table(name = "collectionobject")
+@Table(name = "collectionobject", 
+        uniqueConstraints = @UniqueConstraint(columnNames = {"collectionID", "CatalogNumber"}) )
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Collectionobject.findAll", query = "SELECT c FROM Collectionobject c"),
@@ -63,6 +65,7 @@ public class Collectionobject extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+//    @NotNull
     @Column(name = "CollectionObjectID")
     private Integer collectionObjectID;
      
@@ -72,6 +75,7 @@ public class Collectionobject extends BaseEntity {
     private int collectionMemberID;
      
 //    @JsonInclude(Include.NON_NULL)
+    
     @Size(max = 32)
     @Column(name = "AltCatalogNumber")
     private String altCatalogNumber;
@@ -80,6 +84,7 @@ public class Collectionobject extends BaseEntity {
     @Column(name = "Availability")
     private String availability;
     
+  
     @Size(max = 32)
     @Column(name = "CatalogNumber")
     private String catalogNumber;

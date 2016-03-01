@@ -7,6 +7,7 @@
 package se.nrm.dina.data.jpa;
 
 import java.io.Serializable;    
+import java.util.ArrayList;
 import java.util.List; 
 import java.util.Map;  
 import java.util.Set;
@@ -18,8 +19,9 @@ import javax.persistence.LockModeType;
 import javax.persistence.OptimisticLockException; 
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query; 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;  
+import javax.validation.ConstraintViolation; 
+import javax.validation.ConstraintViolationException;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger; 
 import org.slf4j.LoggerFactory;  
 import se.nrm.dina.data.exceptions.DinaException;  
@@ -36,184 +38,185 @@ import se.nrm.dina.datamodel.*;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class DinaDaoImpl&lt;T extends EntityBean&gt; implements DinaDao&lt;T&gt;, Serializable  {
     
-<span class="fc" id="L39">    private final Logger logger = LoggerFactory.getLogger(this.getClass());</span>
+<span class="fc" id="L41">    private final Logger logger = LoggerFactory.getLogger(this.getClass());</span>
   
     @PersistenceContext(unitName = &quot;jpaPU&quot;)                  //  persistence unit connect to production database  
     private EntityManager entityManager;
     
     private Query query;
 
-<span class="fc" id="L46">    public DinaDaoImpl() {</span>
+<span class="fc" id="L48">    public DinaDaoImpl() {</span>
 
-<span class="fc" id="L48">    }</span>
+<span class="fc" id="L50">    }</span>
     
-<span class="fc" id="L50">    public DinaDaoImpl(EntityManager entityManager, Query query) {</span>
-<span class="fc" id="L51">        this.entityManager = entityManager;</span>
-<span class="fc" id="L52">        this.query = query; </span>
-<span class="fc" id="L53">    } </span>
+<span class="fc" id="L52">    public DinaDaoImpl(EntityManager entityManager, Query query) {</span>
+<span class="fc" id="L53">        this.entityManager = entityManager;</span>
+<span class="fc" id="L54">        this.query = query; </span>
+<span class="fc" id="L55">    } </span>
 
   
     @Override
     public List&lt;T&gt; findAll(Class&lt;T&gt; clazz) {
 //        logger.info(&quot;findAll : {}&quot;, clazz);
         
-<span class="fc" id="L60">        query = entityManager.createNamedQuery(clazz.getSimpleName() + &quot;.findAll&quot;); </span>
-<span class="fc" id="L61">        return query.getResultList(); </span>
+<span class="fc" id="L62">        query = entityManager.createNamedQuery(clazz.getSimpleName() + &quot;.findAll&quot;); </span>
+<span class="fc" id="L63">        return query.getResultList(); </span>
     }
     
     @Override
     public List&lt;T&gt; findAll(Class&lt;T&gt; clazz, String jpql, int limit, Map&lt;String, String&gt; conditions ) {
-<span class="fc" id="L66">        logger.info(&quot;findAll : {} -- {}&quot;, jpql, conditions);</span>
+<span class="fc" id="L68">        logger.info(&quot;findAll : {} -- {}&quot;, jpql, conditions);</span>
          
         try {
-<span class="fc" id="L69">            query = createQuery(clazz, jpql, conditions);</span>
-<span class="fc" id="L70">            query.setMaxResults(Util.getInstance().maxLimit(limit));</span>
-<span class="fc" id="L71">            return query.getResultList();  </span>
-<span class="fc" id="L72">        } catch (Exception e) { </span>
-<span class="fc" id="L73">            throw new DinaException(e.getMessage());</span>
+<span class="fc" id="L71">            query = createQuery(clazz, jpql, conditions);</span>
+<span class="fc" id="L72">            query.setMaxResults(Util.getInstance().maxLimit(limit));</span>
+<span class="fc" id="L73">            return query.getResultList();  </span>
+<span class="fc" id="L74">        } catch (Exception e) { </span>
+<span class="fc" id="L75">            throw new DinaException(e.getMessage());</span>
         }
     }
     
     
     @Override
     public List&lt;T&gt; findAllWithFuzzSearch(Class&lt;T&gt; clazz, String jpql, int limit, Map&lt;String, String&gt; conditions) {
-<span class="nc" id="L80">        logger.info(&quot;findAll : {} -- {}&quot;, jpql, conditions);</span>
+<span class="nc" id="L82">        logger.info(&quot;findAll : {} -- {}&quot;, jpql, conditions);</span>
 
         try {
-<span class="nc" id="L83">            query = createQueryFuzzSearch(clazz, jpql, conditions);</span>
-<span class="nc" id="L84">            query.setMaxResults(Util.getInstance().maxLimit(limit));</span>
-<span class="nc" id="L85">            return query.getResultList();</span>
-<span class="nc" id="L86">        } catch (Exception e) {</span>
-<span class="nc" id="L87">            throw new DinaException(e.getMessage());</span>
+<span class="nc" id="L85">            query = createQueryFuzzSearch(clazz, jpql, conditions);</span>
+<span class="nc" id="L86">            query.setMaxResults(Util.getInstance().maxLimit(limit));</span>
+<span class="nc" id="L87">            return query.getResultList();</span>
+<span class="nc" id="L88">        } catch (Exception e) {</span>
+<span class="nc" id="L89">            throw new DinaException(e.getMessage());</span>
         }
     }
  
     @Override
     public T findById(int id, Class&lt;T&gt; clazz) {
-<span class="fc" id="L93">        logger.info(&quot;findById - class : {} - id : {}&quot;, clazz, id);</span>
+<span class="fc" id="L95">        logger.info(&quot;findById - class : {} - id : {}&quot;, clazz, id);</span>
  
          // Entity has no version can not have Optimistic lock
-<span class="fc bfc" id="L96" title="All 2 branches covered.">        if (clazz.getSimpleName().equals(Recordsetitem.class.getSimpleName())</span>
-<span class="fc bfc" id="L97" title="All 2 branches covered.">                || clazz.getSimpleName().equals(Sppermission.class.getSimpleName())</span>
-<span class="fc bfc" id="L98" title="All 2 branches covered.">                || clazz.getSimpleName().equals(Workbenchrow.class.getSimpleName())</span>
-<span class="fc bfc" id="L99" title="All 2 branches covered.">                || clazz.getSimpleName().equals(Workbenchdataitem.class.getSimpleName())</span>
-<span class="fc bfc" id="L100" title="All 2 branches covered.">                || clazz.getSimpleName().equals(Workbenchrowimage.class.getSimpleName())</span>
-<span class="fc bfc" id="L101" title="All 2 branches covered.">                || clazz.getSimpleName().equals(Geoname.class.getSimpleName())) {</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        if (clazz.getSimpleName().equals(Recordsetitem.class.getSimpleName())</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">                || clazz.getSimpleName().equals(Sppermission.class.getSimpleName())</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">                || clazz.getSimpleName().equals(Workbenchrow.class.getSimpleName())</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">                || clazz.getSimpleName().equals(Workbenchdataitem.class.getSimpleName())</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">                || clazz.getSimpleName().equals(Workbenchrowimage.class.getSimpleName())</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">                || clazz.getSimpleName().equals(Geoname.class.getSimpleName())) {</span>
 
-<span class="fc" id="L103">            return entityManager.find(clazz, id, LockModeType.PESSIMISTIC_WRITE);</span>
+<span class="fc" id="L105">            return entityManager.find(clazz, id, LockModeType.PESSIMISTIC_WRITE);</span>
         }
 
-<span class="fc" id="L106">        T tmp = null;</span>
+<span class="fc" id="L108">        T tmp = null;</span>
         try {
-<span class="fc" id="L108">            tmp = entityManager.find(clazz, id, LockModeType.OPTIMISTIC);</span>
-<span class="fc" id="L109">            entityManager.flush();</span>
-<span class="fc" id="L110">        } catch (OptimisticLockException ex) { </span>
-<span class="fc" id="L111">            entityManager.refresh(tmp);</span>
-<span class="fc" id="L112">            logger.warn(ex.getMessage());</span>
-<span class="fc" id="L113">        } catch(Exception ex) {</span>
+<span class="fc" id="L110">            tmp = entityManager.find(clazz, id, LockModeType.OPTIMISTIC);</span>
+<span class="fc" id="L111">            entityManager.flush();</span>
+<span class="fc" id="L112">        } catch (OptimisticLockException ex) { </span>
+<span class="fc" id="L113">            entityManager.refresh(tmp);</span>
 <span class="fc" id="L114">            logger.warn(ex.getMessage());</span>
-<span class="fc" id="L115">        }  </span>
-<span class="fc" id="L116">        return tmp; </span>
+<span class="fc" id="L115">        } catch(Exception ex) {</span>
+<span class="fc" id="L116">            logger.warn(ex.getMessage());</span>
+<span class="fc" id="L117">        }  </span>
+<span class="fc" id="L118">        return tmp; </span>
     }
 
     @Override
     public T findByStringId(String id, Class&lt;T&gt; clazz) {
-<span class="fc" id="L121">        logger.info(&quot;findByStringId - class : {} - id : {}&quot;, clazz, id); </span>
+<span class="fc" id="L123">        logger.info(&quot;findByStringId - class : {} - id : {}&quot;, clazz, id); </span>
 
-<span class="fc" id="L123">        T tmp = null;</span>
+<span class="fc" id="L125">        T tmp = null;</span>
         try {
-<span class="fc" id="L125">            tmp = entityManager.find(clazz, id, LockModeType.NONE);</span>
-<span class="fc" id="L126">            entityManager.flush();</span>
-<span class="fc" id="L127">        } catch (OptimisticLockException ex) { </span>
-<span class="fc" id="L128">            entityManager.refresh(tmp);</span>
-<span class="fc" id="L129">            logger.warn(ex.getMessage());</span>
-<span class="fc" id="L130">        } catch(Exception e) {</span>
-<span class="fc" id="L131">            logger.warn(e.getMessage()); </span>
-<span class="fc" id="L132">        }  </span>
-<span class="fc" id="L133">        return tmp; </span>
+<span class="fc" id="L127">            tmp = entityManager.find(clazz, id, LockModeType.NONE);</span>
+<span class="fc" id="L128">            entityManager.flush();</span>
+<span class="fc" id="L129">        } catch (OptimisticLockException ex) { </span>
+<span class="fc" id="L130">            entityManager.refresh(tmp);</span>
+<span class="fc" id="L131">            logger.warn(ex.getMessage());</span>
+<span class="fc" id="L132">        } catch(Exception e) {</span>
+<span class="fc" id="L133">            logger.warn(e.getMessage()); </span>
+<span class="fc" id="L134">        }  </span>
+<span class="fc" id="L135">        return tmp; </span>
     }
 
 
     @Override
     public T findByReference(int id, Class&lt;T&gt; clazz) {
-<span class="fc" id="L139">        return entityManager.getReference(clazz, id);</span>
+<span class="fc" id="L141">        return entityManager.getReference(clazz, id);</span>
     }
  
     @Override
     public T create(T entity) {
-<span class="fc" id="L144">        logger.info(&quot;create(T) : {}&quot;, entity);</span>
+<span class="fc" id="L146">        logger.info(&quot;create(T) : {}&quot;, entity);</span>
 
-<span class="fc" id="L146">        T tmp = entity;</span>
+<span class="fc" id="L148">        T tmp = entity;</span>
         try {
-<span class="fc" id="L148">            entityManager.persist(entity);</span>
-<span class="fc" id="L149">            entityManager.flush();  </span>
-            
-<span class="fc" id="L151">            logger.info(&quot;temp : {}&quot;, tmp);</span>
-<span class="fc" id="L152">        } catch (ConstraintViolationException e) {  </span>
-<span class="fc" id="L153">            throw new DinaException(handleConstraintViolation(e));</span>
-<span class="fc" id="L154">        } catch (Exception e) { </span>
-<span class="fc" id="L155">            logger.warn(e.getMessage());</span>
-<span class="fc" id="L156">        }    </span>
-        
-<span class="fc" id="L158">        return tmp;</span>
+<span class="fc" id="L150">            entityManager.persist(entity);</span>
+<span class="fc" id="L151">            entityManager.flush();</span>
+<span class="fc" id="L152">            logger.info(&quot;temp : {}&quot;, tmp);     </span>
+<span class="nc" id="L153">        } catch (javax.persistence.PersistenceException ex) { </span>
+<span class="nc" id="L154">            logger.error(&quot;PersistenceException : {}&quot;, ex.getMessage());</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            if (ex.getCause() instanceof  org.hibernate.exception.ConstraintViolationException) {  </span>
+<span class="nc" id="L156">                throw new DinaException(getRootCause(ex).getMessage());</span>
+            }
+<span class="nc" id="L158">        } catch (Exception e) {</span>
+<span class="nc" id="L159">            logger.error(&quot;exception : {}&quot;, e.getMessage());</span>
+<span class="pc" id="L160">        }</span>
+<span class="fc" id="L161">        return tmp;</span>
     }
 
     @Override
     public T merge(T entity) {
-                
-<span class="fc" id="L164">        logger.info(&quot;merge: {}&quot;, entity);</span>
 
-<span class="fc" id="L166">        T tmp = entity;</span>
+<span class="fc" id="L167">        logger.info(&quot;merge: {}&quot;, entity);</span>
+
+<span class="fc" id="L169">        T tmp = entity;</span>
         try { 
-<span class="fc" id="L168">            tmp = entityManager.merge(entity); </span>
-<span class="fc" id="L169">            entityManager.flush();                              // this one used for throwing OptimisticLockException if method called with web service</span>
-<span class="fc" id="L170">        } catch (OptimisticLockException e) { </span>
-<span class="fc" id="L171">            logger.warn(e.getMessage());</span>
-<span class="nc" id="L172">        } catch (ConstraintViolationException e) { </span>
-<span class="nc" id="L173">            logger.warn(e.getMessage());</span>
-<span class="nc" id="L174">            throw new DinaException(handleConstraintViolation(e));</span>
-<span class="fc" id="L175">        } catch (Exception e) {  </span>
-<span class="fc" id="L176">            logger.warn(e.getMessage());</span>
-<span class="fc" id="L177">        }  </span>
-<span class="fc" id="L178">        return tmp;</span>
+<span class="fc" id="L171">            tmp = entityManager.merge(entity); </span>
+<span class="fc" id="L172">            entityManager.flush();                              // this one used for throwing OptimisticLockException if method called with web service</span>
+<span class="fc" id="L173">        } catch (OptimisticLockException e) { </span>
+<span class="fc" id="L174">            logger.warn(e.getMessage());</span>
+<span class="nc" id="L175">        } catch (ConstraintViolationException e) { </span>
+<span class="nc" id="L176">            logger.warn(e.getMessage());</span>
+<span class="nc" id="L177">            throw new DinaException(handleConstraintViolation(e));</span>
+<span class="fc" id="L178">        } catch (Exception e) {  </span>
+<span class="fc" id="L179">            logger.warn(e.getMessage());</span>
+<span class="fc" id="L180">        }  </span>
+<span class="fc" id="L181">        return tmp;</span>
     }
     
     @Override
     public boolean updateByJPQL(String jpql ) {
 //        logger.info(&quot;updateByJPQL : {} &quot;, jpql );
-<span class="fc" id="L184">        query = entityManager.createQuery(jpql);</span>
+<span class="fc" id="L187">        query = entityManager.createQuery(jpql);</span>
  
-<span class="fc" id="L186">        int updated = query.executeUpdate();</span>
-<span class="fc bfc" id="L187" title="All 2 branches covered.">        return updated == 1;</span>
+<span class="fc" id="L189">        int updated = query.executeUpdate();</span>
+<span class="fc bfc" id="L190" title="All 2 branches covered.">        return updated == 1;</span>
     }
     
     @Override
     public T getEntityByJPQL(String jpql) {
 
 //        logger.info(&quot;getEntityByJPQL - jpql: {}&quot;, jpql);
-<span class="fc" id="L194">        query = entityManager.createQuery(jpql);</span>
+<span class="fc" id="L197">        query = entityManager.createQuery(jpql);</span>
         try {
-<span class="fc" id="L196">            return (T) query.getSingleResult();</span>
-<span class="fc" id="L197">        } catch (javax.persistence.NoResultException | javax.persistence.NonUniqueResultException ex) {</span>
-<span class="fc" id="L198">            logger.warn(ex.getMessage());</span>
-<span class="fc" id="L199">            return null;                        // if no result, return null</span>
+<span class="fc" id="L199">            return (T) query.getSingleResult();</span>
+<span class="fc" id="L200">        } catch (javax.persistence.NoResultException | javax.persistence.NonUniqueResultException ex) {</span>
+<span class="fc" id="L201">            logger.warn(ex.getMessage());</span>
+<span class="fc" id="L202">            return null;                        // if no result, return null</span>
         }
     }
  
     @Override
     public int getCountByQuery(String strQuery) {
 
-<span class="fc" id="L206">        logger.info(&quot;getCountByQuery: {} &quot;, strQuery);</span>
+<span class="fc" id="L209">        logger.info(&quot;getCountByQuery: {} &quot;, strQuery);</span>
         
         Number number;
-<span class="fc" id="L209">        query = entityManager.createQuery(strQuery);</span>
+<span class="fc" id="L212">        query = entityManager.createQuery(strQuery);</span>
         
         try {
-<span class="fc" id="L212">            number = (Number) query.getSingleResult();</span>
-<span class="fc" id="L213">        } catch (Exception e) {</span>
-<span class="fc" id="L214">            return 0;</span>
-<span class="fc" id="L215">        }  </span>
-<span class="fc" id="L216">        return number.intValue();</span>
+<span class="fc" id="L215">            number = (Number) query.getSingleResult();</span>
+<span class="fc" id="L216">        } catch (Exception e) {</span>
+<span class="fc" id="L217">            return 0;</span>
+<span class="fc" id="L218">        }  </span>
+<span class="fc" id="L219">        return number.intValue();</span>
     }
 
     @Override
@@ -221,14 +224,14 @@ public class DinaDaoImpl&lt;T extends EntityBean&gt; implements DinaDao&lt;T&gt;
 //        logger.info(&quot;delete - {}&quot;, entity);
 
         try {
-<span class="fc" id="L224">            entityManager.remove(entity);</span>
-<span class="fc" id="L225">            entityManager.flush();                              // this is needed for throwing internal exception</span>
-<span class="fc" id="L226">        } catch (ConstraintViolationException e) {</span>
-<span class="fc" id="L227">            logger.warn(e.getMessage());</span>
-<span class="fc" id="L228">        } catch (Exception e) {</span>
-<span class="fc" id="L229">            logger.warn(e.getMessage());</span>
-<span class="fc" id="L230">        }</span>
-<span class="fc" id="L231">    }</span>
+<span class="fc" id="L227">            entityManager.remove(entity);</span>
+<span class="fc" id="L228">            entityManager.flush();                              // this is needed for throwing internal exception</span>
+<span class="fc" id="L229">        } catch (ConstraintViolationException e) {</span>
+<span class="fc" id="L230">            logger.warn(e.getMessage());</span>
+<span class="fc" id="L231">        } catch (Exception e) {</span>
+<span class="fc" id="L232">            logger.warn(e.getMessage());</span>
+<span class="fc" id="L233">        }</span>
+<span class="fc" id="L234">    }</span>
 
     /**
      * Build a namedQuery with parameters
@@ -239,23 +242,23 @@ public class DinaDaoImpl&lt;T extends EntityBean&gt; implements DinaDao&lt;T&gt;
      * @return Query
      */
     private Query createQuery(Class clazz, String strJPQL, Map&lt;String, String&gt; parameters) {
-<span class="fc" id="L242">        query = entityManager.createQuery(strJPQL);</span>
+<span class="fc" id="L245">        query = entityManager.createQuery(strJPQL);</span>
 
-<span class="fc bfc" id="L244" title="All 2 branches covered.">        if (parameters != null) {</span>
-<span class="fc" id="L245">            parameters.entrySet()</span>
-<span class="fc" id="L246">                    .stream()</span>
-<span class="fc" id="L247">                    .forEach((entry) -&gt; {</span>
-<span class="fc" id="L248">                        String fieldName = entry.getKey();</span>
-<span class="fc bfc" id="L249" title="All 2 branches covered.">                        if (Util.getInstance().isIntField(clazz, fieldName)) {</span>
-<span class="fc" id="L250">                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));</span>
-<span class="fc bfc" id="L251" title="All 2 branches covered.">                        } else if (Util.getInstance().isEntity(clazz, fieldName)) {</span>
-<span class="fc" id="L252">                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));</span>
+<span class="fc bfc" id="L247" title="All 2 branches covered.">        if (parameters != null) {</span>
+<span class="fc" id="L248">            parameters.entrySet()</span>
+<span class="fc" id="L249">                    .stream()</span>
+<span class="fc" id="L250">                    .forEach((entry) -&gt; {</span>
+<span class="fc" id="L251">                        String fieldName = entry.getKey();</span>
+<span class="fc bfc" id="L252" title="All 2 branches covered.">                        if (Util.getInstance().isIntField(clazz, fieldName)) {</span>
+<span class="fc" id="L253">                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));</span>
+<span class="fc bfc" id="L254" title="All 2 branches covered.">                        } else if (Util.getInstance().isEntity(clazz, fieldName)) {</span>
+<span class="fc" id="L255">                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));</span>
                         } else {
-<span class="fc" id="L254">                            query.setParameter((String) entry.getKey(), entry.getValue());</span>
+<span class="fc" id="L257">                            query.setParameter((String) entry.getKey(), entry.getValue());</span>
                         }
-<span class="fc" id="L256">                    });</span>
+<span class="fc" id="L259">                    });</span>
         }
-<span class="fc" id="L258">        return query;</span>
+<span class="fc" id="L261">        return query;</span>
     }
  
     /**
@@ -267,25 +270,43 @@ public class DinaDaoImpl&lt;T extends EntityBean&gt; implements DinaDao&lt;T&gt;
      * @return Query
      */
     private Query createQueryFuzzSearch(Class clazz, String strJPQL, Map&lt;String, String&gt; parameters) {
-<span class="nc" id="L270">        query = entityManager.createQuery(strJPQL);</span>
+<span class="nc" id="L273">        query = entityManager.createQuery(strJPQL);</span>
 
-<span class="nc bnc" id="L272" title="All 2 branches missed.">        if (parameters != null) {</span>
-<span class="nc" id="L273">            parameters.entrySet()</span>
-<span class="nc" id="L274">                    .stream()</span>
-<span class="nc" id="L275">                    .forEach((entry) -&gt; {</span>
-<span class="nc" id="L276">                        String fieldName = entry.getKey();</span>
-<span class="nc bnc" id="L277" title="All 2 branches missed.">                        if (Util.getInstance().isIntField(clazz, fieldName)) {</span>
-<span class="nc" id="L278">                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));</span>
-<span class="nc bnc" id="L279" title="All 2 branches missed.">                        } else if (Util.getInstance().isEntity(clazz, fieldName)) {</span>
-<span class="nc" id="L280">                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));</span>
+<span class="nc bnc" id="L275" title="All 2 branches missed.">        if (parameters != null) {</span>
+<span class="nc" id="L276">            parameters.entrySet()</span>
+<span class="nc" id="L277">                    .stream()</span>
+<span class="nc" id="L278">                    .forEach((entry) -&gt; {</span>
+<span class="nc" id="L279">                        String fieldName = entry.getKey();</span>
+<span class="nc bnc" id="L280" title="All 2 branches missed.">                        if (Util.getInstance().isIntField(clazz, fieldName)) {</span>
+<span class="nc" id="L281">                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));</span>
+<span class="nc bnc" id="L282" title="All 2 branches missed.">                        } else if (Util.getInstance().isEntity(clazz, fieldName)) {</span>
+<span class="nc" id="L283">                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));</span>
                         } else {
-<span class="nc" id="L282">                            query.setParameter(entry.getKey(), &quot;%&quot; + entry.getValue() + &quot;%&quot;);</span>
+<span class="nc" id="L285">                            query.setParameter(entry.getKey(), &quot;%&quot; + entry.getValue() + &quot;%&quot;);</span>
                         }
-<span class="nc" id="L284">                    });</span>
+<span class="nc" id="L287">                    });</span>
         }
-<span class="nc" id="L286">        return query;</span>
+<span class="nc" id="L289">        return query;</span>
+    }
+    
+    
+    
+    
+    public static Throwable getRootCause(final Throwable throwable) {
+<span class="nc" id="L296">        final List&lt;Throwable&gt; list = getThrowableList(throwable);</span>
+<span class="nc bnc" id="L297" title="All 2 branches missed.">        return list.size() &lt; 2 ? null : (Throwable) list.get(list.size() - 1);</span>
     }
 
+    public static List&lt;Throwable&gt; getThrowableList(Throwable throwable) {
+<span class="nc" id="L301">        final List&lt;Throwable&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L302" title="All 4 branches missed.">        while (throwable != null &amp;&amp; list.contains(throwable) == false) {</span>
+<span class="nc" id="L303">            list.add(throwable);</span>
+<span class="nc" id="L304">            throwable = ExceptionUtils.getCause(throwable);</span>
+        }
+<span class="nc" id="L306">        return list;</span>
+    }
+ 
+    
     /**
      * Method handles ConstraintViolationException. It logs exception messages,
      * entity properties with invalid values.
@@ -294,49 +315,49 @@ public class DinaDaoImpl&lt;T extends EntityBean&gt; implements DinaDao&lt;T&gt;
      * @return 
      */
     private String handleConstraintViolation(ConstraintViolationException e) {
+<span class="nc" id="L318">        logger.error(&quot;handleConstraintViolation : {}&quot;, e.getMessage());</span>
+<span class="nc" id="L319">        StringBuilder sb = new StringBuilder();</span>
 
-<span class="fc" id="L298">        StringBuilder sb = new StringBuilder();</span>
-
-<span class="fc" id="L300">        Set&lt;ConstraintViolation&lt;?&gt;&gt; cvs = e.getConstraintViolations();</span>
-<span class="fc" id="L301">        cvs.stream().map((cv) -&gt; { </span>
-<span class="nc" id="L302">            logger.info(&quot;------------------------------------------------&quot;);</span>
-<span class="nc" id="L303">            return cv;</span>
-<span class="fc" id="L304">        }).map((cv) -&gt; {</span>
-<span class="nc" id="L305">            logger.info(&quot;Violation: {}&quot;, cv.getMessage());</span>
-<span class="nc" id="L306">            return cv;</span>
-<span class="fc" id="L307">        }).map((cv) -&gt; {</span>
-<span class="nc" id="L308">            sb.append(&quot;Violation:&quot;);</span>
-<span class="nc" id="L309">            sb.append(cv.getMessage());</span>
-<span class="nc" id="L310">            return cv;</span>
-<span class="fc" id="L311">        }).map((cv) -&gt; {</span>
-<span class="nc" id="L312">            logger.info(&quot;Entity: {}&quot;, cv.getRootBeanClass().getSimpleName());</span>
-<span class="nc" id="L313">            return cv;</span>
-<span class="fc" id="L314">        }).map((cv) -&gt; {</span>
-<span class="nc" id="L315">            sb.append(&quot; - Entity: &quot;);</span>
-<span class="nc" id="L316">            sb.append(cv.getRootBeanClass().getSimpleName());</span>
-<span class="nc" id="L317">            return cv;</span>
-<span class="fc" id="L318">        }).map((cv) -&gt; {</span>
-<span class="nc bnc" id="L319" title="All 4 branches missed.">            if (cv.getLeafBean() != null &amp;&amp; cv.getRootBean() != cv.getLeafBean()) {</span>
-<span class="nc" id="L320">                logger.info(&quot;Embeddable: {}&quot;, cv.getLeafBean().getClass().getSimpleName());</span>
-<span class="nc" id="L321">                sb.append(&quot; - Embeddable: &quot;);</span>
-<span class="nc" id="L322">                sb.append(cv.getLeafBean().getClass().getSimpleName());</span>
-            }
+<span class="nc" id="L321">        Set&lt;ConstraintViolation&lt;?&gt;&gt; cvs = e.getConstraintViolations();</span>
+<span class="nc" id="L322">        cvs.stream().map((cv) -&gt; { </span>
+<span class="nc" id="L323">            logger.info(&quot;------------------------------------------------&quot;);</span>
 <span class="nc" id="L324">            return cv;</span>
-<span class="fc" id="L325">        }).map((cv) -&gt; {</span>
-<span class="nc" id="L326">            logger.info(&quot;Attribute: {}&quot;, cv.getPropertyPath());</span>
+<span class="nc" id="L325">        }).map((cv) -&gt; {</span>
+<span class="nc" id="L326">            logger.info(&quot;Violation: {}&quot;, cv.getMessage());</span>
 <span class="nc" id="L327">            return cv;</span>
-<span class="fc" id="L328">        }).map((cv) -&gt; {</span>
-<span class="nc" id="L329">            sb.append(&quot; - Attribute: &quot;);</span>
-<span class="nc" id="L330">            sb.append(cv.getPropertyPath());</span>
+<span class="nc" id="L328">        }).map((cv) -&gt; {</span>
+<span class="nc" id="L329">            sb.append(&quot;Violation:&quot;);</span>
+<span class="nc" id="L330">            sb.append(cv.getMessage());</span>
 <span class="nc" id="L331">            return cv;</span>
-<span class="fc" id="L332">        }).map((cv) -&gt; {</span>
-<span class="nc" id="L333">            logger.info(&quot;Invalid value: {}&quot;, cv.getInvalidValue());</span>
+<span class="nc" id="L332">        }).map((cv) -&gt; {</span>
+<span class="nc" id="L333">            logger.info(&quot;Entity: {}&quot;, cv.getRootBeanClass().getSimpleName());</span>
 <span class="nc" id="L334">            return cv;</span>
-<span class="fc" id="L335">        }).forEach((cv) -&gt; {</span>
-<span class="nc" id="L336">            sb.append(&quot; - Invalid value: &quot;);</span>
-<span class="nc" id="L337">            sb.append(cv.getInvalidValue());</span>
-<span class="nc" id="L338">        });</span>
-<span class="fc" id="L339">        return sb.toString();</span>
+<span class="nc" id="L335">        }).map((cv) -&gt; {</span>
+<span class="nc" id="L336">            sb.append(&quot; - Entity: &quot;);</span>
+<span class="nc" id="L337">            sb.append(cv.getRootBeanClass().getSimpleName());</span>
+<span class="nc" id="L338">            return cv;</span>
+<span class="nc" id="L339">        }).map((cv) -&gt; {</span>
+<span class="nc bnc" id="L340" title="All 4 branches missed.">            if (cv.getLeafBean() != null &amp;&amp; cv.getRootBean() != cv.getLeafBean()) {</span>
+<span class="nc" id="L341">                logger.info(&quot;Embeddable: {}&quot;, cv.getLeafBean().getClass().getSimpleName());</span>
+<span class="nc" id="L342">                sb.append(&quot; - Embeddable: &quot;);</span>
+<span class="nc" id="L343">                sb.append(cv.getLeafBean().getClass().getSimpleName());</span>
+            }
+<span class="nc" id="L345">            return cv;</span>
+<span class="nc" id="L346">        }).map((cv) -&gt; {</span>
+<span class="nc" id="L347">            logger.info(&quot;Attribute: {}&quot;, cv.getPropertyPath());</span>
+<span class="nc" id="L348">            return cv;</span>
+<span class="nc" id="L349">        }).map((cv) -&gt; {</span>
+<span class="nc" id="L350">            sb.append(&quot; - Attribute: &quot;);</span>
+<span class="nc" id="L351">            sb.append(cv.getPropertyPath());</span>
+<span class="nc" id="L352">            return cv;</span>
+<span class="nc" id="L353">        }).map((cv) -&gt; {</span>
+<span class="nc" id="L354">            logger.info(&quot;Invalid value: {}&quot;, cv.getInvalidValue());</span>
+<span class="nc" id="L355">            return cv;</span>
+<span class="nc" id="L356">        }).forEach((cv) -&gt; {</span>
+<span class="nc" id="L357">            sb.append(&quot; - Invalid value: &quot;);</span>
+<span class="nc" id="L358">            sb.append(cv.getInvalidValue());</span>
+<span class="nc" id="L359">        });</span>
+<span class="nc" id="L360">        return sb.toString();</span>
     } 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
