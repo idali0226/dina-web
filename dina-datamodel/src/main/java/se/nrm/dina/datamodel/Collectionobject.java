@@ -30,6 +30,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.Min;
 import javax.xml.bind.annotation.XmlAttribute; 
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
@@ -71,6 +72,7 @@ public class Collectionobject extends BaseEntity {
      
     @Basic(optional = false)
     @NotNull
+    @Min(value = 1, message = "collectionMemberID can not be null")
     @Column(name = "CollectionMemberID")
     private int collectionMemberID;
      
@@ -279,6 +281,7 @@ public class Collectionobject extends BaseEntity {
     
     @JoinColumn(name = "CollectionID", referencedColumnName = "UserGroupScopeId")
     @ManyToOne(optional = false)
+    @NotNull(message = "collectionID can not be null")
     private Collection collectionID;
     
     @JoinColumn(name = "PaleoContextID", referencedColumnName = "PaleoContextID")

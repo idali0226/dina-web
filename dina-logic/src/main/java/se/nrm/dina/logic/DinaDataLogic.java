@@ -24,12 +24,12 @@ import javax.ws.rs.core.MultivaluedMap;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import se.nrm.dina.data.exceptions.DinaConstraintViolationException;
 import se.nrm.dina.data.exceptions.DinaException;
 import se.nrm.dina.data.jpa.DinaDao;
 import se.nrm.dina.logic.util.NamedQueries;
 import se.nrm.dina.data.util.Util;  
-import se.nrm.dina.datamodel.EntityBean; 
-import se.nrm.dina.datamodel.ErrorBean;
+import se.nrm.dina.datamodel.EntityBean;  
 
 /**
  *
@@ -218,8 +218,8 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
                     }); 
             setTimeStampCreated(bean); 
             return dao.create(bean);
-        } catch (DinaException ex) {  
-            throw new DinaException(ex.getMessage(), 400); 
+        } catch (DinaConstraintViolationException ex) {   
+            throw new DinaConstraintViolationException(ex.getErrorBeans(), ex.getErrorCode());  
         } catch(Exception e) {  
             throw new DinaException();
         }

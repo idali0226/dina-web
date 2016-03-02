@@ -5,7 +5,9 @@
  */
 package se.nrm.dina.data.exceptions;
  
+import java.util.List;
 import javax.ejb.ApplicationException;
+import se.nrm.dina.datamodel.ErrorBean;
 
 /**
  *
@@ -15,21 +17,43 @@ import javax.ejb.ApplicationException;
 public class DinaException extends RuntimeException  {
         
     private int errorCode;
+    private ErrorBean errorBean;
+    private List&lt;ErrorBean&gt; errorBeans;
     
-<span class="fc" id="L19">    public DinaException() {</span>
-<span class="fc" id="L20">    }</span>
+<span class="fc" id="L23">    public DinaException() {</span>
+<span class="fc" id="L24">    }</span>
 
     public DinaException(String s) {
-<span class="fc" id="L23">        super(s);</span>
-<span class="fc" id="L24">    }</span>
+<span class="fc" id="L27">        super(s);</span>
+<span class="fc" id="L28">    }</span>
  
     public DinaException(String s, int errorCode) {
-<span class="fc" id="L27">        super(s);</span>
-<span class="fc" id="L28">        this.errorCode = errorCode;</span>
-<span class="fc" id="L29">    }</span>
+<span class="fc" id="L31">        super(s);</span>
+<span class="fc" id="L32">        this.errorCode = errorCode;</span>
+<span class="fc" id="L33">    }</span>
+    
+<span class="nc" id="L35">    public DinaException(ErrorBean errorBean, int errorCode) { </span>
+<span class="nc" id="L36">        this.errorBean = errorBean;</span>
+<span class="nc" id="L37">        this.errorCode = errorCode;</span>
+<span class="nc" id="L38">    }</span>
+    
+<span class="nc" id="L40">    public DinaException(List&lt;ErrorBean&gt; errorBeans, int errorCode) { </span>
+<span class="nc" id="L41">        this.errorBeans = errorBeans;</span>
+<span class="nc" id="L42">        this.errorCode = errorCode;</span>
+<span class="nc" id="L43">    }</span>
 
     public int getErrorCode() {
-<span class="fc" id="L32">        return errorCode;</span>
+<span class="fc" id="L46">        return errorCode;</span>
     } 
+
+    public ErrorBean getErrorBean() {
+<span class="nc" id="L50">        return errorBean;</span>
+    } 
+
+    public List&lt;ErrorBean&gt; getErrorBeans() {
+<span class="nc" id="L54">        return errorBeans;</span>
+    }
+    
+    
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

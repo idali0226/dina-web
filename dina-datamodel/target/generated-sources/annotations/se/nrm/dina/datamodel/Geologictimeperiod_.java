@@ -10,7 +10,7 @@ import se.nrm.dina.datamodel.Geologictimeperiodtreedef;
 import se.nrm.dina.datamodel.Geologictimeperiodtreedefitem;
 import se.nrm.dina.datamodel.Paleocontext;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-01T16:46:53")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-02T11:43:24")
 @StaticMetamodel(Geologictimeperiod.class)
 public class Geologictimeperiod_ extends BaseEntity_ {
 

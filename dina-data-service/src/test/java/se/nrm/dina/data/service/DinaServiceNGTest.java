@@ -305,7 +305,7 @@ public class DinaServiceNGTest {
      *
      * @throws java.lang.Exception
      */
-    @Test
+//    @Test
     public void testCreateNewEntityFailure() throws Exception {
         System.out.println("createNewEntity");
 

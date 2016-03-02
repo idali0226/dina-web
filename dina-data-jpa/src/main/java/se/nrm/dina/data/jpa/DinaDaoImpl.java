@@ -24,6 +24,7 @@ import javax.validation.ConstraintViolationException;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger; 
 import org.slf4j.LoggerFactory;  
+import se.nrm.dina.data.exceptions.DinaConstraintViolationException;
 import se.nrm.dina.data.exceptions.DinaException;  
 import se.nrm.dina.data.util.Util;
 import se.nrm.dina.datamodel.*; 
@@ -153,8 +154,11 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
         } catch (javax.persistence.PersistenceException ex) { 
             logger.error("PersistenceException : {}", ex.getMessage());
             if (ex.getCause() instanceof  org.hibernate.exception.ConstraintViolationException) {  
-                throw new DinaException(getRootCause(ex).getMessage());
+                org.hibernate.exception.ConstraintViolationException e = (org.hibernate.exception.ConstraintViolationException) ex.getCause();
+                throw new DinaConstraintViolationException(handleHibernateConstraintViolation(e, entity.getClass().getSimpleName()), 400);
             }
+        } catch(ConstraintViolationException e) {
+            throw new DinaConstraintViolationException(handleConstraintViolations(e), 400);  
         } catch (Exception e) {
             logger.error("exception : {}", e.getMessage());
         }
@@ -305,7 +309,33 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
         }
         return list;
     }
+    
+    private List<ErrorBean> handleHibernateConstraintViolation(org.hibernate.exception.ConstraintViolationException e, String entityName) {
+        ErrorBean errorBean = new ErrorBean();
+        errorBean.setErrorMsg(getRootCause(e).getMessage());
+        errorBean.setEntityName(entityName);
+        List<ErrorBean> errorBeans = new ArrayList<>();
+        errorBeans.add(errorBean);
+        return errorBeans;
+    }
  
+    private List<ErrorBean> handleConstraintViolations(ConstraintViolationException e) { 
+        logger.error("handleConstraintViolations"); 
+        List<ErrorBean> errorBeans = new ArrayList<>();
+        Set<ConstraintViolation<?>> cvs = e.getConstraintViolations(); 
+        cvs.stream().forEach(cv -> {
+            ErrorBean errorBean = new ErrorBean();
+            errorBean.setViolation(cv.getMessage());
+            errorBean.setEntityName(cv.getRootBeanClass().getSimpleName());
+            errorBean.setErrorMsg(cv.getMessage()); 
+            errorBean.setConstrianKey(cv.getPropertyPath().toString());  
+            errorBean.setInvalidValue(cv.getInvalidValue() == null ? null : cv.getInvalidValue().toString());
+            errorBeans.add(errorBean);
+        });
+        return errorBeans; 
+    }
+    
+    
     
     /**
      * Method handles ConstraintViolationException. It logs exception messages,

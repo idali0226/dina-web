@@ -11,9 +11,12 @@ package se.nrm.dina.datamodel;
  */
 public class ErrorBean implements EntityBean {
     
+    
     private String entityName;
     private String constrianKey;
+    private String violation;
     private String errorMsg;
+    private String invalidValue;
     
     public ErrorBean() {
         
@@ -61,6 +64,22 @@ public class ErrorBean implements EntityBean {
 
     public void setErrorMsg(String errorMsg) {
         this.errorMsg = errorMsg;
+    }
+
+    public String getViolation() {
+        return violation;
+    }
+
+    public void setViolation(String violation) {
+        this.violation = violation;
+    }
+
+    public String getInvalidValue() {
+        return invalidValue;
+    }
+
+    public void setInvalidValue(String invalidValue) {
+        this.invalidValue = invalidValue;
     }
     
     

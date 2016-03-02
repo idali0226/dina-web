@@ -8,7 +8,7 @@ import se.nrm.dina.datamodel.Discipline;
 import se.nrm.dina.datamodel.Gift;
 import se.nrm.dina.datamodel.Preparation;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-01T16:46:53")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-02T11:43:24")
 @StaticMetamodel(Giftpreparation.class)
 public class Giftpreparation_ extends BaseEntity_ {
 

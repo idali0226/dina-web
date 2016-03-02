@@ -24,6 +24,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -65,6 +66,7 @@ public class Determination extends BaseEntity {
     
     @Basic(optional = false)
     @NotNull
+    @Min(value = 1, message = "collectionMemberID can not be null")
     @Column(name = "CollectionMemberID")
     private int collectionMemberID;
     
@@ -92,7 +94,7 @@ public class Determination extends BaseEntity {
     private String featureOrBasis;
     
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "IsCurrent can not be null")
     @Column(name = "IsCurrent")
     private boolean isCurrent;
     
