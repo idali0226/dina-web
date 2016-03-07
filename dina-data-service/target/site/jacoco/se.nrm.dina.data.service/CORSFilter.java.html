@@ -9,22 +9,21 @@ import java.io.IOException;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
+import javax.ws.rs.ext.Provider;
 
 /**
  *
  * @author idali
  */
-<span class="nc" id="L17">public class CORSFilter implements ContainerResponseFilter {</span>
+@Provider
+<span class="nc" id="L19">public class CORSFilter implements ContainerResponseFilter {</span>
 
- 
     @Override
     public void filter(ContainerRequestContext crc, ContainerResponseContext cres) throws IOException {
-<span class="nc" id="L22">        cres.getHeaders().add(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);</span>
-<span class="nc" id="L23">        cres.getHeaders().add(&quot;Access-Control-Allow-Headers&quot;, &quot;origin, content-type, accept, authorization&quot;);</span>
-<span class="nc" id="L24">        cres.getHeaders().add(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);</span>
-<span class="nc" id="L25">        cres.getHeaders().add(&quot;Access-Control-Allow-Methods&quot;, &quot;GET, POST, PUT, DELETE, OPTIONS, HEAD&quot;);</span>
-<span class="nc" id="L26">        cres.getHeaders().add(&quot;Access-Control-Max-Age&quot;, &quot;1209600&quot;);</span>
-<span class="nc" id="L27">    }</span>
-
+<span class="nc" id="L23">        cres.getHeaders().add(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);</span>
+<span class="nc" id="L24">        cres.getHeaders().add(&quot;Access-Control-Allow-Headers&quot;, &quot;Origin, Content-Type, Accept, Authorization&quot;);</span>
+<span class="nc" id="L25">        cres.getHeaders().add(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);</span>
+<span class="nc" id="L26">        cres.getHeaders().add(&quot;Access-Control-Allow-Methods&quot;, &quot;GET, POST, PUT, DELETE, OPTIONS, HEAD&quot;);</span>
+<span class="nc" id="L27">    }  </span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

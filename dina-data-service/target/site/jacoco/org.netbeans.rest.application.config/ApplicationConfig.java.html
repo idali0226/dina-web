@@ -29,8 +29,9 @@ import javax.ws.rs.core.Application;
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set&lt;Class&lt;?&gt;&gt; resources) {
-<span class="nc" id="L32">        resources.add(se.nrm.dina.data.service.DinaService.class);</span>
-<span class="nc" id="L33">    }</span>
+<span class="nc" id="L32">        resources.add(se.nrm.dina.data.service.CORSFilter.class);</span>
+<span class="nc" id="L33">        resources.add(se.nrm.dina.data.service.DinaService.class);</span>
+<span class="nc" id="L34">    }</span>
     
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
