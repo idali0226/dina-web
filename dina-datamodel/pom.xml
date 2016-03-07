@@ -101,12 +101,12 @@
         </plugins>
     </build>
     <repositories>
-<!--        <repository>
+        <repository>
             <url>http://download.eclipse.org/rt/eclipselink/maven.repo</url>
             <id>eclipselink</id>
             <layout>default</layout>
             <name>Repository for library Library[eclipselink]</name>
-        </repository>-->
+        </repository>
         <repository>
             <id>central</id>
             <name>Maven Repository Switchboard</name>
