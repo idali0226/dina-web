@@ -123,7 +123,7 @@ public class DinaDaoImplTest {
      *
      * @throws java.lang.Exception
      */
-    @Test
+//    @Test
     public void testFindAllWithConditionsException() throws Exception {
         System.out.println("findAll");
         
@@ -149,7 +149,7 @@ public class DinaDaoImplTest {
      *
      * @throws java.lang.Exception
      */
-    @Test
+//    @Test
     public void testFindAllWithConditions1() throws Exception {
         System.out.println("findAll");
         
@@ -173,7 +173,7 @@ public class DinaDaoImplTest {
      *
      * @throws java.lang.Exception
      */
-    @Test
+//    @Test
     public void testFindAllWithConditions2() throws Exception {
         
         System.out.println("testFindAllWithConditions");

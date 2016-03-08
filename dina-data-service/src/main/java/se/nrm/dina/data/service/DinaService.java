@@ -115,6 +115,17 @@ public class DinaService {
                     .entity(e.getMessage()).build();
         }
     }
+    
+    @GET
+    @Path("{entity}/{field}") 
+    public Response getEntitiesBySearchQuery(@PathParam("entity") String entity, @PathParam("field") String field, @Context UriInfo info) {
+        logger.info("getEntitiesBySearchQuery - entity: {}, field :  {}", entity, field);
+        
+        MultivaluedMap<String, String> map = info.getQueryParameters();
+        logic.findBysearchQuery(entity, field, map);
+        
+        return Response.ok().build();
+    }
 
 
     /**

@@ -141,7 +141,7 @@ public class Util {
             if (superClass == null) {
                 throw new DinaException(e.getMessage());
             } else {
-                return validateFields(superClass, fieldName);
+                return isIntField(superClass, fieldName); 
             }
         }
     }
@@ -153,15 +153,15 @@ public class Util {
      * @return boolean
      */
     public boolean isEntity(Class clazz, String fieldName) {
-//        logger.info("isIntField : {} -- {}", clazz, fieldName);
-        try { 
+        logger.info("isEntity : {} -- {}", clazz, fieldName);
+        try {  
             return clazz.getDeclaredField(fieldName).getType().getName().contains(ENTITY_PACKAGE);
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
                 throw new DinaException(e.getMessage());
             } else {
-                return validateFields(superClass, fieldName);
+                return isEntity(superClass, fieldName); 
             }
         }
     }
@@ -181,7 +181,8 @@ public class Util {
             if (superClass == null) {
                 throw new DinaException(e.getMessage());
             } else {
-                return validateFields(superClass, fieldName);
+//                return validateFields(superClass, fieldName);
+                return isCollection(superClass, fieldName);
             }
         }
     }
@@ -194,7 +195,7 @@ public class Util {
      * @return 
      */
     public boolean isDate(Class clazz, String fieldName) {
-        logger.info("isIntField : {} -- {}", clazz, fieldName);
+        logger.info("isDate : {} -- {}", clazz, fieldName);
         try { 
             return clazz.getDeclaredField(fieldName).getType().getName().equals("java.util.Date");
         } catch (NoSuchFieldException e) {
@@ -202,12 +203,32 @@ public class Util {
             if (superClass == null) {
                 throw new DinaException(e.getMessage());
             } else {
-                return validateFields(superClass, fieldName);
+                return isDate(superClass, fieldName); 
             }
         }
     }
-    
-    
+
+    /**
+     * Checks if the field is a java.util.date
+     *
+     * @param clazz
+     * @param fieldName
+     * @return
+     */
+    public boolean isBigDecimal(Class clazz, String fieldName) {
+        logger.info("isBigDecimal : {} -- {}", clazz, fieldName);
+        try {
+            return clazz.getDeclaredField(fieldName).getType().getName().equals("java.math.BigDecimal");
+        } catch (NoSuchFieldException e) {
+            Class superClass = clazz.getSuperclass();
+            if (superClass == null) {
+                throw new DinaException(e.getMessage());
+            } else {
+                return isBigDecimal(superClass, fieldName); 
+            }
+        }
+    }
+
     /**
      * Creates an Entity
      * @param clazz

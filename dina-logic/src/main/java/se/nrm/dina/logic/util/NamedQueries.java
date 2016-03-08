@@ -22,6 +22,9 @@ public class NamedQueries {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());   
     
     private static NamedQueries instance = null; 
+    private final String BETWEEN = "between";
+    private final String GREAT_THAN = "gt";
+    private final String LESS_THAN = "lt";
 
     public static synchronized NamedQueries getInstance() {
         if (instance == null) {
@@ -125,22 +128,62 @@ public class NamedQueries {
 
     private String buildSearchCriteria(Class clazz, Map<String, String> criteria, boolean isExact) {
 
+        logger.info("buildSearchCriteria : {}", criteria);
         StringBuilder sb = new StringBuilder();
         criteria.entrySet()
                 .stream()
                 .forEach(entry -> {
                     sb.append(" e.");
-                    sb.append(entry.getKey());
-
+                    sb.append(entry.getKey()); 
                     if (Util.getInstance().isEntity(clazz, entry.getKey())) {
                         sb.append(".");
                         sb.append(Util.getInstance().getIDFieldName(Util.getInstance().getEntity(clazz, entry.getKey())));
                         sb.append(" = :");
+                        sb.append(entry.getKey());
+                    } else if(Util.getInstance().isBigDecimal(clazz, entry.getKey()) || Util.getInstance().isDate(clazz, entry.getKey())) {
+                        String value = entry.getValue(); 
+                        if(value.toLowerCase().startsWith(BETWEEN)) {
+                            sb.append(" BETWEEN :");
+                            sb.append(entry.getKey());
+                            sb.append("min AND :");
+                            sb.append(entry.getKey());
+                            sb.append("max");
+                        } else if(value.toLowerCase().startsWith(GREAT_THAN)) {
+                            sb.append(" >= :");
+                            sb.append(entry.getKey());
+                            sb.append("v1");
+                        } else if(value.toLowerCase().startsWith(LESS_THAN)) {
+                            sb.append(" <= :");
+                            sb.append(entry.getKey());
+                            sb.append("v2");
+                        } else {
+                            sb.append(" = :"); 
+                            sb.append(entry.getKey());
+                        }
+//                    } else if(Util.getInstance().isDate(clazz, entry.getKey())) {
+//                        String value = entry.getValue(); 
+//                        if(value.toLowerCase().startsWith(BETWEEN)) {
+//                            sb.append(" BETWEEN :");
+//                            sb.append(entry.getKey());
+//                            sb.append("min AND :");
+//                            sb.append(entry.getKey());
+//                            sb.append("max");
+//                        } else if(value.toLowerCase().startsWith(GREAT_THAN)) {
+//                            sb.append(" >= :");
+//                            sb.append(entry.getKey());
+//                            sb.append("v1");
+//                        } else if(value.toLowerCase().startsWith(LESS_THAN)) {
+//                            sb.append(" <= :");
+//                            sb.append(entry.getKey());
+//                            sb.append("v2");
+//                        } else {
+//                            sb.append(" = :"); 
+//                            sb.append(entry.getKey());
+//                        }
                     } else {
                         sb.append(isExact ? " = :" : " like :"); 
-                    }
-
-                    sb.append(entry.getKey());
+                        sb.append(entry.getKey());
+                    } 
                     sb.append(" AND ");
                 });
         return StringUtils.substringBeforeLast(sb.toString(), " AND");

@@ -93,6 +93,15 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
             throw new DinaException(e.getMessage());
         }
     }
+    
+    public List<T> findBysearchQuery(String entityName, String field, MultivaluedMap<String, String> map) {
+        Map<String, String> condition = map.entrySet()
+                .stream() 
+                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
+        
+        logger.info("condition : {}", condition);
+        return new ArrayList<>();
+    }
 
     /**
      * Finds all the instances of an entity by query
@@ -128,7 +137,7 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
   
         try {
             Class clazz = Util.getInstance().convertClassNameToClass(entityName);
-            Util.getInstance().isFieldsValid(clazz, condition);
+            boolean isValid = Util.getInstance().isFieldsValid(clazz, condition); 
 
             String strQuery = NamedQueries.getInstance()
                     .createQueryFindAllWithSearchCriteria(
@@ -138,7 +147,7 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
                             Integer.parseInt(minid == null ? "0" : minid),
                             Integer.parseInt(maxid == null ? "0" : maxid),
                             orderby, isExact, condition);
-
+ 
             return isExact ? dao.findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)
                     : dao.findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition);
         } catch (DinaException e) {

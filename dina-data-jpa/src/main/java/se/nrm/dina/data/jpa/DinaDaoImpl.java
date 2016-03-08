@@ -21,35 +21,41 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query; 
 import javax.validation.ConstraintViolation; 
 import javax.validation.ConstraintViolationException;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger; 
 import org.slf4j.LoggerFactory;  
 import se.nrm.dina.data.exceptions.DinaConstraintViolationException;
 import se.nrm.dina.data.exceptions.DinaException;  
+import se.nrm.dina.data.util.HelpClass;
 import se.nrm.dina.data.util.Util;
 import se.nrm.dina.datamodel.*; 
 
 /**
  * CRUD operations to database
- *  
+ *
  * @author idali
  * @param <T>
- */ 
-@Stateless 
+ */
+@Stateless
 @TransactionManagement(TransactionManagementType.CONTAINER)
-public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializable  {
-    
+public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializable {
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-  
+
+    private final String BETWEEN = "between";
+    private final String GREAT_THAN = "gt";
+    private final String LESS_THAN = "lt";
+
     @PersistenceContext(unitName = "jpaPU")                  //  persistence unit connect to production database  
     private EntityManager entityManager;
-    
+
     private Query query;
 
     public DinaDaoImpl() {
 
     }
-    
+
     public DinaDaoImpl(EntityManager entityManager, Query query) {
         this.entityManager = entityManager;
         this.query = query; 
@@ -66,7 +72,7 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
     
     @Override
     public List<T> findAll(Class<T> clazz, String jpql, int limit, Map<String, String> conditions ) {
-        logger.info("findAll : {} -- {}", jpql, conditions);
+//        logger.info("findAll : {} -- {}", jpql, conditions);
          
         try {
             query = createQuery(clazz, jpql, conditions);
@@ -80,7 +86,7 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
     
     @Override
     public List<T> findAllWithFuzzSearch(Class<T> clazz, String jpql, int limit, Map<String, String> conditions) {
-        logger.info("findAll : {} -- {}", jpql, conditions);
+//        logger.info("findAll : {} -- {}", jpql, conditions);
 
         try {
             query = createQueryFuzzSearch(clazz, jpql, conditions);
@@ -151,16 +157,14 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
             entityManager.persist(entity);
             entityManager.flush();
             logger.info("temp : {}", tmp);     
-        } catch (javax.persistence.PersistenceException ex) { 
-            logger.error("PersistenceException : {}", ex.getMessage());
+        } catch (javax.persistence.PersistenceException ex) {  
             if (ex.getCause() instanceof  org.hibernate.exception.ConstraintViolationException) {  
                 org.hibernate.exception.ConstraintViolationException e = (org.hibernate.exception.ConstraintViolationException) ex.getCause();
                 throw new DinaConstraintViolationException(handleHibernateConstraintViolation(e, entity.getClass().getSimpleName()), 400);
             }
         } catch(ConstraintViolationException e) {
             throw new DinaConstraintViolationException(handleConstraintViolations(e), 400);  
-        } catch (Exception e) {
-            logger.error("exception : {}", e.getMessage());
+        } catch (Exception e) { 
         }
         return tmp;
     }
@@ -257,6 +261,32 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
                             query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));
                         } else if (Util.getInstance().isEntity(clazz, fieldName)) {
                             query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));
+                        } else if(Util.getInstance().isBigDecimal(clazz, fieldName)) {
+                            String value = entry.getValue();
+                             
+                            if(value.toLowerCase().startsWith(BETWEEN)) { 
+                                query.setParameter(entry.getKey() + "min", HelpClass.getInstance().convertStringToBigDecimal(StringUtils.substringBetween(value, "(", ",")));
+                                query.setParameter(entry.getKey() + "max", HelpClass.getInstance().convertStringToBigDecimal(StringUtils.substringBetween(value, ",", ")")));
+                            } else if(value.toLowerCase().startsWith(GREAT_THAN)) {
+                                query.setParameter(entry.getKey() + "v1", HelpClass.getInstance().convertStringToBigDecimal(StringUtils.substringBetween(value, "(", ")")));
+                            } else if(value.toLowerCase().startsWith(LESS_THAN)) {
+                                query.setParameter(entry.getKey() + "v2", HelpClass.getInstance().convertStringToBigDecimal(StringUtils.substringBetween(value, "(", ")")));
+                            } else {
+                                logger.info("bigDecimal");
+                                query.setParameter((String) entry.getKey(), HelpClass.getInstance().convertStringToBigDecimal(entry.getValue()));
+                            } 
+                        } else if(Util.getInstance().isDate(clazz, fieldName)) {
+                            String value = entry.getValue();
+                            if(value.toLowerCase().startsWith(BETWEEN)) { 
+                                query.setParameter(entry.getKey() + "min", HelpClass.getInstance().convertStringToDate(StringUtils.substringBetween(value, "(", ",")));
+                                query.setParameter(entry.getKey() + "max", HelpClass.getInstance().convertStringToDate(StringUtils.substringBetween(value, ",", ")")));
+                            } else if(value.toLowerCase().startsWith(GREAT_THAN)) {
+                                query.setParameter(entry.getKey() + "v1", HelpClass.getInstance().convertStringToDate(StringUtils.substringBetween(value, "(", ")")));
+                            } else if(value.toLowerCase().startsWith(LESS_THAN)) {
+                                query.setParameter(entry.getKey() + "v2", HelpClass.getInstance().convertStringToDate(StringUtils.substringBetween(value, "(", ")")));
+                            } else {
+                                query.setParameter((String) entry.getKey(), HelpClass.getInstance().convertStringToDate(entry.getValue()));
+                            } 
                         } else {
                             query.setParameter((String) entry.getKey(), entry.getValue());
                         }
@@ -264,6 +294,8 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
         }
         return query;
     }
+    
+    
  
     /**
      * Build a namedQuery with parameters
@@ -285,6 +317,31 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
                             query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));
                         } else if (Util.getInstance().isEntity(clazz, fieldName)) {
                             query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));
+                        } else if(Util.getInstance().isBigDecimal(clazz, fieldName)) {
+                            String value = entry.getValue();
+                             
+                            if(value.toLowerCase().startsWith(BETWEEN)) { 
+                                query.setParameter(entry.getKey() + "min", HelpClass.getInstance().convertStringToBigDecimal(StringUtils.substringBetween(value, "(", ",")));
+                                query.setParameter(entry.getKey() + "max", HelpClass.getInstance().convertStringToBigDecimal(StringUtils.substringBetween(value, ",", ")")));
+                            } else if(value.toLowerCase().startsWith(GREAT_THAN)) {
+                                query.setParameter(entry.getKey() + "v1", HelpClass.getInstance().convertStringToBigDecimal(StringUtils.substringBetween(value, "(", ")")));
+                            } else if(value.toLowerCase().startsWith(LESS_THAN)) {
+                                query.setParameter(entry.getKey() + "v2", HelpClass.getInstance().convertStringToBigDecimal(StringUtils.substringBetween(value, "(", ")")));
+                            } else {
+                                query.setParameter((String) entry.getKey(), HelpClass.getInstance().convertStringToBigDecimal(entry.getValue()));
+                            } 
+                        } else if(Util.getInstance().isDate(clazz, fieldName)) {
+                            String value = entry.getValue();
+                            if(value.toLowerCase().startsWith(BETWEEN)) { 
+                                query.setParameter(entry.getKey() + "min", HelpClass.getInstance().convertStringToDate(StringUtils.substringBetween(value, "(", ",")));
+                                query.setParameter(entry.getKey() + "max", HelpClass.getInstance().convertStringToDate(StringUtils.substringBetween(value, ",", ")")));
+                            } else if(value.toLowerCase().startsWith(GREAT_THAN)) {
+                                query.setParameter(entry.getKey() + "v1", HelpClass.getInstance().convertStringToDate(StringUtils.substringBetween(value, "(", ")")));
+                            } else if(value.toLowerCase().startsWith(LESS_THAN)) {
+                                query.setParameter(entry.getKey() + "v2", HelpClass.getInstance().convertStringToDate(StringUtils.substringBetween(value, "(", ")")));
+                            } else {
+                                query.setParameter((String) entry.getKey(), entry.getValue());
+                            } 
                         } else {
                             query.setParameter(entry.getKey(), "%" + entry.getValue() + "%");
                         }
