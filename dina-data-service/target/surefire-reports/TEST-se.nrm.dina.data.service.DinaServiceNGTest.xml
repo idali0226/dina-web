@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="se.nrm.dina.data.service.DinaServiceNGTest" time="2.872" tests="14" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="se.nrm.dina.data.service.DinaServiceNGTest" time="2.705" tests="13" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib"/>
@@ -62,18 +62,17 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="testDinaServiceConstractor" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="1.208"/>
-  <testcase name="testGetAllByEntityName" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.805"/>
-  <testcase name="testGetAllByEntityName2" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.073"/>
-  <testcase name="testGetAllByEntityNameFailure" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.054"/>
-  <testcase name="testGetDataFailure" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.055"/>
-  <testcase name="testGetData" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.054"/>
-  <testcase name="testGetEntityByIdFailure" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.054"/>
-  <testcase name="testGetEntityCount" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.047"/>
-  <testcase name="testGetEntityCountFailure" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.039"/>
-  <testcase name="testCreateNewEntity" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.052"/>
-  <testcase name="testUpdateEntity" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.057"/>
-  <testcase name="testUpdateEntityFailure" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.041"/>
-  <testcase name="testDeleteEntityById" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.028"/>
-  <testcase name="testDeleteEntityByIdFailure" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.031"/>
+  <testcase name="testGetAllByEntityName" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="2.027"/>
+  <testcase name="testGetAllByEntityName2" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.054"/>
+  <testcase name="testGetAllByEntityNameFailure" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.035"/>
+  <testcase name="testGetDataFailure" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.032"/>
+  <testcase name="testGetData" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.033"/>
+  <testcase name="testGetEntityCount" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.03"/>
+  <testcase name="testGetEntityCountFailure" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.035"/>
+  <testcase name="testCreateNewEntity" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.067"/>
+  <testcase name="testUpdateEntity" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.032"/>
+  <testcase name="testUpdateEntityFailure" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.035"/>
+  <testcase name="testDeleteEntityById" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.02"/>
+  <testcase name="testDeleteEntityByIdFailure" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.059"/>
+  <testcase name="testDinaServiceConstractor" classname="se.nrm.dina.data.service.DinaServiceNGTest" time="0.037"/>
 </testsuite>

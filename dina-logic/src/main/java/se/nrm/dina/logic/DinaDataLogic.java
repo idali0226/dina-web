@@ -288,25 +288,36 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
         }
     }
 
-    private void setChildToBean(EntityBean parent, Field f) {
+    private void setChildToBean(EntityBean parent, Field f) { 
         try {
             f.setAccessible(true);
-            EntityBean child = (EntityBean) f.get(parent);
+            EntityBean child = (EntityBean) f.get(parent); 
             if (child != null) {
                 Field field = Util.getInstance().getIDField(child);
 
-                field.setAccessible(true); 
-                if (field.get(child) != null && (Integer) field.get(child) > 0) {
-                    EntityBean entity = dao.findById((Integer) field.get(child), child.getClass());
-                    f.set(parent, entity);
+                field.setAccessible(true);
+                if (field.get(child) != null && (Integer) field.get(child) > 0) { 
+                    EntityBean entity = dao.findById((Integer) field.get(child), child.getClass()); 
+                    if (entity == null) {
+                        setTimeStampCreated(child);
+                        f.set(parent, child);
+                        Field[] fields = child.getClass().getDeclaredFields();
+                        Arrays.stream(fields)
+                                .forEach(fd -> {
+                                    setValueToBean(child, fd);
+                                });
+                        setParentToChild(fields, child, parent);
+                    } else {
+                        f.set(parent, entity);
+                    } 
                 } else {
                     setTimeStampCreated(child);
-                    f.set(parent, child); 
+                    f.set(parent, child);
                     Field[] fields = child.getClass().getDeclaredFields();
                     Arrays.stream(fields)
                             .forEach(fd -> {
                                 setValueToBean(child, fd);
-                            }); 
+                            });
                     setParentToChild(fields, child, parent);
                 }  
             }
@@ -315,8 +326,7 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
         }
     }
 
-    private void setChildrenToBean(EntityBean parent, Field field) {
-        logger.info("setChildrenToBean : {}", field.getName());
+    private void setChildrenToBean(EntityBean parent, Field field) { 
         try {
             field.setAccessible(true);
             List<EntityBean> children = (List) field.get(parent);
@@ -352,7 +362,7 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
                 });
     }
 
-    private void setValueToBean(EntityBean parent, Field f) {
+    private void setValueToBean(EntityBean parent, Field f) { 
         if (Util.getInstance().isEntity(parent.getClass(), f.getName())) {
             setChildToBean(parent, f);
         } else if (Util.getInstance().isCollection(parent.getClass(), f.getName())) {

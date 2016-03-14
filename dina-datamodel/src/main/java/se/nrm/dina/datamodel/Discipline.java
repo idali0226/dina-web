@@ -93,19 +93,19 @@ public class Discipline extends BaseEntity {
     private Lithostrattreedef lithoStratTreeDefID;
     
     @JoinColumn(name = "DivisionID", referencedColumnName = "UserGroupScopeId")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     private Division divisionID;
     
     @JoinColumn(name = "GeologicTimePeriodTreeDefID", referencedColumnName = "GeologicTimePeriodTreeDefID")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     private Geologictimeperiodtreedef geologicTimePeriodTreeDefID;
     
     @JoinColumn(name = "GeographyTreeDefID", referencedColumnName = "GeographyTreeDefID")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private Geographytreedef geographyTreeDefID;
     
     @JoinColumn(name = "DataTypeID", referencedColumnName = "DataTypeID")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     private Datatype dataTypeID;
     
     @JoinColumn(name = "TaxonTreeDefID", referencedColumnName = "TaxonTreeDefID")

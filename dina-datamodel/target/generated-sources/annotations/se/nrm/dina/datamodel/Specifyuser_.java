@@ -22,7 +22,7 @@ import se.nrm.dina.datamodel.Taxon;
 import se.nrm.dina.datamodel.Workbench;
 import se.nrm.dina.datamodel.Workbenchtemplate;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-07T10:42:30")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-14T13:38:26")
 @StaticMetamodel(Specifyuser.class)
 public class Specifyuser_ extends BaseEntity_ {
 

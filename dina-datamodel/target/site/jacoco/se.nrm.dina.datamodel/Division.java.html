@@ -109,8 +109,8 @@ public class Division extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;divisionID&quot;, fetch = FetchType.LAZY)
     private List&lt;Discipline&gt; disciplineList;
     
-    @JoinColumn(name = &quot;InstitutionID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot; )
-    @ManyToOne(optional = false )
+    @JoinColumn(name = &quot;InstitutionID&quot;, referencedColumnName = &quot;UserGroupScopeId&quot;)
+    @ManyToOne(optional = false,  cascade = CascadeType.PERSIST )
     private Institution institutionID;
     
     @JoinColumn(name = &quot;AddressID&quot;, referencedColumnName = &quot;AddressID&quot;)

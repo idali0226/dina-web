@@ -159,27 +159,7 @@ public class NamedQueries {
                         } else {
                             sb.append(" = :"); 
                             sb.append(entry.getKey());
-                        }
-//                    } else if(Util.getInstance().isDate(clazz, entry.getKey())) {
-//                        String value = entry.getValue(); 
-//                        if(value.toLowerCase().startsWith(BETWEEN)) {
-//                            sb.append(" BETWEEN :");
-//                            sb.append(entry.getKey());
-//                            sb.append("min AND :");
-//                            sb.append(entry.getKey());
-//                            sb.append("max");
-//                        } else if(value.toLowerCase().startsWith(GREAT_THAN)) {
-//                            sb.append(" >= :");
-//                            sb.append(entry.getKey());
-//                            sb.append("v1");
-//                        } else if(value.toLowerCase().startsWith(LESS_THAN)) {
-//                            sb.append(" <= :");
-//                            sb.append(entry.getKey());
-//                            sb.append("v2");
-//                        } else {
-//                            sb.append(" = :"); 
-//                            sb.append(entry.getKey());
-//                        }
+                        } 
                     } else {
                         sb.append(isExact ? " = :" : " like :"); 
                         sb.append(entry.getKey());

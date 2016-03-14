@@ -185,11 +185,11 @@ public class Collection extends BaseEntity {
     private Agent modifiedByAgentID;
     
     @JoinColumn(name = "CreatedByAgentID", referencedColumnName = "AgentID")
-    @ManyToOne 
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Agent createdByAgentID;
     
     @JoinColumn(name = "DisciplineID", referencedColumnName = "UserGroupScopeId")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private Discipline disciplineID;
     
     @JoinColumn(name = "InstitutionNetworkID", referencedColumnName = "UserGroupScopeId")

@@ -216,7 +216,7 @@ public class DinaServiceNGTest {
      *
      * @throws java.lang.Exception
      */
-    @Test
+//    @Test
     public void testGetEntityByIdFailure() throws Exception {
         System.out.println("getEntityById");
 

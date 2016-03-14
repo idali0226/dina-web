@@ -106,13 +106,13 @@ public class DinaService {
     @Path(&quot;{entity}/{id}/&quot;) 
     public Response getEntityById(@PathParam(&quot;entity&quot;) String entity, @PathParam(&quot;id&quot;) String id) {
         
-<span class="fc" id="L109">        logger.info(&quot;getEntityById - entity: {}, id :  {}&quot;, entity, id);</span>
+<span class="nc" id="L109">        logger.info(&quot;getEntityById - entity: {}, id :  {}&quot;, entity, id);</span>
    
         try {     
 <span class="nc" id="L112">            return Response.ok(logic.findById(id, entity)).build(); </span>
-<span class="fc" id="L113">        } catch (DinaException e) {</span>
-<span class="fc" id="L114">            return Response.status(e.getErrorCode()) </span>
-<span class="fc" id="L115">                    .entity(e.getMessage()).build();</span>
+<span class="nc" id="L113">        } catch (DinaException e) {</span>
+<span class="nc" id="L114">            return Response.status(e.getErrorCode()) </span>
+<span class="nc" id="L115">                    .entity(e.getMessage()).build();</span>
         }
     }
     
