@@ -241,7 +241,7 @@ public class Locality extends BaseEntity {
     @OneToMany(mappedBy = &quot;localityID&quot;, fetch = FetchType.LAZY)
     private List&lt;Localitydetail&gt; localitydetailList;
     
-    @OneToMany(mappedBy = &quot;localityID&quot;, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = &quot;localityID&quot;, fetch = FetchType.LAZY, cascade={CascadeType.MERGE, CascadeType.PERSIST})
     private List&lt;Collectingevent&gt; collectingeventList;
 
 <span class="nc" id="L247">    public Locality() {</span>

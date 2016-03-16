@@ -7,7 +7,7 @@ import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Collectingevent;
 import se.nrm.dina.datamodel.Division;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-14T13:38:27")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-16T12:32:55")
 @StaticMetamodel(Collector.class)
 public class Collector_ extends BaseEntity_ {
 

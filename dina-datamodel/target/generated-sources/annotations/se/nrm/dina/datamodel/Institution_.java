@@ -13,7 +13,7 @@ import se.nrm.dina.datamodel.Permit;
 import se.nrm.dina.datamodel.Referencework;
 import se.nrm.dina.datamodel.Storagetreedef;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-14T13:38:26")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-16T12:32:56")
 @StaticMetamodel(Institution.class)
 public class Institution_ extends BaseEntity_ {
 

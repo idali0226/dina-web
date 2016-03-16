@@ -179,7 +179,7 @@ public class Collectingevent extends BaseEntity {
     private Paleocontext paleoContextID;
     
     @JoinColumn(name = "LocalityID", referencedColumnName = "LocalityID")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Locality localityID;
     
     @JoinColumn(name = "CollectingEventAttributeID", referencedColumnName = "CollectingEventAttributeID")

@@ -2,234 +2,234 @@
 <testng-results skipped="0" failed="0" total="56" passed="56">
   <reporter-output>
   </reporter-output>
-  <suite name="Surefire suite" duration-ms="1210" started-at="2016-03-14T12:38:55Z" finished-at="2016-03-14T12:38:56Z">
+  <suite name="Surefire suite" duration-ms="3453" started-at="2016-03-16T11:33:49Z" finished-at="2016-03-16T11:33:52Z">
     <groups>
     </groups>
-    <test name="Surefire test" duration-ms="1210" started-at="2016-03-14T12:38:55Z" finished-at="2016-03-14T12:38:56Z">
+    <test name="Surefire test" duration-ms="3453" started-at="2016-03-16T11:33:49Z" finished-at="2016-03-16T11:33:52Z">
       <class name="se.nrm.dina.data.util.UtilNGTest">
-        <test-method status="PASS" signature="testGetInstance()[pri:0, instance:testGetInstance(se.nrm.dina.data.util.UtilNGTest)]" name="testGetInstance" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testGetInstance()[pri:0, instance:testGetInstance(se.nrm.dina.data.util.UtilNGTest)]" name="testGetInstance" duration-ms="12" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetInstance -->
-        <test-method status="PASS" signature="testConvertClassNameToClass()[pri:0, instance:testConvertClassNameToClass(se.nrm.dina.data.util.UtilNGTest)]" name="testConvertClassNameToClass" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testConvertClassNameToClass -->
-        <test-method status="PASS" signature="testConvertClassNameToClassException()[pri:0, instance:testConvertClassNameToClassException(se.nrm.dina.data.util.UtilNGTest)]" name="testConvertClassNameToClassException" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testConvertClassNameToClassException -->
-        <test-method status="PASS" signature="testReformClassName()[pri:0, instance:testReformClassName(se.nrm.dina.data.util.UtilNGTest)]" name="testReformClassName" duration-ms="0" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testReformClassName -->
-        <test-method status="PASS" signature="testCreateNewInstance()[pri:0, instance:testCreateNewInstance(se.nrm.dina.data.util.UtilNGTest)]" name="testCreateNewInstance" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testCreateNewInstance -->
-        <test-method status="PASS" signature="testReformClassNameEmptyName()[pri:0, instance:testReformClassNameEmptyName(se.nrm.dina.data.util.UtilNGTest)]" name="testReformClassNameEmptyName" duration-ms="0" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testReformClassNameEmptyName -->
-        <test-method status="PASS" signature="testFailedCreateNewInstance()[pri:0, instance:testFailedCreateNewInstance(se.nrm.dina.data.util.UtilNGTest)]" name="testFailedCreateNewInstance" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testFailedCreateNewInstance -->
-        <test-method status="PASS" signature="testValidateEntityName()[pri:0, instance:testValidateEntityName(se.nrm.dina.data.util.UtilNGTest)]" name="testValidateEntityName" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testValidateEntityName -->
-        <test-method status="PASS" signature="testInvalidateEntityName()[pri:0, instance:testInvalidateEntityName(se.nrm.dina.data.util.UtilNGTest)]" name="testInvalidateEntityName" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testInvalidateEntityName -->
-        <test-method status="PASS" signature="testIsFieldsValid()[pri:0, instance:testIsFieldsValid(se.nrm.dina.data.util.UtilNGTest)]" name="testIsFieldsValid" duration-ms="100" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testIsFieldsValid -->
-        <test-method status="PASS" signature="testIsFieldsValidFailed()[pri:0, instance:testIsFieldsValidFailed(se.nrm.dina.data.util.UtilNGTest)]" name="testIsFieldsValidFailed" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testIsFieldsValidFailed -->
-        <test-method status="PASS" signature="testIsFieldsValidFailedExpected()[pri:0, instance:testIsFieldsValidFailedExpected(se.nrm.dina.data.util.UtilNGTest)]" name="testIsFieldsValidFailedExpected" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testIsFieldsValidFailedExpected -->
-        <test-method status="PASS" signature="testIsIntField()[pri:0, instance:testIsIntField(se.nrm.dina.data.util.UtilNGTest)]" name="testIsIntField" duration-ms="26" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testIsIntField -->
-        <test-method status="PASS" signature="testIsIntFieldFalse()[pri:0, instance:testIsIntFieldFalse(se.nrm.dina.data.util.UtilNGTest)]" name="testIsIntFieldFalse" duration-ms="2" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testIsIntFieldFalse -->
-        <test-method status="PASS" signature="testIsIntegerFieldException()[pri:0, instance:testIsIntegerFieldException(se.nrm.dina.data.util.UtilNGTest)]" name="testIsIntegerFieldException" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testIsIntegerFieldException -->
-        <test-method status="PASS" signature="testIsIntegerField()[pri:0, instance:testIsIntegerField(se.nrm.dina.data.util.UtilNGTest)]" name="testIsIntegerField" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testIsIntegerField -->
-        <test-method status="PASS" signature="testIsEntity()[pri:0, instance:testIsEntity(se.nrm.dina.data.util.UtilNGTest)]" name="testIsEntity" duration-ms="0" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testIsEntity -->
-        <test-method status="PASS" signature="testIsEntityFalse()[pri:0, instance:testIsEntityFalse(se.nrm.dina.data.util.UtilNGTest)]" name="testIsEntityFalse" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testIsEntityFalse -->
-        <test-method status="PASS" signature="testIsEntityFalseException()[pri:0, instance:testIsEntityFalseException(se.nrm.dina.data.util.UtilNGTest)]" name="testIsEntityFalseException" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testIsEntityFalseException -->
-        <test-method status="PASS" signature="testIsCollection()[pri:0, instance:testIsCollection(se.nrm.dina.data.util.UtilNGTest)]" name="testIsCollection" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testIsCollection -->
-        <test-method status="PASS" signature="testIsCollectionFalse()[pri:0, instance:testIsCollectionFalse(se.nrm.dina.data.util.UtilNGTest)]" name="testIsCollectionFalse" duration-ms="0" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testIsCollectionFalse -->
-        <test-method status="PASS" signature="testGetEntity()[pri:0, instance:testGetEntity(se.nrm.dina.data.util.UtilNGTest)]" name="testGetEntity" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testGetEntity -->
-        <test-method status="PASS" signature="testGetEntityFailure()[pri:0, instance:testGetEntityFailure(se.nrm.dina.data.util.UtilNGTest)]" name="testGetEntityFailure" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testGetEntityFailure -->
-        <test-method status="PASS" signature="testValidateFields()[pri:0, instance:testValidateFields(se.nrm.dina.data.util.UtilNGTest)]" name="testValidateFields" duration-ms="1" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testValidateFields -->
-        <test-method status="PASS" signature="testGetIDFieldName_EntityBean()[pri:0, instance:testGetIDFieldName_EntityBean(se.nrm.dina.data.util.UtilNGTest)]" name="testGetIDFieldName_EntityBean" duration-ms="21" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testGetIDFieldName_EntityBean -->
-        <test-method status="PASS" signature="testIsNumric()[pri:0, instance:testIsNumric(se.nrm.dina.data.util.UtilNGTest)]" name="testIsNumric" duration-ms="16" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testIsNumric()[pri:0, instance:testIsNumric(se.nrm.dina.data.util.UtilNGTest)]" name="testIsNumric" duration-ms="59" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testIsNumric -->
-        <test-method status="PASS" signature="testMaxLimit()[pri:0, instance:testMaxLimit(se.nrm.dina.data.util.UtilNGTest)]" name="testMaxLimit" duration-ms="0" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testMaxLimit()[pri:0, instance:testMaxLimit(se.nrm.dina.data.util.UtilNGTest)]" name="testMaxLimit" duration-ms="1" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testMaxLimit -->
+        <test-method status="PASS" signature="testGetIDFieldName_EntityBean()[pri:0, instance:testGetIDFieldName_EntityBean(se.nrm.dina.data.util.UtilNGTest)]" name="testGetIDFieldName_EntityBean" duration-ms="371" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetIDFieldName_EntityBean -->
+        <test-method status="PASS" signature="testConvertClassNameToClass()[pri:0, instance:testConvertClassNameToClass(se.nrm.dina.data.util.UtilNGTest)]" name="testConvertClassNameToClass" duration-ms="0" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testConvertClassNameToClass -->
+        <test-method status="PASS" signature="testConvertClassNameToClassException()[pri:0, instance:testConvertClassNameToClassException(se.nrm.dina.data.util.UtilNGTest)]" name="testConvertClassNameToClassException" duration-ms="0" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testConvertClassNameToClassException -->
+        <test-method status="PASS" signature="testReformClassName()[pri:0, instance:testReformClassName(se.nrm.dina.data.util.UtilNGTest)]" name="testReformClassName" duration-ms="1" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testReformClassName -->
+        <test-method status="PASS" signature="testReformClassNameEmptyName()[pri:0, instance:testReformClassNameEmptyName(se.nrm.dina.data.util.UtilNGTest)]" name="testReformClassNameEmptyName" duration-ms="0" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testReformClassNameEmptyName -->
+        <test-method status="PASS" signature="testCreateNewInstance()[pri:0, instance:testCreateNewInstance(se.nrm.dina.data.util.UtilNGTest)]" name="testCreateNewInstance" duration-ms="0" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreateNewInstance -->
+        <test-method status="PASS" signature="testFailedCreateNewInstance()[pri:0, instance:testFailedCreateNewInstance(se.nrm.dina.data.util.UtilNGTest)]" name="testFailedCreateNewInstance" duration-ms="50" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFailedCreateNewInstance -->
+        <test-method status="PASS" signature="testValidateEntityName()[pri:0, instance:testValidateEntityName(se.nrm.dina.data.util.UtilNGTest)]" name="testValidateEntityName" duration-ms="1" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testValidateEntityName -->
+        <test-method status="PASS" signature="testInvalidateEntityName()[pri:0, instance:testInvalidateEntityName(se.nrm.dina.data.util.UtilNGTest)]" name="testInvalidateEntityName" duration-ms="1" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testInvalidateEntityName -->
+        <test-method status="PASS" signature="testIsFieldsValid()[pri:0, instance:testIsFieldsValid(se.nrm.dina.data.util.UtilNGTest)]" name="testIsFieldsValid" duration-ms="16" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testIsFieldsValid -->
+        <test-method status="PASS" signature="testIsFieldsValidFailed()[pri:0, instance:testIsFieldsValidFailed(se.nrm.dina.data.util.UtilNGTest)]" name="testIsFieldsValidFailed" duration-ms="1" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testIsFieldsValidFailed -->
+        <test-method status="PASS" signature="testIsFieldsValidFailedExpected()[pri:0, instance:testIsFieldsValidFailedExpected(se.nrm.dina.data.util.UtilNGTest)]" name="testIsFieldsValidFailedExpected" duration-ms="1" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testIsFieldsValidFailedExpected -->
+        <test-method status="PASS" signature="testIsIntField()[pri:0, instance:testIsIntField(se.nrm.dina.data.util.UtilNGTest)]" name="testIsIntField" duration-ms="74" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testIsIntField -->
+        <test-method status="PASS" signature="testIsIntFieldFalse()[pri:0, instance:testIsIntFieldFalse(se.nrm.dina.data.util.UtilNGTest)]" name="testIsIntFieldFalse" duration-ms="1" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testIsIntFieldFalse -->
+        <test-method status="PASS" signature="testIsIntegerFieldException()[pri:0, instance:testIsIntegerFieldException(se.nrm.dina.data.util.UtilNGTest)]" name="testIsIntegerFieldException" duration-ms="1" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testIsIntegerFieldException -->
+        <test-method status="PASS" signature="testIsIntegerField()[pri:0, instance:testIsIntegerField(se.nrm.dina.data.util.UtilNGTest)]" name="testIsIntegerField" duration-ms="1" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testIsIntegerField -->
+        <test-method status="PASS" signature="testIsEntity()[pri:0, instance:testIsEntity(se.nrm.dina.data.util.UtilNGTest)]" name="testIsEntity" duration-ms="0" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testIsEntity -->
+        <test-method status="PASS" signature="testIsEntityFalse()[pri:0, instance:testIsEntityFalse(se.nrm.dina.data.util.UtilNGTest)]" name="testIsEntityFalse" duration-ms="1" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testIsEntityFalse -->
+        <test-method status="PASS" signature="testIsEntityFalseException()[pri:0, instance:testIsEntityFalseException(se.nrm.dina.data.util.UtilNGTest)]" name="testIsEntityFalseException" duration-ms="2" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testIsEntityFalseException -->
+        <test-method status="PASS" signature="testIsCollection()[pri:0, instance:testIsCollection(se.nrm.dina.data.util.UtilNGTest)]" name="testIsCollection" duration-ms="0" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testIsCollection -->
+        <test-method status="PASS" signature="testIsCollectionFalse()[pri:0, instance:testIsCollectionFalse(se.nrm.dina.data.util.UtilNGTest)]" name="testIsCollectionFalse" duration-ms="1" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testIsCollectionFalse -->
+        <test-method status="PASS" signature="testGetEntity()[pri:0, instance:testGetEntity(se.nrm.dina.data.util.UtilNGTest)]" name="testGetEntity" duration-ms="2" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetEntity -->
+        <test-method status="PASS" signature="testGetEntityFailure()[pri:0, instance:testGetEntityFailure(se.nrm.dina.data.util.UtilNGTest)]" name="testGetEntityFailure" duration-ms="6" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGetEntityFailure -->
+        <test-method status="PASS" signature="testValidateFields()[pri:0, instance:testValidateFields(se.nrm.dina.data.util.UtilNGTest)]" name="testValidateFields" duration-ms="1" started-at="2016-03-16T12:33:52Z" finished-at="2016-03-16T12:33:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testValidateFields -->
       </class> <!-- se.nrm.dina.data.util.UtilNGTest -->
       <class name="se.nrm.dina.data.jpa.DinaDaoImplTest">
-        <test-method status="PASS" signature="testDinaDaoImplConstractor()[pri:0, instance:testDinaDaoImplConstractor(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testDinaDaoImplConstractor" duration-ms="499" started-at="2016-03-14T13:38:55Z" finished-at="2016-03-14T13:38:55Z">
+        <test-method status="PASS" signature="testDinaDaoImplConstractor()[pri:0, instance:testDinaDaoImplConstractor(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testDinaDaoImplConstractor" duration-ms="1360" started-at="2016-03-16T12:33:49Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDinaDaoImplConstractor -->
-        <test-method status="PASS" signature="testFindAll()[pri:0, instance:testFindAll(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindAll" duration-ms="65" started-at="2016-03-14T13:38:55Z" finished-at="2016-03-14T13:38:55Z">
+        <test-method status="PASS" signature="testFindAll()[pri:0, instance:testFindAll(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindAll" duration-ms="111" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindAll -->
-        <test-method status="PASS" signature="testFindById()[pri:0, instance:testFindById(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindById" duration-ms="23" started-at="2016-03-14T13:38:55Z" finished-at="2016-03-14T13:38:55Z">
+        <test-method status="PASS" signature="testFindById()[pri:0, instance:testFindById(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindById" duration-ms="39" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindById -->
-        <test-method status="PASS" signature="testFindByIdFailure()[pri:0, instance:testFindByIdFailure(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByIdFailure" duration-ms="9" started-at="2016-03-14T13:38:55Z" finished-at="2016-03-14T13:38:55Z">
+        <test-method status="PASS" signature="testFindByIdFailure()[pri:0, instance:testFindByIdFailure(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByIdFailure" duration-ms="8" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByIdFailure -->
-        <test-method status="PASS" signature="testFindByIdFailure2()[pri:0, instance:testFindByIdFailure2(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByIdFailure2" duration-ms="22" started-at="2016-03-14T13:38:55Z" finished-at="2016-03-14T13:38:55Z">
+        <test-method status="PASS" signature="testFindByIdFailure2()[pri:0, instance:testFindByIdFailure2(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByIdFailure2" duration-ms="79" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByIdFailure2 -->
-        <test-method status="PASS" signature="testFindByIdForNoVisionEntities()[pri:0, instance:testFindByIdForNoVisionEntities(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByIdForNoVisionEntities" duration-ms="4" started-at="2016-03-14T13:38:55Z" finished-at="2016-03-14T13:38:55Z">
+        <test-method status="PASS" signature="testFindByIdForNoVisionEntities()[pri:0, instance:testFindByIdForNoVisionEntities(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByIdForNoVisionEntities" duration-ms="37" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByIdForNoVisionEntities -->
-        <test-method status="PASS" signature="testFindByIdForNoVisionEntities1()[pri:0, instance:testFindByIdForNoVisionEntities1(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByIdForNoVisionEntities1" duration-ms="5" started-at="2016-03-14T13:38:55Z" finished-at="2016-03-14T13:38:55Z">
+        <test-method status="PASS" signature="testFindByIdForNoVisionEntities1()[pri:0, instance:testFindByIdForNoVisionEntities1(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByIdForNoVisionEntities1" duration-ms="5" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByIdForNoVisionEntities1 -->
-        <test-method status="PASS" signature="testFindByIdForNoVisionEntities2()[pri:0, instance:testFindByIdForNoVisionEntities2(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByIdForNoVisionEntities2" duration-ms="10" started-at="2016-03-14T13:38:55Z" finished-at="2016-03-14T13:38:55Z">
+        <test-method status="PASS" signature="testFindByIdForNoVisionEntities2()[pri:0, instance:testFindByIdForNoVisionEntities2(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByIdForNoVisionEntities2" duration-ms="116" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByIdForNoVisionEntities2 -->
-        <test-method status="PASS" signature="testFindByIdForNoVisionEntities3()[pri:0, instance:testFindByIdForNoVisionEntities3(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByIdForNoVisionEntities3" duration-ms="7" started-at="2016-03-14T13:38:55Z" finished-at="2016-03-14T13:38:55Z">
+        <test-method status="PASS" signature="testFindByIdForNoVisionEntities3()[pri:0, instance:testFindByIdForNoVisionEntities3(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByIdForNoVisionEntities3" duration-ms="5" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByIdForNoVisionEntities3 -->
-        <test-method status="PASS" signature="testFindByIdForNoVisionEntities4()[pri:0, instance:testFindByIdForNoVisionEntities4(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByIdForNoVisionEntities4" duration-ms="3" started-at="2016-03-14T13:38:55Z" finished-at="2016-03-14T13:38:55Z">
+        <test-method status="PASS" signature="testFindByIdForNoVisionEntities4()[pri:0, instance:testFindByIdForNoVisionEntities4(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByIdForNoVisionEntities4" duration-ms="3" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByIdForNoVisionEntities4 -->
-        <test-method status="PASS" signature="testFindByIdForNoVisionEntities5()[pri:0, instance:testFindByIdForNoVisionEntities5(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByIdForNoVisionEntities5" duration-ms="3" started-at="2016-03-14T13:38:55Z" finished-at="2016-03-14T13:38:55Z">
+        <test-method status="PASS" signature="testFindByIdForNoVisionEntities5()[pri:0, instance:testFindByIdForNoVisionEntities5(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByIdForNoVisionEntities5" duration-ms="22" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByIdForNoVisionEntities5 -->
-        <test-method status="PASS" signature="testFindByStringId()[pri:0, instance:testFindByStringId(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByStringId" duration-ms="7" started-at="2016-03-14T13:38:55Z" finished-at="2016-03-14T13:38:55Z">
+        <test-method status="PASS" signature="testFindByStringId()[pri:0, instance:testFindByStringId(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByStringId" duration-ms="24" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByStringId -->
-        <test-method status="PASS" signature="testFindByReference()[pri:0, instance:testFindByReference(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByReference" duration-ms="3" started-at="2016-03-14T13:38:55Z" finished-at="2016-03-14T13:38:55Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testFindByReference -->
-        <test-method status="PASS" signature="testFindByStringIdFailure()[pri:0, instance:testFindByStringIdFailure(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByStringIdFailure" duration-ms="5" started-at="2016-03-14T13:38:55Z" finished-at="2016-03-14T13:38:55Z">
+        <test-method status="PASS" signature="testFindByStringIdFailure()[pri:0, instance:testFindByStringIdFailure(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByStringIdFailure" duration-ms="17" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByStringIdFailure -->
-        <test-method status="PASS" signature="testFindByStringIdFailure2()[pri:0, instance:testFindByStringIdFailure2(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByStringIdFailure2" duration-ms="4" started-at="2016-03-14T13:38:55Z" finished-at="2016-03-14T13:38:55Z">
+        <test-method status="PASS" signature="testFindByStringIdFailure2()[pri:0, instance:testFindByStringIdFailure2(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByStringIdFailure2" duration-ms="6" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testFindByStringIdFailure2 -->
-        <test-method status="PASS" signature="testCreate()[pri:0, instance:testCreate(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testCreate" duration-ms="5" started-at="2016-03-14T13:38:55Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testFindByReference()[pri:0, instance:testFindByReference(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testFindByReference" duration-ms="5" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFindByReference -->
+        <test-method status="PASS" signature="testCreate()[pri:0, instance:testCreate(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testCreate" duration-ms="59" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreate -->
-        <test-method status="PASS" signature="testMerge()[pri:0, instance:testMerge(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testMerge" duration-ms="4" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testMerge()[pri:0, instance:testMerge(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testMerge" duration-ms="28" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testMerge -->
-        <test-method status="PASS" signature="testMergeFailure1()[pri:0, instance:testMergeFailure1(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testMergeFailure1" duration-ms="17" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testMergeFailure1()[pri:0, instance:testMergeFailure1(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testMergeFailure1" duration-ms="15" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testMergeFailure1 -->
-        <test-method status="PASS" signature="testMergeFailure3()[pri:0, instance:testMergeFailure3(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testMergeFailure3" duration-ms="13" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testMergeFailure3()[pri:0, instance:testMergeFailure3(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testMergeFailure3" duration-ms="33" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testMergeFailure3 -->
-        <test-method status="PASS" signature="testUpdateByJPQL()[pri:0, instance:testUpdateByJPQL(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testUpdateByJPQL" duration-ms="15" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testUpdateByJPQL()[pri:0, instance:testUpdateByJPQL(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testUpdateByJPQL" duration-ms="5" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdateByJPQL -->
-        <test-method status="PASS" signature="testUpdateByJPQLFailure()[pri:0, instance:testUpdateByJPQLFailure(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testUpdateByJPQLFailure" duration-ms="4" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testUpdateByJPQLFailure()[pri:0, instance:testUpdateByJPQLFailure(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testUpdateByJPQLFailure" duration-ms="4" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testUpdateByJPQLFailure -->
-        <test-method status="PASS" signature="testDelete()[pri:0, instance:testDelete(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testDelete" duration-ms="6" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testDelete()[pri:0, instance:testDelete(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testDelete" duration-ms="5" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDelete -->
-        <test-method status="PASS" signature="testDeleteFailure1()[pri:0, instance:testDeleteFailure1(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testDeleteFailure1" duration-ms="14" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testDeleteFailure1()[pri:0, instance:testDeleteFailure1(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testDeleteFailure1" duration-ms="76" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDeleteFailure1 -->
-        <test-method status="PASS" signature="testDeleteFailure2()[pri:0, instance:testDeleteFailure2(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testDeleteFailure2" duration-ms="3" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testDeleteFailure2()[pri:0, instance:testDeleteFailure2(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testDeleteFailure2" duration-ms="7" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDeleteFailure2 -->
-        <test-method status="PASS" signature="testGetEntityByJPQL()[pri:0, instance:testGetEntityByJPQL(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testGetEntityByJPQL" duration-ms="4" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testGetEntityByJPQL()[pri:0, instance:testGetEntityByJPQL(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testGetEntityByJPQL" duration-ms="4" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetEntityByJPQL -->
-        <test-method status="PASS" signature="testGetEntityByJPQLFailure1()[pri:0, instance:testGetEntityByJPQLFailure1(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testGetEntityByJPQLFailure1" duration-ms="16" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testGetEntityByJPQLFailure1()[pri:0, instance:testGetEntityByJPQLFailure1(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testGetEntityByJPQLFailure1" duration-ms="16" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetEntityByJPQLFailure1 -->
-        <test-method status="PASS" signature="testGetEntityByJPQLFailure2()[pri:0, instance:testGetEntityByJPQLFailure2(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testGetEntityByJPQLFailure2" duration-ms="13" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testGetEntityByJPQLFailure2()[pri:0, instance:testGetEntityByJPQLFailure2(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testGetEntityByJPQLFailure2" duration-ms="72" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetEntityByJPQLFailure2 -->
-        <test-method status="PASS" signature="testGetCountByQuery()[pri:0, instance:testGetCountByQuery(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testGetCountByQuery" duration-ms="3" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testGetCountByQuery()[pri:0, instance:testGetCountByQuery(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testGetCountByQuery" duration-ms="8" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetCountByQuery -->
-        <test-method status="PASS" signature="testGetCountByQueryFailure()[pri:0, instance:testGetCountByQueryFailure(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testGetCountByQueryFailure" duration-ms="6" started-at="2016-03-14T13:38:56Z" finished-at="2016-03-14T13:38:56Z">
+        <test-method status="PASS" signature="testGetCountByQueryFailure()[pri:0, instance:testGetCountByQueryFailure(se.nrm.dina.data.jpa.DinaDaoImplTest)]" name="testGetCountByQueryFailure" duration-ms="11" started-at="2016-03-16T12:33:51Z" finished-at="2016-03-16T12:33:51Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetCountByQueryFailure -->

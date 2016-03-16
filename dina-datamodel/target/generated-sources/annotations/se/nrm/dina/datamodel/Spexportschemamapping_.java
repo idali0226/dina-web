@@ -10,7 +10,7 @@ import se.nrm.dina.datamodel.Spexportschema;
 import se.nrm.dina.datamodel.Spexportschemaitemmapping;
 import se.nrm.dina.datamodel.Spsymbiotainstance;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-14T13:38:26")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-16T12:32:56")
 @StaticMetamodel(Spexportschemamapping.class)
 public class Spexportschemamapping_ extends BaseEntity_ {
 
