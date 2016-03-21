@@ -11,7 +11,7 @@ import se.nrm.dina.datamodel.Spappresource;
 import se.nrm.dina.datamodel.Specifyuser;
 import se.nrm.dina.datamodel.Spviewsetobj;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-16T12:32:55")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-21T11:14:43")
 @StaticMetamodel(Spappresourcedir.class)
 public class Spappresourcedir_ extends BaseEntity_ {
 

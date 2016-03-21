@@ -34,8 +34,8 @@
         <param-value>/</param-value>
     </context-param>
     
-<!-- 
-    
+ 
+<!--    
     
     <security-constraint>
         <web-resource-collection>
@@ -64,10 +64,7 @@
     </security-constraint>
     
     
-    <login-config>
-        <auth-method>BASIC</auth-method> 
-        
-        
+    <login-config> 
         <auth-method>KEYCLOAK</auth-method> 
         <realm-name>dina</realm-name>
     </login-config>

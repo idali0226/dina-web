@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 import javax.ejb.EJB;
 import javax.ejb.Stateless; 
 import javax.ws.rs.core.MultivaluedMap; 
+import org.apache.commons.lang.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +30,7 @@ import se.nrm.dina.data.exceptions.DinaException;
 import se.nrm.dina.data.jpa.DinaDao;
 import se.nrm.dina.logic.util.NamedQueries;
 import se.nrm.dina.data.util.Util;  
-import se.nrm.dina.datamodel.EntityBean;  
+import se.nrm.dina.datamodel.EntityBean;   
 
 /**
  *
@@ -183,6 +184,25 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
         } catch (DinaException e) {
             throw new DinaException(e.getMessage());
         }
+    }
+
+    public List<T> findEntitiesByids(String entityName, String ids) {
+        logger.info("findEntitiesByids : {} -- {}", entityName, ids);
+
+        ids = StringUtils.substringBetween(ids, "(", ")"); 
+         
+        if(StringUtils.isEmpty(ids)) {
+            return null;
+        }
+        
+        Class clazz = Util.getInstance().convertClassNameToClass(entityName);
+        List<T> beans = new ArrayList();
+        Arrays.asList(ids.split(",")).stream()
+                .forEach(strId -> {
+                    int id = Integer.parseInt(strId);
+                    beans.add((T) dao.findById(id, clazz));
+                });
+        return beans;
     }
 
     /**

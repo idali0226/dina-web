@@ -8,7 +8,7 @@ import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Collection;
 import se.nrm.dina.datamodel.Collectionrelationship;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-16T12:32:55")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-21T11:14:43")
 @StaticMetamodel(Collectionreltype.class)
 public class Collectionreltype_ extends BaseEntity_ {
 

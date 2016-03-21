@@ -9,7 +9,7 @@ import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Collectingevent;
 import se.nrm.dina.datamodel.Discipline;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-16T12:32:55")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-21T11:14:43")
 @StaticMetamodel(Collectingtrip.class)
 public class Collectingtrip_ extends BaseEntity_ {
 

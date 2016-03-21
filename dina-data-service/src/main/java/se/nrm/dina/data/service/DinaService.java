@@ -30,6 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.nrm.dina.data.exceptions.DinaConstraintViolationException;
 import se.nrm.dina.data.exceptions.DinaException; 
+import se.nrm.dina.datamodel.EntityBean;
 import se.nrm.dina.logic.DinaDataLogic;
  
 /**
@@ -115,6 +116,30 @@ public class DinaService {
                     .entity(e.getMessage()).build();
         }
     }
+    
+        /**
+     * Generic method to get an entity by entity id from database.  
+     * This method passes in a PathParam entity class name and entity id 
+     * 
+     * @param entity - class name of the entity
+     * @param ids
+     * 
+     * @return entity 
+     */
+    @GET
+    @Path("{entity}/search/{ids}/") 
+    public Response getEntityByIds(@PathParam("entity") String entity, @PathParam("ids") String ids) {
+        
+        logger.info("getEntityByIds - entity: {}, id :  {}", entity, ids);
+   
+        try {      
+            return Response.ok(logic.findEntitiesByids(entity, ids)).build(); 
+        } catch (DinaException e) {
+            return Response.status(e.getErrorCode()) 
+                    .entity(e.getMessage()).build();
+        }
+    }
+    
     
     @GET
     @Path("{entity}/{field}") 

@@ -6,7 +6,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Geography;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-16T12:32:55")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-21T11:14:44")
 @StaticMetamodel(Agentgeography.class)
 public class Agentgeography_ extends BaseEntity_ {
 

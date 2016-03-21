@@ -30,6 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.nrm.dina.data.exceptions.DinaConstraintViolationException;
 import se.nrm.dina.data.exceptions.DinaException; 
+import se.nrm.dina.datamodel.EntityBean;
 import se.nrm.dina.logic.DinaDataLogic;
  
 /**
@@ -42,18 +43,18 @@ import se.nrm.dina.logic.DinaDataLogic;
 @Stateless
 public class DinaService {
 
-<span class="fc" id="L45">    private final Logger logger = LoggerFactory.getLogger(this.getClass());</span>
+<span class="fc" id="L46">    private final Logger logger = LoggerFactory.getLogger(this.getClass());</span>
 
     @EJB
     private DinaDataLogic logic;
     
-<span class="fc" id="L50">    public DinaService() {</span>
+<span class="fc" id="L51">    public DinaService() {</span>
         
-<span class="fc" id="L52">    }</span>
+<span class="fc" id="L53">    }</span>
     
-<span class="fc" id="L54">    public DinaService(DinaDataLogic logic) {</span>
-<span class="fc" id="L55">        this.logic = logic;</span>
-<span class="fc" id="L56">    }</span>
+<span class="fc" id="L55">    public DinaService(DinaDataLogic logic) {</span>
+<span class="fc" id="L56">        this.logic = logic;</span>
+<span class="fc" id="L57">    }</span>
     
     @GET
     @Path(&quot;{entity}&quot;) 
@@ -64,18 +65,18 @@ public class DinaService {
                                         @DefaultValue(&quot;0&quot;) @QueryParam(&quot;maxid&quot;) int maxid,
                                         @QueryParam(&quot;orderby&quot;) String orderby) {
         
-<span class="fc" id="L67">        logger.info(&quot;getAllByEntityName : {} -- {}&quot;, entity, offset + &quot; -- &quot; + limit);    </span>
+<span class="fc" id="L68">        logger.info(&quot;getAllByEntityName : {} -- {}&quot;, entity, offset + &quot; -- &quot; + limit);    </span>
         
-<span class="fc" id="L69">        List&lt;String&gt; sort = new ArrayList();</span>
-<span class="fc bfc" id="L70" title="All 2 branches covered.">        if(orderby != null) {</span>
-<span class="fc" id="L71">            sort = Arrays.asList(StringUtils.split(orderby, &quot;,&quot;));</span>
+<span class="fc" id="L70">        List&lt;String&gt; sort = new ArrayList();</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        if(orderby != null) {</span>
+<span class="fc" id="L72">            sort = Arrays.asList(StringUtils.split(orderby, &quot;,&quot;));</span>
         }
       
         try {   
-<span class="fc" id="L75">            return Response.ok(logic.findAll(entity, offset, limit, minid, maxid, sort, null)).build();</span>
-<span class="fc" id="L76">        } catch(DinaException e) {</span>
-<span class="fc" id="L77">            return Response.status(e.getErrorCode()) </span>
-<span class="fc" id="L78">                    .entity(e.getMessage()).build();</span>
+<span class="fc" id="L76">            return Response.ok(logic.findAll(entity, offset, limit, minid, maxid, sort, null)).build();</span>
+<span class="fc" id="L77">        } catch(DinaException e) {</span>
+<span class="fc" id="L78">            return Response.status(e.getErrorCode()) </span>
+<span class="fc" id="L79">                    .entity(e.getMessage()).build();</span>
         }   
     }
      
@@ -83,13 +84,13 @@ public class DinaService {
     @Path(&quot;{entity}/search&quot;)  
     public Response getData(@PathParam(&quot;entity&quot;) String entity, @Context UriInfo info) {
 
-<span class="fc" id="L86">        MultivaluedMap&lt;String, String&gt; map = info.getQueryParameters(); </span>
+<span class="fc" id="L87">        MultivaluedMap&lt;String, String&gt; map = info.getQueryParameters(); </span>
 
         try {  
-<span class="fc" id="L89">            return Response.ok(logic.findAllBySearchCriteria(entity, map)).build();  </span>
-<span class="fc" id="L90">        } catch(DinaException e) {</span>
-<span class="fc" id="L91">            return Response.status(e.getErrorCode()) </span>
-<span class="fc" id="L92">                    .entity(e.getMessage()).build();</span>
+<span class="fc" id="L90">            return Response.ok(logic.findAllBySearchCriteria(entity, map)).build();  </span>
+<span class="fc" id="L91">        } catch(DinaException e) {</span>
+<span class="fc" id="L92">            return Response.status(e.getErrorCode()) </span>
+<span class="fc" id="L93">                    .entity(e.getMessage()).build();</span>
         }  
     } 
         
@@ -106,25 +107,49 @@ public class DinaService {
     @Path(&quot;{entity}/{id}/&quot;) 
     public Response getEntityById(@PathParam(&quot;entity&quot;) String entity, @PathParam(&quot;id&quot;) String id) {
         
-<span class="nc" id="L109">        logger.info(&quot;getEntityById - entity: {}, id :  {}&quot;, entity, id);</span>
+<span class="nc" id="L110">        logger.info(&quot;getEntityById - entity: {}, id :  {}&quot;, entity, id);</span>
    
         try {     
-<span class="nc" id="L112">            return Response.ok(logic.findById(id, entity)).build(); </span>
-<span class="nc" id="L113">        } catch (DinaException e) {</span>
-<span class="nc" id="L114">            return Response.status(e.getErrorCode()) </span>
-<span class="nc" id="L115">                    .entity(e.getMessage()).build();</span>
+<span class="nc" id="L113">            return Response.ok(logic.findById(id, entity)).build(); </span>
+<span class="nc" id="L114">        } catch (DinaException e) {</span>
+<span class="nc" id="L115">            return Response.status(e.getErrorCode()) </span>
+<span class="nc" id="L116">                    .entity(e.getMessage()).build();</span>
         }
     }
+    
+        /**
+     * Generic method to get an entity by entity id from database.  
+     * This method passes in a PathParam entity class name and entity id 
+     * 
+     * @param entity - class name of the entity
+     * @param ids
+     * 
+     * @return entity 
+     */
+    @GET
+    @Path(&quot;{entity}/search/{ids}/&quot;) 
+    public Response getEntityByIds(@PathParam(&quot;entity&quot;) String entity, @PathParam(&quot;ids&quot;) String ids) {
+        
+<span class="nc" id="L133">        logger.info(&quot;getEntityByIds - entity: {}, id :  {}&quot;, entity, ids);</span>
+   
+        try {      
+<span class="nc" id="L136">            return Response.ok(logic.findEntitiesByids(entity, ids)).build(); </span>
+<span class="nc" id="L137">        } catch (DinaException e) {</span>
+<span class="nc" id="L138">            return Response.status(e.getErrorCode()) </span>
+<span class="nc" id="L139">                    .entity(e.getMessage()).build();</span>
+        }
+    }
+    
     
     @GET
     @Path(&quot;{entity}/{field}&quot;) 
     public Response getEntitiesBySearchQuery(@PathParam(&quot;entity&quot;) String entity, @PathParam(&quot;field&quot;) String field, @Context UriInfo info) {
-<span class="nc" id="L122">        logger.info(&quot;getEntitiesBySearchQuery - entity: {}, field :  {}&quot;, entity, field);</span>
+<span class="nc" id="L147">        logger.info(&quot;getEntitiesBySearchQuery - entity: {}, field :  {}&quot;, entity, field);</span>
         
-<span class="nc" id="L124">        MultivaluedMap&lt;String, String&gt; map = info.getQueryParameters();</span>
-<span class="nc" id="L125">        logic.findBysearchQuery(entity, field, map);</span>
+<span class="nc" id="L149">        MultivaluedMap&lt;String, String&gt; map = info.getQueryParameters();</span>
+<span class="nc" id="L150">        logic.findBysearchQuery(entity, field, map);</span>
         
-<span class="nc" id="L127">        return Response.ok().build();</span>
+<span class="nc" id="L152">        return Response.ok().build();</span>
     }
 
 
@@ -140,15 +165,15 @@ public class DinaService {
     @Path(&quot;{entity}/count&quot;)  
     public Response getEntityCount(@PathParam(&quot;entity&quot;) String entity ) {
         
-<span class="fc" id="L143">        logger.info(&quot;getEntityById - entity: {} &quot;, entity );</span>
+<span class="fc" id="L168">        logger.info(&quot;getEntityById - entity: {} &quot;, entity );</span>
 
         try {  
-<span class="fc" id="L146">            int count = logic.findEntityCount(entity); </span>
+<span class="fc" id="L171">            int count = logic.findEntityCount(entity); </span>
               
-<span class="fc" id="L148">            return Response.ok(String.valueOf(count)).build(); </span>
-<span class="fc" id="L149">        } catch(DinaException e) { </span>
-<span class="fc" id="L150">            return Response.status(e.getErrorCode()) </span>
-<span class="fc" id="L151">                    .entity(e.getMessage()).build();</span>
+<span class="fc" id="L173">            return Response.ok(String.valueOf(count)).build(); </span>
+<span class="fc" id="L174">        } catch(DinaException e) { </span>
+<span class="fc" id="L175">            return Response.status(e.getErrorCode()) </span>
+<span class="fc" id="L176">                    .entity(e.getMessage()).build();</span>
         }  
     } 
 
@@ -165,13 +190,13 @@ public class DinaService {
     @Path(&quot;{entity}&quot;)
     @Consumes(&quot;application/json&quot;)
     public Response createNewEntity(@PathParam(&quot;entity&quot;) String entity, String json) {
-<span class="fc" id="L168">        logger.info(&quot;createNewEntity - entity: {}&quot;, json);</span>
+<span class="fc" id="L193">        logger.info(&quot;createNewEntity - entity: {}&quot;, json);</span>
  
         try {  
-<span class="fc" id="L171">            return Response.ok(logic.createEntity(entity, json)).build();</span>
-<span class="nc" id="L172">         } catch(DinaConstraintViolationException e) {   </span>
-<span class="nc" id="L173">            return Response.status(e.getErrorCode()) </span>
-<span class="nc" id="L174">                    .entity(e.getErrorBeans()).build();</span>
+<span class="fc" id="L196">            return Response.ok(logic.createEntity(entity, json)).build();</span>
+<span class="nc" id="L197">         } catch(DinaConstraintViolationException e) {   </span>
+<span class="nc" id="L198">            return Response.status(e.getErrorCode()) </span>
+<span class="nc" id="L199">                    .entity(e.getErrorBeans()).build();</span>
         }  
     }
 
@@ -188,13 +213,13 @@ public class DinaService {
     @Path(&quot;{entity}&quot;) 
     public Response updateEntity(@PathParam(&quot;entity&quot;) String entity, String json) {
     
-<span class="fc" id="L191">        logger.info(&quot;update entity: {} -- {}&quot;, entity, json);</span>
+<span class="fc" id="L216">        logger.info(&quot;update entity: {} -- {}&quot;, entity, json);</span>
         
          try {  
-<span class="fc" id="L194">            return Response.ok(logic.updateEntity(entity, json)).build(); </span>
-<span class="fc" id="L195">         } catch(DinaException e) { </span>
-<span class="fc" id="L196">            return Response.status(e.getErrorCode()) </span>
-<span class="fc" id="L197">                    .entity(e.getMessage()).build();</span>
+<span class="fc" id="L219">            return Response.ok(logic.updateEntity(entity, json)).build(); </span>
+<span class="fc" id="L220">         } catch(DinaException e) { </span>
+<span class="fc" id="L221">            return Response.status(e.getErrorCode()) </span>
+<span class="fc" id="L222">                    .entity(e.getMessage()).build();</span>
         }  
     }
       
@@ -211,15 +236,15 @@ public class DinaService {
     @Path(&quot;{entity}/{id}&quot;)  
     public Response deleteEntityById(@PathParam(&quot;entity&quot;) String entity, @PathParam(&quot;id&quot;) int id) {
         
-<span class="fc" id="L214">        logger.info(&quot;deleteEntityById - entity -- id: {} -- {}&quot;, entity, id );</span>
+<span class="fc" id="L239">        logger.info(&quot;deleteEntityById - entity -- id: {} -- {}&quot;, entity, id );</span>
 
         try {   
-<span class="fc" id="L217">            logic.deleteEntity(entity, id);  </span>
-<span class="fc" id="L218">            return Response.ok().build();  </span>
-<span class="fc" id="L219">        } catch(DinaException e) { </span>
-<span class="fc" id="L220">            logger.error(&quot;not ok&quot;);</span>
-<span class="fc" id="L221">            return Response.status(e.getErrorCode()) </span>
-<span class="fc" id="L222">                    .entity(e.getMessage()).build();</span>
+<span class="fc" id="L242">            logic.deleteEntity(entity, id);  </span>
+<span class="fc" id="L243">            return Response.ok().build();  </span>
+<span class="fc" id="L244">        } catch(DinaException e) { </span>
+<span class="fc" id="L245">            logger.error(&quot;not ok&quot;);</span>
+<span class="fc" id="L246">            return Response.status(e.getErrorCode()) </span>
+<span class="fc" id="L247">                    .entity(e.getMessage()).build();</span>
         }  
     } 
 }
