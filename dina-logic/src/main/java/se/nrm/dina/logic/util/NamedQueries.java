@@ -5,6 +5,7 @@
  */
 package se.nrm.dina.logic.util;
 
+import java.lang.reflect.Field;
 import se.nrm.dina.data.util.Util;
 import java.util.List; 
 import java.util.Map; 
@@ -40,6 +41,7 @@ public class NamedQueries {
      * @param offset
      * @param minid
      * @param maxid
+     * @param sort
      * @param orderBy
      * @param isExact
      * @param criteria
@@ -50,6 +52,7 @@ public class NamedQueries {
                                                         int offset,
                                                         int minid,
                                                         int maxid,
+                                                        String sort,
                                                         List<String> orderBy,
                                                         boolean isExact,
                                                         Map<String, String> criteria) {
@@ -70,8 +73,10 @@ public class NamedQueries {
         }
 
         if (orderBy != null && !orderBy.isEmpty()) {
-            sb.append(buildOrderByString(clazz, orderBy));
-        } 
+            sb.append(buildOrderByString(clazz, orderBy, sort));
+        } else {
+            sb.append(buildSorting(clazz, sort));
+        }
         return sb.toString(); 
     }
 
@@ -168,8 +173,21 @@ public class NamedQueries {
                 });
         return StringUtils.substringBeforeLast(sb.toString(), " AND");
     }
+    
+    private String buildSorting(Class clazz, String sort) {
+        logger.info("buildSorting : {} -- {}", clazz, sort);
+        
+        String idField = Util.getInstance().getIDFieldName(clazz);
+        StringBuilder sb = new StringBuilder();
+        sb.append(" ORDER BY ");
+        sb.append("e.");
+        sb.append(idField);
+        sb.append(" ");
+        sb.append(sort);
+        return sb.toString();
+    }
 
-    private String buildOrderByString(Class clazz, List<String> list) {
+    private String buildOrderByString(Class clazz, List<String> list, String sort) {
 
         logger.info("buildOrderByString : {} -- {}", clazz, list);
          
@@ -180,6 +198,8 @@ public class NamedQueries {
                 .forEach(l -> {
                     sb.append("e.");
                     sb.append(l);
+                    sb.append(" ");
+                    sb.append(sort);
                     sb.append(", ");
                 });
          

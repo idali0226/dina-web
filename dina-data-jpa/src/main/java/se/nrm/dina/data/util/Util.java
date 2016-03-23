@@ -285,8 +285,22 @@ public class Util {
         } 
     }
     
+    private Field[] getAllFieldsFromClazz(Class clazz) {
+        return clazz.getDeclaredFields();
+    }
+    
+    private String getIdFieldName(Field[] fields) {
+        return Arrays.asList(fields)
+                .stream()
+                .filter(f -> f.isAnnotationPresent(Id.class))
+                .findFirst()
+                .get().getName();
+    }
     
     
+    public String getIDFieldName(Class clazz) {
+        return getIdFieldName(getAllFieldsFromClazz(clazz)); 
+    }
     
     
     
@@ -308,10 +322,10 @@ public class Util {
      * @param bean
      * @return String, name of the id field of this entity bean
      */
-    public Field getIDField(EntityBean bean) {
-        Field[] fields = bean.getClass().getDeclaredFields();
+    public Field getIDField(EntityBean bean) { 
+//        Field[] fields = bean.getClass().getDeclaredFields();
 
-        return Arrays.asList(fields)
+        return Arrays.asList(getAllFieldsFromClazz(bean.getClass()))
                 .stream()
                 .filter(f -> f.isAnnotationPresent(Id.class))
                 .findFirst()

@@ -74,19 +74,21 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
      * @param limit
      * @param minid
      * @param maxid
+     * @param orderby
      * @param sort
      * @param conditions
      * @return List
      */
     public List<T> findAll(String entityName, int offset, int limit,
-            int minid, int maxid, List<String> sort, Map<String, String> conditions) {
+            int minid, int maxid, String sort, List<String> orderby, Map<String, String> conditions) {
  
         entityName = Util.getInstance().validateEntityName(entityName);
         Class clazz = Util.getInstance().convertClassNameToClass(entityName);
         try {
             String strQuery = NamedQueries.getInstance()
-                    .createQueryFindAllWithSearchCriteria(entityName, clazz, offset, minid, maxid, sort, true, conditions);
+                    .createQueryFindAllWithSearchCriteria(entityName, clazz, offset, minid, maxid, sort, orderby, true, conditions);
 
+            logger.info("string : {}", strQuery);
             List<T> results = dao.findAll(clazz, strQuery, limit, conditions);
  
             return results;
@@ -121,6 +123,7 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
         String minid = map.getFirst("minid");
         String maxid = map.getFirst("maxid");
         String orderBy = map.getFirst("orderby");
+        String sort = map.getFirst("sort");
         String exact = map.getFirst("exact");
         
         boolean isExact = exact == null ? false : Boolean.valueOf(exact);
@@ -147,7 +150,8 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
                             Integer.parseInt(offset == null ? "0" : offset),
                             Integer.parseInt(minid == null ? "0" : minid),
                             Integer.parseInt(maxid == null ? "0" : maxid),
-                            orderby, isExact, condition);
+                            sort == null ? "ASC" : sort.toUpperCase(),
+                            orderby,  isExact, condition);
  
             return isExact ? dao.findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)
                     : dao.findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition);
@@ -162,7 +166,8 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
                 && !s.getKey().equals("minid")
                 && !s.getKey().equals("maxid")
                 && !s.getKey().equals("orderby")
-                && !s.getKey().equals("exact");
+                && !s.getKey().equals("exact")
+                && !s.getKey().equals("sort");
     }
 
     /**

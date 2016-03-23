@@ -29,15 +29,14 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.nrm.dina.data.exceptions.DinaConstraintViolationException;
-import se.nrm.dina.data.exceptions.DinaException; 
-import se.nrm.dina.datamodel.EntityBean;
+import se.nrm.dina.data.exceptions.DinaException;  
 import se.nrm.dina.logic.DinaDataLogic;
  
 /**
  *
  * @author idali
  */
-@Path("/dina/v0")
+@Path("/v0")
 @Consumes({MediaType.APPLICATION_JSON+";charset=UTF-8"})
 @Produces({MediaType.APPLICATION_JSON+";charset=UTF-8"}) 
 @Stateless
@@ -63,17 +62,18 @@ public class DinaService {
                                         @DefaultValue("50") @QueryParam("limit") int limit, 
                                         @DefaultValue("0") @QueryParam("minid") int minid,
                                         @DefaultValue("0") @QueryParam("maxid") int maxid,
+                                        @DefaultValue("asc") @QueryParam("sort") String sort,
                                         @QueryParam("orderby") String orderby) {
         
         logger.info("getAllByEntityName : {} -- {}", entity, offset + " -- " + limit);    
         
-        List<String> sort = new ArrayList();
+        List<String> order = new ArrayList();
         if(orderby != null) {
-            sort = Arrays.asList(StringUtils.split(orderby, ","));
+            order = Arrays.asList(StringUtils.split(orderby, ","));
         }
       
         try {   
-            return Response.ok(logic.findAll(entity, offset, limit, minid, maxid, sort, null)).build();
+            return Response.ok(logic.findAll(entity, offset, limit, minid, maxid, sort, order, null)).build();
         } catch(DinaException e) {
             return Response.status(e.getErrorCode()) 
                     .entity(e.getMessage()).build();

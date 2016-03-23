@@ -6,7 +6,7 @@
 	 version="3.1">
     <!--<display-name>DinaWS</display-name>-->
     
-    <module-name>dina-service</module-name>
+    <module-name>collections</module-name>
     
     <listener>
         <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>

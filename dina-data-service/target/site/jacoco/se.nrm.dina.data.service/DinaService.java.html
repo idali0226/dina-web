@@ -29,32 +29,31 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.nrm.dina.data.exceptions.DinaConstraintViolationException;
-import se.nrm.dina.data.exceptions.DinaException; 
-import se.nrm.dina.datamodel.EntityBean;
+import se.nrm.dina.data.exceptions.DinaException;  
 import se.nrm.dina.logic.DinaDataLogic;
  
 /**
  *
  * @author idali
  */
-@Path(&quot;/dina/v0&quot;)
+@Path(&quot;/v0&quot;)
 @Consumes({MediaType.APPLICATION_JSON+&quot;;charset=UTF-8&quot;})
 @Produces({MediaType.APPLICATION_JSON+&quot;;charset=UTF-8&quot;}) 
 @Stateless
 public class DinaService {
 
-<span class="fc" id="L46">    private final Logger logger = LoggerFactory.getLogger(this.getClass());</span>
+<span class="fc" id="L45">    private final Logger logger = LoggerFactory.getLogger(this.getClass());</span>
 
     @EJB
     private DinaDataLogic logic;
     
-<span class="fc" id="L51">    public DinaService() {</span>
+<span class="fc" id="L50">    public DinaService() {</span>
         
-<span class="fc" id="L53">    }</span>
+<span class="fc" id="L52">    }</span>
     
-<span class="fc" id="L55">    public DinaService(DinaDataLogic logic) {</span>
-<span class="fc" id="L56">        this.logic = logic;</span>
-<span class="fc" id="L57">    }</span>
+<span class="fc" id="L54">    public DinaService(DinaDataLogic logic) {</span>
+<span class="fc" id="L55">        this.logic = logic;</span>
+<span class="fc" id="L56">    }</span>
     
     @GET
     @Path(&quot;{entity}&quot;) 
@@ -63,17 +62,18 @@ public class DinaService {
                                         @DefaultValue(&quot;50&quot;) @QueryParam(&quot;limit&quot;) int limit, 
                                         @DefaultValue(&quot;0&quot;) @QueryParam(&quot;minid&quot;) int minid,
                                         @DefaultValue(&quot;0&quot;) @QueryParam(&quot;maxid&quot;) int maxid,
+                                        @DefaultValue(&quot;asc&quot;) @QueryParam(&quot;sort&quot;) String sort,
                                         @QueryParam(&quot;orderby&quot;) String orderby) {
         
 <span class="fc" id="L68">        logger.info(&quot;getAllByEntityName : {} -- {}&quot;, entity, offset + &quot; -- &quot; + limit);    </span>
         
-<span class="fc" id="L70">        List&lt;String&gt; sort = new ArrayList();</span>
+<span class="fc" id="L70">        List&lt;String&gt; order = new ArrayList();</span>
 <span class="fc bfc" id="L71" title="All 2 branches covered.">        if(orderby != null) {</span>
-<span class="fc" id="L72">            sort = Arrays.asList(StringUtils.split(orderby, &quot;,&quot;));</span>
+<span class="fc" id="L72">            order = Arrays.asList(StringUtils.split(orderby, &quot;,&quot;));</span>
         }
       
         try {   
-<span class="fc" id="L76">            return Response.ok(logic.findAll(entity, offset, limit, minid, maxid, sort, null)).build();</span>
+<span class="fc" id="L76">            return Response.ok(logic.findAll(entity, offset, limit, minid, maxid, sort, order, null)).build();</span>
 <span class="fc" id="L77">        } catch(DinaException e) {</span>
 <span class="fc" id="L78">            return Response.status(e.getErrorCode()) </span>
 <span class="fc" id="L79">                    .entity(e.getMessage()).build();</span>

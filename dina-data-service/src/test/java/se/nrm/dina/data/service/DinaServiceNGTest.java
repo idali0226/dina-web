@@ -90,15 +90,15 @@ public class DinaServiceNGTest {
         System.out.println("getAllByEntityName");
 
         String orderby = "test";
-        List<String> sort = Arrays.asList(StringUtils.split(orderby, ","));
+        List<String> orders = Arrays.asList(StringUtils.split(orderby, ","));
 
-        when(logic.findAll(entity, 0, 0, 0, 0, sort, null)).thenReturn(list.getTestEntities());
+        when(logic.findAll(entity, 0, 0, 0, 0, "asc", orders, null)).thenReturn(list.getTestEntities());
 
-        MockHttpRequest request = MockHttpRequest.get("/dina/v0/TestEntity?offset=0&limit=0&minid=0&maxid=0&orderby=test");
+        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity?offset=0&limit=0&minid=0&maxid=0&orderby=test");
         response = new MockHttpResponse();
 
         dispatcher.invoke(request, response);
-        verify(logic).findAll(entity, 0, 0, 0, 0, sort, null);
+        verify(logic).findAll(entity, 0, 0, 0, 0, "asc", orders, null);
         assertEquals(HttpServletResponse.SC_OK, response.getStatus());
     }
 
@@ -112,15 +112,15 @@ public class DinaServiceNGTest {
         System.out.println("getAllByEntityName");
 
         String orderby = "";
-        List<String> sort = Arrays.asList(StringUtils.split(orderby, ","));
+        List<String> orders = Arrays.asList(StringUtils.split(orderby, ","));
 
-        when(logic.findAll(entity, 0, 0, 0, 0, sort, null)).thenReturn(list.getTestEntities());
+        when(logic.findAll(entity, 0, 0, 0, 0, "asc", orders, null)).thenReturn(list.getTestEntities());
 
-        MockHttpRequest request = MockHttpRequest.get("/dina/v0/TestEntity?offset=0&limit=0&minid=0&maxid=0");
+        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity?offset=0&limit=0&minid=0&maxid=0");
         response = new MockHttpResponse();
 
         dispatcher.invoke(request, response);
-        verify(logic).findAll(entity, 0, 0, 0, 0, sort, null);
+        verify(logic).findAll(entity, 0, 0, 0, 0, "asc", orders, null);
         assertEquals(HttpServletResponse.SC_OK, response.getStatus());
     }
 
@@ -134,15 +134,15 @@ public class DinaServiceNGTest {
         System.out.println("getAllByEntityName");
 
         String orderby = "";
-        List<String> sort = Arrays.asList(StringUtils.split(orderby, ","));
+        List<String> orders = Arrays.asList(StringUtils.split(orderby, ","));
 
-        when(logic.findAll(entity, 0, 0, 0, 0, sort, null)).thenThrow(new DinaException("error", 400));
+        when(logic.findAll(entity, 0, 0, 0, 0, "asc", orders, null)).thenThrow(new DinaException("error", 400));
 
-        MockHttpRequest request = MockHttpRequest.get("/dina/v0/TestEntity?offset=0&limit=0&minid=0&maxid=0");
+        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity?offset=0&limit=0&minid=0&maxid=0");
         response = new MockHttpResponse();
 
         dispatcher.invoke(request, response);
-        verify(logic).findAll(entity, 0, 0, 0, 0, sort, null);
+        verify(logic).findAll(entity, 0, 0, 0, 0, "asc", orders, null);
         assertEquals(HttpServletResponse.SC_BAD_REQUEST, response.getStatus());
     }
 
@@ -159,7 +159,7 @@ public class DinaServiceNGTest {
         MultivaluedMap<String, String> map = new MultivaluedHashMap();
         when(logic.findAllBySearchCriteria(entity, map)).thenThrow(new DinaException("error", 400));
 
-        MockHttpRequest request = MockHttpRequest.get("/dina/v0/TestEntity/search");
+        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity/search");
         response = new MockHttpResponse();
 
         dispatcher.invoke(request, response);
@@ -180,7 +180,7 @@ public class DinaServiceNGTest {
         MultivaluedMap<String, String> map = new MultivaluedHashMap();
         when(logic.findAllBySearchCriteria(entity, map)).thenReturn(list.getTestEntities());
 
-        MockHttpRequest request = MockHttpRequest.get("/dina/v0/TestEntity/search");
+        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity/search");
         response = new MockHttpResponse();
 
         dispatcher.invoke(request, response);
@@ -202,7 +202,7 @@ public class DinaServiceNGTest {
 
         when(logic.findById(id, entity)).thenReturn(bean);
 
-        MockHttpRequest request = MockHttpRequest.get("/dina/v0/TestEntity/20");
+        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity/20");
         response = new MockHttpResponse();
 
         dispatcher.invoke(request, response);
@@ -223,7 +223,7 @@ public class DinaServiceNGTest {
         String id = "20";
         when(logic.findById(id, entity)).thenThrow(new DinaException("error", 400));
 
-        MockHttpRequest request = MockHttpRequest.get("/dina/v0/TestEntity/20");
+        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity/20");
         response = new MockHttpResponse();
 
         dispatcher.invoke(request, response);
@@ -241,7 +241,7 @@ public class DinaServiceNGTest {
     public void testGetEntityCount() throws Exception {
         System.out.println("getEntityCount");
 
-        MockHttpRequest request = MockHttpRequest.get("/dina/v0/TestEntity/count");
+        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity/count");
         response = new MockHttpResponse();
 
         when(logic.findEntityCount(entity)).thenReturn(10);
@@ -262,7 +262,7 @@ public class DinaServiceNGTest {
     public void testGetEntityCountFailure() throws Exception {
         System.out.println("getEntityCount");
 
-        MockHttpRequest request = MockHttpRequest.get("/dina/v0/TestEntity/count");
+        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity/count");
         response = new MockHttpResponse();
 
         when(logic.findEntityCount(entity)).thenThrow(new DinaException("error", 400));
@@ -282,7 +282,7 @@ public class DinaServiceNGTest {
     public void testCreateNewEntity() throws Exception {
         System.out.println("createNewEntity");
 
-        MockHttpRequest request = MockHttpRequest.post("/dina/v0/TestEntity");
+        MockHttpRequest request = MockHttpRequest.post("/v0/TestEntity");
         request.accept(MediaType.APPLICATION_JSON);
         request.contentType(MediaType.APPLICATION_JSON_TYPE);
 
@@ -309,7 +309,7 @@ public class DinaServiceNGTest {
     public void testCreateNewEntityFailure() throws Exception {
         System.out.println("createNewEntity");
 
-        MockHttpRequest request = MockHttpRequest.post("/dina/v0/TestEntity");
+        MockHttpRequest request = MockHttpRequest.post("/v0/TestEntity");
         request.accept(MediaType.APPLICATION_JSON);
         request.contentType(MediaType.APPLICATION_JSON_TYPE);
 
@@ -336,7 +336,7 @@ public class DinaServiceNGTest {
     public void testUpdateEntity() throws Exception {
         System.out.println("updateEntity");
 
-        MockHttpRequest request = MockHttpRequest.put("/dina/v0/TestEntity");
+        MockHttpRequest request = MockHttpRequest.put("/v0/TestEntity");
         request.accept(MediaType.APPLICATION_JSON);
         request.contentType(MediaType.APPLICATION_JSON_TYPE);
 
@@ -363,7 +363,7 @@ public class DinaServiceNGTest {
     public void testUpdateEntityFailure() throws Exception {
         System.out.println("updateEntity");
 
-        MockHttpRequest request = MockHttpRequest.put("/dina/v0/TestEntity");
+        MockHttpRequest request = MockHttpRequest.put("/v0/TestEntity");
         request.accept(MediaType.APPLICATION_JSON);
         request.contentType(MediaType.APPLICATION_JSON_TYPE);
 
@@ -390,7 +390,7 @@ public class DinaServiceNGTest {
     public void testDeleteEntityById() throws Exception {
         System.out.println("deleteEntityById");
 
-        MockHttpRequest request = MockHttpRequest.delete("/dina/v0/TestEntity/20");
+        MockHttpRequest request = MockHttpRequest.delete("/v0/TestEntity/20");
         request.accept(MediaType.APPLICATION_JSON);
         request.contentType(MediaType.APPLICATION_JSON_TYPE);
 
@@ -410,7 +410,7 @@ public class DinaServiceNGTest {
     public void testDeleteEntityByIdFailure() throws Exception {
         System.out.println("deleteEntityById");
 
-        MockHttpRequest request = MockHttpRequest.delete("/dina/v0/TestEntity/20");
+        MockHttpRequest request = MockHttpRequest.delete("/v0/TestEntity/20");
         request.accept(MediaType.APPLICATION_JSON);
         request.contentType(MediaType.APPLICATION_JSON_TYPE);
 

@@ -285,8 +285,22 @@ import se.nrm.dina.datamodel.EntityBean;
         } 
     }
     
+    private Field[] getAllFieldsFromClazz(Class clazz) {
+<span class="fc" id="L289">        return clazz.getDeclaredFields();</span>
+    }
+    
+    private String getIdFieldName(Field[] fields) {
+<span class="nc" id="L293">        return Arrays.asList(fields)</span>
+<span class="nc" id="L294">                .stream()</span>
+<span class="nc" id="L295">                .filter(f -&gt; f.isAnnotationPresent(Id.class))</span>
+<span class="nc" id="L296">                .findFirst()</span>
+<span class="nc" id="L297">                .get().getName();</span>
+    }
     
     
+    public String getIDFieldName(Class clazz) {
+<span class="nc" id="L302">        return getIdFieldName(getAllFieldsFromClazz(clazz)); </span>
+    }
     
     
     
@@ -298,7 +312,7 @@ import se.nrm.dina.datamodel.EntityBean;
      * @return String, name of the id field of this entity bean
      */
     public String getIDFieldName(EntityBean bean) {
-<span class="fc" id="L301">        return getIDField(bean).getName(); </span>
+<span class="fc" id="L315">        return getIDField(bean).getName(); </span>
     }
 
     
@@ -308,14 +322,14 @@ import se.nrm.dina.datamodel.EntityBean;
      * @param bean
      * @return String, name of the id field of this entity bean
      */
-    public Field getIDField(EntityBean bean) {
-<span class="fc" id="L312">        Field[] fields = bean.getClass().getDeclaredFields();</span>
+    public Field getIDField(EntityBean bean) { 
+//        Field[] fields = bean.getClass().getDeclaredFields();
 
-<span class="fc" id="L314">        return Arrays.asList(fields)</span>
-<span class="fc" id="L315">                .stream()</span>
-<span class="fc" id="L316">                .filter(f -&gt; f.isAnnotationPresent(Id.class))</span>
-<span class="fc" id="L317">                .findFirst()</span>
-<span class="fc" id="L318">                .get();</span>
+<span class="fc" id="L328">        return Arrays.asList(getAllFieldsFromClazz(bean.getClass()))</span>
+<span class="fc" id="L329">                .stream()</span>
+<span class="fc" id="L330">                .filter(f -&gt; f.isAnnotationPresent(Id.class))</span>
+<span class="fc" id="L331">                .findFirst()</span>
+<span class="fc" id="L332">                .get();</span>
     }
   
     /**
@@ -324,7 +338,7 @@ import se.nrm.dina.datamodel.EntityBean;
      * @return 
      */    
     public boolean isNumric(String s) { 
-<span class="fc" id="L327">        return StringUtils.isNumeric(s);</span>
+<span class="fc" id="L341">        return StringUtils.isNumeric(s);</span>
     }
     
     /**
@@ -333,12 +347,12 @@ import se.nrm.dina.datamodel.EntityBean;
      * @return int
      */
     public int maxLimit(int limit) {
-<span class="fc bfc" id="L336" title="All 2 branches covered.">        if(limit &gt; MAX_LIMIT) {</span>
-<span class="fc" id="L337">            return MAX_LIMIT;</span>
-<span class="fc bfc" id="L338" title="All 2 branches covered.">        } else if(limit == 0) {</span>
-<span class="fc" id="L339">            return DEFAULT_LIMIT;</span>
+<span class="fc bfc" id="L350" title="All 2 branches covered.">        if(limit &gt; MAX_LIMIT) {</span>
+<span class="fc" id="L351">            return MAX_LIMIT;</span>
+<span class="fc bfc" id="L352" title="All 2 branches covered.">        } else if(limit == 0) {</span>
+<span class="fc" id="L353">            return DEFAULT_LIMIT;</span>
         } else {
-<span class="fc" id="L341">            return limit;</span>
+<span class="fc" id="L355">            return limit;</span>
         } 
     } 
 }

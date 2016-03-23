@@ -129,7 +129,7 @@
         </plugins>
         
         <!--<finalName>dina-rest</finalName>--> 
-        <finalName>dina-service</finalName>
+        <finalName>collections</finalName>
     </build>
 
 </project>
