@@ -7,7 +7,7 @@ import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Attributedef;
 import se.nrm.dina.datamodel.Collectingevent;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-21T11:14:43")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-11T16:29:46")
 @StaticMetamodel(Collectingeventattr.class)
 public class Collectingeventattr_ extends BaseEntity_ {
 

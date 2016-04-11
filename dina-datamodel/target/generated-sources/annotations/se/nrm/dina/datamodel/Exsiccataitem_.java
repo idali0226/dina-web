@@ -7,7 +7,7 @@ import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Collectionobject;
 import se.nrm.dina.datamodel.Exsiccata;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-21T11:14:44")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-11T16:29:46")
 @StaticMetamodel(Exsiccataitem.class)
 public class Exsiccataitem_ extends BaseEntity_ {
 

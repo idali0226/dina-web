@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import se.nrm.dina.datamodel.util.Util;
 
 /**
@@ -642,7 +643,7 @@ public class Agent extends BaseEntity {
     private List<Agent> agentList2;
     
     @JoinColumn(name = "ParentOrganizationID", referencedColumnName = "AgentID")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Agent parentOrganizationID;
     
     @JoinColumn(name = "InstitutionCCID", referencedColumnName = "UserGroupScopeId")
@@ -2859,6 +2860,8 @@ public class Agent extends BaseEntity {
         this.agentList2 = agentList2;
     }
 
+    @XmlTransient
+    @JsonIgnore
     public Agent getParentOrganizationID() {
         return parentOrganizationID;
     }

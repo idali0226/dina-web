@@ -8,7 +8,7 @@ import se.nrm.dina.datamodel.Addressofrecord;
 import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Division;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-03-21T11:14:43")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-11T16:29:46")
 @StaticMetamodel(Exchangein.class)
 public class Exchangein_ extends BaseEntity_ {
 

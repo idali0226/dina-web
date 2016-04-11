@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlAttribute;
  *
  * @author idali
  */
-@MappedSuperclass
+@MappedSuperclass 
 public abstract class BaseEntity implements Serializable, EntityBean {
 
     
