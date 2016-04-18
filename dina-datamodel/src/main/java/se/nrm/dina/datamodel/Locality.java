@@ -222,7 +222,7 @@ public class Locality extends BaseEntity {
     private Specifyuser visibilitySetByID;
     
     @JoinColumn(name = "PaleoContextID", referencedColumnName = "PaleoContextID")
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Paleocontext paleoContextID;
     
     @JoinColumn(name = "GeographyID", referencedColumnName = "GeographyID")

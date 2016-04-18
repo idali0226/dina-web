@@ -8,7 +8,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Preparation;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-11T16:29:46")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-18T10:19:04")
 @StaticMetamodel(Preparationattribute.class)
 public class Preparationattribute_ extends BaseEntity_ {
 

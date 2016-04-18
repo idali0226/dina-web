@@ -10,7 +10,7 @@ import se.nrm.dina.datamodel.Spprincipal;
 import se.nrm.dina.datamodel.Workbenchrow;
 import se.nrm.dina.datamodel.Workbenchtemplate;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-11T16:29:46")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-18T10:19:04")
 @StaticMetamodel(Workbench.class)
 public class Workbench_ extends BaseEntity_ {
 

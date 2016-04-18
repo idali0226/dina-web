@@ -10,7 +10,7 @@ import se.nrm.dina.datamodel.Agent;
 import se.nrm.dina.datamodel.Institution;
 import se.nrm.dina.datamodel.Permitattachment;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-11T16:29:46")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-18T10:19:04")
 @StaticMetamodel(Permit.class)
 public class Permit_ extends BaseEntity_ {
 
