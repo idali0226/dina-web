@@ -35,7 +35,7 @@
     </context-param>
     
  
-<!--    
+    
     
     <security-constraint>
         <web-resource-collection>
@@ -75,5 +75,5 @@
     </security-role>
     <security-role>
         <role-name>user</role-name>
-    </security-role>-->
+    </security-role>
 </web-app>

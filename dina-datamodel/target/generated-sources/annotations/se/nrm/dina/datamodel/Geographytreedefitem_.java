@@ -9,7 +9,7 @@ import se.nrm.dina.datamodel.Geography;
 import se.nrm.dina.datamodel.Geographytreedef;
 import se.nrm.dina.datamodel.Geographytreedefitem;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-18T10:19:04")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-20T13:57:07")
 @StaticMetamodel(Geographytreedefitem.class)
 public class Geographytreedefitem_ extends BaseEntity_ {
 

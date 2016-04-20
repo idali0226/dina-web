@@ -423,7 +423,7 @@ public class Collectingevent extends BaseEntity {
         this.text2 = text2;
     }
 
-    @XmlTransient
+//    @XmlTransient
     public List<Collectingeventattachment> getCollectingeventattachmentList() {
         return collectingeventattachmentList;
     }

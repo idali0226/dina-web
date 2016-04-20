@@ -12,7 +12,7 @@ import se.nrm.dina.datamodel.Geologictimeperiod;
 import se.nrm.dina.datamodel.Lithostrat;
 import se.nrm.dina.datamodel.Locality;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-18T10:19:04")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-20T13:57:07")
 @StaticMetamodel(Paleocontext.class)
 public class Paleocontext_ extends BaseEntity_ {
 

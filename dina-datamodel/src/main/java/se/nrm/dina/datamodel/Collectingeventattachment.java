@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import se.nrm.dina.datamodel.util.Util;
 
 /**
@@ -163,7 +164,7 @@ public class Collectingeventattachment extends BaseEntity {
         this.createdByAgentID = createdByAgentID;
     }
 
-    @XmlIDREF
+    @XmlTransient
     public Collectingevent getCollectingEventID() {
         return collectingEventID;
     }

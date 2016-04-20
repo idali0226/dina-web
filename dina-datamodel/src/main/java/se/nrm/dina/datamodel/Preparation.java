@@ -379,7 +379,7 @@ public class Preparation extends BaseEntity {
         this.reservedInteger4 = reservedInteger4;
     }
 
-    @XmlTransient
+//    @XmlTransient
     public List<Preparationattachment> getPreparationattachmentList() {
         return preparationattachmentList;
     }

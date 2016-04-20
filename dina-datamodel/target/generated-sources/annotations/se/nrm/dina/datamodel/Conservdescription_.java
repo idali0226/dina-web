@@ -10,7 +10,7 @@ import se.nrm.dina.datamodel.Conservdescriptionattachment;
 import se.nrm.dina.datamodel.Conservevent;
 import se.nrm.dina.datamodel.Division;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-18T10:19:04")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-20T13:57:07")
 @StaticMetamodel(Conservdescription.class)
 public class Conservdescription_ extends BaseEntity_ {
 

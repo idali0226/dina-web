@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import se.nrm.dina.datamodel.util.Util;
 
 /**
@@ -145,7 +146,7 @@ public class Preparationattachment extends BaseEntity {
         this.remarks = remarks;
     }
 
-    @XmlIDREF
+    @XmlTransient
     public Preparation getPreparationID() {
         return preparationID;
     }

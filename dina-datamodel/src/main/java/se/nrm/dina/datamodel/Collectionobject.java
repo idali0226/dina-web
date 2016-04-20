@@ -752,7 +752,7 @@ public class Collectionobject extends BaseEntity {
         this.conservdescriptionList = conservdescriptionList;
     }
 
-    @XmlTransient
+//    @XmlTransient
     public List<Collectionobjectattachment> getCollectionobjectattachmentList() {
         return collectionobjectattachmentList;
     }

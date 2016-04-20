@@ -4,12 +4,15 @@
  * and open the template in the editor.
  */
 package se.nrm.dina.data.service;
- 
+   
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List; 
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
+import java.util.List;  
+import java.util.Set; 
+import javax.ejb.EJB; 
+import javax.ejb.Stateless; 
+import javax.servlet.http.HttpServletRequest;  
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -21,11 +24,19 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces; 
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.StringUtils; 
+import org.keycloak.KeycloakPrincipal;
+import org.keycloak.KeycloakSecurityContext; 
+import org.keycloak.admin.client.Keycloak;
+import org.keycloak.representations.AccessToken;
+import org.keycloak.representations.IDToken; 
+import org.keycloak.representations.idm.CredentialRepresentation;
+import org.keycloak.representations.idm.UserRepresentation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.nrm.dina.data.exceptions.DinaConstraintViolationException;
@@ -38,7 +49,7 @@ import se.nrm.dina.logic.DinaDataLogic;
  */
 @Path("/v0")
 @Consumes({MediaType.APPLICATION_JSON+";charset=UTF-8"})
-@Produces({MediaType.APPLICATION_JSON+";charset=UTF-8"}) 
+@Produces({MediaType.APPLICATION_JSON + ";charset=UTF-8"})
 @Stateless
 public class DinaService {
 
@@ -46,9 +57,10 @@ public class DinaService {
 
     @EJB
     private DinaDataLogic logic;
-    
+ 
+
     public DinaService() {
-        
+
     }
     
     public DinaService(DinaDataLogic logic) {
@@ -98,6 +110,8 @@ public class DinaService {
      * Generic method to get an entity by entity id from database.  
      * This method passes in a PathParam entity class name and entity id 
      * 
+     * @param headers
+     * @param httpServletRequest
      * @param entity - class name of the entity
      * @param id - entity id
      * 
@@ -105,10 +119,56 @@ public class DinaService {
      */
     @GET
     @Path("{entity}/{id}/") 
-    public Response getEntityById(@PathParam("entity") String entity, @PathParam("id") String id) {
+    public Response getEntityById(@Context HttpHeaders headers,
+                                  @Context HttpServletRequest httpServletRequest,
+                                  @PathParam("entity") String entity, @PathParam("id") String id) {
         
         logger.info("getEntityById - entity: {}, id :  {}", entity, id);
+        
+        
+        KeycloakSecurityContext securityContext = (KeycloakSecurityContext) httpServletRequest
+                                                        .getAttribute(KeycloakSecurityContext.class.getName());
+        
+        AccessToken accessToken = securityContext.getToken();
+        logger.info("accesstoken : {}", accessToken);
+         
+        logger.info("acc token : {} -- {}", accessToken.getIssuer(), accessToken.getId());
+       
+        logger.info("acc token : {} -- {}", accessToken.getGivenName(), accessToken.getEmail());
+        
+        Set<String> set = accessToken.getRealmAccess().getRoles();
+        
+        logger.info("set : {} -- {}", set, accessToken.issuedFor);
+         
+        String tokenId = headers.getHeaderString("id_token");
+        logger.info(tokenId);
+        
+
+//        logger.info("header : {}", headers.getRequestHeaders());
+        Principal userPrincipal = httpServletRequest.getUserPrincipal();
+        logger.info("user principal : {} -- {}", userPrincipal, userPrincipal.getName());
+    
+        if (userPrincipal instanceof KeycloakPrincipal) {
+
+            KeycloakPrincipal<KeycloakSecurityContext> kp = (KeycloakPrincipal<KeycloakSecurityContext>) userPrincipal;
+            IDToken token = kp.getKeycloakSecurityContext().getIdToken();
+            logger.info("token id : {}", token); 
+
+        } else {
+            throw new RuntimeException();
+        }
+ 
    
+         
+        
+        
+        
+        
+        
+        
+        
+        
+         
         try {     
             return Response.ok(logic.findById(id, entity)).build(); 
         } catch (DinaException e) {
@@ -117,10 +177,23 @@ public class DinaService {
         }
     }
     
-        /**
-     * Generic method to get an entity by entity id from database.  
-     * This method passes in a PathParam entity class name and entity id 
-     * 
+    
+   
+        
+ 
+
+    private static IDToken getIDToken(HttpServletRequest req) {
+        System.out.println("getIDToken");
+        KeycloakSecurityContext session = (KeycloakSecurityContext) req.getAttribute(KeycloakSecurityContext.class.getName());
+        System.out.println("token : " + session.getTokenString());
+        return session.getIdToken();
+
+    }
+
+    /**
+     * Generic method to get an entity by entity id from database. This method
+     * passes in a PathParam entity class name and entity id
+     *
      * @param entity - class name of the entity
      * @param ids
      * 
