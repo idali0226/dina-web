@@ -135,7 +135,7 @@ public class Preparation extends BaseEntity {
     @Column(name = &quot;ReservedInteger4&quot;)
     private Integer reservedInteger4;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;preparationID&quot;, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;preparationID&quot;, fetch = FetchType.EAGER)
     private List&lt;Preparationattachment&gt; preparationattachmentList;
     
     @JoinColumn(name = &quot;PreparationAttributeID&quot;, referencedColumnName = &quot;PreparationAttributeID&quot;)
@@ -380,133 +380,134 @@ public class Preparation extends BaseEntity {
 <span class="nc" id="L380">    }</span>
 
 //    @XmlTransient
+    @XmlIDREF
     public List&lt;Preparationattachment&gt; getPreparationattachmentList() {
-<span class="nc" id="L384">        return preparationattachmentList;</span>
+<span class="nc" id="L385">        return preparationattachmentList;</span>
     }
 
     public void setPreparationattachmentList(List&lt;Preparationattachment&gt; preparationattachmentList) {
-<span class="nc" id="L388">        this.preparationattachmentList = preparationattachmentList;</span>
-<span class="nc" id="L389">    }</span>
+<span class="nc" id="L389">        this.preparationattachmentList = preparationattachmentList;</span>
+<span class="nc" id="L390">    }</span>
 
     @XmlIDREF
     public Preparationattribute getPreparationAttributeID() {
-<span class="nc" id="L393">        return preparationAttributeID;</span>
+<span class="nc" id="L394">        return preparationAttributeID;</span>
     }
 
     public void setPreparationAttributeID(Preparationattribute preparationAttributeID) {
-<span class="nc" id="L397">        this.preparationAttributeID = preparationAttributeID;</span>
-<span class="nc" id="L398">    }</span>
+<span class="nc" id="L398">        this.preparationAttributeID = preparationAttributeID;</span>
+<span class="nc" id="L399">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L402">        return modifiedByAgentID;</span>
+<span class="nc" id="L403">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L406">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L407">    }</span>
+<span class="nc" id="L407">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L408">    }</span>
 
     @XmlIDREF
     public Preptype getPrepTypeID() {
-<span class="nc" id="L411">        return prepTypeID;</span>
+<span class="nc" id="L412">        return prepTypeID;</span>
     }
 
     public void setPrepTypeID(Preptype prepTypeID) {
-<span class="nc" id="L415">        this.prepTypeID = prepTypeID;</span>
-<span class="nc" id="L416">    }</span>
+<span class="nc" id="L416">        this.prepTypeID = prepTypeID;</span>
+<span class="nc" id="L417">    }</span>
 
     @XmlTransient
     public Collectionobject getCollectionObjectID() {
-<span class="nc" id="L420">        return collectionObjectID;</span>
+<span class="nc" id="L421">        return collectionObjectID;</span>
     }
 
     public void setCollectionObjectID(Collectionobject collectionObjectID) {
-<span class="nc" id="L424">        this.collectionObjectID = collectionObjectID;</span>
-<span class="nc" id="L425">    }</span>
+<span class="nc" id="L425">        this.collectionObjectID = collectionObjectID;</span>
+<span class="nc" id="L426">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L429">        return createdByAgentID;</span>
+<span class="nc" id="L430">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L433">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L434">    }</span>
+<span class="nc" id="L434">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L435">    }</span>
 
     @XmlIDREF
     public Storage getStorageID() {
-<span class="nc" id="L438">        return storageID;</span>
+<span class="nc" id="L439">        return storageID;</span>
     }
 
     public void setStorageID(Storage storageID) {
-<span class="nc" id="L442">        this.storageID = storageID;</span>
-<span class="nc" id="L443">    }</span>
+<span class="nc" id="L443">        this.storageID = storageID;</span>
+<span class="nc" id="L444">    }</span>
 
     @XmlIDREF
     public Agent getPreparedByID() {
-<span class="nc" id="L447">        return preparedByID;</span>
+<span class="nc" id="L448">        return preparedByID;</span>
     }
 
     public void setPreparedByID(Agent preparedByID) {
-<span class="nc" id="L451">        this.preparedByID = preparedByID;</span>
-<span class="nc" id="L452">    }</span>
+<span class="nc" id="L452">        this.preparedByID = preparedByID;</span>
+<span class="nc" id="L453">    }</span>
 
     @XmlTransient
     public List&lt;Preparationattr&gt; getPreparationattrList() {
-<span class="nc" id="L456">        return preparationattrList;</span>
+<span class="nc" id="L457">        return preparationattrList;</span>
     }
 
     public void setPreparationattrList(List&lt;Preparationattr&gt; preparationattrList) {
-<span class="nc" id="L460">        this.preparationattrList = preparationattrList;</span>
-<span class="nc" id="L461">    }</span>
+<span class="nc" id="L461">        this.preparationattrList = preparationattrList;</span>
+<span class="nc" id="L462">    }</span>
 
     @XmlTransient
     public List&lt;Loanpreparation&gt; getLoanpreparationList() {
-<span class="nc" id="L465">        return loanpreparationList;</span>
+<span class="nc" id="L466">        return loanpreparationList;</span>
     }
 
     public void setLoanpreparationList(List&lt;Loanpreparation&gt; loanpreparationList) {
-<span class="nc" id="L469">        this.loanpreparationList = loanpreparationList;</span>
-<span class="nc" id="L470">    }</span>
+<span class="nc" id="L470">        this.loanpreparationList = loanpreparationList;</span>
+<span class="nc" id="L471">    }</span>
 
     @XmlTransient
     public List&lt;Giftpreparation&gt; getGiftpreparationList() {
-<span class="nc" id="L474">        return giftpreparationList;</span>
+<span class="nc" id="L475">        return giftpreparationList;</span>
     }
 
     public void setGiftpreparationList(List&lt;Giftpreparation&gt; giftpreparationList) {
-<span class="nc" id="L478">        this.giftpreparationList = giftpreparationList;</span>
-<span class="nc" id="L479">    }</span>
+<span class="nc" id="L479">        this.giftpreparationList = giftpreparationList;</span>
+<span class="nc" id="L480">    }</span>
 
     @XmlTransient
     public List&lt;Deaccessionpreparation&gt; getDeaccessionpreparationList() {
-<span class="nc" id="L483">        return deaccessionpreparationList;</span>
+<span class="nc" id="L484">        return deaccessionpreparationList;</span>
     }
 
     public void setDeaccessionpreparationList(List&lt;Deaccessionpreparation&gt; deaccessionpreparationList) {
-<span class="nc" id="L487">        this.deaccessionpreparationList = deaccessionpreparationList;</span>
-<span class="nc" id="L488">    }</span>
+<span class="nc" id="L488">        this.deaccessionpreparationList = deaccessionpreparationList;</span>
+<span class="nc" id="L489">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L492">        int hash = 0;</span>
-<span class="nc bnc" id="L493" title="All 2 branches missed.">        hash += (preparationID != null ? preparationID.hashCode() : 0);</span>
-<span class="nc" id="L494">        return hash;</span>
+<span class="nc" id="L493">        int hash = 0;</span>
+<span class="nc bnc" id="L494" title="All 2 branches missed.">        hash += (preparationID != null ? preparationID.hashCode() : 0);</span>
+<span class="nc" id="L495">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L500" title="All 2 branches missed.">        if (!(object instanceof Preparation)) {</span>
-<span class="nc" id="L501">            return false;</span>
+<span class="nc bnc" id="L501" title="All 2 branches missed.">        if (!(object instanceof Preparation)) {</span>
+<span class="nc" id="L502">            return false;</span>
         }
-<span class="nc" id="L503">        Preparation other = (Preparation) object;</span>
-<span class="nc bnc" id="L504" title="All 8 branches missed.">        return !((this.preparationID == null &amp;&amp; other.preparationID != null) || (this.preparationID != null &amp;&amp; !this.preparationID.equals(other.preparationID)));</span>
+<span class="nc" id="L504">        Preparation other = (Preparation) object;</span>
+<span class="nc bnc" id="L505" title="All 8 branches missed.">        return !((this.preparationID == null &amp;&amp; other.preparationID != null) || (this.preparationID != null &amp;&amp; !this.preparationID.equals(other.preparationID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L509">        return &quot;se.nrm.dina.datamodel.Preparation[ preparationID=&quot; + preparationID + &quot; ]&quot;;</span>
+<span class="nc" id="L510">        return &quot;se.nrm.dina.datamodel.Preparation[ preparationID=&quot; + preparationID + &quot; ]&quot;;</span>
     }
     
 }

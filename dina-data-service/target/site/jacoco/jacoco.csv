@@ -1,4 +1,4 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 dina-data-service,org.netbeans.rest.application.config,ApplicationConfig,21,0,0,0,7,0,3,0,3,0
-dina-data-service,se.nrm.dina.data.service,DinaService,176,176,2,2,39,39,5,9,4,8
+dina-data-service,se.nrm.dina.data.service,DinaService,74,176,0,2,17,39,3,9,3,8
 dina-data-service,se.nrm.dina.data.service,CORSFilter,24,0,0,0,6,0,2,0,2,0

@@ -135,7 +135,7 @@ public class Preparation extends BaseEntity {
     @Column(name = "ReservedInteger4")
     private Integer reservedInteger4;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "preparationID", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "preparationID", fetch = FetchType.EAGER)
     private List<Preparationattachment> preparationattachmentList;
     
     @JoinColumn(name = "PreparationAttributeID", referencedColumnName = "PreparationAttributeID")
@@ -380,6 +380,7 @@ public class Preparation extends BaseEntity {
     }
 
 //    @XmlTransient
+    @XmlIDREF
     public List<Preparationattachment> getPreparationattachmentList() {
         return preparationattachmentList;
     }

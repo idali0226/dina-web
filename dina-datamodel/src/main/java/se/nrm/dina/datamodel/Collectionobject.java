@@ -249,7 +249,7 @@ public class Collectionobject extends BaseEntity {
     @OneToMany(mappedBy = "collectionObjectID", fetch = FetchType.LAZY)
     private List<Conservdescription> conservdescriptionList;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "collectionObjectID", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "collectionObjectID", fetch = FetchType.EAGER)
     private List<Collectionobjectattachment> collectionobjectattachmentList;
     
     @OneToMany(mappedBy = "collectionObjectID", fetch = FetchType.LAZY)
@@ -753,6 +753,7 @@ public class Collectionobject extends BaseEntity {
     }
 
 //    @XmlTransient
+    @XmlIDREF
     public List<Collectionobjectattachment> getCollectionobjectattachmentList() {
         return collectionobjectattachmentList;
     }

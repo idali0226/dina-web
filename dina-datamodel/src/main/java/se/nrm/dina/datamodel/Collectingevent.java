@@ -148,7 +148,7 @@ public class Collectingevent extends BaseEntity {
     @Column(name = "Text2")
     private String text2;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "collectingEventID", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "collectingEventID", fetch = FetchType.EAGER)
     private List<Collectingeventattachment> collectingeventattachmentList;
     
     @OneToMany(mappedBy = "collectingEventID", fetch = FetchType.LAZY)
@@ -424,6 +424,7 @@ public class Collectingevent extends BaseEntity {
     }
 
 //    @XmlTransient
+    @XmlIDREF
     public List<Collectingeventattachment> getCollectingeventattachmentList() {
         return collectingeventattachmentList;
     }

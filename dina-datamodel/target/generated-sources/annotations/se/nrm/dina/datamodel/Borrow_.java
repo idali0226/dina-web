@@ -11,7 +11,7 @@ import se.nrm.dina.datamodel.Borrowagent;
 import se.nrm.dina.datamodel.Borrowmaterial;
 import se.nrm.dina.datamodel.Shipment;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-20T13:57:06")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-21T09:39:58")
 @StaticMetamodel(Borrow.class)
 public class Borrow_ extends BaseEntity_ {
 

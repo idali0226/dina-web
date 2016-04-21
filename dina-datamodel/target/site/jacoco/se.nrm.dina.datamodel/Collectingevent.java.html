@@ -148,7 +148,7 @@ public class Collectingevent extends BaseEntity {
     @Column(name = &quot;Text2&quot;)
     private String text2;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;collectingEventID&quot;, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;collectingEventID&quot;, fetch = FetchType.EAGER)
     private List&lt;Collectingeventattachment&gt; collectingeventattachmentList;
     
     @OneToMany(mappedBy = &quot;collectingEventID&quot;, fetch = FetchType.LAZY)
@@ -424,133 +424,134 @@ public class Collectingevent extends BaseEntity {
 <span class="nc" id="L424">    }</span>
 
 //    @XmlTransient
+    @XmlIDREF
     public List&lt;Collectingeventattachment&gt; getCollectingeventattachmentList() {
-<span class="nc" id="L428">        return collectingeventattachmentList;</span>
+<span class="nc" id="L429">        return collectingeventattachmentList;</span>
     }
 
     public void setCollectingeventattachmentList(List&lt;Collectingeventattachment&gt; collectingeventattachmentList) {
-<span class="nc" id="L432">        this.collectingeventattachmentList = collectingeventattachmentList;</span>
-<span class="nc" id="L433">    }</span>
+<span class="nc" id="L433">        this.collectingeventattachmentList = collectingeventattachmentList;</span>
+<span class="nc" id="L434">    }</span>
 
     @XmlTransient
     public List&lt;Collectionobject&gt; getCollectionobjectList() {
-<span class="nc" id="L437">        return collectionobjectList;</span>
+<span class="nc" id="L438">        return collectionobjectList;</span>
     }
 
     public void setCollectionobjectList(List&lt;Collectionobject&gt; collectionobjectList) {
-<span class="nc" id="L441">        this.collectionobjectList = collectionobjectList;</span>
-<span class="nc" id="L442">    }</span>
+<span class="nc" id="L442">        this.collectionobjectList = collectionobjectList;</span>
+<span class="nc" id="L443">    }</span>
 
     @XmlIDREF
     public Discipline getDisciplineID() {
-<span class="nc" id="L446">        return disciplineID;</span>
+<span class="nc" id="L447">        return disciplineID;</span>
     }
 
     public void setDisciplineID(Discipline disciplineID) {
-<span class="nc" id="L450">        this.disciplineID = disciplineID;</span>
-<span class="nc" id="L451">    }</span>
+<span class="nc" id="L451">        this.disciplineID = disciplineID;</span>
+<span class="nc" id="L452">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L455">        return modifiedByAgentID;</span>
+<span class="nc" id="L456">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L459">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L460">    }</span>
+<span class="nc" id="L460">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L461">    }</span>
 
     @XmlIDREF
     public Collectingtrip getCollectingTripID() {
-<span class="nc" id="L464">        return collectingTripID;</span>
+<span class="nc" id="L465">        return collectingTripID;</span>
     }
 
     public void setCollectingTripID(Collectingtrip collectingTripID) {
-<span class="nc" id="L468">        this.collectingTripID = collectingTripID;</span>
-<span class="nc" id="L469">    }</span>
+<span class="nc" id="L469">        this.collectingTripID = collectingTripID;</span>
+<span class="nc" id="L470">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L473">        return createdByAgentID;</span>
+<span class="nc" id="L474">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L477">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L478">    }</span>
+<span class="nc" id="L478">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L479">    }</span>
 
     @XmlIDREF
     public Specifyuser getVisibilitySetByID() {
-<span class="nc" id="L482">        return visibilitySetByID;</span>
+<span class="nc" id="L483">        return visibilitySetByID;</span>
     }
 
     public void setVisibilitySetByID(Specifyuser visibilitySetByID) {
-<span class="nc" id="L486">        this.visibilitySetByID = visibilitySetByID;</span>
-<span class="nc" id="L487">    }</span>
+<span class="nc" id="L487">        this.visibilitySetByID = visibilitySetByID;</span>
+<span class="nc" id="L488">    }</span>
 
     @XmlIDREF
     public Paleocontext getPaleoContextID() {
-<span class="nc" id="L491">        return paleoContextID;</span>
+<span class="nc" id="L492">        return paleoContextID;</span>
     }
 
     public void setPaleoContextID(Paleocontext paleoContextID) {
-<span class="nc" id="L495">        this.paleoContextID = paleoContextID;</span>
-<span class="nc" id="L496">    }</span>
+<span class="nc" id="L496">        this.paleoContextID = paleoContextID;</span>
+<span class="nc" id="L497">    }</span>
 
     @XmlIDREF
     public Locality getLocalityID() {
-<span class="nc" id="L500">        return localityID;</span>
+<span class="nc" id="L501">        return localityID;</span>
     }
 
     public void setLocalityID(Locality localityID) {
-<span class="nc" id="L504">        this.localityID = localityID;</span>
-<span class="nc" id="L505">    }</span>
+<span class="nc" id="L505">        this.localityID = localityID;</span>
+<span class="nc" id="L506">    }</span>
 
     @XmlIDREF
     public Collectingeventattribute getCollectingEventAttributeID() {
-<span class="nc" id="L509">        return collectingEventAttributeID;</span>
+<span class="nc" id="L510">        return collectingEventAttributeID;</span>
     }
 
     public void setCollectingEventAttributeID(Collectingeventattribute collectingEventAttributeID) {
-<span class="nc" id="L513">        this.collectingEventAttributeID = collectingEventAttributeID;</span>
-<span class="nc" id="L514">    }</span>
+<span class="nc" id="L514">        this.collectingEventAttributeID = collectingEventAttributeID;</span>
+<span class="nc" id="L515">    }</span>
 
     @XmlTransient
     public List&lt;Collectingeventattr&gt; getCollectingeventattrList() {
-<span class="nc" id="L518">        return collectingeventattrList;</span>
+<span class="nc" id="L519">        return collectingeventattrList;</span>
     }
 
     public void setCollectingeventattrList(List&lt;Collectingeventattr&gt; collectingeventattrList) {
-<span class="nc" id="L522">        this.collectingeventattrList = collectingeventattrList;</span>
-<span class="nc" id="L523">    }</span>
+<span class="nc" id="L523">        this.collectingeventattrList = collectingeventattrList;</span>
+<span class="nc" id="L524">    }</span>
 
     @XmlIDREF
     public List&lt;Collector&gt; getCollectorList() {
-<span class="nc" id="L527">        return collectorList;</span>
+<span class="nc" id="L528">        return collectorList;</span>
     }
 
     public void setCollectorList(List&lt;Collector&gt; collectorList) {
-<span class="nc" id="L531">        this.collectorList = collectorList;</span>
-<span class="nc" id="L532">    }</span>
+<span class="nc" id="L532">        this.collectorList = collectorList;</span>
+<span class="nc" id="L533">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L536">        int hash = 0;</span>
-<span class="nc bnc" id="L537" title="All 2 branches missed.">        hash += (collectingEventID != null ? collectingEventID.hashCode() : 0);</span>
-<span class="nc" id="L538">        return hash;</span>
+<span class="nc" id="L537">        int hash = 0;</span>
+<span class="nc bnc" id="L538" title="All 2 branches missed.">        hash += (collectingEventID != null ? collectingEventID.hashCode() : 0);</span>
+<span class="nc" id="L539">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L544" title="All 2 branches missed.">        if (!(object instanceof Collectingevent)) {</span>
-<span class="nc" id="L545">            return false;</span>
+<span class="nc bnc" id="L545" title="All 2 branches missed.">        if (!(object instanceof Collectingevent)) {</span>
+<span class="nc" id="L546">            return false;</span>
         }
-<span class="nc" id="L547">        Collectingevent other = (Collectingevent) object;</span>
-<span class="nc bnc" id="L548" title="All 8 branches missed.">        return !((this.collectingEventID == null &amp;&amp; other.collectingEventID != null) || (this.collectingEventID != null &amp;&amp; !this.collectingEventID.equals(other.collectingEventID)));</span>
+<span class="nc" id="L548">        Collectingevent other = (Collectingevent) object;</span>
+<span class="nc bnc" id="L549" title="All 8 branches missed.">        return !((this.collectingEventID == null &amp;&amp; other.collectingEventID != null) || (this.collectingEventID != null &amp;&amp; !this.collectingEventID.equals(other.collectingEventID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L553">        return &quot;se.nrm.dina.datamodel.Collectingevent[ collectingEventID=&quot; + collectingEventID + &quot; ]&quot;;</span>
+<span class="nc" id="L554">        return &quot;se.nrm.dina.datamodel.Collectingevent[ collectingEventID=&quot; + collectingEventID + &quot; ]&quot;;</span>
     }
     
 }

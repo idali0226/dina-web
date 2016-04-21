@@ -125,39 +125,39 @@ public class DinaService {
         
         logger.info("getEntityById - entity: {}, id :  {}", entity, id);
         
-        
-        KeycloakSecurityContext securityContext = (KeycloakSecurityContext) httpServletRequest
-                                                        .getAttribute(KeycloakSecurityContext.class.getName());
-        
-        AccessToken accessToken = securityContext.getToken();
-        logger.info("accesstoken : {}", accessToken);
-         
-        logger.info("acc token : {} -- {}", accessToken.getIssuer(), accessToken.getId());
-       
-        logger.info("acc token : {} -- {}", accessToken.getGivenName(), accessToken.getEmail());
-        
-        Set<String> set = accessToken.getRealmAccess().getRoles();
-        
-        logger.info("set : {} -- {}", set, accessToken.issuedFor);
-         
-        String tokenId = headers.getHeaderString("id_token");
-        logger.info(tokenId);
-        
-
-//        logger.info("header : {}", headers.getRequestHeaders());
-        Principal userPrincipal = httpServletRequest.getUserPrincipal();
-        logger.info("user principal : {} -- {}", userPrincipal, userPrincipal.getName());
-    
-        if (userPrincipal instanceof KeycloakPrincipal) {
-
-            KeycloakPrincipal<KeycloakSecurityContext> kp = (KeycloakPrincipal<KeycloakSecurityContext>) userPrincipal;
-            IDToken token = kp.getKeycloakSecurityContext().getIdToken();
-            logger.info("token id : {}", token); 
-
-        } else {
-            throw new RuntimeException();
-        }
- 
+//        
+//        KeycloakSecurityContext securityContext = (KeycloakSecurityContext) httpServletRequest
+//                                                        .getAttribute(KeycloakSecurityContext.class.getName());
+//        
+//        AccessToken accessToken = securityContext.getToken();
+//        logger.info("accesstoken : {}", accessToken);
+//         
+//        logger.info("acc token : {} -- {}", accessToken.getIssuer(), accessToken.getId());
+//       
+//        logger.info("acc token : {} -- {}", accessToken.getGivenName(), accessToken.getEmail());
+//        
+//        Set<String> set = accessToken.getRealmAccess().getRoles();
+//        
+//        logger.info("set : {} -- {}", set, accessToken.issuedFor);
+//         
+//        String tokenId = headers.getHeaderString("id_token");
+//        logger.info(tokenId);
+//        
+//
+////        logger.info("header : {}", headers.getRequestHeaders());
+//        Principal userPrincipal = httpServletRequest.getUserPrincipal();
+//        logger.info("user principal : {} -- {}", userPrincipal, userPrincipal.getName());
+//    
+//        if (userPrincipal instanceof KeycloakPrincipal) {
+//
+//            KeycloakPrincipal<KeycloakSecurityContext> kp = (KeycloakPrincipal<KeycloakSecurityContext>) userPrincipal;
+//            IDToken token = kp.getKeycloakSecurityContext().getIdToken();
+//            logger.info("token id : {}", token); 
+//
+//        } else {
+//            throw new RuntimeException();
+//        }
+// 
    
          
         
@@ -182,13 +182,13 @@ public class DinaService {
         
  
 
-    private static IDToken getIDToken(HttpServletRequest req) {
-        System.out.println("getIDToken");
-        KeycloakSecurityContext session = (KeycloakSecurityContext) req.getAttribute(KeycloakSecurityContext.class.getName());
-        System.out.println("token : " + session.getTokenString());
-        return session.getIdToken();
-
-    }
+//    private static IDToken getIDToken(HttpServletRequest req) {
+//        System.out.println("getIDToken");
+//        KeycloakSecurityContext session = (KeycloakSecurityContext) req.getAttribute(KeycloakSecurityContext.class.getName());
+//        System.out.println("token : " + session.getTokenString());
+//        return session.getIdToken();
+//
+//    }
 
     /**
      * Generic method to get an entity by entity id from database. This method

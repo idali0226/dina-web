@@ -125,39 +125,39 @@ public class DinaService {
         
 <span class="nc" id="L126">        logger.info(&quot;getEntityById - entity: {}, id :  {}&quot;, entity, id);</span>
         
-        
-<span class="nc" id="L129">        KeycloakSecurityContext securityContext = (KeycloakSecurityContext) httpServletRequest</span>
-<span class="nc" id="L130">                                                        .getAttribute(KeycloakSecurityContext.class.getName());</span>
-        
-<span class="nc" id="L132">        AccessToken accessToken = securityContext.getToken();</span>
-<span class="nc" id="L133">        logger.info(&quot;accesstoken : {}&quot;, accessToken);</span>
-         
-<span class="nc" id="L135">        logger.info(&quot;acc token : {} -- {}&quot;, accessToken.getIssuer(), accessToken.getId());</span>
-       
-<span class="nc" id="L137">        logger.info(&quot;acc token : {} -- {}&quot;, accessToken.getGivenName(), accessToken.getEmail());</span>
-        
-<span class="nc" id="L139">        Set&lt;String&gt; set = accessToken.getRealmAccess().getRoles();</span>
-        
-<span class="nc" id="L141">        logger.info(&quot;set : {} -- {}&quot;, set, accessToken.issuedFor);</span>
-         
-<span class="nc" id="L143">        String tokenId = headers.getHeaderString(&quot;id_token&quot;);</span>
-<span class="nc" id="L144">        logger.info(tokenId);</span>
-        
-
-//        logger.info(&quot;header : {}&quot;, headers.getRequestHeaders());
-<span class="nc" id="L148">        Principal userPrincipal = httpServletRequest.getUserPrincipal();</span>
-<span class="nc" id="L149">        logger.info(&quot;user principal : {} -- {}&quot;, userPrincipal, userPrincipal.getName());</span>
-    
-<span class="nc bnc" id="L151" title="All 2 branches missed.">        if (userPrincipal instanceof KeycloakPrincipal) {</span>
-
-<span class="nc" id="L153">            KeycloakPrincipal&lt;KeycloakSecurityContext&gt; kp = (KeycloakPrincipal&lt;KeycloakSecurityContext&gt;) userPrincipal;</span>
-<span class="nc" id="L154">            IDToken token = kp.getKeycloakSecurityContext().getIdToken();</span>
-<span class="nc" id="L155">            logger.info(&quot;token id : {}&quot;, token); </span>
-
-<span class="nc" id="L157">        } else {</span>
-<span class="nc" id="L158">            throw new RuntimeException();</span>
-        }
- 
+//        
+//        KeycloakSecurityContext securityContext = (KeycloakSecurityContext) httpServletRequest
+//                                                        .getAttribute(KeycloakSecurityContext.class.getName());
+//        
+//        AccessToken accessToken = securityContext.getToken();
+//        logger.info(&quot;accesstoken : {}&quot;, accessToken);
+//         
+//        logger.info(&quot;acc token : {} -- {}&quot;, accessToken.getIssuer(), accessToken.getId());
+//       
+//        logger.info(&quot;acc token : {} -- {}&quot;, accessToken.getGivenName(), accessToken.getEmail());
+//        
+//        Set&lt;String&gt; set = accessToken.getRealmAccess().getRoles();
+//        
+//        logger.info(&quot;set : {} -- {}&quot;, set, accessToken.issuedFor);
+//         
+//        String tokenId = headers.getHeaderString(&quot;id_token&quot;);
+//        logger.info(tokenId);
+//        
+//
+////        logger.info(&quot;header : {}&quot;, headers.getRequestHeaders());
+//        Principal userPrincipal = httpServletRequest.getUserPrincipal();
+//        logger.info(&quot;user principal : {} -- {}&quot;, userPrincipal, userPrincipal.getName());
+//    
+//        if (userPrincipal instanceof KeycloakPrincipal) {
+//
+//            KeycloakPrincipal&lt;KeycloakSecurityContext&gt; kp = (KeycloakPrincipal&lt;KeycloakSecurityContext&gt;) userPrincipal;
+//            IDToken token = kp.getKeycloakSecurityContext().getIdToken();
+//            logger.info(&quot;token id : {}&quot;, token); 
+//
+//        } else {
+//            throw new RuntimeException();
+//        }
+// 
    
          
         
@@ -182,13 +182,13 @@ public class DinaService {
         
  
 
-    private static IDToken getIDToken(HttpServletRequest req) {
-<span class="nc" id="L186">        System.out.println(&quot;getIDToken&quot;);</span>
-<span class="nc" id="L187">        KeycloakSecurityContext session = (KeycloakSecurityContext) req.getAttribute(KeycloakSecurityContext.class.getName());</span>
-<span class="nc" id="L188">        System.out.println(&quot;token : &quot; + session.getTokenString());</span>
-<span class="nc" id="L189">        return session.getIdToken();</span>
-
-    }
+//    private static IDToken getIDToken(HttpServletRequest req) {
+//        System.out.println(&quot;getIDToken&quot;);
+//        KeycloakSecurityContext session = (KeycloakSecurityContext) req.getAttribute(KeycloakSecurityContext.class.getName());
+//        System.out.println(&quot;token : &quot; + session.getTokenString());
+//        return session.getIdToken();
+//
+//    }
 
     /**
      * Generic method to get an entity by entity id from database. This method

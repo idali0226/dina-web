@@ -249,7 +249,7 @@ public class Collectionobject extends BaseEntity {
     @OneToMany(mappedBy = &quot;collectionObjectID&quot;, fetch = FetchType.LAZY)
     private List&lt;Conservdescription&gt; conservdescriptionList;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;collectionObjectID&quot;, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;collectionObjectID&quot;, fetch = FetchType.EAGER)
     private List&lt;Collectionobjectattachment&gt; collectionobjectattachmentList;
     
     @OneToMany(mappedBy = &quot;collectionObjectID&quot;, fetch = FetchType.LAZY)
@@ -753,214 +753,215 @@ public class Collectionobject extends BaseEntity {
 <span class="nc" id="L753">    }</span>
 
 //    @XmlTransient
+    @XmlIDREF
     public List&lt;Collectionobjectattachment&gt; getCollectionobjectattachmentList() {
-<span class="nc" id="L757">        return collectionobjectattachmentList;</span>
+<span class="nc" id="L758">        return collectionobjectattachmentList;</span>
     }
 
     public void setCollectionobjectattachmentList(List&lt;Collectionobjectattachment&gt; collectionobjectattachmentList) {
-<span class="nc" id="L761">        this.collectionobjectattachmentList = collectionobjectattachmentList;</span>
-<span class="nc" id="L762">    }</span>
+<span class="nc" id="L762">        this.collectionobjectattachmentList = collectionobjectattachmentList;</span>
+<span class="nc" id="L763">    }</span>
 
     @XmlTransient
     public List&lt;Treatmentevent&gt; getTreatmenteventList() {
-<span class="nc" id="L766">        return treatmenteventList;</span>
+<span class="nc" id="L767">        return treatmenteventList;</span>
     }
 
     public void setTreatmenteventList(List&lt;Treatmentevent&gt; treatmenteventList) {
-<span class="nc" id="L770">        this.treatmenteventList = treatmenteventList;</span>
-<span class="nc" id="L771">    }</span>
+<span class="nc" id="L771">        this.treatmenteventList = treatmenteventList;</span>
+<span class="nc" id="L772">    }</span>
 
     @XmlTransient
     public Specifyuser getVisibilitySetByID() {
-<span class="nc" id="L775">        return visibilitySetByID;</span>
+<span class="nc" id="L776">        return visibilitySetByID;</span>
     }
 
     public void setVisibilitySetByID(Specifyuser visibilitySetByID) {
-<span class="nc" id="L779">        this.visibilitySetByID = visibilitySetByID;</span>
-<span class="nc" id="L780">    }</span>
+<span class="nc" id="L780">        this.visibilitySetByID = visibilitySetByID;</span>
+<span class="nc" id="L781">    }</span>
 
     @XmlIDREF
     public Accession getAccessionID() {
-<span class="nc" id="L784">        return accessionID;</span>
+<span class="nc" id="L785">        return accessionID;</span>
     }
 
     public void setAccessionID(Accession accessionID) {
-<span class="nc" id="L788">        this.accessionID = accessionID;</span>
-<span class="nc" id="L789">    }</span>
+<span class="nc" id="L789">        this.accessionID = accessionID;</span>
+<span class="nc" id="L790">    }</span>
 
     @XmlIDREF
     public Agent getCatalogerID() {
-<span class="nc" id="L793">        return catalogerID;</span>
+<span class="nc" id="L794">        return catalogerID;</span>
     }
 
     public void setCatalogerID(Agent catalogerID) {
-<span class="nc" id="L797">        this.catalogerID = catalogerID;</span>
-<span class="nc" id="L798">    }</span>
+<span class="nc" id="L798">        this.catalogerID = catalogerID;</span>
+<span class="nc" id="L799">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L802">        return modifiedByAgentID;</span>
+<span class="nc" id="L803">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L806">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L807">    }</span>
+<span class="nc" id="L807">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L808">    }</span>
 
     @XmlTransient
     public Fieldnotebookpage getFieldNotebookPageID() {
-<span class="nc" id="L811">        return fieldNotebookPageID;</span>
+<span class="nc" id="L812">        return fieldNotebookPageID;</span>
     }
 
     public void setFieldNotebookPageID(Fieldnotebookpage fieldNotebookPageID) {
-<span class="nc" id="L815">        this.fieldNotebookPageID = fieldNotebookPageID;</span>
-<span class="nc" id="L816">    }</span>
+<span class="nc" id="L816">        this.fieldNotebookPageID = fieldNotebookPageID;</span>
+<span class="nc" id="L817">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L820">        return createdByAgentID;</span>
+<span class="nc" id="L821">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L824">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L825">    }</span>
+<span class="nc" id="L825">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L826">    }</span>
 
     @XmlIDREF
     public Collection getCollectionID() {
-<span class="nc" id="L829">        return collectionID;</span>
+<span class="nc" id="L830">        return collectionID;</span>
     }
 
     public void setCollectionID(Collection collectionID) {
-<span class="nc" id="L833">        this.collectionID = collectionID;</span>
-<span class="nc" id="L834">    }</span>
+<span class="nc" id="L834">        this.collectionID = collectionID;</span>
+<span class="nc" id="L835">    }</span>
 
     @XmlTransient
     public Paleocontext getPaleoContextID() {
-<span class="nc" id="L838">        return paleoContextID;</span>
+<span class="nc" id="L839">        return paleoContextID;</span>
     }
 
     public void setPaleoContextID(Paleocontext paleoContextID) {
-<span class="nc" id="L842">        this.paleoContextID = paleoContextID;</span>
-<span class="nc" id="L843">    }</span>
+<span class="nc" id="L843">        this.paleoContextID = paleoContextID;</span>
+<span class="nc" id="L844">    }</span>
 
     @XmlIDREF
     public Collectingevent getCollectingEventID() {
-<span class="nc" id="L847">        return collectingEventID;</span>
+<span class="nc" id="L848">        return collectingEventID;</span>
     }
 
     public void setCollectingEventID(Collectingevent collectingEventID) {
-<span class="nc" id="L851">        this.collectingEventID = collectingEventID;</span>
-<span class="nc" id="L852">    }</span>
+<span class="nc" id="L852">        this.collectingEventID = collectingEventID;</span>
+<span class="nc" id="L853">    }</span>
 
     @XmlIDREF
     public Collectionobjectattribute getCollectionObjectAttributeID() {
-<span class="nc" id="L856">        return collectionObjectAttributeID;</span>
+<span class="nc" id="L857">        return collectionObjectAttributeID;</span>
     }
 
     public void setCollectionObjectAttributeID(Collectionobjectattribute collectionObjectAttributeID) {
-<span class="nc" id="L860">        this.collectionObjectAttributeID = collectionObjectAttributeID;</span>
-<span class="nc" id="L861">    }</span>
+<span class="nc" id="L861">        this.collectionObjectAttributeID = collectionObjectAttributeID;</span>
+<span class="nc" id="L862">    }</span>
 
     @XmlTransient
     public Container getContainerOwnerID() {
-<span class="nc" id="L865">        return containerOwnerID;</span>
+<span class="nc" id="L866">        return containerOwnerID;</span>
     }
 
     public void setContainerOwnerID(Container containerOwnerID) {
-<span class="nc" id="L869">        this.containerOwnerID = containerOwnerID;</span>
-<span class="nc" id="L870">    }</span>
+<span class="nc" id="L870">        this.containerOwnerID = containerOwnerID;</span>
+<span class="nc" id="L871">    }</span>
 
     @XmlTransient
     public Container getContainerID() {
-<span class="nc" id="L874">        return containerID;</span>
+<span class="nc" id="L875">        return containerID;</span>
     }
 
     public void setContainerID(Container containerID) {
-<span class="nc" id="L878">        this.containerID = containerID;</span>
-<span class="nc" id="L879">    }</span>
+<span class="nc" id="L879">        this.containerID = containerID;</span>
+<span class="nc" id="L880">    }</span>
 
     @XmlTransient
     public Appraisal getAppraisalID() {
-<span class="nc" id="L883">        return appraisalID;</span>
+<span class="nc" id="L884">        return appraisalID;</span>
     }
 
     public void setAppraisalID(Appraisal appraisalID) {
-<span class="nc" id="L887">        this.appraisalID = appraisalID;</span>
-<span class="nc" id="L888">    }</span>
+<span class="nc" id="L888">        this.appraisalID = appraisalID;</span>
+<span class="nc" id="L889">    }</span>
 
     @XmlTransient
     public List&lt;Dnasequence&gt; getDnasequenceList() {
-<span class="nc" id="L892">        return dnasequenceList;</span>
+<span class="nc" id="L893">        return dnasequenceList;</span>
     }
 
     public void setDnasequenceList(List&lt;Dnasequence&gt; dnasequenceList) {
-<span class="nc" id="L896">        this.dnasequenceList = dnasequenceList;</span>
-<span class="nc" id="L897">    }</span>
+<span class="nc" id="L897">        this.dnasequenceList = dnasequenceList;</span>
+<span class="nc" id="L898">    }</span>
 
     @XmlTransient
     public List&lt;Collectionrelationship&gt; getCollectionrelationshipList() {
-<span class="nc" id="L901">        return collectionrelationshipList;</span>
+<span class="nc" id="L902">        return collectionrelationshipList;</span>
     }
 
     public void setCollectionrelationshipList(List&lt;Collectionrelationship&gt; collectionrelationshipList) {
-<span class="nc" id="L905">        this.collectionrelationshipList = collectionrelationshipList;</span>
-<span class="nc" id="L906">    }</span>
+<span class="nc" id="L906">        this.collectionrelationshipList = collectionrelationshipList;</span>
+<span class="nc" id="L907">    }</span>
 
     @XmlTransient
     public List&lt;Collectionrelationship&gt; getCollectionrelationshipList1() {
-<span class="nc" id="L910">        return collectionrelationshipList1;</span>
+<span class="nc" id="L911">        return collectionrelationshipList1;</span>
     }
 
     public void setCollectionrelationshipList1(List&lt;Collectionrelationship&gt; collectionrelationshipList1) {
-<span class="nc" id="L914">        this.collectionrelationshipList1 = collectionrelationshipList1;</span>
-<span class="nc" id="L915">    }</span>
+<span class="nc" id="L915">        this.collectionrelationshipList1 = collectionrelationshipList1;</span>
+<span class="nc" id="L916">    }</span>
 
     @XmlTransient
     public List&lt;Collectionobjectcitation&gt; getCollectionobjectcitationList() {
-<span class="nc" id="L919">        return collectionobjectcitationList;</span>
+<span class="nc" id="L920">        return collectionobjectcitationList;</span>
     }
 
     public void setCollectionobjectcitationList(List&lt;Collectionobjectcitation&gt; collectionobjectcitationList) {
-<span class="nc" id="L923">        this.collectionobjectcitationList = collectionobjectcitationList;</span>
-<span class="nc" id="L924">    }</span>
+<span class="nc" id="L924">        this.collectionobjectcitationList = collectionobjectcitationList;</span>
+<span class="nc" id="L925">    }</span>
 
     @XmlTransient
     public List&lt;Otheridentifier&gt; getOtheridentifierList() {
-<span class="nc" id="L928">        return otheridentifierList;</span>
+<span class="nc" id="L929">        return otheridentifierList;</span>
     }
 
     public void setOtheridentifierList(List&lt;Otheridentifier&gt; otheridentifierList) {
-<span class="nc" id="L932">        this.otheridentifierList = otheridentifierList;</span>
-<span class="nc" id="L933">    }</span>
+<span class="nc" id="L933">        this.otheridentifierList = otheridentifierList;</span>
+<span class="nc" id="L934">    }</span>
 
     @XmlTransient
     public List&lt;Collectionobjectattr&gt; getCollectionobjectattrList() {
-<span class="nc" id="L937">        return collectionobjectattrList;</span>
+<span class="nc" id="L938">        return collectionobjectattrList;</span>
     }
 
     public void setCollectionobjectattrList(List&lt;Collectionobjectattr&gt; collectionobjectattrList) {
-<span class="nc" id="L941">        this.collectionobjectattrList = collectionobjectattrList;</span>
-<span class="nc" id="L942">    }</span>
+<span class="nc" id="L942">        this.collectionobjectattrList = collectionobjectattrList;</span>
+<span class="nc" id="L943">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L946">        int hash = 0;</span>
-<span class="nc bnc" id="L947" title="All 2 branches missed.">        hash += (collectionObjectID != null ? collectionObjectID.hashCode() : 0);</span>
-<span class="nc" id="L948">        return hash;</span>
+<span class="nc" id="L947">        int hash = 0;</span>
+<span class="nc bnc" id="L948" title="All 2 branches missed.">        hash += (collectionObjectID != null ? collectionObjectID.hashCode() : 0);</span>
+<span class="nc" id="L949">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L954" title="All 2 branches missed.">        if (!(object instanceof Collectionobject)) {</span>
-<span class="nc" id="L955">            return false;</span>
+<span class="nc bnc" id="L955" title="All 2 branches missed.">        if (!(object instanceof Collectionobject)) {</span>
+<span class="nc" id="L956">            return false;</span>
         }
-<span class="nc" id="L957">        Collectionobject other = (Collectionobject) object;</span>
-<span class="nc bnc" id="L958" title="All 8 branches missed.">        return !((this.collectionObjectID == null &amp;&amp; other.collectionObjectID != null) || (this.collectionObjectID != null &amp;&amp; !this.collectionObjectID.equals(other.collectionObjectID)));</span>
+<span class="nc" id="L958">        Collectionobject other = (Collectionobject) object;</span>
+<span class="nc bnc" id="L959" title="All 8 branches missed.">        return !((this.collectionObjectID == null &amp;&amp; other.collectionObjectID != null) || (this.collectionObjectID != null &amp;&amp; !this.collectionObjectID.equals(other.collectionObjectID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L963">        return &quot;se.nrm.dina.datamodel.Collectionobject[ collectionObjectID=&quot; + collectionObjectID + &quot; ]&quot;;</span>
+<span class="nc" id="L964">        return &quot;se.nrm.dina.datamodel.Collectionobject[ collectionObjectID=&quot; + collectionObjectID + &quot; ]&quot;;</span>
     }
     
 }
