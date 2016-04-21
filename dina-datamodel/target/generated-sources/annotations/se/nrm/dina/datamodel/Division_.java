@@ -20,7 +20,7 @@ import se.nrm.dina.datamodel.Loan;
 import se.nrm.dina.datamodel.Repositoryagreement;
 import se.nrm.dina.datamodel.Treatmentevent;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-21T09:39:58")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-21T15:02:32")
 @StaticMetamodel(Division.class)
 public class Division_ extends BaseEntity_ {
 

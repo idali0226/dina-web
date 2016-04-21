@@ -7,6 +7,7 @@ package se.nrm.dina.datamodel;
  
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -71,7 +72,7 @@ public class Collectionobjectattachment extends BaseEntity {
     private Agent modifiedByAgentID;
     
     @JoinColumn(name = &quot;CollectionObjectID&quot;, referencedColumnName = &quot;CollectionObjectID&quot;)
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Collectionobject collectionObjectID;
     
     @JoinColumn(name = &quot;CreatedByAgentID&quot;, referencedColumnName = &quot;AgentID&quot;)
@@ -79,129 +80,129 @@ public class Collectionobjectattachment extends BaseEntity {
     private Agent createdByAgentID;
     
     @JoinColumn(name = &quot;AttachmentID&quot;, referencedColumnName = &quot;AttachmentID&quot;)
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private Attachment attachmentID;
 
-<span class="nc" id="L85">    public Collectionobjectattachment() {</span>
-<span class="nc" id="L86">    }</span>
+<span class="nc" id="L86">    public Collectionobjectattachment() {</span>
+<span class="nc" id="L87">    }</span>
 
-<span class="nc" id="L88">    public Collectionobjectattachment(Integer collectionObjectAttachmentID) {</span>
-<span class="nc" id="L89">        this.collectionObjectAttachmentID = collectionObjectAttachmentID;</span>
-<span class="nc" id="L90">    }</span>
+<span class="nc" id="L89">    public Collectionobjectattachment(Integer collectionObjectAttachmentID) {</span>
+<span class="nc" id="L90">        this.collectionObjectAttachmentID = collectionObjectAttachmentID;</span>
+<span class="nc" id="L91">    }</span>
 
-<span class="nc" id="L92">    public Collectionobjectattachment(Integer collectionObjectAttachmentID, Date timestampCreated, int collectionMemberID, int ordinal) {</span>
-<span class="nc" id="L93">        this.collectionObjectAttachmentID = collectionObjectAttachmentID;</span>
-<span class="nc" id="L94">        this.timestampCreated = timestampCreated;</span>
-<span class="nc" id="L95">        this.collectionMemberID = collectionMemberID;</span>
-<span class="nc" id="L96">        this.ordinal = ordinal;</span>
-<span class="nc" id="L97">    }</span>
+<span class="nc" id="L93">    public Collectionobjectattachment(Integer collectionObjectAttachmentID, Date timestampCreated, int collectionMemberID, int ordinal) {</span>
+<span class="nc" id="L94">        this.collectionObjectAttachmentID = collectionObjectAttachmentID;</span>
+<span class="nc" id="L95">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L96">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L97">        this.ordinal = ordinal;</span>
+<span class="nc" id="L98">    }</span>
     
     @XmlID
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L103">        return String.valueOf(collectionObjectAttachmentID);</span>
+<span class="nc" id="L104">        return String.valueOf(collectionObjectAttachmentID);</span>
     }
     
     @XmlAttribute(name = &quot;uuid&quot;) 
     @Override
     public String getUUID() {
-<span class="nc" id="L109">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + collectionObjectAttachmentID;</span>
+<span class="nc" id="L110">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + collectionObjectAttachmentID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L114">        return collectionObjectAttachmentID;</span>
+<span class="nc" id="L115">        return collectionObjectAttachmentID;</span>
     }
 
     public Integer getCollectionObjectAttachmentID() {
-<span class="nc" id="L118">        return collectionObjectAttachmentID;</span>
+<span class="nc" id="L119">        return collectionObjectAttachmentID;</span>
     }
 
     public void setCollectionObjectAttachmentID(Integer collectionObjectAttachmentID) {
-<span class="nc" id="L122">        this.collectionObjectAttachmentID = collectionObjectAttachmentID;</span>
-<span class="nc" id="L123">    }</span>
+<span class="nc" id="L123">        this.collectionObjectAttachmentID = collectionObjectAttachmentID;</span>
+<span class="nc" id="L124">    }</span>
  
     public int getCollectionMemberID() {
-<span class="nc" id="L126">        return collectionMemberID;</span>
+<span class="nc" id="L127">        return collectionMemberID;</span>
     }
 
     public void setCollectionMemberID(int collectionMemberID) {
-<span class="nc" id="L130">        this.collectionMemberID = collectionMemberID;</span>
-<span class="nc" id="L131">    }</span>
+<span class="nc" id="L131">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L132">    }</span>
 
     public int getOrdinal() {
-<span class="nc" id="L134">        return ordinal;</span>
+<span class="nc" id="L135">        return ordinal;</span>
     }
 
     public void setOrdinal(int ordinal) {
-<span class="nc" id="L138">        this.ordinal = ordinal;</span>
-<span class="nc" id="L139">    }</span>
+<span class="nc" id="L139">        this.ordinal = ordinal;</span>
+<span class="nc" id="L140">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L142">        return remarks;</span>
+<span class="nc" id="L143">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L146">        this.remarks = remarks;</span>
-<span class="nc" id="L147">    }</span>
+<span class="nc" id="L147">        this.remarks = remarks;</span>
+<span class="nc" id="L148">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L151">        return modifiedByAgentID;</span>
+<span class="nc" id="L152">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L155">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L156">    }</span>
+<span class="nc" id="L156">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L157">    }</span>
 
     @XmlTransient
     public Collectionobject getCollectionObjectID() {
-<span class="nc" id="L160">        return collectionObjectID;</span>
+<span class="nc" id="L161">        return collectionObjectID;</span>
     }
 
     public void setCollectionObjectID(Collectionobject collectionObjectID) {
-<span class="nc" id="L164">        this.collectionObjectID = collectionObjectID;</span>
-<span class="nc" id="L165">    }</span>
+<span class="nc" id="L165">        this.collectionObjectID = collectionObjectID;</span>
+<span class="nc" id="L166">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L169">        return createdByAgentID;</span>
+<span class="nc" id="L170">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L173">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L174">    }</span>
+<span class="nc" id="L174">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L175">    }</span>
 
     @XmlIDREF
     public Attachment getAttachmentID() {
-<span class="nc" id="L178">        return attachmentID;</span>
+<span class="nc" id="L179">        return attachmentID;</span>
     }
 
     public void setAttachmentID(Attachment attachmentID) {
-<span class="nc" id="L182">        this.attachmentID = attachmentID;</span>
-<span class="nc" id="L183">    }</span>
+<span class="nc" id="L183">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L184">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L187">        int hash = 0;</span>
-<span class="nc bnc" id="L188" title="All 2 branches missed.">        hash += (collectionObjectAttachmentID != null ? collectionObjectAttachmentID.hashCode() : 0);</span>
-<span class="nc" id="L189">        return hash;</span>
+<span class="nc" id="L188">        int hash = 0;</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">        hash += (collectionObjectAttachmentID != null ? collectionObjectAttachmentID.hashCode() : 0);</span>
+<span class="nc" id="L190">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L195" title="All 2 branches missed.">        if (!(object instanceof Collectionobjectattachment)) {</span>
-<span class="nc" id="L196">            return false;</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">        if (!(object instanceof Collectionobjectattachment)) {</span>
+<span class="nc" id="L197">            return false;</span>
         }
-<span class="nc" id="L198">        Collectionobjectattachment other = (Collectionobjectattachment) object;</span>
-<span class="nc bnc" id="L199" title="All 8 branches missed.">        return !((this.collectionObjectAttachmentID == null &amp;&amp; other.collectionObjectAttachmentID != null) || (this.collectionObjectAttachmentID != null &amp;&amp; !this.collectionObjectAttachmentID.equals(other.collectionObjectAttachmentID)));</span>
+<span class="nc" id="L199">        Collectionobjectattachment other = (Collectionobjectattachment) object;</span>
+<span class="nc bnc" id="L200" title="All 8 branches missed.">        return !((this.collectionObjectAttachmentID == null &amp;&amp; other.collectionObjectAttachmentID != null) || (this.collectionObjectAttachmentID != null &amp;&amp; !this.collectionObjectAttachmentID.equals(other.collectionObjectAttachmentID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L204">        return &quot;se.nrm.dina.datamodel.Collectionobjectattachment[ collectionObjectAttachmentID=&quot; + collectionObjectAttachmentID + &quot; ]&quot;;</span>
+<span class="nc" id="L205">        return &quot;se.nrm.dina.datamodel.Collectionobjectattachment[ collectionObjectAttachmentID=&quot; + collectionObjectAttachmentID + &quot; ]&quot;;</span>
     }
     
 }

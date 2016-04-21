@@ -7,6 +7,7 @@ package se.nrm.dina.datamodel;
  
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -71,7 +72,7 @@ public class Collectionobjectattachment extends BaseEntity {
     private Agent modifiedByAgentID;
     
     @JoinColumn(name = "CollectionObjectID", referencedColumnName = "CollectionObjectID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Collectionobject collectionObjectID;
     
     @JoinColumn(name = "CreatedByAgentID", referencedColumnName = "AgentID")
@@ -79,7 +80,7 @@ public class Collectionobjectattachment extends BaseEntity {
     private Agent createdByAgentID;
     
     @JoinColumn(name = "AttachmentID", referencedColumnName = "AttachmentID")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private Attachment attachmentID;
 
     public Collectionobjectattachment() {

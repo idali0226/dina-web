@@ -11,7 +11,7 @@ import se.nrm.dina.datamodel.Exchangeout;
 import se.nrm.dina.datamodel.Gift;
 import se.nrm.dina.datamodel.Loan;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-21T09:39:58")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-21T15:02:32")
 @StaticMetamodel(Shipment.class)
 public class Shipment_ extends BaseEntity_ {
 
