@@ -4,12 +4,10 @@
  * and open the template in the editor.
  */
 package se.nrm.dina.data.service;
-   
-import java.security.Principal;
+    
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;  
-import java.util.Set; 
+import java.util.List;   
 import javax.ejb.EJB; 
 import javax.ejb.Stateless; 
 import javax.servlet.http.HttpServletRequest;  
@@ -29,14 +27,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import org.apache.commons.lang.StringUtils; 
-import org.keycloak.KeycloakPrincipal;
-import org.keycloak.KeycloakSecurityContext; 
-import org.keycloak.admin.client.Keycloak;
-import org.keycloak.representations.AccessToken;
-import org.keycloak.representations.IDToken; 
-import org.keycloak.representations.idm.CredentialRepresentation;
-import org.keycloak.representations.idm.UserRepresentation;
+import org.apache.commons.lang.StringUtils;  
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.nrm.dina.data.exceptions.DinaConstraintViolationException;

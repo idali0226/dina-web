@@ -151,7 +151,7 @@ import se.nrm.dina.datamodel.Workbench;
 import se.nrm.dina.datamodel.Workbenchtemplate;
 import se.nrm.dina.datamodel.Workbenchtemplatemappingitem;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-21T15:02:32")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-22T09:50:41")
 @StaticMetamodel(Agent.class)
 public class Agent_ extends BaseEntity_ {
 

@@ -2,42 +2,42 @@
 <testng-results skipped="0" failed="0" total="6" passed="6">
   <reporter-output>
   </reporter-output>
-  <suite name="Surefire suite" duration-ms="120" started-at="2016-04-21T13:03:08Z" finished-at="2016-04-21T13:03:08Z">
+  <suite name="Surefire suite" duration-ms="142" started-at="2016-04-22T07:51:21Z" finished-at="2016-04-22T07:51:21Z">
     <groups>
     </groups>
-    <test name="Surefire test" duration-ms="120" started-at="2016-04-21T13:03:08Z" finished-at="2016-04-21T13:03:08Z">
+    <test name="Surefire test" duration-ms="142" started-at="2016-04-22T07:51:21Z" finished-at="2016-04-22T07:51:21Z">
       <class name="se.nrm.dina.data.exceptions.ErrorMsgNGTest">
-        <test-method status="PASS" signature="setUpClass()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@6e1f8469]" name="setUpClass" is-config="true" duration-ms="0" started-at="2016-04-21T15:03:08Z" finished-at="2016-04-21T15:03:08Z">
+        <test-method status="PASS" signature="setUpClass()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@6e1f8469]" name="setUpClass" is-config="true" duration-ms="0" started-at="2016-04-22T09:51:21Z" finished-at="2016-04-22T09:51:21Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method status="PASS" signature="testGetEntityNameErrorMsg()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@6e1f8469]" name="testGetEntityNameErrorMsg" duration-ms="2" started-at="2016-04-21T15:03:08Z" finished-at="2016-04-21T15:03:08Z">
+        <test-method status="PASS" signature="testGetEntityNameErrorMsg()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@6e1f8469]" name="testGetEntityNameErrorMsg" duration-ms="3" started-at="2016-04-22T09:51:21Z" finished-at="2016-04-22T09:51:21Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetEntityNameErrorMsg -->
-        <test-method status="PASS" signature="testGetInstance()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@6e1f8469]" name="testGetInstance" duration-ms="5" started-at="2016-04-21T15:03:08Z" finished-at="2016-04-21T15:03:08Z">
+        <test-method status="PASS" signature="testGetInstance()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@6e1f8469]" name="testGetInstance" duration-ms="1" started-at="2016-04-22T09:51:21Z" finished-at="2016-04-22T09:51:21Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetInstance -->
-        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@6e1f8469]" name="tearDownClass" is-config="true" duration-ms="1" started-at="2016-04-21T15:03:08Z" finished-at="2016-04-21T15:03:08Z">
+        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:se.nrm.dina.data.exceptions.ErrorMsgNGTest@6e1f8469]" name="tearDownClass" is-config="true" duration-ms="1" started-at="2016-04-22T09:51:21Z" finished-at="2016-04-22T09:51:21Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
       </class> <!-- se.nrm.dina.data.exceptions.ErrorMsgNGTest -->
       <class name="se.nrm.dina.data.exceptions.DinaExceptionNGTest">
-        <test-method status="PASS" signature="testDinaExceptionConstruct()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@6dd93a21]" name="testDinaExceptionConstruct" duration-ms="36" started-at="2016-04-21T15:03:08Z" finished-at="2016-04-21T15:03:08Z">
+        <test-method status="PASS" signature="testDinaExceptionConstruct()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@6dd93a21]" name="testDinaExceptionConstruct" duration-ms="61" started-at="2016-04-22T09:51:21Z" finished-at="2016-04-22T09:51:21Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDinaExceptionConstruct -->
-        <test-method status="PASS" signature="testDinaExceptionConstructWithMsg()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@6dd93a21]" name="testDinaExceptionConstructWithMsg" duration-ms="0" started-at="2016-04-21T15:03:08Z" finished-at="2016-04-21T15:03:08Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- testDinaExceptionConstructWithMsg -->
-        <test-method status="PASS" signature="testDinaExceptionConstructWithMsgAndErrorCode()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@6dd93a21]" name="testDinaExceptionConstructWithMsgAndErrorCode" duration-ms="1" started-at="2016-04-21T15:03:08Z" finished-at="2016-04-21T15:03:08Z">
+        <test-method status="PASS" signature="testDinaExceptionConstructWithMsgAndErrorCode()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@6dd93a21]" name="testDinaExceptionConstructWithMsgAndErrorCode" duration-ms="1" started-at="2016-04-22T09:51:21Z" finished-at="2016-04-22T09:51:21Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDinaExceptionConstructWithMsgAndErrorCode -->
-        <test-method status="PASS" signature="testGetErrorCode()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@6dd93a21]" name="testGetErrorCode" duration-ms="1" started-at="2016-04-21T15:03:08Z" finished-at="2016-04-21T15:03:08Z">
+        <test-method status="PASS" signature="testDinaExceptionConstructWithMsg()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@6dd93a21]" name="testDinaExceptionConstructWithMsg" duration-ms="0" started-at="2016-04-22T09:51:21Z" finished-at="2016-04-22T09:51:21Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDinaExceptionConstructWithMsg -->
+        <test-method status="PASS" signature="testGetErrorCode()[pri:0, instance:se.nrm.dina.data.exceptions.DinaExceptionNGTest@6dd93a21]" name="testGetErrorCode" duration-ms="1" started-at="2016-04-22T09:51:21Z" finished-at="2016-04-22T09:51:21Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testGetErrorCode -->

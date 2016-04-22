@@ -9,7 +9,7 @@ import se.nrm.dina.datamodel.Institution;
 import se.nrm.dina.datamodel.Storage;
 import se.nrm.dina.datamodel.Storagetreedefitem;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-21T15:02:32")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-22T09:50:41")
 @StaticMetamodel(Storagetreedef.class)
 public class Storagetreedef_ extends BaseEntity_ {
 

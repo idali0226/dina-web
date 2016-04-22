@@ -7,6 +7,7 @@ package se.nrm.dina.datamodel;
  
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -78,130 +79,130 @@ public class Collectingeventattachment extends BaseEntity {
     private Collectingevent collectingEventID;
     
     @JoinColumn(name = &quot;AttachmentID&quot;, referencedColumnName = &quot;AttachmentID&quot;)
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private Attachment attachmentID;
 
-<span class="nc" id="L84">    public Collectingeventattachment() {</span>
-<span class="nc" id="L85">    }</span>
+<span class="nc" id="L85">    public Collectingeventattachment() {</span>
+<span class="nc" id="L86">    }</span>
 
-<span class="nc" id="L87">    public Collectingeventattachment(Integer collectingEventAttachmentID) {</span>
-<span class="nc" id="L88">        this.collectingEventAttachmentID = collectingEventAttachmentID;</span>
-<span class="nc" id="L89">    }</span>
+<span class="nc" id="L88">    public Collectingeventattachment(Integer collectingEventAttachmentID) {</span>
+<span class="nc" id="L89">        this.collectingEventAttachmentID = collectingEventAttachmentID;</span>
+<span class="nc" id="L90">    }</span>
 
-<span class="nc" id="L91">    public Collectingeventattachment(Integer collectingEventAttachmentID, Date timestampCreated, int collectionMemberID, int ordinal) {</span>
-<span class="nc" id="L92">        this.collectingEventAttachmentID = collectingEventAttachmentID;</span>
-<span class="nc" id="L93">        this.timestampCreated = timestampCreated;</span>
-<span class="nc" id="L94">        this.collectionMemberID = collectionMemberID;</span>
-<span class="nc" id="L95">        this.ordinal = ordinal;</span>
-<span class="nc" id="L96">    }</span>
+<span class="nc" id="L92">    public Collectingeventattachment(Integer collectingEventAttachmentID, Date timestampCreated, int collectionMemberID, int ordinal) {</span>
+<span class="nc" id="L93">        this.collectingEventAttachmentID = collectingEventAttachmentID;</span>
+<span class="nc" id="L94">        this.timestampCreated = timestampCreated;</span>
+<span class="nc" id="L95">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L96">        this.ordinal = ordinal;</span>
+<span class="nc" id="L97">    }</span>
     
     @XmlID
     @XmlAttribute(name = &quot;id&quot;)
     @Override
     public String getIdentityString() {
-<span class="nc" id="L102">        return String.valueOf(collectingEventAttachmentID);</span>
+<span class="nc" id="L103">        return String.valueOf(collectingEventAttachmentID);</span>
     }
     
     @XmlAttribute(name = &quot;uuid&quot;) 
     @Override
     public String getUUID() {
-<span class="nc" id="L108">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + collectingEventAttachmentID;</span>
+<span class="nc" id="L109">        return Util.getInstance().getURLLink(this.getClass().getSimpleName()) + collectingEventAttachmentID;</span>
     }
     
     @Override
     public int getEntityId() {
-<span class="nc" id="L113">        return collectingEventAttachmentID;</span>
+<span class="nc" id="L114">        return collectingEventAttachmentID;</span>
     }
      
     public Integer getCollectingEventAttachmentID() {
-<span class="nc" id="L117">        return collectingEventAttachmentID;</span>
+<span class="nc" id="L118">        return collectingEventAttachmentID;</span>
     }
 
     public void setCollectingEventAttachmentID(Integer collectingEventAttachmentID) {
-<span class="nc" id="L121">        this.collectingEventAttachmentID = collectingEventAttachmentID;</span>
-<span class="nc" id="L122">    }</span>
+<span class="nc" id="L122">        this.collectingEventAttachmentID = collectingEventAttachmentID;</span>
+<span class="nc" id="L123">    }</span>
  
 
     public int getCollectionMemberID() {
-<span class="nc" id="L126">        return collectionMemberID;</span>
+<span class="nc" id="L127">        return collectionMemberID;</span>
     }
 
     public void setCollectionMemberID(int collectionMemberID) {
-<span class="nc" id="L130">        this.collectionMemberID = collectionMemberID;</span>
-<span class="nc" id="L131">    }</span>
+<span class="nc" id="L131">        this.collectionMemberID = collectionMemberID;</span>
+<span class="nc" id="L132">    }</span>
 
     public int getOrdinal() {
-<span class="nc" id="L134">        return ordinal;</span>
+<span class="nc" id="L135">        return ordinal;</span>
     }
 
     public void setOrdinal(int ordinal) {
-<span class="nc" id="L138">        this.ordinal = ordinal;</span>
-<span class="nc" id="L139">    }</span>
+<span class="nc" id="L139">        this.ordinal = ordinal;</span>
+<span class="nc" id="L140">    }</span>
 
     public String getRemarks() {
-<span class="nc" id="L142">        return remarks;</span>
+<span class="nc" id="L143">        return remarks;</span>
     }
 
     public void setRemarks(String remarks) {
-<span class="nc" id="L146">        this.remarks = remarks;</span>
-<span class="nc" id="L147">    }</span>
+<span class="nc" id="L147">        this.remarks = remarks;</span>
+<span class="nc" id="L148">    }</span>
 
     @XmlIDREF
     public Agent getModifiedByAgentID() {
-<span class="nc" id="L151">        return modifiedByAgentID;</span>
+<span class="nc" id="L152">        return modifiedByAgentID;</span>
     }
 
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
-<span class="nc" id="L155">        this.modifiedByAgentID = modifiedByAgentID;</span>
-<span class="nc" id="L156">    }</span>
+<span class="nc" id="L156">        this.modifiedByAgentID = modifiedByAgentID;</span>
+<span class="nc" id="L157">    }</span>
 
     @XmlIDREF
     public Agent getCreatedByAgentID() {
-<span class="nc" id="L160">        return createdByAgentID;</span>
+<span class="nc" id="L161">        return createdByAgentID;</span>
     }
 
     public void setCreatedByAgentID(Agent createdByAgentID) {
-<span class="nc" id="L164">        this.createdByAgentID = createdByAgentID;</span>
-<span class="nc" id="L165">    }</span>
+<span class="nc" id="L165">        this.createdByAgentID = createdByAgentID;</span>
+<span class="nc" id="L166">    }</span>
 
     @XmlTransient
     public Collectingevent getCollectingEventID() {
-<span class="nc" id="L169">        return collectingEventID;</span>
+<span class="nc" id="L170">        return collectingEventID;</span>
     }
 
     public void setCollectingEventID(Collectingevent collectingEventID) {
-<span class="nc" id="L173">        this.collectingEventID = collectingEventID;</span>
-<span class="nc" id="L174">    }</span>
+<span class="nc" id="L174">        this.collectingEventID = collectingEventID;</span>
+<span class="nc" id="L175">    }</span>
 
     @XmlIDREF
     public Attachment getAttachmentID() {
-<span class="nc" id="L178">        return attachmentID;</span>
+<span class="nc" id="L179">        return attachmentID;</span>
     }
 
     public void setAttachmentID(Attachment attachmentID) {
-<span class="nc" id="L182">        this.attachmentID = attachmentID;</span>
-<span class="nc" id="L183">    }</span>
+<span class="nc" id="L183">        this.attachmentID = attachmentID;</span>
+<span class="nc" id="L184">    }</span>
 
     @Override
     public int hashCode() {
-<span class="nc" id="L187">        int hash = 0;</span>
-<span class="nc bnc" id="L188" title="All 2 branches missed.">        hash += (collectingEventAttachmentID != null ? collectingEventAttachmentID.hashCode() : 0);</span>
-<span class="nc" id="L189">        return hash;</span>
+<span class="nc" id="L188">        int hash = 0;</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">        hash += (collectingEventAttachmentID != null ? collectingEventAttachmentID.hashCode() : 0);</span>
+<span class="nc" id="L190">        return hash;</span>
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-<span class="nc bnc" id="L195" title="All 2 branches missed.">        if (!(object instanceof Collectingeventattachment)) {</span>
-<span class="nc" id="L196">            return false;</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">        if (!(object instanceof Collectingeventattachment)) {</span>
+<span class="nc" id="L197">            return false;</span>
         }
-<span class="nc" id="L198">        Collectingeventattachment other = (Collectingeventattachment) object;</span>
-<span class="nc bnc" id="L199" title="All 8 branches missed.">        return !((this.collectingEventAttachmentID == null &amp;&amp; other.collectingEventAttachmentID != null) || (this.collectingEventAttachmentID != null &amp;&amp; !this.collectingEventAttachmentID.equals(other.collectingEventAttachmentID)));</span>
+<span class="nc" id="L199">        Collectingeventattachment other = (Collectingeventattachment) object;</span>
+<span class="nc bnc" id="L200" title="All 8 branches missed.">        return !((this.collectingEventAttachmentID == null &amp;&amp; other.collectingEventAttachmentID != null) || (this.collectingEventAttachmentID != null &amp;&amp; !this.collectingEventAttachmentID.equals(other.collectingEventAttachmentID)));</span>
     }
 
     @Override
     public String toString() {
-<span class="nc" id="L204">        return &quot;se.nrm.dina.datamodel.Collectingeventattachment[ collectingEventAttachmentID=&quot; + collectingEventAttachmentID + &quot; ]&quot;;</span>
+<span class="nc" id="L205">        return &quot;se.nrm.dina.datamodel.Collectingeventattachment[ collectingEventAttachmentID=&quot; + collectingEventAttachmentID + &quot; ]&quot;;</span>
     }
     
 }

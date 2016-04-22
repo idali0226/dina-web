@@ -9,7 +9,7 @@ import se.nrm.dina.datamodel.Attributedef;
 import se.nrm.dina.datamodel.Collection;
 import se.nrm.dina.datamodel.Preparation;
 
-@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-21T15:02:32")
+@Generated(value="EclipseLink-2.6.0.v20130922-rNA", date="2016-04-22T09:50:41")
 @StaticMetamodel(Preptype.class)
 public class Preptype_ extends BaseEntity_ {
 
