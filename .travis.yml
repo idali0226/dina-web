@@ -18,7 +18,9 @@ before_install:
 - pip install --user codecov
 after_success:
 - codecov
-
+before_deploy:
+  - docker build --tag dina/collections-api:$TRAVIS_TAG .
+  - docker build --tag dina/collections-api .
 deploy:
   provider: releases
   api_key:
@@ -30,3 +32,6 @@ deploy:
     repo: idali0226/dina-web
     all_branches: true
 #    repo: idali0226/dina-web
+after_deploy:
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker push dina/collections-api
