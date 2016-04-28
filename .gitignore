@@ -1,3 +1,5 @@
 
-/dina-service/target/
+/dina-data-service/target/
 /dina-logic/target/
+/dina-data-jpa/target/
+/dina-data-model/target/

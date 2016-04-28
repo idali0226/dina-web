@@ -1,8 +1,0 @@
-{ 
-  "realm": "dina",
-  "realm-public-key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCAo9prrNs0KIapV1KXPoMafdMAsDmbp0Zd6N6VlK8a0sLctYlBPhpA7SqLFym5MZqXGKxUZU6hQGGx0+OamsztWzH7zV2rwKQrC1cekdmgeNzAKJw7nO7ishJzBNxpsLu8P+VHejiQzGYLlxsPTGblLrh1S2nwvK0WdxwtA8B2uwIDAQAB",
-  "bearer-only": true,
-  "ssl-required": "all",
-  "resource": "collections",
-  "use-resource-role-mappings": true 
-}
