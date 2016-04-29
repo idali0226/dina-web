@@ -1,6 +1,6 @@
 # dina-web
-[![Build Status](https://travis-ci.org/idali0226/dina-web.svg?branch=master)](https://travis-ci.org/idali0226/dina-web)
-[![codecov.io](https://codecov.io/github/idali0226/dina-web/coverage.svg?branch=master)](https://codecov.io/github/idali0226/dina-web?branch=master)
+[![Build Status](https://travis-ci.org/DINA-Web/collections-api.svg?branch=master)](https://travis-ci.org/DINA-Web/collections-api)
+[![codecov.io](https://codecov.io/github/DINA-Web/collections-api/coverage.svg?branch=master)](https://codecov.io/github/DINA-Web/collections-api?branch=master)
 
  
 This repository consists of three basic modules in dinaproject:
