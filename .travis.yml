@@ -31,9 +31,8 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    repo: idali0226/dina-web
+    repo: DINA-Web/collections-api
     all_branches: true
-#    repo: idali0226/dina-web
 after_deploy:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker push dina/collections-api
