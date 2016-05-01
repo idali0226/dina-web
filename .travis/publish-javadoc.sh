@@ -11,8 +11,11 @@ if [ "$TRAVIS_REPO_SLUG" == "idali0226/dina-web" ] \
 
     echo "Publishing javadoc..."
 
-    git config --global user.email "travis@travis-ci.org"
-    git config --global user.name "travis-ci"
+   # git config --global user.email "travis@travis-ci.org"
+   # git config --global user.name "travis-ci"
+   
+   git config --global user.email "ida.li@nrm.se"
+   git config --global user.name "idali0226"
 
     # Create a fresh clone in which to run delombok and commit the results to the delombok branch
     cd $HOME
