@@ -11,6 +11,7 @@ install: true
 
 script:
 - mvn clean verify
+- chmod a+x publish-javadoc.sh
 
 env:
   global:
@@ -39,8 +40,7 @@ after_deploy:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker push dina/collections-api
 
-after_success:
-chmod: a+x publish-javadoc.sh
+after_success: 
 - .travis/publish-javadoc.sh
 
 
