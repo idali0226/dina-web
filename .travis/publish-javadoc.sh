@@ -16,14 +16,14 @@ if [ "$TRAVIS_REPO_SLUG" == "idali0226/dina-web" ] \
 
     # Create a fresh clone in which to run delombok and commit the results to the delombok branch
     cd $HOME
-    git clone --quiet --branch=delombok https://${GH_TOKEN}@github.com/idali0226/dina-web delombok > /dev/null
+    git clone --quiet --branch=mybranch https://${GH_TOKEN}@github.com/idali0226/dina-web mybranch > /dev/null
 
-    cd delombok
+    cd mybranch
     git reset --hard origin/master
-    ./gradlew delombok
+    ./gradlew mybranch
     git rm .travis.yml # to avoid triggering a build when this branch is pushed
-    git commit -am "Delombok Java sources"
-    git push -fq origin delombok > /dev/null
+    git commit -am "mybranch Java sources"
+    git push -fq origin mybranch > /dev/null
 
     # Run javadoc over delomboked sources to pick up all methods and constructors
     ./gradlew javadoc
