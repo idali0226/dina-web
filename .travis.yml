@@ -11,7 +11,7 @@ install: true
 
 script:
 - mvn clean verify
-- chmod a+x publish-javadoc.sh
+- chmod a+x .travis/publish-javadoc.sh
 
 env:
   global:
