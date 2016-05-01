@@ -25,7 +25,7 @@ if [ "$TRAVIS_REPO_SLUG" == "idali0226/dina-web" ] \
     git commit -am "mybranch Java sources"
     git push -fq origin mybranch > /dev/null
 
-    # Run javadoc over delomboked sources to pick up all methods and constructors
+    # Run javadoc over mybranch sources to pick up all methods and constructors
     ./gradlew javadoc
     cp -R build/docs/javadoc $HOME/api-temp
 
