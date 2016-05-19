@@ -285,6 +285,20 @@ public class Util {
         } 
     }
     
+    public Field getCreatedByField(Class clazz) {
+        logger.info("getCreatedByField : {} ", clazz ); 
+        try {  
+            return clazz.getDeclaredField("createdByAgentID"); 
+        } catch (NoSuchFieldException e) {
+            Class superClass = clazz.getSuperclass();
+            if (superClass == null) {
+                throw new DinaException(e.getMessage());
+            } else {
+                return getTimestampCreated(superClass);
+            }
+        } 
+    }
+    
     private Field[] getAllFieldsFromClazz(Class clazz) {
         return clazz.getDeclaredFields();
     }

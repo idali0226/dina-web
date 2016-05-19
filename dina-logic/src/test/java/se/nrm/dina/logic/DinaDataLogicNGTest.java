@@ -700,7 +700,7 @@ public class DinaDataLogicNGTest {
         
         when(dao.create(accession1)).thenReturn(accession1);
         
-        EntityBean result = instance.createEntity(entityName, json);
+        EntityBean result = instance.createEntity(entityName, json, 0);
         verify(dao).create(accession1);
         assertEquals(result, accession1);
         assertTrue(result instanceof Accession);
@@ -722,7 +722,7 @@ public class DinaDataLogicNGTest {
         when(dao.create(accession1)).thenThrow(new DinaException("error"));
         
         try {
-            instance.createEntity(entityName, json);
+            instance.createEntity(entityName, json, 0);
             fail();
         } catch(DinaException e) {
             verify(dao).create(accession1);

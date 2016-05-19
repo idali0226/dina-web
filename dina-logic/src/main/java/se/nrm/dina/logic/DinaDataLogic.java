@@ -41,7 +41,10 @@ import se.nrm.dina.datamodel.EntityBean;
 public class DinaDataLogic<T extends EntityBean> implements Serializable {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final String CREATED_BY_USER_CLASS_NAME = "Agent";
     private java.util.Date date;
+    private int agentId;
+    private EntityBean createdByUserBean;
 
     @EJB
     private DinaDao dao;
@@ -231,16 +234,20 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
      * Creates an entity in database
      *
      * @param entityName
-     * @param json
+     * @param json 
+     * @param userId 
      * @return EntityBean
      */
-    public EntityBean createEntity(String entityName, String json) {
-
+    public EntityBean createEntity(String entityName, String json, int userId) { 
         logger.info("createEntity : {} ", entityName);
 
+        this.agentId = userId;
         LocalDateTime ld = LocalDateTime.now();
         date = Timestamp.valueOf(ld);
         
+        Class createByClass = Util.getInstance().convertClassNameToClass(CREATED_BY_USER_CLASS_NAME);
+        createdByUserBean = dao.findById(agentId, createByClass);
+          
         EntityBean bean;
         try {
             bean = mappObject(entityName, json);
@@ -250,12 +257,14 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
                     .forEach(f -> {  
                         setValueToBean(bean, f);
                     }); 
-            setTimeStampCreated(bean); 
+             
+            setTimeStampCreated(bean);
+            setCreatedByUser(bean, createdByUserBean);
             return dao.create(bean);
         } catch (DinaConstraintViolationException ex) {   
             throw new DinaConstraintViolationException(ex.getErrorBeans(), ex.getErrorCode());  
         } catch(Exception e) {  
-            throw new DinaException();
+            throw new DinaException(e.getMessage());
         }
     }
  
@@ -325,6 +334,7 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
                     EntityBean entity = dao.findById((Integer) field.get(child), child.getClass()); 
                     if (entity == null) {
                         setTimeStampCreated(child);
+                        setCreatedByUser(child, createdByUserBean);
                         f.set(parent, child);
                         Field[] fields = child.getClass().getDeclaredFields();
                         Arrays.stream(fields)
@@ -337,6 +347,7 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
                     } 
                 } else {
                     setTimeStampCreated(child);
+                    setCreatedByUser(child, createdByUserBean);
                     f.set(parent, child);
                     Field[] fields = child.getClass().getDeclaredFields();
                     Arrays.stream(fields)
@@ -359,6 +370,7 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
             if (children != null && !children.isEmpty()) {
                 for (EntityBean child : children) {
                     setTimeStampCreated(child);
+                    setCreatedByUser(child, createdByUserBean);
                     fields = child.getClass().getDeclaredFields(); 
                     setParentToChild(fields, child, parent);
                 }
@@ -395,6 +407,19 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
         }
     }
     
+    private void setCreatedByUser(EntityBean bean, EntityBean userBean) {
+        Field field = Util.getInstance().getCreatedByField(bean.getClass());
+  
+        if(field != null) {
+            try {
+                field.setAccessible(true);
+                field.set(bean, userBean);
+            } catch (IllegalArgumentException | IllegalAccessException ex) {
+                throw new DinaException(ex.getMessage()); 
+            }
+        } 
+    }
+     
     
     private void setTimeStampCreated(EntityBean bean) {
         Field field = Util.getInstance().getTimestampCreated(bean.getClass());
@@ -406,6 +431,5 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
                 throw new DinaException(ex.getMessage()); 
             }
         }
-    }
-
+    } 
 }

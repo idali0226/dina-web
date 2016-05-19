@@ -5,9 +5,12 @@
  */
 package se.nrm.dina.data.service;
     
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;   
+import java.util.Map;
+import java.util.Set;
 import javax.ejb.EJB; 
 import javax.ejb.Stateless; 
 import javax.servlet.http.HttpServletRequest;  
@@ -28,7 +31,9 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import org.apache.commons.lang.StringUtils;  
+import org.keycloak.KeycloakPrincipal;
 import org.keycloak.KeycloakSecurityContext;
+import org.keycloak.representations.AccessToken;
 import org.keycloak.representations.IDToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -112,55 +117,9 @@ public class DinaService {
      */
     @GET
     @Path("{entity}/{id}/") 
-    public Response getEntityById(@Context HttpHeaders headers,
-                                  @Context HttpServletRequest httpServletRequest,
-                                  @PathParam("entity") String entity, @PathParam("id") String id) {
+    public Response getEntityById(@PathParam("entity") String entity, @PathParam("id") String id) {
         
-        logger.info("getEntityById - entity: {}, id :  {}", entity, id);
-        
-//        
-//        KeycloakSecurityContext securityContext = (KeycloakSecurityContext) httpServletRequest
-//                                                        .getAttribute(KeycloakSecurityContext.class.getName());
-//        
-//        AccessToken accessToken = securityContext.getToken();
-//        logger.info("accesstoken : {}", accessToken);
-//         
-//        logger.info("acc token : {} -- {}", accessToken.getIssuer(), accessToken.getId());
-//       
-//        logger.info("acc token : {} -- {}", accessToken.getGivenName(), accessToken.getEmail());
-//        
-//        Set<String> set = accessToken.getRealmAccess().getRoles();
-//        
-//        logger.info("set : {} -- {}", set, accessToken.issuedFor);
-//         
-//        String tokenId = headers.getHeaderString("id_token");
-//        logger.info(tokenId);
-//        
-//
-////        logger.info("header : {}", headers.getRequestHeaders());
-//        Principal userPrincipal = httpServletRequest.getUserPrincipal();
-//        logger.info("user principal : {} -- {}", userPrincipal, userPrincipal.getName());
-//    
-//        if (userPrincipal instanceof KeycloakPrincipal) {
-//
-//            KeycloakPrincipal<KeycloakSecurityContext> kp = (KeycloakPrincipal<KeycloakSecurityContext>) userPrincipal;
-//            IDToken token = kp.getKeycloakSecurityContext().getIdToken();
-//            logger.info("token id : {}", token); 
-//
-//        } else {
-//            throw new RuntimeException();
-//        }
-// 
-   
-         
-        
-        
-        
-        
-        
-        
-        
-        
+        logger.info("getEntityById - entity: {}, id :  {}", entity, id); 
          
         try {     
             return Response.ok(logic.findById(id, entity)).build(); 
@@ -170,17 +129,7 @@ public class DinaService {
         }
     }
     
-    
-   
-        
- 
 
-//    private static IDToken getIDToken(HttpServletRequest req) {
-//        System.out.println("getIDToken");
-//        KeycloakSecurityContext session = (KeycloakSecurityContext) req.getAttribute(KeycloakSecurityContext.class.getName());
-//        System.out.println("token : " + session.getTokenString());
-//        return session.getIdToken(); 
-//    }
 
     /**
      * Generic method to get an entity by entity id from database. This method
@@ -246,6 +195,8 @@ public class DinaService {
      * Generic method to create an entity by passing SpecifyBeanWrapper, the
      * entity to be created is wrapped into SpecifyBeanWrapper
      *
+     * @param headers
+     * @param req
      * @param entity
      * @param json 
      * @return  Response
@@ -254,16 +205,43 @@ public class DinaService {
     @POST
     @Path("{entity}")
     @Consumes("application/json")
-    public Response createNewEntity(@PathParam("entity") String entity, String json) {
+    public Response createNewEntity(@Context HttpHeaders headers,
+                                    @Context HttpServletRequest req,
+                                    @PathParam("entity") String entity, String json) {
         logger.info("createNewEntity - entity: {}", json);
- 
+  
         try {  
-            return Response.ok(logic.createEntity(entity, json)).build();
+            int agentId = getAgentIdToken(req);
+            
+            return Response.ok(logic.createEntity(entity, json, agentId)).build();
          } catch(DinaConstraintViolationException e) {   
             return Response.status(e.getErrorCode()) 
                     .entity(e.getErrorBeans()).build();
         }  
     }
+    
+    
+         
+
+    private int getAgentIdToken(HttpServletRequest req) {
+        
+        Principal userPrincipal = req.getUserPrincipal();  
+        if (userPrincipal instanceof KeycloakPrincipal) { 
+            KeycloakPrincipal<KeycloakSecurityContext> kp = (KeycloakPrincipal<KeycloakSecurityContext>) userPrincipal;
+            Map<String, Object> map = kp.getKeycloakSecurityContext().getToken().getOtherClaims();
+            
+            try {
+                String strId = (String)map.get("agentId"); 
+                return Integer.parseInt(strId); 
+            } catch(NumberFormatException e) {
+                throw new DinaException("Wrong agent id", 400); 
+            } 
+        } else {
+            throw new RuntimeException();
+        } 
+    }
+    
+    
 
     /**
      * Generic method update an entity
