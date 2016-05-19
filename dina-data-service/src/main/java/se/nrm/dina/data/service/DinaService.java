@@ -28,6 +28,8 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import org.apache.commons.lang.StringUtils;  
+import org.keycloak.KeycloakSecurityContext;
+import org.keycloak.representations.IDToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.nrm.dina.data.exceptions.DinaConstraintViolationException;
@@ -177,8 +179,7 @@ public class DinaService {
 //        System.out.println("getIDToken");
 //        KeycloakSecurityContext session = (KeycloakSecurityContext) req.getAttribute(KeycloakSecurityContext.class.getName());
 //        System.out.println("token : " + session.getTokenString());
-//        return session.getIdToken();
-//
+//        return session.getIdToken(); 
 //    }
 
     /**

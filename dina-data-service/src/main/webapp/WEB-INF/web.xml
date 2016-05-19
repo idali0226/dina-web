@@ -44,8 +44,7 @@
             <role-name>user</role-name>
         </auth-constraint>
     </security-constraint>
-
-
+  
     <security-constraint>
         <web-resource-collection>
             <url-pattern>/*</url-pattern>
@@ -59,14 +58,12 @@
             <role-name>admin</role-name>
         </auth-constraint>
     </security-constraint>
-
-
+ 
     <login-config>
         <auth-method>KEYCLOAK</auth-method>
         <realm-name>dina</realm-name>
     </login-config>
-
-
+ 
     <security-role>
         <role-name>admin</role-name>
     </security-role>

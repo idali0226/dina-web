@@ -3,3 +3,5 @@
 /dina-logic/target/
 /dina-data-jpa/target/
 /dina-data-model/target/
+/dina-datamodel/target/
+/dina-keycloak-admin/target/
