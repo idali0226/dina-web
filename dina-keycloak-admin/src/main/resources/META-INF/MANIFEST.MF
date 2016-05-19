@@ -1,0 +1,2 @@
+Main-Class: se.nrm.dina.keycloak.admin.Main 
+Class-Path:  lib/univocity-parsers-2.0.2.jar 
