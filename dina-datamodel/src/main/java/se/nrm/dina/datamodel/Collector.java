@@ -7,6 +7,7 @@ package se.nrm.dina.datamodel;
  
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -81,7 +82,7 @@ public class Collector extends BaseEntity {
     private Division divisionID;
     
     @JoinColumn(name = "CollectingEventID", referencedColumnName = "CollectingEventID")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private Collectingevent collectingEventID;
 
     public Collector() {

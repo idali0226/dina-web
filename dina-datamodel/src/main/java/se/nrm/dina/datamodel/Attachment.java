@@ -107,8 +107,13 @@ public class Attachment extends BaseEntity {
     @Column(name = "title")
     private String title;
     
+    @Basic(optional = false)
     @Column(name = "TableID")
     private Short tableID;
+    
+    @Basic(optional = false)
+    @Column(name = "IsPublic")
+    private Boolean isPublic;
     
     @Column(name = "ScopeID")
     private Integer scopeID;
@@ -234,6 +239,14 @@ public class Attachment extends BaseEntity {
 
     public void setAttachmentID(Integer attachmentID) {
         this.attachmentID = attachmentID;
+    }
+
+    public Boolean getIsPublic() {
+        return isPublic;
+    }
+
+    public void setIsPublic(Boolean isPublic) {
+        this.isPublic = isPublic;
     }
 
   
