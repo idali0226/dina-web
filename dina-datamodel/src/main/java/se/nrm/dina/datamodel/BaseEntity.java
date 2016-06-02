@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package se.nrm.dina.datamodel;
-
+ 
+import se.nrm.dina.datamodel.EntityBean;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
