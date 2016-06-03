@@ -34,7 +34,7 @@
         <param-value>/</param-value>
     </context-param>
 
-    <security-constraint>
+<!--    <security-constraint>
         <web-resource-collection>
             <url-pattern>/*</url-pattern>
             <http-method>GET</http-method>
@@ -69,5 +69,5 @@
     </security-role>
     <security-role>
         <role-name>user</role-name>
-    </security-role>
+    </security-role>-->
 </web-app>

@@ -7,7 +7,7 @@ package se.nrm.dina.data.exceptions;
  
 import java.util.List;
 import javax.ejb.ApplicationException;
-import se.nrm.dina.datamodel.ErrorBean;
+import se.nrm.dina.data.vo.ErrorBean;
 
 /**
  *

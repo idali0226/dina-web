@@ -12,6 +12,8 @@ package se.nrm.dina.data.exceptions;
 public class ErrorMsg {
     
     private final String CLASSNAME_CONVERT_ERROR = "The entity name is wrong";
+    
+    private final int ERROR_CODE_NONUNIQUE_RESULT = 200;
 
     private static ErrorMsg instance = null;
 
@@ -21,6 +23,10 @@ public class ErrorMsg {
         }
         return instance;
     } 
+    
+    public int getNonUniqueErrorCode() {
+        return ERROR_CODE_NONUNIQUE_RESULT;
+    }
     
     public String getEntityNameErrorMsg() {
         return CLASSNAME_CONVERT_ERROR;

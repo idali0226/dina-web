@@ -14,16 +14,21 @@ import se.nrm.dina.data.vo.ErrorBean;
  * @author idali
  */
 @ApplicationException
-public class DinaConstraintViolationException extends DinaException {
-    
-    public DinaConstraintViolationException(ErrorBean errorBean, int errorCode) {
+public class DinaDatabaseException extends DinaException {
+ 
+        
+    public DinaDatabaseException(ErrorBean errorBean, int errorCode) {
         super(errorBean, errorCode);
     }
     
-    public DinaConstraintViolationException(List<ErrorBean> errorBeans, int errorCode) {
+    public DinaDatabaseException(List<ErrorBean> errorBeans, int errorCode) {
         super(errorBeans, errorCode);
     }
     
-    public DinaConstraintViolationException(Throwable t) { 
+    public DinaDatabaseException(String errorMsg, int errorCode) {
+        super(errorMsg, errorCode);
+    }
+        
+    public DinaDatabaseException(Throwable t) { 
     }
 }

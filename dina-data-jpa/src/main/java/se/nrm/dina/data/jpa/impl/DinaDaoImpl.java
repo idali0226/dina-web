@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 
-package se.nrm.dina.data.jpa;
-
+package se.nrm.dina.data.jpa.impl;
+ 
 import java.io.Serializable;    
 import java.util.ArrayList;
 import java.util.List; 
@@ -20,16 +20,18 @@ import javax.persistence.OptimisticLockException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query; 
 import javax.validation.ConstraintViolation; 
-import javax.validation.ConstraintViolationException;
-import org.apache.commons.lang.StringUtils;
+import javax.validation.ConstraintViolationException; 
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger; 
 import org.slf4j.LoggerFactory;  
 import se.nrm.dina.data.exceptions.DinaConstraintViolationException;
+import se.nrm.dina.data.exceptions.DinaDatabaseException;
 import se.nrm.dina.data.exceptions.DinaException;  
-import se.nrm.dina.data.util.HelpClass;
-import se.nrm.dina.data.util.Util;
-import se.nrm.dina.datamodel.*; 
+import se.nrm.dina.data.exceptions.ErrorMsg;
+import se.nrm.dina.data.jpa.DinaDao; 
+import se.nrm.dina.data.util.HelpClass; 
+import se.nrm.dina.data.vo.ErrorBean;
+import se.nrm.dina.datamodel.EntityBean;  
 
 /**
  * CRUD operations to database
@@ -43,9 +45,6 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private final String BETWEEN = "between";
-    private final String GREAT_THAN = "gt";
-    private final String LESS_THAN = "lt";
 
     @PersistenceContext(unitName = "jpaPU")                  //  persistence unit connect to production database  
     private EntityManager entityManager;
@@ -71,60 +70,40 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
     }
     
     @Override
-    public List<T> findAll(Class<T> clazz, String jpql, int limit, Map<String, String> conditions ) {
+    public List<T> findAll(Class<T> clazz, String jpql, int limit, Map<String, String> conditions, boolean isFuzzSearh) {
 //        logger.info("findAll : {} -- {}", jpql, conditions);
          
         try {
-            query = createQuery(clazz, jpql, conditions);
-            query.setMaxResults(Util.getInstance().maxLimit(limit));
+            query = entityManager.createQuery(jpql);
+            query =  QueryBuilder.getInstance(). createQuery(query, clazz, conditions, isFuzzSearh);
+            query.setMaxResults(HelpClass.getInstance().maxLimit(limit));
             return query.getResultList();  
         } catch (Exception e) { 
             throw new DinaException(e.getMessage());
         }
     }
-    
-    
+  
     @Override
-    public List<T> findAllWithFuzzSearch(Class<T> clazz, String jpql, int limit, Map<String, String> conditions) {
-//        logger.info("findAll : {} -- {}", jpql, conditions);
-
-        try {
-            query = createQueryFuzzSearch(clazz, jpql, conditions);
-            query.setMaxResults(Util.getInstance().maxLimit(limit));
-            return query.getResultList();
-        } catch (Exception e) {
-            throw new DinaException(e.getMessage());
-        }
-    }
- 
-    @Override
-    public T findById(int id, Class<T> clazz) {
+    public T findById(int id, Class<T> clazz, boolean isVersioned) {
         logger.info("findById - class : {} - id : {}", clazz, id);
  
-         // Entity has no version can not have Optimistic lock
-        if (clazz.getSimpleName().equals(Recordsetitem.class.getSimpleName())
-                || clazz.getSimpleName().equals(Sppermission.class.getSimpleName())
-                || clazz.getSimpleName().equals(Workbenchrow.class.getSimpleName())
-                || clazz.getSimpleName().equals(Workbenchdataitem.class.getSimpleName())
-                || clazz.getSimpleName().equals(Workbenchrowimage.class.getSimpleName())
-                || clazz.getSimpleName().equals(Geoname.class.getSimpleName())) {
-
-            return entityManager.find(clazz, id, LockModeType.PESSIMISTIC_WRITE);
-        }
-
         T tmp = null;
         try {
-            tmp = entityManager.find(clazz, id, LockModeType.OPTIMISTIC);
+            if(isVersioned) {
+                tmp = entityManager.find(clazz, id, LockModeType.OPTIMISTIC); 
+            } else {
+                tmp = entityManager.find(clazz, id, LockModeType.PESSIMISTIC_WRITE);
+            }  
             entityManager.flush();
+            return tmp; 
         } catch (OptimisticLockException ex) { 
-            entityManager.refresh(tmp);
-            logger.warn(ex.getMessage());
+            entityManager.refresh(tmp); 
+            throw new DinaDatabaseException(new ErrorBean(clazz.getSimpleName(), ex.getMessage()), 400);
         } catch(Exception ex) {
-            logger.warn(ex.getMessage());
-        }  
-        return tmp; 
+            throw new DinaDatabaseException(new ErrorBean(clazz.getSimpleName(), ex.getMessage()), 400);
+        }   
     }
-
+ 
     @Override
     public T findByStringId(String id, Class<T> clazz) {
         logger.info("findByStringId - class : {} - id : {}", clazz, id); 
@@ -205,10 +184,11 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
         query = entityManager.createQuery(jpql);
         try {
             return (T) query.getSingleResult();
-        } catch (javax.persistence.NoResultException | javax.persistence.NonUniqueResultException ex) {
-            logger.warn(ex.getMessage());
-            return null;                        // if no result, return null
-        }
+        } catch (javax.persistence.NoResultException ex) {
+            return null;
+        } catch ( javax.persistence.NonUniqueResultException ex) {
+            throw new DinaDatabaseException(ex.getMessage(), ErrorMsg.getInstance().getNonUniqueErrorCode());
+        } 
     }
  
     @Override
@@ -241,115 +221,10 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
         }
     }
 
-    /**
-     * Build a namedQuery with parameters
-     *
-     * @param clazz
-     * @param strJPQL
-     * @param parameters
-     * @return Query
-     */
-    private Query createQuery(Class clazz, String strJPQL, Map<String, String> parameters) {
-        query = entityManager.createQuery(strJPQL);
-
-        if (parameters != null) {
-            parameters.entrySet()
-                    .stream()
-                    .forEach((entry) -> {
-                        String fieldName = entry.getKey();
-                        if (Util.getInstance().isIntField(clazz, fieldName)) {
-                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));
-                        } else if (Util.getInstance().isEntity(clazz, fieldName)) {
-                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));
-                        } else if(Util.getInstance().isBigDecimal(clazz, fieldName)) {
-                            String value = entry.getValue();
-                             
-                            if(value.toLowerCase().startsWith(BETWEEN)) { 
-                                query.setParameter(entry.getKey() + "min", HelpClass.getInstance().convertStringToBigDecimal(StringUtils.substringBetween(value, "(", ",")));
-                                query.setParameter(entry.getKey() + "max", HelpClass.getInstance().convertStringToBigDecimal(StringUtils.substringBetween(value, ",", ")")));
-                            } else if(value.toLowerCase().startsWith(GREAT_THAN)) {
-                                query.setParameter(entry.getKey() + "v1", HelpClass.getInstance().convertStringToBigDecimal(StringUtils.substringBetween(value, "(", ")")));
-                            } else if(value.toLowerCase().startsWith(LESS_THAN)) {
-                                query.setParameter(entry.getKey() + "v2", HelpClass.getInstance().convertStringToBigDecimal(StringUtils.substringBetween(value, "(", ")")));
-                            } else {
-                                logger.info("bigDecimal");
-                                query.setParameter((String) entry.getKey(), HelpClass.getInstance().convertStringToBigDecimal(entry.getValue()));
-                            } 
-                        } else if(Util.getInstance().isDate(clazz, fieldName)) {
-                            String value = entry.getValue();
-                            if(value.toLowerCase().startsWith(BETWEEN)) { 
-                                query.setParameter(entry.getKey() + "min", HelpClass.getInstance().convertStringToDate(StringUtils.substringBetween(value, "(", ",")));
-                                query.setParameter(entry.getKey() + "max", HelpClass.getInstance().convertStringToDate(StringUtils.substringBetween(value, ",", ")")));
-                            } else if(value.toLowerCase().startsWith(GREAT_THAN)) {
-                                query.setParameter(entry.getKey() + "v1", HelpClass.getInstance().convertStringToDate(StringUtils.substringBetween(value, "(", ")")));
-                            } else if(value.toLowerCase().startsWith(LESS_THAN)) {
-                                query.setParameter(entry.getKey() + "v2", HelpClass.getInstance().convertStringToDate(StringUtils.substringBetween(value, "(", ")")));
-                            } else {
-                                query.setParameter((String) entry.getKey(), HelpClass.getInstance().convertStringToDate(entry.getValue()));
-                            } 
-                        } else {
-                            query.setParameter((String) entry.getKey(), entry.getValue());
-                        }
-                    });
-        }
-        return query;
-    }
-    
+   
     
  
-    /**
-     * Build a namedQuery with parameters
-     * 
-     * @param clazz
-     * @param strJPQL
-     * @param parameters
-     * @return Query
-     */
-    private Query createQueryFuzzSearch(Class clazz, String strJPQL, Map<String, String> parameters) {
-        query = entityManager.createQuery(strJPQL);
 
-        if (parameters != null) {
-            parameters.entrySet()
-                    .stream()
-                    .forEach((entry) -> {
-                        String fieldName = entry.getKey();
-                        if (Util.getInstance().isIntField(clazz, fieldName)) {
-                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));
-                        } else if (Util.getInstance().isEntity(clazz, fieldName)) {
-                            query.setParameter(entry.getKey(), Integer.parseInt(entry.getValue()));
-                        } else if(Util.getInstance().isBigDecimal(clazz, fieldName)) {
-                            String value = entry.getValue();
-                             
-                            if(value.toLowerCase().startsWith(BETWEEN)) { 
-                                query.setParameter(entry.getKey() + "min", HelpClass.getInstance().convertStringToBigDecimal(StringUtils.substringBetween(value, "(", ",")));
-                                query.setParameter(entry.getKey() + "max", HelpClass.getInstance().convertStringToBigDecimal(StringUtils.substringBetween(value, ",", ")")));
-                            } else if(value.toLowerCase().startsWith(GREAT_THAN)) {
-                                query.setParameter(entry.getKey() + "v1", HelpClass.getInstance().convertStringToBigDecimal(StringUtils.substringBetween(value, "(", ")")));
-                            } else if(value.toLowerCase().startsWith(LESS_THAN)) {
-                                query.setParameter(entry.getKey() + "v2", HelpClass.getInstance().convertStringToBigDecimal(StringUtils.substringBetween(value, "(", ")")));
-                            } else {
-                                query.setParameter((String) entry.getKey(), HelpClass.getInstance().convertStringToBigDecimal(entry.getValue()));
-                            } 
-                        } else if(Util.getInstance().isDate(clazz, fieldName)) {
-                            String value = entry.getValue();
-                            if(value.toLowerCase().startsWith(BETWEEN)) { 
-                                query.setParameter(entry.getKey() + "min", HelpClass.getInstance().convertStringToDate(StringUtils.substringBetween(value, "(", ",")));
-                                query.setParameter(entry.getKey() + "max", HelpClass.getInstance().convertStringToDate(StringUtils.substringBetween(value, ",", ")")));
-                            } else if(value.toLowerCase().startsWith(GREAT_THAN)) {
-                                query.setParameter(entry.getKey() + "v1", HelpClass.getInstance().convertStringToDate(StringUtils.substringBetween(value, "(", ")")));
-                            } else if(value.toLowerCase().startsWith(LESS_THAN)) {
-                                query.setParameter(entry.getKey() + "v2", HelpClass.getInstance().convertStringToDate(StringUtils.substringBetween(value, "(", ")")));
-                            } else {
-                                query.setParameter((String) entry.getKey(), entry.getValue());
-                            } 
-                        } else {
-                            query.setParameter(entry.getKey(), "%" + entry.getValue() + "%");
-                        }
-                    });
-        }
-        return query;
-    }
-    
     
     
     

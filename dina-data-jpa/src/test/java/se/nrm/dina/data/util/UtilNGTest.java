@@ -4,19 +4,17 @@
  * and open the template in the editor.
  */
 package se.nrm.dina.data.util;
- 
-import java.util.HashMap;
-import java.util.Map; 
-import org.junit.Test;
-import org.mockito.Mock;
-import static org.testng.Assert.*;
-import org.testng.annotations.AfterClass; 
-import org.testng.annotations.BeforeClass;  
+    
+import org.mockito.Mock; 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass; 
+import org.testng.annotations.Test;
 import se.nrm.dina.data.exceptions.DinaException;
-import se.nrm.dina.data.exceptions.ErrorMsg;
-import se.nrm.dina.datamodel.Accession;
-import se.nrm.dina.datamodel.Collectionobject;
-import se.nrm.dina.datamodel.Division;
+import se.nrm.dina.data.exceptions.ErrorMsg; 
 import se.nrm.dina.datamodel.EntityBean;
 
 /**
@@ -25,7 +23,7 @@ import se.nrm.dina.datamodel.EntityBean;
  */ 
 public class UtilNGTest {
     
-    private Util testInstance;
+    private JpaReflectionHelper testInstance;
     
     public UtilNGTest() {
     }
@@ -38,43 +36,34 @@ public class UtilNGTest {
     public static void tearDownClass() throws Exception {
     }
  
-    /**
-     * Test of getInstance method, of class Util.
-     */
-    @Test
-    public void testGetInstance() {
-        System.out.println("testGetInstance");
-         
-        Util result = Util.getInstance();
-        assertNotNull(result);   
-    }
+ 
 
     /**
-     * Test of convertClassNameToClass method, of class Util.
+     * Test of convertClassNameToClass method, of class JpaReflectionHelper.
      */
-    @Test
+//    @Test
     public void testConvertClassNameToClass() {
         
         System.out.println("testConvertClassNameToClass");
         
-        String classname = "Accession";
-        testInstance = new Util();
-        Class expResult = Accession.class;
+        String classname = "EntityBean";
+        testInstance = new JpaReflectionHelper();
+        Class expResult = EntityBean.class;
         Class result = testInstance.convertClassNameToClass(classname);
         assertEquals(result, expResult); 
         assertEquals(result.getSimpleName(), classname);
     }
 
     /**
-     * Test of convertClassNameToClass method, of class Util.
+     * Test of convertClassNameToClass method, of class JpaReflectionHelper.
      */
     @Test  
     public void testConvertClassNameToClassException() {
 
         System.out.println("testConvertClassNameToClassException");
 
-        testInstance = new Util();
-        String classname = "Accessions"; 
+        testInstance = new JpaReflectionHelper();
+        String classname = "EntityBeans"; 
         try {
             testInstance.convertClassNameToClass(classname); 
         } catch(DinaException e) {
@@ -83,7 +72,7 @@ public class UtilNGTest {
     }
     
     /**
-     * Test of reformClassName method, of class Util.
+     * Test of reformClassName method, of class JpaReflectionHelper.
      */
     @Test
     public void testReformClassName() {
@@ -91,7 +80,7 @@ public class UtilNGTest {
         
         String s = "collectionObject";
         
-        testInstance = new Util();
+        testInstance = new JpaReflectionHelper();
         
         String expResult = "Collectionobject";
         String result = testInstance.reformClassName(s);
@@ -99,7 +88,7 @@ public class UtilNGTest {
     }
 
     /**
-     * Test of reformClassName method, of class Util.
+     * Test of reformClassName method, of class JpaReflectionHelper.
      */
     @Test
     public void testReformClassNameEmptyName() {
@@ -107,384 +96,361 @@ public class UtilNGTest {
 
         String s = "";
 
-        testInstance = new Util();
+        testInstance = new JpaReflectionHelper();
  
         String result = testInstance.reformClassName(s);
         assertEquals(0, result.length());
     }
 
     /**
-     * Test of createNewInstance method, of class Util.
+     * Test of createNewInstance method, of class JpaReflectionHelper.
      */
-    @Test
+//    @Test
     public void testCreateNewInstance() {
         System.out.println("testCreateNewInstance");
          
-        testInstance = new Util(); 
-        Accession result = testInstance.createNewInstance(Accession.class);
+        testInstance = new JpaReflectionHelper(); 
+        EntityBean result = testInstance.createNewInstance(EntityBean.class);
         assertNotNull(result);
-        assertEquals(result.getClass().getSimpleName(), "Accession");
+        assertEquals(result.getClass().getSimpleName(), "EntityBean");
     }
 
     /**
-     * Test of createNewInstance method, of class Util.
+     * Test of createNewInstance method, of class JpaReflectionHelper.
      */
-    @Test(expected = DinaException.class)
+    @Test(expectedExceptions = DinaException.class) 
     public void testFailedCreateNewInstance() {
         System.out.println("testCreateNewInstance");
  
-        testInstance = new Util();
+        testInstance = new JpaReflectionHelper();
         testInstance.createNewInstance(Mock.class); 
     }
 
     /**
-     * Test of validateEntityName method, of class Util.
+     * Test of validateEntityName method, of class JpaReflectionHelper.
      */
-    @Test
+//    @Test
     public void testValidateEntityName() {
         System.out.println("testValidateEntityName");
         
         String entityName = "accession";
         
-        testInstance = new Util();
-        String expResult = "Accession";
+        testInstance = new JpaReflectionHelper();
+        String expResult = "EntityBean";
         String result = testInstance.validateEntityName(entityName);
         assertEquals(result, expResult);
     }
 
     /**
-     * Test of validateEntityName method, of class Util.
+     * Test of validateEntityName method, of class JpaReflectionHelper.
      */
-    @Test(expected = DinaException.class)
+//    @Test(expected = se.nrm.dina.data.exceptions.DinaException.class)
+    @Test(expectedExceptions = DinaException.class)
     public void testInvalidateEntityName() {
         System.out.println("testInvalidateEntityName");
 
-        String entityName = "accessions";
+        String entityName = "entityBean";
 
-        testInstance = new Util(); 
+        testInstance = new JpaReflectionHelper(); 
         testInstance.validateEntityName(entityName);
     }
 
 
-    /**
-     * Test of isFieldsValid method, of class Util.
-     */
-    @Test
-    public void testIsFieldsValid() {
-        System.out.println("testIsFieldsValid");
-        
-        Class clazz = Accession.class;
-        
-        Map<String, String> map = new HashMap();
-        map.put("accessionCondition", null);
-        map.put("accessionNumber", null);
-        map.put("dateAccessioned", null);
-        map.put("dateReceived", null);
-         
-        testInstance = new Util();
-        boolean expResult = true;
-        boolean result = testInstance.isFieldsValid(clazz, map);
-        assertEquals(result, expResult);
-    }
+//    /**
+//     * Test of isFieldsValid method, of class JpaReflectionHelper.
+//     */
+//    @Test
+//    public void testIsFieldsValid() {
+//        System.out.println("testIsFieldsValid");
+//        
+//        Class clazz = EntityBean.class;
+//        
+//        Map<String, String> map = new HashMap();
+//        map.put("accessionCondition", null);
+//        map.put("accessionNumber", null);
+//        map.put("dateAccessioned", null);
+//        map.put("dateReceived", null);
+//         
+//        testInstance = new JpaReflectionHelper();
+//        boolean expResult = true;
+//        boolean result = testInstance.isFieldsValid(clazz, map);
+//        assertEquals(result, expResult);
+//    }
     
-        /**
-     * Test of isFieldsValid method, of class Util.
-     */
-    @Test
-    public void testIsFieldsValidFailed() {
-        System.out.println("testIsFieldsValid");
-        
-        Class clazz = Accession.class;
-        
-        Map<String, String> map = new HashMap();
-        map.put("accessionCondition", null);
-        map.put("accessionNumbers", null);
-        map.put("dateAccessioned", null);
-        map.put("dateReceived", null);
-         
-        testInstance = new Util(); 
-        try {
-            testInstance.isFieldsValid(clazz, map);
-            fail("Expected a DinaException to be thrown");
-        } catch(DinaException e) {
-            assertEquals(e.getMessage(), "accessionNumbers");
-        } 
-    }
+//        /**
+//     * Test of isFieldsValid method, of class JpaReflectionHelper.
+//     */
+//    @Test
+//    public void testIsFieldsValidFailed() {
+//        System.out.println("testIsFieldsValid");
+//        
+//        Class clazz = Accession.class;
+//        
+//        Map<String, String> map = new HashMap();
+//        map.put("accessionCondition", null);
+//        map.put("accessionNumbers", null);
+//        map.put("dateAccessioned", null);
+//        map.put("dateReceived", null);
+//         
+//        testInstance = new JpaReflectionHelper(); 
+//        try {
+//            testInstance.isFieldsValid(clazz, map);
+//            fail("Expected a DinaException to be thrown");
+//        } catch(DinaException e) {
+//            assertEquals(e.getMessage(), "accessionNumbers");
+//        } 
+//    }
 
-    /**
-     * Test of isFieldsValid method, of class Util.
-     */
-    @Test 
-    public void testIsFieldsValidFailedExpected() {
-        System.out.println("testIsFieldsValid");
+//    /**
+//     * Test of isFieldsValid method, of class JpaReflectionHelper.
+//     */
+//    @Test 
+//    public void testIsFieldsValidFailedExpected() {
+//        System.out.println("testIsFieldsValid");
+//
+//        Class clazz = Accession.class;
+//
+//        Map<String, String> map = new HashMap();
+//        map.put("accessionConditions", null);
+//        map.put("accessionNumbers", null);
+//        map.put("dateAccessioned", null);
+//        map.put("dateReceived", null);
+//         
+//        testInstance = new JpaReflectionHelper();   
+//         
+//        try {
+//            testInstance.isFieldsValid(clazz, map);
+//            fail();
+//        } catch(DinaException e) {
+//            assertTrue(true);
+//        }
+//    }
 
-        Class clazz = Accession.class;
+//    /**
+//     * Test of isIntField method, of class JpaReflectionHelper.
+//     */
+//    @Test
+//    public void testIsIntField() {
+//        System.out.println("isIntField");
+//        
+//        Class clazz = Collectionobject.class;
+//        String fieldName = "collectionMemberID";
+//        testInstance = new JpaReflectionHelper();
+//         
+//        boolean result = testInstance.isIntField(clazz, fieldName);
+//        assertTrue(result);
+//    }
 
-        Map<String, String> map = new HashMap();
-        map.put("accessionConditions", null);
-        map.put("accessionNumbers", null);
-        map.put("dateAccessioned", null);
-        map.put("dateReceived", null);
-         
-        testInstance = new Util();   
-         
-        try {
-            testInstance.isFieldsValid(clazz, map);
-            fail();
-        } catch(DinaException e) {
-            assertTrue(true);
-        }
-    }
-
-    /**
-     * Test of isIntField method, of class Util.
-     */
-    @Test
-    public void testIsIntField() {
-        System.out.println("isIntField");
-        
-        Class clazz = Collectionobject.class;
-        String fieldName = "collectionMemberID";
-        testInstance = new Util();
-         
-        boolean result = testInstance.isIntField(clazz, fieldName);
-        assertTrue(result);
-    }
-
-    /**
-     * Test of isIntField method, of class Util.
-     */
-    @Test
-    public void testIsIntFieldFalse() {
-        System.out.println("isIntField");
-        
-        Class clazz = Accession.class;
-        String fieldName = "accessionNumber";
-        testInstance = new Util();
-         
-        boolean result = testInstance.isIntField(clazz, fieldName);
-        assertFalse(result);
-    }
+//    /**
+//     * Test of isIntField method, of class JpaReflectionHelper.
+//     */
+//    @Test
+//    public void testIsIntFieldFalse() {
+//        System.out.println("isIntField");
+//        
+//        Class clazz = Accession.class;
+//        String fieldName = "accessionNumber";
+//        testInstance = new JpaReflectionHelper();
+//         
+//        boolean result = testInstance.isIntField(clazz, fieldName);
+//        assertFalse(result);
+//    }
     
-    /**
-     * Test of isIntField method, of class Util.
-     */
-    @Test  
-    public void testIsIntegerFieldException() {
-        System.out.println("isIntField");
+//    /**
+//     * Test of isIntField method, of class JpaReflectionHelper.
+//     */
+//    @Test  
+//    public void testIsIntegerFieldException() {
+//        System.out.println("isIntField");
+//
+//        Class clazz = Accession.class;
+//        String fieldName = "accessionIDs";
+//        testInstance = new JpaReflectionHelper(); 
+//        
+//        try {
+//            testInstance.isIntField(clazz, fieldName);
+//            fail();
+//        } catch(DinaException e) {
+//            assertTrue(true);
+//        }
+//        
+//    }
 
-        Class clazz = Accession.class;
-        String fieldName = "accessionIDs";
-        testInstance = new Util(); 
-        
-        try {
-            testInstance.isIntField(clazz, fieldName);
-            fail();
-        } catch(DinaException e) {
-            assertTrue(true);
-        }
-        
-    }
-
-    /**
-     * Test of isIntField method, of class Util.
-     */
-    @Test
-    public void testIsIntegerField() {
-        System.out.println("isIntField");
-
-        Class clazz = Accession.class;
-        String fieldName = "accessionID";
-        testInstance = new Util();
-
-        boolean result = testInstance.isIntField(clazz, fieldName);
-        assertTrue(result);
-    }
-
-    /**
-     * Test of isEntity method, of class Util.
-     */
-    @Test
-    public void testIsEntity() {
-        System.out.println("isEntity");
+//    /**
+//     * Test of isIntField method, of class JpaReflectionHelper.
+//     */
+//    @Test
+//    public void testIsIntegerField() {
+//        System.out.println("isIntField");
+//
+//        Class clazz = Accession.class;
+//        String fieldName = "accessionID";
+//        testInstance = new JpaReflectionHelper();
+//
+//        boolean result = testInstance.isIntField(clazz, fieldName);
+//        assertTrue(result);
+//    }
+//
+//    /**
+//     * Test of isEntity method, of class JpaReflectionHelper.
+//     */
+//    @Test
+//    public void testIsEntity() {
+//        System.out.println("isEntity");
+//    
+//        Class clazz = Accession.class;
+//        String fieldName = "divisionID";
+//        testInstance = new JpaReflectionHelper(); 
+//        boolean result = testInstance.isEntity(clazz, fieldName);
+//        assertTrue(result);
+//    }
     
-        Class clazz = Accession.class;
-        String fieldName = "divisionID";
-        testInstance = new Util(); 
-        boolean result = testInstance.isEntity(clazz, fieldName);
-        assertTrue(result);
-    }
     
+//    /**
+//     * Test of isEntity method, of class JpaReflectionHelper.
+//     */
+//    @Test
+//    public void testIsEntityFalse() {
+//        System.out.println("isEntity");
+//
+//        Class clazz = Accession.class;
+//        String fieldName = "accessionNumber";
+//        testInstance = new JpaReflectionHelper();
+//        boolean result = testInstance.isEntity(clazz, fieldName);
+//        assertFalse(result);
+//    }
+//    
+//    /**
+//     * Test of isEntity method, of class JpaReflectionHelper.
+//     */
+//    @Test
+//    public void testIsEntityFalseException() {
+//        System.out.println("isEntity");
+//
+//        Class clazz = Accession.class;
+//        String fieldName = "divisionid";
+//        testInstance = new JpaReflectionHelper();
+//        
+//        try {
+//            testInstance.isEntity(clazz, fieldName); 
+//        } catch(DinaException e) {
+//            assertTrue(true);
+//        }
+//        
+//    }
+//
+//    /**
+//     * Test of isCollection method, of class JpaReflectionHelper.
+//     */
+//    @Test
+//    public void testIsCollection() {
+//        System.out.println("isCollection");
+//        
+//        Class clazz = Accession.class;
+//        String fieldName = "deaccessionList";
+//        testInstance = new JpaReflectionHelper(); 
+//        
+//        boolean result = testInstance.isCollection(clazz, fieldName);
+//        assertTrue(result);
+//    }
     
-    /**
-     * Test of isEntity method, of class Util.
-     */
-    @Test
-    public void testIsEntityFalse() {
-        System.out.println("isEntity");
-
-        Class clazz = Accession.class;
-        String fieldName = "accessionNumber";
-        testInstance = new Util();
-        boolean result = testInstance.isEntity(clazz, fieldName);
-        assertFalse(result);
-    }
+//    /**
+//     * Test of isCollection method, of class JpaReflectionHelper.
+//     */
+//    @Test
+//    public void testIsCollectionFalse() {
+//        System.out.println("isCollection");
+//
+//        Class clazz = Accession.class;
+//        String fieldName = "deaccessionlist";
+//        testInstance = new JpaReflectionHelper();
+//
+//        try {
+//           testInstance.isCollection(clazz, fieldName); 
+//        } catch(DinaException e) {
+//            assertTrue(true);
+//        }  
+//    }
+//
+//    /**
+//     * Test of getEntity method, of class JpaReflectionHelper.
+//     */
+//    @Test
+//    public void testGetEntity() {
+//        System.out.println("getEntity");
+//        
+//        Class clazz = Accession.class;
+//        String fieldName = "divisionID";
+//        
+//        testInstance = new JpaReflectionHelper(); 
+//        EntityBean result = testInstance.getEntity(clazz, fieldName);
+//        assertTrue(result instanceof Division); 
+//    }
     
-    /**
-     * Test of isEntity method, of class Util.
-     */
-    @Test
-    public void testIsEntityFalseException() {
-        System.out.println("isEntity");
-
-        Class clazz = Accession.class;
-        String fieldName = "divisionid";
-        testInstance = new Util();
-        
-        try {
-            testInstance.isEntity(clazz, fieldName); 
-        } catch(DinaException e) {
-            assertTrue(true);
-        }
-        
-    }
-
-    /**
-     * Test of isCollection method, of class Util.
-     */
-    @Test
-    public void testIsCollection() {
-        System.out.println("isCollection");
-        
-        Class clazz = Accession.class;
-        String fieldName = "deaccessionList";
-        testInstance = new Util(); 
-        
-        boolean result = testInstance.isCollection(clazz, fieldName);
-        assertTrue(result);
-    }
-    
-    /**
-     * Test of isCollection method, of class Util.
-     */
-    @Test
-    public void testIsCollectionFalse() {
-        System.out.println("isCollection");
-
-        Class clazz = Accession.class;
-        String fieldName = "deaccessionlist";
-        testInstance = new Util();
-
-        try {
-           testInstance.isCollection(clazz, fieldName); 
-        } catch(DinaException e) {
-            assertTrue(true);
-        }  
-    }
-
-    /**
-     * Test of getEntity method, of class Util.
-     */
-    @Test
-    public void testGetEntity() {
-        System.out.println("getEntity");
-        
-        Class clazz = Accession.class;
-        String fieldName = "divisionID";
-        
-        testInstance = new Util(); 
-        EntityBean result = testInstance.getEntity(clazz, fieldName);
-        assertTrue(result instanceof Division); 
-    }
-    
-    /**
-     * Test of getEntity method, of class Util.
-     */
-    @Test
-    public void testGetEntityFailure() {
-        System.out.println("getEntity");
-        
-        Class clazz = Accession.class;
-        String fieldName = "divisionid";
-        
-        testInstance = new Util(); 
-        
-        try {
-            testInstance.getEntity(clazz, fieldName);
-        } catch(DinaException e) {
-            assertTrue(true); 
-        }  
-    }
+//    /**
+//     * Test of getEntity method, of class JpaReflectionHelper.
+//     */
+//    @Test
+//    public void testGetEntityFailure() {
+//        System.out.println("getEntity");
+//        
+//        Class clazz = Accession.class;
+//        String fieldName = "divisionid";
+//        
+//        testInstance = new JpaReflectionHelper(); 
+//        
+//        try {
+//            testInstance.getEntity(clazz, fieldName);
+//        } catch(DinaException e) {
+//            assertTrue(true); 
+//        }  
+//    }
 
     
-    /**
-     * Test of validateFields method, of class Util.
-     */
-    @Test
-    public void testValidateFields() {
-        System.out.println("validateFields");
-        
-        Class clazz = Accession.class;
-        String fieldName = "accessionNumber";
-        
-        testInstance = new Util(); 
-        boolean result = testInstance.validateFields(clazz, fieldName);
-        assertTrue(result);
-    }
+//    /**
+//     * Test of validateFields method, of class JpaReflectionHelper.
+//     */
+//    @Test
+//    public void testValidateFields() {
+//        System.out.println("validateFields");
+//        
+//        Class clazz = Accession.class;
+//        String fieldName = "accessionNumber";
+//        
+//        testInstance = new JpaReflectionHelper(); 
+//        boolean result = testInstance.validateFields(clazz, fieldName);
+//        assertTrue(result);
+//    }
 
-    /**
-     * Test of getIDFieldName method, of class Util.
-     */
-    @Test
-    public void testGetIDFieldName_EntityBean() {
-        System.out.println("getIDFieldName");
-        
-        EntityBean bean = new Accession();
-        String expResult = "accessionID";
-        
-        testInstance = new Util(); 
-        String result = testInstance.getIDFieldName(bean);
-        assertEquals(result, expResult); 
-    }
+//    /**
+//     * Test of getIDFieldName method, of class JpaReflectionHelper.
+//     */
+//    @Test
+//    public void testGetIDFieldName_EntityBean() {
+//        System.out.println("getIDFieldName");
+//        
+//        EntityBean bean = new Accession();
+//        String expResult = "accessionID";
+//        
+//        testInstance = new JpaReflectionHelper(); 
+//        String result = testInstance.getIDFieldName(bean);
+//        assertEquals(result, expResult); 
+//    }
  
     /**
-     * Test of isNumric method, of class Util.
+     * Test of isNumric method, of class JpaReflectionHelper.
      */
     @Test
     public void testIsNumric() {
         System.out.println("isNumric");
         
         String s = "20";
-        testInstance = new Util(); 
+        testInstance = new JpaReflectionHelper(); 
         boolean result = testInstance.isNumric(s);
         assertTrue(result);
          
         s = "ttt";
         result = testInstance.isNumric(s);
         assertFalse(result);
-    }
-
-    /**
-     * Test of maxLimit method, of class Util.
-     */
-    @Test
-    public void testMaxLimit() {
-        System.out.println("maxLimit");
-        
-        int limit = 5;
-        testInstance = new Util();
-         
-        int result = testInstance.maxLimit(limit);
-        assertEquals(result, limit); 
-        
-        limit = 300; 
-        result = testInstance.maxLimit(limit);
-        assertEquals(result, 200); 
-        
-        limit = 0;
-        result = testInstance.maxLimit(limit);
-        assertEquals(result, 50); 
-        
-    }
-    
+    } 
 }

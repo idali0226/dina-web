@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.nrm.dina.datamodel;
+package se.nrm.dina.data.vo;
+ 
+import java.io.Serializable; 
 
 /**
  *
  * @author idali
  */
-public class ErrorBean implements EntityBean {
+public class ErrorBean implements Serializable {
     
     
     private String entityName;
@@ -26,22 +28,7 @@ public class ErrorBean implements EntityBean {
         this.entityName = entityName;
         this.errorMsg = errorMsg;
     }
-
-    @Override
-    public String getIdentityString() {
-        return entityName;
-    }
-
-    @Override
-    public String getUUID() {
-        return entityName;
-    }
-
-    @Override
-    public int getEntityId() {
-        return 0;
-    }
-
+  
     public String getEntityName() {
         return entityName;
     }
@@ -80,8 +67,6 @@ public class ErrorBean implements EntityBean {
 
     public void setInvalidValue(String invalidValue) {
         this.invalidValue = invalidValue;
-    }
-    
-    
+    } 
     
 }

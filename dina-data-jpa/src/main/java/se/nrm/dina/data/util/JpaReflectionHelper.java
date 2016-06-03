@@ -14,8 +14,9 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.nrm.dina.data.exceptions.DinaException;
-import se.nrm.dina.data.exceptions.ErrorMsg;
+import se.nrm.dina.data.exceptions.ErrorMsg; 
 import se.nrm.dina.datamodel.EntityBean; 
+import se.nrm.dina.datamodel.util.DataModelHelper;
 
 
 /**
@@ -23,18 +24,21 @@ import se.nrm.dina.datamodel.EntityBean;
  * 
  * @author idali
  */
-public class Util {
+public class JpaReflectionHelper {
     
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    private static JpaReflectionHelper instance = null;
     
-    private final int DEFAULT_LIMIT = 50;
-    private final int MAX_LIMIT = 200;
-    private static Util instance = null;
-    private static final String ENTITY_PACKAGE = "se.nrm.dina.datamodel.";
+    private final String DATATYPE_INT = "int";
+    private final String DATATYPE_INTEGER = "java.lang.Integer";
+    private final String DATATYPE_LIST = "java.util.List";
+    private final String DATATYPE_DATE = "java.util.Date";
+    private final String DATATYPE_BIGDECIMAL = "java.math.BigDecimal";
       
-    public static synchronized Util getInstance() {
+    public static synchronized JpaReflectionHelper getInstance() {
         if (instance == null) {
-            instance = new Util();
+            instance = new JpaReflectionHelper();
         }
         return instance;
     } 
@@ -50,7 +54,7 @@ public class Util {
 //        logger.info("convertClassNameToClass : {}", classname);
         
         try {
-            return Class.forName(ENTITY_PACKAGE + reformClassName(classname));   
+            return Class.forName(DataModelHelper.getInstance().getENTITY_PACKAGE() + reformClassName(classname));   
         } catch (ClassNotFoundException ex) {   
             throw new DinaException(ErrorMsg.getInstance().getEntityNameErrorMsg());
         }  
@@ -134,8 +138,8 @@ public class Util {
     public boolean isIntField(Class clazz, String fieldName) {
 //        logger.info("isIntField : {} -- {}", clazz, fieldName); 
         try { 
-            return clazz.getDeclaredField(fieldName).getType().getName().equals("int") || 
-                   clazz.getDeclaredField(fieldName).getType().getName().equals("java.lang.Integer") ;
+            return clazz.getDeclaredField(fieldName).getType().getName().equals(DATATYPE_INT) || 
+                   clazz.getDeclaredField(fieldName).getType().getName().equals(DATATYPE_INTEGER) ;
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
@@ -155,7 +159,7 @@ public class Util {
     public boolean isEntity(Class clazz, String fieldName) {
         logger.info("isEntity : {} -- {}", clazz, fieldName);
         try {  
-            return clazz.getDeclaredField(fieldName).getType().getName().contains(ENTITY_PACKAGE);
+            return clazz.getDeclaredField(fieldName).getType().getName().contains(DataModelHelper.getInstance().getENTITY_PACKAGE());
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
@@ -175,7 +179,7 @@ public class Util {
     public boolean isCollection(Class clazz, String fieldName) {
 //        logger.info("isIntField : {} -- {}", clazz, fieldName);
         try { 
-            return clazz.getDeclaredField(fieldName).getType().getName().equals("java.util.List");
+            return clazz.getDeclaredField(fieldName).getType().getName().equals(DATATYPE_LIST);
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
@@ -197,7 +201,7 @@ public class Util {
     public boolean isDate(Class clazz, String fieldName) {
         logger.info("isDate : {} -- {}", clazz, fieldName);
         try { 
-            return clazz.getDeclaredField(fieldName).getType().getName().equals("java.util.Date");
+            return clazz.getDeclaredField(fieldName).getType().getName().equals(DATATYPE_DATE);
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
@@ -218,7 +222,7 @@ public class Util {
     public boolean isBigDecimal(Class clazz, String fieldName) {
         logger.info("isBigDecimal : {} -- {}", clazz, fieldName);
         try {
-            return clazz.getDeclaredField(fieldName).getType().getName().equals("java.math.BigDecimal");
+            return clazz.getDeclaredField(fieldName).getType().getName().equals(DATATYPE_BIGDECIMAL);
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
@@ -248,6 +252,22 @@ public class Util {
             }
         }
     }
+    
+    public ValueType getValueType(Class clazz, String fieldName) {
+        if(isIntField(clazz, fieldName)) {
+            return ValueType.INT;
+        } else if(isEntity(clazz, fieldName)) {
+            return ValueType.ENTITY;
+        } else if(isBigDecimal(clazz, fieldName)) {
+            return ValueType.BIGDECIMAL;
+        } else if(isDate(clazz, fieldName)) {
+            return ValueType.DATE;
+        } else if(isCollection(clazz, fieldName)) {
+            return ValueType.LIST;
+        } else {
+            return ValueType.STRING;
+        } 
+    }
 
     /**
      * Validates one field in an entity
@@ -269,12 +289,26 @@ public class Util {
             }
         } 
     }
-    
+
+    public boolean isVersioned(Class clazz) {
+        logger.info("isVersioned : {} ", clazz);
+        try {  
+            clazz.getDeclaredField(DataModelHelper.getInstance().getVERSION()); 
+            return true;
+        } catch (NoSuchFieldException e) {
+            Class superClass = clazz.getSuperclass();
+            if (superClass == null) {
+                return false;
+            } else {
+                return isVersioned(superClass);
+            }
+        } 
+    }
     
     public Field getTimestampCreated(Class clazz) {
         logger.info("getTimestampCreated : {} ", clazz ); 
         try {  
-            return clazz.getDeclaredField("timestampCreated"); 
+            return clazz.getDeclaredField(DataModelHelper.getInstance().getTIME_CREAGED_FIELD()); 
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
@@ -288,7 +322,7 @@ public class Util {
     public Field getCreatedByField(Class clazz) {
         logger.info("getCreatedByField : {} ", clazz ); 
         try {  
-            return clazz.getDeclaredField("createdByAgentID"); 
+            return clazz.getDeclaredField(DataModelHelper.getInstance().getCREATED_BY_FIELD()); 
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
@@ -353,20 +387,5 @@ public class Util {
      */    
     public boolean isNumric(String s) { 
         return StringUtils.isNumeric(s);
-    }
-    
-    /**
-     * Calculates limit 
-     * @param limit
-     * @return int
-     */
-    public int maxLimit(int limit) {
-        if(limit > MAX_LIMIT) {
-            return MAX_LIMIT;
-        } else if(limit == 0) {
-            return DEFAULT_LIMIT;
-        } else {
-            return limit;
-        } 
     } 
 }

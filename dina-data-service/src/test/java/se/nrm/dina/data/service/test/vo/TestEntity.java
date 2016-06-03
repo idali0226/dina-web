@@ -35,10 +35,5 @@ public class TestEntity extends BaseEntity {
     @Override
     public int getEntityId() {
         return 0;
-    }  
-
-    @Override
-    public String getUUID() {
-        return "testid";
-    }
+    }   
 }

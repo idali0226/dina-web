@@ -13,7 +13,7 @@ import org.junit.After;
 import org.junit.Before;
 import static org.testng.Assert.*; 
 import org.testng.annotations.Test;
-import se.nrm.dina.datamodel.Accession;
+import se.nrm.dina.datamodel.impl.Accession;
 
 /**
  *

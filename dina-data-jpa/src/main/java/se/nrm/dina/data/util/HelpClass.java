@@ -8,9 +8,7 @@ package se.nrm.dina.data.util;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date; 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Date;  
 import se.nrm.dina.data.exceptions.DinaException;
 
 /**
@@ -18,10 +16,11 @@ import se.nrm.dina.data.exceptions.DinaException;
  * @author idali
  */
 public class HelpClass {
-    
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    
+      
     private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        
+    private final int DEFAULT_LIMIT = 50;
+    private final int MAX_LIMIT = 500;
     
     private static HelpClass instance = null;
     
@@ -32,8 +31,7 @@ public class HelpClass {
         return instance;
     } 
     
-    public double convertStringToDouble(String strDouble) {
-        
+    public double convertStringToDouble(String strDouble) { 
         return Double.parseDouble(strDouble);
     }
     
@@ -48,4 +46,20 @@ public class HelpClass {
             throw new DinaException("Error.  " + ex.getMessage());
         }
     }
+    
+        
+    /**
+     * Calculates limit 
+     * @param limit
+     * @return int
+     */
+    public int maxLimit(int limit) {
+        if(limit > MAX_LIMIT) {
+            return MAX_LIMIT;
+        } else if(limit == 0) {
+            return DEFAULT_LIMIT;
+        } else {
+            return limit;
+        } 
+    } 
 }

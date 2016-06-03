@@ -5,6 +5,7 @@
  */
 package se.nrm.dina.logic;
 
+import se.nrm.dina.data.util.JpaReflectionHelper;
 import java.io.IOException; 
 import java.util.ArrayList; 
 import java.util.Arrays;
@@ -30,9 +31,9 @@ import static org.testng.Assert.*;
 import se.nrm.dina.data.exceptions.DinaException;
 import se.nrm.dina.data.jpa.DinaDao;
 import se.nrm.dina.logic.util.NamedQueries;
-import se.nrm.dina.data.util.Util;
-import se.nrm.dina.datamodel.Accession;
+import se.nrm.dina.datamodel.impl.Accession;
 import se.nrm.dina.datamodel.EntityBean;
+import se.nrm.dina.datamodel.EntityWrapper;
 
 /**
  *
@@ -45,8 +46,8 @@ public class DinaDataLogicNGTest {
     DinaDao dao;
 
     private DinaDataLogic instance;
-    private List<Accession> accessions;
-    private List<Accession> accessions1;
+    private List<EntityBean> accessions;
+    private List<EntityBean> accessions1;
     private Accession accession1;
     private String jsonInString;
    
@@ -76,571 +77,575 @@ public class DinaDataLogicNGTest {
      * Test of findAll method, of class DinaDataLogic.
      * @throws java.lang.Exception
      */
-    @Test
-    public void testFindAll_String() throws Exception {
-        System.out.println("findAll");
-        
-        String entityName = "Accession";
-        
-        when(dao.findAll(Accession.class)).thenReturn(accessions);
-        
-        List result = instance.findAll(entityName);
-        verify(dao).findAll(Accession.class);
-        assertEquals(10, result.size());
-    }
-
-    /**
-     * Test of findAll method, of class DinaDataLogic.
-     *
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testFindAll_StringFailure() throws Exception {
-        System.out.println("findAll");
-
-        String entityName = "Accession";
-
-        when(dao.findAll(Accession.class)).thenThrow(new DinaException("error"));
-        
-        try {
-            instance.findAll(entityName);
-            fail("Expected a DinaException to be thrown");  
-        } catch(DinaException e) {
-            verify(dao).findAll(Accession.class);
-            assertEquals(e.getMessage(), "error"); 
-        } 
-    }
-
-    /**
-     * Test of findAll method, of class DinaDataLogic.
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testFindAll_7args() throws Exception {
-        System.out.println("findAll");
-        
-        String entityName = "Accession";
-        Class clazz = Accession.class;
-        
-        int offset = 2;
-        int limit = 3;
-        int minid = 5;
-        int maxid = 9;
-        String sort = null;
-        List<String> orders = null;
-        Map<String, String> conditions = null;
-        
-        String strQuery = NamedQueries.getInstance()
-                    .createQueryFindAllWithSearchCriteria(entityName, 
-                            clazz, offset, minid, maxid, sort, orders, false, conditions);
-
-        when(dao.findAll(clazz, strQuery, limit, conditions)).thenReturn(accessions1);
-        List result = instance.findAll(entityName, offset, limit, minid, maxid, sort, orders, conditions);
-        verify(dao).findAll(clazz, strQuery, limit, conditions);
-        
-        assertEquals(result, accessions1); 
-    }
-    
-
-    /**
-     * Test of findAll method, of class DinaDataLogic.
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testFindAll_7argsFailure() throws Exception {
-        System.out.println("findAll");
-        
-        String entityName = "Accession";
-        Class clazz = Accession.class;
-        
-        int offset = 2;
-        int limit = 3;
-        int minid = 5;
-        int maxid = 9;
-        String sort = null;
-        List<String> orders = null;
-        Map<String, String> conditions = null;
-        
-        String strQuery = NamedQueries.getInstance()
-                    .createQueryFindAllWithSearchCriteria(entityName, 
-                            clazz, offset, minid, maxid, sort, orders, false, conditions);
-
-        when(dao.findAll(clazz, strQuery, limit, conditions)).thenThrow(new DinaException("error"));
-        
-        try {
-            instance.findAll(entityName, offset, limit, minid, maxid, sort, orders, conditions);
-            fail("Expected a DinaException to be thrown");  
-        } catch(DinaException e) {
-            verify(dao).findAll(clazz, strQuery, limit, conditions);
-            assertEquals(e.getMessage(), "error"); 
-        } 
-    }
-    
-
-    /**
-     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
-     * @throws java.lang.Exception
-     */
 //    @Test
-    public void testFindAllBySearchCriteria() throws Exception {
-        System.out.println("findAllBySearchCriteria");
-         
-        MultivaluedMap<String, String> map = new MultivaluedHashMap();
-  
-        String offset = map.getFirst("offset");
-        String limit = map.getFirst("limit");
-        String minid = map.getFirst("minid");
-        String maxid = map.getFirst("maxid");
-        String orderBy = map.getFirst("orderby");
-        
-        List<String> orderby = new ArrayList<>();
-        if (orderBy != null) {
-            orderby = Arrays.asList(orderBy.split(","));
-        }
-          
-        Map<String, String> condition = map.entrySet()
-                .stream() 
-                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
-        String entityName = "Accession";
-        Class clazz = Accession.class;
-        String strQuery = NamedQueries.getInstance()
-                    .createQueryFindAllWithSearchCriteria(
-                            entityName,
-                            clazz,
-                            Integer.parseInt(offset == null ? "0" : offset),
-                            Integer.parseInt(minid == null ? "0" : minid),
-                            Integer.parseInt(maxid == null ? "0" : maxid),
-                            null,
-                            orderby, false, condition);
- 
-        when(dao.findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenReturn(accessions1);
-        
-        List result = instance.findAllBySearchCriteria(entityName, map);
-        verify(dao).findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition);
-        assertEquals(result, accessions1);
-    }
+//    public void testFindAll_String() throws Exception {
+//        System.out.println("findAll");
+//        
+//        String entityName = "Accession";
+//         
+//        when(dao.findAll(Accession.class)).thenReturn(accessions);
+//        
+//        
+//        EntityWrapper results = (EntityWrapper)instance.findAll(entityName);
+//        verify(dao).findAll(Accession.class);
+//        assertEquals(10, results.getResults().size());
+//    }
+//
+//    /**
+//     * Test of findAll method, of class DinaDataLogic.
+//     *
+//     * @throws java.lang.Exception
+//     */
+//    @Test
+//    public void testFindAll_StringFailure() throws Exception {
+//        System.out.println("findAll");
+//
+//        String entityName = "Accession";
+//
+//        when(dao.findAll(Accession.class)).thenThrow(new DinaException("error"));
+//        
+//        try {
+//            instance.findAll(entityName);
+//            fail("Expected a DinaException to be thrown");  
+//        } catch(DinaException e) {
+//            verify(dao).findAll(Accession.class);
+//            assertEquals(e.getMessage(), "error"); 
+//        } 
+//    }
+
+//    /**
+//     * Test of findAll method, of class DinaDataLogic.
+//     * @throws java.lang.Exception
+//     */
+////    @Test
+//    public void testFindAll_7args() throws Exception {
+//        System.out.println("findAll");
+//        
+//        String entityName = "Accession";
+//        Class clazz = Accession.class;
+//        
+//        int offset = 2;
+//        int limit = 3;
+//        int minid = 5;
+//        int maxid = 9;
+//        String sort = null;
+//        List<String> orders = null;
+//        Map<String, String> conditions = null;
+//        
+//        String strQuery = NamedQueries.getInstance()
+//                    .createQueryFindAllWithSearchCriteria(entityName, 
+//                            clazz, offset, minid, maxid, sort, orders, false, conditions);
+//
+//        when(dao.findAll(clazz, strQuery, limit, conditions)).thenReturn(accessions1);
+//        
+//        
+//        EntityWrapper result = (EntityWrapper)instance.findAll(entityName, offset, limit, minid, maxid, sort, orders, conditions);
+//        verify(dao).findAll(clazz, strQuery, limit, conditions);
+//        
+//        assertEquals(result.getResult(), accessions1); 
+//    }
+//    
+
+//    /**
+//     * Test of findAll method, of class DinaDataLogic.
+//     * @throws java.lang.Exception
+//     */
+//    @Test
+//    public void testFindAll_7argsFailure() throws Exception {
+//        System.out.println("findAll");
+//        
+//        String entityName = "Accession";
+//        Class clazz = Accession.class;
+//        
+//        int offset = 2;
+//        int limit = 3;
+//        int minid = 5;
+//        int maxid = 9;
+//        String sort = null;
+//        List<String> orders = null;
+//        Map<String, String> conditions = null;
+//        
+//        String strQuery = NamedQueries.getInstance()
+//                    .createQueryFindAllWithSearchCriteria(entityName, 
+//                            clazz, offset, minid, maxid, sort, orders, false, conditions);
+//
+//        when(dao.findAll(clazz, strQuery, limit, conditions)).thenThrow(new DinaException("error"));
+//        
+//        try {
+//            instance.findAll(entityName, offset, limit, minid, maxid, sort, orders, conditions);
+//            fail("Expected a DinaException to be thrown");  
+//        } catch(DinaException e) {
+//            verify(dao).findAll(clazz, strQuery, limit, conditions);
+//            assertEquals(e.getMessage(), "error"); 
+//        } 
+//    }
     
 
-    /**
-     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
-     * @throws java.lang.Exception
-     */
-//    @Test
-    public void testFindAllBySearchCriteriaWithExactSearch() throws Exception {
-        System.out.println("findAllBySearchCriteria");
-         
-        MultivaluedMap<String, String> map = new MultivaluedHashMap();
-        map.add("exact", "true");
-  
-        String offset = map.getFirst("offset");
-        String limit = map.getFirst("limit");
-        String minid = map.getFirst("minid");
-        String maxid = map.getFirst("maxid");
-        String orderBy = map.getFirst("orderby"); 
-        
-        List<String> orderby = new ArrayList<>();
-        if (orderBy != null) {
-            orderby = Arrays.asList(orderBy.split(","));
-        }
-          
+//    /**
+//     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
+//     * @throws java.lang.Exception
+//     */
+////    @Test
+//    public void testFindAllBySearchCriteria() throws Exception {
+//        System.out.println("findAllBySearchCriteria");
+//         
+//        MultivaluedMap<String, String> map = new MultivaluedHashMap();
+//  
+//        String offset = map.getFirst("offset");
+//        String limit = map.getFirst("limit");
+//        String minid = map.getFirst("minid");
+//        String maxid = map.getFirst("maxid");
+//        String orderBy = map.getFirst("orderby");
+//        
+//        List<String> orderby = new ArrayList<>();
+//        if (orderBy != null) {
+//            orderby = Arrays.asList(orderBy.split(","));
+//        }
+//          
 //        Map<String, String> condition = map.entrySet()
 //                .stream() 
 //                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
-        
-        Map<String, String> condition = new HashMap();
-        
-        String entityName = "Accession";
-        Class clazz = Accession.class;
-        String strQuery = NamedQueries.getInstance()
-                    .createQueryFindAllWithSearchCriteria(
-                            entityName,
-                            clazz,
-                            Integer.parseInt(offset == null ? "0" : offset),
-                            Integer.parseInt(minid == null ? "0" : minid),
-                            Integer.parseInt(maxid == null ? "0" : maxid),
-                            null,
-                            orderby, true, condition);
- 
-        when(dao.findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenReturn(accessions1);
-        
-        List result = instance.findAllBySearchCriteria(entityName, map);
-        verify(dao).findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition);
-        assertEquals(result, accessions1);
-    }    
+//        String entityName = "Accession";
+//        Class clazz = Accession.class;
+//        String strQuery = NamedQueries.getInstance()
+//                    .createQueryFindAllWithSearchCriteria(
+//                            entityName,
+//                            clazz,
+//                            Integer.parseInt(offset == null ? "0" : offset),
+//                            Integer.parseInt(minid == null ? "0" : minid),
+//                            Integer.parseInt(maxid == null ? "0" : maxid),
+//                            null,
+//                            orderby, false, condition);
+// 
+//        when(dao.findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenReturn(accessions1);
+//        
+//        List result = instance.findAllBySearchCriteria(entityName, map);
+//        verify(dao).findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition);
+//        assertEquals(result, accessions1);
+//    }
+//    
+//
+//    /**
+//     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
+//     * @throws java.lang.Exception
+//     */
+////    @Test
+//    public void testFindAllBySearchCriteriaWithExactSearch() throws Exception {
+//        System.out.println("findAllBySearchCriteria");
+//         
+//        MultivaluedMap<String, String> map = new MultivaluedHashMap();
+//        map.add("exact", "true");
+//  
+//        String offset = map.getFirst("offset");
+//        String limit = map.getFirst("limit");
+//        String minid = map.getFirst("minid");
+//        String maxid = map.getFirst("maxid");
+//        String orderBy = map.getFirst("orderby"); 
+//        
+//        List<String> orderby = new ArrayList<>();
+//        if (orderBy != null) {
+//            orderby = Arrays.asList(orderBy.split(","));
+//        }
+//          
+////        Map<String, String> condition = map.entrySet()
+////                .stream() 
+////                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
+//        
+//        Map<String, String> condition = new HashMap();
+//        
+//        String entityName = "Accession";
+//        Class clazz = Accession.class;
+//        String strQuery = NamedQueries.getInstance()
+//                    .createQueryFindAllWithSearchCriteria(
+//                            entityName,
+//                            clazz,
+//                            Integer.parseInt(offset == null ? "0" : offset),
+//                            Integer.parseInt(minid == null ? "0" : minid),
+//                            Integer.parseInt(maxid == null ? "0" : maxid),
+//                            null,
+//                            orderby, true, condition);
+// 
+//        when(dao.findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenReturn(accessions1);
+//        
+//        List result = instance.findAllBySearchCriteria(entityName, map);
+//        verify(dao).findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition);
+//        assertEquals(result, accessions1);
+//    }    
     
     
     
+    
+//    /**
+//     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
+//     * @throws java.lang.Exception
+//     */
+////    @Test
+//    public void testFindAllBySearchCriteria1() throws Exception {
+//        System.out.println("findAllBySearchCriteria1");
+//         
+//        MultivaluedMap<String, String> map = new MultivaluedHashMap();
+//        map.add("orderby", "accessionNumber");
+//  
+//        String offset = map.getFirst("offset");
+//        String limit = map.getFirst("limit");
+//        String minid = map.getFirst("minid");
+//        String maxid = map.getFirst("maxid");
+//        String orderBy = map.getFirst("orderby");
+//          
+//        List<String> orderby = new ArrayList<>();
+//        if (orderBy != null) {
+//            orderby = Arrays.asList(orderBy.split(","));
+//        }
+//          
+//        Map<String, String> condition = map.entrySet()
+//                .stream() 
+//                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
+//        
+//        condition.remove("orderby");
+//        
+//        String entityName = "Accession";
+//        Class clazz = Accession.class;
+//        String strQuery = NamedQueries.getInstance()
+//                    .createQueryFindAllWithSearchCriteria(
+//                            entityName,
+//                            clazz,
+//                            Integer.parseInt(offset == null ? "0" : offset),
+//                            Integer.parseInt(minid == null ? "0" : minid),
+//                            Integer.parseInt(maxid == null ? "0" : maxid),
+//                            null,
+//                            orderby, false, condition);
+// 
+//        when(dao.findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenReturn(accessions1);
+//        
+//        List result = instance.findAllBySearchCriteria(entityName, map);
+//        verify(dao).findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition);
+//        assertEquals(result, accessions1);
+//    }
+    
+//       /**
+//     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
+//     * @throws java.lang.Exception
+//     */
+////    @Test
+//    public void testFindAllBySearchCriteria1WithExactSearch() throws Exception {
+//        System.out.println("findAllBySearchCriteria1");
+//         
+//        MultivaluedMap<String, String> map = new MultivaluedHashMap();
+//        map.add("orderby", "accessionNumber");
+//        map.add("exact", "true");
+//  
+//        String offset = map.getFirst("offset");
+//        String limit = map.getFirst("limit");
+//        String minid = map.getFirst("minid");
+//        String maxid = map.getFirst("maxid");
+//        String orderBy = map.getFirst("orderby"); 
+//          
+//        List<String> orderby = new ArrayList<>();
+//        if (orderBy != null) {
+//            orderby = Arrays.asList(orderBy.split(","));
+//        }
+//          
+//        Map<String, String> condition = map.entrySet()
+//                .stream() 
+//                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
+//        
+//        condition.remove("orderby");
+//        condition.remove("exact");
+//        
+//        String entityName = "Accession";
+//        Class clazz = Accession.class;
+//        String strQuery = NamedQueries.getInstance()
+//                    .createQueryFindAllWithSearchCriteria(
+//                            entityName,
+//                            clazz,
+//                            Integer.parseInt(offset == null ? "0" : offset),
+//                            Integer.parseInt(minid == null ? "0" : minid),
+//                            Integer.parseInt(maxid == null ? "0" : maxid),
+//                            null,
+//                            orderby, true, condition);
+// 
+//        when(dao.findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenReturn(accessions1);
+//        
+//        List result = instance.findAllBySearchCriteria(entityName, map);
+//        verify(dao).findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition);
+//        assertEquals(result, accessions1);
+//    }    
+//    
+    
+//    /**
+//     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
+//     * @throws java.lang.Exception
+//     */
+////    @Test
+//    public void testFindAllBySearchCriteria2() throws Exception {
+//        System.out.println("findAllBySearchCriteria2");
+//         
+//        MultivaluedMap<String, String> map = new MultivaluedHashMap();
+//        map.add("orderby", "accessionNumber");
+//        map.add("offset", "20");
+//        map.add("limit", "5");
+//        map.add("minid", "3"); 
+//        map.add("maxid", "60");
+//  
+//        
+//  
+//        String offset = map.getFirst("offset");
+//        String limit = map.getFirst("limit");
+//        String minid = map.getFirst("minid");
+//        String maxid = map.getFirst("maxid");
+//        String orderBy = map.getFirst("orderby");
+//          
+//        List<String> orderby = new ArrayList<>();
+//        if (orderBy != null) {
+//            orderby = Arrays.asList(orderBy.split(","));
+//        }
+//          
+//        Map<String, String> condition = map.entrySet()
+//                .stream() 
+//                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
+//        
+//        condition.remove("orderby");
+//        condition.remove("offset");
+//        condition.remove("limit");
+//        condition.remove("minid");
+//        condition.remove("maxid");
+//        
+//        String entityName = "Accession";
+//        Class clazz = Accession.class;
+//        String strQuery = NamedQueries.getInstance()
+//                    .createQueryFindAllWithSearchCriteria(
+//                            entityName,
+//                            clazz,
+//                            Integer.parseInt(offset == null ? "0" : offset),
+//                            Integer.parseInt(minid == null ? "0" : minid),
+//                            Integer.parseInt(maxid == null ? "0" : maxid),
+//                            null,
+//                            orderby, false, condition);
+// 
+//        when(dao.findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenReturn(accessions1);
+//        
+//        List result = instance.findAllBySearchCriteria(entityName, map);
+//        verify(dao).findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition);
+//        assertEquals(result, accessions1);
+//    }
+//
+//    /**
+//     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
+//     * @throws java.lang.Exception
+//     */
+////    @Test
+//    public void testFindAllBySearchCriteria2WithExactSearch() throws Exception {
+//        System.out.println("findAllBySearchCriteria2");
+//         
+//        MultivaluedMap<String, String> map = new MultivaluedHashMap();
+//        map.add("orderby", "accessionNumber");
+//        map.add("offset", "20");
+//        map.add("limit", "5");
+//        map.add("minid", "3"); 
+//        map.add("maxid", "60"); 
+//        map.add("exact", "true"); 
+//        
+//  
+//        String offset = map.getFirst("offset");
+//        String limit = map.getFirst("limit");
+//        String minid = map.getFirst("minid");
+//        String maxid = map.getFirst("maxid");
+//        String orderBy = map.getFirst("orderby");
+//          
+//        List<String> orderby = new ArrayList<>();
+//        if (orderBy != null) {
+//            orderby = Arrays.asList(orderBy.split(","));
+//        }
+//          
+//        Map<String, String> condition = map.entrySet()
+//                .stream() 
+//                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
+//        
+//        condition.remove("orderby");
+//        condition.remove("offset");
+//        condition.remove("limit");
+//        condition.remove("minid");
+//        condition.remove("maxid");
+//        condition.remove("exact");
+//        
+//        String entityName = "Accession";
+//        Class clazz = Accession.class;
+//        String strQuery = NamedQueries.getInstance()
+//                    .createQueryFindAllWithSearchCriteria(
+//                            entityName,
+//                            clazz,
+//                            Integer.parseInt(offset == null ? "0" : offset),
+//                            Integer.parseInt(minid == null ? "0" : minid),
+//                            Integer.parseInt(maxid == null ? "0" : maxid),
+//                            null,
+//                            orderby, true, condition);
+// 
+//        when(dao.findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenReturn(accessions1);
+//        
+//        List result = instance.findAllBySearchCriteria(entityName, map);
+//        verify(dao).findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition);
+//        assertEquals(result, accessions1);
+//    }    
+//    
+//    
+//    
+    
+
+//    /**
+//     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
+//     * @throws java.lang.Exception
+//     */
+////    @Test
+//    public void testFindAllBySearchCriteriaFailure() throws Exception {
+//        System.out.println("findAllBySearchCriteria");
+//         
+//        MultivaluedMap<String, String> map = new MultivaluedHashMap();
+//  
+//        String offset = map.getFirst("offset");
+//        String limit = map.getFirst("limit");
+//        String minid = map.getFirst("minid");
+//        String maxid = map.getFirst("maxid");
+//        String orderBy = map.getFirst("orderby");
+//        
+//        List<String> orderby = new ArrayList<>();
+//        if (orderBy != null) {
+//            orderby = Arrays.asList(orderBy.split(","));
+//        }
+//          
+//        Map<String, String> condition = map.entrySet()
+//                .stream() 
+//                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
+//        String entityName = "Accession";
+//        Class clazz = Accession.class;
+//        String strQuery = NamedQueries.getInstance()
+//                    .createQueryFindAllWithSearchCriteria(
+//                            entityName,
+//                            clazz,
+//                            Integer.parseInt(offset == null ? "0" : offset),
+//                            Integer.parseInt(minid == null ? "0" : minid),
+//                            Integer.parseInt(maxid == null ? "0" : maxid),
+//                            null,
+//                            orderby, false, condition);
+// 
+//        when(dao.findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenThrow(new DinaException());
+//        
+//        try {
+//            instance.findAllBySearchCriteria(entityName, map);
+//            fail();
+//        } catch(DinaException e) {
+//            verify(dao).findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition); 
+//        } 
+//    }
+
+//    /**
+//     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
+//     * @throws java.lang.Exception
+//     */
+////    @Test
+//    public void testFindAllBySearchCriteriaFailureWithExactSearch() throws Exception {
+//        System.out.println("findAllBySearchCriteria");
+//         
+//        MultivaluedMap<String, String> map = new MultivaluedHashMap();
+//        map.add("exact", "true");
+//  
+//        String offset = map.getFirst("offset");
+//        String limit = map.getFirst("limit");
+//        String minid = map.getFirst("minid");
+//        String maxid = map.getFirst("maxid");
+//        String orderBy = map.getFirst("orderby"); 
+//        
+//        List<String> orderby = new ArrayList<>();
+//        if (orderBy != null) {
+//            orderby = Arrays.asList(orderBy.split(","));
+//        }
+//          
+//        Map<String, String> condition = map.entrySet()
+//                .stream() 
+//                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
+//        condition.remove("exact");
+//        
+//        
+//        String entityName = "Accession";
+//        Class clazz = Accession.class;
+//        String strQuery = NamedQueries.getInstance()
+//                    .createQueryFindAllWithSearchCriteria(
+//                            entityName,
+//                            clazz,
+//                            Integer.parseInt(offset == null ? "0" : offset),
+//                            Integer.parseInt(minid == null ? "0" : minid),
+//                            Integer.parseInt(maxid == null ? "0" : maxid),
+//                            null,
+//                            orderby, true, condition);
+// 
+//        when(dao.findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenThrow(new DinaException());
+//        
+//        try {
+//            instance.findAllBySearchCriteria(entityName, map);
+//            fail();
+//        } catch(DinaException e) {
+//            verify(dao).findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition); 
+//        } 
+//    }
     
     /**
-     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
-     * @throws java.lang.Exception
-     */
+//     * Test of findById method, of class DinaDataLogic.
+//     * @throws java.lang.Exception
+//     */
+//   // @Test
+//    public void testFindById() throws Exception {
+//        System.out.println("findById");
+//      
+//        String entityName = "Accession"; 
+//        EntityWrapper wrapper = new EntityWrapper(null, accession1);
+//        
+//        when(dao.findById(20, Accession.class)).thenReturn(wrapper);
+//        EntityBean result = instance.findById("20", entityName);
+//        
+//        verify(dao).findById(20, Accession.class);
+//        assertEquals(result, wrapper);
+//        assertTrue(result instanceof Accession);
+//    }
+
+//    /**
+//     * Test of findById method, of class DinaDataLogic.
+//     *
+//     * @throws java.lang.Exception
+//     */
+//   // @Test
+//    public void testFindByIdString() throws Exception {
+//        System.out.println("findById");
+//
+//        String entityName = "Accession"; 
+//        
+//        when(dao.findByStringId("test", Accession.class)).thenReturn(accession1);
+//        EntityBean result = instance.findById("test", entityName);
+//        
+//        verify(dao).findByStringId("test", Accession.class);
+//        assertEquals(result, accession1);
+//        assertTrue(result instanceof Accession);
+//    }
+//    
+//    /**
+//     * Test of findById method, of class DinaDataLogic.
+//     *
+//     * @throws java.lang.Exception
+//     */
 //    @Test
-    public void testFindAllBySearchCriteria1() throws Exception {
-        System.out.println("findAllBySearchCriteria1");
-         
-        MultivaluedMap<String, String> map = new MultivaluedHashMap();
-        map.add("orderby", "accessionNumber");
-  
-        String offset = map.getFirst("offset");
-        String limit = map.getFirst("limit");
-        String minid = map.getFirst("minid");
-        String maxid = map.getFirst("maxid");
-        String orderBy = map.getFirst("orderby");
-          
-        List<String> orderby = new ArrayList<>();
-        if (orderBy != null) {
-            orderby = Arrays.asList(orderBy.split(","));
-        }
-          
-        Map<String, String> condition = map.entrySet()
-                .stream() 
-                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
-        
-        condition.remove("orderby");
-        
-        String entityName = "Accession";
-        Class clazz = Accession.class;
-        String strQuery = NamedQueries.getInstance()
-                    .createQueryFindAllWithSearchCriteria(
-                            entityName,
-                            clazz,
-                            Integer.parseInt(offset == null ? "0" : offset),
-                            Integer.parseInt(minid == null ? "0" : minid),
-                            Integer.parseInt(maxid == null ? "0" : maxid),
-                            null,
-                            orderby, false, condition);
- 
-        when(dao.findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenReturn(accessions1);
-        
-        List result = instance.findAllBySearchCriteria(entityName, map);
-        verify(dao).findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition);
-        assertEquals(result, accessions1);
-    }
-    
-       /**
-     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
-     * @throws java.lang.Exception
-     */
-//    @Test
-    public void testFindAllBySearchCriteria1WithExactSearch() throws Exception {
-        System.out.println("findAllBySearchCriteria1");
-         
-        MultivaluedMap<String, String> map = new MultivaluedHashMap();
-        map.add("orderby", "accessionNumber");
-        map.add("exact", "true");
-  
-        String offset = map.getFirst("offset");
-        String limit = map.getFirst("limit");
-        String minid = map.getFirst("minid");
-        String maxid = map.getFirst("maxid");
-        String orderBy = map.getFirst("orderby"); 
-          
-        List<String> orderby = new ArrayList<>();
-        if (orderBy != null) {
-            orderby = Arrays.asList(orderBy.split(","));
-        }
-          
-        Map<String, String> condition = map.entrySet()
-                .stream() 
-                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
-        
-        condition.remove("orderby");
-        condition.remove("exact");
-        
-        String entityName = "Accession";
-        Class clazz = Accession.class;
-        String strQuery = NamedQueries.getInstance()
-                    .createQueryFindAllWithSearchCriteria(
-                            entityName,
-                            clazz,
-                            Integer.parseInt(offset == null ? "0" : offset),
-                            Integer.parseInt(minid == null ? "0" : minid),
-                            Integer.parseInt(maxid == null ? "0" : maxid),
-                            null,
-                            orderby, true, condition);
- 
-        when(dao.findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenReturn(accessions1);
-        
-        List result = instance.findAllBySearchCriteria(entityName, map);
-        verify(dao).findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition);
-        assertEquals(result, accessions1);
-    }    
-    
-    
-    /**
-     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
-     * @throws java.lang.Exception
-     */
-//    @Test
-    public void testFindAllBySearchCriteria2() throws Exception {
-        System.out.println("findAllBySearchCriteria2");
-         
-        MultivaluedMap<String, String> map = new MultivaluedHashMap();
-        map.add("orderby", "accessionNumber");
-        map.add("offset", "20");
-        map.add("limit", "5");
-        map.add("minid", "3"); 
-        map.add("maxid", "60");
-  
-        
-  
-        String offset = map.getFirst("offset");
-        String limit = map.getFirst("limit");
-        String minid = map.getFirst("minid");
-        String maxid = map.getFirst("maxid");
-        String orderBy = map.getFirst("orderby");
-          
-        List<String> orderby = new ArrayList<>();
-        if (orderBy != null) {
-            orderby = Arrays.asList(orderBy.split(","));
-        }
-          
-        Map<String, String> condition = map.entrySet()
-                .stream() 
-                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
-        
-        condition.remove("orderby");
-        condition.remove("offset");
-        condition.remove("limit");
-        condition.remove("minid");
-        condition.remove("maxid");
-        
-        String entityName = "Accession";
-        Class clazz = Accession.class;
-        String strQuery = NamedQueries.getInstance()
-                    .createQueryFindAllWithSearchCriteria(
-                            entityName,
-                            clazz,
-                            Integer.parseInt(offset == null ? "0" : offset),
-                            Integer.parseInt(minid == null ? "0" : minid),
-                            Integer.parseInt(maxid == null ? "0" : maxid),
-                            null,
-                            orderby, false, condition);
- 
-        when(dao.findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenReturn(accessions1);
-        
-        List result = instance.findAllBySearchCriteria(entityName, map);
-        verify(dao).findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition);
-        assertEquals(result, accessions1);
-    }
-
-    /**
-     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
-     * @throws java.lang.Exception
-     */
-//    @Test
-    public void testFindAllBySearchCriteria2WithExactSearch() throws Exception {
-        System.out.println("findAllBySearchCriteria2");
-         
-        MultivaluedMap<String, String> map = new MultivaluedHashMap();
-        map.add("orderby", "accessionNumber");
-        map.add("offset", "20");
-        map.add("limit", "5");
-        map.add("minid", "3"); 
-        map.add("maxid", "60"); 
-        map.add("exact", "true"); 
-        
-  
-        String offset = map.getFirst("offset");
-        String limit = map.getFirst("limit");
-        String minid = map.getFirst("minid");
-        String maxid = map.getFirst("maxid");
-        String orderBy = map.getFirst("orderby");
-          
-        List<String> orderby = new ArrayList<>();
-        if (orderBy != null) {
-            orderby = Arrays.asList(orderBy.split(","));
-        }
-          
-        Map<String, String> condition = map.entrySet()
-                .stream() 
-                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
-        
-        condition.remove("orderby");
-        condition.remove("offset");
-        condition.remove("limit");
-        condition.remove("minid");
-        condition.remove("maxid");
-        condition.remove("exact");
-        
-        String entityName = "Accession";
-        Class clazz = Accession.class;
-        String strQuery = NamedQueries.getInstance()
-                    .createQueryFindAllWithSearchCriteria(
-                            entityName,
-                            clazz,
-                            Integer.parseInt(offset == null ? "0" : offset),
-                            Integer.parseInt(minid == null ? "0" : minid),
-                            Integer.parseInt(maxid == null ? "0" : maxid),
-                            null,
-                            orderby, true, condition);
- 
-        when(dao.findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenReturn(accessions1);
-        
-        List result = instance.findAllBySearchCriteria(entityName, map);
-        verify(dao).findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition);
-        assertEquals(result, accessions1);
-    }    
-    
-    
-    
-    
-
-    /**
-     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
-     * @throws java.lang.Exception
-     */
-//    @Test
-    public void testFindAllBySearchCriteriaFailure() throws Exception {
-        System.out.println("findAllBySearchCriteria");
-         
-        MultivaluedMap<String, String> map = new MultivaluedHashMap();
-  
-        String offset = map.getFirst("offset");
-        String limit = map.getFirst("limit");
-        String minid = map.getFirst("minid");
-        String maxid = map.getFirst("maxid");
-        String orderBy = map.getFirst("orderby");
-        
-        List<String> orderby = new ArrayList<>();
-        if (orderBy != null) {
-            orderby = Arrays.asList(orderBy.split(","));
-        }
-          
-        Map<String, String> condition = map.entrySet()
-                .stream() 
-                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
-        String entityName = "Accession";
-        Class clazz = Accession.class;
-        String strQuery = NamedQueries.getInstance()
-                    .createQueryFindAllWithSearchCriteria(
-                            entityName,
-                            clazz,
-                            Integer.parseInt(offset == null ? "0" : offset),
-                            Integer.parseInt(minid == null ? "0" : minid),
-                            Integer.parseInt(maxid == null ? "0" : maxid),
-                            null,
-                            orderby, false, condition);
- 
-        when(dao.findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenThrow(new DinaException());
-        
-        try {
-            instance.findAllBySearchCriteria(entityName, map);
-            fail();
-        } catch(DinaException e) {
-            verify(dao).findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition); 
-        } 
-    }
-
-    /**
-     * Test of findAllBySearchCriteria method, of class DinaDataLogic.
-     * @throws java.lang.Exception
-     */
-//    @Test
-    public void testFindAllBySearchCriteriaFailureWithExactSearch() throws Exception {
-        System.out.println("findAllBySearchCriteria");
-         
-        MultivaluedMap<String, String> map = new MultivaluedHashMap();
-        map.add("exact", "true");
-  
-        String offset = map.getFirst("offset");
-        String limit = map.getFirst("limit");
-        String minid = map.getFirst("minid");
-        String maxid = map.getFirst("maxid");
-        String orderBy = map.getFirst("orderby"); 
-        
-        List<String> orderby = new ArrayList<>();
-        if (orderBy != null) {
-            orderby = Arrays.asList(orderBy.split(","));
-        }
-          
-        Map<String, String> condition = map.entrySet()
-                .stream() 
-                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
-        condition.remove("exact");
-        
-        
-        String entityName = "Accession";
-        Class clazz = Accession.class;
-        String strQuery = NamedQueries.getInstance()
-                    .createQueryFindAllWithSearchCriteria(
-                            entityName,
-                            clazz,
-                            Integer.parseInt(offset == null ? "0" : offset),
-                            Integer.parseInt(minid == null ? "0" : minid),
-                            Integer.parseInt(maxid == null ? "0" : maxid),
-                            null,
-                            orderby, true, condition);
- 
-        when(dao.findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)).thenThrow(new DinaException());
-        
-        try {
-            instance.findAllBySearchCriteria(entityName, map);
-            fail();
-        } catch(DinaException e) {
-            verify(dao).findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition); 
-        } 
-    }
-    
-    /**
-     * Test of findById method, of class DinaDataLogic.
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testFindById() throws Exception {
-        System.out.println("findById");
-      
-        String entityName = "Accession"; 
-        
-        when(dao.findById(20, Accession.class)).thenReturn(accession1);
-        EntityBean result = instance.findById("20", entityName);
-        
-        verify(dao).findById(20, Accession.class);
-        assertEquals(result, accession1);
-        assertTrue(result instanceof Accession);
-    }
-
-    /**
-     * Test of findById method, of class DinaDataLogic.
-     *
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testFindByIdString() throws Exception {
-        System.out.println("findById");
-
-        String entityName = "Accession"; 
-        
-        when(dao.findByStringId("test", Accession.class)).thenReturn(accession1);
-        EntityBean result = instance.findById("test", entityName);
-        
-        verify(dao).findByStringId("test", Accession.class);
-        assertEquals(result, accession1);
-        assertTrue(result instanceof Accession);
-    }
-    
-    /**
-     * Test of findById method, of class DinaDataLogic.
-     *
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testFindByIdFailure() throws Exception {
-        System.out.println("findById");
-
-        String entityName = "Accession";
-
-        when(dao.findById(20, Accession.class)).thenThrow(new DinaException("error"));
-        
-        try {
-            instance.findById("20", entityName);
-            fail();
-        } catch(DinaException e) {
-            verify(dao).findById(20, Accession.class);
-            assertEquals("error", e.getMessage());
-        } 
-    }
+//    public void testFindByIdFailure() throws Exception {
+//        System.out.println("findById");
+//
+//        String entityName = "Accession";
+//
+//        when(dao.findById(20, Accession.class)).thenThrow(new DinaException("error"));
+//        
+//        try {
+//            instance.findById("20", entityName);
+//            fail();
+//        } catch(DinaException e) {
+//            verify(dao).findById(20, Accession.class);
+//            assertEquals("error", e.getMessage());
+//        } 
+//    }
 
     /**
      * Test of findEntityCount method, of class DinaDataLogic.
@@ -653,7 +658,7 @@ public class DinaDataLogicNGTest {
         String entityName = "Accession";
         
         int expResult = 10;
-        String strQuery = NamedQueries.getInstance().createFindTotalCountNamedQuery(Util.getInstance().convertClassNameToClass(entityName).getSimpleName());
+        String strQuery = NamedQueries.getInstance().createFindTotalCountNamedQuery(JpaReflectionHelper.getInstance().convertClassNameToClass(entityName).getSimpleName());
         
         when(dao.getCountByQuery(strQuery)).thenReturn(10);
          
@@ -673,7 +678,7 @@ public class DinaDataLogicNGTest {
         
         String entityName = "Accession";
          
-        String strQuery = NamedQueries.getInstance().createFindTotalCountNamedQuery(Util.getInstance().convertClassNameToClass(entityName).getSimpleName());
+        String strQuery = NamedQueries.getInstance().createFindTotalCountNamedQuery(JpaReflectionHelper.getInstance().convertClassNameToClass(entityName).getSimpleName());
         
         when(dao.getCountByQuery(strQuery)).thenThrow(new DinaException("error"));
          
@@ -744,7 +749,7 @@ public class DinaDataLogicNGTest {
 
         EntityBean bean = null;
         try {
-            bean = (EntityBean) mapper.readValue(jsonInString, Util.getInstance().convertClassNameToClass(entityName));
+            bean = (EntityBean) mapper.readValue(jsonInString, JpaReflectionHelper.getInstance().convertClassNameToClass(entityName));
         } catch (IOException ex) {
             throw new DinaException(ex.getMessage());
         }
@@ -773,7 +778,7 @@ public class DinaDataLogicNGTest {
 
         EntityBean bean = null;
         try {
-            bean = (EntityBean) mapper.readValue(jsonInString, Util.getInstance().convertClassNameToClass(entityName));
+            bean = (EntityBean) mapper.readValue(jsonInString, JpaReflectionHelper.getInstance().convertClassNameToClass(entityName));
         } catch (IOException ex) {
             throw new DinaException(ex.getMessage());
         }
@@ -824,7 +829,7 @@ public class DinaDataLogicNGTest {
         String entityName = "Accession";
         int id = 20;
          
-        when(dao.findByReference(id, Util.getInstance().convertClassNameToClass(entityName))).thenReturn(accession1);
+        when(dao.findByReference(id, JpaReflectionHelper.getInstance().convertClassNameToClass(entityName))).thenReturn(accession1);
     
         instance.deleteEntity(entityName, id); 
         verify(dao).delete(accession1);
@@ -843,11 +848,11 @@ public class DinaDataLogicNGTest {
         String entityName = "Accession";
         int id = 20;
          
-        when(dao.findByReference(id, Util.getInstance().convertClassNameToClass(entityName))).thenReturn(null);
+        when(dao.findByReference(id, JpaReflectionHelper.getInstance().convertClassNameToClass(entityName))).thenReturn(null);
     
         instance.deleteEntity(entityName, id); 
         verify(dao, times(0)).delete(accession1);
-        verify(dao).findByReference(id, Util.getInstance().convertClassNameToClass(entityName));
+        verify(dao).findByReference(id, JpaReflectionHelper.getInstance().convertClassNameToClass(entityName));
     }
     
 
@@ -863,7 +868,7 @@ public class DinaDataLogicNGTest {
         String entityName = "Accession";
         int id = 20;
          
-        when(dao.findByReference(id, Util.getInstance().convertClassNameToClass(entityName))).thenReturn(accession1);
+        when(dao.findByReference(id, JpaReflectionHelper.getInstance().convertClassNameToClass(entityName))).thenReturn(accession1);
     
         doThrow(mock(DinaException.class)).when(dao).delete(accession1);
         
@@ -871,7 +876,7 @@ public class DinaDataLogicNGTest {
             instance.deleteEntity(entityName, id);
         } catch(DinaException e) {
             verify(dao).delete(accession1);
-            verify(dao).findByReference(id, Util.getInstance().convertClassNameToClass(entityName));
+            verify(dao).findByReference(id, JpaReflectionHelper.getInstance().convertClassNameToClass(entityName));
         }  
     }
     

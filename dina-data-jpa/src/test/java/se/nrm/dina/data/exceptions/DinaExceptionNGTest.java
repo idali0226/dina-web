@@ -4,11 +4,13 @@
  * and open the template in the editor.
  */
 package se.nrm.dina.data.exceptions;
-
-import org.junit.After;
-import org.junit.Before;
-import static org.testng.Assert.*;
+   
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 
 /**
  *
@@ -21,11 +23,11 @@ public class DinaExceptionNGTest {
     public DinaExceptionNGTest() {
     }
 
-    @Before
+    @BeforeClass
     public static void setUp() throws Exception {
     }
 
-    @After
+    @AfterClass
     public static void tearDown() throws Exception {
     }
     

@@ -32,7 +32,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import se.nrm.dina.data.exceptions.DinaException;
 import se.nrm.dina.logic.DinaDataLogic;
 import se.nrm.dina.data.service.test.vo.TestEntity;
-import se.nrm.dina.data.service.test.vo.TestEntityCollection;
+import se.nrm.dina.data.service.test.vo.TestEntityCollection; 
 
 /**
  *
@@ -85,152 +85,152 @@ public class DinaServiceNGTest {
      *
      * @throws java.lang.Exception
      */
-    @Test
-    public void testGetAllByEntityName() throws Exception {
-        System.out.println("getAllByEntityName");
-
-        String orderby = "test";
-        List<String> orders = Arrays.asList(StringUtils.split(orderby, ","));
-
-        when(logic.findAll(entity, 0, 0, 0, 0, "asc", orders, null)).thenReturn(list.getTestEntities());
-
-        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity?offset=0&limit=0&minid=0&maxid=0&orderby=test");
-        response = new MockHttpResponse();
-
-        dispatcher.invoke(request, response);
-        verify(logic).findAll(entity, 0, 0, 0, 0, "asc", orders, null);
-        assertEquals(HttpServletResponse.SC_OK, response.getStatus());
-    }
+//    @Test
+//    public void testGetAllByEntityName() throws Exception {
+//        System.out.println("getAllByEntityName");
+//
+//        String orderby = "test";
+//        List<String> orders = Arrays.asList(StringUtils.split(orderby, ","));
+// 
+//        when(logic.findAll(entity, 0, 0, 0, 0, "asc", orders, null)).thenReturn(list.getTestEntities());
+//
+//        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity?offset=0&limit=0&minid=0&maxid=0&orderby=test");
+//        response = new MockHttpResponse();
+//
+//        dispatcher.invoke(request, response);
+//        verify(logic).findAll(entity, 0, 0, 0, 0, "asc", orders, null);
+//        assertEquals(HttpServletResponse.SC_OK, response.getStatus());
+//    }
 
     /**
      * Test of getAllByEntityName method, of class DinaService.
      *
      * @throws java.lang.Exception
      */
-    @Test
-    public void testGetAllByEntityName2() throws Exception {
-        System.out.println("getAllByEntityName");
-
-        String orderby = "";
-        List<String> orders = Arrays.asList(StringUtils.split(orderby, ","));
-
-        when(logic.findAll(entity, 0, 0, 0, 0, "asc", orders, null)).thenReturn(list.getTestEntities());
-
-        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity?offset=0&limit=0&minid=0&maxid=0");
-        response = new MockHttpResponse();
-
-        dispatcher.invoke(request, response);
-        verify(logic).findAll(entity, 0, 0, 0, 0, "asc", orders, null);
-        assertEquals(HttpServletResponse.SC_OK, response.getStatus());
-    }
-
-    /**
-     * Test of getAllByEntityName method, of class DinaService.
-     *
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testGetAllByEntityNameFailure() throws Exception {
-        System.out.println("getAllByEntityName");
-
-        String orderby = "";
-        List<String> orders = Arrays.asList(StringUtils.split(orderby, ","));
-
-        when(logic.findAll(entity, 0, 0, 0, 0, "asc", orders, null)).thenThrow(new DinaException("error", 400));
-
-        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity?offset=0&limit=0&minid=0&maxid=0");
-        response = new MockHttpResponse();
-
-        dispatcher.invoke(request, response);
-        verify(logic).findAll(entity, 0, 0, 0, 0, "asc", orders, null);
-        assertEquals(HttpServletResponse.SC_BAD_REQUEST, response.getStatus());
-    }
-
-    /**
-     * Test of getData method, of class DinaService.
-     *
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testGetDataFailure() throws Exception {
-
-        System.out.println("getData");
-
-        MultivaluedMap<String, String> map = new MultivaluedHashMap();
-        when(logic.findAllBySearchCriteria(entity, map)).thenThrow(new DinaException("error", 400));
-
-        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity/search");
-        response = new MockHttpResponse();
-
-        dispatcher.invoke(request, response);
-        verify(logic).findAllBySearchCriteria(entity, map);
-        assertEquals(HttpServletResponse.SC_BAD_REQUEST, response.getStatus());
-    }
-
-    /**
-     * Test of getData method, of class DinaService.
-     *
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testGetData() throws Exception {
-
-        System.out.println("getData");
-
-        MultivaluedMap<String, String> map = new MultivaluedHashMap();
-        when(logic.findAllBySearchCriteria(entity, map)).thenReturn(list.getTestEntities());
-
-        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity/search");
-        response = new MockHttpResponse();
-
-        dispatcher.invoke(request, response);
-        verify(logic).findAllBySearchCriteria(entity, map);
-        assertEquals(HttpServletResponse.SC_OK, response.getStatus());
-    }
-
-    /**
-     * Test of getEntityById method, of class DinaService.
-     *
-     * @throws java.lang.Exception
-     */
 //    @Test
-    public void testGetEntityById() throws Exception {
-        System.out.println("getEntityById");
+//    public void testGetAllByEntityName2() throws Exception {
+//        System.out.println("getAllByEntityName");
+//
+//        String orderby = "";
+//        List<String> orders = Arrays.asList(StringUtils.split(orderby, ","));
+//
+//        when(logic.findAll(entity, 0, 0, 0, 0, "asc", orders, null)).thenReturn(list.getTestEntities());
+//
+//        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity?offset=0&limit=0&minid=0&maxid=0");
+//        response = new MockHttpResponse();
+//
+//        dispatcher.invoke(request, response);
+//        verify(logic).findAll(entity, 0, 0, 0, 0, "asc", orders, null);
+//        assertEquals(HttpServletResponse.SC_OK, response.getStatus());
+//    }
 
-        String id = "20";
-        TestEntity bean = new TestEntity();
-
-        when(logic.findById(id, entity)).thenReturn(bean);
-
-        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity/20");
-        response = new MockHttpResponse();
-
-        dispatcher.invoke(request, response);
-        verify(logic).findById(id, entity);
-
-        assertEquals(HttpServletResponse.SC_OK, response.getStatus());
-    }
-
-    /**
-     * Test of getEntityById method, of class DinaService.
-     *
-     * @throws java.lang.Exception
-     */
+//    /**
+//     * Test of getAllByEntityName method, of class DinaService.
+//     *
+//     * @throws java.lang.Exception
+//     */
 //    @Test
-    public void testGetEntityByIdFailure() throws Exception {
-        System.out.println("getEntityById");
+//    public void testGetAllByEntityNameFailure() throws Exception {
+//        System.out.println("getAllByEntityName");
+//
+//        String orderby = "";
+//        List<String> orders = Arrays.asList(StringUtils.split(orderby, ","));
+//
+//        when(logic.findAll(entity, 0, 0, 0, 0, "asc", orders, null)).thenThrow(new DinaException("error", 400));
+//
+//        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity?offset=0&limit=0&minid=0&maxid=0");
+//        response = new MockHttpResponse();
+//
+//        dispatcher.invoke(request, response);
+//        verify(logic).findAll(entity, 0, 0, 0, 0, "asc", orders, null);
+//        assertEquals(HttpServletResponse.SC_BAD_REQUEST, response.getStatus());
+//    }
 
-        String id = "20";
-        when(logic.findById(id, entity)).thenThrow(new DinaException("error", 400));
+//    /**
+//     * Test of getData method, of class DinaService.
+//     *
+//     * @throws java.lang.Exception
+//     */
+//    @Test
+//    public void testGetDataFailure() throws Exception {
+//
+//        System.out.println("getData");
+//
+//        MultivaluedMap<String, String> map = new MultivaluedHashMap();
+//        when(logic.findAllBySearchCriteria(entity, map)).thenThrow(new DinaException("error", 400));
+//
+//        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity/search");
+//        response = new MockHttpResponse();
+//
+//        dispatcher.invoke(request, response);
+//        verify(logic).findAllBySearchCriteria(entity, map);
+//        assertEquals(HttpServletResponse.SC_BAD_REQUEST, response.getStatus());
+//    }
 
-        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity/20");
-        response = new MockHttpResponse();
+//    /**
+//     * Test of getData method, of class DinaService.
+//     *
+//     * @throws java.lang.Exception
+//     */
+//    @Test
+//    public void testGetData() throws Exception {
+//
+//        System.out.println("getData");
+//
+//        MultivaluedMap<String, String> map = new MultivaluedHashMap();
+//        when(logic.findAllBySearchCriteria(entity, map)).thenReturn(list.getTestEntities());
+//
+//        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity/search");
+//        response = new MockHttpResponse();
+//
+//        dispatcher.invoke(request, response);
+//        verify(logic).findAllBySearchCriteria(entity, map);
+//        assertEquals(HttpServletResponse.SC_OK, response.getStatus());
+//    }
 
-        dispatcher.invoke(request, response);
-        verify(logic).findById(id, entity);
+//    /**
+//     * Test of getEntityById method, of class DinaService.
+//     *
+//     * @throws java.lang.Exception
+//     */
+////    @Test
+//    public void testGetEntityById() throws Exception {
+//        System.out.println("getEntityById");
+//
+//        String id = "20";
+//        TestEntity bean = new TestEntity();
+//
+//        when(logic.findById(id, entity)).thenReturn(bean);
+//
+//        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity/20");
+//        response = new MockHttpResponse();
+//
+//        dispatcher.invoke(request, response);
+//        verify(logic).findById(id, entity);
+//
+//        assertEquals(HttpServletResponse.SC_OK, response.getStatus());
+//    }
 
-        assertEquals(HttpServletResponse.SC_BAD_REQUEST, response.getStatus());
-    }
+//    /**
+//     * Test of getEntityById method, of class DinaService.
+//     *
+//     * @throws java.lang.Exception
+//     */
+////    @Test
+//    public void testGetEntityByIdFailure() throws Exception {
+//        System.out.println("getEntityById");
+//
+//        String id = "20";
+//        when(logic.findById(id, entity)).thenThrow(new DinaException("error", 400));
+//
+//        MockHttpRequest request = MockHttpRequest.get("/v0/TestEntity/20");
+//        response = new MockHttpResponse();
+//
+//        dispatcher.invoke(request, response);
+//        verify(logic).findById(id, entity);
+//
+//        assertEquals(HttpServletResponse.SC_BAD_REQUEST, response.getStatus());
+//    }
 
     /**
      * Test of getEntityCount method, of class DinaService.

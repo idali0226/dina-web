@@ -7,10 +7,9 @@ package se.nrm.dina.data.service;
     
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Arrays; 
 import java.util.List;   
-import java.util.Map;
-import java.util.Set;
+import java.util.Map; 
 import javax.ejb.EJB; 
 import javax.ejb.Stateless; 
 import javax.servlet.http.HttpServletRequest;  
@@ -32,13 +31,15 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import org.apache.commons.lang.StringUtils;  
 import org.keycloak.KeycloakPrincipal;
-import org.keycloak.KeycloakSecurityContext;
-import org.keycloak.representations.AccessToken;
-import org.keycloak.representations.IDToken;
+import org.keycloak.KeycloakSecurityContext; 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.nrm.dina.data.exceptions.DinaConstraintViolationException;
 import se.nrm.dina.data.exceptions.DinaException;  
+import se.nrm.dina.data.service.metadata.Metadata;
+import se.nrm.dina.data.service.vo.EntityWrapper; 
+import se.nrm.dina.data.service.vo.MetadataBean;
+import se.nrm.dina.datamodel.EntityBean;
 import se.nrm.dina.logic.DinaDataLogic;
  
 /**
@@ -67,49 +68,76 @@ public class DinaService {
     
     @GET
     @Path("{entity}") 
-    public Response getAllByEntityName (@PathParam("entity") String entity, 
-                                        @QueryParam("offset") int offset, 
+    public Response getAllByEntityName (@Context HttpServletRequest req,
+                                        @PathParam("entity") String entity, 
+                                        @DefaultValue("50") @QueryParam("offset") int offset, 
                                         @DefaultValue("50") @QueryParam("limit") int limit, 
                                         @DefaultValue("0") @QueryParam("minid") int minid,
                                         @DefaultValue("0") @QueryParam("maxid") int maxid,
                                         @DefaultValue("asc") @QueryParam("sort") String sort,
                                         @QueryParam("orderby") String orderby) {
         
-        logger.info("getAllByEntityName : {} -- {}", entity, offset + " -- " + limit);    
-        
+        logger.info("getAllByEntityName : {} -- {}", entity, offset + " -- " + limit); 
+         
         List<String> order = new ArrayList();
         if(orderby != null) {
             order = Arrays.asList(StringUtils.split(orderby, ","));
         }
       
         try {   
-            return Response.ok(logic.findAll(entity, offset, limit, minid, maxid, sort, order, null)).build();
+            List<EntityBean> results = logic.findAll(entity, offset, limit, minid, maxid, sort, order );
+            Metadata metadata = new Metadata(); 
+            MetadataBean meta = metadata.buildMetadata(req, entity, results.size(), limit, order, sort); 
+            EntityWrapper wrapper = new EntityWrapper(meta,  results); 
+            
+            return Response.ok(wrapper).build();
         } catch(DinaException e) {
             return Response.status(e.getErrorCode()) 
                     .entity(e.getMessage()).build();
-        }   
+        }
     }
-     
+
     @GET
-    @Path("{entity}/search")  
-    public Response getData(@PathParam("entity") String entity, @Context UriInfo info) {
+    @Path("{entity}/search")
+    public Response getData(@Context HttpServletRequest req, @PathParam("entity") String entity, @Context UriInfo info) {
 
-        MultivaluedMap<String, String> map = info.getQueryParameters(); 
+        MultivaluedMap<String, String> map = info.getQueryParameters();
+        String offset = map.getFirst("offset");
+        String limit = map.getFirst("limit");
+        String minid = map.getFirst("minid");
+        String maxid = map.getFirst("maxid");
+        String orderBy = map.getFirst("orderby");
+        String sort = map.getFirst("sort");
+        String exact = map.getFirst("exact");
+        
+        List<String> orderby = new ArrayList<>();
+        if (orderBy != null) {
+            orderby = Arrays.asList(orderBy.split(","));
+        }
 
-        try {  
-            return Response.ok(logic.findAllBySearchCriteria(entity, map)).build();  
-        } catch(DinaException e) {
-            return Response.status(e.getErrorCode()) 
+        try {
+            List<EntityBean> results = logic.findAllBySearchCriteria(entity, map);
+            
+            Metadata metadata = new Metadata(); 
+//            MetadataBean meta =metadata.buildMetadata(req, entity, results.size(), limit, orderby, sort);
+            
+            
+//            MetadataBean meta = metadata.buildMetadata(req, entity, results.size(), limit, orderby, sort);  
+//            EntityWrapper wrapper = new EntityWrapper(meta, results);
+
+//            return Response.ok(wrapper).build();
+            return null;
+        } catch (DinaException e) {
+            return Response.status(e.getErrorCode())
                     .entity(e.getMessage()).build();
-        }  
+        }
     } 
         
     /**
      * Generic method to get an entity by entity id from database.  
      * This method passes in a PathParam entity class name and entity id 
-     * 
-     * @param headers
-     * @param httpServletRequest
+     *  
+     * @param req
      * @param entity - class name of the entity
      * @param id - entity id
      * 
@@ -117,15 +145,19 @@ public class DinaService {
      */
     @GET
     @Path("{entity}/{id}/") 
-    public Response getEntityById(@PathParam("entity") String entity, @PathParam("id") String id) {
+    public Response getEntityById(@Context HttpServletRequest req,
+                                  @PathParam("entity") String entity, 
+                                  @PathParam("id") String id) {
         
         logger.info("getEntityById - entity: {}, id :  {}", entity, id); 
-         
+          
+        String pathInfo = req.getPathInfo(); 
+        String version = StringUtils.substringBetween(pathInfo, "/v", "/" + entity);
+      
         try {     
             return Response.ok(logic.findById(id, entity)).build(); 
         } catch (DinaException e) {
-            return Response.status(e.getErrorCode()) 
-                    .entity(e.getMessage()).build();
+            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();
         }
     }
     
@@ -135,6 +167,7 @@ public class DinaService {
      * Generic method to get an entity by entity id from database. This method
      * passes in a PathParam entity class name and entity id
      *
+     * @param req
      * @param entity - class name of the entity
      * @param ids
      * 
@@ -142,10 +175,14 @@ public class DinaService {
      */
     @GET
     @Path("{entity}/search/{ids}/") 
-    public Response getEntityByIds(@PathParam("entity") String entity, @PathParam("ids") String ids) {
+    public Response getEntityByIds(@Context HttpServletRequest req,
+                                    @PathParam("entity") String entity, @PathParam("ids") String ids) {
         
         logger.info("getEntityByIds - entity: {}, id :  {}", entity, ids);
-   
+    
+        String pathInfo = req.getPathInfo(); 
+        String version = StringUtils.substringBetween(pathInfo, "/v", "/" + entity);
+         
         try {      
             return Response.ok(logic.findEntitiesByids(entity, ids)).build(); 
         } catch (DinaException e) {
@@ -155,16 +192,16 @@ public class DinaService {
     }
     
     
-    @GET
-    @Path("{entity}/{field}") 
-    public Response getEntitiesBySearchQuery(@PathParam("entity") String entity, @PathParam("field") String field, @Context UriInfo info) {
-        logger.info("getEntitiesBySearchQuery - entity: {}, field :  {}", entity, field);
-        
-        MultivaluedMap<String, String> map = info.getQueryParameters();
-        logic.findBysearchQuery(entity, field, map);
-        
-        return Response.ok().build();
-    }
+//    @GET
+//    @Path("{entity}/{field}") 
+//    public Response getEntitiesBySearchQuery(@PathParam("entity") String entity, @PathParam("field") String field, @Context UriInfo info) {
+//        logger.info("getEntitiesBySearchQuery - entity: {}, field :  {}", entity, field);
+//        
+//        MultivaluedMap<String, String> map = info.getQueryParameters();
+//        logic.findBysearchQuery(entity, field, map);
+//        
+//        return Response.ok().build();
+//    }
 
 
     /**
