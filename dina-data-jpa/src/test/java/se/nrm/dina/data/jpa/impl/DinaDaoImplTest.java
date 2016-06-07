@@ -3,32 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.nrm.dina.data.jpa;
-  
-import se.nrm.dina.data.jpa.impl.DinaDaoImpl; 
-import javax.persistence.EntityManager; 
-import javax.persistence.NoResultException;
-import javax.persistence.NonUniqueResultException; 
+package se.nrm.dina.data.jpa.impl;
+   
+import javax.persistence.EntityManager;  
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;   
+import org.junit.AfterClass;
+import static org.junit.Assert.assertNotNull;
+import org.junit.BeforeClass;
+import org.junit.Test;
+ 
 import org.junit.runner.RunWith;
-import org.mockito.Mock; 
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock; 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;   
-import org.mockito.runners.MockitoJUnitRunner;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertNull;
-import static org.testng.Assert.assertTrue;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-import se.nrm.dina.data.exceptions.DinaException;
-//import se.nrm.dina.datamodel.impl.Accession;
-import se.nrm.dina.datamodel.EntityBean;  
+import org.mockito.Mock;   
+import org.mockito.runners.MockitoJUnitRunner; 
+import se.nrm.dina.data.jpa.DinaDao; 
 
 /**
  *
@@ -38,10 +26,10 @@ import se.nrm.dina.datamodel.EntityBean;
 public class DinaDaoImplTest {
     
     @Mock
-    EntityManager entityManager;
+    static EntityManager entityManager;
     
     @Mock
-    Query query;
+    static Query query;
     
     @Mock
     TypedQuery<String> tq;
@@ -52,10 +40,7 @@ public class DinaDaoImplTest {
     @Mock
     TypedQuery<Integer> intTQ;
     
-    private DinaDao dao;
-//    private List<Accession> accessions;
-//    private List<Accession> accessions1;
-//    private Accession accession1;
+    private static DinaDao dao; 
     
     private String strQuery;
     
@@ -64,17 +49,13 @@ public class DinaDaoImplTest {
     }
     
     @BeforeClass
-    public void setUp() {
-        dao = new DinaDaoImpl(entityManager, query);
-        preparaTestData();
+    public static void setUp() {
+        dao = new DinaDaoImpl(entityManager, query); 
     }
     
     @AfterClass
-    public void tearDown() {
-        dao = null;
-//        accession1 = null;
-//        accessions = null;
-//        accessions1 = null;        
+    public static void tearDown() {
+        dao = null;      
     }
     
     @Test
@@ -489,50 +470,50 @@ public class DinaDaoImplTest {
 //        verify(entityManager, times(0)).flush(); 
 //    }
 
-    /**
-     * Test of updateByJPQL method, of class DinaDaoImpl.
-     *
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testUpdateByJPQL() throws Exception {
-        System.out.println("updateByJPQL");
-        
-        StringBuilder sb = new StringBuilder();
-        sb.append("UPDATE Accession a SET a.assectionNumber = 'acc1235'");
-        sb.append(" WHERE a.accessionId = 20");
-        
-        when(entityManager.createQuery(sb.toString())).thenReturn(query);
-        when(query.executeUpdate()).thenReturn(1);
-        
-        boolean result = dao.updateByJPQL(sb.toString());
-        verify(entityManager).createQuery(sb.toString());
-        verify(query).executeUpdate();
-        assertTrue(result);
-    }
-
-        /**
-     * Test of updateByJPQL method, of class DinaDaoImpl.
-     *
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testUpdateByJPQLFailure() throws Exception {
-        System.out.println("updateByJPQL");
-        
-        StringBuilder sb = new StringBuilder();
-        sb.append("UPDATE Accession a SET a.assectionNumber = 'acc1235'");
-        sb.append(" WHERE a.accessionId = 20");
-        
-        when(entityManager.createQuery(sb.toString())).thenReturn(query);
-        when(query.executeUpdate()).thenReturn(0);
-        
-        boolean result = dao.updateByJPQL(sb.toString());
-        verify(entityManager).createQuery(sb.toString());
-        verify(query).executeUpdate();
-        assertFalse(result);
-    }
-    
+//    /**
+//     * Test of updateByJPQL method, of class DinaDaoImpl.
+//     *
+//     * @throws java.lang.Exception
+//     */
+//    @Test
+//    public void testUpdateByJPQL() throws Exception {
+//        System.out.println("updateByJPQL");
+//        
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("UPDATE Accession a SET a.assectionNumber = 'acc1235'");
+//        sb.append(" WHERE a.accessionId = 20");
+//        
+//        when(entityManager.createQuery(sb.toString())).thenReturn(query);
+//        when(query.executeUpdate()).thenReturn(1);
+//        
+//        boolean result = dao.updateByJPQL(sb.toString());
+//        verify(entityManager).createQuery(sb.toString());
+//        verify(query).executeUpdate();
+//        assertTrue(result);
+//    }
+//
+//        /**
+//     * Test of updateByJPQL method, of class DinaDaoImpl.
+//     *
+//     * @throws java.lang.Exception
+//     */
+//    @Test
+//    public void testUpdateByJPQLFailure() throws Exception {
+//        System.out.println("updateByJPQL");
+//        
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("UPDATE Accession a SET a.assectionNumber = 'acc1235'");
+//        sb.append(" WHERE a.accessionId = 20");
+//        
+//        when(entityManager.createQuery(sb.toString())).thenReturn(query);
+//        when(query.executeUpdate()).thenReturn(0);
+//        
+//        boolean result = dao.updateByJPQL(sb.toString());
+//        verify(entityManager).createQuery(sb.toString());
+//        verify(query).executeUpdate();
+//        assertFalse(result);
+//    }
+//    
 //    /**
 //     * Test of delete method, of class DinaDaoImpl.
 //     *
@@ -601,72 +582,72 @@ public class DinaDaoImplTest {
 //        verify(query).getSingleResult();
 //        assertEquals(expResult, result);
 //    }
-
-    /**
-     * Test of getEntityByJPQL method, of class DinaDaoImpl.
-     *
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testGetEntityByJPQLFailure1() throws Exception {
-        System.out.println("getEntityByJPQL");
-        String jpql = "SELECT a FROM Accession WHERE a.accessionId = 2";
-
-        when(entityManager.createQuery(jpql)).thenReturn(query);
-        doThrow(mock(NoResultException.class)).when(query).getSingleResult();
-
-        EntityBean result = dao.getEntityByJPQL(jpql);
-        verify(entityManager).createQuery(jpql);
-        verify(query).getSingleResult();
-        assertNull(result);
-    }
-    
-    
-    /**
-     * Test of getEntityByJPQL method, of class DinaDaoImpl.
-     *
-     * @throws java.lang.Exception
-     */
+//
+//    /**
+//     * Test of getEntityByJPQL method, of class DinaDaoImpl.
+//     *
+//     * @throws java.lang.Exception
+//     */
 //    @Test
-    public void testGetEntityByJPQLFailure2() throws Exception {
-        System.out.println("getEntityByJPQL");
-        String jpql = "SELECT a FROM Accession WHERE a.accessionId = 2";
-
-        when(entityManager.createQuery(jpql)).thenReturn(query);
-        doThrow(mock(NonUniqueResultException.class)).when(query).getSingleResult();
-
-        EntityBean result = dao.getEntityByJPQL(jpql);
-        verify(entityManager).createQuery(jpql);
-        verify(query).getSingleResult();
-        assertNull(result);
-    }
-    
-    @Test
-    public void testGetCountByQuery() {
-        System.out.println("testGetCountByQuery");
-         
-        when(entityManager.createQuery(strQuery)).thenReturn(query);
-        when(query.getSingleResult()).thenReturn(20);
-        
-        int result = dao.getCountByQuery(strQuery);
-        verify(entityManager).createQuery(strQuery);
-        verify(query).getSingleResult();
-        assertEquals(result, 20);
-    }
-
-    @Test
-    public void testGetCountByQueryFailure() {
-        System.out.println("testGetCountByQuery");
-
-        when(entityManager.createQuery(strQuery)).thenReturn(query);
-        doThrow(mock(DinaException.class)).when(query).getSingleResult();
-
-        int result = dao.getCountByQuery(strQuery);
-        verify(entityManager).createQuery(strQuery);
-        verify(query).getSingleResult();
-        assertEquals(result, 0);
-    }
- 
+//    public void testGetEntityByJPQLFailure1() throws Exception {
+//        System.out.println("getEntityByJPQL");
+//        String jpql = "SELECT a FROM Accession WHERE a.accessionId = 2";
+//
+//        when(entityManager.createQuery(jpql)).thenReturn(query);
+//        doThrow(mock(NoResultException.class)).when(query).getSingleResult();
+//
+//        EntityBean result = dao.getEntityByJPQL(jpql);
+//        verify(entityManager).createQuery(jpql);
+//        verify(query).getSingleResult();
+//        assertNull(result);
+//    }
+//    
+//    
+//    /**
+//     * Test of getEntityByJPQL method, of class DinaDaoImpl.
+//     *
+//     * @throws java.lang.Exception
+//     */
+////    @Test
+//    public void testGetEntityByJPQLFailure2() throws Exception {
+//        System.out.println("getEntityByJPQL");
+//        String jpql = "SELECT a FROM Accession WHERE a.accessionId = 2";
+//
+//        when(entityManager.createQuery(jpql)).thenReturn(query);
+//        doThrow(mock(NonUniqueResultException.class)).when(query).getSingleResult();
+//
+//        EntityBean result = dao.getEntityByJPQL(jpql);
+//        verify(entityManager).createQuery(jpql);
+//        verify(query).getSingleResult();
+//        assertNull(result);
+//    }
+//    
+//    @Test
+//    public void testGetCountByQuery() {
+//        System.out.println("testGetCountByQuery");
+//         
+//        when(entityManager.createQuery(strQuery)).thenReturn(query);
+//        when(query.getSingleResult()).thenReturn(20);
+//        
+//        int result = dao.getCountByQuery(strQuery);
+//        verify(entityManager).createQuery(strQuery);
+//        verify(query).getSingleResult();
+//        assertEquals(result, 20);
+//    }
+//
+//    @Test
+//    public void testGetCountByQueryFailure() {
+//        System.out.println("testGetCountByQuery");
+//
+//        when(entityManager.createQuery(strQuery)).thenReturn(query);
+//        doThrow(mock(DinaException.class)).when(query).getSingleResult();
+//
+//        int result = dao.getCountByQuery(strQuery);
+//        verify(entityManager).createQuery(strQuery);
+//        verify(query).getSingleResult();
+//        assertEquals(result, 0);
+//    }
+// 
 
     private void preparaTestData() {
 

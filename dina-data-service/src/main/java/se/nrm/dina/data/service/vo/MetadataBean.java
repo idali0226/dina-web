@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement; 
 import javax.xml.bind.annotation.XmlRootElement; 
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -27,21 +28,45 @@ public class MetadataBean implements Serializable  {
     private String apiVersion; 
     
     @XmlElement
+    @JsonIgnore
     private int limit;
     
     @XmlElement
-    private int numOfResults;
+    private int resultCount;
     
     @XmlElement
+    @JsonIgnore
     private String sortOrder;
     
     @XmlElement
-    private String statusCode;
+    private int statusCode;
+    
+    @XmlElement
+    @JsonIgnore
+    private int offset;
+    
+    @XmlElement
+    @JsonIgnore
+    private String previous;
+    
+    @XmlElement
+    @JsonIgnore
+    private String next;
+    
+    @XmlElement
+    private String message;
     
     @XmlElement
     private List<String> supportedLanguages;
     
     @XmlElement
+    private List<String> resultLanguages;
+    
+    @XmlElement 
+    private List<String> contentLicenses;
+    
+    @XmlElement
+    @JsonIgnore
     private List<String> orderBy;
     
     @XmlElement
@@ -75,13 +100,7 @@ public class MetadataBean implements Serializable  {
         this.apiVersion = apiVersion;
     }
 
-    public int getNumOfResults() {
-        return numOfResults;
-    }
-
-    public void setNumOfResults(int numOfResults) {
-        this.numOfResults = numOfResults;
-    }
+ 
   
     public List<String> getSupportedLanguages() {
         return supportedLanguages;
@@ -123,11 +142,69 @@ public class MetadataBean implements Serializable  {
         this.maintenanceContact = maintenanceContact;
     }
 
-    public String getStatusCode() {
+    public int getStatusCode() {
         return statusCode;
     }
 
-    public void setStatusCode(String statusCode) {
+    public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
+    }
+ 
+    public int getOffset() {
+        return offset;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
     } 
+
+    public int getResultCount() {
+        return resultCount;
+    }
+
+    public void setResultCount(int resultCount) {
+        this.resultCount = resultCount;
+    }
+
+    public String getPrevious() {
+        return previous;
+    }
+
+    public void setPrevious(String previous) {
+        this.previous = previous;
+    }
+
+    public String getNext() {
+        return next;
+    }
+
+    public void setNext(String next) {
+        this.next = next;
+    }
+ 
+    public List<String> getResultLanguages() {
+        return resultLanguages;
+    }
+
+    public void setResultLanguages(List<String> resultLanguages) {
+        this.resultLanguages = resultLanguages;
+    }
+
+    public List<String> getContentLicenses() {
+        return contentLicenses;
+    }
+
+    public void setContentLicenses(List<String> contentLicenses) {
+        this.contentLicenses = contentLicenses;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    
+    
 }

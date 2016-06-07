@@ -6,10 +6,8 @@
         <groupId>se.nrm.dina</groupId>
         <version>0.2-SNAPSHOT</version>
     </parent>
-
-    <groupId>se.nrm.dina</groupId>
-    <artifactId>dina-logic</artifactId>
-    <version>0.1-SNAPSHOT</version>
+  
+    <artifactId>dina-logic</artifactId> 
     <packaging>ejb</packaging>
 
     <name>dina-logic</name>

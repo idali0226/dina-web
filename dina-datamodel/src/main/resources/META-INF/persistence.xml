@@ -2,7 +2,8 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="jpaPU" transaction-type="JTA">
     <jta-data-source>java:/jdbc/DinaDS</jta-data-source>
-    <class>se.nrm.dina.datamodel.impl.Project</class>
+    
+<!--    <class>se.nrm.dina.datamodel.impl.Project</class>
     <class>se.nrm.dina.datamodel.impl.Workbenchdataitem</class>
     <class>se.nrm.dina.datamodel.impl.Accessionauthorization</class>
     <class>se.nrm.dina.datamodel.impl.Fieldnotebookpagesetattachment</class>
@@ -182,7 +183,7 @@
     <class>se.nrm.dina.datamodel.impl.Collectingeventattr</class>
     <class>se.nrm.dina.datamodel.impl.IosColobjchron</class>
     <class>se.nrm.dina.datamodel.impl.Taxontreedefitem</class>
-    <class>se.nrm.dina.datamodel.impl.Treatmenteventattachment</class>
+    <class>se.nrm.dina.datamodel.impl.Treatmenteventattachment</class>-->
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="eclipselink.jdbc.batch-writing" value="JDBC"/>

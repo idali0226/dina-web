@@ -8,12 +8,12 @@ package se.nrm.dina.data.util;
 import java.math.BigDecimal; 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;  
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import java.util.GregorianCalendar;   
+import org.junit.AfterClass; 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  *
@@ -56,7 +56,7 @@ public class HelpClassNGTest {
         String strDouble = "20.5"; 
         double expResult = 20.5;
         double result = testInstance.convertStringToDouble(strDouble);
-        assertEquals(result, expResult, 20.5); 
+        assertEquals(expResult, result, 20.5);
     }
 
     /**
@@ -94,7 +94,21 @@ public class HelpClassNGTest {
      * Test of maxLimit method, of class HelpClass.
      */
     @Test
-    public void testMaxLimit() {
+    public void testMaxLessThenLimit() {
+        System.out.println("maxLimit");
+        int limit = 2000;
+        HelpClass instance = new HelpClass();
+        int expResult = 500;
+        int result = instance.maxLimit(limit);
+        assertEquals(result, expResult); 
+    }
+    
+    
+    /**
+     * Test of maxLimit method, of class HelpClass.
+     */
+    @Test
+    public void testMaxGreatThenLimit() {
         System.out.println("maxLimit");
         int limit = 20;
         HelpClass instance = new HelpClass();
@@ -102,5 +116,4 @@ public class HelpClassNGTest {
         int result = instance.maxLimit(limit);
         assertEquals(result, expResult); 
     }
-    
 }

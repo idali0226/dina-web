@@ -8,6 +8,9 @@ package se.nrm.dina.data.jpa.impl;
 import java.util.Map;
 import javax.persistence.Query;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import se.nrm.dina.data.exceptions.DinaException;
 import se.nrm.dina.data.util.HelpClass;
 import se.nrm.dina.data.util.JpaReflectionHelper;
 import se.nrm.dina.data.util.ValueType;
@@ -18,6 +21,8 @@ import se.nrm.dina.data.util.ValueType;
  * @author idali
  */
 class QueryBuilder {
+    
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
  
     private final String BETWEEN = "between";
     private final String GREAT_THAN = "gt";
@@ -44,35 +49,42 @@ class QueryBuilder {
      * @return Query
      */
     public Query createQuery(Query query, Class clazz, Map<String, String> parameters, boolean isFuzzSearch) {
-
+        logger.info("createQuery");
         if (parameters != null) {
             parameters.entrySet()
                     .stream()
-                    .forEach((entry) -> { 
+                    .forEach((entry) -> {
                         String fieldName = entry.getKey();
-                        String value = entry.getValue(); 
-                        ValueType valueType = JpaReflectionHelper.getInstance().getValueType(clazz, fieldName);
-                        switch (valueType) {  
-                            case INT: 
-                                query.setParameter(fieldName, Integer.parseInt(entry.getValue()));
-                                break;
-                            case ENTITY:
-                                query.setParameter(fieldName, Integer.parseInt(entry.getValue())); 
-                                break;
-                            case BIGDECIMAL: 
-                                setBigDecimal(fieldName, value, query); 
-                                break;
-                            case DATE:
-                                setDate(fieldName, value, query); 
-                                break;
-                            default:
-                                setDefaultValue(fieldName, value, query, isFuzzSearch);
-                                break;
-                        } 
+                        String value = entry.getValue();
+                        try {
+                            ValueType valueType = JpaReflectionHelper.getInstance().getValueType(clazz, fieldName); 
+                            switch (valueType) {
+                                case INT:
+                                    query.setParameter(fieldName, Integer.parseInt(entry.getValue()));
+                                    break;
+                                case ENTITY:
+                                    query.setParameter(fieldName, Integer.parseInt(entry.getValue()));
+                                    break;
+                                case BIGDECIMAL:
+                                    setBigDecimal(fieldName, value, query);
+                                    break;
+                                case DATE:
+                                    setDate(fieldName, value, query);
+                                    break;
+                                case SHORT:
+                                    setShotValue(fieldName, value, query);
+                                    break;
+                                default:
+                                    setDefaultValue(fieldName, value, query, isFuzzSearch);
+                                    break;
+                            }
+                        } catch (DinaException e) {
+                            throw e;
+                        }
                     });
         }
         return query;
-    } 
+    }
      
     private void setBigDecimal(String fieldName, String value, Query query) {
    
@@ -102,7 +114,17 @@ class QueryBuilder {
         }
     }
 
+    
+    private void setShotValue(String fieldName, String value, Query query) {
+      
+        if(value != null && !value.isEmpty()) {
+            short s = java.lang.Short.parseShort(value); 
+            query.setParameter(fieldName, s);
+        } 
+    } 
+    
     private void setDefaultValue(String fieldName, String value, Query query, boolean isFuzzSearch) {
+        logger.info("setDefaultValue : {} -- {}", value, isFuzzSearch);
         if (isFuzzSearch) {
             query.setParameter(fieldName, "%" + value + "%");
         } else {

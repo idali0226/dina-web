@@ -2,7 +2,8 @@ comment:
   layout: header, changes, diff
 coverage:
   ignore:
-  - dina-datamodel/*
+  - se.nrm.dina.datamodel
+  - se.nrm.dina.datamodel.impl
   - dina-data-service/src/main/java/org/netbeans/rest/application/config/ApplicationConfig.java
   status:
     patch: false

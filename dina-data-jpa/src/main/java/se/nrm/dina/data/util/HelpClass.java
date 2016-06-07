@@ -47,6 +47,17 @@ public class HelpClass {
         }
     }
     
+    public int convertStringToShort(String s) {
+        if(s == null) {
+            return 0;
+        } 
+        try {
+            return Short.parseShort(s); 
+        } catch(NumberFormatException e) {
+            return 0;
+        }
+    }
+    
         
     /**
      * Calculates limit 

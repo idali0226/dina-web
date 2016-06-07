@@ -56,15 +56,22 @@
     <modules>  
         <module>dina-datamodel</module>
         <module>dina-data-jpa</module>
-<!--        <module>dina-logic</module>
-        <module>dina-data-service</module> -->
+        <module>dina-logic</module>
+        <module>dina-data-service</module> 
     </modules>
 
     <dependencies>
-        <dependency>
+<!--        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.8.2</version>
+            <scope>test</scope>
+        </dependency>-->
+        
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.9.10</version>
             <scope>test</scope>
         </dependency>
         
@@ -96,6 +103,13 @@
             <version>1.10.19</version>
             <scope>test</scope>
         </dependency> 
+        
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <version>1.6.5</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     
     

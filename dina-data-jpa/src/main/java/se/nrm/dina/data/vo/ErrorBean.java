@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package se.nrm.dina.data.vo;
- 
+  
 import java.io.Serializable; 
 
 /**
@@ -67,6 +67,5 @@ public class ErrorBean implements Serializable {
 
     public void setInvalidValue(String invalidValue) {
         this.invalidValue = invalidValue;
-    } 
-    
+    }   
 }

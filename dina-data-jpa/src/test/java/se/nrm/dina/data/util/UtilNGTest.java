@@ -5,14 +5,12 @@
  */
 package se.nrm.dina.data.util;
     
-import org.mockito.Mock; 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass; 
-import org.testng.annotations.Test;
+import org.junit.AfterClass;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.mockito.Mock;  
 import se.nrm.dina.data.exceptions.DinaException;
 import se.nrm.dina.data.exceptions.ErrorMsg; 
 import se.nrm.dina.datamodel.EntityBean;
@@ -67,7 +65,7 @@ public class UtilNGTest {
         try {
             testInstance.convertClassNameToClass(classname); 
         } catch(DinaException e) {
-            assertEquals(e.getMessage(), ErrorMsg.getInstance().getEntityNameErrorMsg());
+            assertEquals(e.getErrorBean().getErrorMsg(), ErrorMsg.getInstance().getEntityNameErrorMsg());
         } 
     }
     
@@ -118,7 +116,7 @@ public class UtilNGTest {
     /**
      * Test of createNewInstance method, of class JpaReflectionHelper.
      */
-    @Test(expectedExceptions = DinaException.class) 
+    @Test(expected = DinaException.class) 
     public void testFailedCreateNewInstance() {
         System.out.println("testCreateNewInstance");
  
@@ -141,19 +139,19 @@ public class UtilNGTest {
         assertEquals(result, expResult);
     }
 
-    /**
-     * Test of validateEntityName method, of class JpaReflectionHelper.
-     */
-//    @Test(expected = se.nrm.dina.data.exceptions.DinaException.class)
-    @Test(expectedExceptions = DinaException.class)
-    public void testInvalidateEntityName() {
-        System.out.println("testInvalidateEntityName");
-
-        String entityName = "entityBean";
-
-        testInstance = new JpaReflectionHelper(); 
-        testInstance.validateEntityName(entityName);
-    }
+//    /**
+//     * Test of validateEntityName method, of class JpaReflectionHelper.
+//     */
+////    @Test(expected = se.nrm.dina.data.exceptions.DinaException.class)
+//    @Test(expectedExceptions = DinaException.class)
+//    public void testInvalidateEntityName() {
+//        System.out.println("testInvalidateEntityName");
+//
+//        String entityName = "entityBean";
+//
+//        testInstance = new JpaReflectionHelper(); 
+//        testInstance.validateEntityName(entityName);
+//    }
 
 
 //    /**
@@ -437,20 +435,4 @@ public class UtilNGTest {
 //        assertEquals(result, expResult); 
 //    }
  
-    /**
-     * Test of isNumric method, of class JpaReflectionHelper.
-     */
-    @Test
-    public void testIsNumric() {
-        System.out.println("isNumric");
-        
-        String s = "20";
-        testInstance = new JpaReflectionHelper(); 
-        boolean result = testInstance.isNumric(s);
-        assertTrue(result);
-         
-        s = "ttt";
-        result = testInstance.isNumric(s);
-        assertFalse(result);
-    } 
 }

@@ -19,9 +19,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table; 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Table;  
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -43,17 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Collectingeventattachment.findByCollectionMemberID", query = "SELECT c FROM Collectingeventattachment c WHERE c.collectionMemberID = :collectionMemberID"),
     @NamedQuery(name = "Collectingeventattachment.findByOrdinal", query = "SELECT c FROM Collectingeventattachment c WHERE c.ordinal = :ordinal")})
 public class Collectingeventattachment extends BaseEntity {
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "TimestampCreated")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date timestampCreated;
-    @Column(name = "TimestampModified")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date timestampModified;
-    @Column(name = "Version")
-    private Integer version;
-    
+ 
     private static final long serialVersionUID = 1L;
     
     @Id

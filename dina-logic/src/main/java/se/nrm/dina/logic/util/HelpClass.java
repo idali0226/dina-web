@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang.StringUtils;
 
 
 
@@ -57,4 +58,49 @@ public class HelpClass {
     public List<String> getSupportedLanguages() {
        return supportedLanguages;
     } 
+    
+        /**
+     * Checks if the String is numeric
+     * @param s
+     * @return 
+     */    
+    public boolean isNumric(String s) { 
+        return StringUtils.isNumeric(s);
+    } 
+    
+    public int strToInt(String s) {
+        
+        if(s == null) {
+            return 0;
+        }
+        try {
+            return Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return 0;
+        } 
+    } 
+    
+    public boolean strToBoolean(String s) {
+        
+        if(s == null || s.isEmpty()) {
+            return false;
+        } 
+        try {
+            return Boolean.valueOf(s.toLowerCase());
+        } catch(Exception e) {
+            return false;
+        }
+    }
+
+    public String getSort(String s) {
+        if(s == null) {
+            return "ASC";
+        }
+
+        if (s.equalsIgnoreCase("asc") || s.equalsIgnoreCase("desc")) {
+            return s.toUpperCase(); 
+        } else {
+            return "ASC";
+        }
+    }
 }

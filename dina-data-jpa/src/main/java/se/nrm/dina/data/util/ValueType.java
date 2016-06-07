@@ -18,9 +18,7 @@ public enum ValueType {
     STRING,
     LIST,
     BIGDECIMAL,
+    SHORT,
     DATE;
-    
-    public String getText() {
-        return this.name().toLowerCase();
-    } 
+     
 }

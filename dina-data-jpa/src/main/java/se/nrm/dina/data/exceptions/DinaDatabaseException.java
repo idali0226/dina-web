@@ -16,7 +16,8 @@ import se.nrm.dina.data.vo.ErrorBean;
 @ApplicationException
 public class DinaDatabaseException extends DinaException {
  
-        
+    private Throwable t;
+    
     public DinaDatabaseException(ErrorBean errorBean, int errorCode) {
         super(errorBean, errorCode);
     }
@@ -30,5 +31,10 @@ public class DinaDatabaseException extends DinaException {
     }
         
     public DinaDatabaseException(Throwable t) { 
+        this.t = t;
     }
+
+    public Throwable getT() {
+        return t;
+    } 
 }

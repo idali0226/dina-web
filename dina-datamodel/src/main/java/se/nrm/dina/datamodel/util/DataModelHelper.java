@@ -12,9 +12,9 @@ package se.nrm.dina.datamodel.util;
 public class DataModelHelper {
     
     private final String CREATED_BY_FIELD = "createdByAgentID";
-    private final String TIME_CREAGED_FIELD = "timestampCreated";
+    private final String TIME_CREATED_FIELD = "timestampCreated";
     private final String VERSION = "Version";
-    private final String ENTITY_PACKAGE = "se.nrm.dina.datamodel.";
+    private final String ENTITY_PACKAGE = "se.nrm.dina.datamodel.impl.";
       
     private static DataModelHelper instance = null;
      
@@ -37,7 +37,7 @@ public class DataModelHelper {
         return CREATED_BY_FIELD;
     }
 
-    public String getTIME_CREAGED_FIELD() {
-        return TIME_CREAGED_FIELD;
+    public String getTIME_CREATED_FIELD() {
+        return TIME_CREATED_FIELD;
     } 
 }

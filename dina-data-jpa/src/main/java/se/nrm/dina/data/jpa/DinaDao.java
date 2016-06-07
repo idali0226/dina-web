@@ -6,8 +6,7 @@
 package se.nrm.dina.data.jpa;
 
 import java.util.List;
-import java.util.Map; 
-import se.nrm.dina.data.util.ValueType;
+import java.util.Map;  
 import se.nrm.dina.datamodel.EntityBean;
 
 /**
@@ -91,10 +90,11 @@ public interface DinaDao<T extends EntityBean> {
      * @param limit the number of instances to return
      * @param conditions the search criterion 
      * @param isFuzzSearch  
+     * @param offset  
      *
      * @return a <code>List</code> of all the entities in the database.
      */
-    public List<T> findAll(Class<T> clazz, String entityName, int limit, Map<String, String> conditions, boolean isFuzzSearch);
+    public List<T> findAll(Class<T> clazz, String entityName, int limit, Map<String, String> conditions, boolean isFuzzSearch, int offset);
  
     /**
      * A generic method to update an entity by query.

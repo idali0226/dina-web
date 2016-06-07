@@ -6,15 +6,13 @@
 package se.nrm.dina.data.util;
  
 import java.lang.reflect.Field;
-import java.util.Arrays; 
-import java.util.Map;
-import java.util.function.Predicate; 
-import javax.persistence.Id; 
-import org.apache.commons.lang.StringUtils;
+import java.util.Arrays;  
+import javax.persistence.Id;  
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.nrm.dina.data.exceptions.DinaException;
 import se.nrm.dina.data.exceptions.ErrorMsg; 
+import se.nrm.dina.data.vo.ErrorBean;
 import se.nrm.dina.datamodel.EntityBean; 
 import se.nrm.dina.datamodel.util.DataModelHelper;
 
@@ -35,14 +33,15 @@ public class JpaReflectionHelper {
     private final String DATATYPE_LIST = "java.util.List";
     private final String DATATYPE_DATE = "java.util.Date";
     private final String DATATYPE_BIGDECIMAL = "java.math.BigDecimal";
-      
+    private final String DATATYPE_SHORT = "short";
+     
     public static synchronized JpaReflectionHelper getInstance() {
         if (instance == null) {
             instance = new JpaReflectionHelper();
         }
         return instance;
     } 
-    
+ 
     /**
      * Converts entityname to class
      * 
@@ -55,8 +54,9 @@ public class JpaReflectionHelper {
         
         try {
             return Class.forName(DataModelHelper.getInstance().getENTITY_PACKAGE() + reformClassName(classname));   
-        } catch (ClassNotFoundException ex) {   
-            throw new DinaException(ErrorMsg.getInstance().getEntityNameErrorMsg());
+        } catch (ClassNotFoundException ex) {
+            ErrorBean error = new ErrorBean(classname, ErrorMsg.getInstance().getEntityNameErrorMsg());
+            throw new DinaException(error, 400);
         }  
     } 
     
@@ -84,7 +84,7 @@ public class JpaReflectionHelper {
         try { 
             return (T) clazz.newInstance(); 
         } catch (InstantiationException | IllegalAccessException ex) {
-            throw new DinaException(ErrorMsg.getInstance().getEntityNameErrorMsg());
+            throw new DinaException(ErrorMsg.getInstance().getEntityNameErrorMsg(), 400);
         }
     }
     
@@ -99,36 +99,11 @@ public class JpaReflectionHelper {
         try {
             entity = createNewInstance(convertClassNameToClass(entityName));
         } catch (DinaException e) {
-            throw new DinaException(e.getMessage());
+            throw e;
         } 
         return entity.getClass().getSimpleName();
     }
-    
-    /**
-     * Validates fields in one entity
-     * @param clazz
-     * @param map
-     * @return boolean
-     */
-    public boolean isFieldsValid(Class clazz, Map<String, String> map) {
-        try {
-            return map.entrySet()
-                    .stream()
-                    .map(m -> m.getKey()) 
-                    .allMatch(isValid(clazz));
-        } catch (DinaException e) {
-            throw  e;
-        } 
-    }
-    
-    private Predicate<String> isValid(Class clazz) {
-        try {
-            return s -> validateFields(clazz, s);
-        } catch (DinaException e) {
-            throw e;
-        }
-    }
-
+     
     /**
      * Checks if the field is int of Integer
      * @param clazz
@@ -143,9 +118,27 @@ public class JpaReflectionHelper {
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
-                throw new DinaException(e.getMessage());
+                throw new DinaException(ErrorMsg.getInstance().getFieldNotExist(clazz.getSimpleName(), fieldName), 400);
             } else {
                 return isIntField(superClass, fieldName); 
+            }
+        }
+    }
+    
+    public boolean isShotField(Class clazz, String fieldName) {
+        logger.info("isShotField : {} -- {}", clazz, fieldName); 
+        
+        
+        try { 
+            logger.info("short type : {}", clazz.getDeclaredField(fieldName).getType().getName());
+            
+            return clazz.getDeclaredField(fieldName).getType().getName().equals(DATATYPE_SHORT);
+        } catch (NoSuchFieldException e) {
+            Class superClass = clazz.getSuperclass();
+            if (superClass == null) {
+                throw new DinaException(ErrorMsg.getInstance().getFieldNotExist(clazz.getSimpleName(), fieldName), 400);
+            } else {
+                return isShotField(superClass, fieldName); 
             }
         }
     }
@@ -163,7 +156,7 @@ public class JpaReflectionHelper {
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
-                throw new DinaException(e.getMessage());
+                throw new DinaException(ErrorMsg.getInstance().getFieldNotExist(clazz.getSimpleName(), fieldName), 400);
             } else {
                 return isEntity(superClass, fieldName); 
             }
@@ -183,7 +176,7 @@ public class JpaReflectionHelper {
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
-                throw new DinaException(e.getMessage());
+                throw new DinaException(ErrorMsg.getInstance().getFieldNotExist(clazz.getSimpleName(), fieldName), 400);
             } else {
 //                return validateFields(superClass, fieldName);
                 return isCollection(superClass, fieldName);
@@ -205,7 +198,7 @@ public class JpaReflectionHelper {
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
-                throw new DinaException(e.getMessage());
+                throw new DinaException(ErrorMsg.getInstance().getFieldNotExist(clazz.getSimpleName(), fieldName), 400);
             } else {
                 return isDate(superClass, fieldName); 
             }
@@ -226,7 +219,7 @@ public class JpaReflectionHelper {
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
-                throw new DinaException(e.getMessage());
+                throw new DinaException(ErrorMsg.getInstance().getFieldNotExist(clazz.getSimpleName(), fieldName), 400);
             } else {
                 return isBigDecimal(superClass, fieldName); 
             }
@@ -243,29 +236,37 @@ public class JpaReflectionHelper {
         logger.info("getEntity : {} -- {}", clazz, fieldName);
         try {  
             return createNewInstance(convertClassNameToClass(clazz.getDeclaredField(fieldName).getType().getSimpleName()));
+        } catch (DinaException e) {
+            throw e;
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
-                throw new DinaException(e.getMessage());
+                throw new DinaException(ErrorMsg.getInstance().getFieldNotExist(clazz.getSimpleName(), fieldName), 400);
             } else {
                 return getEntity(superClass, fieldName);
             }
         }
     }
-    
+
     public ValueType getValueType(Class clazz, String fieldName) {
-        if(isIntField(clazz, fieldName)) {
-            return ValueType.INT;
-        } else if(isEntity(clazz, fieldName)) {
-            return ValueType.ENTITY;
-        } else if(isBigDecimal(clazz, fieldName)) {
-            return ValueType.BIGDECIMAL;
-        } else if(isDate(clazz, fieldName)) {
-            return ValueType.DATE;
-        } else if(isCollection(clazz, fieldName)) {
-            return ValueType.LIST;
-        } else {
-            return ValueType.STRING;
+        try {
+            if (isIntField(clazz, fieldName)) {
+                return ValueType.INT;
+            } else if (isEntity(clazz, fieldName)) {
+                return ValueType.ENTITY;
+            } else if (isBigDecimal(clazz, fieldName)) {
+                return ValueType.BIGDECIMAL;
+            } else if (isDate(clazz, fieldName)) {
+                return ValueType.DATE;
+            } else if (isCollection(clazz, fieldName)) {
+                return ValueType.LIST;
+            } else if(isShotField(clazz, fieldName)) { 
+                return ValueType.SHORT;
+            } else {
+                return ValueType.STRING;
+            }
+        } catch (DinaException e) {
+            throw e;
         } 
     }
 
@@ -283,13 +284,19 @@ public class JpaReflectionHelper {
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
-                throw new DinaException(e.getMessage());
+                throw new DinaException(ErrorMsg.getInstance().getFieldNotExist(clazz.getSimpleName(), fieldName), 400);
             } else {
                 return validateFields(superClass, fieldName);
             }
         } 
     }
 
+    /**
+     * Check if there is version field
+     * 
+     * @param clazz
+     * @return boolean
+     */
     public boolean isVersioned(Class clazz) {
         logger.info("isVersioned : {} ", clazz);
         try {  
@@ -305,20 +312,30 @@ public class JpaReflectionHelper {
         } 
     }
     
+    /**
+     * 
+     * @param clazz
+     * @return Field
+     */
     public Field getTimestampCreated(Class clazz) {
         logger.info("getTimestampCreated : {} ", clazz ); 
         try {  
-            return clazz.getDeclaredField(DataModelHelper.getInstance().getTIME_CREAGED_FIELD()); 
+            return clazz.getDeclaredField(DataModelHelper.getInstance().getTIME_CREATED_FIELD()); 
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
-                throw new DinaException(e.getMessage());
+                return null;
             } else {
                 return getTimestampCreated(superClass);
             }
         } 
     }
     
+    /**
+     * 
+     * @param clazz
+     * @return 
+     */
     public Field getCreatedByField(Class clazz) {
         logger.info("getCreatedByField : {} ", clazz ); 
         try {  
@@ -326,33 +343,13 @@ public class JpaReflectionHelper {
         } catch (NoSuchFieldException e) {
             Class superClass = clazz.getSuperclass();
             if (superClass == null) {
-                throw new DinaException(e.getMessage());
+                return null;
             } else {
                 return getTimestampCreated(superClass);
             }
         } 
     }
-    
-    private Field[] getAllFieldsFromClazz(Class clazz) {
-        return clazz.getDeclaredFields();
-    }
-    
-    private String getIdFieldName(Field[] fields) {
-        return Arrays.asList(fields)
-                .stream()
-                .filter(f -> f.isAnnotationPresent(Id.class))
-                .findFirst()
-                .get().getName();
-    }
-    
-    
-    public String getIDFieldName(Class clazz) {
-        return getIdFieldName(getAllFieldsFromClazz(clazz)); 
-    }
-    
-    
-    
-    
+  
     /**
      * Find id field name for the entity bean
      *
@@ -360,32 +357,40 @@ public class JpaReflectionHelper {
      * @return String, name of the id field of this entity bean
      */
     public String getIDFieldName(EntityBean bean) {
-        return getIDField(bean).getName(); 
+        return getIDFieldName(bean.getClass()); 
+    }
+ 
+    public String getIDFieldName(Class clazz) { 
+        return getIdField(clazz.getDeclaredFields()).getName(); 
+    }
+    
+    private Field getIdField(Field[] fields) {
+        return Arrays.asList(fields)
+                .stream()
+                .filter(f -> f.isAnnotationPresent(Id.class))
+                .findFirst()
+                .get();
     }
 
     
+    
+//    public String getIDFieldName(Class clazz) {
+//        return getIdFieldName(getAllFieldsFromClazz(clazz)); 
+//    }
+//    
+    
+    
+
+ 
+
     /**
      * Find id field name for the entity bean
      *
      * @param bean
      * @return String, name of the id field of this entity bean
      */
-    public Field getIDField(EntityBean bean) { 
-//        Field[] fields = bean.getClass().getDeclaredFields();
-
-        return Arrays.asList(getAllFieldsFromClazz(bean.getClass()))
-                .stream()
-                .filter(f -> f.isAnnotationPresent(Id.class))
-                .findFirst()
-                .get();
+    public Field getIDField(EntityBean bean) {    
+        return getIdField(bean.getClass().getDeclaredFields());  
     }
-  
-    /**
-     * Checks if the String is numeric
-     * @param s
-     * @return 
-     */    
-    public boolean isNumric(String s) { 
-        return StringUtils.isNumeric(s);
-    } 
+    
 }

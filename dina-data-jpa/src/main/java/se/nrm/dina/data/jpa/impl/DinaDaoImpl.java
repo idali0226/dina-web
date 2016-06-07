@@ -54,6 +54,10 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
     public DinaDaoImpl() {
 
     }
+    
+    public DinaDaoImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     public DinaDaoImpl(EntityManager entityManager, Query query) {
         this.entityManager = entityManager;
@@ -70,18 +74,28 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
     }
     
     @Override
-    public List<T> findAll(Class<T> clazz, String jpql, int limit, Map<String, String> conditions, boolean isFuzzSearh) {
+    public List<T> findAll(Class<T> clazz, String jpql, int limit, Map<String, String> conditions, boolean isFuzzSearh, int offset) {
 //        logger.info("findAll : {} -- {}", jpql, conditions);
          
         try {
-            query = entityManager.createQuery(jpql);
-            query =  QueryBuilder.getInstance(). createQuery(query, clazz, conditions, isFuzzSearh);
+            query = entityManager.createQuery(jpql);   
+            if(conditions != null && !conditions.isEmpty()) {
+                query =  QueryBuilder.getInstance().createQuery(query, clazz, conditions, isFuzzSearh);
+            } 
+            if(offset > 0) {
+                query.setFirstResult(offset);
+            }
             query.setMaxResults(HelpClass.getInstance().maxLimit(limit));
             return query.getResultList();  
         } catch (Exception e) { 
-            throw new DinaException(e.getMessage());
+            throw new DinaException(e.getMessage(), 500);
         }
     }
+    
+    
+    
+    
+    
   
     @Override
     public T findById(int id, Class<T> clazz, boolean isVersioned) {
@@ -114,9 +128,9 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
             entityManager.flush();
         } catch (OptimisticLockException ex) { 
             entityManager.refresh(tmp);
-            logger.warn(ex.getMessage());
-        } catch(Exception e) {
-            logger.warn(e.getMessage()); 
+            throw new DinaDatabaseException(new ErrorBean(clazz.getSimpleName(), ex.getMessage()), 400);
+        } catch(Exception ex) {
+            throw new DinaDatabaseException(new ErrorBean(clazz.getSimpleName(), ex.getMessage()), 400);
         }  
         return tmp; 
     }
@@ -143,7 +157,7 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
             }
         } catch(ConstraintViolationException e) {
             throw new DinaConstraintViolationException(handleConstraintViolations(e), 400);  
-        } catch (Exception e) { 
+        } catch (Exception e) {  
         }
         return tmp;
     }

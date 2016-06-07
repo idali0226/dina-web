@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package se.nrm.dina.logic;
- 
-//import com.fasterxml.jackson.databind.ObjectMapper;    
+  
 import se.nrm.dina.data.util.JpaReflectionHelper;
 import java.io.IOException;
 import java.io.Serializable; 
@@ -31,6 +30,8 @@ import se.nrm.dina.data.exceptions.DinaException;
 import se.nrm.dina.data.jpa.DinaDao; 
 import se.nrm.dina.logic.util.NamedQueries;
 import se.nrm.dina.datamodel.EntityBean;    
+import se.nrm.dina.datamodel.util.DataModelHelper;
+import se.nrm.dina.logic.util.HelpClass;
 
 /**
  *
@@ -42,9 +43,8 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
      
-    private final String CREATED_BY_USER_CLASS_NAME = "Agent";
-    private java.util.Date date;
-    private int agentId;
+//    private final String CREATED_BY_USER_CLASS_NAME = "Agent";
+    private java.util.Date date; 
     private EntityBean createdByUserBean;
 
     @EJB
@@ -57,128 +57,73 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
         this.dao = dao;
     }
 
-    /**
-     * Finds all the instances of an entity
-     * @param entityName 
-     * @return List
-     */
-    public List<T> findAll(String entityName) { 
- 
-        try {
-            return dao.findAll(JpaReflectionHelper.getInstance().convertClassNameToClass(entityName)); 
-        } catch (DinaException e) {
-            throw new DinaException(e.getMessage());
-        }
-        
-//        MetadataBean meta = buildMetadata(endPoint, beans != null ? beans.size() : 0, limit, orderBy, sortOrder, version);
-//        EntityWrapper wrapper = new EntityWrapper(meta,  beans); 
-//        return (T)wrapper;
-    }
-    
+
    
     /**
      * Finds all the instances of an entity
-     * @param entityName
-     * @param offset
+     * 
+     * 
+     * 
+     * @param entityName 
      * @param limit
+     * @param offset
      * @param minid
      * @param maxid
      * @param orderby
      * @param sort 
      * @return List
      */
-    public List<T> findAll(String entityName, int offset, int limit, int minid, int maxid, 
-                            String sort, List<String> orderby ) {
-         
-        entityName = JpaReflectionHelper.getInstance().validateEntityName(entityName);
-        Class clazz = JpaReflectionHelper.getInstance().convertClassNameToClass(entityName);
+    public List<T> findAll(String entityName, int limit, int offset, int minid, int maxid, String sort, List<String> orderby ) {
+          
         try {
-            String strQuery = NamedQueries.getInstance()
-                    .createQueryFindAllWithSearchCriteria(entityName, clazz, offset, minid, maxid, sort, orderby, true, null);
+            entityName = JpaReflectionHelper.getInstance().validateEntityName(entityName);
+            Class clazz = JpaReflectionHelper.getInstance().convertClassNameToClass(entityName);
+            
+            String strQuery = NamedQueries.getInstance().createQueryFindAll(entityName, clazz, minid, maxid, sort, orderby);
  
-            return dao.findAll(clazz, strQuery, limit, null);
- 
-//            MetadataBean meta = buildMetadata(endPoint, beans != null ? beans.size() : 0, limit, orderby, sort, version); 
-//            
-//            EntityWrapper wrapper = new EntityWrapper(meta, beans);
-//            return (T)wrapper;
+            return dao.findAll(clazz, strQuery, limit, null, false, offset); 
         } catch (DinaException e) {
-            throw new DinaException(e.getMessage());
+            throw e;
         }
     }
-      
-//    public List<T> findBysearchQuery(String entityName, String field, MultivaluedMap<String, String> map) {
-//        Map<String, String> condition = map.entrySet()
-//                .stream() 
-//                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
-//        
-//        logger.info("condition : {}", condition);
-//        return new ArrayList<>();
-//    }
+     
 
     /**
      * Finds all the instances of an entity by query
      * @param entityName
-     * @param map 
+     * @param limit
+     * @param minid
+     * @param maxid
+     * @param offset
+     * @param sort
+     * @param orderby
+     * @param condition 
+     * @param isExact 
+     * 
      * @return List
      */
-    public List<T> findAllBySearchCriteria(String entityName, MultivaluedMap<String, String> map ) {
+    public List<T> findAllBySearchCriteria(String entityName, int limit, int minid, int maxid, int offset, 
+                                            String sort, List<String> orderby, Map<String, String> condition, boolean isExact) {
 
-        logger.info("findAllBySearchCriteria : {}", map);
+        logger.info("findAllBySearchCriteria : {}", condition);
 
         entityName = JpaReflectionHelper.getInstance().validateEntityName(entityName);
-
-        String offset = map.getFirst("offset");
-        String limit = map.getFirst("limit");
-        String minid = map.getFirst("minid");
-        String maxid = map.getFirst("maxid");
-        String orderBy = map.getFirst("orderby");
-        String sort = map.getFirst("sort");
-        String exact = map.getFirst("exact");
-        
-        boolean isExact = exact == null ? false : Boolean.valueOf(exact);
-        
-
-        List<String> orderby = new ArrayList<>();
-        if (orderBy != null) {
-            orderby = Arrays.asList(orderBy.split(","));
-        }
-          
-        Map<String, String> condition = map.entrySet()
-                .stream()
-                .filter(filterCondition()) 
-                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
-  
+    
         try {
             Class clazz = JpaReflectionHelper.getInstance().convertClassNameToClass(entityName); 
 
             String strQuery = NamedQueries.getInstance()
-                    .createQueryFindAllWithSearchCriteria(
-                            entityName,
-                            clazz,
-                            Integer.parseInt(offset == null ? "0" : offset),
-                            Integer.parseInt(minid == null ? "0" : minid),
-                            Integer.parseInt(maxid == null ? "0" : maxid),
-                            sort == null ? "ASC" : sort.toUpperCase(),
-                            orderby,  isExact, condition);
-  
-            
-            return isExact ? dao.findAll(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition)
-                                             : dao.findAllWithFuzzSearch(clazz, strQuery, Integer.parseInt(limit == null ? "50" : limit), condition); 
+                    .createQueryFindAllWithSearchCriteria(entityName, clazz, minid, maxid,
+                                                            HelpClass.getInstance().getSort(sort),
+                                                            orderby, isExact, condition);
+   
+            logger.info("strQury : {}", strQuery);
+            return dao.findAll(clazz, strQuery, limit, condition, isExact, offset);
         } catch (DinaException e) {
-            throw new DinaException("Error.  " + e.getMessage() + " is not valid field in " + entityName);
+            throw e;
         }
     }
 
-    private Predicate<Entry<String, List<String>>> filterCondition() {
-        return s -> !s.getKey().equals("offset")
-                && !s.getKey().equals("limit")
-                && !s.getKey().equals("minid")
-                && !s.getKey().equals("maxid")
-                && !s.getKey().equals("orderby")
-                && !s.getKey().equals("exact")
-                && !s.getKey().equals("sort");
-    }
 
     /**
      * Finds an entity by its database id
@@ -189,42 +134,51 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
      */
     public T findById(String id, String entityName) {
         logger.info("findById : {} -- {}", id, entityName);
- 
+   
         try {
-            return JpaReflectionHelper.getInstance().isNumric(id) ? 
-                            (T) dao.findById(Integer.parseInt(id), JpaReflectionHelper.getInstance().convertClassNameToClass(entityName)) : 
-                            (T) dao.findByStringId(id, JpaReflectionHelper.getInstance().convertClassNameToClass(entityName));
-        
-//            MetadataBean meta = buildMetadata(endPoint, 1, 1, new ArrayList(), null, version);
-//            EntityWrapper wrapper = new EntityWrapper(meta, bean); 
-//            return (T)wrapper;
+            Class clazz = JpaReflectionHelper.getInstance().convertClassNameToClass(entityName); 
+            if(HelpClass.getInstance().isNumric(id)) { 
+                return (T) dao.findById(Integer.parseInt(id), clazz, JpaReflectionHelper.getInstance().isVersioned(clazz));
+            } else {
+                return (T) dao.findByStringId(id, clazz); 
+            }       
         } catch (DinaException e) {
-            throw new DinaException(e.getMessage());
-        } 
-        
+            throw e;
+        }
+
     }
- 
+
     public List<T> findEntitiesByids(String entityName, String ids) {
         logger.info("findEntitiesByids : {} -- {}", entityName, ids);
 
-        String idList = StringUtils.substringBetween(ids, "(", ")"); 
-         
-        if(StringUtils.isEmpty(idList)) {
+//        String idList = StringUtils.substringBetween(ids, "(", ")");
+
+        if (StringUtils.isEmpty(ids)) {
             return null;
         }
+        
+        if(ids.contains("(")) {
+            ids = StringUtils.substringBetween(ids, "(", ")");
+        } 
+        
+        try { 
+            Class clazz = JpaReflectionHelper.getInstance().convertClassNameToClass(entityName); 
+            boolean isVersioned = JpaReflectionHelper.getInstance().isVersioned(clazz);
+            List<T> beans = new ArrayList();
+            
+            Arrays.asList(ids.split(",")).stream()
+                    .forEach(strId -> {
+                        int id =  HelpClass.getInstance().strToInt(strId); 
+                        T bean = (T) dao.findById(id, clazz, isVersioned);
+                        if(bean != null) {
+                            beans.add(bean);
+                        } 
+                    }); 
+            return beans;
+        } catch (DinaException e) {
+            throw e;
+        }
 
-        Class clazz = JpaReflectionHelper.getInstance().convertClassNameToClass(entityName);
-        List<T> beans = new ArrayList();
-        Arrays.asList(ids.split(",")).stream()
-                .forEach(strId -> {
-                    int id = Integer.parseInt(strId);
-                    beans.add((T) dao.findById(id, clazz));
-                }); 
-        return beans;
-//        MetadataBean meta = buildMetadata(endPoint, beans.size(), 1, new ArrayList(), null, version);
-//
-//        EntityWrapper wrapper = new EntityWrapper(meta, beans);
-//        return (T) wrapper;
     }
 
     /**
@@ -239,7 +193,7 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
             return dao.getCountByQuery(NamedQueries.getInstance()
                     .createFindTotalCountNamedQuery(JpaReflectionHelper.getInstance().convertClassNameToClass(entityName).getSimpleName()));
         } catch (DinaException e) {
-            throw new DinaException(e.getMessage());
+            throw e;
         }
     }
 
@@ -247,19 +201,19 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
      * Creates an entity in database
      *
      * @param entityName
-     * @param json 
-     * @param userId 
+     * @param json  
+     * @param agentId  
      * @return EntityBean
      */
-    public EntityBean createEntity(String entityName, String json, int userId) { 
+    public EntityBean createEntity(String entityName, String json, int agentId) { 
         logger.info("createEntity : {} ", entityName);
-
-        this.agentId = userId;
+ 
         LocalDateTime ld = LocalDateTime.now();
         date = Timestamp.valueOf(ld);
-        
-        Class createByClass = JpaReflectionHelper.getInstance().convertClassNameToClass(CREATED_BY_USER_CLASS_NAME);
-        createdByUserBean = dao.findById(agentId, createByClass);
+         
+        Class createByClass = JpaReflectionHelper.getInstance().convertClassNameToClass(
+                                    DataModelHelper.getInstance().getCREATED_BY_FIELD()); 
+        createdByUserBean = dao.findById(agentId, createByClass, true);
           
         EntityBean bean;
         try {
@@ -344,7 +298,8 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
 
                 field.setAccessible(true);
                 if (field.get(child) != null && (Integer) field.get(child) > 0) { 
-                    EntityBean entity = dao.findById((Integer) field.get(child), child.getClass()); 
+                    Class clazz = child.getClass(); 
+                    EntityBean entity = dao.findById((Integer) field.get(child), clazz, JpaReflectionHelper.getInstance().isVersioned(clazz)); 
                     if (entity == null) {
                         setTimeStampCreated(child);
                         setCreatedByUser(child, createdByUserBean);
@@ -445,4 +400,27 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
             }
         }
     } 
+    
+    
+    
+    
+    
+    
+    
+    
+    //    /**
+//     * Finds all the instances of an entity
+//     * 
+//     * 
+//     * @param entityName 
+//     * @return List
+//     */
+//    public List<T> findAll(String entityName) { 
+//        try {
+//            return dao.findAll(JpaReflectionHelper.getInstance().convertClassNameToClass(entityName)); 
+//        } catch (DinaException e) {
+//            throw e;
+//        } 
+//    }
+    
 }

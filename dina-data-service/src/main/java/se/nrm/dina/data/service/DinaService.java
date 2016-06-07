@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays; 
 import java.util.List;   
 import java.util.Map; 
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import javax.ejb.EJB; 
 import javax.ejb.Stateless; 
 import javax.servlet.http.HttpServletRequest;  
@@ -23,8 +25,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces; 
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.Context; 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
@@ -37,8 +38,10 @@ import org.slf4j.LoggerFactory;
 import se.nrm.dina.data.exceptions.DinaConstraintViolationException;
 import se.nrm.dina.data.exceptions.DinaException;  
 import se.nrm.dina.data.service.metadata.Metadata;
-import se.nrm.dina.data.service.vo.EntityWrapper; 
+import se.nrm.dina.data.service.util.Helpclass; 
+import se.nrm.dina.data.service.vo.EntityCount;
 import se.nrm.dina.data.service.vo.MetadataBean;
+import se.nrm.dina.data.vo.ErrorBean;
 import se.nrm.dina.datamodel.EntityBean;
 import se.nrm.dina.logic.DinaDataLogic;
  
@@ -70,7 +73,7 @@ public class DinaService {
     @Path("{entity}") 
     public Response getAllByEntityName (@Context HttpServletRequest req,
                                         @PathParam("entity") String entity, 
-                                        @DefaultValue("50") @QueryParam("offset") int offset, 
+                                        @DefaultValue("0") @QueryParam("offset") int offset, 
                                         @DefaultValue("50") @QueryParam("limit") int limit, 
                                         @DefaultValue("0") @QueryParam("minid") int minid,
                                         @DefaultValue("0") @QueryParam("maxid") int maxid,
@@ -83,55 +86,67 @@ public class DinaService {
         if(orderby != null) {
             order = Arrays.asList(StringUtils.split(orderby, ","));
         }
-      
-        try {   
-            List<EntityBean> results = logic.findAll(entity, offset, limit, minid, maxid, sort, order );
-            Metadata metadata = new Metadata(); 
-            MetadataBean meta = metadata.buildMetadata(req, entity, results.size(), limit, order, sort); 
-            EntityWrapper wrapper = new EntityWrapper(meta,  results); 
+
+        Metadata metadata = new Metadata();
+        MetadataBean meta = metadata.buildMetadata(req, entity, offset, limit, minid, maxid,  sort, order, orderby, true, null);
+ 
+        try {
+            List<EntityBean> results = logic.findAll(entity, limit, offset, minid, maxid, sort, order); 
             
-            return Response.ok(wrapper).build();
-        } catch(DinaException e) {
-            return Response.status(e.getErrorCode()) 
-                    .entity(e.getMessage()).build();
+            return Response.ok(Helpclass.getInstance().buildEntityWrapper(results, meta, 200)).build();
+        } catch (DinaException e) {  
+            ErrorBean error = new ErrorBean(entity, e.getMessage()); 
+            return Response.status(e.getErrorCode()).entity(Helpclass.getInstance().buildEntityWrapper(error, meta, e.getErrorCode(), 0)).build();
         }
     }
+
+    
 
     @GET
     @Path("{entity}/search")
     public Response getData(@Context HttpServletRequest req, @PathParam("entity") String entity, @Context UriInfo info) {
 
         MultivaluedMap<String, String> map = info.getQueryParameters();
-        String offset = map.getFirst("offset");
-        String limit = map.getFirst("limit");
-        String minid = map.getFirst("minid");
-        String maxid = map.getFirst("maxid");
+        int offset = se.nrm.dina.logic.util.HelpClass.getInstance().strToInt(map.getFirst("offset"));
+        int limit = se.nrm.dina.logic.util.HelpClass.getInstance().strToInt(map.getFirst("limit"));
+        int minid = se.nrm.dina.logic.util.HelpClass.getInstance().strToInt(map.getFirst("minid"));
+        int maxid = se.nrm.dina.logic.util.HelpClass.getInstance().strToInt(map.getFirst("maxid"));
         String orderBy = map.getFirst("orderby");
         String sort = map.getFirst("sort");
-        String exact = map.getFirst("exact");
+        boolean exact =  se.nrm.dina.logic.util.HelpClass.getInstance().strToBoolean(map.getFirst("exact"));
+         
         
-        List<String> orderby = new ArrayList<>();
+        List<String> order = new ArrayList<>();
         if (orderBy != null) {
-            orderby = Arrays.asList(orderBy.split(","));
+            order = Arrays.asList(orderBy.split(","));
         }
+        
+        Map<String, String> condition = map.entrySet()
+                .stream()
+                .filter(filterCondition())
+                .collect(Collectors.toMap(m -> m.getKey(), m -> m.getValue().get(0)));
 
+        Metadata metadata = new Metadata(); 
+        MetadataBean meta = metadata.buildMetadata(req, entity, offset, limit, minid, maxid,  sort, order, orderBy, exact, condition); 
         try {
-            List<EntityBean> results = logic.findAllBySearchCriteria(entity, map);
-            
-            Metadata metadata = new Metadata(); 
-//            MetadataBean meta =metadata.buildMetadata(req, entity, results.size(), limit, orderby, sort);
-            
-            
-//            MetadataBean meta = metadata.buildMetadata(req, entity, results.size(), limit, orderby, sort);  
-//            EntityWrapper wrapper = new EntityWrapper(meta, results);
-
-//            return Response.ok(wrapper).build();
-            return null;
-        } catch (DinaException e) {
-            return Response.status(e.getErrorCode())
-                    .entity(e.getMessage()).build();
+            List<EntityBean> results = logic.findAllBySearchCriteria(entity, limit, minid, maxid, offset, sort, order, condition, exact);
+            return Response.ok(Helpclass.getInstance().buildEntityWrapper(results, meta, 200)).build();  
+        } catch (DinaException e) { 
+            ErrorBean error = new ErrorBean(entity, e.getMessage()); 
+            return Response.status(e.getErrorCode()).entity(Helpclass.getInstance().buildEntityWrapper(error, meta, e.getErrorCode(), 0)).build(); 
         }
     } 
+    
+        
+    private Predicate<Map.Entry<String, List<String>>> filterCondition() {
+        return s -> !s.getKey().equals("offset")
+                && !s.getKey().equals("limit")
+                && !s.getKey().equals("minid")
+                && !s.getKey().equals("maxid")
+                && !s.getKey().equals("orderby")
+                && !s.getKey().equals("exact")
+                && !s.getKey().equals("sort");
+    }
         
     /**
      * Generic method to get an entity by entity id from database.  
@@ -150,14 +165,15 @@ public class DinaService {
                                   @PathParam("id") String id) {
         
         logger.info("getEntityById - entity: {}, id :  {}", entity, id); 
-          
-        String pathInfo = req.getPathInfo(); 
-        String version = StringUtils.substringBetween(pathInfo, "/v", "/" + entity);
-      
+           
+        Metadata metadata = new Metadata();
+        MetadataBean meta = metadata.buildMetadata(req, entity);
         try {     
-            return Response.ok(logic.findById(id, entity)).build(); 
+            EntityBean result = logic.findById(id, entity);
+            return Response.ok(Helpclass.getInstance().buildEntityWrapper(result, meta, 200)).build();   
         } catch (DinaException e) {
-            return Response.status(e.getErrorCode()).entity(e.getMessage()).build();
+            ErrorBean error = new ErrorBean(entity, e.getMessage()); 
+            return Response.status(e.getErrorCode()).entity(Helpclass.getInstance().buildEntityWrapper(error, meta, e.getErrorCode(), 0)).build();  
         }
     }
     
@@ -179,60 +195,50 @@ public class DinaService {
                                     @PathParam("entity") String entity, @PathParam("ids") String ids) {
         
         logger.info("getEntityByIds - entity: {}, id :  {}", entity, ids);
-    
-        String pathInfo = req.getPathInfo(); 
-        String version = StringUtils.substringBetween(pathInfo, "/v", "/" + entity);
-         
-        try {      
-            return Response.ok(logic.findEntitiesByids(entity, ids)).build(); 
+      
+        Metadata metadata = new Metadata();
+        MetadataBean meta = metadata.buildMetadata(req, entity);
+        try {     
+            List<EntityBean> results = logic.findEntitiesByids(entity, ids);
+            return Response.ok(Helpclass.getInstance().buildEntityWrapper(results, meta, 200)).build();   
         } catch (DinaException e) {
-            return Response.status(e.getErrorCode()) 
-                    .entity(e.getMessage()).build();
+            ErrorBean error = new ErrorBean(entity, e.getMessage()); 
+            return Response.status(e.getErrorCode()).entity(Helpclass.getInstance().buildEntityWrapper(error, meta, e.getErrorCode(), 0)).build();  
         }
     }
-    
-    
-//    @GET
-//    @Path("{entity}/{field}") 
-//    public Response getEntitiesBySearchQuery(@PathParam("entity") String entity, @PathParam("field") String field, @Context UriInfo info) {
-//        logger.info("getEntitiesBySearchQuery - entity: {}, field :  {}", entity, field);
-//        
-//        MultivaluedMap<String, String> map = info.getQueryParameters();
-//        logic.findBysearchQuery(entity, field, map);
-//        
-//        return Response.ok().build();
-//    }
-
+ 
 
     /**
      * Generic method to get an entity by entity id from database.  
      * This method passes in a PathParam entity class name and entity id 
      * 
+     * @param req
      * @param entity - class name of the entity 
      * 
      * @return entity 
      */
     @GET
     @Path("{entity}/count")  
-    public Response getEntityCount(@PathParam("entity") String entity ) {
+    public Response getEntityCount(@Context HttpServletRequest req, @PathParam("entity") String entity ) {
         
         logger.info("getEntityById - entity: {} ", entity );
 
+        Metadata metadata = new Metadata();
+        MetadataBean meta = metadata.buildMetadata(req, entity);
         try {  
             int count = logic.findEntityCount(entity); 
-              
-            return Response.ok(String.valueOf(count)).build(); 
+            EntityCount entityCount = new EntityCount(count);
+            return Response.ok(Helpclass.getInstance().buildEntityWrapper(entityCount, meta, 200)).build();    
         } catch(DinaException e) { 
-            return Response.status(e.getErrorCode()) 
-                    .entity(e.getMessage()).build();
+            ErrorBean error = new ErrorBean(entity, e.getMessage()); 
+            return Response.status(e.getErrorCode()).entity(Helpclass.getInstance().buildEntityWrapper(error, meta, e.getErrorCode(), 0)).build();  
         }  
     } 
 
     /**
      * Generic method to create an entity by passing SpecifyBeanWrapper, the
      * entity to be created is wrapped into SpecifyBeanWrapper
-     *
-     * @param headers
+     * 
      * @param req
      * @param entity
      * @param json 
@@ -242,18 +248,19 @@ public class DinaService {
     @POST
     @Path("{entity}")
     @Consumes("application/json")
-    public Response createNewEntity(@Context HttpHeaders headers,
-                                    @Context HttpServletRequest req,
+    public Response createNewEntity(@Context HttpServletRequest req,
                                     @PathParam("entity") String entity, String json) {
         logger.info("createNewEntity - entity: {}", json);
   
+        Metadata metadata = new Metadata();
+        MetadataBean meta = metadata.buildMetadata(req, entity);
         try {  
-            int agentId = getAgentIdToken(req);
-            
-            return Response.ok(logic.createEntity(entity, json, agentId)).build();
+            int agentId = getAgentIdToken(req); 
+            EntityBean result = logic.createEntity(entity, json, agentId); 
+            return Response.ok(Helpclass.getInstance().buildEntityWrapper(result, meta, 200)).build();   
          } catch(DinaConstraintViolationException e) {   
-            return Response.status(e.getErrorCode()) 
-                    .entity(e.getErrorBeans()).build();
+            ErrorBean error = new ErrorBean(entity, e.getMessage()); 
+            return Response.status(e.getErrorCode()).entity(Helpclass.getInstance().buildEntityWrapper(error, meta, e.getErrorCode(), 0)).build();   
         }  
     }
     
@@ -326,5 +333,5 @@ public class DinaService {
             return Response.status(e.getErrorCode()) 
                     .entity(e.getMessage()).build();
         }  
-    } 
+    }  
 }

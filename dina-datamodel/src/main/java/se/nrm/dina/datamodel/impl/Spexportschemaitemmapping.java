@@ -17,10 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table; 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Table;  
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlID;
@@ -40,17 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Spexportschemaitemmapping.findByRemarks", query = "SELECT s FROM Spexportschemaitemmapping s WHERE s.remarks = :remarks"),
     @NamedQuery(name = "Spexportschemaitemmapping.findByExportedFieldName", query = "SELECT s FROM Spexportschemaitemmapping s WHERE s.exportedFieldName = :exportedFieldName")})
 public class Spexportschemaitemmapping extends BaseEntity {
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "TimestampCreated")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date timestampCreated;
-    @Column(name = "TimestampModified")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date timestampModified;
-    @Column(name = "Version")
-    private Integer version;
-    
+ 
     private static final long serialVersionUID = 1L;
     
     @Id
@@ -208,30 +195,5 @@ public class Spexportschemaitemmapping extends BaseEntity {
     @Override
     public String toString() {
         return "se.nrm.dina.datamodel.Spexportschemaitemmapping[ spExportSchemaItemMappingID=" + spExportSchemaItemMappingID + " ]";
-    }
-
-    public Date getTimestampCreated() {
-        return timestampCreated;
-    }
-
-    public void setTimestampCreated(Date timestampCreated) {
-        this.timestampCreated = timestampCreated;
-    }
-
-    public Date getTimestampModified() {
-        return timestampModified;
-    }
-
-    public void setTimestampModified(Date timestampModified) {
-        this.timestampModified = timestampModified;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-    
+    } 
 }
