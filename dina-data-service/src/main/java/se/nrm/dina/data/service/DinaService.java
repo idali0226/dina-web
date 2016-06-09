@@ -258,7 +258,10 @@ public class DinaService {
             int agentId = getAgentIdToken(req); 
             EntityBean result = logic.createEntity(entity, json, agentId); 
             return Response.ok(Helpclass.getInstance().buildEntityWrapper(result, meta, 200)).build();   
-         } catch(DinaConstraintViolationException e) {   
+        } catch(DinaConstraintViolationException e) {   
+            ErrorBean error = new ErrorBean(entity, e.getMessage()); 
+            return Response.status(e.getErrorCode()).entity(Helpclass.getInstance().buildEntityWrapper(error, meta, e.getErrorCode(), 0)).build();   
+        }  catch(DinaException e) {   
             ErrorBean error = new ErrorBean(entity, e.getMessage()); 
             return Response.status(e.getErrorCode()).entity(Helpclass.getInstance().buildEntityWrapper(error, meta, e.getErrorCode(), 0)).build();   
         }  

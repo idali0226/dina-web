@@ -50,7 +50,7 @@ public class JpaReflectionHelper {
      */
     public Class convertClassNameToClass(String classname) {
  
-//        logger.info("convertClassNameToClass : {}", classname);
+        logger.info("convertClassNameToClass : {}", classname);
         
         try {
             return Class.forName(DataModelHelper.getInstance().getENTITY_PACKAGE() + reformClassName(classname));   
@@ -150,7 +150,7 @@ public class JpaReflectionHelper {
      * @return boolean
      */
     public boolean isEntity(Class clazz, String fieldName) {
-        logger.info("isEntity : {} -- {}", clazz, fieldName);
+//        logger.info("isEntity : {} -- {}", clazz, fieldName);
         try {  
             return clazz.getDeclaredField(fieldName).getType().getName().contains(DataModelHelper.getInstance().getENTITY_PACKAGE());
         } catch (NoSuchFieldException e) {
@@ -329,6 +329,10 @@ public class JpaReflectionHelper {
                 return getTimestampCreated(superClass);
             }
         } 
+    }
+    
+    public Class getCreatedByClazz() {
+        return convertClassNameToClass(DataModelHelper.getInstance().getCREATED_BY_CLASS_NAME()); 
     }
     
     /**

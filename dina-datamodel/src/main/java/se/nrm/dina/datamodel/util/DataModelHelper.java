@@ -15,6 +15,7 @@ public class DataModelHelper {
     private final String TIME_CREATED_FIELD = "timestampCreated";
     private final String VERSION = "Version";
     private final String ENTITY_PACKAGE = "se.nrm.dina.datamodel.impl.";
+    private final String CREATED_BY_CLASS_NAME = "Agent";
       
     private static DataModelHelper instance = null;
      
@@ -39,5 +40,9 @@ public class DataModelHelper {
 
     public String getTIME_CREATED_FIELD() {
         return TIME_CREATED_FIELD;
+    } 
+
+    public String getCREATED_BY_CLASS_NAME() {
+        return CREATED_BY_CLASS_NAME;
     } 
 }

@@ -5,7 +5,7 @@
  */
 package se.nrm.dina.data.service.util;
   
-import java.util.List; 
+import java.util.List;  
 import se.nrm.dina.data.service.vo.EntityCount;
 import se.nrm.dina.data.service.vo.EntityWrapper;
 import se.nrm.dina.data.service.vo.MetadataBean;
@@ -28,7 +28,7 @@ public class Helpclass {
         }
         return instance;
     }
-    
+ 
             
     public EntityWrapper buildEntityWrapper(ErrorBean error, MetadataBean meta, int statusCode, int resultCount) {
         meta.setResultCount(resultCount);

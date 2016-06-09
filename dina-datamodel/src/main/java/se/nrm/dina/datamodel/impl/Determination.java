@@ -68,10 +68,7 @@ public class Determination extends BaseEntity {
     @Min(value = 1, message = "collectionMemberID can not be null")
     @Column(name = "CollectionMemberID")
     private int collectionMemberID;
-
-    @Size(max = 16)
-    @Column(name = "VarQualifer")
-    private String varQualifer;
+ 
     
     @Size(max = 16)
     @Column(name = "Addendum")
@@ -119,12 +116,7 @@ public class Determination extends BaseEntity {
     @Size(max = 16)
     @Column(name = "Qualifier")
     private String qualifier;
-    
-    //This is not in test database
-//    @Size(max = 16)
-//    @Column(name = "VarQualifer")
-//    private String varQualifer;
-    
+     
     @Size(max = 16)
     @Column(name = "SubSpQualifier")
     private String subSpQualifier;
@@ -334,14 +326,7 @@ public class Determination extends BaseEntity {
     public void setQualifier(String qualifier) {
         this.qualifier = qualifier;
     }
-
-//    public String getVarQualifer() {
-//        return varQualifer;
-//    }
-//
-//    public void setVarQualifer(String varQualifer) {
-//        this.varQualifer = varQualifer;
-//    }
+ 
 
     public String getSubSpQualifier() {
         return subSpQualifier;
@@ -441,14 +426,7 @@ public class Determination extends BaseEntity {
     public void setModifiedByAgentID(Agent modifiedByAgentID) {
         this.modifiedByAgentID = modifiedByAgentID;
     }
-    
-    public String getVarQualifer() {
-        return varQualifer;
-    }
-
-    public void setVarQualifer(String varQualifer) {
-        this.varQualifer = varQualifer;
-    }
+ 
 
     @XmlTransient
     public Collectionobject getCollectionObjectID() {

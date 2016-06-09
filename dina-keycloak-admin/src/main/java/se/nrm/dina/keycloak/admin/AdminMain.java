@@ -15,8 +15,7 @@ import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
 import org.keycloak.admin.client.resource.RealmResource;
 import org.keycloak.admin.client.resource.UsersResource;
-import org.keycloak.representations.idm.CredentialRepresentation;
-import org.keycloak.representations.idm.RealmRepresentation;
+import org.keycloak.representations.idm.CredentialRepresentation; 
 import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 
@@ -37,6 +36,7 @@ public class AdminMain {
     private static final String URL = "https://beta-sso.dina-web.net/auth";
 
     private static Keycloak kc;
+    private static RoleRepresentation rr;
 
     public static void main(String[] args) {
 
@@ -49,8 +49,9 @@ public class AdminMain {
                 .resteasyClient(new ResteasyClientBuilder().connectionPoolSize(10).build()) //
                 .build();
         
+//        createRealmRole("admin");
 //        createClientRole("admin", "dina-rest");
-        createUser("test1", "test1");
+        createUser("idali", "idali");
          
     }
     
@@ -62,7 +63,7 @@ public class AdminMain {
         
         List<String> groups = new ArrayList();
         groups.add("admin");
-        groups.add("tester");
+        groups.add("user");
          
         Map<String, List<String>> roleMap = new HashMap<>();
         roleMap.put("collections", groups);
@@ -75,12 +76,12 @@ public class AdminMain {
 
         UserRepresentation user = new UserRepresentation();
         user.setUsername(userName);
-        user.setFirstName("Test");
-        user.setLastName("User");
+        user.setFirstName("Ida");
+        user.setLastName("Li");
         user.setCredentials(asList(credential));
         user.setEnabled(true);
-        user.setRealmRoles(asList("admin"));
-        user.setClientRoles(roleMap); 
+        user.setRealmRoles(asList("admin"));  
+        user.setClientRoles(roleMap);
         
         
         
@@ -104,22 +105,19 @@ public class AdminMain {
 
 
     private static void createClientRole(String roleName, String clientId) {
-        RoleRepresentation rr = new RoleRepresentation();
+        rr = new RoleRepresentation();
         rr.setName(roleName);
         rr.setScopeParamRequired(false); 
         kc.realm(DINA_REALM).clients().get(clientId).roles().create(rr); 
     }
     
     private static void createRealmRole(String roleName) {
-        RoleRepresentation rr = new RoleRepresentation();
+        rr = new RoleRepresentation();
         rr.setName(roleName);
         rr.setScopeParamRequired(false);
-  
+     
         RealmResource realmsResource = kc.realm(DINA_REALM);
-        realmsResource.roles().create(rr);
-        
-        
-        
+        realmsResource.roles().create(rr); 
     }
     
 }

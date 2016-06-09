@@ -158,6 +158,7 @@ public class DinaDaoImpl<T extends EntityBean> implements DinaDao<T>, Serializab
         } catch(ConstraintViolationException e) {
             throw new DinaConstraintViolationException(handleConstraintViolations(e), 400);  
         } catch (Exception e) {  
+            throw new DinaException(e.getMessage(), 400);  
         }
         return tmp;
     }

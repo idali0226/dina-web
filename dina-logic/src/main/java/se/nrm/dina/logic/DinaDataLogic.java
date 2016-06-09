@@ -14,13 +14,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays; 
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.function.Predicate;     
-import java.util.stream.Collectors;
+import java.util.Map; 
 import javax.ejb.EJB;
-import javax.ejb.Stateless; 
-import javax.ws.rs.core.MultivaluedMap; 
+import javax.ejb.Stateless;  
 import org.apache.commons.lang.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
@@ -29,8 +25,7 @@ import se.nrm.dina.data.exceptions.DinaConstraintViolationException;
 import se.nrm.dina.data.exceptions.DinaException;
 import se.nrm.dina.data.jpa.DinaDao; 
 import se.nrm.dina.logic.util.NamedQueries;
-import se.nrm.dina.datamodel.EntityBean;    
-import se.nrm.dina.datamodel.util.DataModelHelper;
+import se.nrm.dina.datamodel.EntityBean;     
 import se.nrm.dina.logic.util.HelpClass;
 
 /**
@@ -210,31 +205,30 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
  
         LocalDateTime ld = LocalDateTime.now();
         date = Timestamp.valueOf(ld);
-         
-        Class createByClass = JpaReflectionHelper.getInstance().convertClassNameToClass(
-                                    DataModelHelper.getInstance().getCREATED_BY_FIELD()); 
-        createdByUserBean = dao.findById(agentId, createByClass, true);
-          
-        EntityBean bean;
-        try {
-            bean = mappObject(entityName, json);
 
+        try {
+            EntityBean bean = mappObject(entityName, json); 
+            Class clazz = JpaReflectionHelper.getInstance().getCreatedByClazz();
+            createdByUserBean = dao.findById(agentId, clazz, JpaReflectionHelper.getInstance().isVersioned(clazz));
+
+//            Class createByClass = JpaReflectionHelper.getInstance().convertClassNameToClass(
+//                                                DataModelHelper.getInstance().getCREATED_BY_FIELD());
             Field[] fields = bean.getClass().getDeclaredFields();
             Arrays.stream(fields)
-                    .forEach(f -> {  
+                    .forEach(f -> {
                         setValueToBean(bean, f);
-                    }); 
-             
+                    });
+
             setTimeStampCreated(bean);
             setCreatedByUser(bean, createdByUserBean);
             return dao.create(bean);
-        } catch (DinaConstraintViolationException ex) {   
-            throw new DinaConstraintViolationException(ex.getErrorBeans(), ex.getErrorCode());  
-        } catch(Exception e) {  
-            throw new DinaException(e.getMessage());
-        }
+        } catch (DinaConstraintViolationException ex) {
+            throw ex;
+        } catch (DinaException ex) {
+            throw ex;
+        } 
     }
- 
+
 
     /**
      * Updates an entity in database
@@ -367,18 +361,22 @@ public class DinaDataLogic<T extends EntityBean> implements Serializable {
                 });
     }
 
-    private void setValueToBean(EntityBean parent, Field f) { 
-        if (JpaReflectionHelper.getInstance().isEntity(parent.getClass(), f.getName())) {
-            setChildToBean(parent, f);
-        } else if (JpaReflectionHelper.getInstance().isCollection(parent.getClass(), f.getName())) {
-            setChildrenToBean(parent, f);
+    private void setValueToBean(EntityBean parent, Field f) {
+        try {
+            if (JpaReflectionHelper.getInstance().isEntity(parent.getClass(), f.getName())) {
+                setChildToBean(parent, f);
+            } else if (JpaReflectionHelper.getInstance().isCollection(parent.getClass(), f.getName())) {
+                setChildrenToBean(parent, f);
+            }
+        } catch (DinaException e) {
+            throw e;
         }
     }
-    
+
     private void setCreatedByUser(EntityBean bean, EntityBean userBean) {
         Field field = JpaReflectionHelper.getInstance().getCreatedByField(bean.getClass());
-  
-        if(field != null) {
+
+        if (field != null) {
             try {
                 field.setAccessible(true);
                 field.set(bean, userBean);
