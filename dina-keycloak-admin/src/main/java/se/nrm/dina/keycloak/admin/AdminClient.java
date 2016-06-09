@@ -10,12 +10,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang.StringUtils;
-import org.keycloak.admin.client.Keycloak;  
-import org.keycloak.admin.client.resource.RoleMappingResource; 
+import org.keycloak.admin.client.Keycloak;
+import org.keycloak.admin.client.resource.RoleMappingResource;
 import org.keycloak.representations.idm.ClientRepresentation;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.RoleRepresentation;
-import org.keycloak.representations.idm.UserRepresentation; 
+import org.keycloak.representations.idm.UserRepresentation;
+//import org.keycloak.admin.client.Keycloak;  
+//import org.keycloak.admin.client.resource.RoleMappingResource; 
+//import org.keycloak.representations.idm.ClientRepresentation;
+//import org.keycloak.representations.idm.CredentialRepresentation;
+//import org.keycloak.representations.idm.RoleRepresentation;
+//import org.keycloak.representations.idm.UserRepresentation; 
 
 /**
  *
